@@ -1,0 +1,166 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+    "globals": {
+        "$": true,
+        "css": true,
+        "document": true,
+        "fetch": true,
+        "jQuery": true,
+        "localStorage": true,
+        "React": true,
+        "window": true,
+        "workbox": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": false,
+            "modules": true
+        },
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "react-hooks", "prettier"],
+    "root": true,
+    "rules": {
+        "arrow-body-style": "off",
+        "babel/object-curly-spacing": "off",
+        "block-scoped-var": "warn",
+        "camelcase": "warn",
+        "comma-dangle": "off",
+        "curly": "warn",
+        "eqeqeq": "off",
+        "global-require": "off",
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/prefer-default-export": "off",
+        "indent": [
+            "warn",
+            4,
+            {
+                "flatTernaryExpressions": false,
+                "SwitchCase": 1
+            }
+        ],
+        "jsx-a11y/anchor-is-valid": "off",
+        "jsx-a11y/alt-text": "warn",
+        "jsx-a11y/href-no-hash": "off",
+        "jsx-a11y/label-has-associated-control": "warn",
+        "jsx-a11y/label-has-for": "off",
+        "jsx-quotes": ["warn", "prefer-double"],
+        "new-cap": "off",
+        "no-alert": "off",
+        "no-bitwise": "off",
+        "no-caller": "warn",
+        "no-console": "off",
+        "no-debugger": "error",
+        "no-empty": "warn",
+        "no-eq-null": "off",
+        "no-extra-semi": "warn",
+        "no-invalid-regexp": "error",
+        "no-multiple-empty-lines": [
+            "warn",
+            {
+                "max": 1
+            }
+        ],
+        "no-nested-ternary": "off",
+        "no-new": "warn",
+        "no-obj-calls": "error",
+        "no-shadow": "off",
+        "no-undef": "warn",
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allow": ["__REDUX_DEVTOOLS_EXTENSION__"]
+            }
+        ],
+        "no-unreachable": "error",
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowTaggedTemplates": true
+            }
+        ],
+        "no-unused-vars": "off",
+        "no-use-before-define": "off",
+        "prettier/prettier": [
+            "warn",
+            {
+                "arrowParens": "always",
+                "bracketSpacing": true,
+                "jsxBracketSameLine": false,
+                "jsxSingleQuote": false,
+                "printWidth": 300,
+                "proseWrap": "preserve",
+                "requirePragma": false,
+                "semi": true,
+                "singleQuote": true,
+                "tabWidth": 4,
+                "trailingComma": "none",
+                "useTabs": false
+            }
+        ],
+        "quotes": [
+            "warn",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "react/button-has-type": "off",
+        "react/jsx-boolean-value": ["warn", "never"],
+        "react/jsx-closing-bracket-location": ["warn", "tag-aligned"],
+        "react/jsx-curly-spacing": ["warn", "never"],
+        "react/jsx-filename-extension": [
+            "warn",
+            {
+                "extensions": [".js"]
+            }
+        ],
+        "react/jsx-first-prop-new-line": ["warn", "multiline"],
+        "react/jsx-handler-names": [
+            "warn",
+            {
+                "eventHandlerPrefix": "handle",
+                "eventHandlerPropPrefix": "on"
+            }
+        ],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": "off",
+        "react/jsx-key": "error",
+        "react/jsx-no-bind": "error",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-pascal-case": "warn",
+        "react/jsx-wrap-multilines": "warn",
+        "react/prefer-stateless-function": "warn",
+        "react/prop-types": "off",
+        "react/require-extension": "off",
+        "react/require-render-return": "warn",
+        "react/self-closing-comp": [
+            "warn",
+            {
+                "component": true,
+                "html": false
+            }
+        ],
+        "react/sort-comp": [
+            "error",
+            {
+                "order": ["static-methods", "lifecycle", "everything-else", "rendering"],
+                "groups": {
+                    "rendering": ["/^render.+$/", "render"]
+                }
+            }
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "semi": "error",
+        "strict": "error"
+    }
+}

@@ -1,0 +1,107 @@
+# From https://github.com/Danimoth/gitattributes/blob/master/Web.gitattributes
+
+# Handle line endings automatically for files detected as text
+# and leave all files detected as binary untouched.
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+
+#
+## These files are text and should be normalized (Convert crlf => lf)
+#
+
+# Build config
+*.bowerrc text
+*.npmignore text
+
+# Code analysis config
+.csslintrc text
+.jshintrc text
+.jscsrc text
+.jshintignore text
+
+# Documentation
+*.md text
+AUTHORS text
+LICENSE text
+
+# Git config
+.gitattributes text
+.gitconfig text
+.gitignore text
+
+# Heroku
+.slugignore text
+Procfile text
+
+# Misc config
+*.yaml text
+*.yml text
+.editorconfig text
+
+# Server config
+.htaccess text
+.nginx.conf text
+
+# Source code
+*.bat text eol=lf
+*.css text eol=lf
+*.coffee text eol=lf
+*.htm text eol=lf
+*.html text eol=lf
+*.inc text eol=lf
+*.ini text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.jsx text eol=lf
+*.less text eol=lf
+*.php text eol=lf
+*.pl text eol=lf
+*.py text eol=lf
+*.rb text eol=lf
+*.sass text eol=lf
+*.scm text eol=lf
+*.scss text eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+*.styl text eol=lf
+*.svg text eol=lf
+*.txt text eol=lf
+*.xml text eol=lf
+
+# Templates
+*.ejs text
+*.hbt text
+*.jade text
+*.haml text
+*.hbs text
+*.dot text
+*.tmpl text
+*.phtml text
+
+#
+## These files are binary and should be left untouched
+#
+
+# (Binary is a macro for -text -diff)
+*.7z binary
+*.eot binary
+*.fla binary
+*.flv binary
+*.gif binary
+*.gz binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.pdf binary
+*.png binary
+*.pyc binary
+*.swf binary
+*.ttf binary
+*.woff binary
+*.zip binary
