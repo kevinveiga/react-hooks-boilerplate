@@ -4,7 +4,7 @@
         "es6": true,
         "node": true
     },
-    "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+    "extends": ["airbnb", "plugin:jsx-a11y/recommended", "plugin:prettier/recommended", "prettier/react"],
     "globals": {
         "$": true,
         "css": true,
@@ -19,13 +19,13 @@
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": false,
+            "jsx": true,
             "modules": true
         },
         "ecmaVersion": 6,
         "sourceType": "module"
     },
-    "plugins": ["react", "react-hooks", "prettier"],
+    "plugins": ["jsx-a11y", "react", "react-hooks", "prettier"],
     "root": true,
     "rules": {
         "arrow-body-style": "off",
@@ -73,6 +73,7 @@
         "no-new": "warn",
         "no-obj-calls": "error",
         "no-shadow": "off",
+        "no-tabs": ["warn", { "allowIndentationTabs": true }],
         "no-undef": "warn",
         "no-underscore-dangle": [
             "error",
@@ -94,6 +95,7 @@
             {
                 "arrowParens": "always",
                 "bracketSpacing": true,
+                "endOfLine": "lf",
                 "jsxBracketSameLine": false,
                 "jsxSingleQuote": false,
                 "printWidth": 300,
