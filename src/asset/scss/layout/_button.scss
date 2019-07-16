@@ -47,7 +47,7 @@
             transform: translateX(-50%);
             width: 100%;
         }
-        &:focus,
+        &:active,
         &:hover,
         &.is-active {
             background-color: $color-white;
@@ -59,7 +59,7 @@
         &::after {
             background-color: $color-black;
         }
-        &:focus,
+        &:active,
         &:hover,
         &.is-active {
             background-color: $color-black;
