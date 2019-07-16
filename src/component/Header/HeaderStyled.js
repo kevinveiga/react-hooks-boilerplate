@@ -6,13 +6,6 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
     display: ${(props) => (props.active === 'true' ? 'none' : 'block')};
     margin: auto;
     vertical-align: middle;
-    &:hover {
-        ul {
-            li {
-                background-color: ${variable.colorPrimary};
-            }
-        }
-    }
     ul {
         li {
             background-color: ${(props) => (props.change === 'true' ? variable.colorWhite : variable.colorSecondary)};
@@ -23,6 +16,13 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
             opacity: 1;
             transition: background-color ${variable.transition};
             width: 30px;
+        }
+    }
+    &:hover {
+        ul {
+            li {
+                background-color: ${variable.colorPrimary};
+            }
         }
     }
 `;

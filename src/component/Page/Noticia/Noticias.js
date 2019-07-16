@@ -6,7 +6,6 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
-import { BannerPerfilInvestidor } from '../../Banner/BannerPerfilInvestidor';
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
 import { LinkTo } from '../../Link/LinkTo';
@@ -20,8 +19,6 @@ import { BgImageOverlay3, Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
 import { Title3, Title4 } from '../../../style/text';
-
-import bannerAnuncio from '../../../asset/image/banner-anuncio.jpg';
 
 export const Noticias = () => {
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
@@ -101,10 +98,6 @@ export const Noticias = () => {
                                             );
                                         })}
                                 </Flex>
-
-                                <Grid display="grid">
-                                    <Image src={bannerAnuncio} text="Anúncio" />
-                                </Grid>
 
                                 {/* TODO: Posteriormente esses dados devem vir da API de Aprenda */}
                                 {/* <Title4 color="colorGray2" fontWeight="700" my="30px" themeColor="dark">
@@ -226,10 +219,6 @@ export const Noticias = () => {
                                                                 </Cell>
                                                             )}
                                                         </Grid>
-                                                    </Box>
-
-                                                    <Box pl={{ d: 0, md: 3 }} width={{ d: 0, md: 1 / 5 }}>
-                                                        <BannerPerfilInvestidor />
                                                     </Box>
                                                 </Flex>
                                             </li>

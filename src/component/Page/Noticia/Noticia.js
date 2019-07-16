@@ -10,18 +10,15 @@ import { useNoticiaApi } from '../../../service/noticia';
 import { useChangeNoticiaSocialScroll } from '../../../store/noticia/noticia';
 
 import { LinkTo } from '../../Link/LinkTo';
-import { NoticiaForm } from '../../Form/NoticiaForm';
 import { NoticiaBox } from './NoticiaBox';
 import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas, NoticiaSocial } from './NoticiaStyled';
 import { SocialAlternate } from '../../Social/SocialAlternate';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay7, Image } from '../../../style/image';
+import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Span, Title1, Title4, Title5 } from '../../../style/text';
-
-import liberdade from '../../../asset/image/os-melhores-investimentos-em-sua-liberdade.webp';
 
 export const Noticia = ({ match }) => {
     const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll();
@@ -115,26 +112,8 @@ export const Noticia = ({ match }) => {
 
                         <NoticiaArticle>{parse(`${noticia.data.content}`)}</NoticiaArticle>
 
-                        <NoticiaFormContainer mb="75px">
-                            <Flex display="flex" flexWrap="wrap">
-                                <Box display={{ d: 'none', sm: 'inline-block' }} width={2 / 4}>
-                                    <BgImageOverlay7 url={liberdade} />
-                                </Box>
-
-                                <Box width={{ d: 1, sm: 2 / 4 }}>
-                                    <NoticiaForm color="colorGrayDark" colorLine="colorGray" colorPlaceholder="colorGray" themeColor="dark" id="noticia-contato" />
-                                </Box>
-                            </Flex>
-                        </NoticiaFormContainer>
-
                         <NoticiaAuthor mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
-                                <Box display="inline-block">
-                                    <div className="image-container">
-                                        <Image src={liberdade} text="autor" />
-                                    </div>
-                                </Box>
-
                                 <Box display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
                                     <p className="escrito-por">Escrito por</p>
                                     <Title4 color="colorPrimary" mb={2} themeColor="dark">
