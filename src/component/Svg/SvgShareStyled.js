@@ -8,7 +8,6 @@ export const SvgShareStyled = styled.svg`
     @media (min-width: ${variable.sm}) {
         height: 18px;
     }
-    &:active,
     &:hover {
         fill: ${variable.colorPrimary};
     }

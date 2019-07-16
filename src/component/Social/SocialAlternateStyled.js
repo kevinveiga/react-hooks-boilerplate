@@ -24,7 +24,6 @@ export const SocialAlternateStyled = styled.ul`
             > svg {
                 fill: ${(props) => (props.themeColor === 'dark' ? variable.colorBlack : variable.colorWhite)};
                 height: 40px;
-                &:active,
                 &:hover {
                     fill: ${variable.colorPrimary};
                 }

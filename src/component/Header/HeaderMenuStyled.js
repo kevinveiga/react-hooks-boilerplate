@@ -40,7 +40,6 @@ export const HeaderMenuStyled = styled.nav`
             font-weight: 600;
             letter-spacing: 1px;
             transition: color ${variable.transition};
-            &:active,
             &:hover {
                 color: ${variable.colorPrimary};
             }

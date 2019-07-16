@@ -47,10 +47,9 @@
             transform: translateX(-50%);
             width: 100%;
         }
-        &:active,
         &:focus,
         &:hover,
-        &.active {
+        &.is-active {
             background-color: $color-white;
             color: $color-black;
         }
@@ -60,10 +59,9 @@
         &::after {
             background-color: $color-black;
         }
-        &:active,
         &:focus,
         &:hover,
-        &.active {
+        &.is-active {
             background-color: $color-black;
             color: $color-white;
         }

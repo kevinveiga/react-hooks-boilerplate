@@ -6,7 +6,6 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
     display: ${(props) => (props.active === 'true' ? 'none' : 'block')};
     margin: auto;
     vertical-align: middle;
-    &:active,
     &:hover {
         ul {
             li {
