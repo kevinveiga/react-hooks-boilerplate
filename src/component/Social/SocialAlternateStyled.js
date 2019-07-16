@@ -8,6 +8,7 @@ export const SocialAlternateStyled = styled.ul`
     ${(props) =>
         props.direction === 'vertical'
             ? css`
+                  margin-left: 13px;
                   > li {
                       display: block;
                   }
