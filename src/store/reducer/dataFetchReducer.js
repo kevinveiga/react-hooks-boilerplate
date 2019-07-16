@@ -15,6 +15,12 @@ export const dataFetchReducer = (state, action) => {
                 isLoading: true
             };
         case ACTION_TYPE.SUCCESS:
+            if (action.append) {
+                if (Object.keys(state.data).length > 0) {
+                    action.payload.data.unshift(...state.data.data);
+                }
+            }
+
             return {
                 ...state,
                 data: action.payload,

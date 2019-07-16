@@ -138,6 +138,32 @@ export const Normalize = createGlobalStyle`
     button,
     input,
     label,
+    select,
+    textarea {
+        display: block;
+        line-height: inherit;
+    }
+
+    select {
+        appearance: none;
+        border: 0;
+        cursor: pointer;
+        max-width: 100%;
+        text-transform: none;
+        width: auto;
+        &::-ms-expand {
+            display: none;
+        }
+    }
+
+    textarea {
+        overflow: auto;
+        resize: none;
+    }
+
+    button,
+    input,
+    label,
     optgroup,
     select,
     textarea {
@@ -159,14 +185,6 @@ export const Normalize = createGlobalStyle`
     fieldset {
         border: 0;
         margin: 40px 0 0 0;
-    }
-
-    input,
-    label,
-    select,
-    textarea {
-        display: block;
-        line-height: inherit;
     }
 
     input[type='file'] {
@@ -197,23 +215,6 @@ export const Normalize = createGlobalStyle`
         &::-webkit-search-decoration {
             appearance: none;
         }
-    }
-
-    select {
-        appearance: none;
-        border: 0;
-        cursor: pointer;
-        max-width: 100%;
-        text-transform: none;
-        width: auto;
-        &::-ms-expand {
-            display: none;
-        }
-    }
-
-    textarea {
-        overflow: auto;
-        resize: none;
     }
 
     /* IMG */

@@ -5,6 +5,12 @@ import { variable } from '../../style/variable';
 
 const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
     return css`
+        .custom-textarea {
+            ${variable[themeColor] === 'dark' ? `border: 2px solid ${variable[colorLine]}` : ''};
+            ${variable[themeColor] === 'dark' ? 'border-radius: 10px' : ''};
+            ${variable[themeColor] === 'dark' ? `padding: (${variable.inputPadding}- 5) ${variable.inputPadding}` : ''};
+            height: 150px;
+        }
         .custom-input,
         .custom-textarea {
             ${placeholder(`
@@ -25,42 +31,6 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
             text-overflow: ellipsis;
             transition: border ${variable.transition}, color ${variable.transition};
             width: 100%;
-            &:disabled {
-                background-color: ${variable.colorGray4};
-                cursor: not-allowed;
-            }
-            &:active,
-            &:focus,
-            &:hover,
-            &.has-value {
-                border-bottom: 2px solid ${variable[colorLine]};
-                z-index: 1;
-                ~ .custom-label {
-                    font-size: 12px;
-                    top: 0;
-                }
-            }
-            &.invalid {
-                border-color: ${variable.colorAlert};
-                ~ .custom-validation-text {
-                    opacity: 1;
-                }
-                ~ .svg-invalid {
-                    fill: ${variable.colorAlert};
-                    opacity: 1;
-                    stroke: ${variable.colorAlert};
-                    z-index: 3;
-                }
-            }
-            &.valid {
-                border-color: ${variable.colorPrimaryHover};
-                ~ .svg-valid {
-                    fill: ${variable.colorPrimaryHover};
-                    opacity: 1;
-                    stroke: ${variable.colorPrimaryHover};
-                    z-index: 3;
-                }
-            }
             ~ .custom-label {
                 color: ${variable[colorPlaceholder]};
                 font-size: 14px;
@@ -111,13 +81,42 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
                 opacity: 0;
                 transition: opacity ${variable.transition};
             }
-        }
-
-        .custom-textarea {
-            ${variable[themeColor] === 'dark' ? `border: 2px solid ${variable[colorLine]}` : ''};
-            ${variable[themeColor] === 'dark' ? 'border-radius: 10px' : ''};
-            ${variable[themeColor] === 'dark' ? `padding: (${variable.inputPadding}- 5) ${variable.inputPadding}` : ''};
-            height: 150px;
+            &:disabled {
+                background-color: ${variable.colorGray4};
+                cursor: not-allowed;
+            }
+            &:active,
+            &:focus,
+            &:hover,
+            &.has-value {
+                border-bottom: 2px solid ${variable[colorLine]};
+                z-index: 1;
+                ~ .custom-label {
+                    font-size: 12px;
+                    top: 0;
+                }
+            }
+            &.invalid {
+                border-color: ${variable.colorAlert};
+                ~ .custom-validation-text {
+                    opacity: 1;
+                }
+                ~ .svg-invalid {
+                    fill: ${variable.colorAlert};
+                    opacity: 1;
+                    stroke: ${variable.colorAlert};
+                    z-index: 3;
+                }
+            }
+            &.valid {
+                border-color: ${variable.colorPrimaryHover};
+                ~ .svg-valid {
+                    fill: ${variable.colorPrimaryHover};
+                    opacity: 1;
+                    stroke: ${variable.colorPrimaryHover};
+                    z-index: 3;
+                }
+            }
         }
     `;
 };

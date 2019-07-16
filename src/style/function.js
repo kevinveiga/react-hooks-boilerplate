@@ -12,6 +12,11 @@ export const letterSpacing = (value = '0', align = '') => {
 
 export const placeholder = (content) => {
     return css`
+        /* Firefox */
+        &::-moz-placeholder {
+            ${content};
+            opacity: 1;
+        }
         /* Safari and Chrome */
         &::-webkit-input-placeholder {
             ${content};
@@ -19,11 +24,6 @@ export const placeholder = (content) => {
         /* Internet Explorer 10+ */
         &:-ms-input-placeholder {
             ${content};
-        }
-        /* Firefox */
-        &::-moz-placeholder {
-            ${content};
-            opacity: 1;
         }
     `;
 };

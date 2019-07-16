@@ -19,6 +19,10 @@ export const DateTime = styled.span`
     margin-top: ${variable.spacingXS};
 `;
 
+export const Text = styled.p`
+    ${layout};
+`;
+
 export const Tag = styled.div`
     color: ${variable.colorWhite};
     display: ${(props) => (props.show ? 'table' : 'none')};
@@ -29,17 +33,22 @@ export const Tag = styled.div`
 
 export const Title = styled.h2`
     ${typography};
-    ${(props) => props.fontSize === undefined && 'font-size: 24px'};
+    ${(props) => props.fontSize === undefined && 'font-size: 16px'};
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: ${variable.spacingSM};
+    @media (min-width: ${variable.sm}) {
+        ${(props) => props.fontSize === undefined && 'font-size: 24px'};
+    }
 `;
 
 export const NoticiaBoxStyled = styled.div`
     ${layout};
     ${typography};
     color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
+    display: inline-block;
     ${(props) => props.fontSize === undefined && 'font-size: 14px'};
+    vertical-align: middle;
 
     > p {
         color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};
@@ -50,7 +59,10 @@ export const NoticiaBoxStyled = styled.div`
 
     > ${Author} {
         color: ${(props) => (props.themeColor === 'light' ? (props.color === 'colorBlueDark' ? variable.colorWhite : variable[props.color]) : variable[props.color])};
-        ${(props) => props.fontSize === undefined && 'font-size: 14px'};
+        ${(props) => props.fontSize === undefined && 'font-size: 12px'};
+        @media (min-width: ${variable.sm}) {
+            ${(props) => props.fontSize === undefined && 'font-size: 14px'};
+        }
     }
 
     > ${Tag} {
