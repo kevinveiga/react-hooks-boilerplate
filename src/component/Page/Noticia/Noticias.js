@@ -78,7 +78,7 @@ export const Noticias = () => {
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" key={noticia.id} pb={3}>
                                                                             <Box width={1}>
                                                                                 <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                    <Image height="200px" mb={4} src={noticia.thumbnail.attachment.url} text={noticia.title} width={1} />
+                                                                                    <Image height="200px" mb={4} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={noticia.title} width={1} />
 
                                                                                     <NoticiaBox author={`Por ${noticia.author}`} color={categoriaUltimas.featured_color} tag={categoriaUltimas.title} themeColor="dark" title={noticia.title} />
                                                                                 </LinkTo>
@@ -176,7 +176,7 @@ export const Noticias = () => {
                                                                 stateNoticiasCategoria.data.data.map((noticia, j) => {
                                                                     return j === 0 ? (
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" key={noticia.id} p={{ d: 3, md: 4 }}>
-                                                                            <BgImageOverlay3 url={noticia.thumbnail.attachment.url} />
+                                                                            <BgImageOverlay3 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
 
                                                                             <Flex alignItems="flex-end" display="flex">
                                                                                 <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
@@ -207,7 +207,7 @@ export const Noticias = () => {
                                                                                     </p>
                                                                                 </NoticiaBox>
 
-                                                                                <Image height={{ d: '100px', xs: '150px', md: '200px' }} pl={3} src={noticia.thumbnail.attachment.url} text={noticia.title} width={2 / 5} />
+                                                                                <Image height={{ d: '100px', xs: '150px', md: '200px' }} pl={3} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={noticia.title} width={2 / 5} />
                                                                             </LinkTo>
                                                                         </Cell>
                                                                     );

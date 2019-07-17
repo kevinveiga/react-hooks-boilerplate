@@ -58,7 +58,7 @@ export const Noticia = ({ match }) => {
                                 <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
                                     <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} tag={noticia.category.title} themeColor="dark" title={noticia.title} width={{ d: 3 / 5, lg: 4 / 5 }} />
 
-                                    <Image height="100px" pl={3} src={noticia.thumbnail.attachment.url} text={`Imagem ${noticia.title}`} width={{ d: 2 / 5, lg: 1 / 5 }} />
+                                    <Image height="100px" pl={3} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={`Imagem ${noticia.title}`} width={{ d: 2 / 5, lg: 1 / 5 }} />
                                 </LinkTo>
                             </Cell>
                         );
@@ -84,7 +84,7 @@ export const Noticia = ({ match }) => {
 
                         <Flex display="flex" flexWrap="wrap">
                             <Box width={1}>
-                                <Image height="50vmin" mb={{ d: 4, md: 5 }} src={noticia.data.thumbnail.attachment.url} text="Notícia" width={1} />
+                                <Image height="50vmin" mb={{ d: 4, md: 5 }} src={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width={1} />
                             </Box>
                         </Flex>
 
