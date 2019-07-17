@@ -22,8 +22,9 @@ workbox.core.clientsClaim();
 // );
 
 // APP
+// Items not add, all this exist in precache or in image-cache
 workbox.routing.registerRoute(
-    new RegExp('^(?!.+\\.(?:gif|jpg|png|svg|webp)$).+$'),
+    new RegExp('^(?!.+\\.(?:css|eot|gif|js|jpg|png|svg|ttf|webp|woff|woff2)$).+$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'app-cache',
         plugins: [

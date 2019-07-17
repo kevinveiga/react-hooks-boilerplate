@@ -101,7 +101,7 @@ module.exports = {
         new InjectManifest({
             globIgnores: ['node_modules/**/*'],
             importsDirectory: 'asset',
-            include: [/(.css)$/, /(.eot)$/, /(.gif)$/, /(.html)$/, /(.ico)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
+            include: [/(.css)$/, /(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`,
             templatedURLs: {
