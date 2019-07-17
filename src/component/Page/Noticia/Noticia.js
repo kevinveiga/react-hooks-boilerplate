@@ -117,7 +117,7 @@ export const Noticia = ({ match }) => {
                                 <Box display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
                                     <p className="escrito-por">Escrito por</p>
                                     <Title4 color="colorPrimary" mb={2} themeColor="dark">
-                                        Alexandre Stormer
+                                        Autor
                                     </Title4>
                                     <p>Sócio-fundador do Grupo L&S, com 15 anos de experiência no mercado financeiro do Brasil, Leandro atua com trader profissional há pelo menos 5 anos no mercado de bolsas do Estados Unidos da América.</p>
                                 </Box>

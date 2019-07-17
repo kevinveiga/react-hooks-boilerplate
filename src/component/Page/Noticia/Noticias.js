@@ -112,7 +112,7 @@ export const Noticias = () => {
                                             <LinkTo ariaLabel="Como a mudança de postura do FED pode afetar seus investimentos?" to="/noticia/titulo-noticia-1">
                                                 <Image height="200px" mb={4} src="https://picsum.photos/id/1059/480" text="Notícia" width={1} />
 
-                                                <NoticiaBox author="Por Alexandre Stormer" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
+                                                <NoticiaBox author="Por Autor" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
                                             </LinkTo>
                                         </Box>
                                     </Cell>
@@ -122,7 +122,7 @@ export const Noticias = () => {
                                             <LinkTo ariaLabel="Como a mudança de postura do FED pode afetar seus investimentos?" to="/noticia/titulo-noticia-1">
                                                 <Image height="200px" mb={4} src="https://picsum.photos/id/1060/480" text="Notícia" width={1} />
 
-                                                <NoticiaBox author="Por Alexandre Stormer" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
+                                                <NoticiaBox author="Por Autor" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
                                             </LinkTo>
                                         </Box>
                                     </Cell>
@@ -132,14 +132,14 @@ export const Noticias = () => {
                                             <LinkTo ariaLabel="Como a mudança de postura do FED pode afetar seus investimentos?" to="/noticia/titulo-noticia-1">
                                                 <Image height="200px" mb={4} src="https://picsum.photos/id/1061/480" text="Notícia" width={1} />
 
-                                                <NoticiaBox author="Por Alexandre Stormer" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
+                                                <NoticiaBox author="Por Autor" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
                                             </LinkTo>
                                         </Box>
                                     </Cell>
 
                                     <Cell display="flex" py={3}>
                                         <LinkTo ariaLabel="Como a mudança de postura do FED pode afetar seus investimentos?" to="/noticia/titulo-noticia-1">
-                                            <NoticiaBox author="Por Alexandre Stormer" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
+                                            <NoticiaBox author="Por Autor" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
                                         </LinkTo>
                                     </Cell>
                                 </Grid> */}
@@ -157,7 +157,7 @@ export const Noticias = () => {
                                             <LinkTo ariaLabel="Como a mudança de postura do FED pode afetar seus investimentos?" to="/noticia/titulo-noticia-1">
                                                 <Image height="200px" mb={4} src="https://picsum.photos/id/1059/480" text="Notícia" width={1} />
 
-                                                <NoticiaBox author="Por Alexandre Stormer" color="colorBlueDark" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
+                                                <NoticiaBox author="Por Autor" color="colorBlueDark" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
                                             </LinkTo>
                                         </Box>
                                     </Cell>

@@ -24,7 +24,7 @@ export const Home = () => {
                         <BgImageOverlay url="https://picsum.photos/id/0/1024" />
 
                         <Flex alignItems="flex-end" display="flex">
-                            <NoticiaBox author="Por Alexandre Stormer" color="colorOrange" tag="Mercado Internacional" themeColor="light" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="32px" />
+                            <NoticiaBox author="Por Autor" color="colorOrange" tag="Mercado Internacional" themeColor="light" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="32px" />
                         </Flex>
                     </Cell>
                 </Grid>
@@ -38,11 +38,11 @@ export const Home = () => {
                                 </Cell>
 
                                 <Cell display="flex">
-                                    <NoticiaBox author="Por Alexandre Stormer" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
+                                    <NoticiaBox author="Por Autor" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
                                 </Cell>
 
                                 <Cell display="flex">
-                                    <NoticiaBox author="Por Alexandre Stormer" color="colorOrange" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" width="70%" />
+                                    <NoticiaBox author="Por Autor" color="colorOrange" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" width="70%" />
 
                                     <Image height="100px" mr={0} mt={3} pl={3} src="https://picsum.photos/id/163/1024" text="Imagem 163" width="120px" />
                                 </Cell>
@@ -60,11 +60,11 @@ export const Home = () => {
                         <Box px={{ xs: 0, sm: 3 }} width={{ xs: 1, ms: '1 / 2', md: '1 / 4' }}>
                             <Grid display="grid" gridAutoColumns="auto" gridAutoRows="minmax(100px, auto)" gridRowGap={4}>
                                 <Cell display="flex">
-                                    <NoticiaBox author="Por Alexandre Stormer" color="colorGreen" dateTime="15/05/19 09:30" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="18px" />
+                                    <NoticiaBox author="Por Autor" color="colorGreen" dateTime="15/05/19 09:30" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="18px" />
                                 </Cell>
 
                                 <Cell display="flex">
-                                    <NoticiaBox author="Por Alexandre Stormer" color="colorOrange" dateTime="15/05/19 09:30" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="18px" />
+                                    <NoticiaBox author="Por Autor" color="colorOrange" dateTime="15/05/19 09:30" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="18px" />
                                 </Cell>
                             </Grid>
                         </Box>
