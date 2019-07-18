@@ -10,7 +10,7 @@ workbox.core.clientsClaim();
 
 // API
 // workbox.routing.registerRoute(
-//     new RegExp('^(http://|https://).+/api/v1/.+'),
+//     new RegExp('^.+/api/v1/.+$'),
 //     new workbox.strategies.StaleWhileRevalidate({
 //         cacheName: 'api-cache',
 //         plugins: [
@@ -24,7 +24,7 @@ workbox.core.clientsClaim();
 // APP
 // Items not add, all this exist in precache or in image-cache
 workbox.routing.registerRoute(
-    new RegExp('^(.(?!.+\\.css$|.+\\.eot$|.+\\.gif$|.+\\.js$|.+\\.json|.+\\.jpg$|.+\\.png$|.+\\.svg$|.+\\.ttf$|.+\\.webp$|.+\\.woff$|.+\\.woff2$))*$'),
+    new RegExp('^(?!.+\\.css$|.+\\.eot$|.+\\.gif$|.+\\.js$|.+\\.json|.+\\.jpg$|.+\\.png$|.+\\.svg$|.+\\.ttf$|.+\\.webp$|.+\\.woff$|.+\\.woff2$).*$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'app-cache',
         plugins: [
@@ -55,9 +55,9 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('^(http://|https://).+\\.(?:gif|jpg|png|svg|webp)$'),
+    new RegExp('^.+\\.(?:gif|jpg|png|svg|webp)$'),
     new workbox.strategies.CacheFirst({
-        cacheName: 'image-uploads-cache',
+        cacheName: 'image-cross-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [200]
