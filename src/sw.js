@@ -10,7 +10,7 @@ workbox.core.clientsClaim();
 
 // API
 // workbox.routing.registerRoute(
-//     new RegExp('.+/api/v1/.+'),
+//     new RegExp('^(http://|https://).+/api/v1/.+'),
 //     new workbox.strategies.StaleWhileRevalidate({
 //         cacheName: 'api-cache',
 //         plugins: [
@@ -46,6 +46,24 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 60 * 60, // 60 minutes
+                maxEntries: 50,
+                purgeOnQuotaError: false // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// IMG CROSS-ORIGIN
+workbox.routing.registerRoute(
+    new RegExp('^(http://|https://).+\\.(?:gif|jpg|png|svg|webp)$'),
+    new workbox.strategies.CacheFirst({
+        cacheName: 'image-uploads-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
                 maxEntries: 50,
                 purgeOnQuotaError: false // Automatically cleanup if quota is exceeded
             })
