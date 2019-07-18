@@ -15,7 +15,7 @@ workbox.core.clientsClaim();
 //         cacheName: 'api-cache',
 //         plugins: [
 //             new workbox.cacheableResponse.Plugin({
-//                 statuses: [200]
+//                 statuses: [0, 200]
 //             })
 //         ]
 //     })
@@ -29,7 +29,7 @@ workbox.routing.registerRoute(
         cacheName: 'app-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
-                statuses: [200]
+                statuses: [0, 200]
             })
         ]
     })
@@ -42,7 +42,7 @@ workbox.routing.registerRoute(
         cacheName: 'image-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
-                statuses: [200]
+                statuses: [0, 200]
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 60 * 60, // 60 minutes
@@ -60,7 +60,7 @@ workbox.routing.registerRoute(
         cacheName: 'image-cross-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
-                statuses: [200]
+                statuses: [0, 200]
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
@@ -77,6 +77,12 @@ workbox.routing.registerRoute(
 //     new workbox.strategies.CacheFirst({
 //         cacheName: 'picsum-cache',
 //         plugins: [
+//             new workbox.cacheableResponse.Plugin({
+//                 headers: {
+//                     'X-Is-Cacheable': 'true'
+//                 },
+//                 statuses: [0, 200]
+//             }),
 //             new workbox.expiration.Plugin({
 //                 maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
 //                 maxEntries: 10,
