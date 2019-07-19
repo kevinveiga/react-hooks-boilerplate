@@ -11,6 +11,7 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
             ${variable[themeColor] === 'dark' ? `padding: (${variable.inputPadding}- 5) ${variable.inputPadding}` : ''};
             height: 150px;
         }
+
         .custom-input,
         .custom-textarea {
             ${placeholder(`
@@ -31,6 +32,7 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
             text-overflow: ellipsis;
             transition: border ${variable.transition}, color ${variable.transition};
             width: 100%;
+
             ~ .custom-label {
                 color: ${variable[colorPlaceholder]};
                 font-size: 14px;
@@ -41,6 +43,7 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
                 top: calc(50% - 5px);
                 transition: font-size ${variable.transition}, top ${variable.transition};
             }
+
             ~ .custom-validation-text {
                 bottom: -25px;
                 color: ${variable.colorAlert};
@@ -59,6 +62,7 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
                 white-space: nowrap;
                 width: 100%;
             }
+
             ~ .icon-left,
             ~ .icon-right {
                 fill: ${variable.colorGray};
@@ -70,37 +74,46 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
                 transition: fill ${variable.transition}, stroke ${variable.transition};
                 z-index: 2;
             }
+
             ~ .icon-left {
                 left: 2px;
             }
+
             ~ .icon-right {
                 right: 2px;
             }
+
             ~ .svg-invalid,
             ~ .svg-valid {
                 opacity: 0;
                 transition: opacity ${variable.transition};
             }
+
             &:disabled {
                 background-color: ${variable.colorGray4};
                 cursor: not-allowed;
             }
+
             &:active,
             &:focus,
             &:hover,
             &.has-value {
                 border-bottom: 2px solid ${variable[colorLine]};
                 z-index: 1;
+
                 ~ .custom-label {
                     font-size: 12px;
                     top: 0;
                 }
             }
+
             &.invalid {
                 border-color: ${variable.colorAlert};
+
                 ~ .custom-validation-text {
                     opacity: 1;
                 }
+
                 ~ .svg-invalid {
                     fill: ${variable.colorAlert};
                     opacity: 1;
@@ -108,8 +121,10 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
                     z-index: 3;
                 }
             }
+
             &.valid {
                 border-color: ${variable.colorPrimaryHover};
+
                 ~ .svg-valid {
                     fill: ${variable.colorPrimaryHover};
                     opacity: 1;

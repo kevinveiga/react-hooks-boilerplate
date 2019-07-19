@@ -101,6 +101,7 @@ export const Normalize = createGlobalStyle`
             user-select: text;
             width: 100%;
             z-index: 0;
+
             &.overflow-hidden {
                 overflow: hidden;
             }
@@ -127,6 +128,7 @@ export const Normalize = createGlobalStyle`
         overflow: hidden;
         text-align: center;
         text-decoration: none;
+
         @media (min-width: ${variable.md}) {
             font-size: 14px;
         }
@@ -151,6 +153,7 @@ export const Normalize = createGlobalStyle`
         max-width: 100%;
         text-transform: none;
         width: auto;
+
         &::-ms-expand {
             display: none;
         }
@@ -169,6 +172,7 @@ export const Normalize = createGlobalStyle`
     textarea {
         color: inherit;
         position: relative;
+
         &::-moz-focus-inner {
             border: 0;
         }
@@ -211,6 +215,7 @@ export const Normalize = createGlobalStyle`
     /* Address 'appearance' set to 'searchfield' in Safari and Chrome. */
     input[type='search'] {
         appearance: none;
+
         &::-webkit-search-cancel-button,
         &::-webkit-search-decoration {
             appearance: none;
@@ -260,6 +265,7 @@ export const Normalize = createGlobalStyle`
         border-spacing: 0;
         table-layout: fixed;
         width: 100%;
+
         td,
         th,
         tr {

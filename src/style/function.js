@@ -17,10 +17,12 @@ export const placeholder = (content) => {
             ${content};
             opacity: 1;
         }
+
         /* Safari and Chrome */
         &::-webkit-input-placeholder {
             ${content};
         }
+
         /* Internet Explorer 10+ */
         &:-ms-input-placeholder {
             ${content};
@@ -34,23 +36,29 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
             height: ${scrollbarSize};
             width: ${scrollbarSize};
         }
+
         &::-webkit-scrollbar-button {
             background-color: ${colorSecondary};
             display: none;
         }
+
         &::-webkit-scrollbar-corner {
             background-color: ${colorSecondary};
         }
+
         &::-webkit-resizer {
             background-color: ${colorSecondary};
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: ${colorPrimary};
             height: 50px;
         }
+
         &::-webkit-scrollbar-track {
             background-color: ${variable.colorWhite};
         }
+
         &::-webkit-scrollbar-track-piece {
             background-color: ${colorSecondary};
             margin: 0;

@@ -17,6 +17,7 @@ const tabInput = (group, total) => {
                                         background-color: ${variable.colorSecondary};
                                         box-shadow: inset 0 0 0 3px ${variable.colorSecondary};
                                         color: ${variable.colorWhite};
+
                                         &:active,
                                         &:focus,
                                         &:hover {

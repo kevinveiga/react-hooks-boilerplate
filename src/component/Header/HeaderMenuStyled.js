@@ -4,6 +4,7 @@ import { variable } from '../../style/variable';
 
 export const HeaderMenuStyled = styled.nav`
     display: inline-block;
+
     @media (max-width: ${variable.md}) {
         background-color: ${variable.colorBlack3};
         height: calc(100vh - ${variable.headerHeightMobile});
@@ -16,6 +17,7 @@ export const HeaderMenuStyled = styled.nav`
         transition: right ${variable.transition};
         width: 100%;
         z-index: 10;
+
         li {
             > a,
             > button {
@@ -27,6 +29,7 @@ export const HeaderMenuStyled = styled.nav`
     @media (min-width: ${variable.md}) {
         li {
             display: inline-block;
+
             > a,
             > button {
                 color: ${(props) => (props.change === 'true' ? variable.colorWhite : variable.colorSecondary)};
@@ -40,6 +43,7 @@ export const HeaderMenuStyled = styled.nav`
             font-weight: 600;
             letter-spacing: 1px;
             transition: color ${variable.transition};
+
             &:hover {
                 color: ${variable.colorPrimary};
             }
@@ -51,6 +55,7 @@ export const HeaderMenuStyled = styled.nav`
         position: absolute;
         transform: translateX(-50%);
         width: 100%;
+
         svg {
             height: 18px;
         }

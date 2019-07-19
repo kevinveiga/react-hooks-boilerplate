@@ -22,9 +22,11 @@ export const SocialAlternateStyled = styled.ul`
         > a,
         > button {
             padding: 15px 0 15px 15px;
+
             > svg {
                 fill: ${(props) => (props.themeColor === 'dark' ? variable.colorBlack : variable.colorWhite)};
                 height: 40px;
+
                 &:hover {
                     fill: ${variable.colorPrimary};
                 }

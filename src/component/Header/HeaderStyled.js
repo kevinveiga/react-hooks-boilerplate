@@ -6,6 +6,7 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
     display: ${(props) => (props.active === 'true' ? 'none' : 'block')};
     margin: auto;
     vertical-align: middle;
+
     ul {
         li {
             background-color: ${(props) => (props.change === 'true' ? variable.colorWhite : variable.colorSecondary)};
@@ -37,6 +38,7 @@ export const HeaderStyled = styled.header`
     transition: background-color ${variable.transition}, box-shadow ${variable.transition}, min-height ${variable.transition}, padding ${variable.transition};
     width: 100%;
     z-index: 5;
+
     ${(props) =>
         (props.active === 'true' || props.change === 'true') &&
         css`
