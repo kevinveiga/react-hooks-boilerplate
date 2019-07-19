@@ -10,6 +10,13 @@ export const NoticiaContainer = css`
 `;
 
 export const NoticiaArticle = styled.article`
+    img {
+        height: 70vmin;
+        margin: 0 auto 50px auto;
+        object-fit: cover;
+        width: 100%;
+    }
+
     b,
     code,
     del,
@@ -40,7 +47,6 @@ export const NoticiaArticle = styled.article`
         i,
         img,
         kbd,
-        p,
         pre,
         s,
         samp,
@@ -97,15 +103,10 @@ export const NoticiaArticle = styled.article`
         ${NoticiaContainer};
     }
 
-    img {
-        height: 70vmin;
-        margin: 0 auto 50px auto;
-        object-fit: cover;
-        width: 100%;
-    }
-
     .video-wrap {
+        ${NoticiaContainer};
         height: 0;
+        margin-bottom: 50px;
         padding-bottom: 56.25%;
         padding-top: 25px;
 
@@ -170,8 +171,4 @@ export const NoticiaSocial = styled.section`
     position: ${(props) => (props.change === 'true' ? 'fixed' : 'absolute')};
     top: ${(props) => (props.change === 'true' ? '150px' : 'auto')};
     z-index: 3;
-
-    p {
-        margin: 0;
-    }
 `;
