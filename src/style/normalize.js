@@ -98,7 +98,7 @@ export const Normalize = createGlobalStyle`
             line-height: ${variable.lineHeight};
             margin: 0;
             padding: 0;
-            user-select: none;
+            user-select: text;
             width: 100%;
             z-index: 0;
             &.overflow-hidden {
