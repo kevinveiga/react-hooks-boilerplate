@@ -1,6 +1,5 @@
-import axios from 'axios';
 import parse from 'html-react-parser';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -9,13 +8,10 @@ import { useNoticiaApi } from '../../../service/noticia';
 
 import { useChangeNoticiaSocialScroll } from '../../../store/noticia/noticia';
 
-import { LinkTo } from '../../Link/LinkTo';
-import { NoticiaBox } from './NoticiaBox';
-import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas, NoticiaSocial } from './NoticiaStyled';
+import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaSocial } from './NoticiaStyled';
 import { SocialAlternate } from '../../Social/SocialAlternate';
 
 import { Box, Flex } from '../../../style/flex';
-import { Cell, Grid } from '../../../style/grid';
 import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Span, Title1, Title4, Title5 } from '../../../style/text';
@@ -26,47 +22,6 @@ export const Noticia = ({ match }) => {
     const [noticia] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
 
     const noticiaLength = Object.keys(noticia.data).length;
-
-    const [noticias, setNoticias] = useState({});
-
-    // TODO: Trocar para notícias relacionadas
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get(`${apiUrlNoticias}/ultimas_noticias`);
-
-            setNoticias(result.data);
-        };
-
-        fetchData();
-    }, []);
-
-    const noticiasLength = noticias.length;
-
-    let noticiasRender = '';
-
-    if (noticiasLength) {
-        noticiasRender = (
-            <NoticiaMateriasRelacionadas mb={5}>
-                <Title4 color="colorGray2" mb={4} themeColor="dark">
-                    Matérias Relacionadas
-                </Title4>
-
-                <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
-                    {noticias.slice(1, 4).map((noticia, i, n) => {
-                        return (
-                            <Cell borderBottom={n.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" key={noticia.id} pb={3}>
-                                <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                    <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} tag={noticia.category.title} themeColor="dark" title={noticia.title} width={{ d: 3 / 5, lg: 4 / 5 }} />
-
-                                    <Image height="100px" pl={3} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={`Imagem ${noticia.title}`} width={{ d: 2 / 5, lg: 1 / 5 }} />
-                                </LinkTo>
-                            </Cell>
-                        );
-                    })}
-                </Grid>
-            </NoticiaMateriasRelacionadas>
-        );
-    }
 
     return (
         noticiaLength && (
@@ -89,9 +44,9 @@ export const Noticia = ({ match }) => {
                         </Flex>
 
                         <NoticiaSocial id="noticia-Social" change={changeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }}>
-                            <p>
+                            <div>
                                 <b>Compartilhar:</b>
-                            </p>
+                            </div>
 
                             <SocialAlternate direction="vertical" themeColor="dark" />
                         </NoticiaSocial>
@@ -123,8 +78,6 @@ export const Noticia = ({ match }) => {
                                 </Box>
                             </Flex>
                         </NoticiaAuthor>
-
-                        {noticiasRender}
                     </Container>
                 </Main>
             </>
