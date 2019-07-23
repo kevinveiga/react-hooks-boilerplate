@@ -5,12 +5,22 @@ import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
 
-import { Container, Main } from '../../../style/layout';
+import { BannerCell, BannerContainer } from '../../Banner/BannerStyled';
+import { DateTime } from '../Noticia/NoticiaBoxStyled';
+
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay, Image } from '../../../style/image';
+import { BgImageOverlay5, Image } from '../../../style/image';
+import { Background, Container, Main } from '../../../style/layout';
+import { Title4 } from '../../../style/text';
 
 export const Home = () => {
+    const stateDestaques = [];
+    const stateNoticias = [];
+
+    const destaquesLength = 5;
+    const noticiasLength = 5;
+
     return (
         <>
             <Helmet>
@@ -19,57 +29,104 @@ export const Home = () => {
             </Helmet>
 
             <Main>
-                <Grid display="grid" gridTemplateColumns="1fr 1fr" gridTemplateRows="30vh 30vh">
-                    <Cell display="flex" gridRow={{ xs: 1, sm: '1 / span 2' }} p={{ xs: 2, sm: 3, md: 4 }}>
-                        <BgImageOverlay url="https://picsum.photos/id/0/1024" />
+                {destaquesLength > 0 && (
+                    <BannerContainer display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: destaquesLength > 2 ? '30vh' : '50vh' }}>
+                        <BannerCell display="flex" gridRow={{ d: 1, md: destaquesLength > 2 ? '1 / span 2' : 1 }}>
+                            <LinkTo ariaLabel={stateDestaques.data[0].title} display="inline-flex" height="100%" to={`/noticia/${stateDestaques.data[0].slug}`} width="100%">
+                                <BgImageOverlay5 hover="true" url={stateDestaques.data[0].thumbnail.attachment.url} />
 
-                        <Flex alignItems="flex-end" display="flex">
-                            <NoticiaBox author="Por Autor" color="colorOrange" tag="Mercado Internacional" themeColor="light" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="32px" />
-                        </Flex>
-                    </Cell>
-                </Grid>
+                                <Flex alignItems="flex-end" display="flex" p={{ d: 2, sm: 3, md: 4 }}>
+                                    <NoticiaBox author={`Por ${stateDestaques.data[0].author}`} color={stateDestaques.data[0].category.featured_color} tag={stateDestaques.data[0].category.title} themeColor="light" title={stateDestaques.data[0].title} titleSize={{ d: 24, md: 32 }} />
+                                </Flex>
+                            </LinkTo>
+                        </BannerCell>
 
-                <Container mx="auto" my={4} pb={5} px={3}>
-                    <Flex display="flex" flexWrap="wrap">
-                        <Box pr={{ xs: 0, sm: 3 }} width={{ xs: 1, sm: 1, md: '1 / 2' }}>
-                            <Grid display="grid" gridAutoColumns="auto" gridAutoRows="minmax(150px, auto)" gridRowGap={4} gridTemplateRows="300px">
-                                <Cell display="flex">
-                                    <BgImageOverlay url="https://picsum.photos/id/1059/1024" />
-                                </Cell>
+                        {stateDestaques.data[1] && (
+                            <BannerCell display="flex" gridRow={1}>
+                                <LinkTo ariaLabel={stateDestaques.data[1].title} display="inline-flex" height="100%" to={`/noticia/${stateDestaques.data[1].slug}`} width="100%">
+                                    <BgImageOverlay5 hover="true" url={stateDestaques.data[1].thumbnail.attachment.url} />
 
-                                <Cell display="flex">
-                                    <NoticiaBox author="Por Autor" color="colorGreen" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" />
-                                </Cell>
-
-                                <Cell display="flex">
-                                    <NoticiaBox author="Por Autor" color="colorOrange" tag="Mercado Internacional" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" width="70%" />
-
-                                    <Image height="100px" mr={0} mt={3} pl={3} src="https://picsum.photos/id/163/1024" text="Imagem 163" width="120px" />
-                                </Cell>
-                            </Grid>
-
-                            <Flex display="flex" justifyContent="flex-end">
-                                <LinkTo hover="primary" fontWeight="600" to="/noticias">
-                                    <span>Ver mais</span>
-
-                                    <Svg className="svg-next" name="svg-next" pl={2} />
+                                    <Flex alignItems="flex-end" display="flex" p={{ d: 2, sm: 3, md: 4 }}>
+                                        <NoticiaBox author={`Por ${stateDestaques.data[1].author}`} color={stateDestaques.data[1].category.featured_color} tag={stateDestaques.data[1].category.title} themeColor="light" title={stateDestaques.data[1].title} titleSize={{ d: 24, md: 32 }} />
+                                    </Flex>
                                 </LinkTo>
+                            </BannerCell>
+                        )}
+
+                        {stateDestaques.data[2] && (
+                            <BannerCell display="flex" gridRow={{ d: 1, md: 2 }}>
+                                <LinkTo ariaLabel={stateDestaques.data[2].title} display="inline-flex" height="100%" to={`/noticia/${stateDestaques.data[2].slug}`} width="100%">
+                                    <BgImageOverlay5 hover="true" url={stateDestaques.data[2].thumbnail.attachment.url} />
+
+                                    <Flex alignItems="flex-end" display="flex" p={{ d: 2, sm: 3, md: 4 }}>
+                                        <NoticiaBox author={`Por ${stateDestaques.data[2].author}`} color={stateDestaques.data[2].category.featured_color} tag={stateDestaques.data[2].category.title} themeColor="light" title={stateDestaques.data[2].title} titleSize={{ d: 24, md: 32 }} />
+                                    </Flex>
+                                </LinkTo>
+                            </BannerCell>
+                        )}
+                    </BannerContainer>
+                )}
+
+                {noticiasLength > 0 && (
+                    <Background backgroundColor="colorGrayLight4">
+                        <Container mx="auto" py={{ d: 3, md: 4 }} px={3}>
+                            <Flex display="flex" flexWrap="wrap">
+                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} mr={{ d: 0, md: 3 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 1 / 2 }}>
+                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
+                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
+                                            <LinkTo ariaLabel={stateNoticias.data[0].title} height="100%" to={`/noticia/${stateNoticias.data[0].slug}`} width="100%">
+                                                <Box>
+                                                    <Image height="300px" mb={4} src={stateNoticias.data[0].thumbnail.attachment.url} text="Notícia" width="100%" />
+
+                                                    <NoticiaBox author={`Por ${stateNoticias.data[0].author}`} color={stateNoticias.data[0].category.featured_color} tag={stateNoticias.data[0].category.title} themeColor="dark" title={stateNoticias.data[0].title} />
+                                                </Box>
+                                            </LinkTo>
+                                        </Cell>
+
+                                        {stateNoticias.data.slice(1, 4).map((noticia, i, newArray) => {
+                                            return (
+                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3}>
+                                                    <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
+                                                        <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} tag={noticia.category.title} themeColor="dark" title={noticia.title} width={{ d: 3 / 5, lg: 4 / 5 }} />
+
+                                                        <Image height="100px" pl={3} src={noticia.thumbnail.attachment.url} text={`Imagem ${noticia.title}`} width={{ d: 2 / 5, lg: 1 / 5 }} />
+                                                    </LinkTo>
+                                                </Cell>
+                                            );
+                                        })}
+                                    </Grid>
+
+                                    <Flex display="flex" justifyContent="flex-end">
+                                        <LinkTo hover="primary" fontWeight="600" to="/noticias">
+                                            <span>Ver mais</span>
+                                            <Svg className="svg-next" name="svg-next" pl={2} />
+                                        </LinkTo>
+                                    </Flex>
+                                </Box>
+
+                                <Box mb={5} mr={{ d: 0, md: 3 }} width={{ d: 1, sm: 2 / 4, md: 1 / 4 }}>
+                                    <Title4 color="colorGray2" fontWeight="700" mb={4} themeColor="dark">
+                                        Últimas
+                                    </Title4>
+
+                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
+                                        {stateNoticias.data.slice(4).map((noticia, i, newArray) => {
+                                            return (
+                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3}>
+                                                    <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
+                                                        <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} themeColor="dark" title={noticia.title} titleSize="18px">
+                                                            <DateTime themeColor="dark">{noticia.date}</DateTime>
+                                                        </NoticiaBox>
+                                                    </LinkTo>
+                                                </Cell>
+                                            );
+                                        })}
+                                    </Grid>
+                                </Box>
                             </Flex>
-                        </Box>
-
-                        <Box px={{ xs: 0, sm: 3 }} width={{ xs: 1, ms: '1 / 2', md: '1 / 4' }}>
-                            <Grid display="grid" gridAutoColumns="auto" gridAutoRows="minmax(100px, auto)" gridRowGap={4}>
-                                <Cell display="flex">
-                                    <NoticiaBox author="Por Autor" color="colorGreen" dateTime="15/05/19 09:30" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="18px" />
-                                </Cell>
-
-                                <Cell display="flex">
-                                    <NoticiaBox author="Por Autor" color="colorOrange" dateTime="15/05/19 09:30" themeColor="dark" title="Como a mudança de postura do FED pode afetar seus investimentos?" titleSize="18px" />
-                                </Cell>
-                            </Grid>
-                        </Box>
-                    </Flex>
-                </Container>
+                        </Container>
+                    </Background>
+                )}
             </Main>
         </>
     );

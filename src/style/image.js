@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { layout, space } from 'styled-system';
 
+import { BannerCell } from '../component/Banner/BannerStyled';
+
 import { variable } from './variable';
 
 export const Image = styled.img.attrs((props) => ({
@@ -14,7 +16,7 @@ export const Image = styled.img.attrs((props) => ({
 `;
 
 export const BgImage = styled.div`
-    background-attachment: ${(props) => props.attachment || 'unset'};
+    ${(props) => props.attachment && `background-attachment: ${props.attachment}`};
     background-color: ${(props) => props.color || 'transparent'};
     background-image: url('${(props) => props.url}');
     background-position: 50% 50%;
@@ -49,10 +51,36 @@ export const BgImageOverlay = styled(BgImage)`
     }
 `;
 
+export const BgImageOverlay1 = styled(BgImageOverlay)`
+    &::after {
+        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent1};
+    }
+`;
+
 export const BgImageOverlay3 = styled(BgImageOverlay)`
     &::after {
         background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
     }
+`;
+
+export const BgImageOverlay5 = styled(BgImageOverlay)`
+    transition: transform ${variable.transitionSlow};
+
+    &::after {
+        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent5};
+        transition: background-color ${variable.transition};
+    }
+
+    ${(props) =>
+        props.hover === 'true' &&
+        css`
+            ${BannerCell}:hover & {
+                transform: scale(1.01);
+                &::after {
+                    background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
+                }
+            }
+        `};
 `;
 
 export const BgImageOverlay6 = styled(BgImageOverlay)`
@@ -61,7 +89,13 @@ export const BgImageOverlay6 = styled(BgImageOverlay)`
     }
 `;
 
-export const BgImageOverlayTopBottom = styled(BgImageOverlay)`
+export const BgImageOverlay7 = styled(BgImageOverlay)`
+    &::after {
+        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent7};
+    }
+`;
+
+export const BgImageOverlay3TopBottom = styled(BgImageOverlay3)`
     &::after {
         background-color: transparent;
         background-image: linear-gradient(180deg, ${variable.colorBlackTransparent6} 0%, ${variable.colorBlackTransparent3} 100%);

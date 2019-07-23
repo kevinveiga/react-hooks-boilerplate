@@ -12,6 +12,7 @@ export const variable = {
     // Color
     colorBlack: 'rgba(0, 0, 0, 1)',
     colorBlackTransparent3: 'rgba(0, 0, 0, 0.3)',
+    colorBlackTransparent5: 'rgba(0, 0, 0, 0.5)',
     colorBlackTransparent6: 'rgba(0, 0, 0, 0.6)',
     colorBlue: 'rgba(0, 161, 222, 1)',
     colorGray: 'rgba(161, 161, 161, 1)',

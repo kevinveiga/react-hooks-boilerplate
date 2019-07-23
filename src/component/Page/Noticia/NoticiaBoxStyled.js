@@ -37,6 +37,7 @@ export const Title = styled.h2`
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: ${variable.spacingSM};
+
     @media (min-width: ${variable.sm}) {
         ${(props) => props.fontSize === undefined && 'font-size: 24px'};
     }
@@ -60,6 +61,7 @@ export const NoticiaBoxStyled = styled.div`
     > ${Author} {
         color: ${(props) => (props.themeColor === 'light' ? (props.color === 'colorBlueDark' ? variable.colorWhite : variable[props.color]) : variable[props.color])};
         ${(props) => props.fontSize === undefined && 'font-size: 12px'};
+
         @media (min-width: ${variable.sm}) {
             ${(props) => props.fontSize === undefined && 'font-size: 14px'};
         }
