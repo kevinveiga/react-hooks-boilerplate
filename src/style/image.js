@@ -3,6 +3,8 @@ import { layout, space } from 'styled-system';
 
 import { BannerCell } from '../component/Banner/BannerStyled';
 
+import { Cell } from './grid';
+
 import { variable } from './variable';
 
 export const Image = styled.img.attrs((props) => ({
@@ -38,6 +40,18 @@ export const BgImage = styled.div`
         `};
 `;
 
+export const BgImageHover = styled(BgImage)`
+    transition: transform ${variable.transitionSlow};
+
+    ${(props) =>
+        props.hover === 'true' &&
+        css`
+            ${Cell}:hover & {
+                transform: scale(1.05);
+            }
+        `};
+`;
+
 export const BgImageOverlay = styled(BgImage)`
     &::after {
         content: ' ';
@@ -52,9 +66,23 @@ export const BgImageOverlay = styled(BgImage)`
 `;
 
 export const BgImageOverlay1 = styled(BgImageOverlay)`
+    transition: transform ${variable.transitionSlow};
+
     &::after {
         background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent1};
+        transition: background-color ${variable.transition};
     }
+
+    ${(props) =>
+        props.hover === 'true' &&
+        css`
+            ${Cell}:hover & {
+                transform: scale(1.03);
+                &::after {
+                    background-color: ${(props) => props.color === undefined && 'transparent'};
+                }
+            }
+        `};
 `;
 
 export const BgImageOverlay3 = styled(BgImageOverlay)`
@@ -75,7 +103,7 @@ export const BgImageOverlay5 = styled(BgImageOverlay)`
         props.hover === 'true' &&
         css`
             ${BannerCell}:hover & {
-                transform: scale(1.01);
+                transform: scale(1.03);
                 &::after {
                     background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
                 }

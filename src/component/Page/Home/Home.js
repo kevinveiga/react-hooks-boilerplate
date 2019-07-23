@@ -10,7 +10,7 @@ import { DateTime } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay5, Image } from '../../../style/image';
+import { BgImageHover, BgImageOverlay1, BgImageOverlay3, BgImageOverlay5, Image } from '../../../style/image';
 import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
@@ -75,21 +75,23 @@ export const Home = () => {
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
                                             <LinkTo ariaLabel={stateNoticias.data[0].title} height="100%" to={`/noticia/${stateNoticias.data[0].slug}`} width="100%">
-                                                <Box>
-                                                    <Image height="300px" mb={4} src={stateNoticias.data[0].thumbnail.attachment.url} text="Notícia" width="100%" />
-
-                                                    <NoticiaBox author={`Por ${stateNoticias.data[0].author}`} color={stateNoticias.data[0].category.featured_color} tag={stateNoticias.data[0].category.title} themeColor="dark" title={stateNoticias.data[0].title} />
+                                                <Box height="300px" mb={4} width="100%">
+                                                    <BgImageOverlay1 hover="true" url={stateNoticias.data[0].thumbnail.attachment.url} />
                                                 </Box>
+
+                                                <NoticiaBox author={`Por ${stateNoticias.data[0].author}`} color={stateNoticias.data[0].category.featured_color} tag={stateNoticias.data[0].category.title} themeColor="dark" title={stateNoticias.data[0].title} />
                                             </LinkTo>
                                         </Cell>
 
                                         {stateNoticias.data.slice(1, 4).map((noticia, i, newArray) => {
                                             return (
                                                 <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
-                                                    <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
+                                                    <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                         <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} tag={noticia.category.title} themeColor="dark" title={noticia.title} width={{ d: 3 / 5, lg: 4 / 5 }} />
 
-                                                        <Image height="100px" pl={3} src={noticia.thumbnail.attachment.url} text={`Imagem ${noticia.title}`} width={{ d: 2 / 5, lg: 1 / 5 }} />
+                                                        <Box display="inline-block" height="100px" pl={3} width={{ d: 2 / 5, lg: 1 / 5 }} verticalAlign="middle">
+                                                            <BgImageHover hover="true" url={noticia.thumbnail.attachment.url} />
+                                                        </Box>
                                                     </LinkTo>
                                                 </Cell>
                                             );
@@ -113,7 +115,7 @@ export const Home = () => {
                                         {stateNoticias.data.slice(4).map((noticia, i, newArray) => {
                                             return (
                                                 <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
-                                                    <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
+                                                    <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                         <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} themeColor="dark" title={noticia.title} titleSize="18px">
                                                             <DateTime themeColor="dark">{noticia.date}</DateTime>
                                                         </NoticiaBox>
