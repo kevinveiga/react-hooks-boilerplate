@@ -1,12 +1,16 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+
+import { scrollToTop } from './util/scrollToTop';
 
 import { Contato } from './component/Page/Contato/Contato';
 import { Home } from './component/Page/Home/Home';
 import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 
-export const Router = () => {
+export const Router = withRouter(() => {
+    scrollToTop();
+
     return (
         <Switch>
             <Route exact path="/" component={Home} />
@@ -16,4 +20,4 @@ export const Router = () => {
             <Route path="*" component={Home} />
         </Switch>
     );
-};
+});
