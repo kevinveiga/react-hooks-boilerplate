@@ -72,7 +72,7 @@ export const Home = () => {
                         <Container mx="auto" py={{ d: 3, md: 4 }} px={3}>
                             <Flex display="flex" flexWrap="wrap">
                                 <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} mr={{ d: 0, md: 3 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 1 / 2 }}>
-                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
+                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
                                             <LinkTo ariaLabel={stateNoticias.data[0].title} height="100%" to={`/noticia/${stateNoticias.data[0].slug}`} width="100%">
                                                 <Box>
@@ -85,7 +85,7 @@ export const Home = () => {
 
                                         {stateNoticias.data.slice(1, 4).map((noticia, i, newArray) => {
                                             return (
-                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3}>
+                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                     <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
                                                         <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} tag={noticia.category.title} themeColor="dark" title={noticia.title} width={{ d: 3 / 5, lg: 4 / 5 }} />
 
@@ -105,14 +105,14 @@ export const Home = () => {
                                 </Box>
 
                                 <Box mb={5} mr={{ d: 0, md: 3 }} width={{ d: 1, sm: 2 / 4, md: 1 / 4 }}>
-                                    <Title4 color="colorGray2" fontWeight="700" mb={4} themeColor="dark">
+                                    <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
                                         Últimas
                                     </Title4>
 
-                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
+                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
                                         {stateNoticias.data.slice(4).map((noticia, i, newArray) => {
                                             return (
-                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3}>
+                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                     <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
                                                         <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} themeColor="dark" title={noticia.title} titleSize="18px">
                                                             <DateTime themeColor="dark">{noticia.date}</DateTime>

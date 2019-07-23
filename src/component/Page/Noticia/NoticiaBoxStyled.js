@@ -28,6 +28,7 @@ export const Tag = styled.div`
     display: ${(props) => (props.show ? 'table' : 'none')};
     line-height: 1;
     margin-bottom: ${variable.spacingSM};
+    margin-top: ${variable.spacingXS};
     padding: ${variable.spacingXS};
 `;
 
