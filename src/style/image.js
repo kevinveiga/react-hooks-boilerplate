@@ -78,6 +78,7 @@ export const BgImageOverlay1 = styled(BgImageOverlay)`
         css`
             ${Cell}:hover & {
                 transform: scale(1.03);
+
                 &::after {
                     background-color: ${(props) => props.color === undefined && 'transparent'};
                 }
@@ -104,6 +105,7 @@ export const BgImageOverlay5 = styled(BgImageOverlay)`
         css`
             ${BannerCell}:hover & {
                 transform: scale(1.03);
+
                 &::after {
                     background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
                 }
