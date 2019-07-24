@@ -89,7 +89,7 @@ export const Home = () => {
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                         <NoticiaBox author={`Por ${noticia.author}`} color={noticia.category.featured_color} tag={noticia.category.title} themeColor="dark" title={noticia.title} width={{ d: 3 / 5, lg: 4 / 5 }} />
 
-                                                        <Box display="inline-block" height="100px" pl={3} width={{ d: 2 / 5, lg: 1 / 5 }} verticalAlign="middle">
+                                                        <Box display="inline-block" height="100px" pl={3} verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
                                                             <BgImageHover hover="true" url={noticia.thumbnail.attachment.url} />
                                                         </Box>
                                                     </LinkTo>
