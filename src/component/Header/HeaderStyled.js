@@ -19,6 +19,7 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
             width: 30px;
         }
     }
+
     &:hover {
         ul {
             li {
@@ -29,8 +30,6 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
 `;
 
 export const HeaderStyled = styled.header`
-    background-color: ${variable.colorWhite};
-    box-shadow: 0 1px 0 1px ${variable.colorBlackTransparent1};
     height: auto;
     left: 0;
     position: fixed;
@@ -40,9 +39,13 @@ export const HeaderStyled = styled.header`
     z-index: 5;
 
     ${(props) =>
-        (props.active === 'true' || props.change === 'true') &&
-        css`
-            background-color: ${variable.colorBlack3};
-            box-shadow: none;
-        `};
+        props.active === 'true' || props.change === 'true'
+            ? css`
+                  background-color: ${variable.colorBlack3};
+                  box-shadow: none;
+              `
+            : css`
+                  background-color: ${variable.colorWhite};
+                  box-shadow: 0 1px 0 1px ${variable.colorBlackTransparent1};
+              `};
 `;
