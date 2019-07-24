@@ -26,6 +26,16 @@ export const HeaderMenuStyled = styled.nav`
             }
         }
     }
+
+    @media (min-width: ${variable.sm}) {
+        li {
+            > a,
+            > button {
+                padding: 10px 0 10px 10px;
+            }
+        }
+    }
+
     @media (min-width: ${variable.md}) {
         li {
             display: inline-block;
@@ -33,10 +43,20 @@ export const HeaderMenuStyled = styled.nav`
             > a,
             > button {
                 color: ${(props) => (props.change === 'true' ? variable.colorWhite : variable.colorSecondary)};
+                padding: 10px 0 10px 25px;
+            }
+        }
+    }
+
+    @media (min-width: ${variable.lg}) {
+        li {
+            > a,
+            > button {
                 padding: 10px 0 10px 45px;
             }
         }
     }
+
     li {
         > a,
         > button {
@@ -47,17 +67,6 @@ export const HeaderMenuStyled = styled.nav`
             &:hover {
                 color: ${variable.colorPrimary};
             }
-        }
-    }
-    .header-menu-share {
-        bottom: 50px;
-        left: 50%;
-        position: absolute;
-        transform: translateX(-50%);
-        width: 100%;
-
-        svg {
-            height: 18px;
         }
     }
 `;
