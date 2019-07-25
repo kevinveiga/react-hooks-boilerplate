@@ -11,14 +11,16 @@ import { Label } from '../../Form/Form';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
 
-import { DateTime, Text } from './NoticiaBoxStyled';
+import { Svg } from '../../Svg/Svg';
+
+import { Author, DateTime, Tag, Title } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { BgImageOverlay3, Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
-import { Title3, Title4 } from '../../../style/text';
+import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
@@ -45,7 +47,7 @@ export const Noticias = () => {
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <Title3 fontWeight="600" themeColor="dark">
-                        News
+                        Notícias
                     </Title3>
 
                     <Tab group="tab-group-news" total={4}>
@@ -79,24 +81,28 @@ export const Noticias = () => {
                                 );
                             })}
 
-                        <select
-                            className="btn btn-tab"
-                            onChange={(e) => {
-                                e.preventDefault();
-                                handleNoticiaCategoriaChange(e);
-                            }}
-                        >
-                            <option value="ultimas">Últimas</option>
+                        <div className="custom-select-container icon-right">
+                            <select
+                                className="btn btn-tab btn-tab-select"
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    handleNoticiaCategoriaChange(e);
+                                }}
+                            >
+                                <option value="ultimas">Últimas</option>
 
-                            {noticiasCategoriasLength > 0 &&
-                                stateNoticiasCategorias.data.map((categoria) => {
-                                    return (
-                                        <option key={categoria.slug} value={categoria.slug}>
-                                            {categoria.title}
-                                        </option>
-                                    );
-                                })}
-                        </select>
+                                {noticiasCategoriasLength > 0 &&
+                                    stateNoticiasCategorias.data.map((categoria) => {
+                                        return (
+                                            <option key={categoria.slug} value={categoria.slug}>
+                                                {categoria.title}
+                                            </option>
+                                        );
+                                    })}
+                            </select>
+
+                            <Svg name="svg-arrow-down" />
+                        </div>
 
                         <ul className="tabs-nav">
                             <li className="tab-nav">
@@ -119,35 +125,34 @@ export const Noticias = () => {
                                     {noticiasLength > 0 &&
                                         stateNoticias.data.map((categoriaUltimas, i) => {
                                             return (
-                                                i > 0 && (
-                                                    <Box key={categoriaUltimas.slug} mb={5} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
-                                                        <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={3}>
-                                                            {categoriaUltimas &&
-                                                                categoriaUltimas.posts.data.map((noticia, j) => {
-                                                                    return j === 0 ? (
-                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" key={noticia.id} pb={3}>
-                                                                            <Box width={1}>
-                                                                                <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                    <Image height="200px" mb={4} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={noticia.title} width={1} />
+                                                i > 0 &&
+                                                (categoriaUltimas &&
+                                                    categoriaUltimas.posts.data.map((noticia, j) => {
+                                                        return (
+                                                            <Box key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
+                                                                <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`}>
+                                                                    <NoticiaBox alignContent="space-between" color={categoriaUltimas.featured_color} display="inline-flex" flexWrap="wrap" height="100%" themeColor="dark">
+                                                                        <Box>
+                                                                            {j / 3 === 0 && <Image height="200px" mb={4} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={noticia.title} width="100%" />}
 
-                                                                                    <NoticiaBox author={`Por ${noticia.author}`} color={categoriaUltimas.featured_color} tag={categoriaUltimas.title} themeColor="dark" title={noticia.title} />
-                                                                                </LinkTo>
-                                                                            </Box>
-                                                                        </Cell>
-                                                                    ) : (
-                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" key={noticia.id} py={3}>
-                                                                            <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                <NoticiaBox author={`Por ${noticia.author}`} color={categoriaUltimas.featured_color} tag={categoriaUltimas.title} themeColor="dark" title={noticia.title} />
-                                                                            </LinkTo>
-                                                                        </Cell>
-                                                                    );
-                                                                })}
-                                                        </Grid>
-                                                    </Box>
-                                                )
+                                                                            <Tag>{categoriaUltimas.title}</Tag>
+
+                                                                            <Title>{noticia.title}</Title>
+                                                                        </Box>
+
+                                                                        <Author>{`Por ${noticia.author}`}</Author>
+                                                                    </NoticiaBox>
+                                                                </LinkTo>
+                                                            </Box>
+                                                        );
+                                                    }))
                                             );
                                         })}
                                 </Flex>
+
+                                <Grid display="grid">
+                                    <Image src={bannerAnuncio} text="Anúncio" />
+                                </Grid>
                             </li>
 
                             {noticiasLength > 0 &&
@@ -166,11 +171,15 @@ export const Noticias = () => {
 
                                                                             <Flex alignItems="flex-end" display="flex">
                                                                                 <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                    <NoticiaBox color={categoria.featured_color} tag={categoria.title} themeColor="light" title={noticia.title}>
+                                                                                    <NoticiaBox color={categoria.featured_color} height="100%" themeColor="light">
+                                                                                        <Tag>{categoria.title}</Tag>
+
+                                                                                        <Title>{noticia.title}</Title>
+
                                                                                         <p>
                                                                                             <span>Postado em </span>
 
-                                                                                            <DateTime color={categoria.featured_color} fontSize="16px" themeColor="light">
+                                                                                            <DateTime fontSize="16px" themeColor="light">
                                                                                                 {noticia.date}
                                                                                             </DateTime>
                                                                                         </p>
@@ -181,8 +190,10 @@ export const Noticias = () => {
                                                                     ) : (
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" key={noticia.id} py={3}>
                                                                             <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                <NoticiaBox color={categoria.featured_color} tag={categoria.title} themeColor="dark" title={noticia.title} width={3 / 5}>
-                                                                                    <Text display={{ d: 'none', md: 'block' }}>{noticia.title}</Text>
+                                                                                <NoticiaBox alignContent="space-between" color={categoria.featured_color} display="inline-flex" flexWrap="wrap" height="100%" themeColor="dark" width={3 / 5}>
+                                                                                    <Tag>{categoria.title}</Tag>
+
+                                                                                    <Title>{noticia.title}</Title>
 
                                                                                     <p>
                                                                                         <span>Postado em </span>
