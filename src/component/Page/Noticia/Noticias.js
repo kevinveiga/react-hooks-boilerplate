@@ -141,7 +141,7 @@ export const Noticias = () => {
                                                                         <Box width="100%">
                                                                             {j / 3 === 0 && (
                                                                                 <Box height="200px" mb={4} overflow="hidden" width="100%">
-                                                                                    <BgImageOverlay1 hover="true" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    <BgImageOverlay1 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                                                 </Box>
                                                                             )}
 
@@ -173,10 +173,10 @@ export const Noticias = () => {
                                                                 stateNoticiasCategoria.data.data &&
                                                                 stateNoticiasCategoria.data.data.map((noticia, j) => {
                                                                     return j === 0 ? (
-                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" key={noticia.id}>
+                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" hover="true" key={noticia.id}>
                                                                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                                                 <NoticiaBox alignContent="flex-end" color={categoria.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                                                    <BgImageOverlay3 hover="true" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    <BgImageOverlay3 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
 
                                                                                     <Box>
                                                                                         <Tag>{categoria.title}</Tag>
@@ -216,7 +216,7 @@ export const Noticias = () => {
                                                                                 </NoticiaBox>
 
                                                                                 <Box display="inline-block" height={{ d: '100px', xs: '150px', md: '200px' }} overflow="hidden" verticalAlign="middle" width={2 / 5}>
-                                                                                    <BgImageOverlay1 hover="true" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    <BgImageOverlay1 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                                                 </Box>
                                                                             </LinkTo>
                                                                         </Cell>
