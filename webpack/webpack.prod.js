@@ -5,7 +5,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const commonPaths = require('./paths');
 
 module.exports = {
-    devtool: 'hidden-source-map',
     mode: 'production',
     optimization: {
         minimizer: [
