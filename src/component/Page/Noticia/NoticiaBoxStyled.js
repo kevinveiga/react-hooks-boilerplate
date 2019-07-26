@@ -53,7 +53,6 @@ export const NoticiaBoxStyled = styled.div`
     ${(props) => props.fontSize === undefined && 'font-size: 14px'};
     ${(props) => props.overflow && `overflow: ${props.overflow}`};
     ${(props) => props.themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};
-    vertical-align: middle;
 
     p {
         color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};

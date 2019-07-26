@@ -17,7 +17,7 @@ import { Author, DateTime, Tag, Title } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay3, Image } from '../../../style/image';
+import { BgImageOverlay1, BgImageOverlay3, Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
@@ -33,7 +33,13 @@ export const Noticias = () => {
     const noticiasCategoriasLength = stateNoticiasCategorias.data.length;
 
     const handleNoticiaCategoriaChange = (e) => {
-        setNoticiaCategoria({ page: 1, url: `${apiUrlNoticias}/categoria/${e.target.value}` });
+        let apiValue = `${apiUrlNoticias}/categoria/${e.target.value}`;
+
+        if (e.target.value === 'ultimas') {
+            apiValue = apiUrlNoticias;
+        }
+
+        setNoticiaCategoria({ page: 1, url: apiValue });
         setNoticiasCategoriaSelected(e.target.value);
     };
 
@@ -129,11 +135,15 @@ export const Noticias = () => {
                                                 (categoriaUltimas &&
                                                     categoriaUltimas.posts.data.map((noticia, j) => {
                                                         return (
-                                                            <Box key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
-                                                                <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`}>
-                                                                    <NoticiaBox alignContent="space-between" color={categoriaUltimas.featured_color} display="inline-flex" flexWrap="wrap" height="100%" themeColor="dark">
-                                                                        <Box>
-                                                                            {j / 3 === 0 && <Image height="200px" mb={4} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={noticia.title} width="100%" />}
+                                                            <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
+                                                                <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                    <NoticiaBox alignContent="space-between" color={categoriaUltimas.featured_color} display="flex" flexWrap="wrap" height="100%" themeColor="dark" verticalAlign="middle">
+                                                                        <Box width="100%">
+                                                                            {j / 3 === 0 && (
+                                                                                <Box height="200px" mb={4} overflow="hidden" width="100%">
+                                                                                    <BgImageOverlay1 hover="true" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                </Box>
+                                                                            )}
 
                                                                             <Tag>{categoriaUltimas.title}</Tag>
 
@@ -149,10 +159,6 @@ export const Noticias = () => {
                                             );
                                         })}
                                 </Flex>
-
-                                <Grid display="grid">
-                                    <Image src={bannerAnuncio} text="Anúncio" />
-                                </Grid>
                             </li>
 
                             {noticiasLength > 0 &&
@@ -164,14 +170,15 @@ export const Noticias = () => {
                                                     <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
                                                         <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={3}>
                                                             {Object.keys(stateNoticiasCategoria.data).length > 0 &&
+                                                                stateNoticiasCategoria.data.data &&
                                                                 stateNoticiasCategoria.data.data.map((noticia, j) => {
                                                                     return j === 0 ? (
-                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" key={noticia.id} p={{ d: 3, md: 4 }}>
-                                                                            <BgImageOverlay3 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" key={noticia.id}>
+                                                                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                                <NoticiaBox alignContent="flex-end" color={categoria.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
+                                                                                    <BgImageOverlay3 hover="true" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
 
-                                                                            <Flex alignItems="flex-end" display="flex">
-                                                                                <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                    <NoticiaBox color={categoria.featured_color} height="100%" themeColor="light">
+                                                                                    <Box>
                                                                                         <Tag>{categoria.title}</Tag>
 
                                                                                         <Title>{noticia.title}</Title>
@@ -183,17 +190,21 @@ export const Noticias = () => {
                                                                                                 {noticia.date}
                                                                                             </DateTime>
                                                                                         </p>
-                                                                                    </NoticiaBox>
-                                                                                </LinkTo>
-                                                                            </Flex>
+                                                                                    </Box>
+                                                                                </NoticiaBox>
+                                                                            </LinkTo>
                                                                         </Cell>
                                                                     ) : (
-                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" key={noticia.id} py={3}>
-                                                                            <LinkTo ariaLabel={noticia.title} to={`/noticia/${noticia.slug}`}>
-                                                                                <NoticiaBox alignContent="space-between" color={categoria.featured_color} display="inline-flex" flexWrap="wrap" height="100%" themeColor="dark" width={3 / 5}>
-                                                                                    <Tag>{categoria.title}</Tag>
+                                                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} py={3}>
+                                                                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                                <NoticiaBox alignContent="space-between" color={categoria.featured_color} display="inline-flex" flexWrap="wrap" minHeight={{ d: '100px', xs: '150px', md: '200px' }} themeColor="dark" verticalAlign="middle" width={3 / 5}>
+                                                                                    <Box width="100%">
+                                                                                        <Tag>{categoria.title}</Tag>
 
-                                                                                    <Title>{noticia.title}</Title>
+                                                                                        <Title>{noticia.title}</Title>
+
+                                                                                        <p>Resumo</p>
+                                                                                    </Box>
 
                                                                                     <p>
                                                                                         <span>Postado em </span>
@@ -204,7 +215,9 @@ export const Noticias = () => {
                                                                                     </p>
                                                                                 </NoticiaBox>
 
-                                                                                <Image height={{ d: '100px', xs: '150px', md: '200px' }} pl={3} src={noticia.thumbnail && noticia.thumbnail.attachment.url} text={noticia.title} width={2 / 5} />
+                                                                                <Box display="inline-block" height={{ d: '100px', xs: '150px', md: '200px' }} overflow="hidden" verticalAlign="middle" width={2 / 5}>
+                                                                                    <BgImageOverlay1 hover="true" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                </Box>
                                                                             </LinkTo>
                                                                         </Cell>
                                                                     );

@@ -33,7 +33,7 @@ export const Home = () => {
                     <BannerContainer display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: destaquesLength > 2 ? '30vh' : '50vh' }}>
                         <BannerCell display="flex" gridRow={{ d: 1, md: destaquesLength > 2 ? '1 / span 2' : 1 }}>
                             <LinkTo ariaLabel={stateDestaques.data[0].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[0].slug}`} width="100%">
-                                <NoticiaBox alignContent="flex-end" color={stateDestaques.data[0].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" width="100%">
+                                <NoticiaBox alignContent="flex-end" color={stateDestaques.data[0].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
                                     <BgImageOverlay3 grayscale="true" hover="true" url={stateDestaques.data[0].thumbnail.attachment.url} />
 
                                     <Box>
@@ -50,7 +50,7 @@ export const Home = () => {
                         {stateDestaques.data[1] && (
                             <BannerCell display="flex" gridRow={1}>
                                 <LinkTo ariaLabel={stateDestaques.data[1].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[1].slug}`} width="100%">
-                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[1].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" width="100%">
+                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[1].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
                                         <BgImageOverlay3 grayscale="true" hover="true" url={stateDestaques.data[1].thumbnail.attachment.url} />
 
                                         <Box>
@@ -68,7 +68,7 @@ export const Home = () => {
                         {stateDestaques.data[2] && (
                             <BannerCell display="flex" gridRow={{ d: 1, md: 2 }}>
                                 <LinkTo ariaLabel={stateDestaques.data[2].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[2].slug}`} width="100%">
-                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[2].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" width="100%">
+                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[2].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
                                         <BgImageOverlay3 grayscale="true" hover="true" url={stateDestaques.data[2].thumbnail.attachment.url} />
 
                                         <Box>
@@ -97,7 +97,7 @@ export const Home = () => {
                                                     <BgImageOverlay1 hover="true" url={stateNoticias.data[0].thumbnail.attachment.url} />
                                                 </Box>
 
-                                                <NoticiaBox color={stateNoticias.data[0].category.featured_color} display="inline-block" themeColor="dark">
+                                                <NoticiaBox color={stateNoticias.data[0].category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                                     <Box>
                                                         <Tag>{stateNoticias.data[0].category.title}</Tag>
 
@@ -113,7 +113,7 @@ export const Home = () => {
                                             return (
                                                 <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" width={{ d: 3 / 5, lg: 4 / 5 }}>
+                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
                                                             <Box>
                                                                 <Tag>{noticia.category.title}</Tag>
 
@@ -123,7 +123,7 @@ export const Home = () => {
                                                             <Author>{`Por ${noticia.author}`}</Author>
                                                         </NoticiaBox>
 
-                                                        <Box display="inline-block" height="100px" overflow="hidden" pl={3} verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
+                                                        <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
                                                             <BgImageOverlay1 hover="true" url={noticia.thumbnail.attachment.url} />
                                                         </Box>
                                                     </LinkTo>
@@ -151,7 +151,7 @@ export const Home = () => {
                                             return (
                                                 <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark">
+                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                                             <Box>
                                                                 <Tag>{noticia.category.title}</Tag>
 
