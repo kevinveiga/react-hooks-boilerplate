@@ -9,6 +9,7 @@ export const Cell = styled.div`
     ${grid};
     ${layout};
     ${space};
+    ${(props) => props.overflow && `overflow: ${props.overflow}`};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
     ${(props) =>

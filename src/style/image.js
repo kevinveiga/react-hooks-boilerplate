@@ -3,6 +3,7 @@ import { layout, space } from 'styled-system';
 
 import { BannerCell } from '../component/Banner/BannerStyled';
 
+import { Box } from './flex';
 import { Cell } from './grid';
 
 import { variable } from './variable';
@@ -76,7 +77,7 @@ export const BgImageOverlay1 = styled(BgImageOverlay)`
     ${(props) =>
         props.hover === 'true' &&
         css`
-            ${Cell}:hover & {
+            ${Box}:hover, ${Cell}:hover & {
                 transform: scale(1.03);
 
                 &::after {
@@ -87,13 +88,37 @@ export const BgImageOverlay1 = styled(BgImageOverlay)`
 `;
 
 export const BgImageOverlay3 = styled(BgImageOverlay)`
+    transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
+
     &::after {
         background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
     }
+
+    ${(props) =>
+        props.hover === 'true' &&
+        css`
+            ${BannerCell}:hover & {
+                transform: scale(1.03);
+
+                &::after {
+                    background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
+                }
+            }
+        `};
+
+    ${(props) =>
+        props.grayscale === 'true' &&
+        css`
+            filter: grayscale(100%);
+
+            ${BannerCell}:hover & {
+                filter: grayscale(0%);
+            }
+        `};
 `;
 
 export const BgImageOverlay5 = styled(BgImageOverlay)`
-    transition: transform ${variable.transitionSlow};
+    transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
 
     &::after {
         background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent5};

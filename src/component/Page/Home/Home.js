@@ -10,7 +10,7 @@ import { Author, DateTime, Tag, Title } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageHover, BgImageOverlay1, BgImageOverlay3, BgImageOverlay5, Image } from '../../../style/image';
+import { BgImageOverlay1, BgImageOverlay3 } from '../../../style/image';
 import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
@@ -33,9 +33,9 @@ export const Home = () => {
                     <BannerContainer display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: destaquesLength > 2 ? '30vh' : '50vh' }}>
                         <BannerCell display="flex" gridRow={{ d: 1, md: destaquesLength > 2 ? '1 / span 2' : 1 }}>
                             <LinkTo ariaLabel={stateDestaques.data[0].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[0].slug}`} width="100%">
-                                <BgImageOverlay5 hover="true" url={stateDestaques.data[0].thumbnail.attachment.url} />
+                                <NoticiaBox alignContent="flex-end" color={stateDestaques.data[0].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" width="100%">
+                                    <BgImageOverlay3 grayscale="true" hover="true" url={stateDestaques.data[0].thumbnail.attachment.url} />
 
-                                <NoticiaBox alignContent="flex-end" color={stateDestaques.data[0].category.featured_color} display="flex" flexWrap="wrap" height="100%" p={{ d: 2, sm: 3, md: 4 }} themeColor="light">
                                     <Box>
                                         <Tag>{stateDestaques.data[0].category.title}</Tag>
 
@@ -50,9 +50,9 @@ export const Home = () => {
                         {stateDestaques.data[1] && (
                             <BannerCell display="flex" gridRow={1}>
                                 <LinkTo ariaLabel={stateDestaques.data[1].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[1].slug}`} width="100%">
-                                    <BgImageOverlay5 hover="true" url={stateDestaques.data[1].thumbnail.attachment.url} />
+                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[1].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" width="100%">
+                                        <BgImageOverlay3 grayscale="true" hover="true" url={stateDestaques.data[1].thumbnail.attachment.url} />
 
-                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[1].category.featured_color} display="flex" flexWrap="wrap" height="100%" p={{ d: 2, sm: 3, md: 4 }} themeColor="light">
                                         <Box>
                                             <Tag>{stateDestaques.data[1].category.title}</Tag>
 
@@ -68,9 +68,9 @@ export const Home = () => {
                         {stateDestaques.data[2] && (
                             <BannerCell display="flex" gridRow={{ d: 1, md: 2 }}>
                                 <LinkTo ariaLabel={stateDestaques.data[2].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[2].slug}`} width="100%">
-                                    <BgImageOverlay5 hover="true" url={stateDestaques.data[2].thumbnail.attachment.url} />
+                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[2].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" width="100%">
+                                        <BgImageOverlay3 grayscale="true" hover="true" url={stateDestaques.data[2].thumbnail.attachment.url} />
 
-                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[2].category.featured_color} display="flex" flexWrap="wrap" height="100%" p={{ d: 2, sm: 3, md: 4 }} themeColor="light">
                                         <Box>
                                             <Tag>{stateDestaques.data[2].category.title}</Tag>
 
@@ -88,12 +88,12 @@ export const Home = () => {
                 {noticiasLength > 0 && (
                     <Background backgroundColor="colorGrayLight4">
                         <Container mx="auto" py={{ d: 3, md: 4 }} px={3}>
-                            <Flex display="flex" flexWrap="wrap">
-                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} mr={{ d: 0, md: 3 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 1 / 2 }}>
+                            <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
+                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
                                             <LinkTo ariaLabel={stateNoticias.data[0].title} height="100%" to={`/noticia/${stateNoticias.data[0].slug}`} width="100%">
-                                                <Box height="300px" mb={4} width="100%">
+                                                <Box height="300px" mb={4} overflow="hidden" width="100%">
                                                     <BgImageOverlay1 hover="true" url={stateNoticias.data[0].thumbnail.attachment.url} />
                                                 </Box>
 
@@ -123,8 +123,8 @@ export const Home = () => {
                                                             <Author>{`Por ${noticia.author}`}</Author>
                                                         </NoticiaBox>
 
-                                                        <Box display="inline-block" height="100px" pl={3} verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
-                                                            <BgImageHover hover="true" url={noticia.thumbnail.attachment.url} />
+                                                        <Box display="inline-block" height="100px" overflow="hidden" pl={3} verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
+                                                            <BgImageOverlay1 hover="true" url={noticia.thumbnail.attachment.url} />
                                                         </Box>
                                                     </LinkTo>
                                                 </Cell>
@@ -141,7 +141,7 @@ export const Home = () => {
                                     </Flex>
                                 </Box>
 
-                                <Box mb={5} mr={{ d: 0, md: 3 }} width={{ d: 1, sm: 2 / 4, md: 1 / 4 }}>
+                                <Box mb={5} px={{ d: 0, md: 3 }} width={{ d: 1, sm: 7 / 10, md: 3 / 10 }}>
                                     <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
                                         Últimas
                                     </Title4>

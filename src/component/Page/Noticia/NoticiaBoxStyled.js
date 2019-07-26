@@ -51,10 +51,11 @@ export const NoticiaBoxStyled = styled.div`
     ${typography};
     color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     ${(props) => props.fontSize === undefined && 'font-size: 14px'};
+    ${(props) => props.overflow && `overflow: ${props.overflow}`};
     ${(props) => props.themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};
     vertical-align: middle;
 
-    > p {
+    p {
         color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};
         ${(props) => props.fontSize === undefined && 'font-size: 16px'};
         line-height: 1.8;
