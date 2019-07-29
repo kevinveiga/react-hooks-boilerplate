@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 export const useChangeNoticiaSocialScroll = () => {
     const [changeNoticiaSocial, setChangeNoticiaSocial] = useState('false');
@@ -8,11 +8,11 @@ export const useChangeNoticiaSocialScroll = () => {
         setChangeNoticiaSocial(scrollYPos > 720 ? 'true' : 'false');
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         handleScroll();
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
         return () => {

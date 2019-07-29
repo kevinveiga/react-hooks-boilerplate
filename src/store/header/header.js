@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 import { variable } from '../../style/variable';
 
@@ -10,11 +10,11 @@ export const useChangeHeaderScroll = () => {
         setChangeHeader(scrollYPos > document.getElementById('header').offsetHeight + parseInt(variable.headerHeight, 10) ? 'true' : 'false');
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         handleScroll();
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
         return () => {
