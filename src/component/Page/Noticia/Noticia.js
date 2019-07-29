@@ -51,7 +51,7 @@ export const Noticia = ({ match }) => {
                             <SocialAlternate direction="vertical" themeColor="dark" />
                         </NoticiaSocial>
 
-                        <NoticiaArticleAuthor mb={3}>
+                        <NoticiaArticleAuthor id="noticia-article-author" mb={3}>
                             <Flex display="flex" flexWrap="wrap">
                                 <Box width={{ d: 1, sm: 1 / 2 }}>
                                     <Title5 color="colorPrimary" fontWeight="600" themeColor="dark">

@@ -6,6 +6,8 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
+// import { useChangeBannerScroll } from '../../../store/banner/banner';
+
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
 import { LinkTo } from '../../Link/LinkTo';
@@ -23,6 +25,8 @@ import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
+    // const changeBannerScroll = useChangeBannerScroll();
+
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
     const [stateNoticiasCategoria, setNoticiaCategoria] = useNoticiaCategoriaApi(null, {});
     const [stateNoticiasCategorias] = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
@@ -230,6 +234,10 @@ export const Noticias = () => {
                                                             )}
                                                         </Grid>
                                                     </Box>
+
+                                                    {/* <Box display={{ d: 'none', md: 'block' }} pl={3} width={1 / 5}>
+                                                        <BannerPerfilInvestidor change={changeBannerScroll} />
+                                                    </Box> */}
                                                 </Flex>
                                             </li>
                                         )

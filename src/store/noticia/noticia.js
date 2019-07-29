@@ -5,7 +5,7 @@ export const useChangeNoticiaSocialScroll = () => {
 
     const handleScroll = () => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-        setChangeNoticiaSocial(scrollYPos > 720 ? 'true' : 'false');
+        setChangeNoticiaSocial(scrollYPos > (document.getElementById('noticia-article-author') && document.getElementById('noticia-article-author').getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y - 50) ? 'true' : 'false');
     };
 
     useLayoutEffect(() => {

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+// import { useChangeBannerScroll } from '../../../store/banner/banner';
+// import { useMeasure } from '../../../store/util/measure';
+
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
@@ -15,6 +18,10 @@ import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
 export const Home = () => {
+    // const changeBannerScroll = useChangeBannerScroll();
+
+    // const [bannerRef, bannerMeasure] = useMeasure(true);
+
     const stateDestaques = [];
     const stateNoticias = [];
 
@@ -87,7 +94,7 @@ export const Home = () => {
 
                 {noticiasLength > 0 && (
                     <Background backgroundColor="colorGrayLight4">
-                        <Container mx="auto" py={{ d: 3, md: 4 }} px={3}>
+                        <Container id="home-noticias-container" mx="auto" py={{ d: 3, md: 4 }} px={3}>
                             <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                                 <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
@@ -168,6 +175,10 @@ export const Home = () => {
                                         })}
                                     </Grid>
                                 </Box>
+
+                                {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={bannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
+                                    <BannerPerfilInvestidor change={changeBannerScroll} boxMeasure={bannerMeasure} boxMeasurePadding={16} />
+                                </Box> */}
                             </Flex>
                         </Container>
                     </Background>
