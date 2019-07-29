@@ -7,6 +7,7 @@ import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '
 import { useSeoApi } from '../../../service/seo';
 
 // import { useChangeBannerScroll } from '../../../store/banner/banner';
+// import { useMeasure } from '../../../store/util/measure';
 
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
@@ -26,6 +27,8 @@ import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
     // const changeBannerScroll = useChangeBannerScroll();
+
+    // const [bannerRef, bannerMeasure] = useMeasure(true);
 
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
     const [stateNoticiasCategoria, setNoticiaCategoria] = useNoticiaCategoriaApi(null, {});
@@ -235,8 +238,8 @@ export const Noticias = () => {
                                                         </Grid>
                                                     </Box>
 
-                                                    {/* <Box display={{ d: 'none', md: 'block' }} pl={3} width={1 / 5}>
-                                                        <BannerPerfilInvestidor change={changeBannerScroll} />
+                                                    {/* <Box display={{ d: 'none', md: 'block' }} pl={3} ref={bannerRef} width={1 / 5}>
+                                                        <BannerPerfilInvestidor change={changeBannerScroll} boxMeasure={bannerMeasure} boxMeasurePadding={16} />
                                                     </Box> */}
                                                 </Flex>
                                             </li>
