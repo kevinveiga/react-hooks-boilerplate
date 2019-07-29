@@ -16,6 +16,7 @@ import { NoticiaBox } from './NoticiaBox';
 
 import { Svg } from '../../Svg/Svg';
 
+// import { NoticiasBannerPerfilInvestidor } from './NoticiaStyled';
 import { Author, DateTime, Tag, Title } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -26,7 +27,7 @@ import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
-    // const changeBannerScroll = useChangeBannerScroll();
+    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container');
 
     // const [bannerRef, bannerMeasure] = useMeasure(true);
 
@@ -132,7 +133,7 @@ export const Noticias = () => {
                                 })}
                         </ul>
 
-                        <ul className="tabs-content">
+                        <ul className="tabs-content" id="noticias-tabs-content">
                             <li className="tab-content">
                                 <Flex display="flex" flexWrap="wrap">
                                     {noticiasLength > 0 &&
@@ -237,15 +238,15 @@ export const Noticias = () => {
                                                             )}
                                                         </Grid>
                                                     </Box>
-
-                                                    {/* <Box display={{ d: 'none', md: 'block' }} pl={3} ref={bannerRef} width={1 / 5}>
-                                                        <BannerPerfilInvestidor change={changeBannerScroll} boxMeasure={bannerMeasure} boxMeasurePadding={16} />
-                                                    </Box> */}
                                                 </Flex>
                                             </li>
                                         )
                                     );
                                 })}
+
+                            {/* <NoticiasBannerPerfilInvestidor display={{ d: 'none', md: stateNoticiasCategoriaSelected === 'ultimas' ? 'none' : 'block' }} pl={3} position="absolute" ref={bannerRef} right={0} top={0} width={1 / 5}>
+                                <BannerPerfilInvestidor change={changeBannerScroll} boxMeasure={bannerMeasure} boxMeasurePadding={16} />
+                            </NoticiasBannerPerfilInvestidor> */}
                         </ul>
                     </Tab>
                 </Container>

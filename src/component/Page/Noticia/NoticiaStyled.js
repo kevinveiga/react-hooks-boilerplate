@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { layout, space } from 'styled-system';
+import { layout, position, space } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 
@@ -171,4 +171,10 @@ export const NoticiaSocial = styled.section`
     position: ${(props) => (props.change === 'true' ? 'fixed' : 'absolute')};
     top: ${(props) => (props.change === 'true' ? '150px' : 'auto')};
     z-index: 3;
+`;
+
+export const NoticiasBannerPerfilInvestidor = styled.div`
+    ${layout};
+    ${position};
+    ${space};
 `;

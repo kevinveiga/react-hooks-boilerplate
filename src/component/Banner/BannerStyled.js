@@ -40,6 +40,24 @@ export const BannerContainer = styled.div`
 `;
 
 export const BannerPerfilInvestidorStyled = styled.div`
+    ${(props) =>
+        props.change === 'true' &&
+        css`
+            display: none;
+            z-index: 3;
+
+            @media (min-width: ${variable.sm}) {
+                display: block;
+            }
+
+            @media (min-width: ${variable.md}) {
+                position: fixed;
+                ${(props) => props.boxMeasure && `left: calc(${props.boxMeasure.x}px + ${props.boxMeasurePadding || 0}px)`};
+                top: 150px;
+                ${(props) => props.boxMeasure && `width: calc(${props.boxMeasure.width}px - ${props.boxMeasurePadding || 0}px)`};
+            }
+        `};
+
     a {
         width: 100%;
 

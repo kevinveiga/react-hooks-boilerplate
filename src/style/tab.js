@@ -50,7 +50,7 @@ const tabInput = (group, total) => {
     `;
 };
 
-export const Tab = styled.ul`
+export const Tab = styled.div`
     ${(props) => tabInput(props.group, props.total)};
     overflow: hidden;
 
