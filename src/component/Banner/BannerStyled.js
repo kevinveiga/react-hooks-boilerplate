@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { grid, layout, space } from 'styled-system';
 
+import { fadeIn, fadeOut } from '../../style/animation';
+
 import { BgImageOverlay3 } from '../../style/image';
 
 import { variable } from '../../style/variable';
@@ -40,6 +42,8 @@ export const BannerContainer = styled.div`
 `;
 
 export const BannerPerfilInvestidorStyled = styled.div`
+    animation: ${fadeIn()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
+
     ${(props) =>
         props.change &&
         css`
@@ -57,6 +61,12 @@ export const BannerPerfilInvestidorStyled = styled.div`
                 top: 150px;
                 ${(props) => props.boxMeasure && `width: calc(${props.boxMeasure.width}px - ${props.boxMeasurePadding || 0}px)`};
             }
+        `};
+
+    ${(props) =>
+        props.fadeOut &&
+        css`
+            animation: ${fadeOut()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
         `};
 
     a {
