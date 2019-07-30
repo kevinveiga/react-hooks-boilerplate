@@ -11,7 +11,7 @@ import { BtnMenu, HeaderStyled } from './HeaderStyled';
 import { Container } from '../../style/layout';
 
 export const Header = () => {
-    const changeHeaderScroll = useChangeHeaderScroll();
+    const changeHeaderScroll = useChangeHeaderScroll('header');
 
     const [changeMenuMobile, setChangeMenuMobile] = useChangeMenuMobile();
 

@@ -1,19 +1,18 @@
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 import { variable } from '../../style/variable';
 
-export const useChangeHeaderScroll = () => {
+export const useChangeHeaderScroll = (elementStartId) => {
     const [changeHeader, setChangeHeader] = useState('false');
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-
-        setChangeHeader(scrollYPos > document.getElementById('header').offsetHeight + parseInt(variable.headerHeight, 10) ? 'true' : 'false');
-    };
+        setChangeHeader(scrollYPos > (document.getElementById(elementStartId) && document.getElementById(elementStartId).offsetHeight + parseInt(variable.headerHeight, 10)) ? 'true' : 'false');
+    }, [elementStartId]);
 
     useLayoutEffect(() => {
         handleScroll();
-    }, []);
+    }, [handleScroll]);
 
     useLayoutEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -21,7 +20,7 @@ export const useChangeHeaderScroll = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [changeHeader]);
+    }, [changeHeader, handleScroll]);
 
     return changeHeader;
 };
