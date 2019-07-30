@@ -18,7 +18,7 @@ import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
 export const Home = () => {
-    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container');
+    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
     // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
 
     // const [bannerRef, bannerMeasure] = useMeasure(true);

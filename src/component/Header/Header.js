@@ -17,7 +17,7 @@ export const Header = () => {
 
     return (
         <HeaderContext.Provider value={[changeMenuMobile, setChangeMenuMobile]}>
-            <HeaderStyled id="header" active={changeMenuMobile} change={changeHeaderScroll}>
+            <HeaderStyled active={changeMenuMobile} change={changeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <BtnMenu active={changeMenuMobile} change={changeHeaderScroll} onClick={() => setChangeMenuMobile(true)}>
                         <ul>

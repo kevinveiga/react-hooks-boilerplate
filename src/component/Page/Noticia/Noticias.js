@@ -6,7 +6,7 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
-// import { useChangeBannerScroll } from '../../../store/banner/banner';
+// import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
 // import { useMeasure } from '../../../store/util/measure';
 
 import { Button } from '../../Button/Button';
@@ -27,7 +27,8 @@ import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
-    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container');
+    // const changeBannerScroll = useChangeBannerScroll('noticias-tabs-content', -50);
+    // const fadeOutBannerScroll = useFadeOutBannerScroll('footer', -500);
 
     // const [bannerRef, bannerMeasure] = useMeasure(true);
 
@@ -245,7 +246,7 @@ export const Noticias = () => {
                                 })}
 
                             {/* <NoticiasBannerPerfilInvestidor pl={3} position="absolute" ref={bannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
-                                <BannerPerfilInvestidor boxMeasure={bannerMeasure} boxMeasurePadding={16} change={changeBannerScroll} />
+                                <BannerPerfilInvestidor boxMeasure={bannerMeasure} boxMeasurePadding={16} change={changeBannerScroll} fadeOut={fadeOutBannerScroll} />
                             </NoticiasBannerPerfilInvestidor> */}
                         </ul>
                     </Tab>

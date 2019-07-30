@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 
-export const useChangeBannerScroll = (elementId, offset = 50) => {
+export const useChangeBannerScroll = (elementId, offset = 0) => {
     const [changeBanner, setChangeBanner] = useState(false);
 
     const handleScroll = useCallback(() => {
@@ -26,7 +26,7 @@ export const useChangeBannerScroll = (elementId, offset = 50) => {
     return changeBanner;
 };
 
-export const useFadeOutBannerScroll = (elementId, offset = 50) => {
+export const useFadeOutBannerScroll = (elementId, offset = 0) => {
     const [changeBanner, setChangeBanner] = useState(false);
 
     const handleScroll = useCallback(() => {

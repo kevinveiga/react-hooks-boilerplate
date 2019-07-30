@@ -6,7 +6,7 @@ import { apiUrlNoticias } from '../../../config';
 
 import { useNoticiaApi } from '../../../service/noticia';
 
-import { useChangeNoticiaSocialScroll } from '../../../store/noticia/noticia';
+import { useChangeNoticiaSocialScroll, useFadeOutNoticiaSocialScroll } from '../../../store/noticia/noticia';
 
 import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaSocial } from './NoticiaStyled';
 import { SocialAlternate } from '../../Social/SocialAlternate';
@@ -17,7 +17,8 @@ import { Container, Main } from '../../../style/layout';
 import { Span, Title1, Title4, Title5 } from '../../../style/text';
 
 export const Noticia = ({ match }) => {
-    const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author');
+    const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
+    const fadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
 
     const [noticia] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
 
@@ -43,7 +44,7 @@ export const Noticia = ({ match }) => {
                             </Box>
                         </Flex>
 
-                        <NoticiaSocial id="noticia-Social" change={changeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }}>
+                        <NoticiaSocial change={changeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }} fadeOut={fadeOutNoticiaSocialScroll} id="noticia-Social">
                             <div>
                                 <b>Compartilhar:</b>
                             </div>
