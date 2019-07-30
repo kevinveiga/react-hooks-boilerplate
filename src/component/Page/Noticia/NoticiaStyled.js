@@ -177,4 +177,5 @@ export const NoticiasBannerPerfilInvestidor = styled.div`
     ${layout};
     ${position};
     ${space};
+    visibility: ${(props) => (props.visible === 'ultimas' ? 'hidden' : 'visible')};
 `;
