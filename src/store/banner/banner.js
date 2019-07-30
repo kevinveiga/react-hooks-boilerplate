@@ -1,13 +1,13 @@
-import { useLayoutEffect, useCallback, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
-export const useChangeBannerScroll = (elementId) => {
+export const useChangeBannerScroll = (elementStartId) => {
     const [changeBanner, setChangeBanner] = useState('false');
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
 
-        setChangeBanner(scrollYPos > (document.getElementById(elementId) && document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y - 50) ? 'true' : 'false');
-    }, [elementId]);
+        setChangeBanner(scrollYPos > (document.getElementById(elementStartId) && document.getElementById(elementStartId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y - 50) ? 'true' : 'false');
+    }, [elementStartId]);
 
     useLayoutEffect(() => {
         handleScroll();

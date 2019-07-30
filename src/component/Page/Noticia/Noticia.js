@@ -17,7 +17,7 @@ import { Container, Main } from '../../../style/layout';
 import { Span, Title1, Title4, Title5 } from '../../../style/text';
 
 export const Noticia = ({ match }) => {
-    const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll();
+    const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author');
 
     const [noticia] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
 

@@ -7,6 +7,7 @@ export const useChangeHeaderScroll = () => {
 
     const handleScroll = () => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
+
         setChangeHeader(scrollYPos > document.getElementById('header').offsetHeight + parseInt(variable.headerHeight, 10) ? 'true' : 'false');
     };
 
