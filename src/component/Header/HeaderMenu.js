@@ -13,13 +13,13 @@ export const HeaderMenu = ({ ...props }) => {
         <HeaderMenuStyled active={changeMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo to="/" onClick={() => setChangeMenuMobile('false')}>
+                    <LinkTo to="/" onClick={() => setChangeMenuMobile(false)}>
                         Início
                     </LinkTo>
                 </li>
 
                 <li>
-                    <LinkTo to="/noticias" onClick={() => setChangeMenuMobile('false')}>
+                    <LinkTo to="/noticias" onClick={() => setChangeMenuMobile(false)}>
                         Notícias
                     </LinkTo>
                 </li>

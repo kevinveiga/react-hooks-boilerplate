@@ -19,7 +19,7 @@ export const Header = () => {
         <HeaderContext.Provider value={[changeMenuMobile, setChangeMenuMobile]}>
             <HeaderStyled id="header" active={changeMenuMobile} change={changeHeaderScroll}>
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
-                    <BtnMenu active={changeMenuMobile} change={changeHeaderScroll} onClick={() => setChangeMenuMobile('true')}>
+                    <BtnMenu active={changeMenuMobile} change={changeHeaderScroll} onClick={() => setChangeMenuMobile(true)}>
                         <ul>
                             <li className="menu-lines" />
                             <li className="menu-lines" />
@@ -27,7 +27,7 @@ export const Header = () => {
                         </ul>
                     </BtnMenu>
 
-                    <Svg active={changeMenuMobile} name="svg-close" onClick={() => setChangeMenuMobile('false')} />
+                    <Svg active={changeMenuMobile} name="svg-close" onClick={() => setChangeMenuMobile(false)} />
 
                     <HeaderMenu change={changeHeaderScroll} />
                 </Container>

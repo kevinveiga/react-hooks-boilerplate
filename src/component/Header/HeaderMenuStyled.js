@@ -11,7 +11,7 @@ export const HeaderMenuStyled = styled.nav`
         overflow-y: auto;
         padding-top: 50px;
         position: fixed;
-        right: ${(props) => (props.active == 'true' ? 0 : '-100%')};
+        right: ${(props) => (props.active == true ? 0 : '-100%')};
         text-align: center;
         top: ${variable.headerHeightMobile};
         transition: right ${variable.transition};
@@ -42,7 +42,7 @@ export const HeaderMenuStyled = styled.nav`
 
             > a,
             > button {
-                color: ${(props) => (props.change == 'true' ? variable.colorWhite : variable.colorSecondary)};
+                color: ${(props) => (props.change == true ? variable.colorWhite : variable.colorSecondary)};
                 padding: 10px 0 10px 25px;
             }
         }

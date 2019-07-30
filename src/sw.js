@@ -79,7 +79,7 @@ workbox.routing.registerRoute(
 //         plugins: [
 //             new workbox.cacheableResponse.Plugin({
 //                 headers: {
-//                     'X-Is-Cacheable': 'true'
+//                     'X-Is-Cacheable': true
 //                 },
 //                 statuses: [0, 200]
 //             }),

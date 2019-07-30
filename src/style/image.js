@@ -28,7 +28,7 @@ export const BgImage = styled.div`
     z-index: -1;
 
     ${(props) =>
-        props.scale == 'true' &&
+        props.scale &&
         css`
             transform: scale(1.02) translate3d(0, 0, 0);
             transform-origin: 50% 50%;
@@ -67,7 +67,7 @@ export const BgImageOverlay3 = styled(BgImageOverlay)`
     }
 
     ${(props) =>
-        props.grayscale == 'true' &&
+        props.grayscale &&
         css`
             filter: grayscale(100%);
         `};
