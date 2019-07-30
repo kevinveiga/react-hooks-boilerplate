@@ -12,7 +12,7 @@ export const SocialStyled = styled.ul`
             padding: 10px 0 10px 18px;
 
             > svg {
-                fill: ${(props) => (props.change === 'true' ? variable.colorWhite : props.color ? variable[props.color] : variable.colorSecondary)};
+                fill: ${(props) => (props.change == 'true' ? variable.colorWhite : props.color ? variable[props.color] : variable.colorSecondary)};
             }
         }
     }

@@ -168,8 +168,8 @@ export const NoticiaSocial = styled.section`
     ${layout};
     ${(props) => props.fontSize === undefined && 'font-size: 14px'};
     left: auto;
-    position: ${(props) => (props.change === 'true' ? 'fixed' : 'absolute')};
-    top: ${(props) => (props.change === 'true' ? '150px' : 'auto')};
+    position: ${(props) => (props.change == 'true' ? 'fixed' : 'absolute')};
+    top: ${(props) => (props.change == 'true' ? '150px' : 'auto')};
     z-index: 3;
 `;
 

@@ -13,7 +13,7 @@ export const BannerCell = styled.div`
     scroll-snap-align: center;
 
     ${(props) =>
-        props.hover === 'true' &&
+        props.hover == 'true' &&
         css`
             &:hover {
                 ${BgImageOverlay3} {
@@ -41,7 +41,7 @@ export const BannerContainer = styled.div`
 
 export const BannerPerfilInvestidorStyled = styled.div`
     ${(props) =>
-        props.change === 'true' &&
+        props.change == 'true' &&
         css`
             display: none;
             z-index: 3;

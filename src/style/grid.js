@@ -15,7 +15,7 @@ export const Cell = styled.div`
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
     ${(props) =>
-        props.hover === 'true' &&
+        props.hover == 'true' &&
         css`
             &:hover {
                 background-color: ${variable.colorGrayHover};
