@@ -27,13 +27,13 @@ export const Cell = styled.div`
 
                 ${BgImageOverlay1} {
                     &::after {
-                        background-color: ${(props) => props.color === undefined && 'transparent'};
+                        background-color: ${(props) => props.color || 'transparent'};
                     }
                 }
 
                 ${BgImageOverlay3} {
                     &::after {
-                        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent1};
+                        background-color: ${(props) => props.color || variable.colorBlackTransparent1};
                     }
                 }
             }

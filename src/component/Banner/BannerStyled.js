@@ -23,7 +23,7 @@ export const BannerCell = styled.div`
                     transform: scale(1.03);
 
                     &::after {
-                        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
+                        background-color: ${(props) => props.color || variable.colorBlackTransparent3};
                     }
                 }
             }

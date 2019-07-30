@@ -53,7 +53,7 @@ export const BgImageOverlay1 = styled(BgImageOverlay)`
     transition: transform ${variable.transitionSlow};
 
     &::after {
-        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent1};
+        background-color: ${(props) => props.color || variable.colorBlackTransparent1};
         transition: background-color ${variable.transition};
     }
 `;
@@ -62,7 +62,7 @@ export const BgImageOverlay3 = styled(BgImageOverlay)`
     transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
 
     &::after {
-        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent3};
+        background-color: ${(props) => props.color || variable.colorBlackTransparent3};
         transition: background-color ${variable.transition};
     }
 
@@ -77,20 +77,20 @@ export const BgImageOverlay5 = styled(BgImageOverlay)`
     transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
 
     &::after {
-        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent5};
+        background-color: ${(props) => props.color || variable.colorBlackTransparent5};
         transition: background-color ${variable.transition};
     }
 `;
 
 export const BgImageOverlay6 = styled(BgImageOverlay)`
     &::after {
-        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent6};
+        background-color: ${(props) => props.color || variable.colorBlackTransparent6};
     }
 `;
 
 export const BgImageOverlay7 = styled(BgImageOverlay)`
     &::after {
-        background-color: ${(props) => props.color === undefined && variable.colorBlackTransparent7};
+        background-color: ${(props) => props.color || variable.colorBlackTransparent7};
     }
 `;
 
