@@ -40,7 +40,7 @@ export const Noticia = ({ match }) => {
 
                         <Flex display="flex" flexWrap="wrap">
                             <Box width={1}>
-                                <Image height="50vmin" mb={{ d: 4, md: 5 }} src={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width={1} />
+                                <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} src={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width={1} />
                             </Box>
                         </Flex>
 
@@ -70,14 +70,20 @@ export const Noticia = ({ match }) => {
 
                         <NoticiaAuthor mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
-                                <Box display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
+                                <Box display="inline-block">
+                                    <div className="image-container">
+                                        <Image objectFit="none" src={noticia.data.author_avatar || logo} text="autor" />
+                                    </div>
+                                </Box>
+
+                                <Box alignSelf="center" display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
                                     <p className="escrito-por">Escrito por</p>
 
                                     <Title4 color="colorPrimary" mb={2} themeColor="dark">
-                                        Autor
+                                        Alexandre Stormer
                                     </Title4>
 
-                                    <p>Sócio-fundador do Grupo L&S, com 15 anos de experiência no mercado financeiro do Brasil, Leandro atua com trader profissional há pelo menos 5 anos no mercado de bolsas do Estados Unidos da América.</p>
+                                    <p>{noticia.data.author_description}</p>
                                 </Box>
                             </Flex>
                         </NoticiaAuthor>
