@@ -15,7 +15,7 @@ const getDimensionObject = (node) => {
     };
 };
 
-export const useMeasure = (liveMeasure = false) => {
+export const useMeasure = (liveResize = false, liveScroll = false) => {
     const [measure, setMeasure] = useState({});
     const [node, setNode] = useState(null);
 
@@ -33,19 +33,27 @@ export const useMeasure = (liveMeasure = false) => {
 
             dimensions();
 
-            if (liveMeasure) {
+            if (liveResize) {
                 window.addEventListener('resize', dimensions);
-                window.addEventListener('scroll', dimensions);
-
-                return () => {
-                    window.removeEventListener('resize', dimensions);
-                    window.removeEventListener('scroll', dimensions);
-                };
             }
+
+            if (liveScroll) {
+                window.addEventListener('scroll', dimensions);
+            }
+
+            return () => {
+                if (liveResize) {
+                    window.removeEventListener('resize', dimensions);
+                }
+
+                if (liveScroll) {
+                    window.removeEventListener('scroll', dimensions);
+                }
+            };
         }
 
         return undefined;
-    }, [liveMeasure, node, ref]);
+    }, [liveResize, liveScroll, node, ref]);
 
     return [ref, measure, node];
 };

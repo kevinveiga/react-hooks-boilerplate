@@ -51,8 +51,9 @@ export const BannerPerfilInvestidorStyled = styled.div`
             }
 
             @media (min-width: ${variable.md}) {
-                position: fixed;
                 ${(props) => props.boxMeasure && `left: calc(${props.boxMeasure.x}px + ${props.boxMeasurePadding || 0}px)`};
+                position: fixed;
+                right: auto;
                 top: 150px;
                 ${(props) => props.boxMeasure && `width: calc(${props.boxMeasure.width}px - ${props.boxMeasurePadding || 0}px)`};
             }
