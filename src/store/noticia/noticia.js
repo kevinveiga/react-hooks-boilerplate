@@ -1,13 +1,15 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 
-export const useChangeNoticiaSocialScroll = (elementStartId) => {
+export const useChangeNoticiaSocialScroll = (elementId, offset = 50) => {
     const [changeNoticiaSocial, setChangeNoticiaSocial] = useState(false);
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
 
-        setChangeNoticiaSocial(scrollYPos > (document.getElementById(elementStartId) && document.getElementById(elementStartId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y - 50));
-    }, [elementStartId]);
+        const position = document.getElementById(elementId) ? document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y : 0;
+
+        setChangeNoticiaSocial(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
+    }, [elementId, offset]);
 
     useLayoutEffect(() => {
         handleScroll();

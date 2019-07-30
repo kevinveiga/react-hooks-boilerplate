@@ -2,14 +2,16 @@ import { useCallback, useLayoutEffect, useState } from 'react';
 
 import { variable } from '../../style/variable';
 
-export const useChangeHeaderScroll = (elementStartId) => {
+export const useChangeHeaderScroll = (elementId, offset = 0) => {
     const [changeHeader, setChangeHeader] = useState(false);
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
 
-        setChangeHeader(scrollYPos > (document.getElementById(elementStartId) && document.getElementById(elementStartId).offsetHeight + parseInt(variable.headerHeight, 10)));
-    }, [elementStartId]);
+        const position = document.getElementById(elementId) ? document.getElementById(elementId).offsetHeight + parseInt(variable.headerHeight, 10) : 0;
+
+        setChangeHeader(scrollYPos > position + offset);
+    }, [elementId, offset]);
 
     useLayoutEffect(() => {
         handleScroll();

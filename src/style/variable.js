@@ -1,8 +1,12 @@
 export const variable = {
     // Animations
-    transition: '400ms ease-in-out',
-    transitionFast: '200ms ease-in-out',
-    transitionSlow: '1000ms ease-in-out',
+    duration: '250ms',
+    durationFast: '150ms',
+    durationSlow: '650ms',
+    timing: 'ease-in-out',
+    transition: '250ms ease-in-out',
+    transitionFast: '150ms ease-in-out',
+    transitionSlow: '650ms ease-in-out',
 
     // Border
     border: '1px solid rgba(225, 225, 225, 1)',

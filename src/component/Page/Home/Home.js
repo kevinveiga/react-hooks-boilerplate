@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-// import { useChangeBannerScroll } from '../../../store/banner/banner';
+// import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
 // import { useMeasure } from '../../../store/util/measure';
 
 import { LinkTo } from '../../Link/LinkTo';
@@ -18,7 +18,8 @@ import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
 export const Home = () => {
-    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', 'home-video-container');
+    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container');
+    // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
 
     // const [bannerRef, bannerMeasure] = useMeasure(true);
 
@@ -177,7 +178,7 @@ export const Home = () => {
                                 </Box>
 
                                 {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={bannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
-                                    <BannerPerfilInvestidor change={changeBannerScroll} boxMeasure={bannerMeasure} boxMeasurePadding={16} />
+                                    <BannerPerfilInvestidor boxMeasure={bannerMeasure} boxMeasurePadding={16} change={changeBannerScroll} fadeOut={fadeOutBannerScroll} />
                                 </Box> */}
                             </Flex>
                         </Container>
