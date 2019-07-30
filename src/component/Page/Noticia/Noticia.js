@@ -9,7 +9,7 @@ import { useNoticiaApi } from '../../../service/noticia';
 import { useChangeNoticiaSocialScroll, useFadeOutNoticiaSocialScroll } from '../../../store/noticia/noticia';
 
 import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaSocial } from './NoticiaStyled';
-import { SocialAlternate } from '../../Social/SocialAlternate';
+import { Share } from '../../Social/Share';
 
 import { Box, Flex } from '../../../style/flex';
 import { Image } from '../../../style/image';
@@ -30,6 +30,12 @@ export const Noticia = ({ match }) => {
                 <Helmet>
                     <title>{noticia.data.title}</title>
                     <meta name="description" content={noticia.data.seo.description} />
+                    <meta property="og:author" content={noticia.data.author} />
+                    <meta property="og:description" content={noticia.data.seo.description} />
+                    <meta property="og:image" content={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} />
+                    <meta property="og:title" content={noticia.data.title} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={window.location.href} />
                 </Helmet>
 
                 <Main>
@@ -49,7 +55,7 @@ export const Noticia = ({ match }) => {
                                 <b>Compartilhar:</b>
                             </div>
 
-                            <SocialAlternate direction="vertical" themeColor="dark" />
+                            <Share direction="vertical" title={noticia.data.title} themeColor="dark" url={window.location.href} />
                         </NoticiaSocial>
 
                         <NoticiaArticleAuthor id="noticia-article-author" mb={3}>
