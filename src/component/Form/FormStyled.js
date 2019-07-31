@@ -5,13 +5,6 @@ import { variable } from '../../style/variable';
 
 const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
     return css`
-        .custom-textarea {
-            ${variable[themeColor] === 'dark' ? `border: 2px solid ${variable[colorLine]}` : ''};
-            ${variable[themeColor] === 'dark' ? 'border-radius: 10px' : ''};
-            ${variable[themeColor] === 'dark' ? `padding: (${variable.inputPadding}- 5) ${variable.inputPadding}` : ''};
-            height: 150px;
-        }
-
         .custom-input,
         .custom-textarea {
             ${placeholder(`
