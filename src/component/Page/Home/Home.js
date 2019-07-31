@@ -95,7 +95,7 @@ export const Home = () => {
 
                 {noticiasLength > 0 && (
                     <Background backgroundColor="colorGrayLight4">
-                        <Container id="home-noticias-container" mx="auto" py={{ d: 3, md: 4 }} px={3}>
+                        <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                             <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                                 <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
