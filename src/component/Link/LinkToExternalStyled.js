@@ -22,6 +22,7 @@ export const LinkToExternalStyled = styled.a`
         `};
 
     > span {
+        transition: color ${variable.transition};
         vertical-align: middle;
     }
 `;
