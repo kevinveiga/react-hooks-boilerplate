@@ -1,4 +1,5 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 export const useChangeBannerScroll = (elementId, offset = 0) => {
     const [changeBanner, setChangeBanner] = useState(false);
@@ -12,10 +13,18 @@ export const useChangeBannerScroll = (elementId, offset = 0) => {
     }, [elementId, offset]);
 
     useLayoutEffect(() => {
-        handleScroll();
+        if (isMobile) {
+            return undefined;
+        }
+
+        return handleScroll();
     }, [handleScroll]);
 
     useLayoutEffect(() => {
+        if (isMobile) {
+            return undefined;
+        }
+
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -38,10 +47,18 @@ export const useFadeOutBannerScroll = (elementId, offset = 0) => {
     }, [elementId, offset]);
 
     useLayoutEffect(() => {
-        handleScroll();
+        if (isMobile) {
+            return undefined;
+        }
+
+        return handleScroll();
     }, [handleScroll]);
 
     useLayoutEffect(() => {
+        if (isMobile) {
+            return undefined;
+        }
+
         window.addEventListener('scroll', handleScroll);
 
         return () => {

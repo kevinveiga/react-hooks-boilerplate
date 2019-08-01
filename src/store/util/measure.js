@@ -1,4 +1,5 @@
 import { useLayoutEffect, useCallback, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 const getDimensionObject = (node) => {
     const rect = node.getBoundingClientRect();
@@ -24,6 +25,10 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
     }, []);
 
     useLayoutEffect(() => {
+        if (isMobile) {
+            return undefined;
+        }
+
         if (node) {
             const dimensions = () => {
                 window.requestAnimationFrame(() => {
