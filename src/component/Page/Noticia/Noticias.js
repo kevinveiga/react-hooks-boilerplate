@@ -245,7 +245,7 @@ export const Noticias = () => {
                                     );
                                 })}
 
-                            {/* <NoticiasBannerPerfilInvestidor pl={3} position="absolute" ref={bannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
+                            {/* <NoticiasBannerPerfilInvestidor display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={bannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
                                 <BannerPerfilInvestidor boxMeasure={bannerMeasure} boxMeasurePadding={16} change={changeBannerScroll} fadeOut={fadeOutBannerScroll} />
                             </NoticiasBannerPerfilInvestidor> */}
                         </ul>
