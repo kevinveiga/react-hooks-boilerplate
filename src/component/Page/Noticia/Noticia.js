@@ -45,9 +45,7 @@ export const Noticia = ({ match }) => {
                         </Title1>
 
                         <Flex display="flex" flexWrap="wrap">
-                            <Box width={1}>
-                                <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} src={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width={1} />
-                            </Box>
+                            <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} src={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width="100%" />
                         </Flex>
 
                         <NoticiaSocial change={changeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }} fadeOut={fadeOutNoticiaSocialScroll} id="noticia-Social">
