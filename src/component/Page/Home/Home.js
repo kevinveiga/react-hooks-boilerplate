@@ -184,6 +184,64 @@ export const Home = () => {
                         </Container>
                     </Background>
                 )}
+
+                {/* <VideoContainer id="home-video-container">
+                    <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
+                        <Title2 themeColor="light">Vídeos Liberta</Title2>
+
+                        <VideoGrid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5}>
+                            <Cell>
+                                <VideoWrap>
+                                    <YouTube id="video" videoId="r0k4NRSwljQ" />
+                                </VideoWrap>
+
+                                <VideoBox p={4}>
+                                    <p>Vídeo</p>
+
+                                    <Title4 fontWeight="600" themeColor="dark">
+                                        Título do vídeo
+                                    </Title4>
+                                </VideoBox>
+                            </Cell>
+
+                            <Cell>
+                                <VideoBox p={4} themeColor="dark">
+                                    <Title5 fontWeight="600">Próximo Vídeo</Title5>
+                                </VideoBox>
+
+                                <VideoUl>
+                                    {videosLength > 0 &&
+                                        stateVideos.data.map((video, i) => {
+                                            return (
+                                                <VideoLi borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={video.video} p={4}>
+                                                    <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
+                                                        <Box width="100%">
+                                                            <Title5 fontWeight="600" mb={3} themeColor="dark">
+                                                                {video.title}
+                                                            </Title5>
+                                                        </Box>
+
+                                                        <p>{video.date}</p>
+                                                    </Box>
+
+                                                    <Box display="inline-flex" height="100px" verticalAlign="middle" width={2 / 5}>
+                                                        <BgImageOverlay1 url={`https://picsum.photos/id/1${i}/1024`} />
+                                                    </Box>
+                                                </VideoLi>
+                                            );
+                                        })}
+                                </VideoUl>
+                            </Cell>
+                        </VideoGrid>
+
+                        <Box textAlign="center">
+                            <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
+                                <Svg name="svg-youtube" />
+                                Siga nosso canal no Youtube
+                            </LinkToExternal>
+                        </Box>
+                    </Container>
+                </VideoContainer> */}
             </Main>
         </>
     );
