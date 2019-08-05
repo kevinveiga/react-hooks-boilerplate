@@ -234,7 +234,7 @@ export const Home = () => {
                                     {videosLength > 0 &&
                                         stateVideos.data.map((video, i) => {
                                             return (
-                                                <VideoLi borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={video.video} p={4} onClick={() => setCurrentVideo(video)}>
+                                                <VideoLi active={currentVideo.video === video.video || false} borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={getVideoId(video.video)} p={4} onClick={() => setCurrentVideo(video)}>
                                                     <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
                                                         <Box width="100%">
                                                             <Title5 fontWeight="600" mb={3} themeColor="dark">

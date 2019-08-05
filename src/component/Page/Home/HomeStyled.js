@@ -31,6 +31,23 @@ export const VideoUl = styled.ul`
 export const VideoLi = styled.li`
     ${border};
     ${space};
+    cursor: pointer;
+    transition: background-color ${variable.transition}, box-shadow ${variable.transition};
+
+    ${(props) =>
+        props.active &&
+        css`
+            background-color: ${variable.colorGrayHover};
+        `};
+
+    ${(props) =>
+        props.hover &&
+        css`
+            &:hover {
+                background-color: ${variable.colorGrayHover};
+                box-shadow: inset 0 -1px 0 1px ${variable.colorGrayLight};
+            }
+        `};
 
     p {
         color: ${variable.colorGray2};
