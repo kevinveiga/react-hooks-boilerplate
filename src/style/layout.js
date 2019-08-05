@@ -22,8 +22,25 @@ export const Main = styled.main`
     width: 100%;
     z-index: 0;
 
-    @media (min-width: ${variable.sm}) {
+    @media (min-width: ${variable.lg}) {
         margin-top: ${variable.headerHeight};
         min-height: calc(100vh - ${variable.headerHeight});
+    }
+`;
+
+export const VideoWrap = styled.div`
+    div {
+        height: 0;
+        padding-bottom: 50%;
+        padding-top: 25px;
+
+        embed,
+        iframe {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
     }
 `;

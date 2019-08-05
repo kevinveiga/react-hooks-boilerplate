@@ -1,8 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+// import { apiUrlHome } from '../../../config';
+// import { getVideoId } from '../../../util/getVideoId';
+
+// import { useDestaqueApi } from '../../../service/destaque';
+// import { useNoticiaApi } from '../../../service/noticia';
+// import { useParceiroApi } from '../../../service/parceiro';
+// import { useVideoApi } from '../../../service/video';
+// import { useSeoApi } from '../../../service/seo';
+
 // import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
 // import { useMeasure } from '../../../store/util/measure';
+// import { useCurrentVideo } from '../../../store/video/video';
 
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
@@ -18,16 +28,27 @@ import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
 export const Home = () => {
-    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
-    // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
+    // API
+    // const [stateDestaques] = useDestaqueApi(`${apiUrlHome}/destaques`, {});
+    // const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
+    // const [stateParceiros] = useParceiroApi(`${apiUrlHome}/parceiros`, {});
+    // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
+    // const [stateSeo] = useSeoApi(`${apiUrlHome}/seo`, {});
 
-    // const [bannerRef, bannerMeasure] = useMeasure(true);
+    // const destaquesLength = stateDestaques.data.length;
+    // const noticiasLength = stateNoticias.data.length;
+    // const parceirosLength = stateParceiros.data.length;
+    // const videosLength = stateVideos.data.length;
 
     const stateDestaques = [];
     const stateNoticias = [];
-
     const destaquesLength = 5;
     const noticiasLength = 5;
+
+    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
+    // const [currentVideo, setCurrentVideo] = useCurrentVideo({});
+    // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
+    // const [bannerRef, bannerMeasure] = useMeasure(true);
 
     return (
         <>
@@ -192,14 +213,14 @@ export const Home = () => {
                         <VideoGrid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5}>
                             <Cell>
                                 <VideoWrap>
-                                    <YouTube id="video" videoId="r0k4NRSwljQ" />
+                                    <YouTube id="video" videoId={(currentVideo && getVideoId(currentVideo.video)) || (videosLength > 0 && getVideoId(stateVideos.data[0].video)) || ''} />
                                 </VideoWrap>
 
                                 <VideoBox p={4}>
                                     <p>Vídeo</p>
 
                                     <Title4 fontWeight="600" themeColor="dark">
-                                        Título do vídeo
+                                        {(currentVideo && currentVideo.title) || (videosLength > 0 && stateVideos.data[0].title)}
                                     </Title4>
                                 </VideoBox>
                             </Cell>
@@ -213,7 +234,7 @@ export const Home = () => {
                                     {videosLength > 0 &&
                                         stateVideos.data.map((video, i) => {
                                             return (
-                                                <VideoLi borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={video.video} p={4}>
+                                                <VideoLi borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={video.video} p={4} onClick={() => setCurrentVideo(video)}>
                                                     <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
                                                         <Box width="100%">
                                                             <Title5 fontWeight="600" mb={3} themeColor="dark">
@@ -236,7 +257,7 @@ export const Home = () => {
 
                         <Box textAlign="center">
                             <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
-                                <Svg name="svg-youtube" />
+                                <Svg display={{ d: 'none', lg: 'block' }} name="svg-youtube" />
                                 Siga nosso canal no Youtube
                             </LinkToExternal>
                         </Box>
