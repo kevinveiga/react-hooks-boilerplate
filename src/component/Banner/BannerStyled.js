@@ -2,9 +2,7 @@ import styled, { css } from 'styled-components';
 import { grid, layout, space } from 'styled-system';
 
 import { fadeIn, fadeOut } from '../../style/animation';
-
 import { BgImageOverlay3 } from '../../style/image';
-
 import { variable } from '../../style/variable';
 
 export const BannerCell = styled.div`

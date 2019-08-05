@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { border, flexbox, layout, space, typography } from 'styled-system';
 
 import { BgImageOverlay1, BgImageOverlay3 } from './image';
-
 import { variable } from './variable';
 
 export const Box = styled.div`

@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { layout, position, space } from 'styled-system';
 
 import { fadeIn, fadeOut } from '../../../style/animation';
-
 import { variable } from '../../../style/variable';
 
 export const NoticiaContainer = css`
