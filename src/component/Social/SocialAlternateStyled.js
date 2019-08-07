@@ -9,6 +9,7 @@ export const SocialAlternateStyled = styled.ul`
         direction === 'vertical'
             ? css`
                   margin-left: 13px;
+
                   > li {
                       display: block;
                   }
