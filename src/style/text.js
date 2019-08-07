@@ -31,43 +31,43 @@ export const Span = styled.span`
 
 export const Title1 = styled.h1`
     ${title};
-    ${({ fontSize }) => fontSize === undefined && 'font-size: 38px'};
-    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
-    margin-bottom: ${variable.spacingSM};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 30px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
+    ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
 
     @media (min-width: ${variable.md}) {
         ${({ fontSize }) => fontSize === undefined && 'font-size: 48px'};
-        margin-bottom: ${variable.spacingMD};
+        ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingMD}`};
     }
 `;
 
 export const Title2 = styled.h2`
     ${title};
-    ${({ fontSize }) => fontSize === undefined && 'font-size: 30px'};
-    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
-    margin-bottom: ${variable.spacingSM};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 26px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
+    ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
 
     @media (min-width: ${variable.md}) {
         ${({ fontSize }) => fontSize === undefined && 'font-size: 40px'};
-        margin-bottom: ${variable.spacingMD};
+        ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingMD}`};
     }
 `;
 
 export const Title3 = styled.h3`
     ${title};
-    ${({ fontSize }) => fontSize === undefined && 'font-size: 22px'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 20px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
-    margin-bottom: ${variable.spacingXS};
+    ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingXS}`};
 
     @media (min-width: ${variable.md}) {
         ${({ fontSize }) => fontSize === undefined && 'font-size: 32px'};
-        margin-bottom: ${variable.spacingSM};
+        ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
     }
 `;
 
 export const Title4 = styled.h4`
     ${title};
-    ${(fontSize) => fontSize === undefined && 'font-size: 18px'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 18px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
 
     @media (min-width: ${variable.md}) {
