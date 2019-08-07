@@ -1,81 +1,86 @@
 import styled, { css } from 'styled-components';
-import { space, typography } from 'styled-system';
+import { layout, space, typography } from 'styled-system';
 
 import { variable } from './variable';
 
 const title = css`
+    ${layout};
     ${space};
     ${typography};
-    color: ${(props) => (props.themeColor === 'dark' ? (props.color ? variable[props.color] : variable.colorBlack2) : variable.colorWhite)};
+    color: ${({ color, themeColor }) => (themeColor === 'dark' ? (color ? variable[color] : variable.colorBlack2) : variable.colorWhite)};
     display: block;
     height: auto;
     line-height: 1.3;
-    ${(props) => props.align === 'center' && 'margin-left: auto; margin-right: auto; text-align: center;'};
-    ${(props) => props.align === 'right' && 'margin-left: auto; margin-right: 0; text-align: right;'};
-    width: auto;
+    ${({ align }) => align === 'center' && 'margin-left: auto; margin-right: auto; text-align: center;'};
+    ${({ align }) => align === 'right' && 'margin-left: auto; margin-right: 0; text-align: right;'};
     z-index: 3;
 `;
 
+export const P = styled.p`
+    ${typography};
+    color: ${({ color, themeColor }) => (themeColor === 'dark' ? (color ? variable[color] : variable.colorBlack2) : variable.colorWhite)};
+`;
+
 export const Span = styled.span`
-    ${(props) =>
-        props.color &&
+    ${({ color }) =>
+        color &&
         css`
-            color: ${variable[props.color]};
+            color: ${variable[color]};
         `};
 `;
 
 export const Title1 = styled.h1`
     ${title};
-    ${(props) => props.fontSize === undefined && 'font-size: 38px'};
-    ${(props) => props.fontWeight === undefined && 'font-weight: 700'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 38px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     margin-bottom: ${variable.spacingSM};
 
     @media (min-width: ${variable.md}) {
-        ${(props) => props.fontSize === undefined && 'font-size: 48px'};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 48px'};
         margin-bottom: ${variable.spacingMD};
     }
 `;
 
 export const Title2 = styled.h2`
     ${title};
-    ${(props) => props.fontSize === undefined && 'font-size: 30px'};
-    ${(props) => props.fontWeight === undefined && 'font-weight: 700'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 30px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     margin-bottom: ${variable.spacingSM};
 
     @media (min-width: ${variable.md}) {
-        ${(props) => props.fontSize === undefined && 'font-size: 40px'};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 40px'};
         margin-bottom: ${variable.spacingMD};
     }
 `;
 
 export const Title3 = styled.h3`
     ${title};
-    ${(props) => props.fontSize === undefined && 'font-size: 22px'};
-    ${(props) => props.fontWeight === undefined && 'font-weight: 400'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 22px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
     margin-bottom: ${variable.spacingXS};
 
     @media (min-width: ${variable.md}) {
-        ${(props) => props.fontSize === undefined && 'font-size: 32px'};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 32px'};
         margin-bottom: ${variable.spacingSM};
     }
 `;
 
 export const Title4 = styled.h4`
     ${title};
-    ${(props) => props.fontSize === undefined && 'font-size: 18px'};
-    ${(props) => props.fontWeight === undefined && 'font-weight: 400'};
+    ${(fontSize) => fontSize === undefined && 'font-size: 18px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
 
     @media (min-width: ${variable.md}) {
-        ${(props) => props.fontSize === undefined && 'font-size: 24px'};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 24px'};
     }
 `;
 
 export const Title5 = styled.h5`
     ${title};
-    ${(props) => props.fontSize === undefined && 'font-size: 16px'};
-    ${(props) => props.fontWeight === undefined && 'font-weight: 400'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
 
     @media (min-width: ${variable.md}) {
-        ${(props) => props.fontSize === undefined && 'font-size: 18px'};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 18px'};
     }
 `;

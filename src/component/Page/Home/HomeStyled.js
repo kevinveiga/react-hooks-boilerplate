@@ -7,7 +7,7 @@ import { variable } from '../../../style/variable';
 
 export const VideoBox = styled.div`
     ${space};
-    background-color: ${(props) => (props.themeColor === 'dark' ? variable.colorGrayDark : variable.colorWhite)};
+    background-color: ${({ themeColor }) => (themeColor === 'dark' ? variable.colorGrayDark : variable.colorWhite)};
 
     p {
         color: ${variable.colorGray2};
@@ -34,14 +34,14 @@ export const VideoLi = styled.li`
     cursor: pointer;
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
-    ${(props) =>
-        props.active &&
+    ${({ active }) =>
+        active &&
         css`
             background-color: ${variable.colorGrayHover};
         `};
 
-    ${(props) =>
-        props.hover &&
+    ${({ hover }) =>
+        hover &&
         css`
             &:hover {
                 background-color: ${variable.colorGrayHover};

@@ -8,6 +8,7 @@ import { Svg } from '../Svg/Svg';
 import { SocialStyled } from './SocialStyled';
 
 export const Social = ({ ...props }) => {
+    // CONTEXT
     const stateSocialGlobal = useContext(Context);
 
     let socialRender = '';

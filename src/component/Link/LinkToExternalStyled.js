@@ -8,8 +8,8 @@ export const LinkToExternalStyled = styled.a`
     ${space};
     ${typography};
 
-    ${(props) =>
-        props.hover === 'primary' &&
+    ${({ hover }) =>
+        hover === 'primary' &&
         css`
             &:hover {
                 > span {

@@ -7,6 +7,7 @@ import { LinkTo } from '../Link/LinkTo';
 import { HeaderMenuStyled } from './HeaderMenuStyled';
 
 export const HeaderMenu = ({ ...props }) => {
+    // CONTEXT
     const [changeMenuMobile, setChangeMenuMobile] = useContext(HeaderContext);
 
     return (

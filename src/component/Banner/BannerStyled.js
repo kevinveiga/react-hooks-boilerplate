@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { grid, layout, space } from 'styled-system';
 
-import { fadeIn, fadeOut } from '../../style/animation';
+import { animationFadeIn, animationFadeOut } from '../../style/animation';
 import { BgImageOverlay3 } from '../../style/image';
 import { variable } from '../../style/variable';
 
@@ -12,8 +12,8 @@ export const BannerCell = styled.div`
     overflow: hidden;
     scroll-snap-align: center;
 
-    ${(props) =>
-        props.hover &&
+    ${({ hover }) =>
+        hover &&
         css`
             &:hover {
                 ${BgImageOverlay3} {
@@ -21,7 +21,7 @@ export const BannerCell = styled.div`
                     transform: scale(1.03);
 
                     &::after {
-                        background-color: ${(props) => props.color || variable.colorBlackTransparent3};
+                        background-color: ${({ color }) => color || variable.colorBlackTransparent3};
                     }
                 }
             }
@@ -40,10 +40,10 @@ export const BannerContainer = styled.div`
 `;
 
 export const BannerPerfilInvestidorStyled = styled.div`
-    animation: ${fadeIn()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
+    animation: ${animationFadeIn()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
 
-    ${(props) =>
-        props.change &&
+    ${({ change }) =>
+        change &&
         css`
             display: none;
             z-index: 3;
@@ -53,18 +53,18 @@ export const BannerPerfilInvestidorStyled = styled.div`
             }
 
             @media (min-width: ${variable.md}) {
-                ${(props) => props.boxMeasure && `left: calc(${props.boxMeasure.x}px + ${props.boxMeasurePadding || 0}px)`};
+                ${({ boxMeasure, boxMeasurePadding }) => boxMeasure && `left: calc(${boxMeasure.x}px + ${boxMeasurePadding || 0}px)`};
                 position: fixed;
                 right: auto;
                 top: 150px;
-                ${(props) => props.boxMeasure && `width: calc(${props.boxMeasure.width}px - ${props.boxMeasurePadding || 0}px)`};
+                ${({ boxMeasure, boxMeasurePadding }) => boxMeasure && `width: calc(${boxMeasure.width}px - ${boxMeasurePadding || 0}px)`};
             }
         `};
 
-    ${(props) =>
-        props.fadeOut &&
+    ${({ fadeOut }) =>
+        fadeOut &&
         css`
-            animation: ${fadeOut()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
+            animation: ${animationFadeOut()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
         `};
 
     a {

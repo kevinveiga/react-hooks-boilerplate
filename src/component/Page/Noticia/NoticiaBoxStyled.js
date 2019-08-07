@@ -11,9 +11,9 @@ export const Author = styled.h5`
 
 export const DateTime = styled.span`
     ${typography};
-    color: ${(props) => (props.themeColor === 'light' ? (props.color ? variable[props.color] : variable.colorWhite) : props.color ? variable[props.color] : variable.colorGray2)};
+    color: ${({ color, themeColor }) => (themeColor === 'light' ? (color ? variable[color] : variable.colorWhite) : color ? variable[color] : variable.colorGray2)};
     display: inline-block;
-    ${(props) => props.fontSize === undefined && 'font-size: 14px'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     font-weight: 400;
     margin-bottom: ${variable.spacingXS};
     margin-top: ${variable.spacingXS};
@@ -34,13 +34,13 @@ export const Tag = styled.div`
 
 export const Title = styled.h2`
     ${typography};
-    ${(props) => props.fontSize === undefined && 'font-size: 16px'};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: ${variable.spacingSM};
 
     @media (min-width: ${variable.sm}) {
-        ${(props) => props.fontSize === undefined && 'font-size: 24px'};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 24px'};
     }
 `;
 
@@ -49,29 +49,29 @@ export const NoticiaBoxStyled = styled.div`
     ${layout};
     ${space};
     ${typography};
-    color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
-    ${(props) => props.fontSize === undefined && 'font-size: 14px'};
-    ${(props) => props.overflow && `overflow: ${props.overflow}`};
-    ${(props) => props.themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};
+    color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
+    ${({ overflow }) => overflow && `overflow: ${overflow}`};
+    ${({ themeColor }) => themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};
 
     p {
-        color: ${(props) => (props.themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};
-        ${(props) => props.fontSize === undefined && 'font-size: 16px'};
+        color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
         line-height: 1.8;
         margin-bottom: 0;
     }
 
     ${Author} {
-        color: ${(props) => (props.themeColor === 'light' ? (props.color === 'colorBlueDark' ? variable.colorWhite : variable[props.color]) : variable[props.color])};
-        ${(props) => props.fontSize === undefined && 'font-size: 12px'};
+        color: ${({ color, themeColor }) => (themeColor === 'light' ? (color === 'colorBlueDark' ? variable.colorWhite : variable[color]) : variable[color])};
+        ${({ fontSize }) => fontSize === undefined && 'font-size: 12px'};
 
         @media (min-width: ${variable.sm}) {
-            ${(props) => props.fontSize === undefined && 'font-size: 14px'};
+            ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
         }
     }
 
     ${Tag} {
-        background-color: ${(props) => (props.color ? variable[props.color] : 'transparent')};
+        background-color: ${({ color }) => (color ? variable[color] : 'transparent')};
         text-shadow: none;
     }
 `;

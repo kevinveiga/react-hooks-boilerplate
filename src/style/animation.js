@@ -1,6 +1,6 @@
 import { keyframes } from 'styled-components';
 
-export const fadeIn = (display = 'block') => keyframes`
+export const animationFadeIn = (display = 'block') => keyframes`
     0% {
         display: none;
         opacity: 0;
@@ -13,7 +13,7 @@ export const fadeIn = (display = 'block') => keyframes`
     }
 `;
 
-export const fadeOut = (display = 'block') => keyframes`
+export const animationFadeOut = (display = 'block') => keyframes`
     0% {
         display: ${display};
         opacity: 1;

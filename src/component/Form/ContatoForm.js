@@ -11,6 +11,7 @@ import { Title3 } from '../../style/text';
 import { customValidate } from '../../util/customValidate';
 
 export const NoticiaForm = ({ ...props }) => {
+    // FORM
     const { errors, formState, handleSubmit, register } = useForm({
         mode: 'onChange'
     });

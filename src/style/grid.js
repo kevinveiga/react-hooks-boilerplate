@@ -10,11 +10,11 @@ export const Cell = styled.div`
     ${grid};
     ${layout};
     ${space};
-    ${(props) => props.overflow && `overflow: ${props.overflow}`};
+    ${({ overflow }) => overflow && `overflow: ${overflow}`};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
-    ${(props) =>
-        props.hover &&
+    ${({ hover }) =>
+        hover &&
         css`
             &:hover {
                 background-color: ${variable.colorGrayHover};
@@ -26,13 +26,13 @@ export const Cell = styled.div`
 
                 ${BgImageOverlay1} {
                     &::after {
-                        background-color: ${(props) => props.color || 'transparent'};
+                        background-color: ${({ color }) => color || 'transparent'};
                     }
                 }
 
                 ${BgImageOverlay3} {
                     &::after {
-                        background-color: ${(props) => props.color || variable.colorBlackTransparent1};
+                        background-color: ${({ color }) => color || variable.colorBlackTransparent1};
                     }
                 }
             }

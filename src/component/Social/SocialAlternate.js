@@ -8,6 +8,7 @@ import { Svg } from '../Svg/Svg';
 import { SocialAlternateStyled } from './SocialAlternateStyled';
 
 export const SocialAlternate = ({ ...props }) => {
+    // CONTEXT
     const stateSocialGlobal = useContext(Context);
 
     let socialRender = '';

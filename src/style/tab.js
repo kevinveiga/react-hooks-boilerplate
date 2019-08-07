@@ -51,7 +51,7 @@ const tabInput = (group, total) => {
 };
 
 export const Tab = styled.div`
-    ${(props) => tabInput(props.group, props.total)};
+    ${({ group, total }) => tabInput(group, total)};
     overflow: hidden;
 
     input[type='radio'] {

@@ -17,9 +17,11 @@ import { Container, Main } from '../../../style/layout';
 import { Span, Title1, Title4, Title5 } from '../../../style/text';
 
 export const Noticia = ({ match }) => {
+    // ACTION
     const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
     const fadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
 
+    // API
     const [noticia] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
 
     const noticiaLength = Object.keys(noticia.data).length;

@@ -130,7 +130,7 @@ const custonInput = (color, colorLine, colorPlaceholder, themeColor) => {
 };
 
 export const FormStyled = styled.form`
-    ${(props) => custonInput(props.color, props.colorLine, props.colorPlaceholder, props.themeColor)};
+    ${({ color, colorLine, colorPlaceholder, themeColor }) => custonInput(color, colorLine, colorPlaceholder, themeColor)};
     height: auto;
     width: auto;
     z-index: 1;

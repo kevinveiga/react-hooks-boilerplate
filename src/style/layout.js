@@ -4,7 +4,7 @@ import { space } from 'styled-system';
 import { variable } from './variable';
 
 export const Background = styled.section`
-    ${(props) => props.backgroundColor && `background-color: ${variable[props.backgroundColor]}`};
+    ${({ backgroundColor }) => backgroundColor && `background-color: ${variable[backgroundColor]}`};
 `;
 
 export const Container = styled.section`

@@ -7,8 +7,8 @@ import { Helmet } from 'react-helmet-async';
 // import { useDestaqueApi } from '../../../service/destaque';
 // import { useNoticiaApi } from '../../../service/noticia';
 // import { useParceiroApi } from '../../../service/parceiro';
-// import { useVideoApi } from '../../../service/video';
 // import { useSeoApi } from '../../../service/seo';
+// import { useVideoApi } from '../../../service/video';
 
 // import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
 // import { useMeasure } from '../../../store/util/measure';
@@ -28,12 +28,18 @@ import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
 export const Home = () => {
+    // ACTION
+    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
+    // const [currentVideo, setCurrentVideo] = useCurrentVideo({});
+    // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
+    // const [bannerRef, bannerMeasure] = useMeasure(true);
+
     // API
     // const [stateDestaques] = useDestaqueApi(`${apiUrlHome}/destaques`, {});
     // const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
     // const [stateParceiros] = useParceiroApi(`${apiUrlHome}/parceiros`, {});
-    // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
     // const [stateSeo] = useSeoApi(`${apiUrlHome}/seo`, {});
+    // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
 
     // const destaquesLength = stateDestaques.data.length;
     // const noticiasLength = stateNoticias.data.length;
@@ -44,11 +50,6 @@ export const Home = () => {
     const stateNoticias = [];
     const destaquesLength = 5;
     const noticiasLength = 5;
-
-    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
-    // const [currentVideo, setCurrentVideo] = useCurrentVideo({});
-    // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
-    // const [bannerRef, bannerMeasure] = useMeasure(true);
 
     return (
         <>

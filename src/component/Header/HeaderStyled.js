@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components';
 import { variable } from '../../style/variable';
 
 export const BtnMenu = styled.button.attrs({ type: 'button' })`
-    display: ${(props) => (props.active == true ? 'none' : 'block')};
+    display: ${({ active }) => (active == true ? 'none' : 'block')};
     margin: auto;
     vertical-align: middle;
 
     ul {
         li {
-            background-color: ${(props) => (props.change == true ? variable.colorWhite : variable.colorSecondary)};
+            background-color: ${({ change }) => (change == true ? variable.colorWhite : variable.colorSecondary)};
             border-radius: 20px;
             display: block;
             height: 3px;
@@ -38,8 +38,8 @@ export const HeaderStyled = styled.header`
     width: 100%;
     z-index: 5;
 
-    ${(props) =>
-        props.active == true || props.change == true
+    ${({ active, change }) =>
+        active == true || change == true
             ? css`
                   background-color: ${variable.colorBlack3};
                   box-shadow: none;
