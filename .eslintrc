@@ -117,7 +117,7 @@
             }
         ],
         "react/button-has-type": "off",
-        "react/jsx-boolean-value": ["warn", "never"],
+        "react/jsx-boolean-value": ["warn", "always"],
         "react/jsx-closing-bracket-location": ["warn", "tag-aligned"],
         "react/jsx-curly-spacing": ["warn", "never"],
         "react/jsx-filename-extension": [
