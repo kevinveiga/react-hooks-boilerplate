@@ -1,6 +1,8 @@
 import React from 'react';
 import useForm from 'react-hook-form';
 
+import { customValidate } from '../../util/customValidate';
+
 import { Button } from '../Button/Button';
 import { Input } from './Form';
 
@@ -8,7 +10,6 @@ import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { Title3 } from '../../style/text';
-import { customValidate } from '../../util/customValidate';
 
 export const NoticiaForm = ({ ...props }) => {
     // FORM
