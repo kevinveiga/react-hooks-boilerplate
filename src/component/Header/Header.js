@@ -11,15 +11,15 @@ import { BtnMenu, HeaderStyled } from './HeaderStyled';
 import { Container } from '../../style/layout';
 
 export const Header = () => {
-    const changeHeaderScroll = useChangeHeaderScroll('header');
+    const stateChangeHeaderScroll = useChangeHeaderScroll('header');
 
-    const [changeMenuMobile, setChangeMenuMobile] = useChangeMenuMobile();
+    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useChangeMenuMobile();
 
     return (
-        <HeaderContext.Provider value={[changeMenuMobile, setChangeMenuMobile]}>
-            <HeaderStyled active={changeMenuMobile} change={changeHeaderScroll} id="header">
+        <HeaderContext.Provider value={[stateChangeMenuMobile, setStateChangeMenuMobile]}>
+            <HeaderStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
-                    <BtnMenu active={changeMenuMobile} change={changeHeaderScroll} onClick={() => setChangeMenuMobile(true)}>
+                    <BtnMenu active={stateChangeMenuMobile} change={stateChangeHeaderScroll} onClick={() => setStateChangeMenuMobile(true)}>
                         <ul>
                             <li className="menu-lines" />
                             <li className="menu-lines" />
@@ -27,9 +27,9 @@ export const Header = () => {
                         </ul>
                     </BtnMenu>
 
-                    <Svg active={changeMenuMobile} name="svg-close" onClick={() => setChangeMenuMobile(false)} />
+                    <Svg active={stateChangeMenuMobile} name="svg-close" onClick={() => setStateChangeMenuMobile(false)} />
 
-                    <HeaderMenu change={changeHeaderScroll} />
+                    <HeaderMenu change={stateChangeHeaderScroll} />
                 </Container>
             </HeaderStyled>
         </HeaderContext.Provider>

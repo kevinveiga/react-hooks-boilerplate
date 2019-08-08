@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useNoticiaApi = (initialUrl, initialData) => {
-    const [noticiaUrl, setNoticiaUrl] = useState(initialUrl);
+    const [stateNoticiaUrl, setStateNoticiaUrl] = useState(initialUrl);
 
     const [stateNoticia, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -21,7 +21,7 @@ export const useNoticiaApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(noticiaUrl);
+                const result = await axios.get(stateNoticiaUrl);
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), payload: result.data });
@@ -38,13 +38,13 @@ export const useNoticiaApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [noticiaUrl]);
+    }, [stateNoticiaUrl]);
 
-    return [stateNoticia, setNoticiaUrl];
+    return [stateNoticia, setStateNoticiaUrl];
 };
 
 export const useNoticiaCategoriaApi = (initialValue, initialData) => {
-    const [noticiaCategoria, setNoticiaCategoria] = useState(initialValue);
+    const [stateNoticiaCategoriaData, setStateNoticiaCategoriaData] = useState(initialValue);
 
     const [stateNoticiaCategoria, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -59,9 +59,9 @@ export const useNoticiaCategoriaApi = (initialValue, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(noticiaCategoria.url, { params: { page: noticiaCategoria.page } });
+                const result = await axios.get(stateNoticiaCategoriaData.url, { params: { page: stateNoticiaCategoriaData.page } });
 
-                const isAppend = noticiaCategoria.page > 1;
+                const isAppend = stateNoticiaCategoriaData.page > 1;
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), append: isAppend, payload: result.data });
@@ -78,13 +78,13 @@ export const useNoticiaCategoriaApi = (initialValue, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [noticiaCategoria]);
+    }, [stateNoticiaCategoriaData]);
 
-    return [stateNoticiaCategoria, setNoticiaCategoria];
+    return [stateNoticiaCategoria, setStateNoticiaCategoriaData];
 };
 
 export const useNoticiaCategoriasApi = (initialUrl, initialData) => {
-    const [noticiaCategoriasUrl, setNoticiaCategoriasUrl] = useState(initialUrl);
+    const [stateNoticiaCategoriasUrl, setStateNoticiaCategoriasUrl] = useState(initialUrl);
 
     const [stateNoticiaCategorias, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -99,7 +99,7 @@ export const useNoticiaCategoriasApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(noticiaCategoriasUrl);
+                const result = await axios.get(stateNoticiaCategoriasUrl);
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), payload: result.data });
@@ -116,7 +116,7 @@ export const useNoticiaCategoriasApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [noticiaCategoriasUrl]);
+    }, [stateNoticiaCategoriasUrl]);
 
-    return [stateNoticiaCategorias, setNoticiaCategoriasUrl];
+    return [stateNoticiaCategorias, setStateNoticiaCategoriasUrl];
 };

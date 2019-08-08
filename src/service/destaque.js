@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useDestaqueApi = (initialUrl, initialData) => {
-    const [destaqueUrl, setDestaqueUrl] = useState(initialUrl);
+    const [stateDestaqueUrl, setStateDestaqueUrl] = useState(initialUrl);
 
     const [stateDestaque, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -21,7 +21,7 @@ export const useDestaqueApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(destaqueUrl);
+                const result = await axios.get(stateDestaqueUrl);
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), payload: result.data });
@@ -38,7 +38,7 @@ export const useDestaqueApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [destaqueUrl]);
+    }, [stateDestaqueUrl]);
 
-    return [stateDestaque, setDestaqueUrl];
+    return [stateDestaque, setStateDestaqueUrl];
 };

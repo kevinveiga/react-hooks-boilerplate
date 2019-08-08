@@ -29,10 +29,10 @@ import { Title4 } from '../../../style/text';
 
 export const Home = () => {
     // ACTION
-    // const changeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
-    // const [currentVideo, setCurrentVideo] = useCurrentVideo({});
-    // const fadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
-    // const [bannerRef, bannerMeasure] = useMeasure(true);
+    // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
+    // const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo({});
+    // const stateFadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
+    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     // API
     // const [stateDestaques] = useDestaqueApi(`${apiUrlHome}/destaques`, {});
@@ -199,8 +199,8 @@ export const Home = () => {
                                     </Grid>
                                 </Box>
 
-                                {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={bannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
-                                    <BannerPerfilInvestidor boxMeasure={bannerMeasure} boxMeasurePadding={16} change={changeBannerScroll} fadeOut={fadeOutBannerScroll} />
+                                {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={stateBannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
+                                    <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} />
                                 </Box> */}
                             </Flex>
                         </Container>
@@ -214,14 +214,14 @@ export const Home = () => {
                         <VideoGrid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5}>
                             <Cell>
                                 <VideoWrap>
-                                    <YouTube id="video" videoId={(currentVideo && getVideoId(currentVideo.video)) || (videosLength > 0 && getVideoId(stateVideos.data[0].video)) || ''} />
+                                    <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || (videosLength > 0 && getVideoId(stateVideos.data[0].video)) || ''} />
                                 </VideoWrap>
 
                                 <VideoBox p={4}>
                                     <p>Vídeo</p>
 
                                     <Title4 fontWeight="600" themeColor="dark">
-                                        {(currentVideo && currentVideo.title) || (videosLength > 0 && stateVideos.data[0].title)}
+                                        {(stateCurrentVideo && stateCurrentVideo.title) || (videosLength > 0 && stateVideos.data[0].title)}
                                     </Title4>
                                 </VideoBox>
                             </Cell>
@@ -235,7 +235,7 @@ export const Home = () => {
                                     {videosLength > 0 &&
                                         stateVideos.data.map((video, i) => {
                                             return (
-                                                <VideoLi active={currentVideo.video === video.video || false} borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={getVideoId(video.video)} p={4} onClick={() => setCurrentVideo(video)}>
+                                                <VideoLi active={stateCurrentVideo.video === video.video || false} borderBottom={videosLength === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={getVideoId(video.video)} p={4} onClick={() => setStateCurrentVideo(video)}>
                                                     <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
                                                         <Box width="100%">
                                                             <Title5 fontWeight="600" mb={3} themeColor="dark">

@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useSeoApi = (initialUrl, initialData) => {
-    const [seoUrl, setSeoUrl] = useState(initialUrl);
+    const [stateSeoUrl, setStateSeoUrl] = useState(initialUrl);
 
     const [stateSeo, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -21,7 +21,7 @@ export const useSeoApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(seoUrl);
+                const result = await axios.get(stateSeoUrl);
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), payload: result.data });
@@ -38,7 +38,7 @@ export const useSeoApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [seoUrl]);
+    }, [stateSeoUrl]);
 
-    return [stateSeo, setSeoUrl];
+    return [stateSeo, setStateSeoUrl];
 };

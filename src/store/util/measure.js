@@ -17,11 +17,11 @@ const getDimensionObject = (node) => {
 };
 
 export const useMeasure = (liveResize = false, liveScroll = false) => {
-    const [measure, setMeasure] = useState({});
-    const [node, setNode] = useState(null);
+    const [stateMeasure, setStateMeasure] = useState({});
+    const [stateNode, setStateNode] = useState(null);
 
-    const ref = useCallback((node) => {
-        setNode(node);
+    const ref = useCallback((stateNode) => {
+        setStateNode(stateNode);
     }, []);
 
     useLayoutEffect(() => {
@@ -29,10 +29,10 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
             return undefined;
         }
 
-        if (node) {
+        if (stateNode) {
             const dimensions = () => {
                 window.requestAnimationFrame(() => {
-                    setMeasure(getDimensionObject(node));
+                    setStateMeasure(getDimensionObject(stateNode));
                 });
             };
 
@@ -58,7 +58,7 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
         }
 
         return undefined;
-    }, [liveResize, liveScroll, node, ref]);
+    }, [liveResize, liveScroll, stateNode, ref]);
 
-    return [ref, measure, node];
+    return [ref, stateMeasure, stateNode];
 };

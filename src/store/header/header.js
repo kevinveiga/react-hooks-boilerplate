@@ -3,14 +3,14 @@ import { useCallback, useLayoutEffect, useState } from 'react';
 import { variable } from '../../style/variable';
 
 export const useChangeHeaderScroll = (elementId, offset = 0) => {
-    const [changeHeader, setChangeHeader] = useState(false);
+    const [stateChangeHeader, setStateChangeHeader] = useState(false);
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
 
         const position = document.getElementById(elementId) ? document.getElementById(elementId).offsetHeight + parseInt(variable.headerHeight, 10) : 0;
 
-        setChangeHeader(scrollYPos > position + offset);
+        setStateChangeHeader(scrollYPos > position + offset);
     }, [elementId, offset]);
 
     useLayoutEffect(() => {
@@ -23,13 +23,13 @@ export const useChangeHeaderScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [changeHeader, handleScroll]);
+    }, [stateChangeHeader, handleScroll]);
 
-    return changeHeader;
+    return stateChangeHeader;
 };
 
 export const useChangeMenuMobile = () => {
-    const [changeMenuMobile, setChangeMenuMobile] = useState(false);
+    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useState(false);
 
-    return [changeMenuMobile, setChangeMenuMobile];
+    return [stateChangeMenuMobile, setStateChangeMenuMobile];
 };

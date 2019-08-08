@@ -18,8 +18,8 @@ import { Span, Title1, Title4, Title5 } from '../../../style/text';
 
 export const Noticia = ({ match }) => {
     // ACTION
-    const changeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
-    const fadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
+    const stateChangeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
+    const stateFadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
 
     // API
     const [noticia] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
@@ -50,7 +50,7 @@ export const Noticia = ({ match }) => {
                             <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} url={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width="100%" />
                         </Flex>
 
-                        <NoticiaSocial change={changeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }} fadeOut={fadeOutNoticiaSocialScroll} id="noticia-Social">
+                        <NoticiaSocial change={stateChangeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }} fadeOut={stateFadeOutNoticiaSocialScroll} id="noticia-Social">
                             <div>
                                 <b>Compartilhar:</b>
                             </div>

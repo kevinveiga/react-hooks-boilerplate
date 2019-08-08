@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useBannerApi = (initialUrl, initialData) => {
-    const [bannerUrl, setBannerUrl] = useState(initialUrl);
+    const [stateBannerUrl, setStateBannerUrl] = useState(initialUrl);
 
     const [stateBanner, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -21,7 +21,7 @@ export const useBannerApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(bannerUrl);
+                const result = await axios.get(stateBannerUrl);
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), payload: result.data });
@@ -38,7 +38,7 @@ export const useBannerApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [bannerUrl]);
+    }, [stateBannerUrl]);
 
-    return [stateBanner, setBannerUrl];
+    return [stateBanner, setStateBannerUrl];
 };

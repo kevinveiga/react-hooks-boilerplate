@@ -8,19 +8,19 @@ import { HeaderMenuStyled } from './HeaderMenuStyled';
 
 export const HeaderMenu = ({ ...props }) => {
     // CONTEXT
-    const [changeMenuMobile, setChangeMenuMobile] = useContext(HeaderContext);
+    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useContext(HeaderContext);
 
     return (
-        <HeaderMenuStyled active={changeMenuMobile} {...props}>
+        <HeaderMenuStyled active={stateChangeMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo to="/" onClick={() => setChangeMenuMobile(false)}>
+                    <LinkTo to="/" onClick={() => setStateChangeMenuMobile(false)}>
                         Início
                     </LinkTo>
                 </li>
 
                 <li>
-                    <LinkTo to="/noticias" onClick={() => setChangeMenuMobile(false)}>
+                    <LinkTo to="/noticias" onClick={() => setStateChangeMenuMobile(false)}>
                         Notícias
                     </LinkTo>
                 </li>

@@ -6,9 +6,9 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useSocialApi = (initialUrl, initialData) => {
-    const [socialUrl, setSocialUrl] = useState(initialUrl);
+    const [stateSocialUrl, setStateSocialUrl] = useState(initialUrl);
 
-    const [social, dispatch] = useReducer(dataFetchReducer, {
+    const [stateSocial, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
@@ -21,7 +21,7 @@ export const useSocialApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(socialUrl);
+                const result = await axios.get(stateSocialUrl);
 
                 if (!didCancel) {
                     dispatch({ ...ACTION.success(), payload: result.data });
@@ -38,7 +38,7 @@ export const useSocialApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [socialUrl]);
+    }, [stateSocialUrl]);
 
-    return [social, setSocialUrl];
+    return [stateSocial, setStateSocialUrl];
 };

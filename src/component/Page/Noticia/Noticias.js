@@ -28,10 +28,10 @@ import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
     // ACTION
-    // const changeBannerScroll = useChangeBannerScroll('noticias-tabs-content', -50);
-    // const fadeOutBannerScroll = useFadeOutBannerScroll('footer', -500);
+    // const stateChangeBannerScroll = useChangeBannerScroll('noticias-tabs-content', -50);
+    // const stateFadeOutBannerScroll = useFadeOutBannerScroll('footer', -500);
 
-    // const [bannerRef, bannerMeasure] = useMeasure(true);
+    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     const handleNoticiaCategoriaChange = (e) => {
         let apiValue = `${apiUrlNoticias}/categoria/${e.target.value}`;
@@ -40,13 +40,13 @@ export const Noticias = () => {
             apiValue = apiUrlNoticias;
         }
 
-        setNoticiaCategoria({ page: 1, url: apiValue });
+        setStateNoticiaCategoriaData({ page: 1, url: apiValue });
         setNoticiasCategoriaSelected(e.target.value);
     };
 
     // API
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
-    const [stateNoticiasCategoria, setNoticiaCategoria] = useNoticiaCategoriaApi(null, {});
+    const [stateNoticiasCategoria, setStateNoticiaCategoriaData] = useNoticiaCategoriaApi(null, {});
     const [stateNoticiasCategorias] = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
     const [stateNoticiasCategoriaSelected, setNoticiasCategoriaSelected] = useState('ultimas');
     const [stateSeo] = useSeoApi(`${apiUrlNoticias}/seo`, {});
@@ -236,7 +236,7 @@ export const Noticias = () => {
 
                                                             {stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
                                                                 <Cell display="flex" justifyContent="center" py={3}>
-                                                                    <Button className="btn btn-border" text="Ver mais" onClick={() => setNoticiaCategoria({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
+                                                                    <Button className="btn btn-border" text="Ver mais" onClick={() => setStateNoticiaCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
                                                                 </Cell>
                                                             )}
                                                         </Grid>
@@ -247,8 +247,8 @@ export const Noticias = () => {
                                     );
                                 })}
 
-                            {/* <NoticiasBannerPerfilInvestidor display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={bannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
-                                <BannerPerfilInvestidor boxMeasure={bannerMeasure} boxMeasurePadding={16} change={changeBannerScroll} fadeOut={fadeOutBannerScroll} />
+                            {/* <NoticiasBannerPerfilInvestidor display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
+                                <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} />
                             </NoticiasBannerPerfilInvestidor> */}
                         </ul>
                     </Tab>
