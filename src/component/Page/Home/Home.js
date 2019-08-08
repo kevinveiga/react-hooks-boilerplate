@@ -28,12 +28,6 @@ import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
 export const Home = () => {
-    // ACTION
-    // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
-    // const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo({});
-    // const stateFadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
-    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
-
     // API
     // const [stateDestaques] = useDestaqueApi(`${apiUrlHome}/destaques`, {});
     // const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
@@ -50,6 +44,12 @@ export const Home = () => {
     const stateNoticias = [];
     const destaquesLength = 5;
     const noticiasLength = 5;
+
+    // ACTION
+    // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
+    // const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo({});
+    // const stateFadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
+    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     return (
         <>

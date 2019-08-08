@@ -27,10 +27,19 @@ import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 
 export const Noticias = () => {
+    // API
+    const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
+    const [stateNoticiasCategoria, setStateNoticiaCategoriaData] = useNoticiaCategoriaApi(null, {});
+    const [stateNoticiasCategorias] = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
+    const [stateNoticiasCategoriaSelected, setNoticiasCategoriaSelected] = useState('ultimas');
+    const [stateSeo] = useSeoApi(`${apiUrlNoticias}/seo`, {});
+
+    const noticiasLength = stateNoticias.data.length;
+    const noticiasCategoriasLength = stateNoticiasCategorias.data.length;
+
     // ACTION
     // const stateChangeBannerScroll = useChangeBannerScroll('noticias-tabs-content', -50);
     // const stateFadeOutBannerScroll = useFadeOutBannerScroll('footer', -500);
-
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     const handleNoticiaCategoriaChange = (e) => {
@@ -43,16 +52,6 @@ export const Noticias = () => {
         setStateNoticiaCategoriaData({ page: 1, url: apiValue });
         setNoticiasCategoriaSelected(e.target.value);
     };
-
-    // API
-    const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
-    const [stateNoticiasCategoria, setStateNoticiaCategoriaData] = useNoticiaCategoriaApi(null, {});
-    const [stateNoticiasCategorias] = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
-    const [stateNoticiasCategoriaSelected, setNoticiasCategoriaSelected] = useState('ultimas');
-    const [stateSeo] = useSeoApi(`${apiUrlNoticias}/seo`, {});
-
-    const noticiasLength = stateNoticias.data.length;
-    const noticiasCategoriasLength = stateNoticiasCategorias.data.length;
 
     return (
         <>
