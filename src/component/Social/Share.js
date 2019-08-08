@@ -5,9 +5,9 @@ import { Svg } from '../Svg/Svg';
 
 import { SocialAlternateStyled } from './SocialAlternateStyled';
 
-export const Share = ({ title, url, ...props }) => {
+export const Share = ({ title, url, ...otherProps }) => {
     return (
-        <SocialAlternateStyled {...props}>
+        <SocialAlternateStyled {...otherProps}>
             <li>
                 <LinkToExternal text="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" target="_blank">
                     <Svg name="svg-facebook-circle" />
