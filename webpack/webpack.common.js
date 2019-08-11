@@ -46,6 +46,9 @@ module.exports = {
                     {
                         loader: 'image-webpack-loader',
                         options: {
+                            gifsicle: {
+                                interlaced: false
+                            },
                             mozjpeg: {
                                 progressive: true,
                                 quality: 65
@@ -55,11 +58,8 @@ module.exports = {
                             },
                             outputPath: commonPaths.imagesFolder,
                             pngquant: {
-                                quality: '65-90',
+                                quality: '65-75',
                                 speed: 4
-                            },
-                            gifsicle: {
-                                interlaced: false
                             },
                             webp: {
                                 quality: 75
@@ -85,8 +85,8 @@ module.exports = {
     output: {
         chunkFilename: devMode ? `${commonPaths.jsFolder}/[name].js` : `${commonPaths.jsFolder}/[name].[chunkhash].js`,
         filename: devMode ? `${commonPaths.jsFolder}/[name].js` : `${commonPaths.jsFolder}/[name].[hash].js`,
-        publicPath: '/',
-        path: commonPaths.outputPath
+        path: commonPaths.outputPath,
+        publicPath: '/'
     },
     performance: {
         assetFilter: (assetFilename) => {
@@ -118,8 +118,8 @@ module.exports = {
         new Webpack.ProgressPlugin()
     ],
     resolve: {
-        modules: ['src', 'node_modules'],
-        extensions: ['*', '.js']
+        extensions: ['*', '.js'],
+        modules: ['src', 'node_modules']
     },
     target: 'web'
 };
