@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Slider from 'react-slick';
-import YouTube from 'react-youtube';
+// import Slider from 'react-slick';
+// import YouTube from 'react-youtube';
 
 // import { apiUrlHome } from '../../../config';
 // import { getVideoId } from '../../../util/getVideoId';
