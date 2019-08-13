@@ -1,8 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import Slider from 'react-slick';
+import YouTube from 'react-youtube';
 
 // import { apiUrlHome } from '../../../config';
 // import { getVideoId } from '../../../util/getVideoId';
+// import { groupByMod } from '../../../util/groupBy';
 
 // import { useDestaqueApi } from '../../../service/destaque';
 // import { useNoticiaApi } from '../../../service/noticia';
@@ -14,6 +17,7 @@ import { Helmet } from 'react-helmet-async';
 // import { useMeasure } from '../../../store/util/measure';
 // import { useCurrentVideo } from '../../../store/video/video';
 
+import { DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
@@ -45,11 +49,30 @@ export const Home = () => {
     const destaquesLength = 5;
     const noticiasLength = 5;
 
+    // const objectItens = destaquesLength > 0 ? groupByMod(stateDestaques.data, 3) : {};
+
     // ACTION
     // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
     // const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo({});
     // const stateFadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+
+    // CAROUSEL
+    const carouselOptions = {
+        appendDots: (dots) => <DotContainer>{dots}</DotContainer>,
+        autoplay: true,
+        autoplaySpeed: 4250,
+        customPaging: () => <></>,
+        dots: true,
+        infinite: true,
+        nextArrow: <NextBtn />,
+        pauseOnHover: true,
+        prevArrow: <PrevBtn />,
+        speed: 1250,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        swipe: false
+    };
 
     return (
         <>
@@ -59,61 +82,55 @@ export const Home = () => {
             </Helmet>
 
             <Main>
-                {destaquesLength > 0 && (
-                    <BannerContainer display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: destaquesLength > 2 ? '30vh' : '50vh' }}>
-                        <BannerCell display="flex" gridRow={{ d: 1, md: destaquesLength > 2 ? '1 / span 2' : 1 }} hover="true">
-                            <LinkTo ariaLabel={stateDestaques.data[0].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[0].slug}`} width="100%">
-                                <NoticiaBox alignContent="flex-end" color={stateDestaques.data[0].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                    <BgImageOverlay3 grayscale="true" url={stateDestaques.data[0].thumbnail.attachment.url} />
+                {/* {destaquesLength > 0 && (
+                    <CarouselStyled>
+                        <Slider {...carouselOptions}>
+                            {Object.keys(objectItens).map((key) => {
+                                const group = objectItens[key];
 
-                                    <Box>
-                                        <Tag>{stateDestaques.data[0].category.title}</Tag>
+                                return (
+                                    <div key={key}>
+                                        <BannerContainer key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateDestaques.data.length > 2 ? '30vh' : '50vh' }}>
+                                            {group.map((item, i, newArray) => {
+                                                let row = {};
 
-                                        <Title fontSize={{ d: 24, md: 32 }}>{stateDestaques.data[0].title}</Title>
+                                                if (i === 0) {
+                                                    row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
+                                                }
 
-                                        <Author>{`Por ${stateDestaques.data[0].author}`}</Author>
-                                    </Box>
-                                </NoticiaBox>
-                            </LinkTo>
-                        </BannerCell>
+                                                if (i === 1) {
+                                                    row = { d: 1, md: newArray.length < 2 ? '1 / span 2' : 1 };
+                                                }
 
-                        {stateDestaques.data[1] && (
-                            <BannerCell display="flex" gridRow={1} hover="true">
-                                <LinkTo ariaLabel={stateDestaques.data[1].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[1].slug}`} width="100%">
-                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[1].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                        <BgImageOverlay3 grayscale="true" url={stateDestaques.data[1].thumbnail.attachment.url} />
+                                                if (i === 2) {
+                                                    row = { d: 1, md: 2 };
+                                                }
 
-                                        <Box>
-                                            <Tag>{stateDestaques.data[1].category.title}</Tag>
+                                                return (
+                                                    <BannerCell display="flex" gridRow={row} hover="true" key={item.id}>
+                                                        <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                                                            <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
+                                                                <BgImageOverlay3 grayscale="true" url={item.thumbnail.attachment.url} />
 
-                                            <Title fontSize={{ d: 24, md: 32 }}>{stateDestaques.data[1].title}</Title>
+                                                                <Box>
+                                                                    <Tag>{item.category.title}</Tag>
 
-                                            <Author>{`Por ${stateDestaques.data[1].author}`}</Author>
-                                        </Box>
-                                    </NoticiaBox>
-                                </LinkTo>
-                            </BannerCell>
-                        )}
+                                                                    <Title fontSize={{ d: 24, md: 32 }}>{item.title}</Title>
 
-                        {stateDestaques.data[2] && (
-                            <BannerCell display="flex" gridRow={{ d: 1, md: 2 }} hover="true">
-                                <LinkTo ariaLabel={stateDestaques.data[2].title} display="flex" height="100%" to={`/noticia/${stateDestaques.data[2].slug}`} width="100%">
-                                    <NoticiaBox alignContent="flex-end" color={stateDestaques.data[2].category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                        <BgImageOverlay3 grayscale="true" url={stateDestaques.data[2].thumbnail.attachment.url} />
-
-                                        <Box>
-                                            <Tag>{stateDestaques.data[2].category.title}</Tag>
-
-                                            <Title fontSize={{ d: 24, md: 32 }}>{stateDestaques.data[2].title}</Title>
-
-                                            <Author>{`Por ${stateDestaques.data[2].author}`}</Author>
-                                        </Box>
-                                    </NoticiaBox>
-                                </LinkTo>
-                            </BannerCell>
-                        )}
-                    </BannerContainer>
-                )}
+                                                                    <Author>{`Por ${item.author}`}</Author>
+                                                                </Box>
+                                                            </NoticiaBox>
+                                                        </LinkTo>
+                                                    </BannerCell>
+                                                );
+                                            })}
+                                        </BannerContainer>
+                                    </div>
+                                );
+                            })}
+                        </Slider>
+                    </CarouselStyled>
+                )} */}
 
                 {noticiasLength > 0 && (
                     <Background backgroundColor="colorGrayLight4">

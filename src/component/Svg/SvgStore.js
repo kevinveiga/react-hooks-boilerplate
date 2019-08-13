@@ -1,6 +1,23 @@
 import React from 'react';
 
+import { SvgArrowStyled } from './SvgArrowStyled';
 import { SvgShareStyled } from './SvgShareStyled';
+
+export const SvgArrowLeft = ({ ...props }) => {
+    return (
+        <SvgArrowStyled {...props} version={1} viewBox="0 0 257.6 451.8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M226 0a31.5 31.5 0 0 1 22.3 54l-172 172 172 171.8a31.6 31.6 0 0 1-44.7 44.8L9.3 248.3a31.5 31.5 0 0 1 0-44.7L203.5 9.3A31.5 31.5 0 0 1 226 0z" />
+        </SvgArrowStyled>
+    );
+};
+
+export const SvgArrowRight = ({ ...props }) => {
+    return (
+        <SvgArrowStyled {...props} version={1} viewBox="0 0 257.6 451.8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M31.6 0A31.5 31.5 0 0 0 9.3 54l171.9 172-172 171.8A31.6 31.6 0 0 0 54 442.6l194.3-194.3a31.5 31.5 0 0 0 0-44.7L54 9.3A31.5 31.5 0 0 0 31.6 0z" />
+        </SvgArrowStyled>
+    );
+};
 
 export const SvgFacebook = ({ ...props }) => {
     return (
