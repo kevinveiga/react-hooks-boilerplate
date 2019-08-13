@@ -8,7 +8,6 @@ import { apiUrlConfiguracoes } from './config';
 import { useSocialApi } from './service/social';
 
 import { Context } from './store/context';
-import { useLazyLoad } from './store/lazyLoad/lazyLoad';
 
 import { Router } from './router';
 
@@ -19,15 +18,13 @@ import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
 
 export const App = () => {
-    const stateLazyLoad = useLazyLoad();
     const [stateSocial] = useSocialApi(`${apiUrlConfiguracoes}/social`, {});
 
     return (
         <ThemeProvider theme={theme}>
             <Context.Provider
                 value={{
-                    stateSocialGlobal: stateSocial.data,
-                    stateLazyLoadGlobal: stateLazyLoad
+                    stateSocialGlobal: stateSocial.data
                 }}
             >
                 <Normalize />
