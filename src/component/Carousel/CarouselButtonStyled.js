@@ -34,18 +34,25 @@ export const DotContainerStyled = styled.ul`
 const btns = css`
     background-color: ${variable.colorSecondary};
     border: 0;
-    border-radius: ${variable.borderRadius};
+    border-radius: 7px;
     color: transparent;
     cursor: pointer;
     display: block;
-    height: 30px;
+    height: 37px;
+    opacity: 1;
     outline: none;
     padding: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 30px;
+    transition: background-color ${variable.transition}, opacity ${variable.transition};
+    width: 32px;
     z-index: 3;
+
+    &:hover {
+        background-color: ${variable.colorSecondaryHover};
+        opacity: 0.75;
+    }
 `;
 
 export const NextBtnStyled = styled.button`
