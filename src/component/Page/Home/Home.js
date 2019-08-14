@@ -167,20 +167,20 @@ export const Home = () => {
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
                                         {stateDestaques.data.slice(1, 4).map((noticia, i, newArray) => {
                                             return i === 0 ? (
-                                                <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
-                                                    <LinkTo ariaLabel={stateDestaques.data[0].title} height="100%" to={`/noticia/${stateDestaques.data[0].slug}`} width="100%">
+                                                <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} pb={3}>
+                                                    <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                         <Box height="300px" mb={4} overflow="hidden" width="100%">
-                                                            <BgImageOverlay1 url={stateDestaques.data[0].thumbnail.attachment.url} />
+                                                            <BgImageOverlay1 url={noticia.thumbnail.attachment.url} />
                                                         </Box>
 
-                                                        <NoticiaBox color={stateDestaques.data[0].category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
+                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                                             <Box>
-                                                                <Tag>{stateDestaques.data[0].category.title}</Tag>
+                                                                <Tag>{noticia.category.title}</Tag>
 
-                                                                <Title>{stateDestaques.data[0].title}</Title>
+                                                                <Title>{noticia.title}</Title>
                                                             </Box>
 
-                                                            <Author>{`Por ${stateDestaques.data[0].author}`}</Author>
+                                                            <Author>{`Por ${noticia.author}`}</Author>
                                                         </NoticiaBox>
                                                     </LinkTo>
                                                 </Cell>
