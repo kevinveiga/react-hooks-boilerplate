@@ -56,7 +56,7 @@ export const Home = () => {
     // const objectItens = superDestaquesLength > 0 ? groupByMod(superDestaquesLength.data, 3) : {};
 
     // ACTION
-    // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
+    // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -20);
     // const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo({});
     // const stateFadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
