@@ -4,6 +4,5 @@ import { variable } from '../../style/variable';
 
 export const SvgArrowStyled = styled.svg`
     fill: ${variable.colorPrimary};
-    height: 18px;
-    vertical-align: sub;
+    height: 16px;
 `;
