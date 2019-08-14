@@ -16,6 +16,11 @@ workbox.core.clientsClaim();
 //         plugins: [
 //             new workbox.cacheableResponse.Plugin({
 //                 statuses: [0, 200]
+//             }),
+//             new workbox.expiration.Plugin({
+//                 maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+//                 maxEntries: 30,
+//                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
 //         ]
 //     })
@@ -46,8 +51,8 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 60 * 60, // 60 minutes
-                maxEntries: 50,
-                purgeOnQuotaError: false // Automatically cleanup if quota is exceeded
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
     })
@@ -64,8 +69,8 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
-                maxEntries: 50,
-                purgeOnQuotaError: false // Automatically cleanup if quota is exceeded
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
     })

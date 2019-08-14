@@ -179,7 +179,7 @@ export const Noticias = () => {
                                                 <Flex display="flex" flexWrap="wrap">
                                                     <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
                                                         <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={3}>
-                                                            {Object.keys(stateNoticiasCategoria.data).length > 0 &&
+                                                            {stateNoticiasCategoria.data &&
                                                                 stateNoticiasCategoria.data.data &&
                                                                 stateNoticiasCategoria.data.data.map((noticia, j) => {
                                                                     return j === 0 ? (
@@ -233,7 +233,7 @@ export const Noticias = () => {
                                                                     );
                                                                 })}
 
-                                                            {stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
+                                                            {stateNoticiasCategoria.data && stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
                                                                 <Cell display="flex" justifyContent="center" py={3}>
                                                                     <Button className="btn btn-border" text="Ver mais" onClick={() => setStateNoticiaCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
                                                                 </Cell>
