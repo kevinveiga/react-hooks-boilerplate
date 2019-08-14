@@ -165,7 +165,7 @@ export const Home = () => {
                             {destaquesLength > 0 && (
                                 <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
-                                        {stateDestaques.data.slice(1, 4).map((noticia, i, newArray) => {
+                                        {stateDestaques.data.slice(0, 4).map((noticia, i, newArray) => {
                                             return i === 0 ? (
                                                 <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} pb={3}>
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
@@ -224,7 +224,7 @@ export const Home = () => {
                                         </Title4>
 
                                         <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
-                                            {stateNoticias.data.slice(4).map((noticia, i, newArray) => {
+                                            {stateNoticias.data.slice(0, 4).map((noticia, i, newArray) => {
                                                 return (
                                                     <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                         <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
