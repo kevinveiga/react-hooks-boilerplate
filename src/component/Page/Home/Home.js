@@ -1,4 +1,5 @@
 import React from 'react';
+// import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 // import Slider from 'react-slick';
 // import YouTube from 'react-youtube';
@@ -17,7 +18,7 @@ import { Helmet } from 'react-helmet-async';
 // import { useMeasure } from '../../../store/util/measure';
 // import { useCurrentVideo } from '../../../store/video/video';
 
-import { DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
+import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
@@ -62,7 +63,7 @@ export const Home = () => {
         appendDots: (dots) => <DotContainer>{dots}</DotContainer>,
         autoplay: true,
         autoplaySpeed: 4250,
-        customPaging: () => <></>,
+        customPaging: () => <DotBtn />,
         dots: true,
         infinite: true,
         nextArrow: <NextBtn />,
@@ -82,55 +83,78 @@ export const Home = () => {
             </Helmet>
 
             <Main>
-                {/* {destaquesLength > 0 && (
-                    <CarouselStyled>
-                        <Slider {...carouselOptions}>
-                            {Object.keys(objectItens).map((key) => {
-                                const group = objectItens[key];
-
+                {/* {destaquesLength > 0 &&
+                    (isMobile ? (
+                        <BannerContainer display="grid" gridAutoColumns="90%" gridAutoRows="50vh">
+                            {stateDestaques.data.map((item) => {
                                 return (
-                                    <div key={key}>
-                                        <BannerContainer key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateDestaques.data.length > 2 ? '30vh' : '50vh' }}>
-                                            {group.map((item, i, newArray) => {
-                                                let row = {};
+                                    <BannerCell display="flex" gridRow={1} hover="true" key={item.id}>
+                                        <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                                            <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
+                                                <BgImageOverlay3 grayscale="true" url={item.thumbnail.attachment.url} />
 
-                                                if (i === 0) {
-                                                    row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
-                                                }
+                                                <Box>
+                                                    <Tag>{item.category.title}</Tag>
 
-                                                if (i === 1) {
-                                                    row = { d: 1, md: newArray.length < 2 ? '1 / span 2' : 1 };
-                                                }
+                                                    <Title fontSize={{ d: 24, md: 32 }}>{item.title}</Title>
 
-                                                if (i === 2) {
-                                                    row = { d: 1, md: 2 };
-                                                }
-
-                                                return (
-                                                    <BannerCell display="flex" gridRow={row} hover="true" key={item.id}>
-                                                        <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
-                                                            <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                                <BgImageOverlay3 grayscale="true" url={item.thumbnail.attachment.url} />
-
-                                                                <Box>
-                                                                    <Tag>{item.category.title}</Tag>
-
-                                                                    <Title fontSize={{ d: 24, md: 32 }}>{item.title}</Title>
-
-                                                                    <Author>{`Por ${item.author}`}</Author>
-                                                                </Box>
-                                                            </NoticiaBox>
-                                                        </LinkTo>
-                                                    </BannerCell>
-                                                );
-                                            })}
-                                        </BannerContainer>
-                                    </div>
+                                                    <Author>{`Por ${item.author}`}</Author>
+                                                </Box>
+                                            </NoticiaBox>
+                                        </LinkTo>
+                                    </BannerCell>
                                 );
                             })}
-                        </Slider>
-                    </CarouselStyled>
-                )} */}
+                        </BannerContainer>
+                    ) : (
+                        <CarouselStyled>
+                            <Slider {...carouselOptions}>
+                                {Object.keys(objectItens).map((key) => {
+                                    const group = objectItens[key];
+
+                                    return (
+                                        <div key={key}>
+                                            <BannerContainer key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateDestaques.data.length > 2 ? '30vh' : '50vh' }}>
+                                                {group.map((item, i, newArray) => {
+                                                    let row = {};
+
+                                                    if (i === 0) {
+                                                        row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
+                                                    }
+
+                                                    if (i === 1) {
+                                                        row = { d: 1, md: newArray.length < 2 ? '1 / span 2' : 1 };
+                                                    }
+
+                                                    if (i === 2) {
+                                                        row = { d: 1, md: 2 };
+                                                    }
+
+                                                    return (
+                                                        <BannerCell display="flex" gridRow={row} hover="true" key={item.id}>
+                                                            <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                                                                <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
+                                                                    <BgImageOverlay3 grayscale="true" url={item.thumbnail.attachment.url} />
+
+                                                                    <Box>
+                                                                        <Tag>{item.category.title}</Tag>
+
+                                                                        <Title fontSize={{ d: 24, md: 32 }}>{item.title}</Title>
+
+                                                                        <Author>{`Por ${item.author}`}</Author>
+                                                                    </Box>
+                                                                </NoticiaBox>
+                                                            </LinkTo>
+                                                        </BannerCell>
+                                                    );
+                                                })}
+                                            </BannerContainer>
+                                        </div>
+                                    );
+                                })}
+                            </Slider>
+                        </CarouselStyled>
+                    ))} */}
 
                 {noticiasLength > 0 && (
                     <Background backgroundColor="colorGrayLight4">

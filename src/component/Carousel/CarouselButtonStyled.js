@@ -2,6 +2,16 @@ import styled, { css } from 'styled-components';
 
 import { variable } from '../../style/variable';
 
+export const DotBtnStyled = styled.button`
+    border: 0;
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    outline: none;
+    width: 8px;
+`;
+
 export const DotContainerStyled = styled.ul`
     bottom: 15px;
     display: block;
@@ -18,12 +28,10 @@ export const DotContainerStyled = styled.ul`
         border-radius: ${variable.borderRadius};
         cursor: pointer;
         display: inline-block;
-        height: 8px;
         margin: 0 5px;
         padding: 0;
         position: relative;
         transition: background-color ${variable.transition};
-        width: 8px;
 
         &.slick-active {
             background-color: ${variable.colorPrimary};

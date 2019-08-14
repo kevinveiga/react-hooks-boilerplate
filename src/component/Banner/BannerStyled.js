@@ -32,11 +32,8 @@ export const BannerContainer = styled.div`
     ${grid};
     ${layout};
     ${space};
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
-
-    @media (max-width: ${variable.md}) {
-        overflow-x: auto;
-    }
 `;
 
 export const BannerPerfilInvestidorStyled = styled.div`

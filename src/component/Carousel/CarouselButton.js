@@ -1,8 +1,12 @@
 import React from 'react';
 
-import { DotContainerStyled, NextBtnStyled, PrevBtnStyled } from './CarouselButtonStyled';
+import { DotBtnStyled, DotContainerStyled, NextBtnStyled, PrevBtnStyled } from './CarouselButtonStyled';
 
 import { Svg } from '../Svg/Svg';
+
+export const DotBtn = ({ ...props }) => {
+    return <DotBtnStyled {...props} />;
+};
 
 export const DotContainer = ({ ...props }) => {
     return <DotContainerStyled {...props} />;
