@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet-async';
 // import { useNoticiaApi } from '../../../service/noticia';
 // import { useParceiroApi } from '../../../service/parceiro';
 // import { useSeoApi } from '../../../service/seo';
+// import { useSuperDestaqueApi } from '../../../service/superDestaque';
 // import { useVideoApi } from '../../../service/video';
 
 // import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
@@ -38,11 +39,13 @@ export const Home = () => {
     // const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
     // const [stateParceiros] = useParceiroApi(`${apiUrlHome}/parceiros`, {});
     // const [stateSeo] = useSeoApi(`${apiUrlHome}/seo`, {});
+    // const [stateSuperDestaques] = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
     // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
 
     // const destaquesLength = stateDestaques.data.length;
     // const noticiasLength = stateNoticias.data.length;
     // const parceirosLength = stateParceiros.data.length;
+    // const superDestaquesLength = stateSuperDestaques.data.length;
     // const videosLength = stateVideos.data.length;
 
     const stateDestaques = [];
@@ -50,7 +53,7 @@ export const Home = () => {
     const destaquesLength = 5;
     const noticiasLength = 5;
 
-    // const objectItens = destaquesLength > 0 ? groupByMod(stateDestaques.data, 3) : {};
+    // const objectItens = superDestaquesLength > 0 ? groupByMod(superDestaquesLength.data, 3) : {};
 
     // ACTION
     // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -50);
@@ -83,10 +86,10 @@ export const Home = () => {
             </Helmet>
 
             <Main>
-                {/* {destaquesLength > 0 &&
+                {/* {superDestaquesLength > 0 &&
                     (isMobile ? (
                         <BannerContainer display="grid" gridAutoColumns="90%" gridAutoRows="50vh">
-                            {stateDestaques.data.map((item) => {
+                            {stateSuperDestaques.data.map((item) => {
                                 return (
                                     <BannerCell display="flex" gridRow={1} hover="true" key={item.id}>
                                         <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
@@ -114,7 +117,7 @@ export const Home = () => {
 
                                     return (
                                         <div key={key}>
-                                            <BannerContainer key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateDestaques.data.length > 2 ? '30vh' : '50vh' }}>
+                                            <BannerContainer key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateSuperDestaques.data.length > 2 ? '30vh' : '50vh' }}>
                                                 {group.map((item, i, newArray) => {
                                                     let row = {};
 
@@ -156,35 +159,35 @@ export const Home = () => {
                         </CarouselStyled>
                     ))} */}
 
-                {noticiasLength > 0 && (
-                    <Background backgroundColor="colorGrayLight4">
-                        <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
-                            <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
+                <Background backgroundColor="colorGrayLight4">
+                    <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
+                        <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
+                            {destaquesLength > 0 && (
                                 <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
                                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
-                                        <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
-                                            <LinkTo ariaLabel={stateNoticias.data[0].title} height="100%" to={`/noticia/${stateNoticias.data[0].slug}`} width="100%">
-                                                <Box height="300px" mb={4} overflow="hidden" width="100%">
-                                                    <BgImageOverlay1 url={stateNoticias.data[0].thumbnail.attachment.url} />
-                                                </Box>
+                                        {stateDestaques.data.slice(1, 4).map((noticia, i, newArray) => {
+                                            return i === 0 ? (
+                                                <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" pb={3}>
+                                                    <LinkTo ariaLabel={stateDestaques.data[0].title} height="100%" to={`/noticia/${stateDestaques.data[0].slug}`} width="100%">
+                                                        <Box height="300px" mb={4} overflow="hidden" width="100%">
+                                                            <BgImageOverlay1 url={stateDestaques.data[0].thumbnail.attachment.url} />
+                                                        </Box>
 
-                                                <NoticiaBox color={stateNoticias.data[0].category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
-                                                    <Box>
-                                                        <Tag>{stateNoticias.data[0].category.title}</Tag>
+                                                        <NoticiaBox color={stateDestaques.data[0].category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
+                                                            <Box>
+                                                                <Tag>{stateDestaques.data[0].category.title}</Tag>
 
-                                                        <Title>{stateNoticias.data[0].title}</Title>
-                                                    </Box>
+                                                                <Title>{stateDestaques.data[0].title}</Title>
+                                                            </Box>
 
-                                                    <Author>{`Por ${stateNoticias.data[0].author}`}</Author>
-                                                </NoticiaBox>
-                                            </LinkTo>
-                                        </Cell>
-
-                                        {stateNoticias.data.slice(1, 4).map((noticia, i, newArray) => {
-                                            return (
+                                                            <Author>{`Por ${stateDestaques.data[0].author}`}</Author>
+                                                        </NoticiaBox>
+                                                    </LinkTo>
+                                                </Cell>
+                                            ) : (
                                                 <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
+                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
                                                             <Box>
                                                                 <Tag>{noticia.category.title}</Tag>
 
@@ -211,42 +214,46 @@ export const Home = () => {
                                         </LinkTo>
                                     </Flex>
                                 </Box>
+                            )}
 
-                                <Box mb={5} px={{ d: 0, md: 3 }} width={{ d: 1, sm: 7 / 10, md: 3 / 10 }}>
-                                    <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
-                                        Últimas
-                                    </Title4>
+                            {noticiasLength > 0 && (
+                                <>
+                                    <Box mb={5} px={{ d: 0, md: 3 }} width={{ d: 1, sm: 7 / 10, md: 3 / 10 }}>
+                                        <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
+                                            Últimas
+                                        </Title4>
 
-                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
-                                        {stateNoticias.data.slice(4).map((noticia, i, newArray) => {
-                                            return (
-                                                <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
-                                                    <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
-                                                            <Box>
-                                                                <Tag>{noticia.category.title}</Tag>
+                                        <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
+                                            {stateNoticias.data.slice(4).map((noticia, i, newArray) => {
+                                                return (
+                                                    <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
+                                                        <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                            <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
+                                                                <Box>
+                                                                    <Tag>{noticia.category.title}</Tag>
 
-                                                                <Title fontSize="18px">{noticia.title}</Title>
+                                                                    <Title fontSize="18px">{noticia.title}</Title>
 
-                                                                <Author>{`Por ${noticia.author}`}</Author>
+                                                                    <Author>{`Por ${noticia.author}`}</Author>
 
-                                                                <DateTime themeColor="dark">{noticia.date}</DateTime>
-                                                            </Box>
-                                                        </NoticiaBox>
-                                                    </LinkTo>
-                                                </Cell>
-                                            );
-                                        })}
-                                    </Grid>
-                                </Box>
+                                                                    <DateTime themeColor="dark">{noticia.date}</DateTime>
+                                                                </Box>
+                                                            </NoticiaBox>
+                                                        </LinkTo>
+                                                    </Cell>
+                                                );
+                                            })}
+                                        </Grid>
+                                    </Box>
 
-                                {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={stateBannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
-                                    <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} />
-                                </Box> */}
-                            </Flex>
-                        </Container>
-                    </Background>
-                )}
+                                    {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={stateBannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
+                                        <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} />
+                                    </Box> */}
+                                </>
+                            )}
+                        </Flex>
+                    </Container>
+                </Background>
 
                 {/* <VideoContainer id="home-video-container">
                     <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
