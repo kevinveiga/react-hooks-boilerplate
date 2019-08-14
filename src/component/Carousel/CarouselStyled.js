@@ -9,6 +9,29 @@ export const CarouselStyled = styled.div`
         }
     }
 
+    .slick-slide {
+        display: none;
+        float: left;
+        height: 100%;
+        min-height: 1px;
+
+        img {
+            display: block;
+        }
+
+        &.dragging {
+            img {
+                pointer-events: none;
+            }
+        }
+
+        &.slick-loading {
+            img {
+                display: none;
+            }
+        }
+    }
+
     .slick-initialized {
         .slick-slide {
             display: block;
@@ -32,29 +55,6 @@ export const CarouselStyled = styled.div`
         }
     }
 
-    .slick-slide {
-        display: none;
-        float: left;
-        height: 100%;
-        min-height: 1px;
-
-        &.dragging {
-            img {
-                pointer-events: none;
-            }
-        }
-
-        &.slick-loading {
-            img {
-                display: none;
-            }
-        }
-
-        img {
-            display: block;
-        }
-    }
-
     .slick-slider {
         box-sizing: border-box;
         display: block;
@@ -63,6 +63,14 @@ export const CarouselStyled = styled.div`
         user-select: none;
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
+
+        .slick-list,
+        .slick-track {
+            display: block;
+            position: relative;
+            transform: translate3d(0, 0, 0);
+            z-index: 1;
+        }
 
         .slick-list {
             margin: 0;
@@ -94,14 +102,6 @@ export const CarouselStyled = styled.div`
                 content: '';
                 display: table;
             }
-        }
-
-        .slick-list,
-        .slick-track {
-            display: block;
-            position: relative;
-            transform: translate3d(0, 0, 0);
-            z-index: 1;
         }
     }
 

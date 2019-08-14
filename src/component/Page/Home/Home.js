@@ -123,7 +123,7 @@ export const Home = () => {
                                                     }
 
                                                     if (i === 1) {
-                                                        row = { d: 1, md: newArray.length < 2 ? '1 / span 2' : 1 };
+                                                        row = { d: 1, md: newArray.length === 2 ? '1 / span 2' : 1 };
                                                     }
 
                                                     if (i === 2) {
