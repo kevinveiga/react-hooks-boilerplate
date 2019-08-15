@@ -22,6 +22,8 @@ export const Noticia = ({ match }) => {
 
     const noticiaLength = Object.keys(noticia.data).length;
 
+    // const noticiaRelatedLength = noticiaLength > 0 && noticia.data.related.length;
+
     // ACTION
     const stateChangeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
     const stateFadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
