@@ -196,7 +196,7 @@ export const Noticias = () => {
                                                                                         <p>
                                                                                             <span>Postado em </span>
 
-                                                                                            <DateTime fontSize="16px" themeColor="light">
+                                                                                            <DateTime fontSize={16} themeColor="light">
                                                                                                 {noticia.date}
                                                                                             </DateTime>
                                                                                         </p>
@@ -219,7 +219,7 @@ export const Noticias = () => {
                                                                                     <p>
                                                                                         <span>Postado em </span>
 
-                                                                                        <DateTime color={categoria.featured_color} fontSize="16px" themeColor="dark">
+                                                                                        <DateTime color={categoria.featured_color} fontSize={16} themeColor="dark">
                                                                                             {noticia.date}
                                                                                         </DateTime>
                                                                                     </p>

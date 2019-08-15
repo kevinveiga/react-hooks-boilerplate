@@ -232,7 +232,7 @@ export const Home = () => {
                                                                 <Box>
                                                                     <Tag>{noticia.category.title}</Tag>
 
-                                                                    <Title fontSize="18px">{noticia.title}</Title>
+                                                                    <Title fontSize={18}>{noticia.title}</Title>
 
                                                                     <Author>{`Por ${noticia.author}`}</Author>
 
