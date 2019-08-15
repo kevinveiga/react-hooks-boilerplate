@@ -8,13 +8,19 @@ import { useNoticiaApi } from '../../../service/noticia';
 
 import { useChangeNoticiaSocialScroll, useFadeOutNoticiaSocialScroll } from '../../../store/noticia/noticia';
 
-import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaSocial } from './NoticiaStyled';
+// import { Leadwall } from '../../Leadwall/Leadwall';
+// import { LinkTo } from '../../Link/LinkTo';
+// import { NoticiaForm } from '../../Form/NoticiaForm';
+// import { NoticiaBox } from './NoticiaBox';
+// import { Author, Tag, Title } from './NoticiaBoxStyled';
+import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas, NoticiaSocial } from './NoticiaStyled';
 import { Share } from '../../Social/Share';
 
 import { Box, Flex } from '../../../style/flex';
-import { Image } from '../../../style/image';
+// import { Cell, Grid } from '../../../style/grid';
+import { BgImageOverlay1, BgImageOverlay7, Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
-import { Span, Title1, Title4, Title5 } from '../../../style/text';
+import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 
 export const Noticia = ({ match }) => {
     // API
@@ -25,6 +31,7 @@ export const Noticia = ({ match }) => {
     // const noticiaRelatedLength = noticiaLength > 0 && noticia.data.related.length;
 
     // ACTION
+    // const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
     const stateChangeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
     const stateFadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
 
@@ -76,6 +83,26 @@ export const Noticia = ({ match }) => {
 
                         <NoticiaArticle>{parse(`${noticia.data.content}`)}</NoticiaArticle>
 
+                        {/* <Leadwall change={changeLeadwall} />
+
+                        <NoticiaFormContainer mb="75px">
+                            <Flex display="flex" flexWrap="wrap">
+                                <Box alignContent="center" display={{ d: 'none', sm: 'inline-flex' }} flexWrap="wrap" p="75px" width={2 / 4}>
+                                    <BgImageOverlay7 url={liberdade} />
+
+                                    <Title3 fontWeight="600" mb={4}>
+                                        A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
+                                    </Title3>
+
+                                    <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
+                                </Box>
+
+                                <Box width={{ d: 1, sm: 2 / 4 }}>
+                                    <NoticiaForm color="colorGrayDark" colorLine="colorGray" colorPlaceholder="colorGray" id="noticia-contato" themeColor="dark" />
+                                </Box>
+                            </Flex>
+                        </NoticiaFormContainer> */}
+
                         <NoticiaAuthor mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
@@ -95,6 +122,37 @@ export const Noticia = ({ match }) => {
                                 </Box>
                             </Flex>
                         </NoticiaAuthor>
+
+                        {/* <NoticiaMateriasRelacionadas mb={5}>
+                            <Title4 color="colorGray2" mb={4} themeColor="dark">
+                                Matérias Relacionadas
+                            </Title4>
+
+                            <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
+                                {noticiaRelatedLength &&
+                                    noticia.data.related.map((noticia, i, newArray) => {
+                                        return (
+                                            <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
+                                                <LinkTo ariaLabel={noticia.title} height="100%" onClick={() => setStateNoticiaUrl(`${apiUrlNoticias}/${noticia.slug}`)} to={`/noticia/${noticia.slug}`} width="100%">
+                                                    <NoticiaBox color={noticia.category.featured_color} display="inline-block" pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
+                                                        <Box>
+                                                            <Tag>{noticia.category.title}</Tag>
+
+                                                            <Title>{noticia.title}</Title>
+                                                        </Box>
+
+                                                        <Author>{`Por ${noticia.author}`}</Author>
+                                                    </NoticiaBox>
+
+                                                    <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
+                                                        <BgImageOverlay1 url={noticia.thumbnail.attachment.url} />
+                                                    </Box>
+                                                </LinkTo>
+                                            </Cell>
+                                        );
+                                    })}
+                            </Grid>
+                        </NoticiaMateriasRelacionadas> */}
                     </Container>
                 </Main>
             </>
