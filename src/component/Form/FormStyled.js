@@ -135,3 +135,19 @@ export const FormStyled = styled.form`
     width: auto;
     z-index: 1;
 `;
+
+export const InvalidInputMessage = styled.span`
+    bottom: -20px;
+    color: ${variable.colorAlert};
+    font-size: 12px;
+    left: 0;
+    position: absolute;
+`;
+
+export const InvalidResponseMessage = styled.span`
+    color: ${variable.colorAlert};
+    font-size: 14px;
+    left: 0;
+    position: absolute;
+    top: -15px;
+`;
