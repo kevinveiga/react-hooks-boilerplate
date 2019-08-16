@@ -22,11 +22,8 @@ export const P = styled.p`
 `;
 
 export const Span = styled.span`
-    ${({ color }) =>
-        color &&
-        css`
-            color: ${variable[color]};
-        `};
+    ${typography};
+    ${({ color }) => color && `color: ${variable[color]}`};
 `;
 
 export const Title1 = styled.h1`

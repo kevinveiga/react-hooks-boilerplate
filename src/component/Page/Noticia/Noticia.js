@@ -87,7 +87,7 @@ export const Noticia = ({ match }) => {
 
                         <NoticiaFormContainer mb="75px">
                             <Flex display="flex" flexWrap="wrap">
-                                <Box alignContent="center" display={{ d: 'none', sm: 'inline-flex' }} flexWrap="wrap" p="75px" width={2 / 4}>
+                                <Box alignContent="center" display={{ d: 'none', sm: 'inline-flex' }} flexWrap="wrap" p="75px" width={1 / 2}>
                                     <BgImageOverlay7 url={liberdade} />
 
                                     <Title3 fontWeight="600" mb={4}>
@@ -97,7 +97,7 @@ export const Noticia = ({ match }) => {
                                     <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
                                 </Box>
 
-                                <Box width={{ d: 1, sm: 2 / 4 }}>
+                                <Box width={{ d: 1, sm: 1 / 2 }}>
                                     <NoticiaForm color="colorGrayDark" colorLine="colorGray" colorPlaceholder="colorGray" id="noticia-contato" themeColor="dark" />
                                 </Box>
                             </Flex>
