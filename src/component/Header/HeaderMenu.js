@@ -14,15 +14,11 @@ export const HeaderMenu = ({ ...props }) => {
         <HeaderMenuStyled active={stateChangeMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo to="/" onClick={() => setStateChangeMenuMobile(false)}>
-                        Início
-                    </LinkTo>
+                    <LinkTo to="/" onClick={() => setStateChangeMenuMobile(false)} text="Início" />
                 </li>
 
                 <li>
-                    <LinkTo to="/noticias" onClick={() => setStateChangeMenuMobile(false)}>
-                        Notícias
-                    </LinkTo>
+                    <LinkTo to="/noticias" onClick={() => setStateChangeMenuMobile(false)} text="Notícias" />
                 </li>
             </ul>
         </HeaderMenuStyled>
