@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 // import { apiUrlHome } from '../../../config';
 // import { getVideoId } from '../../../util/getVideoId';
 // import { groupByMod } from '../../../util/groupBy';
+// import { scrollTo } from '../../../util/scrollTo';
 
 // import { useDestaqueApi } from '../../../service/destaque';
 // import { useNoticiaApi } from '../../../service/noticia';
@@ -19,12 +20,13 @@ import { Helmet } from 'react-helmet-async';
 // import { useMeasure } from '../../../store/util/measure';
 // import { useCurrentVideo } from '../../../store/video/video';
 
-import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
+// import { BannerRight } from '../../Banner/BannerRight';
+// import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
 
-import { BannerCell, BannerContainer } from '../../Banner/BannerStyled';
+// import { BannerCell, BannerContainer } from '../../Banner/BannerStyled';
 import { Author, DateTime, Tag, Title } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -33,7 +35,7 @@ import { BgImageOverlay1, BgImageOverlay3 } from '../../../style/image';
 import { Background, Container, Main } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 
-export const Home = () => {
+export const Home = ({ location }) => {
     // API
     // const [stateDestaques] = useDestaqueApi(`${apiUrlHome}/destaques`, {});
     // const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
@@ -53,37 +55,44 @@ export const Home = () => {
     const destaquesLength = 5;
     const noticiasLength = 5;
 
-    // const objectItens = superDestaquesLength > 0 ? groupByMod(superDestaquesLength.data, 3) : {};
+    // Verificação se todos os dados de API estão carregados
+    // const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0 && videosLength > 0;
+
+    // Agrupando itens com um grupo de 3
+    // const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
 
     // ACTION
-    // const stateChangeBannerScroll = useChangeBannerScroll('home-noticias-container', -20);
     // const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo({});
-    // const stateFadeOutBannerScroll = useFadeOutBannerScroll('home-video-container', -500);
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
+    // Scroll para o topo ou para a section de vídeo
+    // const ancorHash = location.hash === '#home-video-container' ? location.hash : null;
+
+    // if (isDataLoaded) {
+    //     scrollTo(ancorHash, 80);
+    // }
+
     // CAROUSEL
-    const carouselOptions = {
-        appendDots: (dots) => <DotContainer>{dots}</DotContainer>,
-        autoplay: true,
-        autoplaySpeed: 4250,
-        customPaging: () => <DotBtn />,
-        dots: true,
-        infinite: true,
-        nextArrow: <NextBtn />,
-        pauseOnHover: true,
-        prevArrow: <PrevBtn />,
-        speed: 1250,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        swipe: false
-    };
+    // const carouselOptions = {
+    //     appendDots: (dots) => <DotContainer>{dots}</DotContainer>,
+    //     autoplay: true,
+    //     autoplaySpeed: 4250,
+    //     customPaging: () => <DotBtn />,
+    //     dots: true,
+    //     infinite: true,
+    //     nextArrow: <NextBtn />,
+    //     pauseOnHover: true,
+    //     prevArrow: <PrevBtn />,
+    //     speed: 1250,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     swipe: false
+    // };
 
     return (
         <>
-            <Helmet>
-                <title>Home</title>
-                <meta name="description" content="Home" />
-            </Helmet>
+            <Helmet>{/* <title>{stateSeo.data && stateSeo.data.title}</title>
+                <meta name="description" content={stateSeo.data && stateSeo.data.description} /> */}</Helmet>
 
             <Main>
                 {/* {superDestaquesLength > 0 &&
@@ -247,7 +256,7 @@ export const Home = () => {
                                     </Box>
 
                                     {/* <Box display={{ d: 'none', sm: 'block' }} pl={{ d: 0, sm: 5, md: 3 }} ref={stateBannerRef} width={{ d: 0, sm: 3 / 10, md: 2 / 10 }}>
-                                        <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} />
+                                        <BannerRight boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'home-noticias-container', offset: -20 }} elementFadeOut={{ elementId: 'home-video-container', offset: -500 }} />
                                     </Box> */}
                                 </>
                             )}

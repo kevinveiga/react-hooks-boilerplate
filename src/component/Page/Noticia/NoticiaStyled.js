@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { layout, position, space } from 'styled-system';
 
-import { animationFadeIn, animationFadeOut } from '../../../style/animation';
 import { variable } from '../../../style/variable';
 
 export const NoticiaContainer = css`
@@ -165,23 +164,7 @@ export const NoticiaMateriasRelacionadas = styled.section`
     ${space};
 `;
 
-export const NoticiaSocial = styled.section`
-    ${layout};
-    animation: ${animationFadeIn()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
-    ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
-    left: auto;
-    position: ${({ change }) => (change ? 'fixed' : 'absolute')};
-    top: ${({ change }) => (change ? '150px' : 'auto')};
-    z-index: 3;
-
-    ${({ fadeOut }) =>
-        fadeOut &&
-        css`
-            animation: ${animationFadeOut()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
-        `};
-`;
-
-export const NoticiasBannerPerfilInvestidor = styled.div`
+export const NoticiasBannerRight = styled.div`
     ${layout};
     ${position};
     ${space};

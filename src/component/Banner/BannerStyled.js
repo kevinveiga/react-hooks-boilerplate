@@ -36,7 +36,7 @@ export const BannerContainer = styled.div`
     scroll-snap-type: x mandatory;
 `;
 
-export const BannerPerfilInvestidorStyled = styled.div`
+export const BannerRightStyled = styled.div`
     animation: ${animationFadeIn()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
 
     ${({ change }) =>

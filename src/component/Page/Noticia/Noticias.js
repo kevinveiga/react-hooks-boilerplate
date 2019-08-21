@@ -6,8 +6,9 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
-// import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
 // import { useMeasure } from '../../../store/util/measure';
+
+import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
@@ -16,7 +17,7 @@ import { NoticiaBox } from './NoticiaBox';
 
 import { Svg } from '../../Svg/Svg';
 
-// import { NoticiasBannerPerfilInvestidor } from './NoticiaStyled';
+// import { NoticiasBannerRight } from './NoticiaStyled';
 import { Author, DateTime, Tag, Title } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -37,9 +38,10 @@ export const Noticias = () => {
     const noticiasLength = stateNoticias.data.length;
     const noticiasCategoriasLength = stateNoticiasCategorias.data.length;
 
+    // Verificação se todos os dados de API estão carregados
+    const isDataLoaded = noticiasLength > 0 && noticiasCategoriasLength > 0;
+
     // ACTION
-    // const stateChangeBannerScroll = useChangeBannerScroll('noticias-tabs-content', -50);
-    // const stateFadeOutBannerScroll = useFadeOutBannerScroll('footer', -500);
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     const handleNoticiaCategoriaChange = (e) => {
@@ -53,11 +55,16 @@ export const Noticias = () => {
         setNoticiasCategoriaSelected(e.target.value);
     };
 
+    // Scroll para o topo
+    if (isDataLoaded) {
+        scrollTo();
+    }
+
     return (
         <>
             <Helmet>
-                <title>{stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data.description} />
+                <title>{stateSeo.data && stateSeo.data.title}</title>
+                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Helmet>
 
             <Main>
@@ -246,9 +253,9 @@ export const Noticias = () => {
                                     );
                                 })}
 
-                            {/* <NoticiasBannerPerfilInvestidor display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
-                                <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} />
-                            </NoticiasBannerPerfilInvestidor> */}
+                            {/* <NoticiasBannerRight display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
+                                <BannerRight boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'noticias-tabs-content', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
+                            </NoticiasBannerRight> */}
                         </ul>
                     </Tab>
                 </Container>

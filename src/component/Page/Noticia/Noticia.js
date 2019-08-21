@@ -6,15 +6,15 @@ import { apiUrlNoticias } from '../../../config';
 
 import { useNoticiaApi } from '../../../service/noticia';
 
-import { useChangeNoticiaSocialScroll, useFadeOutNoticiaSocialScroll } from '../../../store/noticia/noticia';
+import { scrollTo } from '../../../util/scrollTo';
 
 // import { Leadwall } from '../../Leadwall/Leadwall';
 // import { LinkTo } from '../../Link/LinkTo';
 // import { NoticiaForm } from '../../Form/NoticiaForm';
 // import { NoticiaBox } from './NoticiaBox';
 // import { Author, Tag, Title } from './NoticiaBoxStyled';
-import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas, NoticiaSocial } from './NoticiaStyled';
-import { Share } from '../../Social/Share';
+import { NoticiaSocial } from './NoticiaSocial';
+import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas } from './NoticiaStyled';
 
 import { Box, Flex } from '../../../style/flex';
 // import { Cell, Grid } from '../../../style/grid';
@@ -24,32 +24,37 @@ import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 
 export const Noticia = ({ match }) => {
     // API
-    const [noticia] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
+    const [noticia, setStateNoticiaUrl] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
 
-    const noticiaLength = Object.keys(noticia.data).length;
-
+    const noticiaLength = noticia.data ? Object.keys(noticia.data).length : 0;
     // const noticiaRelatedLength = noticiaLength > 0 && noticia.data.related.length;
+
+    // Verificação se todos os dados de API estão carregados
+    const isDataLoaded = noticiaLength > 0;
 
     // ACTION
     // const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
-    const stateChangeNoticiaSocialScroll = useChangeNoticiaSocialScroll('noticia-article-author', -50);
-    const stateFadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll('footer', -500);
+
+    // Scroll para o topo
+    if (isDataLoaded) {
+        scrollTo();
+    }
 
     return (
-        noticiaLength && (
-            <>
-                <Helmet>
-                    <title>{noticia.data.title}</title>
-                    <meta name="description" content={noticia.data.seo.description} />
-                    <meta property="og:author" content={noticia.data.author} />
-                    <meta property="og:description" content={noticia.data.seo.description} />
-                    <meta property="og:image" content={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} />
-                    <meta property="og:title" content={noticia.data.title} />
-                    <meta property="og:type" content="website" />
-                    <meta property="og:url" content={window.location.href} />
-                </Helmet>
+        <>
+            <Helmet>
+                <title>{noticia.data && noticia.data.title}</title>
+                <meta name="description" content={noticia.data && noticia.data.seo && noticia.data.seo.description} />
+                <meta property="og:author" content={noticia.data && noticia.data.author} />
+                <meta property="og:description" content={noticia.data && noticia.data.seo && noticia.data.seo.description} />
+                <meta property="og:image" content={noticia.data && noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} />
+                <meta property="og:title" content={noticia.data && noticia.data.title} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
 
-                <Main>
+            <Main>
+                {noticiaLength > 0 && (
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                         <Title1 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark" width={{ d: 1, md: 2 / 3 }}>
                             {noticia.data.title}
@@ -59,13 +64,7 @@ export const Noticia = ({ match }) => {
                             <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} url={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width="100%" />
                         </Flex>
 
-                        <NoticiaSocial change={stateChangeNoticiaSocialScroll} display={{ d: 'none', lg: 'block' }} fadeOut={stateFadeOutNoticiaSocialScroll} id="noticia-Social">
-                            <div>
-                                <b>Compartilhar:</b>
-                            </div>
-
-                            <Share direction="vertical" title={noticia.data.title} themeColor="dark" url={window.location.href} />
-                        </NoticiaSocial>
+                        <NoticiaSocial display={{ d: 'none', lg: 'block' }} elementChange={{ elementId: 'noticia-article-author', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} title={noticia.data.title} url={window.location.href} />
 
                         <NoticiaArticleAuthor id="noticia-article-author" mb={3}>
                             <Flex display="flex" flexWrap="wrap">
@@ -154,8 +153,8 @@ export const Noticia = ({ match }) => {
                             </Grid>
                         </NoticiaMateriasRelacionadas> */}
                     </Container>
-                </Main>
-            </>
-        )
+                )}
+            </Main>
+        </>
     );
 };
