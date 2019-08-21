@@ -14,7 +14,6 @@ import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
-
 import { Svg } from '../../Svg/Svg';
 
 // import { NoticiasBannerRight } from './NoticiaStyled';

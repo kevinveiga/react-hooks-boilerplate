@@ -15,6 +15,8 @@ export const useChangeHeaderScroll = (elementId, offset = 0) => {
 
     useLayoutEffect(() => {
         handleScroll();
+
+        return undefined;
     }, [handleScroll]);
 
     useLayoutEffect(() => {

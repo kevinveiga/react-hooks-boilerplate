@@ -2,38 +2,39 @@ import React from 'react';
 // import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 // import Slider from 'react-slick';
-// import YouTube from 'react-youtube';
 
 // import { apiUrlHome } from '../../../config';
-// import { getVideoId } from '../../../util/getVideoId';
-// import { groupByMod } from '../../../util/groupBy';
-// import { scrollTo } from '../../../util/scrollTo';
 
 // import { useDestaqueApi } from '../../../service/destaque';
 // import { useNoticiaApi } from '../../../service/noticia';
 // import { useParceiroApi } from '../../../service/parceiro';
 // import { useSeoApi } from '../../../service/seo';
 // import { useSuperDestaqueApi } from '../../../service/superDestaque';
-// import { useVideoApi } from '../../../service/video';
 
-// import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../../store/banner/banner';
 // import { useMeasure } from '../../../store/util/measure';
-// import { useCurrentVideo } from '../../../store/video/video';
+
+// import { groupByMod } from '../../../util/groupBy';
+// import { scrollTo } from '../../../util/scrollTo';
 
 // import { BannerRight } from '../../Banner/BannerRight';
 // import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
+// import { HomeVideo } from './HomeVideo';
 import { LinkTo } from '../../Link/LinkTo';
+// import { LinkToExternal } from '../../Link/LinkToExternal';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
 
 // import { BannerCell, BannerContainer } from '../../Banner/BannerStyled';
+// import { CarouselStyled } from '../../Carousel/CarouselStyled';
+// import { VideoContainer } from './HomeStyled';
 import { Author, DateTime, Tag, Title } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { BgImageOverlay1, BgImageOverlay3 } from '../../../style/image';
 import { Background, Container, Main } from '../../../style/layout';
-import { Title4 } from '../../../style/text';
+import { Span, Title2, Title4, Title5 } from '../../../style/text';
+// import { variable } from '../../../style/variable';
 
 export const Home = ({ location }) => {
     // API
@@ -42,13 +43,11 @@ export const Home = ({ location }) => {
     // const [stateParceiros] = useParceiroApi(`${apiUrlHome}/parceiros`, {});
     // const [stateSeo] = useSeoApi(`${apiUrlHome}/seo`, {});
     // const [stateSuperDestaques] = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
-    // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
 
     // const destaquesLength = stateDestaques.data.length;
     // const noticiasLength = stateNoticias.data.length;
     // const parceirosLength = stateParceiros.data.length;
     // const superDestaquesLength = stateSuperDestaques.data.length;
-    // const videosLength = stateVideos.data.length;
 
     const stateDestaques = [];
     const stateNoticias = [];
@@ -56,7 +55,7 @@ export const Home = ({ location }) => {
     const noticiasLength = 5;
 
     // Verificação se todos os dados de API estão carregados
-    // const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0 && videosLength > 0;
+    // const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0;
 
     // Agrupando itens com um grupo de 3
     // const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};

@@ -12,8 +12,9 @@ import { scrollTo } from '../../../util/scrollTo';
 // import { LinkTo } from '../../Link/LinkTo';
 // import { NoticiaForm } from '../../Form/NoticiaForm';
 // import { NoticiaBox } from './NoticiaBox';
-// import { Author, Tag, Title } from './NoticiaBoxStyled';
 import { NoticiaSocial } from './NoticiaSocial';
+
+// import { Author, Tag, Title } from './NoticiaBoxStyled';
 import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas } from './NoticiaStyled';
 
 import { Box, Flex } from '../../../style/flex';

@@ -17,7 +17,9 @@ export const useChangeNoticiaSocialScroll = (elementId, offset = 0) => {
             return undefined;
         }
 
-        return handleScroll();
+        handleScroll();
+
+        return undefined;
     }, [handleScroll]);
 
     useLayoutEffect(() => {
@@ -51,7 +53,9 @@ export const useFadeOutNoticiaSocialScroll = (elementId, offset = 0) => {
             return undefined;
         }
 
-        return handleScroll();
+        handleScroll();
+
+        return undefined;
     }, [handleScroll]);
 
     useLayoutEffect(() => {
