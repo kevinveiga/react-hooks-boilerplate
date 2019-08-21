@@ -30,7 +30,7 @@ export const useChangeBannerScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [stateChangeBanner, handleScroll]);
+    }, [handleScroll]);
 
     return stateChangeBanner;
 };
@@ -64,7 +64,7 @@ export const useFadeOutBannerScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [stateFadeOutBannerScroll, handleScroll]);
+    }, [handleScroll]);
 
     return stateFadeOutBannerScroll;
 };

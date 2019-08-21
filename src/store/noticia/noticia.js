@@ -30,7 +30,7 @@ export const useChangeNoticiaSocialScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [stateChangeNoticiaSocial, handleScroll]);
+    }, [handleScroll]);
 
     return stateChangeNoticiaSocial;
 };
@@ -64,7 +64,7 @@ export const useFadeOutNoticiaSocialScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [stateChangeNoticiaSocial, handleScroll]);
+    }, [handleScroll]);
 
     return stateChangeNoticiaSocial;
 };

@@ -23,7 +23,7 @@ export const useChangeHeaderScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [stateChangeHeader, handleScroll]);
+    }, [handleScroll]);
 
     return stateChangeHeader;
 };
