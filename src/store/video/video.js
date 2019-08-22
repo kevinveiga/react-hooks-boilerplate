@@ -1,15 +1,25 @@
-import { useLayoutEffect, useState } from 'react';
-
-import { scrollTo } from '../../util/scrollTo';
+import { useEffect, useState } from 'react';
 
 export const useCurrentVideo = (ancorHash, offset) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useState(null);
 
-    useLayoutEffect(() => {
-        scrollTo(ancorHash, true, offset);
+    const ancor = document.querySelector(ancorHash) ? document.querySelector(ancorHash).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+
+    useEffect(() => {
+        if (stateCurrentVideo) {
+            try {
+                window.scroll({
+                    behavior: 'smooth',
+                    left: 0,
+                    top: ancor
+                });
+            } catch (error) {
+                window.scrollTo(0, ancor);
+            }
+        }
 
         return undefined;
-    }, [stateCurrentVideo, ancorHash, offset]);
+    }, [ancor, stateCurrentVideo]);
 
     return [stateCurrentVideo, setStateCurrentVideo];
 };
