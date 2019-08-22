@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async';
 // import { useParceiroApi } from '../../../service/parceiro';
 // import { useSeoApi } from '../../../service/seo';
 // import { useSuperDestaqueApi } from '../../../service/superDestaque';
+// import { useVideoApi } from '../../../service/video';
 
 // import { useMeasure } from '../../../store/util/measure';
 
@@ -43,11 +44,13 @@ export const Home = ({ location }) => {
     // const [stateParceiros] = useParceiroApi(`${apiUrlHome}/parceiros`, {});
     // const [stateSeo] = useSeoApi(`${apiUrlHome}/seo`, {});
     // const [stateSuperDestaques] = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
+    // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
 
     // const destaquesLength = stateDestaques.data.length;
     // const noticiasLength = stateNoticias.data.length;
     // const parceirosLength = stateParceiros.data.length;
     // const superDestaquesLength = stateSuperDestaques.data.length;
+    // const videosLength = stateVideos.data.length;
 
     const stateDestaques = [];
     const stateNoticias = [];
@@ -55,7 +58,7 @@ export const Home = ({ location }) => {
     const noticiasLength = 5;
 
     // Verificação se todos os dados de API estão carregados
-    // const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0;
+    // const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0 && videosLength > 0;
 
     // Agrupando itens com um grupo de 3
     // const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
@@ -67,9 +70,7 @@ export const Home = ({ location }) => {
     // Scroll para o topo ou para a section de vídeo
     // const ancorHash = location.hash === '#home-video-container' ? location.hash : null;
 
-    // if (isDataLoaded) {
-    //     scrollTo(ancorHash, 80);
-    // }
+    // scrollTo(ancorHash, isDataLoaded, isMobile ? 0 : 80);
 
     // CAROUSEL
     // const carouselOptions = {
@@ -263,20 +264,22 @@ export const Home = ({ location }) => {
                     </Container>
                 </Background>
 
-                {/* <VideoContainer id="home-video-container">
-                    <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
-                        <Title2 themeColor="light">Vídeos Liberta</Title2>
+                {/* {videosLength > 0 && (
+                    <VideoContainer id="home-video-container">
+                        <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
+                            <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                        <HomeVideo />
+                            <HomeVideo ancor={{ elementHash: '#home-video-container', offset: isMobile ? 0 : 80 }} objectVideos={stateVideos} />
 
-                        <Box textAlign="center">
-                            <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
-                                <Svg display={{ d: 'none', lg: 'block' }} name="svg-youtube" />
-                                Siga nosso canal no Youtube
-                            </LinkToExternal>
-                        </Box>
-                    </Container>
-                </VideoContainer> */}
+                            <Box textAlign="center">
+                                <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
+                                    <Svg display={{ d: 'none', lg: 'block' }} name="svg-youtube" />
+                                    Siga nosso canal no Youtube
+                                </LinkToExternal>
+                            </Box>
+                        </Container>
+                    </VideoContainer>
+                )} */}
             </Main>
         </>
     );

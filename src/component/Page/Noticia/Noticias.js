@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -55,9 +56,7 @@ export const Noticias = () => {
     };
 
     // Scroll para o topo
-    if (isDataLoaded) {
-        scrollTo();
-    }
+    scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
 
     return (
         <>

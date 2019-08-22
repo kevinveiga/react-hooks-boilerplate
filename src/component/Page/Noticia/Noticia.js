@@ -1,5 +1,6 @@
 import parse from 'html-react-parser';
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -37,9 +38,7 @@ export const Noticia = ({ match }) => {
     // const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
 
     // Scroll para o topo
-    if (isDataLoaded) {
-        scrollTo();
-    }
+    scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
 
     return (
         <>
