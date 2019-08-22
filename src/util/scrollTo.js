@@ -1,7 +1,7 @@
 let wait = false;
 
-export const scrollTo = (ancorHash = null, isDataLoaded = false, offset = 0) => {
-    const ancor = document.querySelector(ancorHash) ? document.querySelector(ancorHash).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
+    const ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
 
     if (isDataLoaded) {
         if (!wait) {
@@ -20,7 +20,7 @@ export const scrollTo = (ancorHash = null, isDataLoaded = false, offset = 0) => 
 
         setTimeout(() => {
             wait = false;
-        }, 2000);
+        }, 1000);
     }
 
     return null;

@@ -15,7 +15,7 @@ import { Title4, Title5 } from '../../../style/text';
 
 export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     // ACTION
-    const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementHash, ancor.offset);
+    const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
     return (
         <VideoGrid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>

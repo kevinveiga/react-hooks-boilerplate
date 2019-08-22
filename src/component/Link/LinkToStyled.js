@@ -8,6 +8,7 @@ export const LinkToStyled = styled(Link)`
     ${layout};
     ${space};
     ${typography};
+    ${({ link }) => link === window.location.pathname && `color: ${variable.colorPrimary}`};
 
     ${({ hover }) =>
         hover === 'primary' &&

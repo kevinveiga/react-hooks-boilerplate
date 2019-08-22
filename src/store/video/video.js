@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-export const useCurrentVideo = (ancorHash, offset) => {
+export const useCurrentVideo = (elementId, offset) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useState(null);
 
-    const ancor = document.querySelector(ancorHash) ? document.querySelector(ancorHash).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+    const ancor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
 
     useEffect(() => {
         if (stateCurrentVideo) {

@@ -68,9 +68,9 @@ export const Home = ({ location }) => {
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     // Scroll para o topo ou para a section de vídeo
-    // const ancorHash = location.hash === '#home-video-container' ? location.hash : null;
+    // const ancorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
 
-    // scrollTo(ancorHash, isDataLoaded, isMobile ? 0 : 80);
+    // scrollTo(ancorId, isDataLoaded, isMobile ? 0 : 80);
 
     // CAROUSEL
     // const carouselOptions = {
@@ -269,7 +269,7 @@ export const Home = ({ location }) => {
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                             <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                            <HomeVideo ancor={{ elementHash: '#home-video-container', offset: isMobile ? 0 : 80 }} objectVideos={stateVideos} />
+                            <HomeVideo ancor={{ elementId: '#home-video-container', offset: isMobile ? 0 : 80 }} objectVideos={stateVideos} />
 
                             <Box textAlign="center">
                                 <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">

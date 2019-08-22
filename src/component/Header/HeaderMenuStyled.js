@@ -19,9 +19,10 @@ export const HeaderMenuStyled = styled.nav`
         z-index: 10;
 
         li {
+            color: ${variable.colorGray4};
+
             > a,
             > button {
-                color: ${variable.colorGray4};
                 padding: 15px;
             }
         }
@@ -38,11 +39,11 @@ export const HeaderMenuStyled = styled.nav`
 
     @media (min-width: ${variable.md}) {
         li {
+            color: ${({ change }) => (change ? variable.colorWhite : variable.colorSecondary)};
             display: inline-block;
 
             > a,
             > button {
-                color: ${({ change }) => (change ? variable.colorWhite : variable.colorSecondary)};
                 padding: 10px 0 10px 25px;
             }
         }
