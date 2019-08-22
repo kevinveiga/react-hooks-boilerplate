@@ -3,8 +3,6 @@ let wait = false;
 export const scrollTo = (ancorHash = null, isDataLoaded = false, offset = 0) => {
     const ancor = document.querySelector(ancorHash) ? document.querySelector(ancorHash).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
 
-    console.log('ancorHash: ', ancorHash);
-
     if (isDataLoaded) {
         if (!wait) {
             try {
