@@ -8,5 +8,12 @@ export const HeaderMenuLinkToStyled = styled(NavLink)`
     ${layout};
     ${space};
     ${typography};
-    ${({ to }) => to === window.location.pathname && `color: ${variable.colorPrimary}`};
+
+    &:hover {
+        color: ${variable.colorPrimary};
+    }
+
+    &.active {
+        color: ${variable.colorPrimary};
+    }
 `;

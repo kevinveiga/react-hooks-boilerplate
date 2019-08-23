@@ -1,10 +1,10 @@
-let wait = false;
+let waitScroll = false;
 
 export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
-    const ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
-
     if (isDataLoaded) {
-        if (!wait) {
+        if (!waitScroll) {
+            const ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+
             try {
                 window.scroll({
                     behavior: 'smooth',
@@ -15,11 +15,11 @@ export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
                 window.scrollTo(0, ancor);
             }
 
-            wait = true;
+            waitScroll = true;
         }
 
         setTimeout(() => {
-            wait = false;
+            waitScroll = false;
         }, 1000);
     }
 

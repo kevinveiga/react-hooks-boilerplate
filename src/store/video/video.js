@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 export const useCurrentVideo = (elementId, offset) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useState(null);
 
-    const ancor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
-
     useEffect(() => {
         if (stateCurrentVideo) {
+            const ancor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+
             try {
                 window.scroll({
                     behavior: 'smooth',
@@ -19,7 +19,7 @@ export const useCurrentVideo = (elementId, offset) => {
         }
 
         return undefined;
-    }, [ancor, stateCurrentVideo]);
+    }, [elementId, offset, stateCurrentVideo]);
 
     return [stateCurrentVideo, setStateCurrentVideo];
 };

@@ -21,14 +21,14 @@ export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
         <VideoGrid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
             <Cell>
                 <VideoWrap>
-                    <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || ''} />
+                    <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(objectVideos.data[0].video) || ''} />
                 </VideoWrap>
 
                 <VideoBox p={4}>
                     <p>Vídeo</p>
 
                     <Title4 fontWeight="600" themeColor="dark">
-                        {stateCurrentVideo && stateCurrentVideo.title}
+                        {(stateCurrentVideo && stateCurrentVideo.title) || objectVideos.data[0].title}
                     </Title4>
                 </VideoBox>
             </Cell>

@@ -9,3 +9,5 @@ export const apiUrlNewsletter = `${process.env.API_URL}/api/v1/newsletter`;
 export const apiUrlNoticias = `${process.env.API_URL}/api/v1/noticias`;
 
 export const apiUrlPaywall = `${process.env.API_URL}/api/v1/paywall`;
+
+export const defaultErrorMsg = 'Erro desconhecido';

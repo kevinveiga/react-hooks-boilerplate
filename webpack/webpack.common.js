@@ -99,7 +99,6 @@ module.exports = {
     },
     plugins: [
         new InjectManifest({
-            globIgnores: ['node_modules/**/*'],
             importsDirectory: 'asset',
             include: [/(.css)$/, /(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
             swDest: `${commonPaths.outputPath}/sw.js`,

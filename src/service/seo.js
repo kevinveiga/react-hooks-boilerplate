@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useReducer, useState } from 'react';
 
+import { defaultErrorMsg } from '../config';
+
 import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
@@ -24,11 +26,11 @@ export const useSeoApi = (initialUrl, initialData) => {
                 const result = await axios.get(stateSeoUrl);
 
                 if (!didCancel) {
-                    dispatch({ ...ACTION.success(), payload: result.data });
+                    dispatch({ ...ACTION.success(), payload: result.data || { data: [], errorMsg: defaultErrorMsg } });
                 }
             } catch (error) {
                 if (!didCancel) {
-                    dispatch(ACTION.failure());
+                    dispatch({ ...ACTION.failure(), payload: { data: [], errorMsg: error } });
                 }
             }
         };
