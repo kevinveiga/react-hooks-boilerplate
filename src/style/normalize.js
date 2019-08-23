@@ -108,15 +108,6 @@ export const Normalize = createGlobalStyle`
         }
     }
 
-    a {
-        background-color: transparent;
-        color: inherit;
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        text-decoration: none;
-    }
-
     /* BUTTON */
     ${variable.allButtons} {
         appearance: none;
@@ -231,6 +222,16 @@ export const Normalize = createGlobalStyle`
         max-width: 100%;
         vertical-align: middle;
         width: auto;
+    }
+
+    /* LINK */
+    a {
+        background-color: transparent;
+        color: inherit;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        text-decoration: none;
     }
 
     /* LIST */

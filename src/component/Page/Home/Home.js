@@ -68,7 +68,7 @@ export const Home = ({ location }) => {
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     // Scroll para o topo ou para a section de vídeo
-    // const ancorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
+    // const ancorId = window.location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
 
     // scrollTo(ancorId, isDataLoaded, isMobile ? 0 : 80);
 
