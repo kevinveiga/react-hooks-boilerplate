@@ -18,7 +18,7 @@ export const Container = styled.section`
 export const Main = styled.main`
     height: auto;
     margin-top: ${variable.headerHeightMobile};
-    min-height: 200px;
+    min-height: 500px;
     width: 100%;
     z-index: 0;
 
