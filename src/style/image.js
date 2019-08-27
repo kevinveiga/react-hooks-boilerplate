@@ -37,33 +37,19 @@ export const BgImage = styled.div`
 `;
 
 export const BgImageOverlay = styled(BgImage)`
+    transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
+
     &::after {
+        background-color: ${({ color }) => (color ? variable[color] : variable.colorBlackTransparent1)};
         content: ' ';
         display: block;
         height: 100%;
         left: 0;
         position: absolute;
         top: 0;
+        transition: background-color ${variable.transition};
         width: 100%;
         z-index: 2;
-    }
-`;
-
-export const BgImageOverlay1 = styled(BgImageOverlay)`
-    transition: transform ${variable.transitionSlow};
-
-    &::after {
-        background-color: ${({ color }) => color || variable.colorBlackTransparent1};
-        transition: background-color ${variable.transition};
-    }
-`;
-
-export const BgImageOverlay3 = styled(BgImageOverlay)`
-    transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
-
-    &::after {
-        background-color: ${({ color }) => color || variable.colorBlackTransparent3};
-        transition: background-color ${variable.transition};
     }
 
     ${({ grayscale }) =>
@@ -73,31 +59,10 @@ export const BgImageOverlay3 = styled(BgImageOverlay)`
         `};
 `;
 
-export const BgImageOverlay5 = styled(BgImageOverlay)`
-    transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
-
-    &::after {
-        background-color: ${({ color }) => color || variable.colorBlackTransparent5};
-        transition: background-color ${variable.transition};
-    }
-`;
-
-export const BgImageOverlay6 = styled(BgImageOverlay)`
-    &::after {
-        background-color: ${({ color }) => color || variable.colorBlackTransparent6};
-    }
-`;
-
-export const BgImageOverlay7 = styled(BgImageOverlay)`
-    &::after {
-        background-color: ${({ color }) => color || variable.colorBlackTransparent7};
-    }
-`;
-
-export const BgImageOverlay3TopBottom = styled(BgImageOverlay3)`
+export const BgImageOverlayTopBottom = styled(BgImageOverlay)`
     &::after {
         background-color: transparent;
-        background-image: linear-gradient(180deg, ${variable.colorBlackTransparent6} 0%, ${variable.colorBlackTransparent3} 100%);
+        background-image: linear-gradient(180deg, ${({ colorTop }) => (colorTop ? variable[colorTop] : variable.colorBlackTransparent5)} 0%, ${({ colorBottom }) => (colorBottom ? variable[colorBottom] : variable.colorBlackTransparent1)} 100%);
         background-repeat: repeat-x;
     }
 `;

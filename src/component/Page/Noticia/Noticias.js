@@ -22,7 +22,7 @@ import { Author, DateTime, Tag, Title } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay1, BgImageOverlay3, Image } from '../../../style/image';
+import { BgImageOverlay, Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
@@ -156,7 +156,7 @@ export const Noticias = () => {
                                                                         <Box width="100%">
                                                                             {j / 3 === 0 && (
                                                                                 <Box height="200px" mb={4} overflow="hidden" width="100%">
-                                                                                    <BgImageOverlay1 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    <BgImageOverlay url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                                                 </Box>
                                                                             )}
 
@@ -191,7 +191,7 @@ export const Noticias = () => {
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" hover="true" key={noticia.id}>
                                                                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                                                 <NoticiaBox alignContent="flex-end" color={categoria.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                                                    <BgImageOverlay3 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    <BgImageOverlay color="colorBlackTransparent3" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
 
                                                                                     <Box>
                                                                                         <Tag>{categoria.title}</Tag>
@@ -231,7 +231,7 @@ export const Noticias = () => {
                                                                                 </NoticiaBox>
 
                                                                                 <Box display="inline-block" height={{ d: '100px', xs: '150px', md: '200px' }} overflow="hidden" verticalAlign="middle" width={2 / 5}>
-                                                                                    <BgImageOverlay1 url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    <BgImageOverlay url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                                                 </Box>
                                                                             </LinkTo>
                                                                         </Cell>

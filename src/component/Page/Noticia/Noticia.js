@@ -20,7 +20,7 @@ import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContain
 
 import { Box, Flex } from '../../../style/flex';
 // import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay1, BgImageOverlay7, Image } from '../../../style/image';
+import { BgImageOverlay, Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 
@@ -87,7 +87,7 @@ export const Noticia = ({ match }) => {
                         <NoticiaFormContainer mb="75px">
                             <Flex display="flex" flexWrap="wrap">
                                 <Box alignContent="center" display={{ d: 'none', sm: 'inline-flex' }} flexWrap="wrap" p="75px" width={1 / 2}>
-                                    <BgImageOverlay7 url={liberdade} />
+                                    <BgImageOverlay color="colorBlackTransparent7" url={liberdade} />
 
                                     <Title3 fontWeight="600" mb={4}>
                                         A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
@@ -144,7 +144,7 @@ export const Noticia = ({ match }) => {
                                                     </NoticiaBox>
 
                                                     <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
-                                                        <BgImageOverlay1 url={noticia.thumbnail.attachment.url} />
+                                                        <BgImageOverlay url={noticia.thumbnail.attachment.url} />
                                                     </Box>
                                                 </LinkTo>
                                             </Cell>

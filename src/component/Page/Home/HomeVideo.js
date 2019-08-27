@@ -9,7 +9,7 @@ import { VideoBox, VideoGrid, VideoLi, VideoUl } from './HomeVideoStyled';
 
 import { Box } from '../../../style/flex';
 import { Cell } from '../../../style/grid';
-import { BgImageOverlay1 } from '../../../style/image';
+import { BgImageOverlay } from '../../../style/image';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
@@ -53,7 +53,7 @@ export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                                 </Box>
 
                                 <Box display="inline-flex" height="100px" verticalAlign="middle" width={2 / 5}>
-                                    <BgImageOverlay1 url={video.thumbnail && video.thumbnail.url} />
+                                    <BgImageOverlay url={video.thumbnail && video.thumbnail.url} />
                                 </Box>
                             </VideoLi>
                         );

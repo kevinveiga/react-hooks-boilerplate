@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { grid, layout, space } from 'styled-system';
 
 import { animationFadeIn, animationFadeOut } from '../../style/animation';
-import { BgImageOverlay3 } from '../../style/image';
+import { BgImageOverlay } from '../../style/image';
 import { variable } from '../../style/variable';
 
 export const BannerCell = styled.div`
@@ -16,7 +16,7 @@ export const BannerCell = styled.div`
         hover &&
         css`
             &:hover {
-                ${BgImageOverlay3} {
+                ${BgImageOverlay} {
                     filter: grayscale(0%);
                     transform: scale(1.03);
 

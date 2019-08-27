@@ -32,7 +32,7 @@ import { Author, DateTime, Tag, Title } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay1, BgImageOverlay3 } from '../../../style/image';
+import { BgImageOverlay } from '../../../style/image';
 import { Background, Container, Main } from '../../../style/layout';
 import { Span, Title2, Title4, Title5 } from '../../../style/text';
 // import { variable } from '../../../style/variable';
@@ -103,7 +103,7 @@ export const Home = ({ location }) => {
                                     <BannerCell display="flex" gridRow={1} hover="true" key={item.id}>
                                         <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                             <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                <BgImageOverlay3 grayscale="true" url={item.thumbnail.attachment.url} />
+                                                <BgImageOverlay color="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
 
                                                 <Box>
                                                     <Tag>{item.category.title}</Tag>
@@ -146,7 +146,7 @@ export const Home = ({ location }) => {
                                                         <BannerCell display="flex" gridRow={row} hover="true" key={item.id}>
                                                             <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                                                 <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                                    <BgImageOverlay3 grayscale="true" url={item.thumbnail.attachment.url} />
+                                                                    <BgImageOverlay color="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
 
                                                                     <Box>
                                                                         <Tag>{item.category.title}</Tag>
@@ -179,7 +179,7 @@ export const Home = ({ location }) => {
                                                 <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} pb={3}>
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                         <Box height="300px" mb={4} overflow="hidden" width="100%">
-                                                            <BgImageOverlay1 url={noticia.thumbnail.attachment.url} />
+                                                            <BgImageOverlay url={noticia.thumbnail.attachment.url} />
                                                         </Box>
 
                                                         <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
@@ -207,7 +207,7 @@ export const Home = ({ location }) => {
                                                         </NoticiaBox>
 
                                                         <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
-                                                            <BgImageOverlay1 url={noticia.thumbnail.attachment.url} />
+                                                            <BgImageOverlay url={noticia.thumbnail.attachment.url} />
                                                         </Box>
                                                     </LinkTo>
                                                 </Cell>
