@@ -103,7 +103,7 @@ export const Home = ({ location }) => {
                                     <BannerCell display="flex" gridRow={1} hover="true" key={item.id}>
                                         <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                             <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                <BgImageOverlay color="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
+                                                <BgImageOverlay overlayColor="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
 
                                                 <Box>
                                                     <Tag>{item.category.title}</Tag>
@@ -146,7 +146,7 @@ export const Home = ({ location }) => {
                                                         <BannerCell display="flex" gridRow={row} hover="true" key={item.id}>
                                                             <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                                                 <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                                    <BgImageOverlay color="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
+                                                                    <BgImageOverlay overlayColor="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
 
                                                                     <Box>
                                                                         <Tag>{item.category.title}</Tag>

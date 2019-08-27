@@ -15,7 +15,7 @@ export const Image = styled.img.attrs(({ text, url }) => ({
 
 export const BgImage = styled.div`
     ${({ attachment }) => attachment && `background-attachment: ${attachment}`};
-    background-color: ${({ color }) => color || 'transparent'};
+    background-color: ${({ bgColor }) => variable[bgColor] || 'transparent'};
     ${({ url }) => url && `background-image: url('${url}')`};
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -40,7 +40,7 @@ export const BgImageOverlay = styled(BgImage)`
     transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
 
     &::after {
-        background-color: ${({ color }) => (color ? variable[color] : variable.colorBlackTransparent1)};
+        background-color: ${({ overlayColor }) => (overlayColor ? variable[overlayColor] : variable.colorBlackTransparent1)};
         content: ' ';
         display: block;
         height: 100%;
@@ -62,7 +62,7 @@ export const BgImageOverlay = styled(BgImage)`
 export const BgImageOverlayTopBottom = styled(BgImageOverlay)`
     &::after {
         background-color: transparent;
-        background-image: linear-gradient(180deg, ${({ colorTop }) => (colorTop ? variable[colorTop] : variable.colorBlackTransparent5)} 0%, ${({ colorBottom }) => (colorBottom ? variable[colorBottom] : variable.colorBlackTransparent1)} 100%);
+        background-image: linear-gradient(180deg, ${({ overlayColorTop }) => (overlayColorTop ? variable[overlayColorTop] : variable.colorBlackTransparent5)} 0%, ${({ overlayColorBottom }) => (overlayColorBottom ? variable[overlayColorBottom] : variable.colorBlackTransparent1)} 100%);
         background-repeat: repeat-x;
     }
 `;
