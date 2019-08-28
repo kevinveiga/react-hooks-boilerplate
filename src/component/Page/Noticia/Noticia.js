@@ -48,8 +48,9 @@ export const Noticia = ({ match }) => {
                 <meta property="og:author" content={noticia.data && noticia.data.author} />
                 <meta property="og:description" content={noticia.data && noticia.data.seo && noticia.data.seo.description} />
                 <meta property="og:image" content={noticia.data && noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} />
+                <meta property="og:locale" content="pt_BR" />
                 <meta property="og:title" content={noticia.data && noticia.data.title} />
-                <meta property="og:type" content="website" />
+                <meta property="og:type" content="article" />
                 <meta property="og:url" content={window.location.href} />
             </Helmet>
 
