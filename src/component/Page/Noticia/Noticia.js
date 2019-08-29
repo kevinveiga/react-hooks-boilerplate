@@ -55,6 +55,14 @@ export const Noticia = ({ match }) => {
             </Helmet>
 
             <Main>
+                {noticia.isError == true && (
+                    <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
+                        <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark" width={{ d: 1, md: 2 / 3 }}>
+                            Notícia não encontrada
+                        </Title4>
+                    </Container>
+                )}
+
                 {noticiaLength > 0 && (
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                         <Title1 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark" width={{ d: 1, md: 2 / 3 }}>
