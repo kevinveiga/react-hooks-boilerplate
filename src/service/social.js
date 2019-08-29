@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { useEffect, useReducer, useState } from 'react';
 
-import { defaultErrorMsg } from '../config';
-
 import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
@@ -26,11 +24,11 @@ export const useSocialApi = (initialUrl, initialData) => {
                 const result = await axios.get(stateSocialUrl);
 
                 if (!didCancel) {
-                    dispatch({ ...ACTION.success(), payload: result.data || { data: [], errorMsg: defaultErrorMsg } });
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
-                    dispatch({ ...ACTION.failure(), payload: { data: [], errorMsg: error } });
+                    dispatch(ACTION.failure());
                 }
             }
         };

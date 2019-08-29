@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { useEffect, useReducer, useState } from 'react';
 
-import { defaultErrorMsg } from '../config';
-
 import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
@@ -26,11 +24,11 @@ export const useNoticiaApi = (initialUrl, initialData) => {
                 const result = await axios.get(stateNoticiaUrl);
 
                 if (!didCancel) {
-                    dispatch({ ...ACTION.success(), payload: result.data || { data: [], errorMsg: defaultErrorMsg } });
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
-                    dispatch({ ...ACTION.failure(), payload: { data: [], errorMsg: error } });
+                    dispatch(ACTION.failure());
                 }
             }
         };
@@ -66,7 +64,7 @@ export const useNoticiaCategoriaApi = (initialValue, initialData) => {
                 const isAppend = stateNoticiaCategoriaData.page > 1;
 
                 if (!didCancel) {
-                    dispatch({ ...ACTION.success(), append: isAppend, payload: result.data });
+                    dispatch(result.data ? { ...ACTION.success(), append: isAppend, payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
@@ -104,7 +102,7 @@ export const useNoticiaCategoriasApi = (initialUrl, initialData) => {
                 const result = await axios.get(stateNoticiaCategoriasUrl);
 
                 if (!didCancel) {
-                    dispatch({ ...ACTION.success(), payload: result.data });
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
