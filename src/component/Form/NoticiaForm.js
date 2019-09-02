@@ -9,15 +9,12 @@ import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
 import { Input } from './Form';
-import { BgImageLazyLoad } from '../LazyLoad/BgImageLazyLoad';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Span, Title3 } from '../../style/text';
-
-import liberdade from '../../asset/image/os-melhores-investimentos-em-sua-liberdade.webp';
 
 export const NoticiaForm = ({ ...props }) => {
     // ACTION
@@ -31,36 +28,6 @@ export const NoticiaForm = ({ ...props }) => {
 
     const onSubmit = (formData) => {
         setStateContatoData({ data: formData, url: apiUrlContato });
-
-        // const arrayOfObjects = [];
-
-        // Object.keys(formData).map((key) => {
-        //     const currentObject = formData[key];
-
-        //     const newObject = {
-        //         name: key,
-        //         value: currentObject
-        //     };
-
-        //     return arrayOfObjects.push(newObject);
-        // });
-
-        // const titleObj = {
-        //     name: 'identificador',
-        //     value: 'Solicitou contato'
-        // };
-
-        // const tokenObj = {
-        //     name: 'token_rdstation',
-        //     value: 'a2355c67a1ed194cc301e2c0edf6495e'
-        // };
-
-        // arrayOfObjects.push(titleObj);
-        // arrayOfObjects.push(tokenObj);
-
-        // RdIntegration.post(arrayOfObjects, () => {
-        //     setStateRetornoForm(true);
-        // });
     };
 
     if (stateContato.data && stateContato.data.success == true) {
@@ -70,25 +37,17 @@ export const NoticiaForm = ({ ...props }) => {
     return (
         <Flex display="flex" flexWrap="wrap">
             <Box alignContent="center" display={stateRetornoForm ? 'inline-flex' : { d: 'none', sm: 'inline-flex' }} flexWrap="wrap" minHeight={stateRetornoForm ? '60vh' : '100%'} p="75px" width={stateRetornoForm ? '100%' : 1 / 2}>
-                <BgImageLazyLoad overlayColor="colorBlackTransparent7" url={liberdade} />
-
                 {stateRetornoForm ? (
                     <>
                         <Title3 fontWeight="600" mb={4} mx="auto" textAlign="center">
-                            Você deu o primeiro passo para sua <br /> <Span color="colorGreen">liberdade</Span>
+                            Retorno
                         </Title3>
-
-                        <P mx="auto" textAlign="center" themeColor="light">
-                            Em breve um de nossos assessores de investimentos irá entrar em contato.
-                        </P>
                     </>
                 ) : (
                     <>
                         <Title3 fontWeight="600" mb={4}>
-                            A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
+                            Teste
                         </Title3>
-
-                        <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
                     </>
                 )}
             </Box>

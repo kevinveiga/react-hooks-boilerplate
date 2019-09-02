@@ -2,6 +2,8 @@ export const apiUrl = `${process.env.API_URL}/api/v1`;
 
 export const apiUrlConfiguracoes = `${process.env.API_URL}/api/v1/configuracoes`;
 
+export const apiUrlContato = `${process.env.API_URL}/api/v1/contato`;
+
 export const apiUrlHome = `${process.env.API_URL}/api/v1/home`;
 
 export const apiUrlNewsletter = `${process.env.API_URL}/api/v1/newsletter`;
