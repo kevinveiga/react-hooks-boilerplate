@@ -18,7 +18,7 @@ import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
 
 export const App = () => {
-    const [stateSocial] = useSocialApi(`${apiUrlConfiguracoes}/social`, {});
+    const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`, {});
 
     return (
         <ThemeProvider theme={theme}>

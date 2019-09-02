@@ -39,12 +39,12 @@ import { Span, Title2, Title4, Title5 } from '../../../style/text';
 
 export const Home = ({ location }) => {
     // API
-    // const [stateDestaques] = useDestaqueApi(`${apiUrlHome}/destaques`, {});
+    // const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`, {});
     // const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
-    // const [stateParceiros] = useParceiroApi(`${apiUrlHome}/parceiros`, {});
-    // const [stateSeo] = useSeoApi(`${apiUrlHome}/seo`, {});
-    // const [stateSuperDestaques] = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
-    // const [stateVideos] = useVideoApi(`${apiUrlHome}/videos`, {});
+    // const stateParceiros = useParceiroApi(`${apiUrlHome}/parceiros`, {});
+    // const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
+    // const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
+    // const stateVideos = useVideoApi(`${apiUrlHome}/videos`, {});
 
     // const destaquesLength = stateDestaques.data.length;
     // const noticiasLength = stateNoticias.data.length;

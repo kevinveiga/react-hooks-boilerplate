@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useBannerApi = (initialUrl, initialData) => {
-    const [stateBannerUrl, setStateBannerUrl] = useState(initialUrl);
+    const [stateBannerUrl] = useState(initialUrl);
 
     const [stateBanner, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -40,5 +40,5 @@ export const useBannerApi = (initialUrl, initialData) => {
         };
     }, [stateBannerUrl]);
 
-    return [stateBanner, setStateBannerUrl];
+    return stateBanner;
 };

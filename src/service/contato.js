@@ -5,10 +5,10 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useVideoApi = (initialUrl, initialData) => {
-    const [stateVideoUrl] = useState(initialUrl);
+export const useContatoApi = (initialUrl, initialData) => {
+    const [stateContatoData, setStateContatoData] = useState(initialUrl);
 
-    const [stateVideo, dispatch] = useReducer(dataFetchReducer, {
+    const [stateContato, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
@@ -21,7 +21,7 @@ export const useVideoApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(stateVideoUrl);
+                const result = await axios.post(stateContatoData.url, stateContatoData.data, { headers: { 'Content-Type': 'application/json' } });
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
@@ -38,7 +38,7 @@ export const useVideoApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [stateVideoUrl]);
+    }, [stateContatoData]);
 
-    return stateVideo;
+    return [stateContato, setStateContatoData];
 };

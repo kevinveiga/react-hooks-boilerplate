@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useDestaqueApi = (initialUrl, initialData) => {
-    const [stateDestaqueUrl, setStateDestaqueUrl] = useState(initialUrl);
+    const [stateDestaqueUrl] = useState(initialUrl);
 
     const [stateDestaque, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -40,5 +40,5 @@ export const useDestaqueApi = (initialUrl, initialData) => {
         };
     }, [stateDestaqueUrl]);
 
-    return [stateDestaque, setStateDestaqueUrl];
+    return stateDestaque;
 };

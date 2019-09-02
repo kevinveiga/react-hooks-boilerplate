@@ -31,9 +31,9 @@ export const Noticias = () => {
     // API
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
     const [stateNoticiasCategoria, setStateNoticiaCategoriaData] = useNoticiaCategoriaApi(null, {});
-    const [stateNoticiasCategorias] = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
+    const stateNoticiasCategorias = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
     const [stateNoticiasCategoriaSelected, setNoticiasCategoriaSelected] = useState('ultimas');
-    const [stateSeo] = useSeoApi(`${apiUrlNoticias}/seo`, {});
+    const stateSeo = useSeoApi(`${apiUrlNoticias}/seo`, {});
 
     const noticiasLength = stateNoticias.data.length;
     const noticiasCategoriasLength = stateNoticiasCategorias.data.length;

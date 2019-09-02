@@ -5,10 +5,10 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useVideoApi = (initialUrl, initialData) => {
-    const [stateVideoUrl] = useState(initialUrl);
+export const useSuperDestaqueApi = (initialUrl, initialData) => {
+    const [stateSuperDestaqueUrl] = useState(initialUrl);
 
-    const [stateVideo, dispatch] = useReducer(dataFetchReducer, {
+    const [stateSuperDestaque, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
@@ -21,7 +21,7 @@ export const useVideoApi = (initialUrl, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(stateVideoUrl);
+                const result = await axios.get(stateSuperDestaqueUrl);
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
@@ -38,7 +38,7 @@ export const useVideoApi = (initialUrl, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [stateVideoUrl]);
+    }, [stateSuperDestaqueUrl]);
 
-    return stateVideo;
+    return stateSuperDestaque;
 };
