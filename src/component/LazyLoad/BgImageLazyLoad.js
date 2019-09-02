@@ -9,8 +9,6 @@ export const BgImageLazyLoad = ({ url, ...otherProps }) => {
     // ACTION
     const [stateEntry, setStateNode] = useIntersect({});
 
-    console.log('A: ', stateEntry);
-
     return (
         <>
             <BgImage size="15%" url={imagePlaceholder} zindex="-2" />
