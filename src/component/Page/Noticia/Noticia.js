@@ -9,6 +9,7 @@ import { useNoticiaApi } from '../../../service/noticia';
 
 import { scrollTo } from '../../../util/scrollTo';
 
+import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 // import { Leadwall } from '../../Leadwall/Leadwall';
 // import { LinkTo } from '../../Link/LinkTo';
 // import { NoticiaForm } from '../../Form/NoticiaForm';
@@ -20,7 +21,7 @@ import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContain
 
 import { Box, Flex } from '../../../style/flex';
 // import { Cell, Grid } from '../../../style/grid';
-import { BgImageOverlay, Image } from '../../../style/image';
+import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 
@@ -94,21 +95,7 @@ export const Noticia = ({ match }) => {
                         {/* <Leadwall change={changeLeadwall} />
 
                         <NoticiaFormContainer mb="75px">
-                            <Flex display="flex" flexWrap="wrap">
-                                <Box alignContent="center" display={{ d: 'none', sm: 'inline-flex' }} flexWrap="wrap" p="75px" width={1 / 2}>
-                                    <BgImageOverlay overlayColor="colorBlackTransparent7" url={liberdade} />
-
-                                    <Title3 fontWeight="600" mb={4}>
-                                        A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
-                                    </Title3>
-
-                                    <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
-                                </Box>
-
-                                <Box width={{ d: 1, sm: 1 / 2 }}>
-                                    <NoticiaForm color="colorGrayDark" colorLine="colorGray" colorPlaceholder="colorGray" id="noticia-contato" themeColor="dark" />
-                                </Box>
-                            </Flex>
+                            <NoticiaForm color="colorGrayDark" colorLine="colorGray" colorPlaceholder="colorGray" id="noticia-contato" themeColor="dark" />
                         </NoticiaFormContainer> */}
 
                         <NoticiaAuthor mb="75px">
@@ -153,7 +140,7 @@ export const Noticia = ({ match }) => {
                                                     </NoticiaBox>
 
                                                     <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
-                                                        <BgImageOverlay url={noticia.thumbnail.attachment.url} />
+                                                        <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail.attachment.url} />
                                                     </Box>
                                                 </LinkTo>
                                             </Cell>

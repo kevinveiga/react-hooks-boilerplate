@@ -5,11 +5,12 @@ import { useCurrentVideo } from '../../../store/video/video';
 
 import { getVideoId } from '../../../util/getVideoId';
 
+import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
+
 import { VideoBox, VideoGrid, VideoLi, VideoUl } from './HomeVideoStyled';
 
 import { Box } from '../../../style/flex';
 import { Cell } from '../../../style/grid';
-import { BgImageOverlay } from '../../../style/image';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
@@ -53,7 +54,7 @@ export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                                 </Box>
 
                                 <Box display="inline-flex" height="100px" verticalAlign="middle" width={2 / 5}>
-                                    <BgImageOverlay url={video.thumbnail && video.thumbnail.url} />
+                                    <BgImageLazyLoad key={getVideoId(video.video)} url={video.thumbnail && video.thumbnail.url} />
                                 </Box>
                             </VideoLi>
                         );
