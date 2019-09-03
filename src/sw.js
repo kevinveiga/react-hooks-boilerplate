@@ -20,7 +20,7 @@ workbox.core.clientsClaim();
 //                 statuses: [0, 200]
 //             }),
 //             new workbox.expiration.Plugin({
-//                 maxAgeSeconds: 60 * 60, // 60 minutes
+//                 maxAgeSeconds: 60 * 30, // 30 minutes
 //                 maxEntries: 30,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
@@ -29,7 +29,7 @@ workbox.core.clientsClaim();
 // );
 
 // APP
-// Items not add, all this exist in precache or in image-cache
+// Items not add, all this items exist in precache or in image-cache
 workbox.routing.registerRoute(
     new RegExp('^(?!.+\\.css$|.+\\.eot$|.+\\.gif$|.+\\.js$|.+\\.json|.+\\.jpg$|.+\\.png$|.+\\.svg$|.+\\.ttf$|.+\\.webp$|.+\\.woff$|.+\\.woff2$).*$'),
     new workbox.strategies.StaleWhileRevalidate({
@@ -52,7 +52,7 @@ workbox.routing.registerRoute(
                 statuses: [0, 200]
             }),
             new workbox.expiration.Plugin({
-                maxAgeSeconds: 60 * 60, // 60 minutes
+                maxAgeSeconds: 60 * 30, // 30 minutes
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
