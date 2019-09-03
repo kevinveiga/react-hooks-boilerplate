@@ -5,8 +5,10 @@
 workbox.setConfig({ debug: false });
 
 // Updating SW lifecycle to update the app after user triggered refresh
-workbox.core.skipWaiting();
 workbox.core.clientsClaim();
+
+// Don't use skipWaiting, inconsistent bug
+// workbox.core.skipWaiting();
 
 // API
 // workbox.routing.registerRoute(
@@ -18,7 +20,7 @@ workbox.core.clientsClaim();
 //                 statuses: [0, 200]
 //             }),
 //             new workbox.expiration.Plugin({
-//                 maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+//                 maxAgeSeconds: 60 * 60, // 60 minutes
 //                 maxEntries: 30,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
