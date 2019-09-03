@@ -17,16 +17,6 @@ export const useChangeBannerScroll = (elementId, offset = 0) => {
             return undefined;
         }
 
-        handleScroll();
-
-        return undefined;
-    }, [handleScroll]);
-
-    useLayoutEffect(() => {
-        if (isMobile) {
-            return undefined;
-        }
-
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -47,16 +37,6 @@ export const useFadeOutBannerScroll = (elementId, offset = 0) => {
 
         setStateFadeOutBannerScroll(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
     }, [elementId, offset]);
-
-    useLayoutEffect(() => {
-        if (isMobile) {
-            return undefined;
-        }
-
-        handleScroll();
-
-        return undefined;
-    }, [handleScroll]);
 
     useLayoutEffect(() => {
         if (isMobile) {

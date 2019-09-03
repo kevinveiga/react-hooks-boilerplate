@@ -57,7 +57,9 @@ export const Noticias = () => {
     };
 
     // Scroll para o topo
-    scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+    if (!stateNoticiasCategoria.data) {
+        scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+    }
 
     return (
         <>

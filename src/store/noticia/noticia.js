@@ -17,16 +17,6 @@ export const useChangeNoticiaSocialScroll = (elementId, offset = 0) => {
             return undefined;
         }
 
-        handleScroll();
-
-        return undefined;
-    }, [handleScroll]);
-
-    useLayoutEffect(() => {
-        if (isMobile) {
-            return undefined;
-        }
-
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -47,16 +37,6 @@ export const useFadeOutNoticiaSocialScroll = (elementId, offset = 0) => {
 
         setStateChangeNoticiaSocial(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
     }, [elementId, offset]);
-
-    useLayoutEffect(() => {
-        if (isMobile) {
-            return undefined;
-        }
-
-        handleScroll();
-
-        return undefined;
-    }, [handleScroll]);
 
     useLayoutEffect(() => {
         if (isMobile) {
