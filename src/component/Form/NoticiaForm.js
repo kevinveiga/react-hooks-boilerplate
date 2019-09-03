@@ -22,13 +22,17 @@ export const NoticiaForm = ({ ...props }) => {
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     // FORM
-    const { errors, formState, handleSubmit, register } = useForm({
+    const { errors, formState, handleSubmit, register, setError } = useForm({
         mode: 'onChange'
     });
 
     const onSubmit = (formData) => {
         setStateContatoData({ data: formData, url: apiUrlContato });
     };
+
+    if (stateContato.data && stateContato.data.success == false) {
+        setError('invalid', 'notMatch', stateContato.data.reason[0]);
+    }
 
     if (stateContato.data && stateContato.data.success == true) {
         setStateRetornoForm(true);
