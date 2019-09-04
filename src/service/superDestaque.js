@@ -15,6 +15,10 @@ export const useSuperDestaqueApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateSuperDestaqueUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

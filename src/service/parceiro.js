@@ -15,6 +15,10 @@ export const useParceiroApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateParceiroUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

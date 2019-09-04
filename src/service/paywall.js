@@ -15,6 +15,10 @@ export const usePaywallApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!statePaywallData) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

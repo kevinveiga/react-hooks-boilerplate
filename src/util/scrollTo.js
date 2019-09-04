@@ -10,6 +10,8 @@ const fnScroll = (ancor) => {
     } catch (error) {
         window.scrollTo(0, ancor);
     }
+
+    return null;
 };
 
 export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {

@@ -15,6 +15,10 @@ export const useNoticiaApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateNoticiaUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

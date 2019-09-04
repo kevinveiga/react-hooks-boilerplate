@@ -15,6 +15,10 @@ export const useBannerApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateBannerUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

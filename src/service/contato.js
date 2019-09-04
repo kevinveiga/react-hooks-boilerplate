@@ -15,6 +15,10 @@ export const useContatoApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateContatoData) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

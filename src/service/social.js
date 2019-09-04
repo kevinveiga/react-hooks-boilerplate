@@ -15,6 +15,10 @@ export const useSocialApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateSocialUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

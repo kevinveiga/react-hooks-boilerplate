@@ -15,6 +15,10 @@ export const useSeoApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateSeoUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

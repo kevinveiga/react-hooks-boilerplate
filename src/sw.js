@@ -12,7 +12,7 @@ workbox.core.clientsClaim();
 
 // API
 // workbox.routing.registerRoute(
-//     new RegExp('^.+/api/v1/.+$'),
+//     new RegExp('.+/api/v1/.+$'),
 //     new workbox.strategies.StaleWhileRevalidate({
 //         cacheName: 'api-cache',
 //         plugins: [
@@ -21,7 +21,7 @@ workbox.core.clientsClaim();
 //             }),
 //             new workbox.expiration.Plugin({
 //                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-//                 maxEntries: 15,
+//                 maxEntries: 30,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
 //         ]
@@ -29,9 +29,9 @@ workbox.core.clientsClaim();
 // );
 
 // APP
-// Items not add, all this items exist in precache or in image-cache
+// Not add items in precache or in image-cache
 workbox.routing.registerRoute(
-    new RegExp('^(?!.+\\.css$|.+\\.eot$|.+\\.gif$|.+\\.js$|.+\\.json|.+\\.jpg$|.+\\.png$|.+\\.svg$|.+\\.ttf$|.+\\.webp$|.+\\.woff$|.+\\.woff2$).*$'),
+    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|png|svg|ttf|webp|woff|woff2)).*$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'app-cache',
         plugins: [
@@ -44,7 +44,7 @@ workbox.routing.registerRoute(
 
 // IMG
 workbox.routing.registerRoute(
-    new RegExp('\\.(?:gif|jpg|png|svg|webp)$'),
+    new RegExp('\\/(?:.+(gif|jpg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
         plugins: [
@@ -53,7 +53,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 15,
+                maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
@@ -62,7 +62,7 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('^.+\\.(?:gif|jpg|png|svg|webp)$'),
+    new RegExp('.+\\.(?:.+(gif|jpg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cross-cache',
         plugins: [
@@ -71,7 +71,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 15,
+                maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
@@ -92,7 +92,7 @@ workbox.routing.registerRoute(
 //             }),
 //             new workbox.expiration.Plugin({
 //                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-//                 maxEntries: 15,
+//                 maxEntries: 30,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
 //         ]

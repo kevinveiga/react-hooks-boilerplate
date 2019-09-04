@@ -15,6 +15,10 @@ export const useDestaqueApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateDestaqueUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {

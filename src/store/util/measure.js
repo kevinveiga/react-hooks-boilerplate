@@ -25,39 +25,39 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
     }, []);
 
     useLayoutEffect(() => {
+        if (!stateNode) {
+            return undefined;
+        }
+
         if (isMobile) {
             return undefined;
         }
 
-        if (stateNode) {
-            const dimensions = () => {
-                window.requestAnimationFrame(() => {
-                    setStateMeasure(getDimensionObject(stateNode));
-                });
-            };
+        const dimensions = () => {
+            window.requestAnimationFrame(() => {
+                setStateMeasure(getDimensionObject(stateNode));
+            });
+        };
 
-            dimensions();
+        dimensions();
 
+        if (liveResize) {
+            window.addEventListener('resize', dimensions);
+        }
+
+        if (liveScroll) {
+            window.addEventListener('scroll', dimensions);
+        }
+
+        return () => {
             if (liveResize) {
-                window.addEventListener('resize', dimensions);
+                window.removeEventListener('resize', dimensions);
             }
 
             if (liveScroll) {
-                window.addEventListener('scroll', dimensions);
+                window.removeEventListener('scroll', dimensions);
             }
-
-            return () => {
-                if (liveResize) {
-                    window.removeEventListener('resize', dimensions);
-                }
-
-                if (liveScroll) {
-                    window.removeEventListener('scroll', dimensions);
-                }
-            };
-        }
-
-        return undefined;
+        };
     }, [liveResize, liveScroll, stateNode, ref]);
 
     return [ref, stateMeasure, stateNode];

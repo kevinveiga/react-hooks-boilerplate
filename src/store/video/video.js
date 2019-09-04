@@ -4,18 +4,20 @@ export const useCurrentVideo = (elementId, offset) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useState(null);
 
     useEffect(() => {
-        if (stateCurrentVideo) {
-            const ancor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+        if (!stateCurrentVideo) {
+            return undefined;
+        }
 
-            try {
-                window.scroll({
-                    behavior: 'smooth',
-                    left: 0,
-                    top: ancor
-                });
-            } catch (error) {
-                window.scrollTo(0, ancor);
-            }
+        const ancor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+
+        try {
+            window.scroll({
+                behavior: 'smooth',
+                left: 0,
+                top: ancor
+            });
+        } catch (error) {
+            window.scrollTo(0, ancor);
         }
 
         return undefined;

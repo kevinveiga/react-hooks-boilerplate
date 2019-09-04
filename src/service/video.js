@@ -15,6 +15,10 @@ export const useVideoApi = (initialUrl, initialData) => {
     });
 
     useEffect(() => {
+        if (!stateVideoUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {
