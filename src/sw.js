@@ -29,7 +29,7 @@ workbox.core.clientsClaim();
 // );
 
 // APP
-// Not add items in precache or in image-cache
+// Add same origin, except in precache, image-cache or image-cross-origin
 workbox.routing.registerRoute(
     new RegExp('\\/(?!.+(css|eot|gif|js|jpg|png|svg|ttf|webp|woff|woff2)).*$'),
     new workbox.strategies.StaleWhileRevalidate({
@@ -42,9 +42,10 @@ workbox.routing.registerRoute(
     })
 );
 
-// IMG
+// IMG SAME-ORIGIN
+// Add same origin, except in asset/image folder or cross-origin app/uploads folder
 workbox.routing.registerRoute(
-    new RegExp('\\/(?:.+(gif|jpg|png|svg|webp))$'),
+    new RegExp('^(?!.+(/app/uploads|/asset/image))(?:.+(gif|jpg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
         plugins: [
