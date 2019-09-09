@@ -10,26 +10,6 @@ export const letterSpacing = (value = '0', align = '') => {
     `;
 };
 
-export const placeholder = (content) => {
-    return css`
-        /* Firefox */
-        &::-moz-placeholder {
-            ${content};
-            opacity: 1;
-        }
-
-        /* Safari and Chrome */
-        &::-webkit-input-placeholder {
-            ${content};
-        }
-
-        /* Internet Explorer 10+ */
-        &:-ms-input-placeholder {
-            ${content};
-        }
-    `;
-};
-
 export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary = variable.colorSecondary, scrollbarSize = '8px') => {
     return css`
         &::-webkit-scrollbar {
@@ -45,7 +25,6 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
         &::-webkit-scrollbar-corner {
             background-color: ${colorSecondary};
         }
-
         &::-webkit-resizer {
             background-color: ${colorSecondary};
         }

@@ -95,7 +95,7 @@ export const Noticia = ({ match }) => {
                         {/* <Leadwall change={changeLeadwall} />
 
                         <NoticiaFormContainer mb="75px">
-                            <NoticiaForm color="colorGrayDark" colorLine="colorGray" colorPlaceholder="colorGray" id="noticia-contato" themeColor="dark" />
+                            <NoticiaForm />
                         </NoticiaFormContainer> */}
 
                         <NoticiaAuthor mb="75px">

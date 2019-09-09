@@ -2,6 +2,7 @@ import React from 'react';
 
 import { SvgArrowStyled } from './SvgArrowStyled';
 import { SvgShareStyled } from './SvgShareStyled';
+import { SvgValidationStyled } from './SvgValidationStyled';
 
 export const SvgArrowLeft = ({ ...props }) => {
     return (
@@ -35,6 +36,14 @@ export const SvgInstagram = ({ ...props }) => {
     );
 };
 
+export const SvgInvalid = ({ ...props }) => {
+    return (
+        <SvgValidationStyled {...props} version={1} viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.2.5a.7.7 0 0 0-.5 1.3l6.8 6.7-6.8 6.7a.7.7 0 0 0 .5 1.3.7.7 0 0 0 .5-.3l6.8-6.7 6.7 6.7a.7.7 0 0 0 .5.3.7.7 0 0 0 .5-1.3L9.5 8.5l6.7-6.7a.7.7 0 1 0-1-1L8.5 7.4 1.7.7a.7.7 0 0 0-.5-.2z" />
+        </SvgValidationStyled>
+    );
+};
+
 export const SvgLinkedin = ({ ...props }) => {
     return (
         <SvgShareStyled {...props} version={1} viewBox="0 0 430.1 411" xmlns="http://www.w3.org/2000/svg">
@@ -48,5 +57,13 @@ export const SvgSearch = ({ ...props }) => {
         <svg {...props} version={1} viewBox="0 0 17.5 17.5" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.3 0a6.5 6.5 0 0 0 .2 13 6.3 6.3 0 0 0 4.2-1.6l.3.3v.8l5 5 1.5-1.5-5-5h-.8l-.3-.3A6.3 6.3 0 0 0 13 6.5 6.5 6.5 0 0 0 6.3 0zm0 2A4.5 4.5 0 0 1 11 6.5 4.5 4.5 0 0 1 6.5 11a4.5 4.5 0 0 1-.2-9z" />
         </svg>
+    );
+};
+
+export const SvgValid = ({ ...props }) => {
+    return (
+        <SvgValidationStyled {...props} version={1} viewBox="0 0 23.8 16.9" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.2.5a1 1 0 0 0-.6.3l-13.1 13-6.2-6.1A1 1 0 0 0 .8 9.2l7 6.9a1 1 0 0 0 .7.3 1 1 0 0 0 .7-.3L23.1 2.2a1 1 0 0 0-.9-1.7z" />
+        </SvgValidationStyled>
     );
 };

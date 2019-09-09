@@ -37,6 +37,7 @@ export const BgImage = styled.div`
 `;
 
 export const BgImageOverlay = styled(BgImage)`
+    ${({ grayscale }) => grayscale && `filter: grayscale(100%)`};
     transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
 
     &::after {
@@ -51,12 +52,6 @@ export const BgImageOverlay = styled(BgImage)`
         width: 100%;
         z-index: 2;
     }
-
-    ${({ grayscale }) =>
-        grayscale &&
-        css`
-            filter: grayscale(100%);
-        `};
 `;
 
 export const BgImageOverlayTopBottom = styled(BgImageOverlay)`

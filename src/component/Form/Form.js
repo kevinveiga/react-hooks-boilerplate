@@ -1,22 +1,43 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
+
+import { InputMaskValidationStyled, InputValidationStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
-export const Input = forwardRef(({ classNameInput = 'custom-input', classNameValidate = 'icon-right', error = '', touched, typeInput = 'text', value = '', ...otherProps }, ref) => {
+export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
+    return <input autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
+};
+
+export const InputValidation = ({ error = '', side, touched, typeInput = 'text', value = '', ...otherProps }) => {
+    const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;
+
     return (
         <>
-            <input autoComplete="off" className={`${classNameInput} ${error ? 'invalid' : `${touched.find((item) => item === otherProps.name) ? 'valid' : ''}`}`} defaultValue={value} ref={ref} type={typeInput} {...otherProps} />
+            <InputValidationStyled autoComplete="off" defaultValue={value} invalid={error} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
 
-            <Svg className={`${classNameValidate} ${error ? 'svg-invalid' : 'svg-valid'}`} name={error ? 'svg-invalid' : 'svg-valid'} />
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched.indexOf(otherProps.name) > -1} />
         </>
     );
-});
+};
 
-export const Label = ({ children, classNameInput = 'custom-label', forLabel, textLabel, ...otherProps }) => {
-    const content = children || textLabel;
+export const InputMaskValidation = ({ error = '', mask = null, touched, typeInput = 'text', value = '', ...otherProps }) => {
+    const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;
 
     return (
-        <label className={classNameInput} htmlFor={forLabel} {...otherProps}>
+        <>
+            <InputMaskValidationStyled autoComplete="off" defaultValue={value} invalid={error} mask={mask} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
+
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched.indexOf(otherProps.name) > -1} />
+        </>
+    );
+};
+
+export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) => {
+    const acessibility = ariaLabel || text;
+    const content = children || text;
+
+    return (
+        <label aria-label={acessibility} htmlFor={forLabel} {...otherProps}>
             {content}
         </label>
     );
