@@ -32,16 +32,19 @@ const input = css`
     }
 `;
 
-export const InputValidationStyled = styled.input`
-    ${input};
+const validationType = css`
     ${({ obj, invalid }) => invalid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorAlert}` : `border-color: ${variable.colorAlert}`)};
     ${({ obj, valid }) => valid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover}` : `border-color: ${variable.colorPrimaryHover}`)};
 `;
 
+export const InputValidationStyled = styled.input`
+    ${input};
+    ${validationType};
+`;
+
 export const InputMaskValidationStyled = styled(IMaskInput)`
     ${input};
-    ${({ obj, invalid }) => invalid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorAlert}` : `border-color: ${variable.colorAlert}`)};
-    ${({ obj, valid }) => valid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover}` : `border-color: ${variable.colorPrimaryHover}`)};
+    ${validationType};
 `;
 
 export const InvalidInputMessage = styled.span`

@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
 import { apiUrlContato } from '../../config';
 
 import { useContatoApi } from '../../service/contato';
 
+import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { Input } from './Form';
+import { InputMaskValidation, InputValidation } from './Form';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
@@ -22,7 +23,7 @@ export const NoticiaForm = ({ ...props }) => {
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError } = useForm({
+    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
         mode: 'onChange'
     });
 
@@ -37,6 +38,12 @@ export const NoticiaForm = ({ ...props }) => {
     if (stateContato.data && stateContato.data.success == true) {
         setStateRetornoForm(true);
     }
+
+    useEffect(() => {
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+        register({ name: 'email' }, { ...customValidate.email });
+        register({ name: 'telefone' }, { ...customValidate.phone });
+    }, [register]);
 
     return (
         <Flex display="flex" flexWrap="wrap">
@@ -69,17 +76,50 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3} width="100%">
-                            <Input error={errors.nome} maxLength="50" name="nome" placeholder="Nome" ref={register({ ...customValidate.name, ...customValidate.require })} touched={formState.touched} />
+                            <InputValidation
+                                error={errors.nome}
+                                maxLength="50"
+                                name="nome"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="Nome"
+                                touched={formState.touched}
+                                {...props}
+                            />
                             {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
-                            <Input error={errors.email} maxLength="50" name="email" placeholder="E-mail" ref={register(customValidate.email)} touched={formState.touched} />
+                            <InputValidation
+                                error={errors.email}
+                                maxLength="50"
+                                name="email"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="E-mail"
+                                touched={formState.touched}
+                                {...props}
+                            />
                             {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell mb={5} width="100%">
-                            <Input error={errors.telefone} maxLength="50" name="telefone" placeholder="Telefone" ref={register(customValidate.phone)} touched={formState.touched} />
+                            <InputMaskValidation
+                                error={errors.telefone}
+                                mask={customMaskRegex.phone}
+                                name="telefone"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="Telefone"
+                                touched={formState.touched}
+                                {...props}
+                            />
                             {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
                         </Cell>
 

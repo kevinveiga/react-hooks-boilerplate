@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useForm from 'react-hook-form';
 
 import { apiUrlNewsletter } from '../../config';
@@ -8,7 +8,7 @@ import { useNewsletterApi } from '../../service/newsletter';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { Input } from './Form';
+import { InputValidation } from './Form';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
@@ -20,7 +20,7 @@ export const NewsletterForm = ({ ...props }) => {
     const [stateNewsletter, setStateNewsletterData] = useNewsletterApi(null, {});
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError } = useForm({
+    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
         mode: 'onChange'
     });
 
@@ -31,6 +31,11 @@ export const NewsletterForm = ({ ...props }) => {
     if (stateNewsletter.data && stateNewsletter.data.success == false) {
         setError('invalid', 'notMatch', stateNewsletter.data.reason[0]);
     }
+
+    useEffect(() => {
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+        register({ name: 'email' }, { ...customValidate.email });
+    }, [register]);
 
     return stateNewsletter.data && stateNewsletter.data.success == true ? (
         <div>
@@ -50,12 +55,34 @@ export const NewsletterForm = ({ ...props }) => {
                 {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 
                 <Cell mb={3}>
-                    <Input error={errors.nome} maxLength="50" name="nome" placeholder="Nome" ref={register(customValidate.name)} touched={formState.touched} />
+                    <InputValidation
+                        error={errors.nome}
+                        maxLength="50"
+                        name="nome"
+                        onChange={async (e) => {
+                            const input = e.target;
+                            await triggerValidation({ name: input.name, value: input.value });
+                        }}
+                        placeholder="Nome"
+                        touched={formState.touched}
+                        {...props}
+                    />
                     {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
                 </Cell>
 
                 <Cell mb={3}>
-                    <Input error={errors.email} maxLength="50" name="email" placeholder="E-mail" ref={register(customValidate.email)} touched={formState.touched} />
+                    <InputValidation
+                        error={errors.email}
+                        maxLength="50"
+                        name="email"
+                        onChange={async (e) => {
+                            const input = e.target;
+                            await triggerValidation({ name: input.name, value: input.value });
+                        }}
+                        placeholder="E-mail"
+                        touched={formState.touched}
+                        {...props}
+                    />
                     {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
                 </Cell>
 

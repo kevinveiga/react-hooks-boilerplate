@@ -8,7 +8,7 @@ export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
     return <input autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
 };
 
-export const InputValidation = ({ error = '', side, touched, typeInput = 'text', value = '', ...otherProps }) => {
+export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...otherProps }) => {
     const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;
 
     return (
