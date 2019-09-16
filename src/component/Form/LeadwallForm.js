@@ -1,9 +1,8 @@
+import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import useForm from 'react-hook-form';
 
 import { apiUrlPaywall } from '../../config';
-
-import { usePaywallApi } from '../../service/paywall';
 
 import { NoticiaContext } from '../../store/noticia/noticiaContext';
 
@@ -17,30 +16,37 @@ import { FormStyled } from './FormStyled';
 import { Grid, Cell } from '../../style/grid';
 
 export const LeadwallForm = ({ ...props }) => {
-    // API
-    const [statePaywall, setStatePaywallData] = usePaywallApi(null, {});
+    // ACTION
+    useEffect(() => {
+        register({ name: 'email' }, { ...customValidate.email });
+    }, [register]);
 
     // CONTEXT
     const [setChangeLeadwall] = useContext(NoticiaContext);
 
     // FORM
-    const { errors, formState, handleSubmit, register, triggerValidation } = useForm({
+    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
         mode: 'onChange'
     });
 
     const onSubmit = (formData) => {
-        setStatePaywallData({ data: formData, url: apiUrlPaywall });
+        const fetchData = async () => {
+            try {
+                const result = await axios.post(apiUrlPaywall, formData, { headers: { 'Content-Type': 'application/json' } });
+
+                if (result && result.success == false) {
+                    setError('invalid', 'notMatch', result.reason[0]);
+                } else {
+                    window.localStorage.setItem('leadwall', 'true');
+                    setChangeLeadwall(true);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
     };
-
-    // ACTION
-    if (statePaywall.data && statePaywall.data.success == true && statePaywall.isError == false) {
-        window.localStorage.setItem('leadwall', 'true');
-        setChangeLeadwall(true);
-    }
-
-    useEffect(() => {
-        register({ name: 'email' }, { ...customValidate.email });
-    }, [register]);
 
     return (
         <FormStyled onSubmit={handleSubmit(onSubmit)} {...props}>

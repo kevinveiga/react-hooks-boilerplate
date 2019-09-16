@@ -1,9 +1,8 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
 import { apiUrlContato } from '../../config';
-
-import { useContatoApi } from '../../service/contato';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -19,8 +18,13 @@ import { P, Span, Title3 } from '../../style/text';
 
 export const NoticiaForm = ({ ...props }) => {
     // ACTION
-    const [stateContato, setStateContatoData] = useContatoApi(null, {});
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
+
+    useEffect(() => {
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+        register({ name: 'email' }, { ...customValidate.email });
+        register({ name: 'telefone' }, { ...customValidate.phone });
+    }, [register]);
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
@@ -28,22 +32,22 @@ export const NoticiaForm = ({ ...props }) => {
     });
 
     const onSubmit = (formData) => {
-        setStateContatoData({ data: formData, url: apiUrlContato });
+        const fetchData = async () => {
+            try {
+                const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
+
+                if (result && result.success == false) {
+                    setError('invalid', 'notMatch', result.reason[0]);
+                } else {
+                    setStateRetornoForm(true);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
     };
-
-    if (stateContato.data && stateContato.data.success == false) {
-        setError('invalid', 'notMatch', stateContato.data.reason[0]);
-    }
-
-    if (stateContato.data && stateContato.data.success == true) {
-        setStateRetornoForm(true);
-    }
-
-    useEffect(() => {
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
-        register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'telefone' }, { ...customValidate.phone });
-    }, [register]);
 
     return (
         <Flex display="flex" flexWrap="wrap">
