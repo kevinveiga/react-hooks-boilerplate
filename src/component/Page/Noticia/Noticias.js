@@ -254,7 +254,7 @@ export const Noticias = () => {
                                     );
                                 })}
 
-                            {/* <NoticiasBannerRight display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={stateNoticiasCategoriaSelected} width="20%">
+                            {/* <NoticiasBannerRight display={{ d: 'none', sm: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!stateNoticiasCategoria.isLoading && stateNoticiasCategoriaSelected !== 'ultimas'} width="20%">
                                 <BannerRight boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'noticias-tabs-content', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
                             </NoticiasBannerRight> */}
                         </ul>

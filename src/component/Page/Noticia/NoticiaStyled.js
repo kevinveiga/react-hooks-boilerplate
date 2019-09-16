@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { layout, position, space } from 'styled-system';
 
+import { animationFadeInTab, animationFadeOutTab } from '../../../style/animation';
 import { variable } from '../../../style/variable';
 
 export const NoticiaContainer = css`
@@ -168,5 +169,14 @@ export const NoticiasBannerRight = styled.div`
     ${layout};
     ${position};
     ${space};
-    visibility: ${({ visible }) => (visible === 'ultimas' ? 'hidden' : 'visible')};
+    z-index: -1;
+
+    ${({ visible }) =>
+        visible
+            ? css`
+                  animation: ${animationFadeInTab()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
+              `
+            : css`
+                  animation: ${animationFadeOutTab()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
+              `};
 `;
