@@ -14,7 +14,7 @@ import { Cell } from '../../../style/grid';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
-export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
+const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     // ACTION
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
@@ -64,3 +64,5 @@ export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
         </VideoGrid>
     );
 };
+
+export default HomeVideo;

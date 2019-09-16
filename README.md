@@ -81,6 +81,11 @@
 
 -   [React Helmet](https://open.nytimes.com/the-future-of-meta-tag-management-for-modern-react-development-ec26a7dc9183);
 
+#### Referências para Lazy and Suspense:
+
+-   [React Lazy and Suspense](https://imasters.com.br/front-end/code-splitting-e-lazy-loading-no-react);
+    Neste exempĺo é usado no React Router, mas no projeto não foi utilizado para não prejudicar no SEO, por tanto, utilize Lazy and Suspense somente em componentes que realmente podem ser carregados depois;
+
 #### Referências para Styled Component:
 
 -   [Styled-Components](https://www.styled-components.com/);

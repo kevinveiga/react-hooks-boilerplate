@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 // import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 // import Slider from 'react-slick';
@@ -19,7 +19,6 @@ import { Helmet } from 'react-helmet-async';
 
 // import { BannerRight } from '../../Banner/BannerRight';
 // import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
-// import { HomeVideo } from './HomeVideo';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 // import { LinkToExternal } from '../../Link/LinkToExternal';
@@ -36,6 +35,9 @@ import { Cell, Grid } from '../../../style/grid';
 import { Background, Container, Main } from '../../../style/layout';
 import { Span, Title2, Title4, Title5 } from '../../../style/text';
 // import { variable } from '../../../style/variable';
+
+// LAZY
+// const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
     // API
@@ -269,7 +271,9 @@ export const Home = ({ location }) => {
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                             <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                            <HomeVideo ancor={{ elementId: '#home-video-container', offset: isMobile ? 0 : 80 }} objectVideos={stateVideos} />
+                            <Suspense fallback={<Title5 themeColor="light">Carregando...</Title5>}>
+                                <HomeVideo ancor={{ elementId: '#home-video-container', offset: isMobile ? 0 : 80 }} objectVideos={stateVideos} />
+                            </Suspense>
 
                             <Box textAlign="center">
                                 <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
