@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
@@ -7,6 +7,7 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
+import { Context } from '../../../store/context';
 // import { useMeasure } from '../../../store/util/measure';
 
 import { scrollTo } from '../../../util/scrollTo';
@@ -59,6 +60,15 @@ export const Noticias = () => {
     // Scroll para o topo
     if (!stateNoticiasCategoria.data) {
         scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+    }
+
+    // CONTEXT
+    const { setStateLoaderGlobal } = useContext(Context);
+
+    if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
+        setStateLoaderGlobal(true);
+    } else {
+        setStateLoaderGlobal(false);
     }
 
     return (

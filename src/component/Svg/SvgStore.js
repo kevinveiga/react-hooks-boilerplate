@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SvgArrowStyled } from './SvgArrowStyled';
+import { SvgLogoLoaderStyled } from './SvgLogoLoaderStyled';
 import { SvgShareStyled } from './SvgShareStyled';
 import { SvgValidationStyled } from './SvgValidationStyled';
 
@@ -49,6 +50,58 @@ export const SvgLinkedin = ({ ...props }) => {
         <SvgShareStyled {...props} version={1} viewBox="0 0 430.1 411" xmlns="http://www.w3.org/2000/svg">
             <path d="M52.2 0C20.6 0 0 20.7 0 47.9c0 26.6 20 48 51 48h.6c32.1 0 52.1-21.4 52.1-48C103.1 20.7 83.7 0 52.2 0zM324 127.2c-49 0-70.9 27-83.1 45.8v.9h-.6l.6-1v-39.2h-92.3c1.3 26 0 277.3 0 277.3H241V256.1a63 63 0 0 1 3-22.4c6.7-16.6 21.9-33.8 47.3-33.8 33.4 0 46.7 25.5 46.7 62.7V411h92.2V252c0-85.2-45.5-124.8-106.1-124.8zM5.5 133.7V411h92.2V133.7H5.5z" />
         </SvgShareStyled>
+    );
+};
+
+export const SvgLogoLoader = ({ ...props }) => {
+    return (
+        <SvgLogoLoaderStyled {...props} version={1} viewBox="0 0 93.2 124" xmlns="http://www.w3.org/2000/svg">
+            <mask id="logo-loader-part-mask-content" mask-type="luminance" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+                <path d="M46.5 0C26.1.2 5.5 11 0 36.8h17.9A30.5 30.5 0 0 1 46.6 16a33.8 33.8 0 0 1 12.1 2.5c4.3 1.8 8.3 2 12.5-2.2l5.4-6.6a48.7 48.7 0 0 0-30-9.8z" id="logo-loader-part-1">
+                    <animate attributeName="opacity" attributeType="CSS" begin="250ms" dur="1650ms" id="opacity-1" keyTimes="0; 0.3; 0.5; 0.7; 1" repeatCount="indefinite" values="1; 1; 0; 1; 1" />
+                    <animateTransform
+                        attributeName="transform"
+                        attributeType="XML"
+                        begin="250ms"
+                        calcMode="spline"
+                        dur="1650ms"
+                        from="0 45 45"
+                        keySplines="1 0 0 1; 1 0 0 1; 1 0 0 1; 1 0 0 1; 1 0 0 1; 1 0 0 1; 1 0 0 1"
+                        keyTimes="0; 0.15; 0.3; 0.45; 0.6; 0.75; 0.9; 1"
+                        repeatCount="indefinite"
+                        type="rotate"
+                        to="360 45 45"
+                    />
+                </path>
+            </mask>
+
+            <path d="M0 0h93.2v55H0z" fill="rgba(0, 0, 0, 1)" id="logo-loader-part-mask-container" mask="url(#logo-loader-part-mask-content)" />
+
+            <path id="logo-loader-part-2">
+                <animate
+                    attributeName="d"
+                    attributeType="XML"
+                    dur="1650ms"
+                    repeatCount="indefinite"
+                    values="M 17.876953,59.009766 0,59.011719 v 47.099611 c 0.00113194,9.8727 8.0042539,17.87582 17.876953,17.87695 z; M 17.876953,79.009766 0,79.011719 v 27.099611 c 0.00113194,9.8727 8.0042539,17.87582 17.876953,17.87695 z; M 17.876953,59.009766 0,59.011719 v 47.099611 c 0.00113194,9.8727 8.0042539,17.87582 17.876953,17.87695 z"
+                />
+            </path>
+
+            <path id="logo-loader-part-3">
+                <animate attributeName="d" attributeType="XML" begin="250ms" dur="1650ms" repeatCount="indefinite" values="M38 75.3V124h18V75.3z; M38 95.3V124h18V95.3z; M38 75.3V124h18V75.3z" />
+            </path>
+
+            <path id="logo-loader-part-4">
+                <animate
+                    attributeName="d"
+                    attributeType="XML"
+                    begin="650ms"
+                    dur="1650ms"
+                    repeatCount="indefinite"
+                    values="m 75.320312,59.007812 v 64.978518 c 9.8727,-10e-4 17.875822,-8.00425 17.876954,-17.87695 V 59.009766 Z; m 75.320312,79.007812 v 44.978518 c 9.8727,-10e-4 17.875822,-8.00425 17.876954,-17.87695 V 79.009766 Z; m 75.320312,59.007812 v 64.978518 c 9.8727,-10e-4 17.875822,-8.00425 17.876954,-17.87695 V 59.009766 Z"
+                />
+            </path>
+        </SvgLogoLoaderStyled>
     );
 };
 

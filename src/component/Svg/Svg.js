@@ -14,6 +14,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgInstagram {...otherProps} />;
         case 'svg-linkedin':
             return <SvgStore.SvgLinkedin {...otherProps} />;
+        case 'svg-logo-loader':
+            return <SvgStore.SvgLogoLoader {...otherProps} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...otherProps} />;
         default:
