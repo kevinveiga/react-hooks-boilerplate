@@ -3,6 +3,7 @@ import React from 'react';
 import { SvgArrowStyled } from './SvgArrowStyled';
 import { SvgLogoLoaderStyled } from './SvgLogoLoaderStyled';
 import { SvgShareStyled } from './SvgShareStyled';
+import { SvgStyled } from './SvgStyled';
 import { SvgValidationStyled } from './SvgValidationStyled';
 
 export const SvgArrowLeft = ({ ...props }) => {
@@ -107,9 +108,9 @@ export const SvgLogoLoader = ({ ...props }) => {
 
 export const SvgSearch = ({ ...props }) => {
     return (
-        <svg {...props} version={1} viewBox="0 0 17.5 17.5" xmlns="http://www.w3.org/2000/svg">
+        <SvgStyled {...props} version={1} viewBox="0 0 17.5 17.5" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.3 0a6.5 6.5 0 0 0 .2 13 6.3 6.3 0 0 0 4.2-1.6l.3.3v.8l5 5 1.5-1.5-5-5h-.8l-.3-.3A6.3 6.3 0 0 0 13 6.5 6.5 6.5 0 0 0 6.3 0zm0 2A4.5 4.5 0 0 1 11 6.5 4.5 4.5 0 0 1 6.5 11a4.5 4.5 0 0 1-.2-9z" />
-        </svg>
+        </SvgStyled>
     );
 };
 
