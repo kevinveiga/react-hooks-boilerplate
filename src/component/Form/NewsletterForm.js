@@ -98,7 +98,7 @@ export const NewsletterForm = ({ ...props }) => {
                 </Cell>
 
                 <Cell mb={3} gridColumn={{ d: 1, sm: '1 / span 2', lg: 2 }}>
-                    <Button className="btn btn-primary btn-sm btn-right" text="Quero Assinar" typeButton="submit" />
+                    <Button ml="auto" text="Quero Assinar" themeSize="small" typeButton="submit" />
                 </Cell>
             </Grid>
         </FormStyled>

@@ -18,6 +18,7 @@ import { Helmet } from 'react-helmet-async';
 // import { scrollTo } from '../../../util/scrollTo';
 
 // import { BannerRight } from '../../Banner/BannerRight';
+import { Button } from '../../Button/Button';
 // import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
@@ -276,9 +277,11 @@ export const Home = ({ location }) => {
                             </Suspense>
 
                             <Box textAlign="center">
-                                <LinkToExternal className="btn btn-primary icon-left" href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
-                                    <Svg display={{ d: 'none', lg: 'block' }} name="svg-youtube" />
-                                    Siga nosso canal no Youtube
+                                <LinkToExternal href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
+                                    <Button>
+                                        <Svg display={{ d: 'none', lg: 'inline-block' }} height="25px" mr={2} name="svg-youtube" />
+                                        <Span verticalAlign="middle">Siga nosso canal no Youtube</Span>
+                                    </Button>
                                 </LinkToExternal>
                             </Box>
                         </Container>

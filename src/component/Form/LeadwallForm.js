@@ -68,7 +68,7 @@ export const LeadwallForm = ({ ...props }) => {
                 </Cell>
 
                 <Cell mb={3} width="100%">
-                    <Button className="btn btn-primary btn-leadwall" text="Liberar conteúdo" typeButton="submit" />
+                    <Button fontSize={18} text="Liberar conteúdo" textTransform="none" typeButton="submit" width="100%" />
                 </Cell>
             </Grid>
         </FormStyled>
