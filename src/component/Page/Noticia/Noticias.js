@@ -253,7 +253,7 @@ export const Noticias = () => {
 
                                                             {stateNoticiasCategoria.data && stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
                                                                 <Cell display="flex" justifyContent="center" py={3}>
-                                                                    <Button className="btn btn-border" text="Ver mais" onClick={() => setStateNoticiaCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
+                                                                    <Button text="Ver mais" themeType="border" onClick={() => setStateNoticiaCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
                                                                 </Cell>
                                                             )}
                                                         </Grid>

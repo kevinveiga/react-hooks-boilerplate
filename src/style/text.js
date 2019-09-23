@@ -22,6 +22,7 @@ export const P = styled.p`
 `;
 
 export const Span = styled.span`
+    ${layout};
     ${typography};
     ${({ color }) => color && `color: ${variable[color]}`};
 `;
