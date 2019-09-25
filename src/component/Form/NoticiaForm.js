@@ -31,7 +31,7 @@ export const NoticiaForm = ({ ...props }) => {
         mode: 'onChange'
     });
 
-    const onSubmit = (formData) => {
+    const submitForm = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -68,7 +68,7 @@ export const NoticiaForm = ({ ...props }) => {
             </Box>
 
             <Box overflow="hidden" width={stateRetornoForm ? '0' : { d: 1, sm: 1 / 2 }}>
-                <FormStyled onSubmit={handleSubmit(onSubmit)} {...props}>
+                <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
                     <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" gridRowGap={2} p={{ d: 3, md: 5 }}>
                         {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 

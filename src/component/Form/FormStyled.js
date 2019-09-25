@@ -10,16 +10,15 @@ export const FormStyled = styled.form`
 `;
 
 const input = css`
-    background-color: ${({ obj }) => (obj.themeColor === 'leadwall' ? variable.colorWhite : 'transparent')};
-    ${({ obj }) => (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 2px ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray}` : `border-bottom: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray}`)};
-    ${({ obj }) => obj.themeColor === 'leadwall' && `border-radius: ${variable.borderRadius}`};
+    background-color: transparent;
+    ${({ obj }) => `border-bottom: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray}`};
     color: ${({ obj }) => (obj.color ? variable[obj.color] : variable.colorGrayDark)};
     font-family: ${variable.fontPrimary};
     font-size: 16px;
     font-weight: 600;
     height: ${variable.inputHeight};
     letter-spacing: 0;
-    padding: ${variable.inputPadding} ${({ obj }) => (obj.themeColor === 'leadwall' ? '15px' : '2px')};
+    padding: ${variable.inputPadding} 2px;
     table-layout: fixed;
     text-overflow: ellipsis;
     transition: border ${variable.transition}, box-shadow ${variable.transition}, color ${variable.transition};
@@ -30,11 +29,47 @@ const input = css`
         font-size: 16px;
         font-weight: 400;
     }
+
+    ${({ obj }) =>
+        obj.themeColor === 'leadwall' &&
+        css`
+            background-color: ${variable.colorWhite};
+            border-bottom: 0;
+            border-radius: ${variable.borderRadius};
+            box-shadow: inset 0 0 0 2px ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
+            padding: ${variable.inputPadding} 15px;
+        `};
+
+    ${({ obj }) =>
+        obj.themeColor === 'pesquisa' &&
+        css`
+            background-color: ${variable.colorWhite};
+            border-bottom: 0;
+            border-radius: ${variable.borderRadius};
+            box-shadow: inset 0 0 0 1px ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
+            padding: ${variable.inputPadding} 15px ${variable.inputPadding} 55px;
+        `};
 `;
 
 const validationType = css`
-    ${({ obj, invalid }) => invalid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorAlert}` : `border-color: ${variable.colorAlert}`)};
-    ${({ obj, valid }) => valid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover}` : `border-color: ${variable.colorPrimaryHover}`)};
+    ${({ invalid }) => invalid && `border-color: ${variable.colorAlert}`};
+    ${({ valid }) => valid && `border-color: ${variable.colorPrimaryHover}`};
+
+    ${({ invalid, obj }) =>
+        invalid &&
+        obj.themeColor === 'leadwall' &&
+        css`
+            border-color: transparent;
+            box-shadow: inset 0 0 0 3px ${variable.colorAlert};
+        `};
+
+    ${({ obj, valid }) =>
+        valid &&
+        obj.themeColor === 'leadwall' &&
+        css`
+            border-color: transparent;
+            box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
+        `};
 `;
 
 export const InputStyled = styled.input`

@@ -30,7 +30,7 @@ export const NewsletterForm = ({ ...props }) => {
         mode: 'onChange'
     });
 
-    const onSubmit = (formData) => {
+    const submitForm = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlNewsletter, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -61,7 +61,7 @@ export const NewsletterForm = ({ ...props }) => {
             </P>
         </div>
     ) : (
-        <FormStyled onSubmit={handleSubmit(onSubmit)} {...props}>
+        <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
             <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2} gridTemplateColumns={{ d: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))' }} justifyContent="flex-end">
                 {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 

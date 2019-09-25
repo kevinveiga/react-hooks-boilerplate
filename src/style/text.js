@@ -17,6 +17,8 @@ const title = css`
 `;
 
 export const P = styled.p`
+    ${layout};
+    ${space};
     ${typography};
     color: ${({ color, themeColor }) => (themeColor === 'dark' ? (color ? variable[color] : variable.colorBlack2) : variable.colorWhite)};
 `;

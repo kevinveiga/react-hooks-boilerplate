@@ -17,7 +17,7 @@ export const NoticiaForm = ({ ...props }) => {
         mode: 'onChange'
     });
 
-    const onSubmit = (data) => {
+    const submitForm = (data) => {
         // TODO: envio de formulário
         console.log(data);
     };
@@ -25,7 +25,7 @@ export const NoticiaForm = ({ ...props }) => {
     console.log(errors);
 
     return (
-        <FormStyled onSubmit={handleSubmit(onSubmit)} {...props}>
+        <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
             <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2} p={5}>
                 <Cell mb={3} width="100%">
                     <Title3 fontWeight="600" mb={1} themeColor="dark">

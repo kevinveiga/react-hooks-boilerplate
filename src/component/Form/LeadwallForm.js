@@ -13,7 +13,7 @@ import { InputValidation } from './Form';
 
 import { FormStyled } from './FormStyled';
 
-import { Grid, Cell } from '../../style/grid';
+import { Cell, Grid } from '../../style/grid';
 
 export const LeadwallForm = ({ ...props }) => {
     // ACTION
@@ -29,7 +29,7 @@ export const LeadwallForm = ({ ...props }) => {
         mode: 'onChange'
     });
 
-    const onSubmit = (formData) => {
+    const submitForm = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPaywall, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -49,7 +49,7 @@ export const LeadwallForm = ({ ...props }) => {
     };
 
     return (
-        <FormStyled onSubmit={handleSubmit(onSubmit)} {...props}>
+        <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
             <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2}>
                 <Cell mb={3} width="100%">
                     <InputValidation

@@ -1,31 +1,69 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect } from 'react';
+import useForm from 'react-hook-form';
 
+import { apiUrlNoticias } from '../../config';
+
+import { PesquisaContext } from '../../store/pesquisa/pesquisaContext';
+
+import { Button } from '../Button/Button';
 import { Input } from './Form';
+import { Svg } from '../Svg/Svg';
+
+import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
 export const PesquisaForm = ({ ...props }) => {
     // ACTION
-    const keyPress = (e) => {
+    useEffect(() => {
+        register({ name: 'query' });
+    }, [register]);
+
+    const keyPress = (e, fn) => {
         if (e.keyCode == 13) {
-            window.location.pathname = `/pesquisa/${e.target.value}`;
+            handleSubmit(fn);
         }
     };
 
+    // CONTEXT
+    const setStatePesquisaData = useContext(PesquisaContext);
+
+    // FORM
+    const { handleSubmit, register, triggerValidation } = useForm({
+        mode: 'onSubmit'
+    });
+
+    const submitForm = (formData) => {
+        window.history.replaceState('Pesquisa', '', formData.query);
+
+        setStatePesquisaData({ params: formData, url: `${apiUrlNoticias}/busca` });
+    };
+
     return (
-        <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
-            <Cell width="100%">
-                <Input
-                    id="pesquisa-field-id"
-                    maxLength="50"
-                    name="pesquisa"
-                    placeholder="Pesquisa"
-                    onKeyDown={(e) => {
-                        keyPress(e);
-                    }}
-                    {...props}
-                />
-            </Cell>
-        </Grid>
+        <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
+            <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', xs: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
+                <Cell mb={3}>
+                    <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />
+                    <Input
+                        maxLength="50"
+                        name="query"
+                        onChange={async (e) => {
+                            const input = e.target;
+                            await triggerValidation({ name: input.name, value: input.value });
+                        }}
+                        onKeyDown={(e) => {
+                            keyPress(e, submitForm);
+                        }}
+                        placeholder="O que você procura?"
+                        {...props}
+                    />
+                </Cell>
+
+                <Cell mb={3}>
+                    <Button mx={{ d: 'auto', xs: 0 }} text="Buscar" themeSize="small" typeButton="submit" />
+                </Cell>
+            </Grid>
+        </FormStyled>
     );
 };

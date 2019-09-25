@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { layout, space } from 'styled-system';
+import { layout, position, space } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const SvgSearchStyled = styled.svg`
     ${layout};
+    ${position};
     ${space};
     cursor: pointer;
     fill: ${({ fill, change }) => (change ? variable.colorWhite : fill ? variable[fill] : variable.colorSecondary)};
