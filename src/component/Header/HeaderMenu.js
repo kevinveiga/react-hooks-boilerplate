@@ -46,6 +46,7 @@ export const HeaderMenu = ({ ...props }) => {
                             maxLength="50"
                             name="pesquisa"
                             placeholder="Procure"
+                            obj={{ color: 'colorWhite' }}
                             onKeyDown={(e) => {
                                 keyPress(e);
                             }}
