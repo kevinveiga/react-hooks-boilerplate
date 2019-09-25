@@ -29,6 +29,23 @@ export const BtnMenu = styled.button.attrs({ type: 'button' })`
     }
 `;
 
+export const HeaderPesquisa = styled.div`
+    background-color: ${({ change }) => (change ? variable.colorBlack3 : variable.colorWhite)};
+    display: inline-block;
+    left: 0;
+    overflow-x: hidden;
+    position: absolute;
+    transition: background-color ${variable.transition}, left ${variable.transition}, width ${variable.transition};
+    width: 0;
+
+    ${({ active }) =>
+        active &&
+        css`
+            left: -150px;
+            width: 150px;
+        `};
+`;
+
 export const HeaderStyled = styled.header`
     height: auto;
     left: 0;

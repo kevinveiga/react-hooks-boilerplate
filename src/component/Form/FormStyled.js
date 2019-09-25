@@ -37,6 +37,10 @@ const validationType = css`
     ${({ obj, valid }) => valid && (obj.themeColor === 'leadwall' ? `box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover}` : `border-color: ${variable.colorPrimaryHover}`)};
 `;
 
+export const InputStyled = styled.input`
+    ${input};
+`;
+
 export const InputValidationStyled = styled.input`
     ${input};
     ${validationType};

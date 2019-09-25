@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 import { variable } from '../../style/variable';
 
+export const HeaderMenuPesquisa = styled.div`
+    background-color: ${variable.colorBlack3};
+    display: inline-block;
+    width: 200px;
+`;
+
 export const HeaderMenuStyled = styled.nav`
     display: inline-block;
 

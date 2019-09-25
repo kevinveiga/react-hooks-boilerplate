@@ -22,7 +22,7 @@ export const SocialAlternateStyled = styled.ul`
     > li {
         > a,
         > button {
-            padding: 15px 0 15px 15px;
+            margin: 15px 0 15px 15px;
 
             > svg {
                 fill: ${({ themeColor }) => (themeColor === 'dark' ? variable.colorBlack : variable.colorWhite)};

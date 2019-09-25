@@ -10,7 +10,7 @@ export const SocialStyled = styled.ul`
 
         > a,
         > button {
-            padding: 10px 0 10px 18px;
+            margin: 10px 0 10px 18px;
 
             > svg {
                 fill: ${({ color, change }) => (change ? variable.colorWhite : color ? variable[color] : variable.colorSecondary)};

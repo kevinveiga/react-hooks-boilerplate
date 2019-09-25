@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { InputMaskValidationStyled, InputValidationStyled } from './FormStyled';
+import { InputMaskValidationStyled, InputStyled, InputValidationStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
 export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
-    return <input autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
+    return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
 };
 
 export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...otherProps }) => {
