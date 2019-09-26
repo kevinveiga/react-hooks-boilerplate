@@ -51,7 +51,7 @@ export const Pesquisa = ({ match }) => {
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <Box mb={5} width={{ d: 1, md: 4 / 5 }}>
-                        <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeColor: 'pesquisa' }} />
+                        <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
                     </Box>
 
                     <Title3 fontWeight="600" themeColor="dark">

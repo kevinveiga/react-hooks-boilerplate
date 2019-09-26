@@ -17,7 +17,7 @@ export const Leadwall = ({ ...props }) => {
 
                 <Title5 mb={{ d: 4, sm: 5 }}>Deixe seu melhor e-mail para desbloquear o conteúdo.</Title5>
 
-                <LeadwallForm color="colorBlack" colorLine="colorGray4" colorPlaceholder="colorGray2" id="leadwall" themeColor="leadwall" />
+                <LeadwallForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'leadwall' }} />
             </LeadwallStyled>
 
             <Termos mb="75px" px={{ d: 3, sm: '15%' }} py={{ d: 2, sm: 3 }} {...props}>

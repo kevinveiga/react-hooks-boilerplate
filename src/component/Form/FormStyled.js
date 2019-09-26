@@ -31,7 +31,7 @@ const input = css`
     }
 
     ${({ obj }) =>
-        obj.themeColor === 'leadwall' &&
+        obj.themeForm === 'leadwall' &&
         css`
             background-color: ${variable.colorWhite};
             border-bottom: 0;
@@ -41,7 +41,7 @@ const input = css`
         `};
 
     ${({ obj }) =>
-        obj.themeColor === 'pesquisa' &&
+        obj.themeForm === 'pesquisa' &&
         css`
             background-color: ${variable.colorWhite};
             border-bottom: 0;
@@ -57,7 +57,7 @@ const validationType = css`
 
     ${({ invalid, obj }) =>
         invalid &&
-        obj.themeColor === 'leadwall' &&
+        obj.themeForm === 'leadwall' &&
         css`
             border-color: transparent;
             box-shadow: inset 0 0 0 3px ${variable.colorAlert};
@@ -65,7 +65,7 @@ const validationType = css`
 
     ${({ obj, valid }) =>
         valid &&
-        obj.themeColor === 'leadwall' &&
+        obj.themeForm === 'leadwall' &&
         css`
             border-color: transparent;
             box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
