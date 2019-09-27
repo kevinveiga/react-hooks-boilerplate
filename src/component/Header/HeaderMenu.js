@@ -11,6 +11,9 @@ import { HeaderMenuPesquisa, HeaderMenuStyled } from './HeaderMenuStyled';
 import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
+    // CONTEXT
+    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useContext(HeaderContext);
+
     // ACTION
     const keyPress = (e) => {
         if (e.keyCode == 13) {
@@ -21,9 +24,6 @@ export const HeaderMenu = ({ ...props }) => {
     const search = () => {
         window.location.pathname = `/pesquisa/${document.getElementById('pesquisa-field-id').value}`;
     };
-
-    // CONTEXT
-    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useContext(HeaderContext);
 
     return (
         <HeaderMenuStyled active={stateChangeMenuMobile} {...props}>

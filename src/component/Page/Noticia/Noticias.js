@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
@@ -43,6 +43,9 @@ export const Noticias = () => {
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = noticiasLength > 0 && noticiasCategoriasLength > 0;
 
+    // CONTEXT
+    const { setStateLoaderGlobal } = useContext(Context);
+
     // ACTION
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
@@ -62,14 +65,13 @@ export const Noticias = () => {
         scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
     }
 
-    // CONTEXT
-    const { setStateLoaderGlobal } = useContext(Context);
-
-    if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
-        setStateLoaderGlobal(true);
-    } else {
-        setStateLoaderGlobal(false);
-    }
+    useEffect(() => {
+        if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
+            setStateLoaderGlobal(true);
+        } else {
+            setStateLoaderGlobal(false);
+        }
+    }, [setStateLoaderGlobal, stateNoticias.isLoading, stateNoticiasCategoria.isLoading]);
 
     return (
         <>

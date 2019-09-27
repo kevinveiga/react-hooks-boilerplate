@@ -9,12 +9,10 @@ import { SocialAlternateStyled } from './SocialAlternateStyled';
 
 export const SocialAlternate = ({ ...props }) => {
     // CONTEXT
-    const stateSocialGlobal = useContext(Context);
+    const { stateSocialGlobal } = useContext(Context);
 
-    let socialRender = '';
-
-    if (stateSocialGlobal) {
-        socialRender = (
+    return (
+        stateSocialGlobal && (
             <SocialAlternateStyled {...props}>
                 <li>
                     <LinkToExternal text="Facebook" href={stateSocialGlobal.facebook} target="_blank">
@@ -46,8 +44,6 @@ export const SocialAlternate = ({ ...props }) => {
                     </LinkToExternal>
                 </li>
             </SocialAlternateStyled>
-        );
-    }
-
-    return socialRender;
+        )
+    );
 };

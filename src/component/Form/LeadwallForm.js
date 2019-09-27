@@ -16,13 +16,13 @@ import { FormStyled } from './FormStyled';
 import { Cell, Grid } from '../../style/grid';
 
 export const LeadwallForm = ({ ...props }) => {
+    // CONTEXT
+    const [setChangeLeadwall] = useContext(NoticiaContext);
+
     // ACTION
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
     }, [register]);
-
-    // CONTEXT
-    const [setChangeLeadwall] = useContext(NoticiaContext);
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({

@@ -15,6 +15,9 @@ import { FormStyled } from './FormStyled';
 import { Cell, Grid } from '../../style/grid';
 
 export const PesquisaForm = ({ ...props }) => {
+    // CONTEXT
+    const setStatePesquisaData = useContext(PesquisaContext);
+
     // ACTION
     useEffect(() => {
         register({ name: 'query' });
@@ -25,9 +28,6 @@ export const PesquisaForm = ({ ...props }) => {
             handleSubmit(fn);
         }
     };
-
-    // CONTEXT
-    const setStatePesquisaData = useContext(PesquisaContext);
 
     // FORM
     const { handleSubmit, register, triggerValidation } = useForm({

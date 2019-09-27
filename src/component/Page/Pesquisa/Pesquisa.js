@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -29,17 +29,19 @@ export const Pesquisa = ({ match }) => {
 
     const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
 
-    // ACTION
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
-
     // CONTEXT
     const { setStateLoaderGlobal } = useContext(Context);
 
-    if (statePesquisa.isLoading) {
-        setStateLoaderGlobal(true);
-    } else {
-        setStateLoaderGlobal(false);
-    }
+    // ACTION
+    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+
+    useEffect(() => {
+        if (statePesquisa.isLoading) {
+            setStateLoaderGlobal(true);
+        } else {
+            setStateLoaderGlobal(false);
+        }
+    }, [setStateLoaderGlobal, statePesquisa.isLoading]);
 
     return (
         <PesquisaContext.Provider value={setStatePesquisaData}>
