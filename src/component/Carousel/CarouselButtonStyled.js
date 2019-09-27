@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { position } from 'styled-system';
+
 import { variable } from '../../style/variable';
 
 export const DotBtnStyled = styled.button`
@@ -40,18 +42,18 @@ export const DotContainerStyled = styled.ul`
 `;
 
 const btns = css`
+    ${position};
     background-color: ${variable.colorSecondary};
     border: 0;
     border-radius: 7px;
+    ${({ bottom }) => bottom === undefined && 'top: 50%'};
     color: transparent;
     cursor: pointer;
-    display: block;
-    height: 37px;
+    height: 36px;
     opacity: 1;
     outline: none;
     padding: 0;
     position: absolute;
-    top: 50%;
     transform: translateY(-50%);
     transition: background-color ${variable.transition}, opacity ${variable.transition};
     width: 32px;
@@ -65,10 +67,10 @@ const btns = css`
 
 export const NextBtnStyled = styled.button`
     ${btns};
-    right: 5px;
+    ${({ right }) => right === undefined && 'right: 5px'};
 `;
 
 export const PrevBtnStyled = styled.button`
     ${btns};
-    left: 5px;
+    ${({ left }) => left === undefined && 'left: 5px'};
 `;

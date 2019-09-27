@@ -1,8 +1,12 @@
 import styled from 'styled-components';
+import { layout, space } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const CarouselStyled = styled.div`
+    ${layout};
+    ${space};
+
     .slick-arrow {
         &.slick-hidden {
             display: none;
