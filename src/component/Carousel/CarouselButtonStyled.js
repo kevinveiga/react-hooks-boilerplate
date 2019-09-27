@@ -26,7 +26,7 @@ export const DotContainerStyled = styled.ul`
     z-index: 3;
 
     li {
-        background-color: ${variable.colorWhite};
+        background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
         border-radius: ${variable.borderRadius};
         cursor: pointer;
         display: inline-block;
