@@ -22,7 +22,7 @@
             "jsx": true,
             "modules": true
         },
-        "ecmaVersion": 6,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": ["jsx-a11y", "react", "react-hooks", "prettier"],
@@ -140,12 +140,7 @@
         "react/jsx-no-bind": "error",
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-pascal-case": "warn",
-        "react/jsx-props-no-spreading": [
-            {
-                "html": "ignore",
-                "custom": "ignore"
-            }
-        ],
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-wrap-multilines": "warn",
         "react/prefer-stateless-function": "warn",
         "react/prop-types": "off",
