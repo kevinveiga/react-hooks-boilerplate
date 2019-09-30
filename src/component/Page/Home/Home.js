@@ -171,7 +171,7 @@ export const Home = ({ location }) => {
                         </CarouselStyled>
                     ))} */}
 
-                <Background backgroundColor="colorGrayLight4">
+                <Background>
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             {destaquesLength > 0 && (
