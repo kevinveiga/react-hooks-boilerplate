@@ -66,6 +66,7 @@
         "react-slick": "^0.25.2",
         "react-youtube": "^7.9.0",
         "styled-components": "^4.4.0",
-        "styled-system": "^5.1.2"
+        "styled-system": "^5.1.2",
+        "workbox-window": "^4.3.1"
     }
 }
