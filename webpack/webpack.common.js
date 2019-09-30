@@ -58,7 +58,7 @@ module.exports = {
                             },
                             outputPath: commonPaths.imagesFolder,
                             pngquant: {
-                                quality: '65-75',
+                                quality: [0.65, 0.8],
                                 speed: 4
                             },
                             webp: {

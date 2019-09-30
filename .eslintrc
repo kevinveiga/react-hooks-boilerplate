@@ -140,6 +140,12 @@
         "react/jsx-no-bind": "error",
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-pascal-case": "warn",
+        "react/jsx-props-no-spreading": [
+            {
+                "html": "ignore",
+                "custom": "ignore"
+            }
+        ],
         "react/jsx-wrap-multilines": "warn",
         "react/prefer-stateless-function": "warn",
         "react/prop-types": "off",
