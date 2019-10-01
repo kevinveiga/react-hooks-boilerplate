@@ -3,7 +3,7 @@ import { space } from 'styled-system';
 
 import { variable } from './variable';
 
-export const Background = styled.section`
+export const Background = styled.div`
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorGrayLight4)};
 `;
 
