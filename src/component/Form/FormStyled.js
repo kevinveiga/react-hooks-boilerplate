@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { typography } from 'styled-system';
 import { IMaskInput } from 'react-imask';
 
 import { variable } from '../../style/variable';
@@ -100,4 +101,10 @@ export const InvalidResponseMessage = styled.span`
     left: 0;
     position: absolute;
     top: -15px;
+`;
+
+export const LabelStyled = styled.label`
+    ${typography};
+    color: ${({ color }) => (color ? variable[color] : variable.colorGrayDark)};
+    ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
 `;
