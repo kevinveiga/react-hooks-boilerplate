@@ -13,6 +13,7 @@
         "jQuery": true,
         "localStorage": true,
         "React": true,
+        "RdIntegration": true,
         "window": true,
         "workbox": true
     },
@@ -116,9 +117,11 @@
                 "allowTemplateLiterals": true
             }
         ],
+        "react/boolean-prop-naming": "off",
         "react/button-has-type": "off",
         "react/jsx-boolean-value": ["warn", "always"],
         "react/jsx-closing-bracket-location": ["warn", "tag-aligned"],
+        "react/jsx-curly-brace-presence": "off",
         "react/jsx-curly-spacing": ["warn", "never"],
         "react/jsx-filename-extension": [
             "warn",
@@ -162,6 +165,8 @@
                 }
             }
         ],
+        "react/static-property-placement": "off",
+        "react/style-prop-object": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "semi": "error",
