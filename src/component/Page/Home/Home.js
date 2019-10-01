@@ -33,7 +33,7 @@ import { Author, DateTime, Tag, Title } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { Background, Container, Main } from '../../../style/layout';
+import { Container, Main, Wrap } from '../../../style/layout';
 import { Span, Title2, Title4, Title5 } from '../../../style/text';
 // import { variable } from '../../../style/variable';
 
@@ -171,7 +171,7 @@ export const Home = ({ location }) => {
                         </CarouselStyled>
                     ))} */}
 
-                <Background>
+                <Wrap>
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             {destaquesLength > 0 && (
@@ -265,7 +265,7 @@ export const Home = ({ location }) => {
                             )}
                         </Flex>
                     </Container>
-                </Background>
+                </Wrap>
 
                 {/* {videosLength > 0 && (
                     <VideoContainer id="home-video-container">

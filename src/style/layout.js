@@ -3,10 +3,6 @@ import { space } from 'styled-system';
 
 import { variable } from './variable';
 
-export const Background = styled.div`
-    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorGrayLight4)};
-`;
-
 export const Container = styled.section`
     ${space};
 
@@ -43,4 +39,8 @@ export const VideoWrap = styled.div`
             width: 100%;
         }
     }
+`;
+
+export const Wrap = styled.div`
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorGrayLight4)};
 `;
