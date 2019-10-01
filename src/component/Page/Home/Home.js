@@ -277,7 +277,7 @@ export const Home = ({ location }) => {
                             </Suspense>
 
                             <Box textAlign="center">
-                                <LinkToExternal href="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
+                                <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
                                     <Button>
                                         <Svg display={{ d: 'none', lg: 'inline-block' }} height="25px" mr={2} name="svg-youtube" />
                                         <Span verticalAlign="middle">Siga nosso canal no Youtube</Span>

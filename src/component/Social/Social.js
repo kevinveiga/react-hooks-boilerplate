@@ -15,31 +15,31 @@ export const Social = ({ ...props }) => {
         stateSocialGlobal && (
             <SocialStyled {...props}>
                 <li>
-                    <LinkToExternal text="Facebook" href={stateSocialGlobal.facebook} target="_blank">
+                    <LinkToExternal text="Facebook" link={stateSocialGlobal.facebook} target="_blank">
                         <Svg name="svg-facebook" />
                     </LinkToExternal>
                 </li>
 
                 {/* <li>
-                <LinkToExternal text="Twitter" href={stateSocialGlobal.twitter} target="_blank">
+                <LinkToExternal text="Twitter" link={stateSocialGlobal.twitter} target="_blank">
                     <Svg name="svg-twitter" />
                 </LinkToExternal>
             </li> */}
 
                 <li>
-                    <LinkToExternal text="You Tube" href={stateSocialGlobal.youtube} target="_blank">
+                    <LinkToExternal text="You Tube" link={stateSocialGlobal.youtube} target="_blank">
                         <Svg name="svg-youtube" />
                     </LinkToExternal>
                 </li>
 
                 <li>
-                    <LinkToExternal text="Instagram" href={stateSocialGlobal.instagram} target="_blank">
+                    <LinkToExternal text="Instagram" link={stateSocialGlobal.instagram} target="_blank">
                         <Svg name="svg-instagram" />
                     </LinkToExternal>
                 </li>
 
                 {/* <li>
-                <LinkToExternal text="Linkedin" href={stateSocialGlobal.linkedin} target="_blank">
+                <LinkToExternal text="Linkedin" link={stateSocialGlobal.linkedin} target="_blank">
                     <Svg name="svg-linkedin" />
                 </LinkToExternal>
             </li> */}
