@@ -8,6 +8,7 @@ export const LinkToStyled = styled(Link)`
     ${layout};
     ${space};
     ${typography};
+    ${({ underline }) => underline && 'text-decoration: underline'};
 
     ${({ hover }) =>
         hover === 'primary' &&

@@ -7,6 +7,7 @@ export const LinkToExternalStyled = styled.a`
     ${layout};
     ${space};
     ${typography};
+    ${({ underline }) => underline && 'text-decoration: underline'};
 
     ${({ hover }) =>
         hover === 'primary' &&
