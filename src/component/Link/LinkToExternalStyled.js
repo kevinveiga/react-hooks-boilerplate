@@ -9,19 +9,20 @@ export const LinkToExternalStyled = styled.a`
     ${typography};
     ${({ color }) => color && `color: ${variable[color]}`};
     ${({ underline }) => underline && 'text-decoration: underline'};
+    transition: color ${variable.transition};
 
-    ${({ hover }) =>
-        hover === 'primary' &&
+    ${({ hoverColor }) =>
+        hoverColor &&
         css`
             &:hover {
-                color: ${variable.colorPrimary};
+                color: ${variable[hoverColor]};
 
                 > span {
-                    color: ${variable.colorPrimary};
+                    color: ${variable[hoverColor]};
                 }
 
                 > svg {
-                    fill: ${variable.colorPrimary};
+                    fill: ${variable[hoverColor]};
                 }
             }
         `};
@@ -29,5 +30,9 @@ export const LinkToExternalStyled = styled.a`
     > span {
         transition: color ${variable.transition};
         vertical-align: middle;
+    }
+
+    > svg {
+        transition: fill ${variable.transition};
     }
 `;
