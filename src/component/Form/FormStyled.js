@@ -46,8 +46,13 @@ const input = css`
         css`
             background-color: ${variable.colorWhite};
             border-bottom: 0;
-            border-radius: ${variable.borderRadius};
-            box-shadow: inset 0 0 0 1px ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
+            border-bottom-left-radius: ${variable.borderRadius};
+            border-bottom-right-radius: 0;
+            border-top-left-radius: ${variable.borderRadius};
+            border-top-right-radius: 0;
+            border-bottom: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
+            border-left: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
+            border-top: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
             padding: ${variable.inputPadding} 15px ${variable.inputPadding} 55px;
         `};
 `;
@@ -105,6 +110,7 @@ export const InvalidResponseMessage = styled.span`
 
 export const LabelStyled = styled.label`
     ${typography};
-    color: ${({ color }) => (color ? variable[color] : variable.colorGrayDark)};
+    color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
+    padding: 0 2px;
 `;

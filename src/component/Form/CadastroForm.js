@@ -1,0 +1,156 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import useForm from 'react-hook-form';
+
+import { apiUrlContato } from '../../config';
+
+import { customMaskRegex } from '../../util/customMaskRegex';
+import { customValidate } from '../../util/customValidate';
+
+import { Button } from '../Button/Button';
+import { InputMaskValidation, InputValidation, Label } from './Form';
+import { LinkTo } from '../Link/LinkTo';
+
+import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+
+import { Box, Flex } from '../../style/flex';
+import { Cell, Grid } from '../../style/grid';
+import { P, Span, Title3 } from '../../style/text';
+
+const CadastroForm = ({ ...props }) => {
+    // ACTION
+    useEffect(() => {
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+        register({ name: 'email' }, { ...customValidate.email });
+        register({ name: 'telefone' }, { ...customValidate.phone });
+        register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
+    }, [register]);
+
+    // FORM
+    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+        mode: 'onChange'
+    });
+
+    const submitForm = (formData) => {
+        const fetchData = async () => {
+            try {
+                const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
+
+                if (result && result.success == false) {
+                    setError('invalid', 'notMatch', result.reason[0]);
+                } else {
+                    // TODO: fazer redirect para página inicial do usuário
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    };
+
+    return (
+        <Flex display="flex" flexWrap="wrap">
+            <Box overflow="hidden" width="100%">
+                <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
+                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
+                        {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
+
+                        <Cell mb={3} width="100%">
+                            <Label text="Nome completo" />
+
+                            <InputValidation
+                                error={errors.nome}
+                                maxLength="50"
+                                name="nome"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="Nome"
+                                touched={formState.touched}
+                                {...props}
+                            />
+                            {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell mb={3} width="100%">
+                            <Label text="E-mail" />
+
+                            <InputValidation
+                                error={errors.email}
+                                maxLength="50"
+                                name="email"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="E-mail"
+                                touched={formState.touched}
+                                {...props}
+                            />
+                            {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell mb={3} width="100%">
+                            <Label text="Celular" />
+
+                            <InputMaskValidation
+                                error={errors.telefone}
+                                mask={customMaskRegex.phone}
+                                name="telefone"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="Telefone"
+                                touched={formState.touched}
+                                {...props}
+                            />
+                            {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell mb={4} width="100%">
+                            <Label text="Senha" />
+
+                            <InputValidation
+                                error={errors.senha}
+                                maxLength="11"
+                                name="senha"
+                                onChange={async (e) => {
+                                    const input = e.target;
+                                    await triggerValidation({ name: input.name, value: input.value });
+                                }}
+                                placeholder="Senha"
+                                touched={formState.touched}
+                                type="password"
+                                {...props}
+                            />
+                            {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell mb={3} width="100%">
+                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Cadastrar-se" typeButton="submit" width="100%" />
+                        </Cell>
+
+                        <Cell mb={3} textAlign="center" width="100%">
+                            <span>Você já possui uma conta?</span>
+
+                            <LinkTo link="">
+                                <Button fontSize={{ d: 14, sm: 16 }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }} text="Fazer Login" themeSize="small" themeType="border" />
+                            </LinkTo>
+                        </Cell>
+
+                        <Cell mb={3} textAlign="center" width="100%">
+                            <P color="colorGray2" fontSize={14} themeColor="dark">
+                                Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" hover="primary" link="" text="Termos de serviço" underline={true} /> e <LinkTo fontWeight="600" hover="primary" link="" text="Política de privacidade" underline={true} />.
+                            </P>
+                        </Cell>
+                    </Grid>
+                </FormStyled>
+            </Box>
+        </Flex>
+    );
+};
+
+export default CadastroForm;

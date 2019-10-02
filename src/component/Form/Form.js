@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InputMaskValidationStyled, InputStyled, InputValidationStyled } from './FormStyled';
+import { InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
@@ -37,8 +37,8 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
     const content = children || text;
 
     return (
-        <label aria-label={acessibility} htmlFor={forLabel} {...otherProps}>
+        <LabelStyled aria-label={acessibility} htmlFor={forLabel} {...otherProps}>
             {content}
-        </label>
+        </LabelStyled>
     );
 };
