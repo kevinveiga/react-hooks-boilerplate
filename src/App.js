@@ -23,12 +23,16 @@ export const App = () => {
     const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`, {});
 
     // ACTION
+    const [stateHideFooter, setStateHideFooter] = useState(false);
+    const [stateHideHeader, setStateHideHeader] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
 
     return (
         <ThemeProvider theme={theme}>
             <Context.Provider
                 value={{
+                    setStateHideFooterGlobal: setStateHideFooter,
+                    setStateHideHeaderGlobal: setStateHideHeader,
                     setStateLoaderGlobal: setStateLoader,
                     stateSocialGlobal: stateSocial.data
                 }}
@@ -42,9 +46,9 @@ export const App = () => {
 
                     <BrowserRouter>
                         <Loader active={stateLoader} />
-                        <Header />
+                        <Header hide={stateHideHeader} />
                         <Router />
-                        <Footer />
+                        <Footer hide={stateHideFooter} />
                     </BrowserRouter>
                 </HelmetProvider>
             </Context.Provider>

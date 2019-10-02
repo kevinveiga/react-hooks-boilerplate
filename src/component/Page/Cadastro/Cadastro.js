@@ -1,11 +1,9 @@
-import React, { lazy, Suspense, useContext, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
-
-import { Context } from '../../../store/context';
 
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -22,15 +20,6 @@ const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
 export const Cadastro = () => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
-
-    // CONTEXT
-    const { setStateHideFooterGlobal, setStateHideHeaderGlobal } = useContext(Context);
-
-    // ACTION
-    useEffect(() => {
-        setStateHideFooterGlobal(true);
-        setStateHideHeaderGlobal(true);
-    }, [setStateHideFooterGlobal, setStateHideHeaderGlobal]);
 
     return (
         <>
