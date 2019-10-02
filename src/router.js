@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { matchPath, Route, Switch } from 'react-router-dom';
+import { matchPath, Route, Switch, withRouter } from 'react-router-dom';
 
 import { Context } from './store/context';
 
@@ -11,7 +11,7 @@ import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
 
-export const Router = () => {
+export const Router = withRouter((props) => {
     // CONTEXT
     const { setStateHideFooterGlobal, setStateHideHeaderGlobal } = useContext(Context);
 
@@ -29,7 +29,7 @@ export const Router = () => {
             setStateHideFooterGlobal(false);
             setStateHideHeaderGlobal(false);
         }
-    }, [setStateHideFooterGlobal, setStateHideHeaderGlobal]);
+    }, [props, setStateHideFooterGlobal, setStateHideHeaderGlobal]);
 
     return (
         <Switch>
@@ -43,4 +43,4 @@ export const Router = () => {
             <Route path="*" component={Home} />
         </Switch>
     );
-};
+});
