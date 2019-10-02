@@ -12,8 +12,8 @@ export const FormStyled = styled.form`
 
 const input = css`
     background-color: transparent;
-    ${({ obj }) => `border-bottom: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray}`};
-    color: ${({ obj }) => (obj.color ? variable[obj.color] : variable.colorGrayDark)};
+    ${({ obj }) => `border-bottom: 1px solid ${obj && obj.colorLine ? variable[obj.colorLine] : variable.colorGray}`};
+    color: ${({ obj }) => (obj && obj.color ? variable[obj.color] : variable.colorGrayDark)};
     font-family: ${variable.fontPrimary};
     font-size: 16px;
     font-weight: 600;
@@ -26,12 +26,13 @@ const input = css`
     width: 100%;
 
     &::placeholder {
-        color: ${({ obj }) => (obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
+        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
         font-size: 16px;
         font-weight: 400;
     }
 
     ${({ obj }) =>
+        obj &&
         obj.themeForm === 'leadwall' &&
         css`
             background-color: ${variable.colorWhite};
@@ -42,6 +43,7 @@ const input = css`
         `};
 
     ${({ obj }) =>
+        obj &&
         obj.themeForm === 'pesquisa' &&
         css`
             background-color: ${variable.colorWhite};
@@ -63,6 +65,7 @@ const validationType = css`
 
     ${({ invalid, obj }) =>
         invalid &&
+        obj &&
         obj.themeForm === 'leadwall' &&
         css`
             border-color: transparent;
@@ -71,6 +74,7 @@ const validationType = css`
 
     ${({ obj, valid }) =>
         valid &&
+        obj &&
         obj.themeForm === 'leadwall' &&
         css`
             border-color: transparent;

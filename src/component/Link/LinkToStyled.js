@@ -12,18 +12,19 @@ export const LinkToStyled = styled(NavLink)`
     ${({ underline }) => underline && 'text-decoration: underline'};
     transition: color ${variable.transition};
 
-    ${({ hoverColor }) =>
-        hoverColor &&
+    ${({ obj }) =>
+        obj &&
+        obj.hoverColor &&
         css`
             &:hover {
-                color: ${variable[hoverColor]};
+                color: ${variable[obj.hoverColor]};
 
                 > span {
-                    color: ${variable[hoverColor]};
+                    color: ${variable[obj.hoverColor]};
                 }
 
                 > svg {
-                    fill: ${variable[hoverColor]};
+                    fill: ${variable[obj.hoverColor]};
                 }
             }
         `};
