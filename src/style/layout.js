@@ -45,5 +45,5 @@ export const VideoWrap = styled.div`
 export const Wrap = styled.div`
     ${layout};
     ${space};
-    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorGrayLight4)};
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
 `;
