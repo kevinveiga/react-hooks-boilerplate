@@ -10,6 +10,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation, Label } from './Form';
 import { LinkTo } from '../Link/LinkTo';
+import { Svg } from '../Svg/Svg';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
@@ -19,6 +20,8 @@ import { P, Span, Title3 } from '../../style/text';
 
 const CadastroForm = ({ ...props }) => {
     // ACTION
+    const [stateViewPassword, setStateViewPassword] = useState(false);
+
     useEffect(() => {
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'email' }, { ...customValidate.email });
@@ -59,73 +62,87 @@ const CadastroForm = ({ ...props }) => {
                         <Cell mb={3} width="100%">
                             <Label text="Nome completo" />
 
-                            <InputValidation
-                                error={errors.nome}
-                                maxLength="50"
-                                name="nome"
-                                onChange={async (e) => {
-                                    const input = e.target;
-                                    await triggerValidation({ name: input.name, value: input.value });
-                                }}
-                                placeholder="Nome"
-                                touched={formState.touched}
-                                {...props}
-                            />
+                            <div>
+                                <InputValidation
+                                    error={errors.nome}
+                                    maxLength="50"
+                                    name="nome"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Nome"
+                                    touched={formState.touched}
+                                    {...props}
+                                />
+                            </div>
+
                             {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
                             <Label text="E-mail" />
 
-                            <InputValidation
-                                error={errors.email}
-                                maxLength="50"
-                                name="email"
-                                onChange={async (e) => {
-                                    const input = e.target;
-                                    await triggerValidation({ name: input.name, value: input.value });
-                                }}
-                                placeholder="E-mail"
-                                touched={formState.touched}
-                                {...props}
-                            />
+                            <div>
+                                <InputValidation
+                                    error={errors.email}
+                                    maxLength="50"
+                                    name="email"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="E-mail"
+                                    touched={formState.touched}
+                                    {...props}
+                                />
+                            </div>
+
                             {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
                             <Label text="Celular" />
 
-                            <InputMaskValidation
-                                error={errors.telefone}
-                                mask={customMaskRegex.phone}
-                                name="telefone"
-                                onChange={async (e) => {
-                                    const input = e.target;
-                                    await triggerValidation({ name: input.name, value: input.value });
-                                }}
-                                placeholder="Telefone"
-                                touched={formState.touched}
-                                {...props}
-                            />
+                            <div>
+                                <InputMaskValidation
+                                    error={errors.telefone}
+                                    mask={customMaskRegex.phone}
+                                    name="telefone"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Telefone"
+                                    touched={formState.touched}
+                                    {...props}
+                                />
+                            </div>
+
                             {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell mb={4} width="100%">
                             <Label text="Senha" />
 
-                            <InputValidation
-                                error={errors.senha}
-                                maxLength="11"
-                                name="senha"
-                                onChange={async (e) => {
-                                    const input = e.target;
-                                    await triggerValidation({ name: input.name, value: input.value });
-                                }}
-                                placeholder="Senha"
-                                touched={formState.touched}
-                                type="password"
-                                {...props}
-                            />
+                            <div>
+                                <InputValidation
+                                    error={errors.senha}
+                                    maxLength="11"
+                                    name="senha"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Senha"
+                                    touched={formState.touched}
+                                    type={stateViewPassword ? 'text' : 'password'}
+                                    {...props}
+                                />
+
+                                <Svg height="20px" name="svg-view" onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
+                            </div>
+
                             {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
                         </Cell>
 
