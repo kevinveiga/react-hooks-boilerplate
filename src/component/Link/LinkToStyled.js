@@ -1,22 +1,26 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { layout, space, typography } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
-export const LinkToStyled = styled(Link)`
+export const LinkToStyled = styled(NavLink)`
     ${layout};
     ${space};
     ${typography};
+    ${({ color }) => color && `color: ${variable[color]}`};
     ${({ underline }) => underline && 'text-decoration: underline'};
 
     ${({ hover }) =>
         hover === 'primary' &&
         css`
             &:hover {
+                color: ${variable.colorPrimary};
+
                 > span {
                     color: ${variable.colorPrimary};
                 }
+
                 > svg {
                     fill: ${variable.colorPrimary};
                 }

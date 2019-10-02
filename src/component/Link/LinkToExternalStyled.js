@@ -7,15 +7,19 @@ export const LinkToExternalStyled = styled.a`
     ${layout};
     ${space};
     ${typography};
+    ${({ color }) => color && `color: ${variable[color]}`};
     ${({ underline }) => underline && 'text-decoration: underline'};
 
     ${({ hover }) =>
         hover === 'primary' &&
         css`
             &:hover {
+                color: ${variable.colorPrimary};
+
                 > span {
                     color: ${variable.colorPrimary};
                 }
+
                 > svg {
                     fill: ${variable.colorPrimary};
                 }
