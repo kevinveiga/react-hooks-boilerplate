@@ -160,7 +160,8 @@ const CadastroForm = ({ ...props }) => {
 
                         <Cell mb={3} textAlign="center" width="100%">
                             <P color="colorGray2" fontSize={14} themeColor="dark">
-                                Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" hover="primary" link="" text="Termos de serviço" underline={true} /> e <LinkTo fontWeight="600" hover="primary" link="" text="Política de privacidade" underline={true} />.
+                                Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" hoverColor="colorPrimary" link="" text="Termos de serviço" underline={true} /> e{' '}
+                                <LinkTo fontWeight="600" hoverColor="colorPrimary" link="" text="Política de privacidade" underline={true} />.
                             </P>
                         </Cell>
                     </Grid>

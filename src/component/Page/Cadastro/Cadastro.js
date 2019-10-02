@@ -81,7 +81,7 @@ export const Cadastro = () => {
 
                         <Box order={{ d: '-1', lg: '2' }} textAlign={{ d: 'center', lg: 'left' }} width={{ d: '100%', lg: 1 / 7 }}>
                             <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                                <LinkTo ariaLabel="Home" hover="primary" link="/inicio" text="Voltar para home" underline={true} />
+                                <LinkTo ariaLabel="Home" hoverColor="colorPrimary" link="/inicio" text="Voltar para home" underline={true} />
                             </Container>
                         </Box>
                     </Flex>
@@ -90,7 +90,7 @@ export const Cadastro = () => {
                 <Wrap backgroundColor="colorGrayLight2">
                     <Container mx="auto" p={{ d: 2, md: 3 }}>
                         <P color="colorGray2" fontSize="12px" mb={0} textAlign="center" themeColor="dark">
-                            <LinkTo fontWeight="600" hover="primary" link="" text="Termos de serviço" /> | <LinkTo fontWeight="600" hover="primary" link="" text="Política de privacidade" />
+                            <LinkTo fontWeight="600" hoverColor="colorPrimary" link="" text="Termos de serviço" /> | <LinkTo fontWeight="600" hoverColor="colorPrimary" link="" text="Política de privacidade" />
                         </P>
                     </Container>
                 </Wrap>
