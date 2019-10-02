@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { space } from 'styled-system';
+import { layout, space } from 'styled-system';
 
 import { variable } from './variable';
 
 export const Container = styled.section`
+    ${layout};
     ${space};
 
     @media (min-width: ${variable.lg}) {
@@ -42,5 +43,7 @@ export const VideoWrap = styled.div`
 `;
 
 export const Wrap = styled.div`
+    ${layout};
+    ${space};
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorGrayLight4)};
 `;
