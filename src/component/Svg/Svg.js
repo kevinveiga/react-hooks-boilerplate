@@ -8,16 +8,24 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgArrowLeft {...otherProps} />;
         case 'svg-arrow-right':
             return <SvgStore.SvgArrowRight {...otherProps} />;
+        case 'svg-close':
+            return <SvgStore.SvgClose {...otherProps} />;
         case 'svg-facebook':
             return <SvgStore.SvgFacebook {...otherProps} />;
         case 'svg-instagram':
             return <SvgStore.SvgInstagram {...otherProps} />;
+        case 'svg-invalid':
+            return <SvgStore.SvgInvalid {...otherProps} />;
         case 'svg-linkedin':
             return <SvgStore.SvgLinkedin {...otherProps} />;
         case 'svg-logo-loader':
             return <SvgStore.SvgLogoLoader {...otherProps} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...otherProps} />;
+        case 'svg-valid':
+            return <SvgStore.SvgValid {...otherProps} />;
+        case 'svg-view':
+            return <SvgStore.SvgView {...otherProps} />;
         default:
             return null;
     }

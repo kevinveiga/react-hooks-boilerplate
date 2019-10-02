@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { SvgArrowStyled } from './SvgArrowStyled';
+import { SvgCloseStyled } from './SvgCloseStyled';
 import { SvgLogoLoaderStyled } from './SvgLogoLoaderStyled';
 import { SvgSocialStyled } from './SvgSocialStyled';
 import { SvgStyled } from './SvgStyled';
 import { SvgValidationStyled } from './SvgValidationStyled';
+import { SvgViewStyled } from './SvgViewStyled';
 
 export const SvgArrowLeft = ({ ...props }) => {
     return (
@@ -19,6 +21,14 @@ export const SvgArrowRight = ({ ...props }) => {
         <SvgArrowStyled {...props} version={1} viewBox="0 0 257.6 451.8" xmlns="http://www.w3.org/2000/svg">
             <path d="M31.6 0A31.5 31.5 0 0 0 9.3 54l171.9 172-172 171.8A31.6 31.6 0 0 0 54 442.6l194.3-194.3a31.5 31.5 0 0 0 0-44.7L54 9.3A31.5 31.5 0 0 0 31.6 0z" />
         </SvgArrowStyled>
+    );
+};
+
+export const SvgClose = ({ ...props }) => {
+    return (
+        <SvgCloseStyled {...props} version={1} viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.2.5a.7.7 0 0 0-.5 1.3l6.8 6.7-6.8 6.7a.7.7 0 0 0 .5 1.3.7.7 0 0 0 .5-.3l6.8-6.7 6.7 6.7a.7.7 0 0 0 .5.3.7.7 0 0 0 .5-1.3L9.5 8.5l6.7-6.7a.7.7 0 1 0-1-1L8.5 7.4 1.7.7a.7.7 0 0 0-.5-.2z" />
+        </SvgCloseStyled>
     );
 };
 
@@ -119,5 +129,13 @@ export const SvgValid = ({ ...props }) => {
         <SvgValidationStyled {...props} version={1} viewBox="0 0 23.8 16.9" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.2.5a1 1 0 0 0-.6.3l-13.1 13-6.2-6.1A1 1 0 0 0 .8 9.2l7 6.9a1 1 0 0 0 .7.3 1 1 0 0 0 .7-.3L23.1 2.2a1 1 0 0 0-.9-1.7z" />
         </SvgValidationStyled>
+    );
+};
+
+export const SvgView = ({ ...props }) => {
+    return (
+        <SvgViewStyled {...props} version={1} viewBox="0 0 512 326.33" xmlns="http://www.w3.org/2000/svg">
+            <path d="M256 0C116.8 0 7.82 146.95 3.25 153.2a16.9 16.9 0 000 19.92c4.57 6.26 113.56 153.2 252.75 153.2s248.17-146.94 252.75-153.2c4.33-5.93 4.33-13.98 0-19.91C504.17 146.95 395.19 0 256 0zm0 33.76c102.52 0 191.32 97.51 217.61 129.42-26.25 31.9-114.86 129.39-217.61 129.39-102.53 0-191.33-97.53-217.62-129.42C64.63 131.24 153.25 33.75 256 33.75zm0 28.13c-55.84 0-101.28 45.43-101.28 101.27 0 55.85 45.44 101.28 101.28 101.28S357.27 219 357.27 163.16c0-55.84-45.43-101.27-101.27-101.27zm0 33.76a67.6 67.6 0 0167.51 67.51A67.6 67.6 0 01256 230.68a67.59 67.59 0 01-67.52-67.52A67.6 67.6 0 01256 95.65z" />
+        </SvgViewStyled>
     );
 };
