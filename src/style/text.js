@@ -7,7 +7,7 @@ const title = css`
     ${layout};
     ${space};
     ${typography};
-    color: ${({ color, themeColor }) => (themeColor === 'dark' ? (color ? variable[color] : variable.colorBlack2) : variable.colorWhite)};
+    color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     display: block;
     height: auto;
     line-height: 1.3;
@@ -20,7 +20,7 @@ export const P = styled.p`
     ${layout};
     ${space};
     ${typography};
-    color: ${({ color, themeColor }) => (themeColor === 'dark' ? (color ? variable[color] : variable.colorBlack2) : variable.colorWhite)};
+    color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
 `;
 
 export const Span = styled.span`
