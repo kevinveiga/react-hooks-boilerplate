@@ -20,6 +20,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgLinkedin {...otherProps} />;
         case 'svg-logo-loader':
             return <SvgStore.SvgLogoLoader {...otherProps} />;
+        case 'svg-menu':
+            return <SvgStore.SvgMenu {...otherProps} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...otherProps} />;
         case 'svg-valid':

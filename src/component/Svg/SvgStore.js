@@ -3,6 +3,7 @@ import React from 'react';
 import { SvgArrowStyled } from './SvgArrowStyled';
 import { SvgCloseStyled } from './SvgCloseStyled';
 import { SvgLogoLoaderStyled } from './SvgLogoLoaderStyled';
+import { SvgMenuStyled } from './SvgMenuStyled';
 import { SvgSocialStyled } from './SvgSocialStyled';
 import { SvgStyled } from './SvgStyled';
 import { SvgValidationStyled } from './SvgValidationStyled';
@@ -113,6 +114,14 @@ export const SvgLogoLoader = ({ ...props }) => {
                 />
             </path>
         </SvgLogoLoaderStyled>
+    );
+};
+
+export const SvgMenu = ({ ...props }) => {
+    return (
+        <SvgMenuStyled {...props} version={1} viewBox="0 0 459 306" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0v51h459V0zm0 127.5v51h459v-51zM0 255v51h459v-51z" />
+        </SvgMenuStyled>
     );
 };
 
