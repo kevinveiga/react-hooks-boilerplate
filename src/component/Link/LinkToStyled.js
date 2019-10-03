@@ -27,6 +27,10 @@ export const LinkToStyled = styled(NavLink)`
                     fill: ${variable[obj.hoverColor]};
                 }
             }
+
+            &.active {
+                color: ${variable[obj.hoverColor]};
+            }
         `};
 
     > span {
