@@ -7,5 +7,5 @@ export const SvgCloseStyled = styled.svg`
     ${space};
     display: ${({ active }) => (active ? 'block' : 'none')};
     fill: ${variable.colorGray4};
-    height: 18px;
+    width: 30px;
 `;
