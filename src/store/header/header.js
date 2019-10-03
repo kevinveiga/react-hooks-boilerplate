@@ -29,3 +29,9 @@ export const useChangeMenuMobile = () => {
 
     return [stateChangeMenuMobile, setStateChangeMenuMobile];
 };
+
+export const useChangeMenuMinhaContaMobile = () => {
+    const [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile] = useState(false);
+
+    return [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile];
+};

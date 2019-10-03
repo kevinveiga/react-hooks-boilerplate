@@ -54,13 +54,13 @@ export const NoticiaForm = ({ ...props }) => {
             <Box alignContent="center" display={stateRetornoForm ? 'inline-flex' : { d: 'none', sm: 'inline-flex' }} flexWrap="wrap" minHeight={stateRetornoForm ? '60vh' : '100%'} p="75px" width={stateRetornoForm ? '100%' : 1 / 2}>
                 {stateRetornoForm ? (
                     <>
-                        <Title3 fontWeight="600" mb={4} mx="auto" textAlign="center">
+                        <Title3 fontWeight="600" mb={4} mx="auto" textAlign="center" themeColor="light">
                             Retorno
                         </Title3>
                     </>
                 ) : (
                     <>
-                        <Title3 fontWeight="600" mb={4}>
+                        <Title3 fontWeight="600" mb={4} themeColor="light">
                             Teste
                         </Title3>
                     </>

@@ -94,5 +94,5 @@ export const variable = {
     footerHeight: '650px',
     footerHeightMobile: '600px',
     headerHeight: '100px',
-    headerHeightMobile: '80px'
+    headerHeightMobile: '70px'
 };
