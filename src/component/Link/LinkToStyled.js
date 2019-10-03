@@ -16,7 +16,8 @@ export const LinkToStyled = styled(NavLink)`
         obj &&
         obj.hoverColor &&
         css`
-            &:hover {
+            &:hover,
+            &.active {
                 color: ${variable[obj.hoverColor]};
 
                 > span {
@@ -26,10 +27,6 @@ export const LinkToStyled = styled(NavLink)`
                 > svg {
                     fill: ${variable[obj.hoverColor]};
                 }
-            }
-
-            &.active {
-                color: ${variable[obj.hoverColor]};
             }
         `};
 
