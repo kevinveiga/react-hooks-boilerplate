@@ -148,6 +148,7 @@ export const NoticiaAuthor = styled.section`
         border-radius: 50%;
         height: 150px;
         overflow: hidden;
+        text-align: center;
         width: 150px;
     }
 `;

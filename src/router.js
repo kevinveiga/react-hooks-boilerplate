@@ -16,7 +16,7 @@ export const Router = withRouter((props) => {
     const { setStateHideFooterGlobal, setStateHideHeaderGlobal } = useContext(Context);
 
     // ACTION
-    // Oculta Header e Footer padrões do site de acordo com Array de path
+    // Oculta Header e Footer padrões do site de acordo com o array do path
     useEffect(() => {
         if (
             matchPath(window.location.pathname, {
