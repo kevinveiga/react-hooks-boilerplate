@@ -31,7 +31,7 @@ export const MinhaConta = () => {
 
             <MainAlternate>
                 <Container mx="auto" px={{ d: 2, lg: 3 }}>
-                    <Flex minHeight="calc(100vh - 105px)" display="flex" flexWrap="wrap">
+                    <Flex minHeight="calc(100vh - 120px)" display="flex" flexWrap="wrap">
                         <MinhaContaMenu />
 
                         <MinhaContaCenter p={5} width={{ d: '100%', lg: 8 / 10 }}>

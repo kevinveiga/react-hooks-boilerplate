@@ -25,6 +25,19 @@ export const Main = styled.main`
     }
 `;
 
+export const MainAlternate = styled.main`
+    height: auto;
+    margin-top: ${variable.headerHeightMobile};
+    min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight});
+    width: 100%;
+    z-index: 0;
+
+    @media (min-width: ${variable.lg}) {
+        margin-top: 0;
+        min-height: calc(100vh - ${variable.headerHeight} - ${variable.footerAlternateHeight});
+    }
+`;
+
 export const VideoWrap = styled.div`
     div {
         height: 0;
