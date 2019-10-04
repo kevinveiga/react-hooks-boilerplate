@@ -137,20 +137,6 @@ export const NoticiaAuthor = styled.section`
     max-width: calc(${variable.md} - ${variable.spacingLG});
     padding-bottom: ${variable.spacingMD};
     padding-top: ${variable.spacingMD};
-
-    .escrito-por {
-        color: ${variable.colorGray};
-        font-size: 14px;
-        margin-bottom: 8px;
-    }
-
-    .image-container {
-        border-radius: 50%;
-        height: 150px;
-        overflow: hidden;
-        text-align: center;
-        width: 150px;
-    }
 `;
 
 export const NoticiaInfo = styled.div``;

@@ -13,6 +13,14 @@ export const Image = styled.img.attrs(({ text, url }) => ({
     object-fit: ${({ objectFit }) => objectFit || 'cover'};
 `;
 
+export const ImageCircleContainer = styled.div`
+    border-radius: 50%;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    width: 150px;
+`;
+
 export const BgImage = styled.div`
     ${({ attachment }) => attachment && `background-attachment: ${attachment}`};
     background-color: ${({ bgColor }) => variable[bgColor] || 'transparent'};

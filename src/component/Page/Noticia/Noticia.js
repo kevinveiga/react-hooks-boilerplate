@@ -21,9 +21,11 @@ import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContain
 
 import { Box, Flex } from '../../../style/flex';
 // import { Cell, Grid } from '../../../style/grid';
-import { Image } from '../../../style/image';
+import { Image, ImageCircleContainer } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
+
+// import logo from '../../../asset/image/logo.png';
 
 export const Noticia = ({ match }) => {
     // API
@@ -101,13 +103,13 @@ export const Noticia = ({ match }) => {
                         <NoticiaAuthor mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
-                                    <div className="image-container">
-                                        <Image objectFit="none" url={noticia.data.author_avatar} text="autor" />
-                                    </div>
+                                    <ImageCircleContainer>{/* <Image objectFit="none" text="autor" url={noticia.data.author_avatar || logo} /> */}</ImageCircleContainer>
                                 </Box>
 
                                 <Box alignSelf="center" display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
-                                    <p className="escrito-por">Escrito por</p>
+                                    <P color="colorGray" fontSize={14} mb={2}>
+                                        Escrito por
+                                    </P>
 
                                     <Title4 color="colorPrimary" mb={2} themeColor="dark">
                                         Alexandre Stormer
