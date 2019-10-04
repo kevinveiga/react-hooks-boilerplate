@@ -4,11 +4,10 @@ import useForm from 'react-hook-form';
 
 import { apiUrlContato } from '../../config';
 
-import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { InputMaskValidation, InputValidation, Label } from './Form';
+import { InputValidation, Label } from './Form';
 import { LinkTo } from '../Link/LinkTo';
 import { Svg } from '../Svg/Svg';
 
@@ -18,14 +17,12 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const MinhaContaForm = ({ data, ...otherProps }) => {
+const LoginForm = ({ ...props }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'telefone' }, { ...customValidate.phone });
         register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
     }, [register]);
 
@@ -42,7 +39,7 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                 if (result && result.success == false) {
                     setError('invalid', 'notMatch', result.reason[0]);
                 } else {
-                    // TODO: exibir mensagem de dados salvos com sucesso
+                    // TODO: fazer redirect para página inicial do usuário
                 }
             } catch (error) {
                 console.error(error);
@@ -60,28 +57,6 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                         {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 
                         <Cell mb={3} width="100%">
-                            <Label text="Nome completo" />
-
-                            <div>
-                                <InputValidation
-                                    error={errors.nome}
-                                    maxLength="50"
-                                    name="nome"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
-                                    }}
-                                    placeholder="Nome"
-                                    touched={formState.touched}
-                                    value={data.nome}
-                                    {...otherProps}
-                                />
-                            </div>
-
-                            {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
-                        </Cell>
-
-                        <Cell mb={3} width="100%">
                             <Label text="E-mail" />
 
                             <div>
@@ -95,34 +70,11 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                                     }}
                                     placeholder="E-mail"
                                     touched={formState.touched}
-                                    value={data.email}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             </div>
 
                             {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
-                        </Cell>
-
-                        <Cell mb={3} width="100%">
-                            <Label text="Celular" />
-
-                            <div>
-                                <InputMaskValidation
-                                    error={errors.telefone}
-                                    mask={customMaskRegex.phone}
-                                    name="telefone"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
-                                    }}
-                                    placeholder="Telefone"
-                                    touched={formState.touched}
-                                    value={data.telefone}
-                                    {...otherProps}
-                                />
-                            </div>
-
-                            {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell mb={4} width="100%">
@@ -140,8 +92,7 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                                     placeholder="Senha"
                                     touched={formState.touched}
                                     type={stateViewPassword ? 'text' : 'password'}
-                                    value={data.senha}
-                                    {...otherProps}
+                                    {...props}
                                 />
 
                                 <Svg height="20px" name="svg-view" onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
@@ -151,21 +102,12 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                         </Cell>
 
                         <Cell mb={3} width="100%">
-                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Cadastrar-se" typeButton="submit" width="100%" />
-                        </Cell>
-
-                        <Cell mb={3} textAlign="center" width="100%">
-                            <span>Você já possui uma conta?</span>
-
-                            <LinkTo link="">
-                                <Button fontSize={{ d: 14, sm: 16 }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }} text="Fazer Login" themeSize="small" themeType="border" />
-                            </LinkTo>
+                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Acessar" typeButton="submit" width="100%" />
                         </Cell>
 
                         <Cell mb={3} textAlign="center" width="100%">
                             <P color="colorGray2" fontSize={14} themeColor="dark">
-                                Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="" text="Termos de serviço" /> e{' '}
-                                <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="" text="Política de privacidade" />.
+                                <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="" text="Esqueceu sua senha?" />
                             </P>
                         </Cell>
                     </Grid>
@@ -174,3 +116,5 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
         </Flex>
     );
 };
+
+export default LoginForm;
