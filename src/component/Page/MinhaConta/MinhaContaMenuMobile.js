@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { HeaderAlternateContext } from '../../../store/header/headerAlternateContext';
 
 import { LinkTo } from '../../Link/LinkTo';
-import { Svg } from '../../Svg/Svg';
 
 import { MinhaContaMenuMobileStyled } from './MinhaContaMenuStyled';
 

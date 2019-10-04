@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { layout, space } from 'styled-system';
 
 import { variable } from './variable';
@@ -13,29 +13,40 @@ export const Container = styled.section`
 `;
 
 export const Main = styled.main`
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
     height: auto;
-    margin-top: ${variable.headerHeightMobile};
-    min-height: 500px;
     width: 100%;
     z-index: 0;
 
-    @media (min-width: ${variable.lg}) {
-        margin-top: ${variable.headerHeight};
-        min-height: calc(100vh - ${variable.headerHeight});
-    }
-`;
+    ${({ header }) =>
+        header === undefined &&
+        css`
+            margin-top: ${variable.headerHeightMobile};
+            min-height: calc(100vh - ${variable.headerHeightMobile});
 
-export const MainAlternate = styled.main`
-    height: auto;
-    margin-top: ${variable.headerHeightMobile};
-    min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight});
-    width: 100%;
-    z-index: 0;
+            @media (min-width: ${variable.lg}) {
+                margin-top: ${variable.headerHeight};
+                min-height: calc(100vh - ${variable.headerHeight});
+            }
+        `};
 
-    @media (min-width: ${variable.lg}) {
-        margin-top: 0;
-        min-height: calc(100vh - ${variable.headerHeight} - ${variable.footerAlternateHeight});
-    }
+    ${({ header }) =>
+        header === false &&
+        css`
+            margin-top: 0;
+            min-height: calc(100vh - ${variable.footerAlternateHeight});
+        `};
+
+    ${({ header }) =>
+        header === 'minhaConta' &&
+        css`
+            margin-top: ${variable.headerHeightMobile};
+            min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight});
+
+            @media (min-width: ${variable.lg}) {
+                margin-top: 0;
+            }
+        `};
 `;
 
 export const VideoWrap = styled.div`
@@ -56,7 +67,5 @@ export const VideoWrap = styled.div`
 `;
 
 export const Wrap = styled.div`
-    ${layout};
-    ${space};
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
 `;

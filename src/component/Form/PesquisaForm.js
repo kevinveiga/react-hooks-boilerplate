@@ -41,7 +41,7 @@ export const PesquisaForm = ({ ...props }) => {
     };
 
     return (
-        <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
+        <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', xs: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
                 <Cell mb={3}>
                     <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />

@@ -18,7 +18,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-const CadastroForm = ({ ...props }) => {
+export const MinhaContaForm = ({ obj, ...otherProps }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
@@ -42,7 +42,7 @@ const CadastroForm = ({ ...props }) => {
                 if (result && result.success == false) {
                     setError('invalid', 'notMatch', result.reason[0]);
                 } else {
-                    // TODO: fazer redirect para página inicial do usuário
+                    // TODO: exibir mensagem de dados salvos com sucesso
                 }
             } catch (error) {
                 console.error(error);
@@ -73,7 +73,8 @@ const CadastroForm = ({ ...props }) => {
                                     }}
                                     placeholder="Nome"
                                     touched={formState.touched}
-                                    {...props}
+                                    value={obj.data.nome}
+                                    {...obj}
                                 />
                             </div>
 
@@ -94,7 +95,7 @@ const CadastroForm = ({ ...props }) => {
                                     }}
                                     placeholder="E-mail"
                                     touched={formState.touched}
-                                    {...props}
+                                    {...obj}
                                 />
                             </div>
 
@@ -115,7 +116,7 @@ const CadastroForm = ({ ...props }) => {
                                     }}
                                     placeholder="Telefone"
                                     touched={formState.touched}
-                                    {...props}
+                                    {...obj}
                                 />
                             </div>
 
@@ -137,7 +138,7 @@ const CadastroForm = ({ ...props }) => {
                                     placeholder="Senha"
                                     touched={formState.touched}
                                     type={stateViewPassword ? 'text' : 'password'}
-                                    {...props}
+                                    {...obj}
                                 />
 
                                 <Svg height="20px" name="svg-view" onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
@@ -170,5 +171,3 @@ const CadastroForm = ({ ...props }) => {
         </Flex>
     );
 };
-
-export default CadastroForm;

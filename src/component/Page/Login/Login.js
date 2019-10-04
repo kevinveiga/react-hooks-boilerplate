@@ -12,12 +12,12 @@ import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
-import { P, Title2, Title4, Title5 } from '../../../style/text';
+import { P, Title2, Title5 } from '../../../style/text';
 
 // LAZY
-const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
+const LoginForm = lazy(() => import('../../Form/LoginForm'));
 
-export const Cadastro = () => {
+export const Login = () => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
@@ -35,11 +35,11 @@ export const Cadastro = () => {
 
                         <Box p={4} width="100%">
                             <P align="right" fontSize="24px" mb={4} textAlign="right" themeColor="light">
-                                Aqui vai uma super frase de
+                                &quot;Aqui vai uma super frase de
                                 <br />
                                 propósito para encantar o
                                 <br />
-                                cliente maroto.
+                                cliente maroto.&quot;
                             </P>
 
                             <Title5 fontSize="16px" color="colorPrimary" textAlign="right" themeColor="dark">
@@ -54,16 +54,17 @@ export const Cadastro = () => {
                                 <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
                             </Box>
 
-                            <Title4 align="center" color="colorGray2" themeColor="dark">
-                                Faça seu cadastro
-                            </Title4>
-
-                            <Title2 align="center" fontWeight="600" themeColor="dark">
-                                e comece a aprender
+                            <Title2 textAlign="center" themeColor="dark">
+                                Acesse a sala de aula
+                                <br /> da Liberta
                             </Title2>
 
+                            <P color="colorGray2" fontSize={14} mt="30px" textAlign="center" themeColor="dark">
+                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="" text="Se cadastre aqui." />
+                            </P>
+
                             <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
-                                <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
+                                <LoginForm obj={{ colorLine: 'colorPrimary' }} />
                             </Suspense>
                         </Container>
                     </Box>

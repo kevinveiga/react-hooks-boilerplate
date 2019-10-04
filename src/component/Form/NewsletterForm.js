@@ -61,7 +61,7 @@ export const NewsletterForm = ({ ...props }) => {
             </P>
         </div>
     ) : (
-        <FormStyled onSubmit={handleSubmit(submitForm)} {...props}>
+        <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2} gridTemplateColumns={{ d: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))' }} justifyContent="flex-end">
                 {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 

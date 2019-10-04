@@ -6,15 +6,14 @@ import { apiUrlHome } from '../../../config';
 import { useSeoApi } from '../../../service/seo';
 
 import { FooterAlternate } from '../../Footer/FooterAlternate';
+import { MinhaContaForm } from '../../Form/MinhaContaForm';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
-import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { MinhaContaMenu } from './MinhaContaMenu';
 
 import { MinhaContaCenter } from './MinhaContaStyled';
 
 import { Flex } from '../../../style/flex';
-import { Container, MainAlternate } from '../../../style/layout';
-import { P, Title2, Title3, Title4, Title5 } from '../../../style/text';
+import { Container, Main } from '../../../style/layout';
 
 export const MinhaConta = () => {
     // API
@@ -29,17 +28,17 @@ export const MinhaConta = () => {
 
             <HeaderAlternate />
 
-            <MainAlternate>
+            <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 2, lg: 3 }}>
-                    <Flex minHeight="calc(100vh - 120px)" display="flex" flexWrap="wrap">
+                    <Flex display="flex" flexWrap="wrap">
                         <MinhaContaMenu />
 
                         <MinhaContaCenter p={5} width={{ d: '100%', lg: 8 / 10 }}>
-                            teste
+                            <MinhaContaForm obj={{ colorLine: 'colorPrimary', data: { nome: 'teste', email: 'teste@teste.com' } }} />
                         </MinhaContaCenter>
                     </Flex>
                 </Container>
-            </MainAlternate>
+            </Main>
 
             <FooterAlternate />
         </>
