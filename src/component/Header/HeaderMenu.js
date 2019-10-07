@@ -22,7 +22,7 @@ export const HeaderMenu = ({ ...props }) => {
     };
 
     const search = () => {
-        window.location.pathname = `/pesquisa/${document.getElementById('pesquisa-field-id').value}`;
+        window.location.pathname = `/pesquisa/${document.querySelector('input[name="pesquisa_mobile"]').value}`;
     };
 
     return (
@@ -41,10 +41,8 @@ export const HeaderMenu = ({ ...props }) => {
                 <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
                     <Cell width="100%">
                         <Input
-                            color="colorWhite"
-                            id="pesquisa-field-id"
                             maxLength="50"
-                            name="pesquisa"
+                            name="pesquisa_mobile"
                             placeholder="Procure"
                             obj={{ color: 'colorWhite' }}
                             onKeyDown={(e) => {

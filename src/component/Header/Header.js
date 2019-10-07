@@ -32,7 +32,6 @@ export const Header = () => {
                         <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
                             <Cell width="100%">
                                 <Input
-                                    id="pesquisa-field-id"
                                     maxLength="50"
                                     name="pesquisa"
                                     placeholder="Procure"

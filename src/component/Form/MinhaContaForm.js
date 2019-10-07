@@ -4,6 +4,8 @@ import useForm from 'react-hook-form';
 
 import { apiUrlContato } from '../../config';
 
+import { useSetFormValue } from '../../store/util/setFormValue';
+
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
@@ -18,19 +20,25 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const MinhaContaForm = ({ data, ...otherProps }) => {
+export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
+    // Valores inicias dos inputs
+    useSetFormValue(data, formId);
+
     useEffect(() => {
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+        register({ name: 'data' }, { ...customValidate.date });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'telefone' }, { ...customValidate.phone });
+        register({ name: 'endereco' }, { ...customValidate.address, ...customValidate.require });
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
+        register({ name: 'telefone' }, { ...customValidate.phone });
     }, [register]);
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+        defaultValues: { ...data },
         mode: 'onChange'
     });
 
@@ -38,6 +46,8 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
+
+                console.log('form: ', formData);
 
                 if (result && result.success == false) {
                     setError('invalid', 'notMatch', result.reason[0]);
@@ -55,12 +65,12 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
     return (
         <Flex display="flex" flexWrap="wrap">
             <Box overflow="hidden" width="100%">
-                <FormStyled onSubmit={handleSubmit(submitForm)}>
+                <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                         {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 
                         <Cell mb={3} width="100%">
-                            <Label text="Nome completo" />
+                            <Label color="colorGray2" text="Nome completo" />
 
                             <div>
                                 <InputValidation
@@ -73,7 +83,6 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                                     }}
                                     placeholder="Nome"
                                     touched={formState.touched}
-                                    value={data.nome}
                                     {...otherProps}
                                 />
                             </div>
@@ -82,7 +91,7 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                         </Cell>
 
                         <Cell mb={3} width="100%">
-                            <Label text="E-mail" />
+                            <Label color="colorGray2" text="E-mail" />
 
                             <div>
                                 <InputValidation
@@ -95,7 +104,6 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                                     }}
                                     placeholder="E-mail"
                                     touched={formState.touched}
-                                    value={data.email}
                                     {...otherProps}
                                 />
                             </div>
@@ -104,20 +112,19 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                         </Cell>
 
                         <Cell mb={3} width="100%">
-                            <Label text="Celular" />
+                            <Label color="colorGray2" text="Celular" />
 
                             <div>
                                 <InputMaskValidation
                                     error={errors.telefone}
                                     mask={customMaskRegex.phone}
                                     name="telefone"
-                                    onChange={async (e) => {
+                                    onChange={(e) => {
                                         const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
+                                        triggerValidation({ name: input.name, value: input.value });
                                     }}
                                     placeholder="Telefone"
                                     touched={formState.touched}
-                                    value={data.telefone}
                                     {...otherProps}
                                 />
                             </div>
@@ -125,8 +132,50 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                             {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
                         </Cell>
 
+                        <Cell mb={3} width="100%">
+                            <Label color="colorGray2" text="Endereço completo" />
+
+                            <div>
+                                <InputValidation
+                                    error={errors.endereco}
+                                    maxLength="100"
+                                    name="endereco"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Endereço com rua, nº e ou complemento"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.endereco && <InvalidInputMessage>{errors.endereco.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell mb={3} width="100%">
+                            <Label color="colorGray2" text="Data de Nascimento" />
+
+                            <div>
+                                <InputMaskValidation
+                                    error={errors.data}
+                                    mask={customMaskRegex.date}
+                                    name="data"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="dd/mm/aaaa"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.data && <InvalidInputMessage>{errors.data.message}</InvalidInputMessage>}
+                        </Cell>
+
                         <Cell mb={4} width="100%">
-                            <Label text="Senha" />
+                            <Label color="colorGray2" text="Senha" />
 
                             <div>
                                 <InputValidation
@@ -140,7 +189,6 @@ export const MinhaContaForm = ({ data, ...otherProps }) => {
                                     placeholder="Senha"
                                     touched={formState.touched}
                                     type={stateViewPassword ? 'text' : 'password'}
-                                    value={data.senha}
                                     {...otherProps}
                                 />
 

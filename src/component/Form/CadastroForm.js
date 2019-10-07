@@ -23,10 +23,10 @@ const CadastroForm = ({ ...props }) => {
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'telefone' }, { ...customValidate.phone });
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
+        register({ name: 'telefone' }, { ...customValidate.phone });
     }, [register]);
 
     // FORM
