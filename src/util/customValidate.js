@@ -23,7 +23,7 @@ export const customValidate = {
     password: {
         maxLength: { message: 'Máximo de 10 caracteres', value: 10 },
         minLength: { message: 'Mínimo de 6 caracteres', value: 6 },
-        pattern: { message: validateMessage.PASSWORD, value: /^(?=.*[a-z])(?=.*[0-9]).{6,10}$/ }
+        pattern: { message: validateMessage.PASSWORD, value: /^(?=.*[a-z]|[A-Z])(?=.*[0-9]).{6,10}$/ }
     },
     phone: {
         pattern: { message: validateMessage.PHONE, value: /^\(?(\d{2})\)?\s?(\d{1})-?(\d{4})-?(\d{3,4})$/ }
