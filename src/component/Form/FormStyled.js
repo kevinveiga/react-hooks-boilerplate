@@ -152,3 +152,7 @@ export const LabelStyled = styled.label`
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     padding: 0 2px;
 `;
+
+export const SelectStyled = styled.select`
+    ${input};
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CheckboxStyled, InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled } from './FormStyled';
+import { CheckboxStyled, InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled, SelectStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
@@ -55,5 +55,13 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
         <LabelStyled aria-label={acessibility} htmlFor={forLabel} {...otherProps}>
             {content}
         </LabelStyled>
+    );
+};
+
+export const Select = ({ ariaLabel, children, value = '', ...otherProps }) => {
+    return (
+        <SelectStyled aria-label={ariaLabel} defaultValue={value} {...otherProps}>
+            {children}
+        </SelectStyled>
     );
 };

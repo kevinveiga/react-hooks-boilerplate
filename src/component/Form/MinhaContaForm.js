@@ -10,7 +10,7 @@ import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { Checkbox, InputMaskValidation, InputValidation, Label } from './Form';
+import { Checkbox, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { Svg } from '../Svg/Svg';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
@@ -27,13 +27,14 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     useSetFormValue(data, formId);
 
     useEffect(() => {
-        register({ name: 'cidade' }, { ...customValidate.require });
         register({ name: 'data' }, { ...customValidate.date });
         register({ name: 'email' }, { ...customValidate.email });
         register({ name: 'endereco' }, { ...customValidate.require });
-        register({ name: 'enderecoNumero' }, { ...customValidate.number });
-        register({ name: 'enderecoComplemento' });
-        register({ name: 'estado' });
+        register({ name: 'endereco_cep' }, { ...customValidate.require });
+        register({ name: 'endereco_cidade' }, { ...customValidate.require });
+        register({ name: 'endereco_complemento' });
+        register({ name: 'endereco_estado' });
+        register({ name: 'endereco_numero' }, { ...customValidate.number });
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
         register({ name: 'sexo' });
@@ -246,20 +247,12 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             <Label color="colorGray2" text="Estado" />
 
                             <div>
-                                <InputValidation
-                                    error={errors.endereco_estado}
-                                    name="endereco_estado"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
-                                    }}
-                                    placeholder="Estado"
-                                    touched={formState.touched}
-                                    {...otherProps}
-                                />
+                                <Select name="endereco_estado" {...otherProps}>
+                                    <option value="rj">RJ</option>
+                                    <option value="rs">RS</option>
+                                    <option value="sp">SP</option>
+                                </Select>
                             </div>
-
-                            {errors.endereco_estado && <InvalidInputMessage>{errors.endereco_estado.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell>
@@ -287,20 +280,12 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             <Label color="colorGray2" text="Sexo" />
 
                             <div>
-                                <InputValidation
-                                    error={errors.sexo}
-                                    name="sexo"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
-                                    }}
-                                    placeholder="Sexo"
-                                    touched={formState.touched}
-                                    {...otherProps}
-                                />
+                                <Select name="sexo" {...otherProps}>
+                                    <option value="indefinido">Indefinido</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                </Select>
                             </div>
-
-                            {errors.sexo && <InvalidInputMessage>{errors.sexo.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
