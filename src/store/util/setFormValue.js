@@ -6,7 +6,20 @@ export const useSetFormValue = (data, formId) => {
             const htmlElement = document.querySelector(`#${formId} input[name="${key}"]`);
 
             if (htmlElement) {
-                htmlElement.value = data[key];
+                let valueType = 'value';
+
+                switch (htmlElement.type) {
+                    case 'checkbox':
+                        valueType = 'checked';
+                        break;
+                    case 'radio':
+                        valueType = 'checked';
+                        break;
+                    default:
+                        valueType = 'value';
+                }
+
+                htmlElement[valueType] = data[key];
             }
         });
     }, [data, formId]);
