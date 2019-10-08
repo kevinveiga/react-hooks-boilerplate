@@ -11,14 +11,12 @@ import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation, Label } from './Form';
-import { LinkTo } from '../Link/LinkTo';
 import { Svg } from '../Svg/Svg';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
-import { P } from '../../style/text';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     // ACTION
@@ -28,11 +26,16 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     useSetFormValue(data, formId);
 
     useEffect(() => {
+        register({ name: 'cidade' }, { ...customValidate.require });
         register({ name: 'data' }, { ...customValidate.date });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'endereco' }, { ...customValidate.address, ...customValidate.require });
+        register({ name: 'endereco' }, { ...customValidate.require });
+        register({ name: 'enderecoNumero' }, { ...customValidate.number });
+        register({ name: 'enderecoComplemento' });
+        register({ name: 'estado' });
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
+        register({ name: 'sexo' });
         register({ name: 'telefone' }, { ...customValidate.phone });
     }, [register]);
 
@@ -66,10 +69,10 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
         <Flex display="flex" flexWrap="wrap">
             <Box overflow="hidden" width="100%">
                 <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
-                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
+                    <Grid display="grid" gridAutoRows="auto" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                         {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 
-                        <Cell mb={3} width="100%">
+                        <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                             <Label color="colorGray2" text="Nome completo" />
 
                             <div>
@@ -90,7 +93,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
+                        <Cell gridColumn={{ d: '1', md: '1 / span 3' }}>
                             <Label color="colorGray2" text="E-mail" />
 
                             <div>
@@ -111,7 +114,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
+                        <Cell>
                             <Label color="colorGray2" text="Celular" />
 
                             <div>
@@ -132,8 +135,8 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
-                            <Label color="colorGray2" text="Endereço completo" />
+                        <Cell gridColumn={{ d: '1', md: '1 / span 3' }}>
+                            <Label color="colorGray2" text="Endereço" />
 
                             <div>
                                 <InputValidation
@@ -144,7 +147,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
                                     }}
-                                    placeholder="Endereço com rua, nº e ou complemento"
+                                    placeholder="Rua do endereço"
                                     touched={formState.touched}
                                     {...otherProps}
                                 />
@@ -153,7 +156,91 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.endereco && <InvalidInputMessage>{errors.endereco.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
+                        <Cell>
+                            <Label color="colorGray2" text="Nº" />
+
+                            <div>
+                                <InputMaskValidation
+                                    error={errors.enderecoNumero}
+                                    mask={Number}
+                                    maxLength="5"
+                                    name="enderecoNumero"
+                                    onChange={(e) => {
+                                        const input = e.target;
+                                        triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Número do endereço"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.enderecoNumero && <InvalidInputMessage>{errors.enderecoNumero.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
+                            <Label color="colorGray2" text="Complemento" />
+
+                            <div>
+                                <InputValidation
+                                    error={errors.enderecoComplemento}
+                                    maxLength="100"
+                                    name="enderecoComplemento"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Complemento do endereço"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.enderecoComplemento && <InvalidInputMessage>{errors.enderecoComplemento.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell>
+                            <Label color="colorGray2" text="Cidade" />
+
+                            <div>
+                                <InputValidation
+                                    error={errors.cidade}
+                                    maxLength="50"
+                                    name="cidade"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Cidade"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.cidade && <InvalidInputMessage>{errors.cidade.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell>
+                            <Label color="colorGray2" text="Estado" />
+
+                            <div>
+                                <InputValidation
+                                    error={errors.estado}
+                                    name="estado"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Estado"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.estado && <InvalidInputMessage>{errors.estado.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell>
                             <Label color="colorGray2" text="Data de Nascimento" />
 
                             <div>
@@ -174,7 +261,27 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.data && <InvalidInputMessage>{errors.data.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell mb={4} width="100%">
+                        <Cell gridColumn={{ d: '1', md: '2 / span 1' }}>
+                            <Label color="colorGray2" text="Sexo" />
+
+                            <div>
+                                <InputValidation
+                                    error={errors.sexo}
+                                    name="sexo"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        await triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Sexo"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.sexo && <InvalidInputMessage>{errors.sexo.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
                             <Label color="colorGray2" text="Senha" />
 
                             <div>
@@ -198,23 +305,8 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
-                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Cadastrar-se" typeButton="submit" width="100%" />
-                        </Cell>
-
-                        <Cell mb={3} textAlign="center" width="100%">
-                            <span>Você já possui uma conta?</span>
-
-                            <LinkTo link="">
-                                <Button fontSize={{ d: 14, sm: 16 }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }} text="Fazer Login" themeSize="small" themeType="border" />
-                            </LinkTo>
-                        </Cell>
-
-                        <Cell mb={3} textAlign="center" width="100%">
-                            <P color="colorGray2" fontSize={14} themeColor="dark">
-                                Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="" text="Termos de serviço" /> e{' '}
-                                <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="" text="Política de privacidade" />.
-                            </P>
+                        <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
+                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" m="auto" text="Cadastrar-se" typeButton="submit" />
                         </Cell>
                     </Grid>
                 </FormStyled>

@@ -34,7 +34,7 @@ export const MinhaConta = () => {
                         <MinhaContaMenu />
 
                         <MinhaContaCenter p={5} width={{ d: '100%', lg: 8 / 10 }}>
-                            <MinhaContaForm obj={{ colorLine: 'colorPrimary' }} data={{ nome: 'teste', email: 'teste@teste.com', telefone: '(51) 9-8135-7941', senha: '123456' }} />
+                            <MinhaContaForm data={{ data: '23/10/2019', nome: 'teste', email: 'teste@teste.com', endereco: 'Rua teste', enderecoNumero: '23', telefone: '(51) 9-8135-7941', senha: '123456' }} formId="minhaContaFormId" obj={{ colorLine: 'colorGray4' }} />
                         </MinhaContaCenter>
                     </Flex>
                 </Container>
