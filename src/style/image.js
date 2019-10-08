@@ -19,6 +19,10 @@ export const ImageCircleContainer = styled.div`
     overflow: hidden;
     text-align: center;
     width: 150px;
+
+    img {
+        height: 100%;
+    }
 `;
 
 export const BgImage = styled.div`

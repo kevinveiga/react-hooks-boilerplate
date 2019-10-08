@@ -13,7 +13,7 @@ export const CheckboxStyled = styled.input`
         + label {
             &::before {
                 border: 2px solid ${variable.colorSecondary};
-                box-shadow: inset 0 0 30px 0 ${variable.colorPrimary};
+                box-shadow: inset 0 0 0 5px ${variable.colorPrimary};
             }
         }
     }
