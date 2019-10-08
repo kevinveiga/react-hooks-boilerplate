@@ -136,7 +136,28 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell gridColumn={{ d: '1', md: '1 / span 3' }}>
+                        <Cell>
+                            <Label color="colorGray2" text="CEP" />
+
+                            <div>
+                                <InputMaskValidation
+                                    error={errors.endereco_cep}
+                                    mask={customMaskRegex.cep}
+                                    name="endereco_cep"
+                                    onChange={(e) => {
+                                        const input = e.target;
+                                        triggerValidation({ name: input.name, value: input.value });
+                                    }}
+                                    placeholder="Cep"
+                                    touched={formState.touched}
+                                    {...otherProps}
+                                />
+                            </div>
+
+                            {errors.endereco_cep && <InvalidInputMessage>{errors.endereco_cep.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell gridColumn={{ d: '1', md: '2 / span 2' }}>
                             <Label color="colorGray2" text="Endereço" />
 
                             <div>
@@ -162,10 +183,10 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
                             <div>
                                 <InputMaskValidation
-                                    error={errors.enderecoNumero}
+                                    error={errors.endereco_numero}
                                     mask={Number}
                                     maxLength="5"
-                                    name="enderecoNumero"
+                                    name="endereco_numero"
                                     onChange={(e) => {
                                         const input = e.target;
                                         triggerValidation({ name: input.name, value: input.value });
@@ -176,7 +197,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.enderecoNumero && <InvalidInputMessage>{errors.enderecoNumero.message}</InvalidInputMessage>}
+                            {errors.endereco_numero && <InvalidInputMessage>{errors.endereco_numero.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
@@ -184,9 +205,9 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
                             <div>
                                 <InputValidation
-                                    error={errors.enderecoComplemento}
+                                    error={errors.endereco_complemento}
                                     maxLength="100"
-                                    name="enderecoComplemento"
+                                    name="endereco_complemento"
                                     onChange={async (e) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
@@ -197,7 +218,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.enderecoComplemento && <InvalidInputMessage>{errors.enderecoComplemento.message}</InvalidInputMessage>}
+                            {errors.endereco_complemento && <InvalidInputMessage>{errors.endereco_complemento.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell>
@@ -205,9 +226,9 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
                             <div>
                                 <InputValidation
-                                    error={errors.cidade}
+                                    error={errors.endereco_cidade}
                                     maxLength="50"
-                                    name="cidade"
+                                    name="endereco_cidade"
                                     onChange={async (e) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
@@ -218,7 +239,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.cidade && <InvalidInputMessage>{errors.cidade.message}</InvalidInputMessage>}
+                            {errors.endereco_cidade && <InvalidInputMessage>{errors.endereco_cidade.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell>
@@ -226,8 +247,8 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
                             <div>
                                 <InputValidation
-                                    error={errors.estado}
-                                    name="estado"
+                                    error={errors.endereco_estado}
+                                    name="endereco_estado"
                                     onChange={async (e) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
@@ -238,7 +259,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.estado && <InvalidInputMessage>{errors.estado.message}</InvalidInputMessage>}
+                            {errors.endereco_estado && <InvalidInputMessage>{errors.endereco_estado.message}</InvalidInputMessage>}
                         </Cell>
 
                         <Cell>
@@ -311,17 +332,17 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 Notificação de e-mail
                             </P>
 
-                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacaoDescontos">
+                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacao_descontos">
                                 <Span verticalAlign="middle">Desejo receber avisos e descontos de cursos</Span>
                             </Checkbox>
 
-                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacaoConteudo">
+                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacao_conteudo">
                                 <Span verticalAlign="middle">Desejo receber a curadoria de conteúdos e notícias</Span>
                             </Checkbox>
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" m="auto" text="Cadastrar-se" typeButton="submit" />
+                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" m="auto" text="Salvar" typeButton="submit" />
                         </Cell>
                     </Grid>
                 </FormStyled>
