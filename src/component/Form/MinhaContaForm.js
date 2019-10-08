@@ -70,7 +70,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
     return (
         <Flex display="flex" flexWrap="wrap">
-            <Box height="150px" width="150px">
+            <Box height="150px" mb={4} width="150px">
                 <ImageCircleContainer>
                     <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
                 </ImageCircleContainer>
@@ -214,7 +214,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.endereco_numero && <InvalidInputMessage>{errors.endereco_numero.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
+                        <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                             <Label color="colorGray2" text="Complemento" />
 
                             <div>
@@ -235,7 +235,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.endereco_complemento && <InvalidInputMessage>{errors.endereco_complemento.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
+                        <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
                             <Label color="colorGray2" text="Cidade" />
 
                             <div>
@@ -268,7 +268,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             </div>
                         </Cell>
 
-                        <Cell gridColumn={{ d: '1', md: '2 / span 2' }}>
+                        <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
                             <Label color="colorGray2" text="Data de Nascimento" />
 
                             <div>
@@ -289,7 +289,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.data && <InvalidInputMessage>{errors.data.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell>
+                        <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
                             <Label color="colorGray2" text="Sexo" />
 
                             <div>
