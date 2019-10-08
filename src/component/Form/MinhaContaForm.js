@@ -13,10 +13,11 @@ import { Button } from '../Button/Button';
 import { Checkbox, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+import { FilePhoto, FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
+import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
@@ -69,9 +70,21 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
     return (
         <Flex display="flex" flexWrap="wrap">
-            <Box overflow="hidden" width="100%">
+            <Box height="150px" width="150px">
+                <ImageCircleContainer>
+                    <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
+                </ImageCircleContainer>
+
+                <FilePhoto id="foto" name="foto" />
+
+                <Label forLabel="foto">
+                    <Svg fill="colorWhite" height="20px" name="svg-camera" />
+                </Label>
+            </Box>
+
+            <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                 <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
-                    <Grid display="grid" gridAutoRows="auto" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
+                    <Grid display="grid" gridAutoRows="auto" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 5 }} py={{ d: 2, md: 4 }}>
                         {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
@@ -95,7 +108,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell gridColumn={{ d: '1', md: '1 / span 3' }}>
+                        <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
                             <Label color="colorGray2" text="E-mail" />
 
                             <div>
@@ -116,7 +129,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell>
+                        <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
                             <Label color="colorGray2" text="Celular" />
 
                             <div>
@@ -222,7 +235,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.endereco_complemento && <InvalidInputMessage>{errors.endereco_complemento.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell>
+                        <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
                             <Label color="colorGray2" text="Cidade" />
 
                             <div>
@@ -255,7 +268,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             </div>
                         </Cell>
 
-                        <Cell>
+                        <Cell gridColumn={{ d: '1', md: '2 / span 2' }}>
                             <Label color="colorGray2" text="Data de Nascimento" />
 
                             <div>
@@ -276,7 +289,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             {errors.data && <InvalidInputMessage>{errors.data.message}</InvalidInputMessage>}
                         </Cell>
 
-                        <Cell gridColumn={{ d: '1', md: '2 / span 1' }}>
+                        <Cell>
                             <Label color="colorGray2" text="Sexo" />
 
                             <div>

@@ -8,6 +8,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgArrowLeft {...otherProps} />;
         case 'svg-arrow-right':
             return <SvgStore.SvgArrowRight {...otherProps} />;
+        case 'svg-camera':
+            return <SvgStore.SvgCamera {...otherProps} />;
         case 'svg-close':
             return <SvgStore.SvgClose {...otherProps} />;
         case 'svg-facebook':
