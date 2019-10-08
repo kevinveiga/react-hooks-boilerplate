@@ -1,5 +1,4 @@
 const validateMessage = {
-    ADDRESS: 'Endereço inválido',
     DATE: 'Data inválida',
     EMAIL: 'E-mail inválido',
     MAX: 'Máximo de dígitos inválido',
@@ -14,8 +13,7 @@ const validateMessage = {
 
 export const customValidate = {
     address: {
-        minLength: { message: 'Mínimo de 5 caracteres', value: 5 },
-        pattern: { message: validateMessage.ADDRESS, value: /^(.+\s+\d+\s*.*)$/ }
+        minLength: { message: 'Mínimo de 5 caracteres', value: 5 }
     },
     date: {
         pattern: { message: validateMessage.DATE, value: /^(([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4})$/ }
