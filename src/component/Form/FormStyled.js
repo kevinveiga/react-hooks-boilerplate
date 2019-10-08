@@ -4,6 +4,40 @@ import { IMaskInput } from 'react-imask';
 
 import { variable } from '../../style/variable';
 
+export const CheckboxStyled = styled.input`
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+
+    &:checked {
+        + label {
+            &::before {
+                border: 2px solid ${variable.colorSecondary};
+                box-shadow: inset 0 0 30px 0 ${variable.colorPrimary};
+            }
+        }
+    }
+
+    + label {
+        cursor: pointer;
+        user-select: none;
+
+        &::before {
+            background-color: ${variable.colorWhite};
+            border: 2px solid ${variable.colorGray2};
+            border-radius: ${variable.borderRadius};
+            box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
+            content: ' ';
+            display: inline-block;
+            height: 20px;
+            margin-right: 10px;
+            transition: box-shadow ${variable.transition};
+            vertical-align: middle;
+            width: 20px;
+        }
+    }
+`;
+
 export const FormStyled = styled.form`
     height: auto;
     width: 100%;

@@ -10,13 +10,14 @@ import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { InputMaskValidation, InputValidation, Label } from './Form';
+import { Checkbox, InputMaskValidation, InputValidation, Label } from './Form';
 import { Svg } from '../Svg/Svg';
 
 import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
+import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     // ACTION
@@ -303,6 +304,20 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                             </div>
 
                             {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
+                        </Cell>
+
+                        <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>
+                            <P color="colorBlack3" fontWeight="600">
+                                Notificação de e-mail
+                            </P>
+
+                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacaoDescontos">
+                                <Span verticalAlign="middle">Desejo receber avisos e descontos de cursos</Span>
+                            </Checkbox>
+
+                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacaoConteudo">
+                                <Span verticalAlign="middle">Desejo receber a curadoria de conteúdos e notícias</Span>
+                            </Checkbox>
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>

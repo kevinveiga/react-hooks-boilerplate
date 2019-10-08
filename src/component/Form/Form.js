@@ -1,8 +1,23 @@
 import React from 'react';
 
-import { InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled } from './FormStyled';
+import { CheckboxStyled, InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
+
+export const Checkbox = ({ ariaLabel, children, id, text, typeInput = 'checkbox', value = '', ...otherProps }) => {
+    const acessibility = ariaLabel || text;
+    const content = children || text;
+
+    return (
+        <>
+            <CheckboxStyled defaultValue={value} id={id} type={typeInput} {...otherProps} />
+
+            <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
+                {content}
+            </Label>
+        </>
+    );
+};
 
 export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
     return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
