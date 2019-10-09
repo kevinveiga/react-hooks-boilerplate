@@ -30,23 +30,23 @@ export const HeaderMenu = ({ ...props }) => {
         <HeaderMenuStyled active={stateChangeMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/inicio" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Início" />
+                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Início" />
                 </li>
 
                 <li>
-                    <LinkTo link="/noticias" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Notícias" />
+                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Notícias" />
                 </li>
 
                 <li>
-                    <LinkTo link="/aprenda" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Aprenda" />
+                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Aprenda" />
                 </li>
 
                 <li>
-                    <LinkTo link="/inicio/home-video-container" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Vídeos" />
+                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Vídeos" />
                 </li>
 
                 <li>
-                    <LinkTo link="/login" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Login" />
+                    <LinkTo link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Login" />
                 </li>
 
                 {/* <li>
@@ -58,11 +58,11 @@ export const HeaderMenu = ({ ...props }) => {
                 </li> */}
 
                 {/* <li>
-                    <LinkTo link="/aprenda" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Aprenda" />
+                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Aprenda" />
                 </li>
 
                 <li>
-                    <LinkTo link="/quem-somos" obj={{ activeNav: true, hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Quem Somos" />
+                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Quem Somos" />
                 </li> */}
             </ul>
 
