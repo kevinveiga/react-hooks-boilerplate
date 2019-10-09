@@ -12,7 +12,7 @@ import { InputMaskValidation, InputValidation, Label } from './Form';
 import { LinkTo } from '../Link/LinkTo';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -57,7 +57,7 @@ const CadastroForm = ({ ...props }) => {
             <Box overflow="hidden" width="100%">
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
-                        {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
 
                         <Cell mb={3} width="100%">
                             <Label text="Nome completo" />
@@ -77,7 +77,7 @@ const CadastroForm = ({ ...props }) => {
                                 />
                             </div>
 
-                            {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
+                            {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
@@ -98,7 +98,7 @@ const CadastroForm = ({ ...props }) => {
                                 />
                             </div>
 
-                            {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
+                            {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
@@ -119,7 +119,7 @@ const CadastroForm = ({ ...props }) => {
                                 />
                             </div>
 
-                            {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
+                            {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={4} width="100%">
@@ -143,7 +143,7 @@ const CadastroForm = ({ ...props }) => {
                                 <Svg height="20px" name="svg-view" onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
                             </div>
 
-                            {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
+                            {errors.senha && <InvalidInputMessageStyled>{errors.senha.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">

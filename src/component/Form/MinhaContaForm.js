@@ -13,7 +13,7 @@ import { Button } from '../Button/Button';
 import { Checkbox, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { Svg } from '../Svg/Svg';
 
-import { FilePhoto, FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+import { FilePhotoStyled, FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -75,7 +75,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                     <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
                 </ImageCircleContainer>
 
-                <FilePhoto id="foto" name="foto" />
+                <FilePhotoStyled id="foto" name="foto" />
 
                 <Label forLabel="foto">
                     <Svg fill="colorWhite" height="20px" name="svg-camera" />
@@ -85,7 +85,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
             <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                 <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridAutoRows="auto" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 5 }} py={{ d: 2, md: 4 }}>
-                        {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                             <Label color="colorGray2" text="Nome completo" />
@@ -105,7 +105,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
+                            {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
@@ -126,7 +126,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
+                            {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
@@ -147,7 +147,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
+                            {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell>
@@ -168,7 +168,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.endereco_cep && <InvalidInputMessage>{errors.endereco_cep.message}</InvalidInputMessage>}
+                            {errors.endereco_cep && <InvalidInputMessageStyled>{errors.endereco_cep.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '2 / span 2' }}>
@@ -189,7 +189,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.endereco && <InvalidInputMessage>{errors.endereco.message}</InvalidInputMessage>}
+                            {errors.endereco && <InvalidInputMessageStyled>{errors.endereco.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell>
@@ -211,7 +211,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.endereco_numero && <InvalidInputMessage>{errors.endereco_numero.message}</InvalidInputMessage>}
+                            {errors.endereco_numero && <InvalidInputMessageStyled>{errors.endereco_numero.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
@@ -232,7 +232,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.endereco_complemento && <InvalidInputMessage>{errors.endereco_complemento.message}</InvalidInputMessage>}
+                            {errors.endereco_complemento && <InvalidInputMessageStyled>{errors.endereco_complemento.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
@@ -253,7 +253,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.endereco_cidade && <InvalidInputMessage>{errors.endereco_cidade.message}</InvalidInputMessage>}
+                            {errors.endereco_cidade && <InvalidInputMessageStyled>{errors.endereco_cidade.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell>
@@ -286,7 +286,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 />
                             </div>
 
-                            {errors.data && <InvalidInputMessage>{errors.data.message}</InvalidInputMessage>}
+                            {errors.data && <InvalidInputMessageStyled>{errors.data.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
@@ -322,7 +322,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 <Svg height="20px" name="svg-view" onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
                             </div>
 
-                            {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
+                            {errors.senha && <InvalidInputMessageStyled>{errors.senha.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>

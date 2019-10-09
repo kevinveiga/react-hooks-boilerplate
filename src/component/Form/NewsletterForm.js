@@ -11,7 +11,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 
-import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { P, Title5 } from '../../style/text';
@@ -63,7 +63,7 @@ export const NewsletterForm = ({ ...props }) => {
     ) : (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2} gridTemplateColumns={{ d: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))' }} justifyContent="flex-end">
-                {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
+                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
 
                 <Cell mb={3}>
                     <InputValidation
@@ -78,7 +78,7 @@ export const NewsletterForm = ({ ...props }) => {
                         touched={formState.touched}
                         {...props}
                     />
-                    {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
+                    {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell mb={3}>
@@ -94,7 +94,7 @@ export const NewsletterForm = ({ ...props }) => {
                         touched={formState.touched}
                         {...props}
                     />
-                    {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
+                    {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell mb={3} gridColumn={{ d: 1, sm: '1 / span 2', lg: 2 }}>

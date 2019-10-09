@@ -11,7 +11,7 @@ import { InputValidation, Label } from './Form';
 import { LinkTo } from '../Link/LinkTo';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -54,7 +54,7 @@ const LoginForm = ({ ...props }) => {
             <Box overflow="hidden" width="100%">
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
-                        {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
 
                         <Cell mb={3} width="100%">
                             <Label text="E-mail" />
@@ -74,7 +74,7 @@ const LoginForm = ({ ...props }) => {
                                 />
                             </div>
 
-                            {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
+                            {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={4} width="100%">
@@ -98,7 +98,7 @@ const LoginForm = ({ ...props }) => {
                                 <Svg height="20px" name="svg-view" onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
                             </div>
 
-                            {errors.senha && <InvalidInputMessage>{errors.senha.message}</InvalidInputMessage>}
+                            {errors.senha && <InvalidInputMessageStyled>{errors.senha.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">

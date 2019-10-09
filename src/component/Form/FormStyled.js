@@ -38,7 +38,7 @@ export const CheckboxStyled = styled.input`
     }
 `;
 
-export const FilePhoto = styled.input`
+export const FilePhotoStyled = styled.input`
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
@@ -136,7 +136,7 @@ export const InputMaskValidationStyled = styled(IMaskInput)`
     ${validationType};
 `;
 
-export const InvalidInputMessage = styled.span`
+export const InvalidInputMessageStyled = styled.span`
     bottom: -20px;
     color: ${variable.colorAlert};
     font-size: 12px;
@@ -144,7 +144,7 @@ export const InvalidInputMessage = styled.span`
     position: absolute;
 `;
 
-export const InvalidResponseMessage = styled.span`
+export const InvalidResponseMessageStyled = styled.span`
     color: ${variable.colorAlert};
     font-size: 14px;
     left: 0;

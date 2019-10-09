@@ -10,7 +10,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
 
-import { FormStyled, InvalidInputMessage, InvalidResponseMessage } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -70,7 +70,7 @@ export const NoticiaForm = ({ ...props }) => {
             <Box overflow="hidden" width={stateRetornoForm ? '0' : { d: 1, sm: 1 / 2 }}>
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" gridRowGap={2} p={{ d: 3, md: 5 }}>
-                        {errors.invalid && <InvalidResponseMessage>{errors.invalid.message}</InvalidResponseMessage>}
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
 
                         <Cell mb={3} width="100%">
                             <Title3 fontWeight="600" mb={1} themeColor="dark">
@@ -92,7 +92,7 @@ export const NoticiaForm = ({ ...props }) => {
                                 touched={formState.touched}
                                 {...props}
                             />
-                            {errors.nome && <InvalidInputMessage>{errors.nome.message}</InvalidInputMessage>}
+                            {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
@@ -108,7 +108,7 @@ export const NoticiaForm = ({ ...props }) => {
                                 touched={formState.touched}
                                 {...props}
                             />
-                            {errors.email && <InvalidInputMessage>{errors.email.message}</InvalidInputMessage>}
+                            {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={5} width="100%">
@@ -124,7 +124,7 @@ export const NoticiaForm = ({ ...props }) => {
                                 touched={formState.touched}
                                 {...props}
                             />
-                            {errors.telefone && <InvalidInputMessage>{errors.telefone.message}</InvalidInputMessage>}
+                            {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">
