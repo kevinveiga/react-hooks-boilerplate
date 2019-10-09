@@ -4,14 +4,7 @@ import { layout, space, typography } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
-export const LinkToStyled = styled(NavLink)`
-    ${layout};
-    ${space};
-    ${typography};
-    ${({ color }) => color && `color: ${variable[color]}`};
-    ${({ obj }) => obj && obj.underline && 'text-decoration: underline'};
-    transition: color ${variable.transition};
-
+const linkLine = css`
     &::after {
         bottom: 0;
         content: ' ';
@@ -21,6 +14,15 @@ export const LinkToStyled = styled(NavLink)`
         transition: background-color ${variable.transition}, width ${variable.transition};
         width: 0;
     }
+`;
+
+export const LinkToStyled = styled(NavLink)`
+    ${layout};
+    ${space};
+    ${typography};
+    ${({ color }) => color && `color: ${variable[color]}`};
+    ${({ obj }) => obj && obj.underline && 'text-decoration: underline'};
+    transition: color ${variable.transition};
 
     ${({ obj }) =>
         obj &&
@@ -61,12 +63,10 @@ export const LinkToStyled = styled(NavLink)`
         obj.activeColor &&
         obj.hoverColorLine &&
         css`
-            &::after {
-                background-color: ${variable[obj.activeColor]};
-            }
-
+            ${linkLine};
             &.active {
                 &::after {
+                    background-color: ${variable[obj.activeColor]};
                     width: 50%;
                 }
             }
@@ -76,6 +76,7 @@ export const LinkToStyled = styled(NavLink)`
         obj &&
         obj.hoverColorLine &&
         css`
+            ${linkLine};
             &:hover {
                 &::after {
                     background-color: ${variable[obj.hoverColorLine]};
