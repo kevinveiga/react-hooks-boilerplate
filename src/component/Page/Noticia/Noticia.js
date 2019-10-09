@@ -16,8 +16,8 @@ import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 // import { NoticiaBox } from './NoticiaBox';
 import { NoticiaSocial } from './NoticiaSocial';
 
-// import { Author, Tag, Title } from './NoticiaBoxStyled';
-import { NoticiaArticle, NoticiaArticleAuthor, NoticiaAuthor, NoticiaFormContainer, NoticiaMateriasRelacionadas } from './NoticiaStyled';
+import { NoticiaBoxAuthorStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
+import { NoticiaArticleStyled, NoticiaArticleAuthorStyled, NoticiaAuthorStyled, NoticiaFormContainerStyled, NoticiaMateriasRelacionadasStyled } from './NoticiaStyled';
 
 import { Box, Flex } from '../../../style/flex';
 // import { Cell, Grid } from '../../../style/grid';
@@ -78,7 +78,7 @@ export const Noticia = ({ match }) => {
 
                         <NoticiaSocial display={{ d: 'none', lg: 'block' }} elementChange={{ elementId: 'noticia-article-author', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} title={noticia.data.title} url={window.location.href} />
 
-                        <NoticiaArticleAuthor id="noticia-article-author" mb={3}>
+                        <NoticiaArticleAuthorStyled id="noticia-article-author" mb={3}>
                             <Flex display="flex" flexWrap="wrap">
                                 <Box width={{ d: 1, sm: 1 / 2 }}>
                                     <Title5 color="colorPrimary" fontWeight="600" themeColor="dark">
@@ -90,9 +90,9 @@ export const Noticia = ({ match }) => {
                                     <Span>{noticia.data.date}</Span>
                                 </Box>
                             </Flex>
-                        </NoticiaArticleAuthor>
+                        </NoticiaArticleAuthorStyled>
 
-                        <NoticiaArticle>{parse(`${noticia.data.content}`)}</NoticiaArticle>
+                        <NoticiaArticleStyled>{parse(`${noticia.data.content}`)}</NoticiaArticleStyled>
 
                         {/* <Leadwall change={changeLeadwall} />
 
@@ -100,7 +100,7 @@ export const Noticia = ({ match }) => {
                             <NoticiaForm />
                         </NoticiaFormContainer> */}
 
-                        <NoticiaAuthor mb="75px">
+                        <NoticiaAuthorStyled mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
                                     <ImageCircleContainer>{/* <Image objectFit="none" text="autor" url={noticia.data.author_avatar || logo} /> */}</ImageCircleContainer>
@@ -118,7 +118,7 @@ export const Noticia = ({ match }) => {
                                     <p>{noticia.data.author_description}</p>
                                 </Box>
                             </Flex>
-                        </NoticiaAuthor>
+                        </NoticiaAuthorStyled>
 
                         {/* <NoticiaMateriasRelacionadas mb={5}>
                             <Title4 color="colorGray2" mb={4} themeColor="dark">
@@ -133,12 +133,12 @@ export const Noticia = ({ match }) => {
                                                 <LinkTo ariaLabel={noticia.title} height="100%" onClick={() => setStateNoticiaUrl(`${apiUrlNoticias}/${noticia.slug}`)} to={`/noticia/${noticia.slug}`} width="100%">
                                                     <NoticiaBox color={noticia.category.featured_color} display="inline-block" pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
                                                         <Box>
-                                                            <Tag>{noticia.category.title}</Tag>
+                                                            <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 
-                                                            <Title>{noticia.title}</Title>
+                                                            <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
                                                         </Box>
 
-                                                        <Author>{`Por ${noticia.author}`}</Author>
+                                                        <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
                                                     </NoticiaBox>
 
                                                     <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { variable } from '../../style/variable';
 
-export const HeaderMenuPesquisa = styled.div`
+export const HeaderMenuPesquisaStyled = styled.div`
     background-color: ${variable.colorBlack3};
     display: inline-block;
     width: 200px;
@@ -38,7 +38,7 @@ export const HeaderMenuStyled = styled.nav`
         li {
             > a,
             > button {
-                padding: 10px 0 10px 10px;
+                padding: 10px;
             }
         }
     }
@@ -50,7 +50,7 @@ export const HeaderMenuStyled = styled.nav`
 
             > a,
             > button {
-                padding: 10px 0 10px 25px;
+                font-size: 14px;
             }
         }
     }
@@ -59,7 +59,8 @@ export const HeaderMenuStyled = styled.nav`
         li {
             > a,
             > button {
-                padding: 10px 0 10px 45px;
+                font-size: 16px;
+                padding: 10px 25px;
             }
         }
     }
@@ -70,10 +71,14 @@ export const HeaderMenuStyled = styled.nav`
             font-weight: 600;
             letter-spacing: 1px;
             transition: color ${variable.transition};
-
-            &:hover {
-                color: ${variable.colorPrimary};
-            }
         }
+    }
+
+    .header-menu-Social {
+        bottom: 50px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 100%;
     }
 `;

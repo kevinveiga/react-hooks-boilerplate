@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 
 import { Svg } from '../Svg/Svg';
 
-import { LeadwallStyled, Termos } from './LeadwallStyled';
+import { LeadwallStyled, LeadwallTermosStyled } from './LeadwallStyled';
 
 import { Title3, Title5 } from '../../style/text';
 
@@ -28,9 +28,9 @@ export const Leadwall = ({ ...props }) => {
                 </Suspense>
             </LeadwallStyled>
 
-            <Termos mb="75px" px={{ d: 3, sm: '15%' }} py={{ d: 2, sm: 3 }} {...props}>
+            <LeadwallTermosStyled mb="75px" px={{ d: 3, sm: '15%' }} py={{ d: 2, sm: 3 }} {...props}>
                 Ao desbloquear o conteúdo, você concorda com os termos de uso, políticas.
-            </Termos>
+            </LeadwallTermosStyled>
         </>
     );
 };

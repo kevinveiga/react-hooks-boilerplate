@@ -1,29 +1,29 @@
 import React from 'react';
 
-import { DotBtnStyled, DotContainerStyled, NextBtnStyled, PrevBtnStyled } from './CarouselButtonStyled';
+import { CarouselDotBtnStyled, CarouselDotContainerStyled, CarouselNextBtnStyled, CarouselPrevBtnStyled } from './CarouselButtonStyled';
 
 import { Svg } from '../Svg/Svg';
 
 export const DotBtn = ({ ...props }) => {
-    return <DotBtnStyled {...props} />;
+    return <CarouselDotBtnStyled {...props} />;
 };
 
 export const DotContainer = ({ ...props }) => {
-    return <DotContainerStyled {...props} />;
+    return <CarouselDotContainerStyled {...props} />;
 };
 
 export const NextBtn = ({ ...props }) => {
     return (
-        <NextBtnStyled {...props}>
+        <CarouselNextBtnStyled {...props}>
             <Svg name="svg-arrow-right" />
-        </NextBtnStyled>
+        </CarouselNextBtnStyled>
     );
 };
 
 export const PrevBtn = ({ ...props }) => {
     return (
-        <PrevBtnStyled {...props}>
+        <CarouselPrevBtnStyled {...props}>
             <Svg name="svg-arrow-left" />
-        </PrevBtnStyled>
+        </CarouselPrevBtnStyled>
     );
 };

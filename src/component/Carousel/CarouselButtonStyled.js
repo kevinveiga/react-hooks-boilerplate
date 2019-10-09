@@ -4,7 +4,7 @@ import { position } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
-export const DotBtnStyled = styled.button`
+export const CarouselDotBtnStyled = styled.button`
     border: 0;
     color: transparent;
     cursor: pointer;
@@ -14,7 +14,7 @@ export const DotBtnStyled = styled.button`
     width: 8px;
 `;
 
-export const DotContainerStyled = styled.ul`
+export const CarouselDotContainerStyled = styled.ul`
     bottom: 15px;
     display: block;
     list-style: none;
@@ -65,12 +65,12 @@ const btns = css`
     }
 `;
 
-export const NextBtnStyled = styled.button`
+export const CarouselNextBtnStyled = styled.button`
     ${btns};
     ${({ right }) => right === undefined && 'right: 5px'};
 `;
 
-export const PrevBtnStyled = styled.button`
+export const CarouselPrevBtnStyled = styled.button`
     ${btns};
     ${({ left }) => left === undefined && 'left: 5px'};
 `;

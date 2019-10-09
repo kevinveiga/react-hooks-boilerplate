@@ -7,7 +7,7 @@ import { LinkTo } from '../Link/LinkTo';
 import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
-import { HeaderMenuPesquisa, HeaderMenuStyled } from './HeaderMenuStyled';
+import { HeaderMenuPesquisaStyled, HeaderMenuStyled } from './HeaderMenuStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
@@ -67,7 +67,7 @@ export const HeaderMenu = ({ ...props }) => {
             </ul>
 
             <div className="d-block d-lg-none header-menu-Social">
-                <HeaderMenuPesquisa>
+                <HeaderMenuPesquisaStyled>
                     <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
                         <Cell width="100%">
                             <Input
@@ -81,7 +81,7 @@ export const HeaderMenu = ({ ...props }) => {
                             />
                         </Cell>
                     </Grid>
-                </HeaderMenuPesquisa>
+                </HeaderMenuPesquisaStyled>
 
                 <Svg change={true} name="svg-search" onClick={() => search()} />
 

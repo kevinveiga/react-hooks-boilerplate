@@ -3,13 +3,13 @@ import { flexbox, layout, space, typography } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 
-export const Author = styled.h5`
+export const NoticiaBoxAuthorStyled = styled.h5`
     display: block;
     font-weight: 400;
     margin-bottom: 10px;
 `;
 
-export const DateTime = styled.span`
+export const NoticiaBoxDateTimeStyled = styled.span`
     ${typography};
     color: ${({ color, themeColor }) => (themeColor === 'light' ? (color ? variable[color] : variable.colorWhite) : color ? variable[color] : variable.colorGray2)};
     display: inline-block;
@@ -19,11 +19,7 @@ export const DateTime = styled.span`
     margin-top: ${variable.spacingXS};
 `;
 
-export const Text = styled.p`
-    ${layout};
-`;
-
-export const Tag = styled.div`
+export const NoticiaBoxTagStyled = styled.div`
     color: ${variable.colorWhite};
     display: table;
     line-height: 1;
@@ -32,7 +28,11 @@ export const Tag = styled.div`
     padding: ${variable.spacingXS};
 `;
 
-export const Title = styled.h2`
+export const NoticiaBoxTextStyled = styled.p`
+    ${layout};
+`;
+
+export const NoticiaBoxTitleStyled = styled.h2`
     ${typography};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
     font-weight: 600;
@@ -61,7 +61,7 @@ export const NoticiaBoxStyled = styled.div`
         margin-bottom: 0;
     }
 
-    ${Author} {
+    ${NoticiaBoxAuthorStyled} {
         color: ${({ color, themeColor }) => (themeColor === 'light' ? (color === 'colorBlueDark' ? variable.colorWhite : variable[color]) : variable[color])};
         ${({ fontSize }) => fontSize === undefined && 'font-size: 12px'};
 
@@ -70,7 +70,7 @@ export const NoticiaBoxStyled = styled.div`
         }
     }
 
-    ${Tag} {
+    ${NoticiaBoxTagStyled} {
         background-color: ${({ color }) => (color ? variable[color] : 'transparent')};
         text-shadow: none;
     }

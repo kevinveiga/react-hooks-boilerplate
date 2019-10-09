@@ -7,7 +7,7 @@ import { getVideoId } from '../../../util/getVideoId';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 
-import { VideoBox, VideoGrid, VideoLi, VideoUl } from './HomeVideoStyled';
+import { VideoBoxStyled, VideoGridStyled, VideoLiStyled, VideoUlStyled } from './HomeVideoStyled';
 
 import { Box } from '../../../style/flex';
 import { Cell } from '../../../style/grid';
@@ -19,30 +19,30 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
     return (
-        <VideoGrid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
+        <VideoGridStyled display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
             <Cell>
                 <VideoWrap>
                     <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(objectVideos.data[0].video) || ''} />
                 </VideoWrap>
 
-                <VideoBox p={4}>
+                <VideoBoxStyled p={4}>
                     <p>Vídeo</p>
 
                     <Title4 fontWeight="600" themeColor="dark">
                         {(stateCurrentVideo && stateCurrentVideo.title) || objectVideos.data[0].title}
                     </Title4>
-                </VideoBox>
+                </VideoBoxStyled>
             </Cell>
 
             <Cell>
-                <VideoBox p={4} themeColor="dark">
+                <VideoBoxStyled p={4} themeColor="dark">
                     <Title5 fontWeight="600">Próximos Vídeos</Title5>
-                </VideoBox>
+                </VideoBoxStyled>
 
-                <VideoUl>
+                <VideoUlStyled>
                     {objectVideos.data.map((video, i, array) => {
                         return (
-                            <VideoLi active={objectVideos.data.video === video.video || false} borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={getVideoId(video.video)} onClick={() => setStateCurrentVideo(video)} p={4}>
+                            <VideoLiStyled active={objectVideos.data.video === video.video || false} borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={getVideoId(video.video)} onClick={() => setStateCurrentVideo(video)} p={4}>
                                 <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
                                     <Box width="100%">
                                         <Title5 fontWeight="600" mb={3} themeColor="dark">
@@ -56,12 +56,12 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                                 <Box display="inline-flex" height="100px" verticalAlign="middle" width={2 / 5}>
                                     <BgImageLazyLoad key={getVideoId(video.video)} url={video.thumbnail && video.thumbnail.url} />
                                 </Box>
-                            </VideoLi>
+                            </VideoLiStyled>
                         );
                     })}
-                </VideoUl>
+                </VideoUlStyled>
             </Cell>
-        </VideoGrid>
+        </VideoGridStyled>
     );
 };
 

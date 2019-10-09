@@ -82,7 +82,7 @@ export const ButtonStyled = styled.button`
         themeType === 'border' &&
         css`
             background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
-            border: 2px solid ${variable.colorPrimary};
+            border: 2px solid ${({ borderColor }) => (borderColor ? variable[borderColor] : variable.colorPrimary)};
             color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
             ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
             ${({ textTransform }) => textTransform === undefined && 'text-transform: capitalize'};

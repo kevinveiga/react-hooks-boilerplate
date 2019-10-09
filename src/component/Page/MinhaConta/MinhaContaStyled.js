@@ -3,7 +3,7 @@ import { border, flexbox, layout, space, typography } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 
-export const MinhaContaLeft = styled.div`
+export const MinhaContaLeftStyled = styled.div`
     ${border};
     ${flexbox};
     ${layout};
@@ -14,7 +14,7 @@ export const MinhaContaLeft = styled.div`
     z-index: 2;
 `;
 
-export const MinhaContaCenter = styled.div`
+export const MinhaContaCenterStyled = styled.div`
     ${border};
     ${flexbox};
     ${layout};

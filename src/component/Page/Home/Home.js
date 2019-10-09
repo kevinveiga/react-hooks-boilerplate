@@ -26,10 +26,10 @@ import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
 
-// import { BannerCell, BannerContainer } from '../../Banner/BannerStyled';
+// import { BannerCellStyled, BannerContainerStyled } from '../../Banner/BannerStyled';
 // import { CarouselStyled } from '../../Carousel/CarouselStyled';
 // import { VideoContainer } from './HomeStyled';
-import { Author, DateTime, Tag, Title } from '../Noticia/NoticiaBoxStyled';
+import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
@@ -100,10 +100,10 @@ export const Home = ({ location }) => {
             <Main>
                 {/* {superDestaquesLength > 0 &&
                     (isMobile ? (
-                        <BannerContainer display="grid" gridAutoColumns="90%" gridAutoRows="50vh">
+                        <BannerContainerStyled display="grid" gridAutoColumns="90%" gridAutoRows="50vh">
                             {stateSuperDestaques.data.map((item) => {
                                 return (
-                                    <BannerCell display="flex" gridRow={1} hover="true" key={item.id}>
+                                    <BannerCellStyled display="flex" gridRow={1} hover="true" key={item.id}>
                                         <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                             <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
                                                 <BgImageLazyLoad key={item.id} overlayColor="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
@@ -117,10 +117,10 @@ export const Home = ({ location }) => {
                                                 </Box>
                                             </NoticiaBox>
                                         </LinkTo>
-                                    </BannerCell>
+                                    </BannerCellStyled>
                                 );
                             })}
-                        </BannerContainer>
+                        </BannerContainerStyled>
                     ) : (
                         <CarouselStyled>
                             <Slider {...carouselOptions}>
@@ -129,7 +129,7 @@ export const Home = ({ location }) => {
 
                                     return (
                                         <div key={key}>
-                                            <BannerContainer key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateSuperDestaques.data.length > 2 ? '30vh' : '50vh' }}>
+                                            <BannerContainerStyled key={key} display="grid" gridAutoColumns={{ d: '90%', md: '1fr' }} gridAutoRows={{ d: '50vh', md: stateSuperDestaques.data.length > 2 ? '30vh' : '50vh' }}>
                                                 {group.map((item, i, newArray) => {
                                                     let row = {};
 
@@ -146,7 +146,7 @@ export const Home = ({ location }) => {
                                                     }
 
                                                     return (
-                                                        <BannerCell display="flex" gridRow={row} hover="true" key={item.id}>
+                                                        <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
                                                             <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                                                 <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
                                                                     <BgImageLazyLoad key={item.id} overlayColor="colorBlackTransparent3" grayscale="true" url={item.thumbnail.attachment.url} />
@@ -160,10 +160,10 @@ export const Home = ({ location }) => {
                                                                     </Box>
                                                                 </NoticiaBox>
                                                             </LinkTo>
-                                                        </BannerCell>
+                                                        </BannerCellStyled>
                                                     );
                                                 })}
-                                            </BannerContainer>
+                                            </BannerContainerStyled>
                                         </div>
                                     );
                                 })}
@@ -187,12 +187,12 @@ export const Home = ({ location }) => {
 
                                                         <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                                             <Box>
-                                                                <Tag>{noticia.category.title}</Tag>
+                                                                <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 
-                                                                <Title>{noticia.title}</Title>
+                                                                <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
                                                             </Box>
 
-                                                            <Author>{`Por ${noticia.author}`}</Author>
+                                                            <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
                                                         </NoticiaBox>
                                                     </LinkTo>
                                                 </Cell>
@@ -201,12 +201,12 @@ export const Home = ({ location }) => {
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                         <NoticiaBox color={noticia.category.featured_color} display="inline-block" pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
                                                             <Box>
-                                                                <Tag>{noticia.category.title}</Tag>
+                                                                <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 
-                                                                <Title>{noticia.title}</Title>
+                                                                <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
                                                             </Box>
 
-                                                            <Author>{`Por ${noticia.author}`}</Author>
+                                                            <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
                                                         </NoticiaBox>
 
                                                         <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
@@ -242,13 +242,13 @@ export const Home = ({ location }) => {
                                                         <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                             <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                                                 <Box>
-                                                                    <Tag>{noticia.category.title}</Tag>
+                                                                    <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 
-                                                                    <Title fontSize={18}>{noticia.title}</Title>
+                                                                    <NoticiaBoxTitleStyled fontSize={18}>{noticia.title}</NoticiaBoxTitleStyled>
 
-                                                                    <Author>{`Por ${noticia.author}`}</Author>
+                                                                    <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
 
-                                                                    <DateTime themeColor="dark">{noticia.date}</DateTime>
+                                                                    <NoticiaBoxDateTimeStyled themeColor="dark">{noticia.date}</NoticiaBoxDateTimeStyled>
                                                                 </Box>
                                                             </NoticiaBox>
                                                         </LinkTo>

@@ -5,7 +5,7 @@ import { scrollbar } from '../../../style/function';
 import { Grid } from '../../../style/grid';
 import { variable } from '../../../style/variable';
 
-export const VideoBox = styled.div`
+export const VideoBoxStyled = styled.div`
     ${space};
     background-color: ${({ themeColor }) => (themeColor === 'dark' ? variable.colorGrayDark : variable.colorWhite)};
 
@@ -14,17 +14,17 @@ export const VideoBox = styled.div`
     }
 `;
 
-export const VideoGrid = styled(Grid)`
+export const VideoGridStyled = styled(Grid)`
     background-color: ${variable.colorWhite};
 `;
 
-export const VideoUl = styled.ul`
+export const VideoUlStyled = styled.ul`
     ${scrollbar(variable.colorPrimary, variable.colorWhite)};
     max-height: 540px;
     overflow-y: auto;
 `;
 
-export const VideoLi = styled.li`
+export const VideoLiStyled = styled.li`
     ${border};
     ${space};
     cursor: pointer;

@@ -5,7 +5,7 @@ import { animationFadeIn, animationFadeOut } from '../../style/animation';
 import { BgImageOverlay } from '../../style/image';
 import { variable } from '../../style/variable';
 
-export const BannerCell = styled.div`
+export const BannerCellStyled = styled.div`
     ${grid};
     ${layout};
     ${space};
@@ -28,7 +28,7 @@ export const BannerCell = styled.div`
         `};
 `;
 
-export const BannerContainer = styled.div`
+export const BannerContainerStyled = styled.div`
     ${grid};
     ${layout};
     ${space};

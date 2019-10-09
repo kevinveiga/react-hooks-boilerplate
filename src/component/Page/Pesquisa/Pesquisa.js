@@ -10,12 +10,14 @@ import { Context } from '../../../store/context';
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 import { useMeasure } from '../../../store/util/measure';
 
+import { BannerPerfilInvestidor } from '../../Banner/BannerPerfilInvestidor';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 
-import { DateTime, Title } from '../Noticia/NoticiaBoxStyled';
+import { NoticiasBannerPerfilInvestidorStyled } from '../Noticia/NoticiaStyled';
+import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
@@ -79,7 +81,7 @@ export const Pesquisa = ({ match }) => {
                                                     <LinkTo ariaLabel={pesquisa.title} height="100%" to={`/noticia/${pesquisa.slug}`} width="100%">
                                                         <NoticiaBox alignContent="space-between" color={pesquisa.featured_color} display="inline-flex" flexWrap="wrap" minHeight={{ d: '100px', xs: '150px', md: '200px' }} pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={3 / 5}>
                                                             <Box width="100%">
-                                                                <Title>{pesquisa.title}</Title>
+                                                                <NoticiaBoxTitleStyled>{pesquisa.title}</NoticiaBoxTitleStyled>
 
                                                                 <P display={{ d: 'none', sm: 'block' }}>{pesquisa.excerpt}</P>
                                                             </Box>
@@ -87,9 +89,9 @@ export const Pesquisa = ({ match }) => {
                                                             <p>
                                                                 <span>Postado em </span>
 
-                                                                <DateTime color={pesquisa.featured_color} fontSize={16} themeColor="dark">
+                                                                <NoticiaBoxDateTimeStyled color={pesquisa.featured_color} fontSize={16} themeColor="dark">
                                                                     {pesquisa.date}
-                                                                </DateTime>
+                                                                </NoticiaBoxDateTimeStyled>
                                                             </p>
                                                         </NoticiaBox>
 
@@ -103,6 +105,10 @@ export const Pesquisa = ({ match }) => {
                                 </Grid>
                             </Box>
                         </Flex>
+
+                        <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!statePesquisa.isLoading} width="20%">
+                            <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'pesquisa', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
+                        </NoticiasBannerPerfilInvestidorStyled>
                     </Box>
                 </Container>
             </Main>

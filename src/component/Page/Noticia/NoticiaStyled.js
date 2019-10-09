@@ -4,13 +4,18 @@ import { layout, position, space } from 'styled-system';
 import { animationFadeInTab, animationFadeOutTab } from '../../../style/animation';
 import { variable } from '../../../style/variable';
 
-export const NoticiaContainer = css`
+export const NoticiaContainerStyled = css`
     margin-left: auto;
     margin-right: auto;
     max-width: ${variable.md};
 `;
 
-export const NoticiaArticle = styled.article`
+export const NoticiaArticleStyled = styled.article`
+    font-size: 18px;
+    height: ${({ change }) => (change ? 'auto' : '400px')};
+    margin-bottom: 25px;
+    overflow-y: hidden;
+
     img {
         height: 70vmin;
         margin: 0 auto 50px auto;
@@ -24,6 +29,7 @@ export const NoticiaArticle = styled.article`
     em,
     i,
     kbd,
+    ol,
     p,
     pre,
     s,
@@ -31,11 +37,11 @@ export const NoticiaArticle = styled.article`
     small,
     span,
     strong,
+    ul,
     var {
-        ${NoticiaContainer};
-        font-size: 18px;
+        ${NoticiaContainerStyled};
         line-height: 2;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
 
         img {
             height: auto;
@@ -70,9 +76,9 @@ export const NoticiaArticle = styled.article`
     h5,
     h6,
     table {
-        ${NoticiaContainer};
+        ${NoticiaContainerStyled};
         line-height: 1.5;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
 
         img {
             height: auto;
@@ -85,6 +91,7 @@ export const NoticiaArticle = styled.article`
         i,
         img,
         kbd,
+        ol,
         p,
         pre,
         s,
@@ -92,6 +99,7 @@ export const NoticiaArticle = styled.article`
         small,
         span,
         strong,
+        ul,
         var {
             margin-bottom: unset;
             margin-left: unset;
@@ -101,11 +109,11 @@ export const NoticiaArticle = styled.article`
     }
 
     hr {
-        ${NoticiaContainer};
+        ${NoticiaContainerStyled};
     }
 
     .video-wrap {
-        ${NoticiaContainer};
+        ${NoticiaContainerStyled};
         height: 0;
         margin-bottom: 50px;
         padding-bottom: 56.25%;
@@ -122,13 +130,13 @@ export const NoticiaArticle = styled.article`
     }
 `;
 
-export const NoticiaArticleAuthor = styled.article`
-    ${NoticiaContainer};
+export const NoticiaArticleAuthorStyled = styled.article`
+    ${NoticiaContainerStyled};
     ${space};
     text-transform: capitalize;
 `;
 
-export const NoticiaAuthor = styled.section`
+export const NoticiaAuthorStyled = styled.section`
     ${space};
     border-bottom: 1px solid ${variable.borderColor};
     border-top: 1px solid ${variable.borderColor};
@@ -139,20 +147,18 @@ export const NoticiaAuthor = styled.section`
     padding-top: ${variable.spacingMD};
 `;
 
-export const NoticiaInfo = styled.div``;
-
-export const NoticiaFormContainer = styled.section`
-    ${NoticiaContainer};
+export const NoticiaFormContainerStyled = styled.section`
+    ${NoticiaContainerStyled};
     ${space};
     box-shadow: 0 3px 10px 0 ${variable.colorGrayLight};
 `;
 
-export const NoticiaMateriasRelacionadas = styled.section`
-    ${NoticiaContainer};
+export const NoticiaMateriasRelacionadasStyled = styled.section`
+    ${NoticiaContainerStyled};
     ${space};
 `;
 
-export const NoticiasBannerRight = styled.div`
+export const NoticiasBannerPerfilInvestidorStyled = styled.div`
     ${layout};
     ${position};
     ${space};

@@ -4,11 +4,11 @@ import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
 import { MinhaContaMenuStyled } from './MinhaContaMenuStyled';
-import { MinhaContaLeft } from './MinhaContaStyled';
+import { MinhaContaLeftStyled } from './MinhaContaStyled';
 
 export const MinhaContaMenu = () => {
     return (
-        <MinhaContaLeft alignContent="flex-start" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" justifyContent="flex-start" pr={2} py={5} width={2 / 10}>
+        <MinhaContaLeftStyled alignContent="flex-start" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" justifyContent="flex-start" pr={2} py={5} width={2 / 10}>
             <LinkTo ariaLabel="Home" link="/inicio" mb={5}>
                 <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
             </LinkTo>
@@ -32,6 +32,6 @@ export const MinhaContaMenu = () => {
                     </li>
                 </ul>
             </MinhaContaMenuStyled>
-        </MinhaContaLeft>
+        </MinhaContaLeftStyled>
     );
 };

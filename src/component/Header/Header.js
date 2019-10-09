@@ -7,7 +7,7 @@ import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { Svg } from '../Svg/Svg';
 
-import { BtnMenu, HeaderPesquisa, HeaderStyled } from './HeaderStyled';
+import { HeaderBtnMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
@@ -28,7 +28,7 @@ export const Header = () => {
         <HeaderContext.Provider value={[stateChangeMenuMobile, setStateChangeMenuMobile]}>
             <HeaderStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
-                    <HeaderPesquisa active={statePesquisa} change={stateChangeHeaderScroll}>
+                    <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                         <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
                             <Cell width="100%">
                                 <Input
@@ -42,17 +42,17 @@ export const Header = () => {
                                 />
                             </Cell>
                         </Grid>
-                    </HeaderPesquisa>
+                    </HeaderPesquisaStyled>
 
                     <Svg change={stateChangeHeaderScroll} name="svg-search" onClick={() => setStatePesquisa(!statePesquisa)} />
 
-                    <BtnMenu active={stateChangeMenuMobile} change={stateChangeHeaderScroll} onClick={() => setStateChangeMenuMobile(true)}>
+                    <HeaderBtnMenuStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} onClick={() => setStateChangeMenuMobile(true)}>
                         <ul>
                             <li className="menu-lines" />
                             <li className="menu-lines" />
                             <li className="menu-lines" />
                         </ul>
-                    </BtnMenu>
+                    </HeaderBtnMenuStyled>
 
                     <Svg active={stateChangeMenuMobile} name="svg-close" onClick={() => setStateChangeMenuMobile(false)} />
 

@@ -7,6 +7,7 @@ export const LeadwallStyled = styled.div`
     ${layout};
     ${space};
     background-color: ${variable.colorBlack};
+    box-shadow: 0 -30px 50px 30px ${variable.colorWhite};
     color: ${variable.colorWhite};
     ${({ change }) => change && 'display: none'};
     margin-left: auto;
@@ -15,7 +16,7 @@ export const LeadwallStyled = styled.div`
     text-align: center;
 `;
 
-export const Termos = styled.div`
+export const LeadwallTermosStyled = styled.div`
     ${layout};
     ${space};
     background-color: ${variable.colorGray};

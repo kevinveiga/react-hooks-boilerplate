@@ -10,7 +10,7 @@ import { MinhaContaForm } from '../../Form/MinhaContaForm';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { MinhaContaMenu } from './MinhaContaMenu';
 
-import { MinhaContaCenter } from './MinhaContaStyled';
+import { MinhaContaCenterStyled } from './MinhaContaStyled';
 
 import { Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
@@ -33,7 +33,7 @@ export const MinhaConta = () => {
                     <Flex display="flex" flexWrap="wrap">
                         <MinhaContaMenu />
 
-                        <MinhaContaCenter px={{ d: 5, xl: '100px' }} py={{ d: 5, xl: '75px' }} width={{ d: '100%', lg: 8 / 10 }}>
+                        <MinhaContaCenterStyled px={{ d: 5, xl: '100px' }} py={{ d: 5, xl: '75px' }} width={{ d: '100%', lg: 8 / 10 }}>
                             <MinhaContaForm
                                 data={{
                                     data: '23/10/2019',
@@ -54,7 +54,7 @@ export const MinhaConta = () => {
                                 formId="minhaContaFormId"
                                 obj={{ colorLine: 'colorGray4' }}
                             />
-                        </MinhaContaCenter>
+                        </MinhaContaCenterStyled>
                     </Flex>
                 </Container>
             </Main>
