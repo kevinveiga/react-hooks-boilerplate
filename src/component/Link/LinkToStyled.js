@@ -16,7 +16,23 @@ export const LinkToStyled = styled(NavLink)`
         obj &&
         obj.hoverColor &&
         css`
-            &:hover,
+            &:hover {
+                color: ${variable[obj.hoverColor]};
+
+                > span {
+                    color: ${variable[obj.hoverColor]};
+                }
+
+                > svg {
+                    fill: ${variable[obj.hoverColor]};
+                }
+            }
+        `};
+
+    ${({ obj }) =>
+        obj &&
+        obj.activeNav &&
+        css`
             &.active {
                 color: ${variable[obj.hoverColor]};
 
@@ -26,6 +42,40 @@ export const LinkToStyled = styled(NavLink)`
 
                 > svg {
                     fill: ${variable[obj.hoverColor]};
+                }
+            }
+        `};
+
+    ${({ obj }) =>
+        obj &&
+        obj.hoverLine &&
+        css`
+            &::after {
+                background-color: ${variable[obj.hoverLine]};
+                bottom: 0;
+                content: ' ';
+                display: block;
+                height: 3px;
+                margin: 5px auto auto auto;
+                transition: width ${variable.transition};
+                width: 0;
+            }
+
+            &:hover {
+                &::after {
+                    width: 50%;
+                }
+            }
+        `};
+
+    ${({ obj }) =>
+        obj &&
+        obj.activeNav &&
+        obj.hoverLine &&
+        css`
+            &.active {
+                &::after {
+                    width: 50%;
                 }
             }
         `};

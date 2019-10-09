@@ -14,19 +14,23 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
         <MinhaContaMenuMobileStyled active={stateChangeMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/minha-conta/inicio" obj={{ hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Minha Conta" />
+                    <LinkTo link="/minha-conta/inicio" obj={{ activeNav: true, hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Minha Conta" />
                 </li>
 
                 <li>
-                    <LinkTo link="/minha-conta/cursos" obj={{ hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Cursos" />
+                    <LinkTo link="/minha-conta/cursos" obj={{ activeNav: true, hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Cursos" />
                 </li>
 
                 <li>
-                    <LinkTo link="/minha-conta/entrevistas" obj={{ hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Entrevistas" />
+                    <LinkTo link="/minha-conta/entrevistas" obj={{ activeNav: true, hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Entrevistas" />
                 </li>
 
                 <li>
-                    <LinkTo link="/minha-conta/contato" obj={{ hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Contato" />
+                    <LinkTo link="/minha-conta/contato" obj={{ activeNav: true, hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Contato" />
+                </li>
+
+                <li>
+                    <LinkTo link="/falta-link" obj={{ hoverColor: 'colorPrimary', hoverLine: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Sair" />
                 </li>
             </ul>
         </MinhaContaMenuMobileStyled>

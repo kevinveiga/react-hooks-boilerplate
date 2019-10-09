@@ -52,7 +52,9 @@ export const HeaderAlternate = ({ ...props }) => {
                 <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                     <Box>
                         <Title5 color="colorPrimary" fontWeight="600">
-                            Minha Conta
+                            <LinkTo ariaLabel="Minha Conta - Home" color="colorPrimary" obj={{ hoverColor: 'colorWhite' }} link="/minha-conta/inicio">
+                                Minha Conta
+                            </LinkTo>
                         </Title5>
                     </Box>
 
