@@ -86,7 +86,7 @@ export const variable = {
     padding: '10px',
     spacingXS: '5px',
     spacingSM: '15px',
-    spacingMD: '30px',
+    spacingMD: '25px',
     spacingLG: '60px',
     spacingXL: '100px',
 
