@@ -1,6 +1,8 @@
 module.exports = function getBabelConfiguration(api) {
     api.cache(true);
 
+    const plugins = ['babel-plugin-styled-components'];
+
     const presets = [
         [
             '@babel/preset-env',
@@ -16,6 +18,7 @@ module.exports = function getBabelConfiguration(api) {
     ];
 
     return {
+        plugins,
         presets
     };
 };
