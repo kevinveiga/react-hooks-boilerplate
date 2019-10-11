@@ -35,47 +35,49 @@ export const Router = withRouter((props) => {
     // ROUTES
     const routes = [
         {
-            component: () => <Cadastro />,
+            component: (props) => <Cadastro {...props} />,
             label: 'Cadastro',
             path: '/cadastro'
         },
         {
-            component: () => <Home />,
+            component: (props) => <Home {...props} />,
             label: 'Home',
             path: '/inicio'
         },
         {
-            component: () => <Login />,
+            component: (props) => <Login {...props} />,
             label: 'Login',
             path: '/login'
         },
         {
-            component: () => <MinhaConta />,
+            component: (props) => <MinhaConta {...props} />,
+            isAuth: true,
             label: 'Minha Conta',
             path: '/minha-conta/inicio'
         },
         {
-            component: () => <MinhaContaCursos />,
+            component: (props) => <MinhaContaCursos {...props} />,
+            isAuth: true,
             label: 'Cursos',
             path: '/minha-conta/cursos'
         },
         {
-            component: () => <Noticia />,
+            component: (props) => <Noticia {...props} />,
             label: 'Notícia',
             path: '/noticia/:slug'
         },
         {
-            component: () => <Noticias />,
+            component: (props) => <Noticias {...props} />,
             label: 'Notícias',
             path: '/noticias'
         },
         {
-            component: () => <Pesquisa />,
+            component: (props) => <Pesquisa {...props} />,
             label: 'Pesquisa',
             path: '/pesquisa/:slug'
         },
         {
-            component: () => <Home />,
+            component: (props) => <Home {...props} />,
             label: 'Página não encontrada',
             path: '*'
         }
@@ -83,8 +85,8 @@ export const Router = withRouter((props) => {
 
     return (
         <Switch>
-            {routes.map((routes) => (
-                <Route component={routes.component} label={routes.label} key={routes.path} path={routes.path} />
+            {routes.map((route) => (
+                <Route exact={route.exact} key={route.path} path={route.path} render={route.component} sensitive={route.sensitive} strict={route.strict} />
             ))}
         </Switch>
     );
