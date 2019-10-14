@@ -4,6 +4,7 @@ import { isMobile } from 'react-device-detect';
 import { useChangeHeaderScroll, useChangeMenuMinhaContaMobile } from '../../store/header/header';
 import { HeaderAlternateContext } from '../../store/header/headerAlternateContext';
 
+import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
 import { LinkTo } from '../Link/LinkTo';
 import { MinhaContaMenuMobile } from '../Page/MinhaConta/MinhaContaMenuMobile';
 import { Svg } from '../Svg/Svg';
@@ -15,7 +16,7 @@ import { Box, Flex } from '../../style/flex';
 import { Container } from '../../style/layout';
 import { Title5 } from '../../style/text';
 
-export const HeaderAlternate = ({ ...props }) => {
+export const HeaderAlternate = ({ actualLabel, ...props }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile] = useChangeMenuMinhaContaMobile();
@@ -52,9 +53,7 @@ export const HeaderAlternate = ({ ...props }) => {
                 <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                     <Box>
                         <Title5 color="colorPrimary" fontWeight="600">
-                            <LinkTo ariaLabel="Minha Conta - Home" color="colorPrimary" obj={{ hoverColor: 'colorWhite' }} link="/minha-conta/inicio">
-                                Minha Conta
-                            </LinkTo>
+                            <Breadcrumb actualLabel={actualLabel} obj={{ hoverColor: 'colorWhite' }} {...props} />
                         </Title5>
                     </Box>
 

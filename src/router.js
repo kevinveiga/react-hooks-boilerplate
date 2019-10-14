@@ -41,8 +41,8 @@ export const Router = withRouter((props) => {
             <Route component={Home} path="/inicio" />
             <Route component={Login} path="/login" />
             <Route component={MinhaConta} isAuth={true} path={minhaContaInicioRoute.path} />
-            <Route isAuth={true} path="/minha-conta/curso/:slug" render={(props) => <MinhaContaCurso Breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} {...props} />} />
-            <Route isAuth={true} path="/minha-conta/cursos" render={(props) => <MinhaContaCursos Breadcrumb={[minhaContaInicioRoute]} {...props} />} />
+            <Route isAuth={true} path="/minha-conta/curso/:slug" render={(props) => <MinhaContaCurso breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} {...props} />} />
+            <Route isAuth={true} path="/minha-conta/cursos" render={(props) => <MinhaContaCursos breadcrumb={[minhaContaInicioRoute]} {...props} />} />
             <Route component={Noticia} path="/noticia/:slug" />
             <Route component={Noticias} path="/noticias" />
             <Route component={Pesquisa} path="/pesquisa/:slug" />

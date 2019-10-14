@@ -4,21 +4,23 @@ import { LinkTo } from '../Link/LinkTo';
 
 import { BreadcrumbStyled, BreadcrumbItemsStyled } from './BreadcrumbStyled';
 
-export const Breadcrumb = ({ obj, label, Breadcrumb }) => {
-    console.log('props2: ', Breadcrumb);
+export const Breadcrumb = ({ actualLabel, obj, ...props }) => {
+    console.log('props2: ', props);
 
     return (
-        <BreadcrumbStyled>
-            {Breadcrumb.map((breadcrumb) => {
-                return (
-                    <BreadcrumbItemsStyled key={breadcrumb.path}>
-                        <LinkTo obj={obj} link={breadcrumb.path} text={breadcrumb.label} />
-                        <span> &gt; </span>
-                    </BreadcrumbItemsStyled>
-                );
-            })}
+        props && (
+            <BreadcrumbStyled>
+                {props.breadcrumb.map((item) => {
+                    return (
+                        <BreadcrumbItemsStyled key={item.path}>
+                            <LinkTo obj={obj} link={item.path} text={item.label} />
+                            <span> &gt; </span>
+                        </BreadcrumbItemsStyled>
+                    );
+                })}
 
-            <BreadcrumbItemsStyled>{label}</BreadcrumbItemsStyled>
-        </BreadcrumbStyled>
+                <BreadcrumbItemsStyled>{actualLabel}</BreadcrumbItemsStyled>
+            </BreadcrumbStyled>
+        )
     );
 };
