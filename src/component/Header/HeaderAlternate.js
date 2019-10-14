@@ -22,7 +22,7 @@ export const HeaderAlternate = ({ ...props }) => {
 
     return isMobile ? (
         <HeaderAlternateContext.Provider value={[stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile]}>
-            <HeaderStyled active={stateChangeMenuMinhaContaMobile} change={stateChangeHeaderScroll} id="header-minha-conta" {...props}>
+            <HeaderStyled active={stateChangeMenuMinhaContaMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
                         <Box width={2 / 10} />

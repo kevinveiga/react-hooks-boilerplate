@@ -7,6 +7,7 @@ import { Cadastro } from './component/Page/Cadastro/Cadastro';
 import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
 import { MinhaConta } from './component/Page/MinhaConta/MinhaConta';
+import { MinhaContaCurso } from './component/Page/MinhaConta/MinhaContaCurso';
 import { MinhaContaCursos } from './component/Page/MinhaConta/MinhaContaCursos';
 import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
@@ -32,62 +33,20 @@ export const Router = withRouter((props) => {
         }
     }, [props, setStateHideFooterGlobal, setStateHideHeaderGlobal]);
 
-    // ROUTES
-    const routes = [
-        {
-            component: (props) => <Cadastro {...props} />,
-            label: 'Cadastro',
-            path: '/cadastro'
-        },
-        {
-            component: (props) => <Home {...props} />,
-            label: 'Home',
-            path: '/inicio'
-        },
-        {
-            component: (props) => <Login {...props} />,
-            label: 'Login',
-            path: '/login'
-        },
-        {
-            component: (props) => <MinhaConta {...props} />,
-            isAuth: true,
-            label: 'Minha Conta',
-            path: '/minha-conta/inicio'
-        },
-        {
-            component: (props) => <MinhaContaCursos {...props} />,
-            isAuth: true,
-            label: 'Cursos',
-            path: '/minha-conta/cursos'
-        },
-        {
-            component: (props) => <Noticia {...props} />,
-            label: 'Notícia',
-            path: '/noticia/:slug'
-        },
-        {
-            component: (props) => <Noticias {...props} />,
-            label: 'Notícias',
-            path: '/noticias'
-        },
-        {
-            component: (props) => <Pesquisa {...props} />,
-            label: 'Pesquisa',
-            path: '/pesquisa/:slug'
-        },
-        {
-            component: (props) => <Home {...props} />,
-            label: 'Página não encontrada',
-            path: '*'
-        }
-    ];
+    const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };
 
     return (
         <Switch>
-            {routes.map((route) => (
-                <Route exact={route.exact} key={route.path} path={route.path} render={route.component} sensitive={route.sensitive} strict={route.strict} />
-            ))}
+            <Route component={Cadastro} path="/cadastro" />
+            <Route component={Home} path="/inicio" />
+            <Route component={Login} path="/login" />
+            <Route component={MinhaConta} isAuth={true} path={minhaContaInicioRoute.path} />
+            <Route isAuth={true} path="/minha-conta/curso/:slug" render={(props) => <MinhaContaCurso Breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} {...props} />} />
+            <Route isAuth={true} path="/minha-conta/cursos" render={(props) => <MinhaContaCursos Breadcrumb={[minhaContaInicioRoute]} {...props} />} />
+            <Route component={Noticia} path="/noticia/:slug" />
+            <Route component={Noticias} path="/noticias" />
+            <Route component={Pesquisa} path="/pesquisa/:slug" />
+            <Route component={Home} path="*" />
         </Switch>
     );
 });

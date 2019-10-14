@@ -12,7 +12,7 @@ import { HeaderBtnMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './Heade
 import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 
-export const Header = () => {
+export const Header = ({ ...hide }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobile, setStateChangeMenuMobile] = useChangeMenuMobile();
@@ -26,7 +26,7 @@ export const Header = () => {
 
     return (
         <HeaderContext.Provider value={[stateChangeMenuMobile, setStateChangeMenuMobile]}>
-            <HeaderStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} id="header">
+            <HeaderStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} id="header" {...hide}>
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                         <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
