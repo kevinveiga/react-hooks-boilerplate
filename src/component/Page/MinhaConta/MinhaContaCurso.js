@@ -17,7 +17,7 @@ import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
 import { Title2 } from '../../../style/text';
 
-export const MinhaContaCurso = ({ ...props }) => {
+export const MinhaContaCurso = ({ ...breadcrumb }) => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
@@ -35,7 +35,7 @@ export const MinhaContaCurso = ({ ...props }) => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Helmet>
 
-            <HeaderAlternate currentBreadcrumbLabel="titulo do curso" {...props} />
+            <HeaderAlternate currentBreadcrumbLabel="titulo do curso" {...breadcrumb} />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>

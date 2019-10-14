@@ -16,7 +16,7 @@ import { Box, Flex } from '../../style/flex';
 import { Container } from '../../style/layout';
 import { Title5 } from '../../style/text';
 
-export const HeaderAlternate = ({ currentBreadcrumbLabel, ...props }) => {
+export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile] = useChangeMenuMinhaContaMobile();
@@ -53,7 +53,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...props }) => {
                 <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                     <Box>
                         <Title5 color="colorPrimary" fontWeight="600">
-                            <Breadcrumb currentLabel={currentBreadcrumbLabel} obj={{ hoverColor: 'colorWhite' }} {...props} />
+                            <Breadcrumb currentLabel={currentBreadcrumbLabel} obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />
                         </Title5>
                     </Box>
 
