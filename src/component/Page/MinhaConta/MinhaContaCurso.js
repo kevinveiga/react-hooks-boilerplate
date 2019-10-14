@@ -35,7 +35,7 @@ export const MinhaContaCurso = ({ ...props }) => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Helmet>
 
-            <HeaderAlternate actualLabel="titulo do curso" {...props} />
+            <HeaderAlternate currentBreadcrumbLabel="titulo do curso" {...props} />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>

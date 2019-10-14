@@ -4,7 +4,7 @@ import { LinkTo } from '../Link/LinkTo';
 
 import { BreadcrumbStyled, BreadcrumbItemsStyled } from './BreadcrumbStyled';
 
-export const Breadcrumb = ({ actualLabel, obj, ...props }) => {
+export const Breadcrumb = ({ currentLabel, obj, ...props }) => {
     console.log('props2: ', props);
 
     return (
@@ -19,7 +19,7 @@ export const Breadcrumb = ({ actualLabel, obj, ...props }) => {
                     );
                 })}
 
-                <BreadcrumbItemsStyled>{actualLabel}</BreadcrumbItemsStyled>
+                <BreadcrumbItemsStyled>{currentLabel}</BreadcrumbItemsStyled>
             </BreadcrumbStyled>
         )
     );
