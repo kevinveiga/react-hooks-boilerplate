@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
 
+import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
@@ -35,12 +37,14 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Helmet>
 
-            <HeaderAlternate currentBreadcrumbLabel="titulo do curso" {...breadcrumb} />
+            <HeaderAlternate currentBreadcrumbLabel="Titulo do Curso" {...breadcrumb} />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>
                     <Flex display="flex" flexWrap="wrap">
                         <MinhaContaCenterStyled p={{ d: 3, sm: 5 }} width="100%">
+                            {isMobile && <Breadcrumb currentLabel="Titulo do Curso" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
+
                             <Flex display="flex" flexWrap="wrap">
                                 <Box height="50vh" mb={3} width="100%">
                                     <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />

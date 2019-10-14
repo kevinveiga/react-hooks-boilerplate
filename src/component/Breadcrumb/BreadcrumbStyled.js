@@ -1,12 +1,11 @@
 import styled from 'styled-components';
+import { layout, space, typography } from 'styled-system';
 
-export const BreadcrumbStyled = styled.ul``;
+export const BreadcrumbStyled = styled.ul`
+    ${space};
+`;
 
 export const BreadcrumbItemStyled = styled.li`
-    display: inline-block;
-
-    span {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
+    ${layout};
+    ${typography};
 `;

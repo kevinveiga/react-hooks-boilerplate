@@ -33,7 +33,7 @@ export const MinhaConta = () => {
                     <Flex display="flex" flexWrap="wrap">
                         <MinhaContaMenu />
 
-                        <MinhaContaCenterStyled px={{ d: 5, xl: '100px' }} py={{ d: 5, xl: '75px' }} width={{ d: '100%', lg: 8 / 10 }}>
+                        <MinhaContaCenterStyled px={{ d: 2, sm: 5, xl: '100px' }} py={{ d: 4, sm: 5, xl: '75px' }} width={{ d: '100%', lg: 8 / 10 }}>
                             <MinhaContaForm
                                 data={{
                                     data: '23/10/2019',

@@ -2,14 +2,14 @@ import { css } from 'styled-components';
 
 import { variable } from './variable';
 
-export const gradientDirectional = (deg = '45deg', startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
+export const gradientDirection = (deg = '45deg', startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
     return css`
         background-image: linear-gradient(${deg}, ${startColor} ${startColorPercent}, ${endColor} ${endColorPercent});
         background-repeat: repeat-x;
     `;
 };
 
-export const gradientDirectionalRepeat = (deg = '45deg', startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
+export const gradientDirectionRepeat = (deg = '45deg', startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
     return css`
         background-image: repeating-linear-gradient(${deg}, ${startColor} ${startColorPercent}, ${endColor} ${endColorPercent});
     `;

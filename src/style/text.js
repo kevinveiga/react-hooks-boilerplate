@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { layout, space, typography } from 'styled-system';
 
+import { gradientDirection } from './function';
 import { variable } from './variable';
 
 const title = css`
@@ -14,6 +15,19 @@ const title = css`
     ${({ align }) => align === 'center' && 'margin-left: auto; margin-right: auto; text-align: center;'};
     ${({ align }) => align === 'right' && 'margin-left: auto; margin-right: 0; text-align: right;'};
     z-index: 3;
+
+    ${({ line }) =>
+        line &&
+        css`
+            &::after {
+                ${gradientDirection('-45deg')};
+                content: ' ';
+                display: block;
+                height: 4px;
+                margin-top: 5px;
+                width: 70px;
+            }
+        `};
 `;
 
 export const P = styled.p`
@@ -25,6 +39,7 @@ export const P = styled.p`
 
 export const Span = styled.span`
     ${layout};
+    ${space};
     ${typography};
     ${({ color }) => color && `color: ${variable[color]}`};
 `;
