@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BreadcrumbStyled = styled.ul``;
 
-export const BreadcrumbItemsStyled = styled.li`
+export const BreadcrumbItemStyled = styled.li`
     display: inline-block;
 
     span {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LinkTo } from '../Link/LinkTo';
 
-import { BreadcrumbStyled, BreadcrumbItemsStyled } from './BreadcrumbStyled';
+import { BreadcrumbStyled, BreadcrumbItemStyled } from './BreadcrumbStyled';
 
 export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
     return (
@@ -11,17 +11,17 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
                 <>
                     {breadcrumb.map((item) => {
                         return (
-                            <BreadcrumbItemsStyled key={item.path}>
+                            <BreadcrumbItemStyled key={item.path}>
                                 <LinkTo obj={obj} link={item.path} text={item.label} />
                                 <span> &gt; </span>
-                            </BreadcrumbItemsStyled>
+                            </BreadcrumbItemStyled>
                         );
                     })}
 
-                    <BreadcrumbItemsStyled>{currentLabel}</BreadcrumbItemsStyled>
+                    <BreadcrumbItemStyled>{currentLabel}</BreadcrumbItemStyled>
                 </>
             ) : (
-                <BreadcrumbItemsStyled>Minha Conta</BreadcrumbItemsStyled>
+                <BreadcrumbItemStyled>Minha Conta</BreadcrumbItemStyled>
             )}
         </BreadcrumbStyled>
     );
