@@ -10,7 +10,7 @@ export const MinhaContaLeftStyled = styled.div`
     ${space};
     ${typography};
     border-right: 1px solid ${variable.colorGrayLight2};
-    box-shadow: 4px 0 6px 0 ${variable.colorGrayLight3};
+    box-shadow: 4px 0 6px 0 ${variable.colorGrayLight4};
     z-index: 2;
 `;
 
@@ -20,7 +20,7 @@ export const MinhaContaCenterStyled = styled.div`
     ${layout};
     ${space};
     ${typography};
-    background-color: ${variable.colorGrayLight4};
+    background-color: ${variable.colorGrayLight5};
     border-left: 1px solid ${variable.colorGrayLight2};
     border-right: 1px solid ${variable.colorGrayLight2};
     min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight});

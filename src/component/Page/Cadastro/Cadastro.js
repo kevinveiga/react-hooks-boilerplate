@@ -28,7 +28,7 @@ export const Cadastro = () => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Helmet>
 
-            <Main backgroundColor="colorGrayLight4" header={false}>
+            <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap">
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
                         <BgImageLazyLoad overlayColor="colorBlackTransparent3" url="https://picsum.photos/id/1011/1024/768" />

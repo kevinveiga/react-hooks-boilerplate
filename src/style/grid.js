@@ -18,7 +18,7 @@ export const Cell = styled.div`
         hover &&
         css`
             &:hover {
-                background-color: ${variable.colorGrayHover};
+                background-color: ${variable.colorGrayLight3};
                 box-shadow: 0 1px 10px 1px ${variable.colorGrayLight};
 
                 ${BgImageOverlay} {

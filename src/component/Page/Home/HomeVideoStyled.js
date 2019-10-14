@@ -33,14 +33,14 @@ export const VideoLiStyled = styled.li`
     ${({ active }) =>
         active &&
         css`
-            background-color: ${variable.colorGrayHover};
+            background-color: ${variable.colorGrayLight3};
         `};
 
     ${({ hover }) =>
         hover &&
         css`
             &:hover {
-                background-color: ${variable.colorGrayHover};
+                background-color: ${variable.colorGrayLight3};
                 box-shadow: inset 0 -1px 0 1px ${variable.colorGrayLight};
             }
         `};
