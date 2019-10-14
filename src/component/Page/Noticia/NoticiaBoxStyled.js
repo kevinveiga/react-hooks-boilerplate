@@ -11,7 +11,7 @@ export const NoticiaBoxAuthorStyled = styled.h5`
 
 export const NoticiaBoxDateTimeStyled = styled.span`
     ${typography};
-    color: ${({ color, themeColor }) => (themeColor === 'light' ? (color ? variable[color] : variable.colorWhite) : color ? variable[color] : variable.colorGray2)};
+    color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};
     display: inline-block;
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     font-weight: 400;
