@@ -1,116 +1,44 @@
 import styled, { css } from 'styled-components';
 
+import { Image } from '../../../style/image';
 import { variable } from '../../../style/variable';
 
-export const MinhaContaCursoTabContentStyled = styled.li`
-    opacity: 0;
-    position: absolute;
-    transform: translate3d(0, 5%, 0);
-    transition: opacity ${variable.transitionSlow}, transform ${variable.transition};
-    visibility: hidden;
-    z-index: -1;
-`;
-
-export const MinhaContaCursoTabsContentStyled = styled.ul`
-    padding-bottom: ${variable.spacingMD};
-    padding-top: ${variable.spacingMD};
-`;
-
-export const MinhaContaCursoTabNavStyled = styled.li`
-    display: inline-block;
-    padding-right: 40px;
-
-    label {
-        cursor: pointer;
-        padding: 15px 0 15px 0;
-        transition: color ${variable.transition}, text-shadow ${variable.transition};
-        &::after {
-            bottom: -2px;
-            content: ' ';
-            display: block;
-            height: 3px;
-            position: absolute;
-            transition: background-color ${variable.transition}, width ${variable.transition};
-            width: 0;
-        }
-
-        &:hover {
-            color: ${variable.colorPrimary};
-            text-shadow: 0 0 1px ${variable.colorPrimary};
-
-            &::after {
-                background-color: ${variable.colorPrimary};
-                width: 100%;
-            }
-        }
-    }
-`;
-
-export const MinhaContaCursoTabsNavStyled = styled.ul`
-    border-bottom: 1px solid ${variable.colorBlack};
-`;
-
-export const MinhaContaCursoTabStyled = styled.div`
-    ${({ group, total }) => tabInput(group, total)};
+export const MinhaContaCursoDuvidasImageContainerStyled = styled.div`
+    border-radius: 50%;
+    height: 50px;
+    margin-right: 15px;
     overflow: hidden;
+    text-align: center;
+    width: 50px;
+    z-index: 1;
 
-    input[type='radio'] {
-        opacity: 0;
-        position: absolute;
+    ${Image} {
+        height: 100%;
     }
 `;
 
-const tabInput = (group, total) => {
-    let styles = '';
-
-    for (let i = 1, l = total + 1; i < l; i += 1) {
-        styles += `
-            input[name='${group}'] {
-                &:nth-child(${i}) {
-                    &:checked {
-                        ~ ${MinhaContaCursoTabsNavStyled} {
-                            ${MinhaContaCursoTabNavStyled} {
-                                &:nth-child(${i}) {
-                                    label {
-                                        color: ${variable.colorPrimaryHover};
-                                        text-shadow: 0 0 1px ${variable.colorPrimary};
-
-                                        &::after {
-                                            background-color: ${variable.colorPrimaryHover};
-                                            width: 100%;
-                                        }
-
-                                        &:hover {
-                                            color: ${variable.colorPrimary};
-                                            text-shadow: 0 0 1px ${variable.colorPrimary};
-
-                                            &::after {
-                                                background-color: ${variable.colorPrimary};
-                                                width: 100%;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        ~ ${MinhaContaCursoTabsContentStyled} {
-                            ${MinhaContaCursoTabContentStyled} {
-                                &:nth-child(${i}) {
-                                    opacity: 1;
-                                    position: relative;
-                                    transform: translate3d(0, 0, 0);
-                                    visibility: visible;
-                                    z-index: 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        `;
+export const MinhaContaCursoDuvidasImageLineStyled = styled.div`
+    &::after {
+        background-color: ${variable.colorBlack};
+        content: ' ';
+        height: 100%;
+        left: 24px;
+        position: absolute;
+        width: 1px;
+        z-index: 0;
     }
+`;
 
-    return css`
-        ${styles}
-    `;
-};
+export const MinhaContaCursoDuvidasItemsStyled = styled.li`
+    display: flex;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    p {
+        margin-bottom: 0;
+    }
+`;
+
+export const MinhaContaCursoDuvidasStyled = styled.ul`
+    border-bottom: 1px solid ${variable.colorGrayLight2};
+`;
