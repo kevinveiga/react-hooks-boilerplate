@@ -8,7 +8,6 @@ import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
 import { MinhaConta } from './component/Page/MinhaConta/MinhaConta';
 import { MinhaContaCurso } from './component/Page/MinhaConta/MinhaContaCurso';
-import { MinhaContaCursos } from './component/Page/MinhaConta/MinhaContaCursos';
 import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
@@ -42,7 +41,6 @@ export const Router = withRouter((props) => {
             <Route component={Login} path="/login" />
             <Route component={MinhaConta} isAuth={true} path={minhaContaInicioRoute.path} />
             <Route isAuth={true} path="/minha-conta/curso/:slug" render={(props) => <MinhaContaCurso breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} {...props} />} />
-            <Route isAuth={true} path="/minha-conta/cursos" render={(props) => <MinhaContaCursos breadcrumb={[minhaContaInicioRoute]} {...props} />} />
             <Route component={Noticia} path="/noticia/:slug" />
             <Route component={Noticias} path="/noticias" />
             <Route component={Pesquisa} path="/pesquisa/:slug" />
