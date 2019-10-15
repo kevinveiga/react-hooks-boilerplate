@@ -20,7 +20,7 @@ export const ImageCircleContainer = styled.div`
     text-align: center;
     width: 150px;
 
-    img {
+    ${Image} {
         height: 100%;
     }
 `;
