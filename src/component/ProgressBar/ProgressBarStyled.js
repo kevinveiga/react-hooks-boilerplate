@@ -1,12 +1,14 @@
 import styled from 'styled-components';
+import { width } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const BarContainerStyled = styled.div`
-    border-radius: ${variable.borderRadius};
+    ${width};
+    border-radius: calc(${variable.borderRadius} * 2);
     height: 10px;
     overflow: hidden;
-    width: 100%;
+    ${({ width }) => width === undefined && 'width: 100%'};
 `;
 
 export const BarStyled = styled.div`

@@ -8,7 +8,7 @@ import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '
 import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
-// import { useMeasure } from '../../../store/util/measure';
+import { useMeasure } from '../../../store/util/measure';
 
 import { scrollTo } from '../../../util/scrollTo';
 
@@ -17,14 +17,13 @@ import { Label } from '../../Form/Form';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
+
 import { Svg } from '../../Svg/Svg';
 
-// import { NoticiasBannerRight } from './NoticiaStyled';
-import { Author, DateTime, Tag, Title } from './NoticiaBoxStyled';
+import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
@@ -32,9 +31,8 @@ import { Title3 } from '../../../style/text';
 export const Noticias = () => {
     // API
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
-    const [stateNoticiasCategoria, setStateNoticiaCategoriaData] = useNoticiaCategoriaApi(null, {});
+    const [stateNoticiasCategoria, setStateNoticiasCategoriaData] = useNoticiaCategoriaApi(null, {});
     const stateNoticiasCategorias = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
-    const [stateNoticiasCategoriaSelected, setNoticiasCategoriaSelected] = useState('ultimas');
     const stateSeo = useSeoApi(`${apiUrlNoticias}/seo`, {});
 
     const noticiasLength = stateNoticias.data.length;
@@ -47,7 +45,8 @@ export const Noticias = () => {
     const { setStateLoaderGlobal } = useContext(Context);
 
     // ACTION
-    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+    const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
+    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     const handleNoticiaCategoriaChange = (e) => {
         let apiValue = `${apiUrlNoticias}/categoria/${e.target.value}`;
@@ -56,8 +55,8 @@ export const Noticias = () => {
             apiValue = apiUrlNoticias;
         }
 
-        setStateNoticiaCategoriaData({ page: 1, url: apiValue });
-        setNoticiasCategoriaSelected(e.target.value);
+        setStateNoticiasCategoriaData({ page: 1, url: apiValue });
+        setStateNoticiasCategoriaSelected(e.target.value);
     };
 
     // Scroll para o topo
@@ -97,7 +96,7 @@ export const Noticias = () => {
                             }}
                             type="radio"
                             value="ultimas"
-                        ></input>
+                        />
 
                         {noticiasCategoriasLength > 0 &&
                             stateNoticiasCategorias.data.map((categoria) => {
@@ -113,7 +112,7 @@ export const Noticias = () => {
                                         }}
                                         type="radio"
                                         value={categoria.slug}
-                                    ></input>
+                                    />
                                 );
                             })}
 
@@ -175,12 +174,12 @@ export const Noticias = () => {
                                                                                 </Box>
                                                                             )}
 
-                                                                            <Tag>{categoriaUltimas.title}</Tag>
+                                                                            <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
 
-                                                                            <Title>{noticia.title}</Title>
+                                                                            <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
                                                                         </Box>
 
-                                                                        <Author>{`Por ${noticia.author}`}</Author>
+                                                                        <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
                                                                     </NoticiaBox>
                                                                 </LinkTo>
                                                             </Box>
@@ -209,16 +208,16 @@ export const Noticias = () => {
                                                                                     <BgImageLazyLoad key={noticia.id} overlayColor="colorBlackTransparent3" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
 
                                                                                     <Box>
-                                                                                        <Tag>{categoria.title}</Tag>
+                                                                                        <NoticiaBoxTagStyled>{categoria.title}</NoticiaBoxTagStyled>
 
-                                                                                        <Title>{noticia.title}</Title>
+                                                                                        <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
 
                                                                                         <p>
                                                                                             <span>Postado em </span>
 
-                                                                                            <DateTime fontSize={16} themeColor="light">
+                                                                                            <NoticiaBoxDateTimeStyled fontSize={16} themeColor="light">
                                                                                                 {noticia.date}
-                                                                                            </DateTime>
+                                                                                            </NoticiaBoxDateTimeStyled>
                                                                                         </p>
                                                                                     </Box>
                                                                                 </NoticiaBox>
@@ -227,21 +226,31 @@ export const Noticias = () => {
                                                                     ) : (
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} py={3}>
                                                                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                                                <NoticiaBox alignContent="space-between" color={categoria.featured_color} display="inline-flex" flexWrap="wrap" minHeight={{ d: '100px', xs: '150px', md: '200px' }} themeColor="dark" verticalAlign="middle" width={3 / 5}>
+                                                                                <NoticiaBox
+                                                                                    alignContent="space-between"
+                                                                                    color={categoria.featured_color}
+                                                                                    display="inline-flex"
+                                                                                    flexWrap="wrap"
+                                                                                    minHeight={{ d: '100px', xs: '150px', md: '200px' }}
+                                                                                    pr={{ d: 1, sm: 4 }}
+                                                                                    themeColor="dark"
+                                                                                    verticalAlign="middle"
+                                                                                    width={3 / 5}
+                                                                                >
                                                                                     <Box width="100%">
-                                                                                        <Tag>{categoria.title}</Tag>
+                                                                                        <NoticiaBoxTagStyled>{categoria.title}</NoticiaBoxTagStyled>
 
-                                                                                        <Title>{noticia.title}</Title>
+                                                                                        <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
 
-                                                                                        <p>Resumo</p>
+                                                                                        <p>{noticia.excerpt}</p>
                                                                                     </Box>
 
                                                                                     <p>
                                                                                         <span>Postado em </span>
 
-                                                                                        <DateTime color={categoria.featured_color} fontSize={16} themeColor="dark">
+                                                                                        <NoticiaBoxDateTimeStyled color={categoria.featured_color} fontSize={16} themeColor="dark">
                                                                                             {noticia.date}
-                                                                                        </DateTime>
+                                                                                        </NoticiaBoxDateTimeStyled>
                                                                                     </p>
                                                                                 </NoticiaBox>
 
@@ -255,7 +264,7 @@ export const Noticias = () => {
 
                                                             {stateNoticiasCategoria.data && stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
                                                                 <Cell display="flex" justifyContent="center" py={3}>
-                                                                    <Button text="Ver mais" themeType="border" onClick={() => setStateNoticiaCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
+                                                                    <Button text="Ver mais" themeType="border" onClick={() => setStateNoticiasCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
                                                                 </Cell>
                                                             )}
                                                         </Grid>
@@ -265,10 +274,6 @@ export const Noticias = () => {
                                         )
                                     );
                                 })}
-
-                            {/* <NoticiasBannerRight display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!stateNoticiasCategoria.isLoading && stateNoticiasCategoriaSelected !== 'ultimas'} width="20%">
-                                <BannerRight boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'noticias-tabs-content', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
-                            </NoticiasBannerRight> */}
                         </ul>
                     </Tab>
                 </Container>

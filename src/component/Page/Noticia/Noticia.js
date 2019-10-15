@@ -1,5 +1,5 @@
 import parse from 'html-react-parser';
-import React from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
@@ -7,60 +7,70 @@ import { apiUrlNoticias } from '../../../config';
 
 import { useNoticiaApi } from '../../../service/noticia';
 
+import { NoticiaContext } from '../../../store/noticia/noticiaContext';
+
 import { scrollTo } from '../../../util/scrollTo';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
-// import { Leadwall } from '../../Leadwall/Leadwall';
-// import { LinkTo } from '../../Link/LinkTo';
-// import { NoticiaForm } from '../../Form/NoticiaForm';
-// import { NoticiaBox } from './NoticiaBox';
+import { Leadwall } from '../../Leadwall/Leadwall';
+import { LinkTo } from '../../Link/LinkTo';
+import { NoticiaBox } from './NoticiaBox';
 import { NoticiaSocial } from './NoticiaSocial';
 
 import { NoticiaBoxAuthorStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
 import { NoticiaArticleStyled, NoticiaArticleAuthorStyled, NoticiaAuthorStyled, NoticiaFormContainerStyled, NoticiaMateriasRelacionadasStyled } from './NoticiaStyled';
 
 import { Box, Flex } from '../../../style/flex';
-// import { Cell, Grid } from '../../../style/grid';
+import { Cell, Grid } from '../../../style/grid';
 import { Image, ImageCircleContainer } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 
-// import logo from '../../../asset/image/logo.png';
+// LAZY
+const NoticiaForm = lazy(() => import('../../Form/NoticiaForm'));
 
 export const Noticia = ({ match }) => {
     // API
-    const [noticia, setStateNoticiaUrl] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
+    const [stateNoticia, setStateNoticiaUrl] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
 
-    const noticiaLength = noticia.data ? Object.keys(noticia.data).length : 0;
-    // const noticiaRelatedLength = noticiaLength > 0 && noticia.data.related.length;
+    const noticiaLength = stateNoticia.data ? Object.keys(stateNoticia.data).length : 0;
+    const noticiaRelatedLength = noticiaLength > 0 && stateNoticia.data.related.length;
+
+    // Redirecionamento temporário
+    if (stateNoticia.isError == true) {
+        window.location.pathname = '/';
+    }
 
     // Verificação se todos os dados de API estão carregados
-    const isDataLoaded = noticiaLength > 0;
+    const isDataLoaded = noticiaLength > 0 && noticiaRelatedLength > 0;
 
     // ACTION
-    // const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
+    const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
 
     // Scroll para o topo
-    scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+    if (!changeLeadwall) {
+        scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+    }
 
     return (
-        <>
+        <NoticiaContext.Provider value={[setChangeLeadwall]}>
             <Helmet>
-                <title>{noticia.data && noticia.data.title}</title>
-                <meta name="description" content={noticia.data && noticia.data.seo && noticia.data.seo.description} />
-                <meta property="og:author" content={noticia.data && noticia.data.author} />
-                <meta property="og:description" content={noticia.data && noticia.data.seo && noticia.data.seo.description} />
-                <meta property="og:image" content={noticia.data && noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} />
+                <title>{stateNoticia.data && stateNoticia.data.title}</title>
+                <meta name="description" content={stateNoticia.data && stateNoticia.data.seo && stateNoticia.data.seo.description} />
+                <meta property="og:author" content={stateNoticia.data && stateNoticia.data.author} />
+                <meta property="og:description" content={stateNoticia.data && stateNoticia.data.seo && stateNoticia.data.seo.description} />
+                <meta property="og:image" content={stateNoticia.data && stateNoticia.data.thumbnail && stateNoticia.data.thumbnail.attachment.url} />
                 <meta property="og:locale" content="pt_BR" />
-                <meta property="og:title" content={noticia.data && noticia.data.title} />
+                <meta property="og:title" content={stateNoticia.data && stateNoticia.data.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={window.location.href} />
             </Helmet>
 
             <Main>
-                {noticia.isError == true && (
+                {stateNoticia.isError == true && (
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                         <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark" width={{ d: 1, md: 2 / 3 }}>
+                            {/* TODO: colocar layout */}
                             Notícia não encontrada
                         </Title4>
                     </Container>
@@ -69,41 +79,45 @@ export const Noticia = ({ match }) => {
                 {noticiaLength > 0 && (
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                         <Title1 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark" width={{ d: 1, md: 2 / 3 }}>
-                            {noticia.data.title}
+                            {stateNoticia.data.title}
                         </Title1>
 
                         <Flex display="flex" flexWrap="wrap">
-                            <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} url={noticia.data.thumbnail && noticia.data.thumbnail.attachment.url} text="Notícia" width="100%" />
+                            <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} text="Notícia" url={stateNoticia.data.thumbnail && stateNoticia.data.thumbnail.attachment.url} width="100%" />
                         </Flex>
 
-                        <NoticiaSocial display={{ d: 'none', lg: 'block' }} elementChange={{ elementId: 'noticia-article-author', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} title={noticia.data.title} url={window.location.href} />
+                        <NoticiaSocial display={{ d: 'none', lg: 'block' }} elementChange={{ elementId: 'noticia-article-author', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} title={stateNoticia.data.title} url={window.location.href} />
 
                         <NoticiaArticleAuthorStyled id="noticia-article-author" mb={3}>
                             <Flex display="flex" flexWrap="wrap">
                                 <Box width={{ d: 1, sm: 1 / 2 }}>
                                     <Title5 color="colorPrimary" fontWeight="600" themeColor="dark">
-                                        {noticia.data.author}
+                                        {stateNoticia.data.author}
                                     </Title5>
                                 </Box>
 
                                 <Box textAlign={{ d: 'left', sm: 'right' }} width={{ d: 1, sm: 1 / 2 }}>
-                                    <Span>{noticia.data.date}</Span>
+                                    <Span fontWeight="600">{stateNoticia.data.date}</Span>
                                 </Box>
                             </Flex>
                         </NoticiaArticleAuthorStyled>
 
-                        <NoticiaArticleStyled>{parse(`${noticia.data.content}`)}</NoticiaArticleStyled>
+                        <NoticiaArticleStyled change={changeLeadwall}>{parse(`${stateNoticia.data.content}`)}</NoticiaArticleStyled>
 
-                        {/* <Leadwall change={changeLeadwall} />
+                        <Leadwall change={changeLeadwall} />
 
-                        <NoticiaFormContainer mb="75px">
-                            <NoticiaForm />
-                        </NoticiaFormContainer> */}
+                        <NoticiaFormContainerStyled mb="75px">
+                            <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                                <NoticiaForm />
+                            </Suspense>
+                        </NoticiaFormContainerStyled>
 
                         <NoticiaAuthorStyled mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
-                                    <ImageCircleContainer>{/* <Image objectFit="none" text="autor" url={noticia.data.author_avatar || logo} /> */}</ImageCircleContainer>
+                                    <ImageCircleContainer>
+                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar || 'sem-imagem'} />
+                                    </ImageCircleContainer>
                                 </Box>
 
                                 <Box alignSelf="center" display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
@@ -112,22 +126,22 @@ export const Noticia = ({ match }) => {
                                     </P>
 
                                     <Title4 color="colorPrimary" mb={2} themeColor="dark">
-                                        Alexandre Stormer
+                                        {stateNoticia.data.author}
                                     </Title4>
 
-                                    <p>{noticia.data.author_description}</p>
+                                    <p>{stateNoticia.data.author_description}</p>
                                 </Box>
                             </Flex>
                         </NoticiaAuthorStyled>
 
-                        {/* <NoticiaMateriasRelacionadas mb={5}>
+                        <NoticiaMateriasRelacionadasStyled mb={5}>
                             <Title4 color="colorGray2" mb={4} themeColor="dark">
                                 Matérias Relacionadas
                             </Title4>
 
                             <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
                                 {noticiaRelatedLength &&
-                                    noticia.data.related.map((noticia, i, newArray) => {
+                                    stateNoticia.data.related.map((noticia, i, newArray) => {
                                         return (
                                             <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                 <LinkTo ariaLabel={noticia.title} height="100%" onClick={() => setStateNoticiaUrl(`${apiUrlNoticias}/${noticia.slug}`)} to={`/noticia/${noticia.slug}`} width="100%">
@@ -149,10 +163,10 @@ export const Noticia = ({ match }) => {
                                         );
                                     })}
                             </Grid>
-                        </NoticiaMateriasRelacionadas> */}
+                        </NoticiaMateriasRelacionadasStyled>
                     </Container>
                 )}
             </Main>
-        </>
+        </NoticiaContext.Provider>
     );
 };
