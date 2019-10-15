@@ -43,4 +43,9 @@ export const MinhaContaCursoMenuButtonStyled = styled.button`
     margin-bottom: 35px;
     margin-left: auto;
     text-decoration: underline;
+    transition: color ${variable.transition};
+
+    &:hover {
+        color: ${variable.colorPrimaryHover};
+    }
 `;
