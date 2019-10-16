@@ -43,7 +43,7 @@ export const Main = styled.main`
             margin-top: ${variable.headerHeightMobile};
             min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight});
 
-            @media (min-width: ${variable.lg}) {
+            @media (min-width: ${variable.md}) {
                 margin-top: 0;
             }
         `};
