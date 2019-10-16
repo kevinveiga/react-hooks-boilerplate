@@ -10,8 +10,6 @@ export const useWindowWidth = () => {
 
         handleResize();
 
-        console.log('A: ', stateWidth);
-
         window.addEventListener('resize', handleResize);
 
         return () => {
