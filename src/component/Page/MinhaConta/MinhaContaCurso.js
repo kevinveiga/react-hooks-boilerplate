@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
+
+import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
@@ -21,6 +22,7 @@ import { Box, Flex } from '../../../style/flex';
 import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Title2 } from '../../../style/text';
+import { variable } from '../../../style/variable';
 
 export const MinhaContaCurso = ({ ...breadcrumb }) => {
     // API
@@ -28,6 +30,7 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
 
     // ACTION
     const [stateTabSelected, setStateTabSelected] = useState('resumo');
+    const windowWidth = useWindowWidth();
 
     const handleTabChange = (e) => {
         setStateTabSelected(e.target.value);
@@ -46,7 +49,7 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>
                     <Flex display="flex" flexWrap="wrap">
                         <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} py={{ d: 3, sm: 5 }} width="100%">
-                            {isMobile && <Breadcrumb currentLabel="Titulo do Curso" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
+                            {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Titulo do Curso" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
 
                             <Flex display="flex" flexWrap="wrap">
                                 <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: 7 / 10 }}>
@@ -151,10 +154,26 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                                                             </MinhaContaCursoDuvidasImageLineStyled>
 
                                                             <Box width="100%">
-                                                                <P fontWeight="600">Gilberto Silva</P>
+                                                                <P fontWeight="600">Vita Silva</P>
                                                                 <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
                                                                 <P color="colorGray2" fontSize="14px">
                                                                     23 Ago. 2019
+                                                                </P>
+                                                            </Box>
+                                                        </MinhaContaCursoDuvidasItemsStyled>
+
+                                                        <MinhaContaCursoDuvidasItemsStyled>
+                                                            <MinhaContaCursoDuvidasImageLineStyled>
+                                                                <MinhaContaCursoDuvidasImageContainerStyled>
+                                                                    <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
+                                                                </MinhaContaCursoDuvidasImageContainerStyled>
+                                                            </MinhaContaCursoDuvidasImageLineStyled>
+
+                                                            <Box width="100%">
+                                                                <P fontWeight="600">Ricardo Milos</P>
+                                                                <P>Our passengers must be hotter than I thought.</P>
+                                                                <P color="colorGray2" fontSize="14px">
+                                                                    25 Ago. 2019
                                                                 </P>
                                                             </Box>
                                                         </MinhaContaCursoDuvidasItemsStyled>

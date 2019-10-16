@@ -1,8 +1,8 @@
 import React from 'react';
-import { isMobile } from 'react-device-detect';
 
 import { useChangeHeaderScroll, useChangeMenuMinhaContaMobile } from '../../store/header/header';
 import { HeaderAlternateContext } from '../../store/header/headerAlternateContext';
+import { useWindowWidth } from '../../store/util/windowWidth';
 
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
 import { LinkTo } from '../Link/LinkTo';
@@ -15,13 +15,15 @@ import { HeaderStyled } from './HeaderStyled';
 import { Box, Flex } from '../../style/flex';
 import { Container } from '../../style/layout';
 import { Title5 } from '../../style/text';
+import { variable } from '../../style/variable';
 
 export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile] = useChangeMenuMinhaContaMobile();
+    const windowWidth = useWindowWidth();
 
-    return isMobile ? (
+    return windowWidth < parseInt(variable.md, 10) ? (
         <HeaderAlternateContext.Provider value={[stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile]}>
             <HeaderStyled active={stateChangeMenuMinhaContaMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>

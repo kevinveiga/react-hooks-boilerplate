@@ -1,5 +1,8 @@
-import { useLayoutEffect, useCallback, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { useEffect, useCallback, useState } from 'react';
+
+import { useWindowWidth } from './windowWidth';
+
+import { variable } from '../../style/variable';
 
 const getDimensionObject = (node) => {
     const rect = node.getBoundingClientRect();
@@ -19,17 +22,18 @@ const getDimensionObject = (node) => {
 export const useMeasure = (liveResize = false, liveScroll = false) => {
     const [stateMeasure, setStateMeasure] = useState({});
     const [stateNode, setStateNode] = useState(null);
+    const windowWidth = useWindowWidth();
 
     const ref = useCallback((stateNode) => {
         setStateNode(stateNode);
     }, []);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!stateNode) {
             return undefined;
         }
 
-        if (isMobile) {
+        if (windowWidth < parseInt(variable.md, 10)) {
             return undefined;
         }
 
@@ -58,7 +62,7 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
                 window.removeEventListener('scroll', dimensions);
             }
         };
-    }, [liveResize, liveScroll, stateNode, ref]);
+    }, [liveResize, liveScroll, stateNode, ref, windowWidth]);
 
     return [ref, stateMeasure, stateNode];
 };

@@ -1,8 +1,12 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+
+import { useWindowWidth } from '../util/windowWidth';
+
+import { variable } from '../../style/variable';
 
 export const useChangeNoticiaSocialScroll = (elementId, offset = 0) => {
     const [stateChangeNoticiaSocial, setStateChangeNoticiaSocial] = useState(false);
+    const windowWidth = useWindowWidth();
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
@@ -13,7 +17,7 @@ export const useChangeNoticiaSocialScroll = (elementId, offset = 0) => {
     }, [elementId, offset]);
 
     useLayoutEffect(() => {
-        if (isMobile) {
+        if (windowWidth < parseInt(variable.md, 10)) {
             return undefined;
         }
 
@@ -22,13 +26,14 @@ export const useChangeNoticiaSocialScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [handleScroll]);
+    }, [handleScroll, windowWidth]);
 
     return stateChangeNoticiaSocial;
 };
 
 export const useFadeOutNoticiaSocialScroll = (elementId, offset = 0) => {
     const [stateChangeNoticiaSocial, setStateChangeNoticiaSocial] = useState(false);
+    const windowWidth = useWindowWidth();
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
@@ -39,7 +44,7 @@ export const useFadeOutNoticiaSocialScroll = (elementId, offset = 0) => {
     }, [elementId, offset]);
 
     useLayoutEffect(() => {
-        if (isMobile) {
+        if (windowWidth < parseInt(variable.md, 10)) {
             return undefined;
         }
 
@@ -48,7 +53,7 @@ export const useFadeOutNoticiaSocialScroll = (elementId, offset = 0) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [handleScroll]);
+    }, [handleScroll, windowWidth]);
 
     return stateChangeNoticiaSocial;
 };

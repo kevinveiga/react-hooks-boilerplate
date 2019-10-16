@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -9,6 +8,7 @@ import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
 import { useMeasure } from '../../../store/util/measure';
+import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
 
@@ -16,6 +16,7 @@ import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
+import { LinkToExternal } from '../../Link/LinkToExternal';
 import { NoticiaBox } from './NoticiaBox';
 
 import { Svg } from '../../Svg/Svg';
@@ -24,9 +25,11 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, 
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
+import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
+import { variable } from '../../../style/variable';
 
 export const Noticias = () => {
     // API
@@ -47,6 +50,7 @@ export const Noticias = () => {
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
     const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+    const windowWidth = useWindowWidth();
 
     const handleNoticiaCategoriaChange = (e) => {
         let apiValue = `${apiUrlNoticias}/categoria/${e.target.value}`;
@@ -61,7 +65,7 @@ export const Noticias = () => {
 
     // Scroll para o topo
     if (!stateNoticiasCategoria.data) {
-        scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
     }
 
     useEffect(() => {

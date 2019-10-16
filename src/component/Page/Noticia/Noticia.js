@@ -1,6 +1,5 @@
 import parse from 'html-react-parser';
 import React, { lazy, Suspense, useState } from 'react';
-import { isMobile } from 'react-device-detect';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -8,6 +7,7 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi } from '../../../service/noticia';
 
 import { NoticiaContext } from '../../../store/noticia/noticiaContext';
+import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
 
@@ -25,6 +25,7 @@ import { Cell, Grid } from '../../../style/grid';
 import { Image, ImageCircleContainer } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
+import { variable } from '../../../style/variable';
 
 // LAZY
 const NoticiaForm = lazy(() => import('../../Form/NoticiaForm'));
@@ -46,10 +47,11 @@ export const Noticia = ({ match }) => {
 
     // ACTION
     const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
+    const windowWidth = useWindowWidth();
 
     // Scroll para o topo
     if (!changeLeadwall) {
-        scrollTo(null, isDataLoaded, isMobile ? 0 : 80);
+        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
     }
 
     return (
