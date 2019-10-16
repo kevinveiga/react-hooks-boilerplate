@@ -19,7 +19,7 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
     return (
-        <VideoGridStyled display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
+        <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
             <Cell>
                 <VideoWrap>
                     <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(objectVideos.data[0].video) || ''} />

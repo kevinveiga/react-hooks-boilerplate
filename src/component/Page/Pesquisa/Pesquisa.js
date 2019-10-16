@@ -8,15 +8,15 @@ import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
-import { useMeasure } from '../../../store/util/measure';
+// import { useMeasure } from '../../../store/util/measure';
 
-import { BannerPerfilInvestidor } from '../../Banner/BannerPerfilInvestidor';
+// import { BannerPerfilInvestidor } from '../../Banner/BannerPerfilInvestidor';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 
-import { NoticiasBannerPerfilInvestidorStyled } from '../Noticia/NoticiaStyled';
+// import { NoticiasBannerPerfilInvestidorStyled } from '../Noticia/NoticiaStyled';
 import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -35,7 +35,7 @@ export const Pesquisa = ({ match }) => {
     const { setStateLoaderGlobal } = useContext(Context);
 
     // ACTION
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     useEffect(() => {
         if (statePesquisa.isLoading) {
@@ -106,9 +106,9 @@ export const Pesquisa = ({ match }) => {
                             </Box>
                         </Flex>
 
-                        <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!statePesquisa.isLoading} width="20%">
+                        {/* <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!statePesquisa.isLoading} width="20%">
                             <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'pesquisa', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
-                        </NoticiasBannerPerfilInvestidorStyled>
+                        </NoticiasBannerPerfilInvestidorStyled> */}
                     </Box>
                 </Container>
             </Main>

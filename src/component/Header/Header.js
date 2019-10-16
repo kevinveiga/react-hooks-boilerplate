@@ -29,7 +29,7 @@ export const Header = ({ ...hide }) => {
             <HeaderStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} id="header" {...hide}>
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
-                        <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
+                        <Grid display="grid" gridAutoColumns="1fr" px={2}>
                             <Cell width="100%">
                                 <Input
                                     maxLength="50"

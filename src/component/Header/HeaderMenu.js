@@ -68,7 +68,7 @@ export const HeaderMenu = ({ ...props }) => {
 
             <div className="d-block d-lg-none header-menu-Social">
                 <HeaderMenuPesquisaStyled>
-                    <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" px={2}>
+                    <Grid display="grid" gridAutoColumns="1fr" px={2}>
                         <Cell width="100%">
                             <Input
                                 maxLength="50"

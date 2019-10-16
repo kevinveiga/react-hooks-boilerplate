@@ -26,7 +26,7 @@ export const NoticiaForm = ({ ...props }) => {
 
     return (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
-            <Grid display="grid" gridAutoColumns="1fr" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2} p={5}>
+            <Grid display="grid" gridAutoColumns="1fr" gridColumnGap={4} gridRowGap={2} p={5}>
                 <Cell mb={3} width="100%">
                     <Title3 fontWeight="600" mb={1} themeColor="dark">
                         Solicite contato

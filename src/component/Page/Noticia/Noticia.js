@@ -141,7 +141,7 @@ export const Noticia = ({ match }) => {
                                 Matérias Relacionadas
                             </Title4>
 
-                            <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={4}>
+                            <Grid display="grid" gridRowGap={4}>
                                 {noticiaRelatedLength &&
                                     stateNoticia.data.related.map((noticia, i, newArray) => {
                                         return (

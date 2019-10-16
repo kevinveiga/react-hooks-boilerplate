@@ -7,7 +7,6 @@ import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '
 import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
-import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
@@ -16,7 +15,6 @@ import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
-import { LinkToExternal } from '../../Link/LinkToExternal';
 import { NoticiaBox } from './NoticiaBox';
 
 import { Svg } from '../../Svg/Svg';
@@ -25,7 +23,6 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, 
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
@@ -49,7 +46,6 @@ export const Noticias = () => {
 
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     const handleNoticiaCategoriaChange = (e) => {
@@ -201,7 +197,7 @@ export const Noticias = () => {
                                             <li className="tab-content" key={categoria.slug}>
                                                 <Flex display="flex" flexWrap="wrap">
                                                     <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
-                                                        <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={3}>
+                                                        <Grid display="grid" gridRowGap={3}>
                                                             {stateNoticiasCategoria.data &&
                                                                 stateNoticiasCategoria.data.data &&
                                                                 stateNoticiasCategoria.data.data.map((noticia, j) => {

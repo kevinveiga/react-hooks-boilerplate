@@ -50,7 +50,7 @@ export const LeadwallForm = ({ ...props }) => {
 
     return (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
-            <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridColumnGap={4} gridRowGap={2}>
+            <Grid display="grid" gridColumnGap={4} gridRowGap={2}>
                 <Cell mb={3} width="100%">
                     <InputValidation
                         error={errors.email}

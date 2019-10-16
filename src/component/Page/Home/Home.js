@@ -11,7 +11,6 @@ import { useSeoApi } from '../../../service/seo';
 import { useSuperDestaqueApi } from '../../../service/superDestaque';
 import { useVideoApi } from '../../../service/video';
 
-import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { groupByMod } from '../../../util/groupBy';
@@ -32,7 +31,6 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, 
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { Image } from '../../../style/image';
 import { Container, Main, Wrap } from '../../../style/layout';
 import { Span, Title2, Title3, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
@@ -62,7 +60,6 @@ export const Home = ({ location }) => {
     const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
 
     // ACTION
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo ou para a section de vídeo
@@ -173,7 +170,7 @@ export const Home = ({ location }) => {
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             {destaquesLength > 0 && (
                                 <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
-                                    <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
+                                    <Grid display="grid">
                                         {stateDestaques.data.slice(0, 4).map((noticia, i, newArray) => {
                                             return i === 0 ? (
                                                 <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} pb={3}>
@@ -232,7 +229,7 @@ export const Home = ({ location }) => {
                                             Últimas
                                         </Title4>
 
-                                        <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto">
+                                        <Grid display="grid">
                                             {stateNoticias.data.slice(0, 4).map((noticia, i, newArray) => {
                                                 return (
                                                     <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
