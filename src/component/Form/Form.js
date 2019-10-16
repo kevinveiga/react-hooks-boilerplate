@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { CheckboxStyled, InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled, SelectStyled } from './FormStyled';
+import { CheckboxRadioStyled, InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled, SelectStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
-export const Checkbox = ({ ariaLabel, children, id, text, typeInput = 'checkbox', value = '', ...otherProps }) => {
+export const CheckboxRadio = ({ ariaLabel, children, id, text, typeInput = 'checkbox', value = '', ...otherProps }) => {
     const acessibility = ariaLabel || text;
     const content = children || text;
 
     return (
         <>
-            <CheckboxStyled defaultValue={value} id={id} type={typeInput} {...otherProps} />
+            <CheckboxRadioStyled defaultValue={value} id={id} type={typeInput} {...otherProps} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
                 {content}

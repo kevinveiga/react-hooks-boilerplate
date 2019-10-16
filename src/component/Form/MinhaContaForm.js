@@ -10,7 +10,7 @@ import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { Checkbox, InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { CheckboxRadio, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { Svg } from '../Svg/Svg';
 
 import { FilePhotoStyled, FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
@@ -52,8 +52,6 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
-
-                console.log('form: ', formData);
 
                 if (result && result.success == false) {
                     setError('invalid', 'notMatch', result.reason[0]);
@@ -330,13 +328,13 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 Notificação de e-mail
                             </P>
 
-                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacao_descontos">
+                            <CheckboxRadio color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacao_descontos">
                                 <Span verticalAlign="middle">Desejo receber avisos e descontos de cursos</Span>
-                            </Checkbox>
+                            </CheckboxRadio>
 
-                            <Checkbox color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacao_conteudo">
+                            <CheckboxRadio color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacao_conteudo">
                                 <Span verticalAlign="middle">Desejo receber a curadoria de conteúdos e notícias</Span>
-                            </Checkbox>
+                            </CheckboxRadio>
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>

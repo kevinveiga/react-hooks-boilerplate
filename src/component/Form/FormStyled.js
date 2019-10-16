@@ -4,7 +4,7 @@ import { IMaskInput } from 'react-imask';
 
 import { variable } from '../../style/variable';
 
-export const CheckboxStyled = styled.input`
+export const CheckboxRadioStyled = styled.input`
     opacity: 0;
     position: absolute;
     z-index: -1;
