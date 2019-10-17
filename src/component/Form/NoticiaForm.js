@@ -70,8 +70,6 @@ export const NoticiaForm = ({ ...props }) => {
             <Box overflow="hidden" width={stateRetornoForm ? '0' : { d: 1, sm: 1 / 2 }}>
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridAutoColumns="1fr" gridRowGap={2} p={{ d: 3, md: 5 }}>
-                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-
                         <Cell mb={3} width="100%">
                             <Title3 fontWeight="600" mb={1} themeColor="dark">
                                 Solicite contato
@@ -80,6 +78,8 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3} width="100%">
+                            {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+
                             <InputValidation
                                 error={errors.nome}
                                 maxLength="50"

@@ -83,9 +83,9 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
             <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                 <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 5 }} py={{ d: 2, md: 4 }}>
-                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
+                            {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+
                             <Label color="colorGray2" text="Nome completo" />
 
                             <div>

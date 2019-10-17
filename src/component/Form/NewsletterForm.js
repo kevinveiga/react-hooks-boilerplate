@@ -63,9 +63,9 @@ export const NewsletterForm = ({ ...props }) => {
     ) : (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridColumnGap={4} gridRowGap={2} gridTemplateColumns={{ d: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))' }} justifyContent="flex-end">
-                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-
                 <Cell mb={3}>
+                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+
                     <InputValidation
                         error={errors.nome}
                         maxLength="50"

@@ -54,9 +54,9 @@ const LoginForm = ({ ...props }) => {
             <Box overflow="hidden" width="100%">
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
-                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-
                         <Cell mb={3} width="100%">
+                            {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+
                             <Label text="E-mail" />
 
                             <div>
