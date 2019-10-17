@@ -51,7 +51,6 @@ export const NoticiaBoxStyled = styled.div`
     ${typography};
     color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
-    ${({ overflow }) => overflow && `overflow: ${overflow}`};
     ${({ themeColor }) => themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};
 
     p {

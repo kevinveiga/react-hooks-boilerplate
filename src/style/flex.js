@@ -10,7 +10,6 @@ export const Box = styled.div`
     ${layout};
     ${space};
     ${typography};
-    ${({ overflow }) => overflow && `overflow: ${overflow}`};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
     ${({ hover }) =>
