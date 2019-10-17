@@ -7,6 +7,7 @@ import { variable } from '../../style/variable';
 export const CheckboxRadioStyled = styled.input`
     opacity: 0;
     position: absolute;
+    visibility: hidden;
     z-index: -1;
 
     &:checked {
@@ -120,6 +121,27 @@ const input = css`
             border-top: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
             padding: ${variable.inputPadding} 15px ${variable.inputPadding} 55px;
         `};
+
+    ${({ invalid }) => invalid && `border-color: ${variable.colorAlert}`};
+    ${({ valid }) => valid && `border-color: ${variable.colorPrimaryHover}`};
+
+    ${({ invalid, obj }) =>
+        invalid &&
+        obj &&
+        obj.themeForm === 'leadwall' &&
+        css`
+            border-color: transparent;
+            box-shadow: inset 0 0 0 3px ${variable.colorAlert};
+        `};
+
+    ${({ obj, valid }) =>
+        valid &&
+        obj &&
+        obj.themeForm === 'leadwall' &&
+        css`
+            border-color: transparent;
+            box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
+        `};
 `;
 
 export const InputStyled = styled.input`
@@ -128,12 +150,10 @@ export const InputStyled = styled.input`
 
 export const InputValidationStyled = styled.input`
     ${input};
-    ${validationType};
 `;
 
 export const InputMaskValidationStyled = styled(IMaskInput)`
     ${input};
-    ${validationType};
 `;
 
 export const InvalidInputMessageStyled = styled.span`
@@ -161,27 +181,4 @@ export const LabelStyled = styled.label`
 
 export const SelectStyled = styled.select`
     ${input};
-`;
-
-const validationType = css`
-    ${({ invalid }) => invalid && `border-color: ${variable.colorAlert}`};
-    ${({ valid }) => valid && `border-color: ${variable.colorPrimaryHover}`};
-
-    ${({ invalid, obj }) =>
-        invalid &&
-        obj &&
-        obj.themeForm === 'leadwall' &&
-        css`
-            border-color: transparent;
-            box-shadow: inset 0 0 0 3px ${variable.colorAlert};
-        `};
-
-    ${({ obj, valid }) =>
-        valid &&
-        obj &&
-        obj.themeForm === 'leadwall' &&
-        css`
-            border-color: transparent;
-            box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
-        `};
 `;
