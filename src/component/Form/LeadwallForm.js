@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 import useForm from 'react-hook-form';
 
-import { apiUrlPaywall } from '../../config';
+import { apiUrlPaywall, defaultErrorMsg } from '../../config';
 
 import { NoticiaContext } from '../../store/noticia/noticiaContext';
 
@@ -34,11 +34,14 @@ export const LeadwallForm = ({ ...props }) => {
             try {
                 const result = await axios.post(apiUrlPaywall, formData, { headers: { 'Content-Type': 'application/json' } });
 
-                if (result && result.success == false) {
-                    setError('invalid', 'notMatch', result.reason[0]);
-                } else {
+                if (result.data && result.data.success == true) {
                     window.localStorage.setItem('leadwall', 'true');
                     setChangeLeadwall(true);
+                } else if (result.data.reason) {
+                    setError('invalid', 'notMatch', result.data.reason[0]);
+                } else {
+                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    console.error(result);
                 }
             } catch (error) {
                 console.error(error);

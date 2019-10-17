@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
-import { apiUrlContato } from '../../config';
+import { apiUrlContato, defaultErrorMsg } from '../../config';
 
 import { useSetFormValue } from '../../store/util/setFormValue';
 
@@ -53,10 +53,13 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
             try {
                 const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
 
-                if (result && result.success == false) {
-                    setError('invalid', 'notMatch', result.reason[0]);
-                } else {
+                if (result.data && result.data.success == true) {
                     // TODO: exibir mensagem de dados salvos com sucesso
+                } else if (result.data.reason) {
+                    setError('invalid', 'notMatch', result.data.reason[0]);
+                } else {
+                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    console.error(result);
                 }
             } catch (error) {
                 console.error(error);
