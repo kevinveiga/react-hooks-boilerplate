@@ -13,6 +13,7 @@ import { Svg } from '../../Svg/Svg';
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
 import { P, Title2, Title4, Title5 } from '../../../style/text';
+import { variable } from '../../../style/variable';
 
 // LAZY
 const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
@@ -29,7 +30,7 @@ export const Cadastro = () => {
             </Helmet>
 
             <Main backgroundColor="colorGrayLight5" header={false}>
-                <Flex display="flex" flexWrap="wrap">
+                <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.footerAlternateHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
                         <BgImageLazyLoad overlayColor="colorBlackTransparent3" url="https://picsum.photos/id/1011/1024/768" />
 
