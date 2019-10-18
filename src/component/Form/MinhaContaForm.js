@@ -10,10 +10,10 @@ import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { CheckboxRadio, InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputAlternate, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { Svg } from '../Svg/Svg';
 
-import { FilePhotoStyled, FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -76,7 +76,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                     <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
                 </ImageCircleContainer>
 
-                <FilePhotoStyled id="foto" name="foto" />
+                <InputAlternate id="foto" name="foto" typeInput="file" />
 
                 <Label forLabel="foto">
                     <Svg fill="colorWhite" height="20px" name="svg-camera" />
@@ -331,13 +331,13 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 Notificação de e-mail
                             </P>
 
-                            <CheckboxRadio color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacao_descontos">
+                            <InputAlternate color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacao_descontos">
                                 <Span verticalAlign="middle">Desejo receber avisos e descontos de cursos</Span>
-                            </CheckboxRadio>
+                            </InputAlternate>
 
-                            <CheckboxRadio color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacao_conteudo">
+                            <InputAlternate color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacao_conteudo">
                                 <Span verticalAlign="middle">Desejo receber a curadoria de conteúdos e notícias</Span>
-                            </CheckboxRadio>
+                            </InputAlternate>
                         </Cell>
 
                         <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>

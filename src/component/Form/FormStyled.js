@@ -1,72 +1,8 @@
 import styled, { css } from 'styled-components';
-import { typography } from 'styled-system';
+import { space, typography } from 'styled-system';
 import { IMaskInput } from 'react-imask';
 
 import { variable } from '../../style/variable';
-
-export const CheckboxRadioStyled = styled.input`
-    opacity: 0;
-    position: absolute;
-    visibility: hidden;
-    z-index: -1;
-
-    &:checked {
-        + label {
-            &::before {
-                border: 2px solid ${variable.colorSecondary};
-                box-shadow: inset 0 0 0 5px ${variable.colorPrimary};
-            }
-        }
-    }
-
-    + label {
-        cursor: pointer;
-        user-select: none;
-
-        &::before {
-            background-color: ${variable.colorWhite};
-            border: 2px solid ${variable.colorGray2};
-            border-radius: ${variable.borderRadius};
-            box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
-            content: ' ';
-            display: inline-block;
-            height: 20px;
-            margin-right: 10px;
-            transition: box-shadow ${variable.transition};
-            vertical-align: middle;
-            width: 20px;
-        }
-    }
-`;
-
-export const FilePhotoStyled = styled.input`
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    width: 0.1px;
-    z-index: -1;
-
-    + label {
-        background-color: ${variable.colorGray2};
-        border-radius: 50%;
-        bottom: 0;
-        box-shadow: 0 2px 6px 0 ${variable.colorBlackTransparent2};
-        cursor: pointer;
-        display: flex;
-        height: 45px;
-        position: absolute;
-        right: 10px;
-        transition: background-color ${variable.transition};
-        user-select: none;
-        vertical-align: middle;
-        width: 45px;
-
-        &:hover {
-            background-color: ${variable.colorPrimaryHover};
-        }
-    }
-`;
 
 export const FormStyled = styled.form`
     height: auto;
@@ -80,7 +16,7 @@ const input = css`
     color: ${({ obj }) => (obj && obj.color ? variable[obj.color] : variable.colorGrayDark)};
     font-family: ${variable.fontPrimary};
     font-size: 16px;
-    font-weight: 600;
+    font-weight: ${({ obj }) => (obj && obj.fontWeight ? obj.fontWeight : '600')};
     height: ${variable.inputHeight};
     letter-spacing: 0;
     padding: ${variable.inputPadding} 2px;
@@ -148,6 +84,73 @@ export const InputStyled = styled.input`
     ${input};
 `;
 
+export const InputAlternateStyled = styled.input`
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0.1px;
+    visibility: hidden;
+    z-index: -1;
+
+    ${({ type }) =>
+        type === 'file' &&
+        css`
+            + label {
+                background-color: ${variable.colorGray2};
+                border-radius: 50%;
+                bottom: 0;
+                box-shadow: 0 2px 6px 0 ${variable.colorBlackTransparent2};
+                cursor: pointer;
+                display: flex;
+                height: 45px;
+                position: absolute;
+                right: 10px;
+                transition: background-color ${variable.transition};
+                user-select: none;
+                vertical-align: middle;
+                width: 45px;
+
+                &:hover {
+                    background-color: ${variable.colorPrimaryHover};
+                }
+            }
+        `};
+
+    ${({ type }) =>
+        type === 'radio' ||
+        (type === 'checkbox' &&
+            css`
+                + label {
+                    cursor: pointer;
+                    user-select: none;
+
+                    &::before {
+                        background-color: ${variable.colorWhite};
+                        border: 2px solid ${variable.colorGray2};
+                        border-radius: ${variable.borderRadius};
+                        box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
+                        content: ' ';
+                        display: inline-block;
+                        height: 20px;
+                        margin-right: 10px;
+                        transition: box-shadow ${variable.transition};
+                        vertical-align: middle;
+                        width: 20px;
+                    }
+                }
+
+                &:checked {
+                    + label {
+                        &::before {
+                            border: 2px solid ${variable.colorSecondary};
+                            box-shadow: inset 0 0 0 5px ${variable.colorPrimary};
+                        }
+                    }
+                }
+            `)};
+`;
+
 export const InputMaskValidationStyled = styled(IMaskInput)`
     ${input};
 `;
@@ -169,10 +172,12 @@ export const InvalidResponseMessageStyled = styled.span`
 `;
 
 export const LabelStyled = styled.label`
+    ${space};
     ${typography};
     color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
-    padding: 0 2px;
+    ${({ px }) => px === undefined && 'padding-left: 2px; padding-right: 2px'};
+    ${({ py }) => py === undefined && 'padding-bottom: 0; padding-top: 0'};
 `;
 
 export const SelectStyled = styled.select`

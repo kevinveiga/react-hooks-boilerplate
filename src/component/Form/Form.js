@@ -1,26 +1,26 @@
 import React from 'react';
 
-import { CheckboxRadioStyled, InputMaskValidationStyled, InputStyled, LabelStyled, SelectStyled } from './FormStyled';
+import { InputAlternateStyled, InputMaskValidationStyled, InputStyled, LabelStyled, SelectStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
-export const CheckboxRadio = ({ ariaLabel, children, id, text, typeInput = 'checkbox', value = '', ...otherProps }) => {
+export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
+    return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
+};
+
+export const InputAlternate = ({ ariaLabel, children, id, text, typeInput = 'checkbox', value = '', ...otherProps }) => {
     const acessibility = ariaLabel || text;
     const content = children || text;
 
     return (
         <>
-            <CheckboxRadioStyled defaultValue={value} id={id} type={typeInput} {...otherProps} />
+            <InputAlternateStyled defaultValue={value} id={id} type={typeInput} {...otherProps} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
                 {content}
             </Label>
         </>
     );
-};
-
-export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
-    return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
 };
 
 export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...otherProps }) => {
