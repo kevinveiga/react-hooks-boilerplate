@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CheckboxRadioStyled, InputMaskValidationStyled, InputStyled, InputValidationStyled, LabelStyled, SelectStyled } from './FormStyled';
+import { CheckboxRadioStyled, InputMaskValidationStyled, InputStyled, LabelStyled, SelectStyled } from './FormStyled';
 
 import { Svg } from '../Svg/Svg';
 
@@ -28,7 +28,7 @@ export const InputValidation = ({ error = '', touched, typeInput = 'text', value
 
     return (
         <>
-            <InputValidationStyled autoComplete="off" defaultValue={value} invalid={error} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
+            <InputStyled autoComplete="off" defaultValue={value} invalid={error} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
 
             <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched.indexOf(otherProps.name) > -1} />
         </>

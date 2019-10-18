@@ -148,10 +148,6 @@ export const InputStyled = styled.input`
     ${input};
 `;
 
-export const InputValidationStyled = styled.input`
-    ${input};
-`;
-
 export const InputMaskValidationStyled = styled(IMaskInput)`
     ${input};
 `;
