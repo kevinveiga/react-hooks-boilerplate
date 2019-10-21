@@ -30,8 +30,14 @@ export const useChangeMenuMobile = () => {
     return [stateChangeMenuMobile, setStateChangeMenuMobile];
 };
 
-export const useChangeMenuMinhaContaMobile = () => {
-    const [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile] = useState(false);
+export const useChangeMinhaContaMenuMobile = () => {
+    const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useState(false);
 
-    return [stateChangeMenuMinhaContaMobile, setStateChangeMenuMinhaContaMobile];
+    return [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile];
+};
+
+export const useChangeModal = () => {
+    const [stateChangeModal, setStateChangeModal] = useState(false);
+
+    return [stateChangeModal, setStateChangeModal];
 };

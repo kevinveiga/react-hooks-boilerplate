@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
-import { layout, space, typography } from 'styled-system';
+import { borderRadius, layout, space, typography } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const ButtonStyled = styled.button`
+    ${borderRadius};
     ${layout};
     ${space};
     ${typography};
-    border-radius: ${variable.borderRadius};
+    ${({ borderRadius }) => borderRadius === undefined && `border-radius: ${variable.borderRadius}`};
     cursor: pointer;
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
     ${({ height }) => height === undefined && `height: ${variable.buttonHeight}`};
@@ -36,9 +37,17 @@ export const ButtonStyled = styled.button`
         `};
 
     ${({ themeSize }) =>
+        themeSize === 'none' &&
+        css`
+            ${({ height }) => height === undefined && 'height: auto'};
+            ${({ pl }) => pl === undefined && 'padding-left: 0'};
+            ${({ pr }) => pr === undefined && 'padding-right: 0'};
+        `};
+
+    ${({ themeSize }) =>
         themeSize === 'small' &&
         css`
-            min-width: ${({ minWidth }) => minWidth || '100px'};
+            min-width: ${({ minWidth }) => minWidth || '120px'};
             ${({ pl }) => pl === undefined && 'padding-left: 1vw'};
             ${({ pr }) => pr === undefined && 'padding-right: 1vw'};
         `};
@@ -100,6 +109,23 @@ export const ButtonStyled = styled.button`
 
             svg {
                 fill: ${variable.colorPrimary};
+            }
+        `};
+
+    ${({ themeType }) =>
+        themeType === 'none' &&
+        css`
+            background-color: transparent;
+            ${({ color }) => color && `color: ${variable[color]}`};
+            ${({ display }) => display === undefined && 'display: inline'};
+
+            &:active,
+            &:hover {
+                color: ${variable.colorPrimaryHover};
+
+                svg {
+                    fill: ${variable.colorPrimaryHover};
+                }
             }
         `};
 
