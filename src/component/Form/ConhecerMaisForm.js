@@ -71,6 +71,7 @@ const ConhecerMaisForm = ({ ...props }) => {
 
                                 <ConhecerMaisPartTitleStyled onClick={() => setStatePart(1)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 1}>1</ConhecerMaisPartNumberStyled>
+
                                     <Span color={statePart === 1 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
                                         Qual o seu sexo?
                                     </Span>
@@ -94,6 +95,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                             <Cell>
                                 <ConhecerMaisPartTitleStyled onClick={() => setStatePart(2)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 2}>2</ConhecerMaisPartNumberStyled>
+
                                     <Span color={statePart === 2 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
                                         Quando que você nasceu?
                                     </Span>
@@ -124,6 +126,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                             <Cell>
                                 <ConhecerMaisPartTitleStyled onClick={() => setStatePart(3)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 3}>3</ConhecerMaisPartNumberStyled>
+
                                     <Span color={statePart === 3 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
                                         Onde você mora?
                                     </Span>

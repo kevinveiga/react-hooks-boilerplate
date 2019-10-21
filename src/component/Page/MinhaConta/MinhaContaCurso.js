@@ -61,9 +61,11 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                                         <Button borderColor="colorGray" color="colorBlack3" display="inline-block" text="Próxima Aula" themeType="border" width={{ d: '100%', sm: 'auto' }} />
                                     </Box>
 
-                                    <Box display={{ d: 'block', md: 'none' }}>
-                                        <MinhaContaCursoMenu />
-                                    </Box>
+                                    {windowWidth < parseInt(variable.md, 10) && (
+                                        <Box>
+                                            <MinhaContaCursoMenu />
+                                        </Box>
+                                    )}
 
                                     <Box>
                                         <TabStyled group="tab-group" total={3}>
@@ -234,9 +236,11 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                                     </Box>
                                 </Box>
 
-                                <Box display={{ d: 'none', md: 'block' }} width={{ d: 1, md: 3 / 10 }}>
-                                    <MinhaContaCursoMenu />
-                                </Box>
+                                {windowWidth > parseInt(variable.md, 10) && (
+                                    <Box width={{ d: 1, md: 3 / 10 }}>
+                                        <MinhaContaCursoMenu />
+                                    </Box>
+                                )}
                             </Flex>
                         </MinhaContaCenterStyled>
                     </Flex>
