@@ -69,9 +69,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                             </Box>
 
                             <Box>
-                                <Button color="colorGray2" fontSize={18} fontWeight="600" onClick={() => setStateChangeModal(true)} themeSize="none" themeType="none">
-                                    Logout
-                                </Button>
+                                <Button color="colorGray2" fontSize={18} fontWeight="600" hoverColor="colorWhite" onClick={() => setStateChangeModal(true)} text="Logout" themeSize="none" themeType="none" />
                             </Box>
                         </Flex>
                     </Container>

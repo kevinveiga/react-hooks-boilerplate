@@ -3,18 +3,7 @@ import { space, typography } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 
-export const MinhaContaCursoMenuButtonStyled = styled.button`
-    margin-bottom: 35px;
-    margin-left: auto;
-    text-decoration: underline;
-    transition: color ${variable.transition};
-
-    &:hover {
-        color: ${variable.colorPrimaryHover};
-    }
-`;
-
-export const MinhaContaCursoMenuModuloCheckboxStyled = styled.input`
+export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`
     ${typography};
     height: 0.1px;
     opacity: 0;
@@ -64,13 +53,13 @@ export const MinhaContaCursoMenuModuloCheckboxStyled = styled.input`
     }
 `;
 
-export const MinhaContaCursoMenuModuloContentStyled = styled.div`
+export const MinhaContaCursoMenuAulaContentStyled = styled.div`
     ${space};
     background-color: ${variable.colorWhite};
     height: 0;
     overflow: hidden;
     transform: scaleY(0);
-    transform-origin: 100% 0 0;
+    transform-origin: 0 0 0;
     transition: transform ${variable.transition};
 
     ${({ active }) =>
@@ -83,7 +72,7 @@ export const MinhaContaCursoMenuModuloContentStyled = styled.div`
         `};
 `;
 
-export const MinhaContaCursoMenuModuloStyled = styled.div`
+export const MinhaContaCursoMenuAulaStyled = styled.div`
     align-items: center;
     background-color: 'transparent';
     border-top: 1px solid ${variable.colorWhite};
@@ -121,8 +110,35 @@ export const MinhaContaCursoMenuModuloStyled = styled.div`
 
 export const MinhaContaCursoMenuStyled = styled.div`
     background-color: ${variable.colorGrayLight3};
-    min-height: 200px;
     overflow: hidden;
-    width: 100%;
-    z-index: 2;
+    transition: transform ${variable.transition};
+    z-index: -1;
+
+    @media (max-width: ${variable.md}) {
+        height: 0;
+        transform: scaleY(0);
+        transform-origin: 0 0 0;
+    }
+
+    @media (min-width: ${variable.md}) {
+        transform: scaleX(0);
+        transform-origin: 100% 0 0;
+        width: 0;
+    }
+
+    ${({ active }) =>
+        active &&
+        css`
+            z-index: 2;
+
+            @media (max-width: ${variable.md}) {
+                height: 100%;
+                transform: scaleY(1);
+            }
+
+            @media (min-width: ${variable.md}) {
+                transform: scaleX(1);
+                width: 100%;
+            }
+        `};
 `;

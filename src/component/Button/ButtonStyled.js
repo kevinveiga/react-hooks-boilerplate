@@ -11,8 +11,8 @@ export const ButtonStyled = styled.button`
     ${({ borderRadius }) => borderRadius === undefined && `border-radius: ${variable.borderRadius}`};
     cursor: pointer;
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
-    ${({ height }) => height === undefined && `height: ${variable.buttonHeight}`};
     ${({ textAlign }) => textAlign === undefined && 'text-align: center'};
+    ${({ textDecoration }) => textDecoration && `text-decoration: ${textDecoration}`};
     transition: background-color ${variable.transition}, border ${variable.transition}, color ${variable.transition};
     vertical-align: middle;
     white-space: nowrap;
@@ -31,6 +31,7 @@ export const ButtonStyled = styled.button`
     ${({ themeSize }) =>
         themeSize === undefined &&
         css`
+            ${({ height }) => height === undefined && `height: ${variable.buttonHeight}`};
             min-width: ${({ minWidth }) => minWidth || '220px'};
             ${({ pl }) => pl === undefined && `padding-left: ${variable.buttonPadding}`};
             ${({ pr }) => pr === undefined && `padding-right: ${variable.buttonPadding}`};
@@ -47,6 +48,7 @@ export const ButtonStyled = styled.button`
     ${({ themeSize }) =>
         themeSize === 'small' &&
         css`
+            ${({ height }) => height === undefined && `height: ${variable.buttonHeight}`};
             min-width: ${({ minWidth }) => minWidth || '120px'};
             ${({ pl }) => pl === undefined && 'padding-left: 1vw'};
             ${({ pr }) => pr === undefined && 'padding-right: 1vw'};
@@ -121,10 +123,10 @@ export const ButtonStyled = styled.button`
 
             &:active,
             &:hover {
-                color: ${variable.colorPrimaryHover};
+                color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
 
                 svg {
-                    fill: ${variable.colorPrimaryHover};
+                    fill: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
                 }
             }
         `};

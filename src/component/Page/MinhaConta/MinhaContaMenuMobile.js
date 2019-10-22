@@ -31,9 +31,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                 </li>
 
                 <li>
-                    <Button color="colorWhite" fontWeight="600" onClick={() => setStateChangeModalGlobal(true)} themeSize="none" themeType="none">
-                        Sair
-                    </Button>
+                    <Button color="colorWhite" fontWeight="600" onClick={() => setStateChangeModalGlobal(true)} text="Sair" themeSize="none" themeType="none" />
                 </li>
             </ul>
         </MinhaContaMenuMobileStyled>

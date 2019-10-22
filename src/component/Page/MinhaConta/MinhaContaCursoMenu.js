@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
+import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
+
+import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
-import { MinhaContaCursoMenuButtonStyled, MinhaContaCursoMenuModuloCheckboxStyled, MinhaContaCursoMenuModuloContentStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuModuloStyled } from './MinhaContaCursoMenuStyled';
+import { MinhaContaCursoMenuAulaCheckboxStyled, MinhaContaCursoMenuAulaContentStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuAulaStyled } from './MinhaContaCursoMenuStyled';
 import { Svg } from '../../Svg/Svg';
 
 import { Box } from '../../../style/flex';
@@ -9,14 +12,17 @@ import { Cell, Grid } from '../../../style/grid';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { Span, P, Title4 } from '../../../style/text';
 
-export const MinhaContaCursoMenu = () => {
+export const MinhaContaCursoMenu = ({ ...props }) => {
     // ACTION
     const [statePart, setStatePart] = useState(null);
 
+    // CONTEXT
+    const setStateMenuAula = useContext(MinhaContaCursoContext);
+
     return (
-        <MinhaContaCursoMenuStyled>
+        <MinhaContaCursoMenuStyled {...props}>
             <Box p={4}>
-                <MinhaContaCursoMenuButtonStyled>Esconder Menu</MinhaContaCursoMenuButtonStyled>
+                <Button display="block" fontWeight="400" mb={4} ml="auto" mr={{ d: 'auto', md: 0 }} onClick={() => setStateMenuAula(false)} text="Esconder aulas" textDecoration="underline" themeSize="none" themeType="none" />
 
                 <Title4 fontWeight="600">Teste</Title4>
 
@@ -33,10 +39,10 @@ export const MinhaContaCursoMenu = () => {
 
             <Box>
                 <Grid display="grid">
-                    {[{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }].map((modulo) => {
+                    {[{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }].map((aula) => {
                         return (
-                            <Cell key={modulo.id}>
-                                <MinhaContaCursoMenuModuloStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(modulo.id)}>
+                            <Cell key={aula.id}>
+                                <MinhaContaCursoMenuAulaStyled active={statePart == aula.id} hover={true} onClick={() => setStatePart(aula.id)}>
                                     <div>
                                         <P fontSize="20px" mb={0}>
                                             Introdução
@@ -48,16 +54,16 @@ export const MinhaContaCursoMenu = () => {
                                     </div>
 
                                     <Svg fill="colorSecondary" height="10px" mr={0} name="svg-arrow-down-2" />
-                                </MinhaContaCursoMenuModuloStyled>
+                                </MinhaContaCursoMenuAulaStyled>
 
-                                <MinhaContaCursoMenuModuloContentStyled active={statePart == modulo.id}>
+                                <MinhaContaCursoMenuAulaContentStyled active={statePart == aula.id}>
                                     <ul>
                                         {[{ id: '1' }, { id: '2' }].map((aula) => {
                                             return (
                                                 <li key={aula.id}>
-                                                    <MinhaContaCursoMenuModuloCheckboxStyled defaultChecked={false} id={`${modulo.id}${aula.id}`} name={`${modulo.id}${aula.id}`} type="checkbox" />
+                                                    <MinhaContaCursoMenuAulaCheckboxStyled defaultChecked={false} id={`${aula.id}${aula.id}`} name={`${aula.id}${aula.id}`} type="checkbox" />
 
-                                                    <Label color="colorGrayDark" forLabel={`${modulo.id}${aula.id}`} fontWeight="600" mb={2}>
+                                                    <Label color="colorGrayDark" forLabel={`${aula.id}${aula.id}`} fontWeight="600" mb={2}>
                                                         <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                                                         <span>Analisando situações</span>
@@ -72,7 +78,7 @@ export const MinhaContaCursoMenu = () => {
                                             );
                                         })}
                                     </ul>
-                                </MinhaContaCursoMenuModuloContentStyled>
+                                </MinhaContaCursoMenuAulaContentStyled>
                             </Cell>
                         );
                     })}

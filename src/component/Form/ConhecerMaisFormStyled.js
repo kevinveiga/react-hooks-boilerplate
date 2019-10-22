@@ -8,7 +8,7 @@ export const ConhecerMaisPartContentStyled = styled.div`
     height: 0;
     overflow: hidden;
     transform: scaleY(0);
-    transform-origin: 100% 0 0;
+    transform-origin: 0 0 0;
     transition: transform ${variable.transition};
 
     ${({ active }) =>

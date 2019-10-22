@@ -55,7 +55,7 @@ export const Noticia = ({ match }) => {
     }
 
     return (
-        <NoticiaContext.Provider value={[setChangeLeadwall]}>
+        <NoticiaContext.Provider value={setChangeLeadwall}>
             <Helmet>
                 <title>{stateNoticia.data && stateNoticia.data.title}</title>
                 <meta name="description" content={stateNoticia.data && stateNoticia.data.seo && stateNoticia.data.seo.description} />
@@ -118,7 +118,7 @@ export const Noticia = ({ match }) => {
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
                                     <ImageCircleContainer>
-                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar || 'sem-imagem'} />
+                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar} />
                                     </ImageCircleContainer>
                                 </Box>
 

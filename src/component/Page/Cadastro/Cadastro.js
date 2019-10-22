@@ -1,9 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
+
+import { CadastroContext } from '../../../store/cadastro/cadastroContext';
 
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -12,18 +14,22 @@ import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
-import { P, Title2, Title4, Title5 } from '../../../style/text';
+import { P, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
 const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
+const ConhecerMaisForm = lazy(() => import('../../Form/ConhecerMaisForm'));
 
 export const Cadastro = () => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
+    // ACTION
+    const [stateConhecerMais, setStateConhecerMais] = useState(false);
+
     return (
-        <>
+        <CadastroContext.Provider value={setStateConhecerMais}>
             <Helmet>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
@@ -55,17 +61,15 @@ export const Cadastro = () => {
                                 <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
                             </Box>
 
-                            <Title4 align="center" color="colorGray2" themeColor="dark">
-                                Faça seu cadastro
-                            </Title4>
-
-                            <Title2 align="center" fontWeight="600" themeColor="dark">
-                                e comece a aprender
-                            </Title2>
-
-                            <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
-                                <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
-                            </Suspense>
+                            {!stateConhecerMais ? (
+                                <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                                    <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
+                                </Suspense>
+                            ) : (
+                                <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                                    <ConhecerMaisForm obj={{ colorLine: 'colorPrimary' }} />
+                                </Suspense>
+                            )}
                         </Container>
                     </Box>
 
@@ -78,6 +82,6 @@ export const Cadastro = () => {
             </Main>
 
             <FooterAlternate />
-        </>
+        </CadastroContext.Provider>
     );
 };

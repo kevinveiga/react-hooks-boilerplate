@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import { layout, position, space } from 'styled-system';
 
 import { Image } from '../../../style/image';
 import { variable } from '../../../style/variable';
@@ -41,4 +42,14 @@ export const MinhaContaCursoDuvidasItemsStyled = styled.li`
 
 export const MinhaContaCursoDuvidasStyled = styled.ul`
     border-bottom: 1px solid ${variable.colorGrayLight2};
+`;
+
+export const MinhaContaCursoExibirAulaStyled = styled.div`
+    ${layout};
+    ${position};
+    ${space};
+
+    @media (max-width: ${variable.md}) {
+        background-color: ${variable.colorGrayLight3};
+    }
 `;

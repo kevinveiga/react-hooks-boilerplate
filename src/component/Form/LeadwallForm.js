@@ -15,9 +15,9 @@ import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const LeadwallForm = ({ ...props }) => {
+const LeadwallForm = ({ ...props }) => {
     // CONTEXT
-    const [setChangeLeadwall] = useContext(NoticiaContext);
+    const setChangeLeadwall = useContext(NoticiaContext);
 
     // ACTION
     useEffect(() => {
@@ -77,3 +77,5 @@ export const LeadwallForm = ({ ...props }) => {
         </FormStyled>
     );
 };
+
+export default LeadwallForm;
