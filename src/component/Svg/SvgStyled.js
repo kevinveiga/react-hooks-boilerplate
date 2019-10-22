@@ -7,4 +7,5 @@ export const SvgStyled = styled.svg`
     ${layout};
     ${space};
     ${({ fill }) => fill && `fill: ${variable[fill]}`};
+    ${({ stroke }) => stroke && `stroke: ${variable[stroke]}`};
 `;

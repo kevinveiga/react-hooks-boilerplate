@@ -10,6 +10,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgArrowRight {...otherProps} />;
         case 'svg-camera':
             return <SvgStore.SvgCamera {...otherProps} />;
+        case 'svg-checked':
+            return <SvgStore.SvgChecked {...otherProps} />;
         case 'svg-close':
             return <SvgStore.SvgClose {...otherProps} />;
         case 'svg-facebook':
@@ -30,6 +32,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgSearch {...otherProps} />;
         case 'svg-valid':
             return <SvgStore.SvgValid {...otherProps} />;
+        case 'svg-video-camera':
+            return <SvgStore.SvgVideoCamera {...otherProps} />;
         case 'svg-view':
             return <SvgStore.SvgView {...otherProps} />;
         default:

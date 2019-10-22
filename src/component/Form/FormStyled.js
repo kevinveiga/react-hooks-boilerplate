@@ -138,13 +138,24 @@ export const InputAlternateStyled = styled.input`
                         vertical-align: middle;
                         width: 20px;
                     }
+
+                    svg {
+                        display: none;
+                        left: 6px;
+                        position: absolute;
+                        top: 10px;
+                    }
                 }
 
                 &:checked {
                     + label {
                         &::before {
                             border: 2px solid ${variable.colorSecondary};
-                            box-shadow: inset 0 0 0 5px ${variable.colorPrimary};
+                            box-shadow: inset 0 0 0 10px ${variable.colorPrimary};
+                        }
+
+                        svg {
+                            display: block;
                         }
                     }
                 }

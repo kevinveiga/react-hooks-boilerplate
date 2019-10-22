@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { MinhaContaCursoMenuCellStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuButtonStyled } from './MinhaContaCursoMenuStyled';
+import { Label } from '../../Form/Form';
+import { MinhaContaCursoMenuButtonStyled, MinhaContaCursoMenuModuloCheckboxStyled, MinhaContaCursoMenuModuloContentStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuModuloStyled } from './MinhaContaCursoMenuStyled';
 import { Svg } from '../../Svg/Svg';
 
 import { Box } from '../../../style/flex';
-import { Grid } from '../../../style/grid';
+import { Cell, Grid } from '../../../style/grid';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
-import { P, Title4 } from '../../../style/text';
+import { Span, P, Title4 } from '../../../style/text';
 
 export const MinhaContaCursoMenu = () => {
+    // ACTION
+    const [statePart, setStatePart] = useState(null);
+
     return (
         <MinhaContaCursoMenuStyled>
             <Box p={4}>
@@ -29,61 +33,49 @@ export const MinhaContaCursoMenu = () => {
 
             <Box>
                 <Grid display="grid">
-                    <MinhaContaCursoMenuCellStyled hover={true}>
-                        <div>
-                            <P fontSize="20px" mb={0}>
-                                Introdução
-                            </P>
+                    {[{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }].map((modulo) => {
+                        return (
+                            <Cell key={modulo.id}>
+                                <MinhaContaCursoMenuModuloStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(modulo.id)}>
+                                    <div>
+                                        <P fontSize="20px" mb={0}>
+                                            Introdução
+                                        </P>
 
-                            <P fontSize="14px" mb={0}>
-                                2 Aulas
-                            </P>
-                        </div>
+                                        <P fontSize="14px" mb={0}>
+                                            2 Aulas
+                                        </P>
+                                    </div>
 
-                        <Svg fill="colorSecondary" height="10px" m={2} name="svg-arrow-down-2" />
-                    </MinhaContaCursoMenuCellStyled>
+                                    <Svg fill="colorSecondary" height="10px" mr={0} name="svg-arrow-down-2" />
+                                </MinhaContaCursoMenuModuloStyled>
 
-                    <MinhaContaCursoMenuCellStyled hover={true}>
-                        <div>
-                            <P fontSize="20px" mb={0}>
-                                Módulo 1
-                            </P>
+                                <MinhaContaCursoMenuModuloContentStyled active={statePart == modulo.id}>
+                                    <ul>
+                                        {[{ id: '1' }, { id: '2' }].map((aula) => {
+                                            return (
+                                                <li key={aula.id}>
+                                                    <MinhaContaCursoMenuModuloCheckboxStyled defaultChecked={false} id={`${modulo.id}${aula.id}`} name={`${modulo.id}${aula.id}`} type="checkbox" />
 
-                            <P fontSize="14px" mb={0}>
-                                3 Aulas
-                            </P>
-                        </div>
+                                                    <Label color="colorGrayDark" forLabel={`${modulo.id}${aula.id}`} fontWeight="600" mb={2}>
+                                                        <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
-                        <Svg fill="colorSecondary" height="10px" m={2} name="svg-arrow-down-2" />
-                    </MinhaContaCursoMenuCellStyled>
+                                                        <span>Analisando situações</span>
+                                                    </Label>
 
-                    <MinhaContaCursoMenuCellStyled hover={true}>
-                        <div>
-                            <P fontSize="20px" mb={0}>
-                                Módulo 2
-                            </P>
+                                                    <P fontSize={14} ml={4}>
+                                                        <Svg fill="colorGrayDark" height="18px" mr={2} name="svg-video-camera" />
 
-                            <P fontSize="14px" mb={0}>
-                                4 Aulas
-                            </P>
-                        </div>
-
-                        <Svg fill="colorSecondary" height="10px" m={2} name="svg-arrow-down-2" />
-                    </MinhaContaCursoMenuCellStyled>
-
-                    <MinhaContaCursoMenuCellStyled hover={true}>
-                        <div>
-                            <P fontSize="20px" mb={0}>
-                                Módulo 3
-                            </P>
-
-                            <P fontSize="14px" mb={0}>
-                                2 Aulas
-                            </P>
-                        </div>
-
-                        <Svg fill="colorSecondary" height="10px" m={2} name="svg-arrow-down-2" />
-                    </MinhaContaCursoMenuCellStyled>
+                                                        <Span verticalAlign="sub">Vídeo | 7min</Span>
+                                                    </P>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                </MinhaContaCursoMenuModuloContentStyled>
+                            </Cell>
+                        );
+                    })}
                 </Grid>
             </Box>
         </MinhaContaCursoMenuStyled>
