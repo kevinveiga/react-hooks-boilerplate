@@ -92,8 +92,6 @@ export const MinhaContaCursoMenuAulaStyled = styled.div`
     ${({ active }) =>
         active &&
         css`
-            background-color: ${variable.colorPrimary};
-
             svg {
                 transform: rotate(180deg);
             }
@@ -103,7 +101,7 @@ export const MinhaContaCursoMenuAulaStyled = styled.div`
         hover &&
         css`
             &:hover {
-                background-color: ${variable.colorPrimaryHover};
+                background-color: ${variable.colorPrimary};
             }
         `};
 `;

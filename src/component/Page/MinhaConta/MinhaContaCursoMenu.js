@@ -42,7 +42,7 @@ export const MinhaContaCursoMenu = ({ ...props }) => {
                     {[{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }].map((aula) => {
                         return (
                             <Cell key={aula.id}>
-                                <MinhaContaCursoMenuAulaStyled active={statePart == aula.id} hover={true} onClick={() => setStatePart(aula.id)}>
+                                <MinhaContaCursoMenuAulaStyled active={statePart == aula.id} hover={true} onClick={() => setStatePart(statePart == aula.id ? null : aula.id)}>
                                     <div>
                                         <P fontSize="20px" mb={0}>
                                             Introdução
@@ -58,12 +58,12 @@ export const MinhaContaCursoMenu = ({ ...props }) => {
 
                                 <MinhaContaCursoMenuAulaContentStyled active={statePart == aula.id}>
                                     <ul>
-                                        {[{ id: '1' }, { id: '2' }].map((aula) => {
+                                        {[{ id: '1' }, { id: '2' }].map((aulaContent) => {
                                             return (
-                                                <li key={aula.id}>
-                                                    <MinhaContaCursoMenuAulaCheckboxStyled defaultChecked={false} id={`${aula.id}${aula.id}`} name={`${aula.id}${aula.id}`} type="checkbox" />
+                                                <li key={aulaContent.id}>
+                                                    <MinhaContaCursoMenuAulaCheckboxStyled defaultChecked={true} disabled={true} id={`${aulaContent.id}${aulaContent.id}`} name={`${aulaContent.id}${aulaContent.id}`} type="checkbox" />
 
-                                                    <Label color="colorGrayDark" forLabel={`${aula.id}${aula.id}`} fontWeight="600" mb={2}>
+                                                    <Label color="colorGrayDark" forLabel={`${aulaContent.id}${aulaContent.id}`} fontWeight="600" mb={2}>
                                                         <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                                                         <span>Analisando situações</span>
