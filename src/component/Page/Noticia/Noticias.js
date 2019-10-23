@@ -68,7 +68,9 @@ export const Noticias = () => {
         if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
             setStateLoaderGlobal(true);
         } else {
-            setStateLoaderGlobal(false);
+            setTimeout(() => {
+                setStateLoaderGlobal(false);
+            }, variable.timeout1s);
         }
     }, [setStateLoaderGlobal, stateNoticias.isLoading, stateNoticiasCategoria.isLoading]);
 

@@ -23,6 +23,7 @@ import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Main } from '../../../style/layout';
 import { P, Title3, Title4 } from '../../../style/text';
+import { variable } from '../../../style/variable';
 
 export const Pesquisa = ({ match }) => {
     // API
@@ -41,7 +42,9 @@ export const Pesquisa = ({ match }) => {
         if (statePesquisa.isLoading) {
             setStateLoaderGlobal(true);
         } else {
-            setStateLoaderGlobal(false);
+            setTimeout(() => {
+                setStateLoaderGlobal(false);
+            }, variable.timeout1s);
         }
     }, [setStateLoaderGlobal, statePesquisa.isLoading]);
 
