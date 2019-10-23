@@ -77,18 +77,16 @@ const CadastroForm = ({ ...props }) => {
                             <Cell mb={3} width="100%">
                                 {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
 
-                                <Label text="Nome completo" />
-
                                 <div>
                                     <InputValidation
                                         error={errors.nome}
+                                        label="Nome completo"
                                         maxLength="50"
                                         name="nome"
                                         onChange={async (e) => {
                                             const input = e.target;
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
-                                        placeholder="Nome"
                                         touched={formState.touched}
                                         {...props}
                                     />
@@ -98,18 +96,16 @@ const CadastroForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell mb={3} width="100%">
-                                <Label text="E-mail" />
-
                                 <div>
                                     <InputValidation
                                         error={errors.email}
+                                        label="E-mail"
                                         maxLength="50"
                                         name="email"
                                         onChange={async (e) => {
                                             const input = e.target;
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
-                                        placeholder="E-mail"
                                         touched={formState.touched}
                                         {...props}
                                     />
@@ -119,18 +115,16 @@ const CadastroForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell mb={3} width="100%">
-                                <Label text="Celular" />
-
                                 <div>
                                     <InputMaskValidation
                                         error={errors.telefone}
+                                        label="Celular"
                                         mask={customMaskRegex.phone}
                                         name="telefone"
                                         onChange={async (e) => {
                                             const input = e.target;
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
-                                        placeholder="Telefone"
                                         touched={formState.touched}
                                         {...props}
                                     />
@@ -140,18 +134,16 @@ const CadastroForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell mb={4} width="100%">
-                                <Label text="Senha" />
-
                                 <div>
                                     <InputValidation
                                         error={errors.senha}
+                                        label="Senha"
                                         maxLength="11"
                                         name="senha"
                                         onChange={async (e) => {
                                             const input = e.target;
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
-                                        placeholder="Senha"
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...props}
@@ -170,7 +162,7 @@ const CadastroForm = ({ ...props }) => {
                             <Cell mb={3} textAlign="center" width="100%">
                                 <span>Você já possui uma conta?</span>
 
-                                <LinkTo link="">
+                                <LinkTo link="/login">
                                     <Button fontSize={{ d: 14, sm: 16 }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }} text="Fazer Login" themeSize="small" themeType="border" />
                                 </LinkTo>
                             </Cell>

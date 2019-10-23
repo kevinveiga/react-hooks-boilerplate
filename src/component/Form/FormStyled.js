@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { space, typography } from 'styled-system';
+import { position, space, typography } from 'styled-system';
 import { IMaskInput } from 'react-imask';
 
 import { variable } from '../../style/variable';
@@ -24,12 +24,6 @@ const input = css`
     text-overflow: ellipsis;
     transition: border ${variable.transition}, box-shadow ${variable.transition}, color ${variable.transition};
     width: 100%;
-
-    &::placeholder {
-        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
-        font-size: 16px;
-        font-weight: 400;
-    }
 
     ${({ obj }) =>
         obj &&
@@ -78,10 +72,45 @@ const input = css`
             border-color: transparent;
             box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
         `};
+
+    &::placeholder {
+        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
+        font-size: 16px;
+        font-weight: 400;
+    }
+`;
+
+const inputLabel = css`
+    ${({ label }) =>
+        label &&
+        css`
+            ~ label {
+                pointer-events: none;
+                position: absolute;
+                top: 15px;
+                transition: top ${variable.transition};
+            }
+
+            &:focus {
+                ~ label {
+                    top: -8px;
+                }
+            }
+        `};
+
+    ${({ invalid, label, valid }) =>
+        label &&
+        (invalid || valid) &&
+        css`
+            ~ label {
+                top: -8px;
+            }
+        `};
 `;
 
 export const InputStyled = styled.input`
     ${input};
+    ${inputLabel};
 `;
 
 export const InputAlternateStyled = styled.input`
@@ -164,6 +193,7 @@ export const InputAlternateStyled = styled.input`
 
 export const InputMaskStyled = styled(IMaskInput)`
     ${input};
+    ${inputLabel};
 `;
 
 export const InvalidInputMessageStyled = styled.span`
@@ -183,6 +213,7 @@ export const InvalidResponseMessageStyled = styled.span`
 `;
 
 export const LabelStyled = styled.label`
+    ${position};
     ${space};
     ${typography};
     color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};

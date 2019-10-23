@@ -45,6 +45,8 @@ export const InputValidation = ({ error = '', touched, typeInput = 'text', value
         <>
             <InputStyled autoComplete="off" defaultValue={value} invalid={error} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
 
+            {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
+
             <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched.indexOf(otherProps.name) > -1} />
         </>
     );
@@ -56,6 +58,8 @@ export const InputMaskValidation = ({ error = '', mask = null, touched, typeInpu
     return (
         <>
             <InputMaskStyled autoComplete="off" defaultValue={value} invalid={error} mask={mask} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
+
+            {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
 
             <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched.indexOf(otherProps.name) > -1} />
         </>

@@ -57,21 +57,19 @@ const LoginForm = ({ ...props }) => {
             <Box overflow="hidden" width="100%">
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+
                         <Cell mb={3} width="100%">
-                            {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-
-                            <Label text="E-mail" />
-
                             <div>
                                 <InputValidation
                                     error={errors.email}
+                                    label="E-mail"
                                     maxLength="50"
                                     name="email"
                                     onChange={async (e) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
                                     }}
-                                    placeholder="E-mail"
                                     touched={formState.touched}
                                     {...props}
                                 />
@@ -81,18 +79,16 @@ const LoginForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={4} width="100%">
-                            <Label text="Senha" />
-
                             <div>
                                 <InputValidation
                                     error={errors.senha}
+                                    label="Senha"
                                     maxLength="11"
                                     name="senha"
                                     onChange={async (e) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
                                     }}
-                                    placeholder="Senha"
                                     touched={formState.touched}
                                     type={stateViewPassword ? 'text' : 'password'}
                                     {...props}
