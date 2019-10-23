@@ -162,7 +162,7 @@ export const InputAlternateStyled = styled.input`
             `)};
 `;
 
-export const InputMaskValidationStyled = styled(IMaskInput)`
+export const InputMaskStyled = styled(IMaskInput)`
     ${input};
 `;
 
