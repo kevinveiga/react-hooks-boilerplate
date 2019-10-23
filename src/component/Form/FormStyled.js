@@ -100,7 +100,7 @@ export const InputAlternateStyled = styled.input`
                 background-color: ${variable.colorGray2};
                 border-radius: 50%;
                 bottom: 0;
-                box-shadow: 0 2px 6px 0 ${variable.colorBlackTransparent2};
+                box-shadow: 0 2px 6px 0 ${variable.colorBlackTransparent3};
                 cursor: pointer;
                 display: flex;
                 height: 45px;

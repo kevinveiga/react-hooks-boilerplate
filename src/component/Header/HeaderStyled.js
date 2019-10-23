@@ -71,7 +71,7 @@ export const HeaderStyled = styled.header`
               `
             : css`
                   background-color: ${variable.colorWhite};
-                  box-shadow: 0 1px 0 1px ${variable.colorBlackTransparent1};
+                  box-shadow: 0 1px 0 1px ${variable.colorGrayLight4};
               `};
 
     &.content-padding-y {

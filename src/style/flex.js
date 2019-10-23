@@ -17,7 +17,7 @@ export const Box = styled.div`
         css`
             &:hover {
                 background-color: ${variable.colorGrayLight3};
-                box-shadow: 0 1px 10px 1px ${variable.colorGrayLight};
+                box-shadow: 0 1px 10px 1px ${variable.colorGrayLight4};
 
                 ${BgImageOverlay} {
                     transform: scale(1.03);
