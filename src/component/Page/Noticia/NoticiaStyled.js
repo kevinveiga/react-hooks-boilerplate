@@ -150,7 +150,7 @@ export const NoticiaAuthorStyled = styled.section`
 export const NoticiaFormContainerStyled = styled.section`
     ${NoticiaContainerStyled};
     ${space};
-    box-shadow: 0 3px 10px 0 ${variable.colorGrayLight4};
+    box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent1};
 `;
 
 export const NoticiaMateriasRelacionadasStyled = styled.section`

@@ -8,13 +8,13 @@ export const ListBox = styled.div`
     ${layout};
     ${space};
     ${typography};
-    box-shadow: 0 3px 10px 0 ${variable.colorGrayLight4};
+    box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent1};
     color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     ${({ themeColor }) => themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};
 
     @media (min-width: ${variable.md}) {
-        box-shadow: 0 2px 3px 0 ${variable.colorGrayLight4};
+        box-shadow: 0 2px 3px 0 ${variable.colorBlackTransparent1};
     }
 
     ${({ hover }) =>

@@ -10,7 +10,7 @@ export const MinhaContaLeftStyled = styled.div`
     ${space};
     ${typography};
     border-right: 1px solid ${variable.colorGrayLight2};
-    box-shadow: 4px 0 6px 0 ${variable.colorGrayLight4};
+    box-shadow: 4px 0 6px 0 ${variable.colorBlackTransparent1};
     z-index: 2;
 `;
 
