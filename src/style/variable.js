@@ -39,7 +39,9 @@ export const variable = {
     colorPink: 'rgba(243, 49, 85, 1)',
     colorRed: 'rgba(255, 0, 0, 1)',
     colorWhite: 'rgba(255, 255, 255, 1)',
+    colorWhiteTransparent2: 'rgba(255, 255, 255, 0.2)',
     colorWhiteTransparent3: 'rgba(255, 255, 255, 0.3)',
+    colorWhiteTransparent5: 'rgba(255, 255, 255, 0.5)',
     colorYellow: 'rgba(253, 195, 70, 1)',
 
     // Color - Msg
