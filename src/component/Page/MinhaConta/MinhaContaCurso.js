@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { lazy, Suspense, useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
@@ -11,7 +11,6 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
-import { MinhaContaCursoMenu } from './MinhaContaCursoMenu';
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -23,8 +22,11 @@ import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabSt
 import { Box, Flex } from '../../../style/flex';
 import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
-import { P, Title2 } from '../../../style/text';
+import { P, Title2, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
+
+// LAZY
+const MinhaContaCursoMenu = lazy(() => import('./MinhaContaCursoMenu'));
 
 export const MinhaContaCurso = ({ ...breadcrumb }) => {
     // API
@@ -76,6 +78,10 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
 
                                                 <Box>
                                                     <MinhaContaCursoMenu active={stateMenuAula} />
+
+                                                    <Suspense fallback={<Title5>Carregando...</Title5>}>
+                                                        <MinhaContaCursoMenu active={stateMenuAula} />
+                                                    </Suspense>
                                                 </Box>
                                             </>
                                         )}
@@ -256,7 +262,9 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                                             </MinhaContaCursoExibirAulaStyled>
 
                                             <Box width={{ d: 1, md: stateMenuAula ? 3 / 10 : 0 }}>
-                                                <MinhaContaCursoMenu active={stateMenuAula} />
+                                                <Suspense fallback={<Title5>Carregando...</Title5>}>
+                                                    <MinhaContaCursoMenu active={stateMenuAula} />
+                                                </Suspense>
                                             </Box>
                                         </>
                                     )}

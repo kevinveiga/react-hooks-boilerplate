@@ -28,6 +28,7 @@ export const CarouselDotContainerStyled = styled.ul`
     li {
         background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
         border-radius: ${variable.borderRadius};
+        box-shadow: 0 1px 0 1px ${variable.colorBlackTransparent1};
         cursor: pointer;
         display: inline-block;
         margin: 0 5px;
@@ -62,6 +63,10 @@ const btns = css`
     &:hover {
         background-color: ${variable.colorSecondaryHover};
         opacity: 0.75;
+    }
+
+    svg {
+        vertical-align: sub;
     }
 `;
 

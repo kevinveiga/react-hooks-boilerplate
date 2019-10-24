@@ -12,7 +12,7 @@ import { Cell, Grid } from '../../../style/grid';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { Span, P, Title4 } from '../../../style/text';
 
-export const MinhaContaCursoMenu = ({ ...props }) => {
+const MinhaContaCursoMenu = ({ ...props }) => {
     // ACTION
     const [statePart, setStatePart] = useState(null);
 
@@ -87,3 +87,5 @@ export const MinhaContaCursoMenu = ({ ...props }) => {
         </MinhaContaCursoMenuStyled>
     );
 };
+
+export default MinhaContaCursoMenu;
