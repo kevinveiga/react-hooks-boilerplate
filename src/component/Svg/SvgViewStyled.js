@@ -8,7 +8,7 @@ export const SvgViewStyled = styled.svg`
     ${position};
     ${space};
     cursor: pointer;
-    fill: ${({ fill, change }) => (change ? variable.colorWhite : fill ? variable[fill] : variable.colorSecondary)};
+    fill: ${({ fill }) => (fill ? variable[fill] : variable.colorGray)};
     ${({ height }) => height === undefined && 'height: 15px'};
 
     @media (min-width: ${variable.sm}) {

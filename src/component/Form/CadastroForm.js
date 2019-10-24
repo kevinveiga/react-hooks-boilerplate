@@ -10,7 +10,7 @@ import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { InputMaskValidation, InputValidation, Label } from './Form';
+import { InputMaskValidation, InputValidation } from './Form';
 import { LinkTo } from '../Link/LinkTo';
 import { Svg } from '../Svg/Svg';
 

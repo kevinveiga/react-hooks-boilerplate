@@ -84,7 +84,7 @@ const inputLabel = css`
     ${({ label }) =>
         label &&
         css`
-            ~ label {
+            + label {
                 pointer-events: none;
                 position: absolute;
                 top: 15px;
@@ -92,7 +92,7 @@ const inputLabel = css`
             }
 
             &:focus {
-                ~ label {
+                + label {
                     top: -8px;
                 }
             }
@@ -102,7 +102,7 @@ const inputLabel = css`
         label &&
         (invalid || valid) &&
         css`
-            ~ label {
+            + label {
                 top: -8px;
             }
         `};
