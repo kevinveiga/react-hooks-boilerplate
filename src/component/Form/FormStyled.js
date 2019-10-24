@@ -172,7 +172,8 @@ export const InputAlternateStyled = styled.input`
                         display: none;
                         left: 6px;
                         position: absolute;
-                        top: 10px;
+                        top: 52%;
+                        transform: translateY(-52%);
                     }
                 }
 
