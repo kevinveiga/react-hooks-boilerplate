@@ -25,7 +25,7 @@ export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 1 segundo para fazer o scroll corretamente
             if (ancorId && Math.trunc(ancor) !== Math.trunc(scrollYPos)) {
-                timer = 1000;
+                timer = 500;
             }
 
             setTimeout(() => {
