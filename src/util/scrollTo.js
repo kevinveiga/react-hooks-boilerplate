@@ -23,7 +23,7 @@ export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
             let ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
             let timer = 0;
 
-            // Se o scroll deve ir para um elemento, então é adicionado um timer de 1 segundo para fazer o scroll corretamente
+            // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
             if (ancorId && Math.trunc(ancor) !== Math.trunc(scrollYPos)) {
                 timer = 500;
             }
