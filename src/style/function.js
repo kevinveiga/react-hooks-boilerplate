@@ -50,6 +50,7 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
         &::-webkit-scrollbar-corner {
             background-color: ${colorSecondary};
         }
+
         &::-webkit-resizer {
             background-color: ${colorSecondary};
         }
@@ -64,7 +65,7 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
         }
 
         &::-webkit-scrollbar-track-piece {
-            background-color: ${colorSecondary};
+            background-color: transparent;
             margin: 0;
         }
     `;
