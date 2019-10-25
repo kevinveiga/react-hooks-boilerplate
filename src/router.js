@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { matchPath, Route, Switch, withRouter } from 'react-router-dom';
+import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import { Context } from './store/context';
 
@@ -8,6 +8,7 @@ import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
 import { MinhaConta } from './component/Page/MinhaConta/MinhaConta';
 import { MinhaContaCurso } from './component/Page/MinhaConta/MinhaContaCurso';
+import { MinhaContaCursos } from './component/Page/MinhaConta/MinhaContaCursos';
 import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
@@ -41,6 +42,13 @@ export const Router = withRouter((props) => {
             <Route component={Login} path="/login" />
             <Route component={MinhaConta} isAuth={true} path={minhaContaInicioRoute.path} />
             <Route isAuth={true} path="/minha-conta/curso/:slug" render={(props) => <MinhaContaCurso breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} {...props} />} />
+            <Route isAuth={true} path="/minha-conta/cursos" render={(props) => <MinhaContaCursos breadcrumb={[minhaContaInicioRoute]} {...props} />} />
+            <Route component={MinhaConta} exact={true} isAuth={true} path="/minha-conta">
+                <Redirect to={minhaContaInicioRoute.path} />
+            </Route>
+            <Route component={MinhaConta} isAuth={true} path="/minha-conta/*">
+                <Redirect to={minhaContaInicioRoute.path} />
+            </Route>
             <Route component={Noticia} path="/noticia/:slug" />
             <Route component={Noticias} path="/noticias" />
             <Route component={Pesquisa} path="/pesquisa/:slug" />
