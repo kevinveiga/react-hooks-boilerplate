@@ -21,7 +21,6 @@
 #### Executar apenas a primeira vez no terminal:
 
 -   npm i -g npm (atualiza NPM)
--   npm i -g node-sass (atualiza node-sass globalmente)
 -   npm i (instala pacotes de tarefas)
 -   npm audit fix (corrigir pacotes)
 
@@ -109,44 +108,143 @@
 
 #### Boas práticas:
 
--   Evitar a utilização de export default;
+-   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
 -   Usar sempre a propriedade "key" nos elementos HTML em loops do React. Ex:
 
 ```html
 <li key="{list.id}">{list.text}</li>
 ```
 
+-   Ao utilizar Styled System, cuidar para não usar a mesma propriedade no Style Components. Ex:
+
+```js
+<Box width="100%">...</Box>
+```
+
+```js
+export const Box = styled.div`
+    ${layout}
+    width: 500px;
+`;
+```
+
+    o correto é verificar se a propriedade é "undefined", e nesse caso, usar o valor default. Ex:
+
+```js
+export const Box = styled.div`
+    ${layout}
+    ${({ width }) => width === undefined && 'width: 500px'};
+`;
+```
+
 -   [10 coisas que não se deve fazer no React](https://medium.com/better-programming/10-things-not-to-do-when-building-react-applications-bc26d4f38644);
 
-## Referências de Webpack 4
+#### Forms - Como usar:
 
--   [Webpack 4](https://webpack.js.org/);
--   [Webpack 4 - Docs](https://github.com/webpack/docs/wiki/configuration);
--   [Webpack 4 - Post](https://medium.com/@bracontece/webpack-4-tutorial-tudo-o-que-voc%C3%AA-precisa-saber-de-0-conf-para-o-modo-de-produ%C3%A7%C3%A3o-dbea63af3a7b);
+-   Utilização da biblioteca [React Hook Form](https://github.com/bluebill1049/react-hook-form);
+-   Não passar o "register" por "ref" nos campos "input", e sim por "useEffect". Ex:
 
-## Javascript
+```js
+useEffect(() => {
+    register({ name: 'email' }, { ...customValidate.email });
+    register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
+}, [register]);
+```
 
--   Ao utilizar métodos do ES6 sempre verificar se tem suporte para IE9+, de preferência para métodos do ES5;
+-   Para usar "placeholder" nos campos "input", basta passar a propriedade "placeholder". Ex:
+
+```js
+<InputValidation
+    error={errors.email}
+    maxLength="50"
+    name="email"
+    onChange={async (e) => {
+        const input = e.target;
+        await triggerValidation({ name: input.name, value: input.value });
+    }}
+    placeholder="E-mail"
+    touched={formState.touched}
+    {...otherProps}
+/>
+```
+
+-   Para usar um "label" como comportamento de "placeholder" nos campos "input", basta passar a propriedade "label". Ex:
+
+```js
+<InputValidation
+    error={errors.email}
+    label="E-mail"
+    maxLength="50"
+    name="email"
+    onChange={async (e) => {
+        const input = e.target;
+        await triggerValidation({ name: input.name, value: input.value });
+    }}
+    touched={formState.touched}
+    {...props}
+/>
+```
+
+-   Para usar máscara nos campo, utilizar o componente "InputMaskValidation", com a propriedade "mask". Ex:
+
+```js
+<InputValidation
+    error={errors.telefone}
+    mask={customMaskRegex.phone}
+    name="telefone"
+    onChange={(e) => {
+        const input = e.target;
+        triggerValidation({ name: input.name, value: input.value });
+    }}
+    placeholder="Telefone"
+    touched={formState.touched}
+    {...props}
+/>
+```
+
+-   Para passar valores iniciais nos campos, utilizar a função "useSetFormValue", que recebe como parâmetros, um objeto e o id do formulário, também utilizar a propriedade defaultValues na função "useForm". Ex:
+
+```js
+useSetFormValue(data, formId);
+
+const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    defaultValues: data,
+    mode: 'onChange'
+});
+```
+
+## Geral
+
+#### Javascript
+
+-   Ao utilizar métodos do ES6 sempre verificar se tem suporte para IE11+, de preferência para métodos do ES5;
 -   Priorizar os seletores nativos como "document.getElementById" ou "document.querySelector";
 -   Javascript modular;
 -   Strings utilizar apóstrofo - Ex: 'texto';
 -   Utilizar [JSDOC](https://msdn.microsoft.com/pt-br/library/Mt162307.aspx);
 
-## Libs
+#### Libs
 
 -   HttpRequest: [Axios](https://github.com/axios/axios);
 
-## Links externos com target="\_blank" em tags <a/>
+#### Links externos com target="\_blank" em tags <a/>
 
 -   Utilizar rel="noopener" [Link](https://desenvolvimentoparaweb.com/miscelanea/relnoopener-performance-seguranca/);
 
-## Svg
+#### Principais Metodologias
+
+-   [ES6](http://es6-features.org/)
+
+#### Svg
 
 -   [Referência de uso](https://blog.lftechnology.com/using-svg-icons-components-in-react-44fbe8e5f91);
 -   Sempre otimizar código do Svg, juntando formas, removendo código desnecessário, entre outras otimizações;
 -   Minificar código, utilizar site [https://jakearchibald.github.io/svgomg/](https://jakearchibald.github.io/svgomg/);
+-   No site de otimização, usar o valor 2 na precisão;
 -   Utilizar como componente React;
 
-## Principais Metodologias
+#### Referências de Webpack 4
 
--   [ES6](http://es6-features.org/)
+-   [Webpack 4](https://webpack.js.org/);
+-   [Webpack 4 - Docs](https://github.com/webpack/docs/wiki/configuration);
+-   [Webpack 4 - Post](https://medium.com/@bracontece/webpack-4-tutorial-tudo-o-que-voc%C3%AA-precisa-saber-de-0-conf-para-o-modo-de-produ%C3%A7%C3%A3o-dbea63af3a7b);

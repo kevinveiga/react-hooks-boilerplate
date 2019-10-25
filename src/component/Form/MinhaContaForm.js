@@ -44,7 +44,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
-        defaultValues: { ...data },
+        defaultValues: data,
         mode: 'onChange'
     });
 
