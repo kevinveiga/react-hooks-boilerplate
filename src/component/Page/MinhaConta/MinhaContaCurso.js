@@ -15,8 +15,7 @@ import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 
-import { MinhaContaCursoDuvidasStyled, MinhaContaCursoExibirAulaStyled, MinhaContaCursoDuvidasImageContainerStyled, MinhaContaCursoDuvidasImageLineStyled, MinhaContaCursoDuvidasItemsStyled } from './MinhaContaCursoStyled';
-import { MinhaContaCenterStyled } from './MinhaContaStyled';
+import { MinhaContaCenterStyled, MinhaContaConversacaoStyled, MinhaContaExibirAulaStyled, MinhaContaConversacaoImageContainerStyled, MinhaContaConversacaoImageLineStyled, MinhaContaConversacaoLiStyled, MinhaContaConversacaoUlStyled } from './MinhaContaStyled';
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -72,9 +71,9 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
 
                                         {windowWidth < parseInt(variable.md, 10) && (
                                             <>
-                                                <MinhaContaCursoExibirAulaStyled display={stateMenuAula ? 'none' : 'block'} p={4}>
+                                                <MinhaContaExibirAulaStyled display={stateMenuAula ? 'none' : 'block'} p={4}>
                                                     <Button display="block" fontWeight="400" mx="auto" onClick={() => setStateMenuAula(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
-                                                </MinhaContaCursoExibirAulaStyled>
+                                                </MinhaContaExibirAulaStyled>
 
                                                 <Box>
                                                     <MinhaContaCursoMenu active={stateMenuAula} />
@@ -166,89 +165,91 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
                                                     <TabContentStyled>
                                                         <Title2>Dúvidas</Title2>
 
-                                                        <MinhaContaCursoDuvidasStyled>
-                                                            <MinhaContaCursoDuvidasItemsStyled>
-                                                                <MinhaContaCursoDuvidasImageLineStyled>
-                                                                    <MinhaContaCursoDuvidasImageContainerStyled>
+                                                        <MinhaContaConversacaoStyled>
+                                                            <MinhaContaConversacaoUlStyled>
+                                                                <MinhaContaConversacaoLiStyled>
+                                                                    <MinhaContaConversacaoImageLineStyled>
+                                                                        <MinhaContaConversacaoImageContainerStyled>
+                                                                            <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
+                                                                        </MinhaContaConversacaoImageContainerStyled>
+                                                                    </MinhaContaConversacaoImageLineStyled>
+
+                                                                    <Box width="100%">
+                                                                        <P fontWeight="600">Vita Silva</P>
+                                                                        <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
+                                                                        <P color="colorGray2" fontSize="14px">
+                                                                            23 Ago. 2019
+                                                                        </P>
+                                                                    </Box>
+                                                                </MinhaContaConversacaoLiStyled>
+
+                                                                <MinhaContaConversacaoLiStyled>
+                                                                    <MinhaContaConversacaoImageLineStyled>
+                                                                        <MinhaContaConversacaoImageContainerStyled>
+                                                                            <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
+                                                                        </MinhaContaConversacaoImageContainerStyled>
+                                                                    </MinhaContaConversacaoImageLineStyled>
+
+                                                                    <Box width="100%">
+                                                                        <P fontWeight="600">Ricardo Milos</P>
+                                                                        <P>Our passengers must be hotter than I thought.</P>
+                                                                        <P color="colorGray2" fontSize="14px">
+                                                                            25 Ago. 2019
+                                                                        </P>
+                                                                    </Box>
+                                                                </MinhaContaConversacaoLiStyled>
+
+                                                                <MinhaContaConversacaoLiStyled>
+                                                                    <MinhaContaConversacaoImageContainerStyled>
                                                                         <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
-                                                                    </MinhaContaCursoDuvidasImageContainerStyled>
-                                                                </MinhaContaCursoDuvidasImageLineStyled>
+                                                                    </MinhaContaConversacaoImageContainerStyled>
 
-                                                                <Box width="100%">
-                                                                    <P fontWeight="600">Vita Silva</P>
-                                                                    <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
-                                                                    <P color="colorGray2" fontSize="14px">
-                                                                        23 Ago. 2019
-                                                                    </P>
-                                                                </Box>
-                                                            </MinhaContaCursoDuvidasItemsStyled>
+                                                                    <Box width="100%">
+                                                                        <P color="colorPrimary" fontWeight="600">
+                                                                            Equipe Liberta
+                                                                        </P>
+                                                                        <P>It looks like an Imperial cruiser. Our passenger.</P>
+                                                                        <P color="colorGray2" fontSize="14px">
+                                                                            23 Ago. 2019
+                                                                        </P>
+                                                                    </Box>
+                                                                </MinhaContaConversacaoLiStyled>
+                                                            </MinhaContaConversacaoUlStyled>
 
-                                                            <MinhaContaCursoDuvidasItemsStyled>
-                                                                <MinhaContaCursoDuvidasImageLineStyled>
-                                                                    <MinhaContaCursoDuvidasImageContainerStyled>
+                                                            <MinhaContaConversacaoUlStyled>
+                                                                <MinhaContaConversacaoLiStyled>
+                                                                    <MinhaContaConversacaoImageLineStyled>
+                                                                        <MinhaContaConversacaoImageContainerStyled>
+                                                                            <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
+                                                                        </MinhaContaConversacaoImageContainerStyled>
+                                                                    </MinhaContaConversacaoImageLineStyled>
+
+                                                                    <Box width="100%">
+                                                                        <P fontWeight="600">Gilberto Silva</P>
+                                                                        <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
+                                                                        <P color="colorGray2" fontSize="14px">
+                                                                            23 Ago. 2019
+                                                                        </P>
+                                                                    </Box>
+                                                                </MinhaContaConversacaoLiStyled>
+
+                                                                <MinhaContaConversacaoLiStyled>
+                                                                    <MinhaContaConversacaoImageContainerStyled>
                                                                         <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
-                                                                    </MinhaContaCursoDuvidasImageContainerStyled>
-                                                                </MinhaContaCursoDuvidasImageLineStyled>
+                                                                    </MinhaContaConversacaoImageContainerStyled>
 
-                                                                <Box width="100%">
-                                                                    <P fontWeight="600">Ricardo Milos</P>
-                                                                    <P>Our passengers must be hotter than I thought.</P>
-                                                                    <P color="colorGray2" fontSize="14px">
-                                                                        25 Ago. 2019
-                                                                    </P>
-                                                                </Box>
-                                                            </MinhaContaCursoDuvidasItemsStyled>
-
-                                                            <MinhaContaCursoDuvidasItemsStyled>
-                                                                <MinhaContaCursoDuvidasImageContainerStyled>
-                                                                    <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
-                                                                </MinhaContaCursoDuvidasImageContainerStyled>
-
-                                                                <Box width="100%">
-                                                                    <P color="colorPrimary" fontWeight="600">
-                                                                        Equipe Liberta
-                                                                    </P>
-                                                                    <P>It looks like an Imperial cruiser. Our passenger.</P>
-                                                                    <P color="colorGray2" fontSize="14px">
-                                                                        23 Ago. 2019
-                                                                    </P>
-                                                                </Box>
-                                                            </MinhaContaCursoDuvidasItemsStyled>
-                                                        </MinhaContaCursoDuvidasStyled>
-
-                                                        <MinhaContaCursoDuvidasStyled>
-                                                            <MinhaContaCursoDuvidasItemsStyled>
-                                                                <MinhaContaCursoDuvidasImageLineStyled>
-                                                                    <MinhaContaCursoDuvidasImageContainerStyled>
-                                                                        <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
-                                                                    </MinhaContaCursoDuvidasImageContainerStyled>
-                                                                </MinhaContaCursoDuvidasImageLineStyled>
-
-                                                                <Box width="100%">
-                                                                    <P fontWeight="600">Gilberto Silva</P>
-                                                                    <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
-                                                                    <P color="colorGray2" fontSize="14px">
-                                                                        23 Ago. 2019
-                                                                    </P>
-                                                                </Box>
-                                                            </MinhaContaCursoDuvidasItemsStyled>
-
-                                                            <MinhaContaCursoDuvidasItemsStyled>
-                                                                <MinhaContaCursoDuvidasImageContainerStyled>
-                                                                    <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
-                                                                </MinhaContaCursoDuvidasImageContainerStyled>
-
-                                                                <Box width="100%">
-                                                                    <P color="colorPrimary" fontWeight="600">
-                                                                        Equipe Liberta
-                                                                    </P>
-                                                                    <P>It looks like an Imperial cruiser. Our passenger.</P>
-                                                                    <P color="colorGray2" fontSize="14px">
-                                                                        23 Ago. 2019
-                                                                    </P>
-                                                                </Box>
-                                                            </MinhaContaCursoDuvidasItemsStyled>
-                                                        </MinhaContaCursoDuvidasStyled>
+                                                                    <Box width="100%">
+                                                                        <P color="colorPrimary" fontWeight="600">
+                                                                            Equipe Liberta
+                                                                        </P>
+                                                                        <P>It looks like an Imperial cruiser. Our passenger.</P>
+                                                                        <P color="colorGray2" fontSize="14px">
+                                                                            23 Ago. 2019
+                                                                        </P>
+                                                                    </Box>
+                                                                </MinhaContaConversacaoLiStyled>
+                                                            </MinhaContaConversacaoUlStyled>
+                                                        </MinhaContaConversacaoStyled>
                                                     </TabContentStyled>
                                                 </TabsContentStyled>
                                             </TabStyled>
@@ -257,9 +258,9 @@ export const MinhaContaCurso = ({ ...breadcrumb }) => {
 
                                     {windowWidth > parseInt(variable.md, 10) && (
                                         <>
-                                            <MinhaContaCursoExibirAulaStyled display={stateMenuAula ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
+                                            <MinhaContaExibirAulaStyled display={stateMenuAula ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
                                                 <Button fontWeight="400" onClick={() => setStateMenuAula(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
-                                            </MinhaContaCursoExibirAulaStyled>
+                                            </MinhaContaExibirAulaStyled>
 
                                             <Box width={{ d: 1, md: stateMenuAula ? 3 / 10 : 0 }}>
                                                 <Suspense fallback={<Title5>Carregando...</Title5>}>
