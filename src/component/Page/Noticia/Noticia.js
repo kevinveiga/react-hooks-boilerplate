@@ -109,7 +109,7 @@ export const Noticia = ({ match }) => {
                         <Leadwall change={changeLeadwall} />
 
                         <NoticiaFormContainerStyled mb="75px">
-                            <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
                                 <NoticiaForm />
                             </Suspense>
                         </NoticiaFormContainerStyled>

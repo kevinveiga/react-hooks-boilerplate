@@ -62,11 +62,11 @@ export const Cadastro = () => {
                             </Box>
 
                             {!stateConhecerMais ? (
-                                <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                                <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
                                     <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
                                 </Suspense>
                             ) : (
-                                <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                                <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
                                     <ConhecerMaisForm obj={{ colorLine: 'colorPrimary' }} />
                                 </Suspense>
                             )}

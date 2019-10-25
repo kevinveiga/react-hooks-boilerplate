@@ -4,7 +4,7 @@ import { Svg } from '../Svg/Svg';
 
 import { LeadwallStyled, LeadwallTermosStyled } from './LeadwallStyled';
 
-import { Title3, Title5 } from '../../style/text';
+import { P, Title3, Title5 } from '../../style/text';
 
 // LAZY
 const LeadwallForm = lazy(() => import('../Form/LeadwallForm'));
@@ -23,7 +23,7 @@ export const Leadwall = ({ ...props }) => {
                     Deixe seu melhor e-mail para desbloquear o conteúdo.
                 </Title5>
 
-                <Suspense fallback={<Title5 themeColor="light">Carregando...</Title5>}>
+                <Suspense fallback={<P themeColor="light">Carregando...</P>}>
                     <LeadwallForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'leadwall' }} />
                 </Suspense>
             </LeadwallStyled>

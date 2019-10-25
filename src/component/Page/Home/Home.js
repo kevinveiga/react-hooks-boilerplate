@@ -32,7 +32,7 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Main, Wrap } from '../../../style/layout';
-import { Span, Title2, Title3, Title4, Title5 } from '../../../style/text';
+import { P, Span, Title2, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
@@ -262,7 +262,7 @@ export const Home = ({ location }) => {
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                             <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                            <Suspense fallback={<Title5 themeColor="light">Carregando...</Title5>}>
+                            <Suspense fallback={<P themeColor="light">Carregando...</P>}>
                                 <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />
                             </Suspense>
 

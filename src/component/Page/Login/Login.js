@@ -57,14 +57,15 @@ export const Login = () => {
 
                             <Title2 textAlign="center" themeColor="dark">
                                 Acesse a sala de aula
-                                <br /> da Liberta
+                                <br />
+                                da Liberta
                             </Title2>
 
                             <P color="colorGray2" fontSize={14} mt="30px" textAlign="center" themeColor="dark">
-                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="" text="Se cadastre aqui." />
+                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/cadastro" text="Se cadastre aqui." />
                             </P>
 
-                            <Suspense fallback={<Title5 themeColor="dark">Carregando...</Title5>}>
+                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
                                 <LoginForm obj={{ colorLine: 'colorPrimary' }} />
                             </Suspense>
                         </Container>
