@@ -10,7 +10,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation, Label, Select } from './Form';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 import { ConhecerMaisPartContentStyled, ConhecerMaisPartNumberStyled, ConhecerMaisPartTitleStyled, ConhecerMaisRadioStyled } from './ConhecerMaisFormStyled';
 
 import { Box, Flex } from '../../style/flex';
@@ -66,9 +66,9 @@ const ConhecerMaisForm = ({ ...props }) => {
                 <Box overflow="hidden" width="100%">
                     <FormStyled onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
-                            <Cell>
-                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
 
+                            <Cell>
                                 <ConhecerMaisPartTitleStyled onClick={() => setStatePart(1)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 1}>1</ConhecerMaisPartNumberStyled>
 

@@ -205,12 +205,13 @@ export const InvalidInputMessageStyled = styled.span`
     position: absolute;
 `;
 
-export const InvalidResponseMessageStyled = styled.span`
+export const InvalidResponseMessageContainerStyled = styled.div`
+    ${position};
+`;
+
+export const InvalidResponseMessageStyled = styled.p`
     color: ${variable.colorAlert};
     font-size: 14px;
-    left: 0;
-    position: absolute;
-    top: -15px;
 `;
 
 export const LabelStyled = styled.label`

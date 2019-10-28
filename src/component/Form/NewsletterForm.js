@@ -9,7 +9,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { P, Title5 } from '../../style/text';
@@ -19,8 +19,8 @@ export const NewsletterForm = ({ ...props }) => {
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     useEffect(() => {
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'email' }, { ...customValidate.email });
+        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
     }, [register]);
 
     // FORM
@@ -64,9 +64,11 @@ export const NewsletterForm = ({ ...props }) => {
     ) : (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridColumnGap={4} gridRowGap={2} gridTemplateColumns={{ d: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))' }} justifyContent="flex-end">
-                <Cell mb={3}>
+                <InvalidResponseMessageContainerStyled left="0" position="absolute" top="-15px">
                     {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                </InvalidResponseMessageContainerStyled>
 
+                <Cell mb={3}>
                     <InputValidation
                         error={errors.nome}
                         maxLength="50"

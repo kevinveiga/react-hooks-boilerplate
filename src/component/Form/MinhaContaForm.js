@@ -13,7 +13,7 @@ import { Button } from '../Button/Button';
 import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -84,9 +84,9 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
             <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                 <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 5 }} py={{ d: 2, md: 4 }}>
-                        <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                            {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                        <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
 
+                        <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                             <Label color="colorGray2" text="Nome completo" />
 
                             <div>
@@ -318,7 +318,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                     {...otherProps}
                                 />
 
-                                <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
+                                <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
                             </div>
 
                             {errors.senha && <InvalidInputMessageStyled>{errors.senha.message}</InvalidInputMessageStyled>}
