@@ -13,6 +13,14 @@ import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
 
+const fakeAuth = {
+    isAuthenticated: true
+};
+
+const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
+    return <Route render={(props) => (fakeAuth.isAuthenticated ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />)} {...otherProps} />;
+};
+
 export const Router = withRouter((props) => {
     // CONTEXT
     const { setStateHideFooterGlobal, setStateHideHeaderGlobal } = useContext(Context);
@@ -40,15 +48,18 @@ export const Router = withRouter((props) => {
             <Route component={Cadastro} path="/cadastro" />
             <Route component={Home} path="/inicio" />
             <Route component={Login} path="/login" />
-            <Route component={MinhaConta} isAuth={true} path={minhaContaInicioRoute.path} />
-            <Route isAuth={true} path="/minha-conta/curso/:slug" render={(props) => <MinhaContaCurso breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} {...props} />} />
-            <Route isAuth={true} path="/minha-conta/cursos" render={(props) => <MinhaContaCursos breadcrumb={[minhaContaInicioRoute]} {...props} />} />
+
+            <PrivateRoute component={MinhaConta} isAuth={true} path={minhaContaInicioRoute.path} />
+            <PrivateRoute breadcrumb={[minhaContaInicioRoute, { label: 'Cursos', path: '/minha-conta/cursos' }]} component={MinhaContaCurso} isAuth={true} path="/minha-conta/curso/:slug" />
+            <PrivateRoute breadcrumb={[minhaContaInicioRoute]} component={MinhaContaCursos} isAuth={true} path="/minha-conta/cursos" />
+
             <Route component={MinhaConta} exact={true} isAuth={true} path="/minha-conta">
                 <Redirect to={minhaContaInicioRoute.path} />
             </Route>
             <Route component={MinhaConta} isAuth={true} path="/minha-conta/*">
                 <Redirect to={minhaContaInicioRoute.path} />
             </Route>
+
             <Route component={Noticia} path="/noticia/:slug" />
             <Route component={Noticias} path="/noticias" />
             <Route component={Pesquisa} path="/pesquisa/:slug" />
