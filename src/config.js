@@ -1,15 +1,15 @@
-export const apiUrl = `${process.env.API_URL}/api/v1`;
+const apiUrl = `${process.env.API_URL}/api/v1`;
 
-export const apiUrlConfiguracoes = `${process.env.API_URL}/api/v1/configuracoes`;
+export const apiUrlConfiguracoes = `${apiUrl}/configuracoes`;
 
-export const apiUrlContato = `${process.env.API_URL}/api/v1/contato`;
+export const apiUrlContato = `${apiUrl}/contato`;
 
-export const apiUrlHome = `${process.env.API_URL}/api/v1/home`;
+export const apiUrlHome = `${apiUrl}/home`;
 
-export const apiUrlNewsletter = `${process.env.API_URL}/api/v1/newsletter`;
+export const apiUrlNewsletter = `${apiUrl}/newsletter`;
 
-export const apiUrlNoticias = `${process.env.API_URL}/api/v1/noticias`;
+export const apiUrlNoticias = `${apiUrl}/noticias`;
 
-export const apiUrlPaywall = `${process.env.API_URL}/api/v1/paywall`;
+export const apiUrlPaywall = `${apiUrl}/paywall`;
 
 export const defaultErrorMsg = 'Erro desconhecido';
