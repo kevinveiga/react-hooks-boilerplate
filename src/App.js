@@ -8,6 +8,7 @@ import { apiUrlConfiguracoes } from './config';
 import { useSocialApi } from './service/social';
 
 import { Context } from './store/context';
+import { useAuth } from './store/auth/auth';
 
 import { Router } from './router';
 
@@ -23,6 +24,7 @@ export const App = () => {
     const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`, {});
 
     // ACTION
+    const [stateAuthToken, setStateAuthToken] = useAuth();
     const [stateHideFooter, setStateHideFooter] = useState(false);
     const [stateHideHeader, setStateHideHeader] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
@@ -34,6 +36,8 @@ export const App = () => {
                     setStateHideFooterGlobal: setStateHideFooter,
                     setStateHideHeaderGlobal: setStateHideHeader,
                     setStateLoaderGlobal: setStateLoader,
+                    stateAuthTokenGlobal: stateAuthToken,
+                    setStateAuthTokenGlobal: setStateAuthToken,
                     stateSocialGlobal: stateSocial.data
                 }}
             >

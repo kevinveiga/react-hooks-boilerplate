@@ -1,8 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import parse from 'html-react-parser';
+import React, { useContext, useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
-import { apiUrlContato, defaultErrorMsg } from '../../config';
+import { apiUrlLogin, defaultErrorMsg } from '../../config';
+
+import { Context } from '../../store/context';
 
 import { customValidate } from '../../util/customValidate';
 
@@ -16,14 +19,18 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
+import { variable } from '../../style/variable';
 
 const LoginForm = ({ ...props }) => {
+    // CONTEXT
+    const { setStateAuthTokenGlobal } = useContext(Context);
+
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
+        register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
     }, [register]);
 
     // FORM
@@ -34,18 +41,33 @@ const LoginForm = ({ ...props }) => {
     const submitForm = (formData) => {
         const fetchData = async () => {
             try {
-                const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
+                const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    // TODO: fazer redirect para página inicial do usuário
-                } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
+                    setStateAuthTokenGlobal(result.data.token);
+
+                    window.location.pathname = '/minha-conta/inicio';
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error(result);
                 }
             } catch (error) {
-                console.error(error);
+                if (error.response && error.response.status === 401) {
+                    const objErrors = error.response.data.errors;
+                    const errors = [];
+
+                    if (objErrors) {
+                        for (let i = 0, l = Object.keys(objErrors).length; i < l; i += 1) {
+                            errors.push(`- ${objErrors[Object.keys(objErrors)[i]]}`);
+                        }
+                    } else {
+                        errors.push(`- ${defaultErrorMsg}`);
+                    }
+
+                    setError('invalid', 'notMatch', parse(errors.join('<br />')));
+                } else {
+                    console.error(error);
+                }
             }
         };
 
@@ -81,10 +103,10 @@ const LoginForm = ({ ...props }) => {
                         <Cell mb={4} width="100%">
                             <div>
                                 <InputValidation
-                                    error={errors.senha}
+                                    error={errors.password}
                                     label="Senha"
                                     maxLength="11"
-                                    name="senha"
+                                    name="password"
                                     onChange={async (e) => {
                                         const input = e.target;
                                         await triggerValidation({ name: input.name, value: input.value });
@@ -97,7 +119,7 @@ const LoginForm = ({ ...props }) => {
                                 <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
                             </div>
 
-                            {errors.senha && <InvalidInputMessageStyled>{errors.senha.message}</InvalidInputMessageStyled>}
+                            {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3} width="100%">

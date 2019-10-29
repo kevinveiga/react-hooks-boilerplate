@@ -6,6 +6,7 @@ import useForm from 'react-hook-form';
 import { apiUrlCadastro, defaultErrorMsg } from '../../config';
 
 import { CadastroContext } from '../../store/cadastro/cadastroContext';
+import { Context } from '../../store/context';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -26,6 +27,7 @@ import { formatFormData } from '../../util/formatFormData';
 const CadastroForm = ({ ...props }) => {
     // CONTEXT
     const setStateConhecerMais = useContext(CadastroContext);
+    const { setStateAuthTokenGlobal } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -49,6 +51,7 @@ const CadastroForm = ({ ...props }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormData(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateAuthTokenGlobal(result.data.token);
                     setStateConhecerMais(true);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
@@ -105,7 +108,6 @@ const CadastroForm = ({ ...props }) => {
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         touched={formState.touched}
-                                        value="teste teste"
                                         {...props}
                                     />
                                 </div>
@@ -125,7 +127,6 @@ const CadastroForm = ({ ...props }) => {
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         touched={formState.touched}
-                                        value="teste@teste.com"
                                         {...props}
                                     />
                                 </div>
@@ -165,7 +166,6 @@ const CadastroForm = ({ ...props }) => {
                                         }}
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
-                                        value="123456"
                                         {...props}
                                     />
 
@@ -188,7 +188,6 @@ const CadastroForm = ({ ...props }) => {
                                         }}
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
-                                        value="123456"
                                         {...props}
                                     />
 

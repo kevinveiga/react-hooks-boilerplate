@@ -13,12 +13,11 @@ import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
 
-const fakeAuth = {
-    isAuthenticated: true
-};
-
 const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
-    return <Route render={(props) => (fakeAuth.isAuthenticated ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />)} {...otherProps} />;
+    // CONTEXT
+    const { stateAuthTokenGlobal } = useContext(Context);
+
+    return <Route render={(props) => (stateAuthTokenGlobal ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />)} {...otherProps} />;
 };
 
 export const Router = withRouter((props) => {
