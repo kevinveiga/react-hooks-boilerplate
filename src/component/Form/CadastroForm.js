@@ -1,8 +1,9 @@
 import axios from 'axios';
+import parse from 'html-react-parser';
 import React, { useContext, useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
-import { apiUrlContato, defaultErrorMsg } from '../../config';
+import { apiUrlCadastro, defaultErrorMsg } from '../../config';
 
 import { CadastroContext } from '../../store/cadastro/cadastroContext';
 
@@ -14,11 +15,13 @@ import { InputMaskValidation, InputValidation } from './Form';
 import { LinkTo } from '../Link/LinkTo';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
+
+import { formatFormData } from '../../util/formatFormData';
 
 const CadastroForm = ({ ...props }) => {
     // CONTEXT
@@ -28,10 +31,11 @@ const CadastroForm = ({ ...props }) => {
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
+        register({ name: 'confirm_password' }, { ...customValidate.password, ...customValidate.require });
         register({ name: 'email' }, { ...customValidate.email });
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
-        register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
-        register({ name: 'telefone' }, { ...customValidate.phone });
+        register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
+        register({ name: 'telefone' }, { ...customValidate.cellphone });
     }, [register]);
 
     // FORM
@@ -42,18 +46,31 @@ const CadastroForm = ({ ...props }) => {
     const submitForm = (formData) => {
         const fetchData = async () => {
             try {
-                const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
+                const result = await axios.post(apiUrlCadastro, formatFormData(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
                     setStateConhecerMais(true);
-                } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error(result);
                 }
             } catch (error) {
-                console.error(error);
+                if (error.response && error.response.status === 401) {
+                    const objErrors = error.response.data.errors;
+                    const errors = [];
+
+                    if (objErrors) {
+                        for (let i = 0, l = Object.keys(objErrors).length; i < l; i += 1) {
+                            errors.push(`- ${objErrors[Object.keys(objErrors)[i]]}`);
+                        }
+                    } else {
+                        errors.push(`- ${defaultErrorMsg}`);
+                    }
+
+                    setError('invalid', 'notMatch', parse(errors.join('<br />')));
+                } else {
+                    console.error(error);
+                }
             }
         };
 
@@ -74,9 +91,9 @@ const CadastroForm = ({ ...props }) => {
                 <Box overflow="hidden" width="100%">
                     <FormStyled onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
-                            <Cell mb={3} width="100%">
-                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
 
+                            <Cell mb={3} width="100%">
                                 <div>
                                     <InputValidation
                                         error={errors.nome}
@@ -88,6 +105,7 @@ const CadastroForm = ({ ...props }) => {
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         touched={formState.touched}
+                                        value="teste teste"
                                         {...props}
                                     />
                                 </div>
@@ -107,6 +125,7 @@ const CadastroForm = ({ ...props }) => {
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         touched={formState.touched}
+                                        value="teste@teste.com"
                                         {...props}
                                     />
                                 </div>
@@ -136,23 +155,47 @@ const CadastroForm = ({ ...props }) => {
                             <Cell mb={4} width="100%">
                                 <div>
                                     <InputValidation
-                                        error={errors.senha}
+                                        error={errors.password}
                                         label="Senha"
                                         maxLength="11"
-                                        name="senha"
+                                        name="password"
                                         onChange={async (e) => {
                                             const input = e.target;
                                             await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
+                                        value="123456"
                                         {...props}
                                     />
 
-                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="22px" top="14px" zIndex={1} />
+                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
                                 </div>
 
-                                {errors.senha && <InvalidInputMessageStyled>{errors.senha.message}</InvalidInputMessageStyled>}
+                                {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
+                            </Cell>
+
+                            <Cell mb={4} width="100%">
+                                <div>
+                                    <InputValidation
+                                        error={errors.confirm_password}
+                                        label="Confirmação de senha"
+                                        maxLength="11"
+                                        name="confirm_password"
+                                        onChange={async (e) => {
+                                            const input = e.target;
+                                            await triggerValidation({ name: input.name, value: input.value });
+                                        }}
+                                        touched={formState.touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        value="123456"
+                                        {...props}
+                                    />
+
+                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                                </div>
+
+                                {errors.confirm_password && <InvalidInputMessageStyled>{errors.confirm_password.message}</InvalidInputMessageStyled>}
                             </Cell>
 
                             <Cell mb={3} width="100%">
