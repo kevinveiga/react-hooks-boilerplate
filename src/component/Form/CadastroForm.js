@@ -1,5 +1,4 @@
 import axios from 'axios';
-import parse from 'html-react-parser';
 import React, { useContext, useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
@@ -10,6 +9,8 @@ import { Context } from '../../store/context';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
+import { formatFormData } from '../../util/formatFormData';
+import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
@@ -21,8 +22,6 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
-
-import { formatFormData } from '../../util/formatFormData';
 
 const CadastroForm = ({ ...props }) => {
     // CONTEXT
@@ -59,18 +58,7 @@ const CadastroForm = ({ ...props }) => {
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
-                    const objErrors = error.response.data.errors;
-                    const errors = [];
-
-                    if (objErrors) {
-                        for (let i = 0, l = Object.keys(objErrors).length; i < l; i += 1) {
-                            errors.push(`- ${objErrors[Object.keys(objErrors)[i]]}`);
-                        }
-                    } else {
-                        errors.push(`- ${defaultErrorMsg}`);
-                    }
-
-                    setError('invalid', 'notMatch', parse(errors.join('<br />')));
+                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
                 } else {
                     console.error(error);
                 }
