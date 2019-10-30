@@ -32,11 +32,12 @@ export const App = () => {
 
     useEffect(() => {
         const authInterceptorRequest = axios.interceptors.request.use(
-            (config) => {
+            (response) => {
+                const config = response;
                 const token = stateAuthToken;
 
                 if (token) {
-                    apiUrlConfiguracoes.headers.Authorization = `Bearer ${token}`;
+                    config.headers.Authorization = `Bearer ${token}`;
                 }
 
                 return config;
@@ -75,8 +76,8 @@ export const App = () => {
                 <Normalize />
 
                 <HelmetProvider>
-                    <Helmet defaultTitle="App" titleTemplate="%s - App">
-                        <meta name="description" content="App" />
+                    <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
+                        <meta name="description" content="Liberta" />
                     </Helmet>
 
                     <BrowserRouter>
