@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile, useChangeModal } from '../../store/header/header';
+import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile, useChangeModalLogout } from '../../store/header/header';
 import { HeaderAlternateContext } from '../../store/header/headerAlternateContext';
 import { useWindowWidth } from '../../store/util/windowWidth';
 
@@ -8,7 +8,7 @@ import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
 import { Button } from '../Button/Button';
 import { LinkTo } from '../Link/LinkTo';
 import { MinhaContaMenuMobile } from '../Page/MinhaConta/MinhaContaMenuMobile';
-import { LogoutModal } from '../Modal/LogoutModal';
+import { ModalLogout } from '../Modal/ModalLogout';
 import { Svg } from '../Svg/Svg';
 
 import { HeaderAlternateStyled } from './HeaderAlternateStyled';
@@ -23,7 +23,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useChangeMinhaContaMenuMobile();
-    const [stateChangeModal, setStateChangeModal] = useChangeModal();
+    const [stateChangeModalLogout, setStateChangeModalLogout] = useChangeModalLogout();
     const windowWidth = useWindowWidth();
 
     return (
@@ -31,7 +31,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
             value={{
                 stateChangeMinhaContaMenuMobileGlobal: stateChangeMinhaContaMenuMobile,
                 setStateChangeMinhaContaMenuMobileGlobal: setStateChangeMinhaContaMenuMobile,
-                setStateChangeModalGlobal: setStateChangeModal
+                setStateChangeModalLogoutGlobal: setStateChangeModalLogout
             }}
         >
             {windowWidth < parseInt(variable.md, 10) ? (
@@ -63,14 +63,14 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                             </Box>
 
                             <Box>
-                                <Button color="colorGray2" fontSize={18} fontWeight="600" hoverColor="colorWhite" onClick={() => setStateChangeModal(true)} text="Logout" themeSize="none" themeType="none" />
+                                <Button color="colorGray2" fontSize={18} fontWeight="600" hoverColor="colorWhite" onClick={() => setStateChangeModalLogout(true)} text="Logout" themeSize="none" themeType="none" />
                             </Box>
                         </Flex>
                     </Container>
                 </HeaderAlternateStyled>
             )}
 
-            <LogoutModal show={stateChangeModal} />
+            <ModalLogout show={stateChangeModalLogout} />
         </HeaderAlternateContext.Provider>
     );
 };

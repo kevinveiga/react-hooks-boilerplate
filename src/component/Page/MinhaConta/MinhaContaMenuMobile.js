@@ -9,7 +9,7 @@ import { MinhaContaMenuMobileStyled } from './MinhaContaMenuStyled';
 
 export const MinhaContaMenuMobile = ({ ...props }) => {
     // CONTEXT
-    const { stateChangeMinhaContaMenuMobileGlobal, setStateChangeMinhaContaMenuMobileGlobal, setStateChangeModalGlobal } = useContext(HeaderAlternateContext);
+    const { stateChangeMinhaContaMenuMobileGlobal, setStateChangeMinhaContaMenuMobileGlobal, setStateChangeModalLogoutGlobal } = useContext(HeaderAlternateContext);
 
     return (
         <MinhaContaMenuMobileStyled active={stateChangeMinhaContaMenuMobileGlobal} {...props}>
@@ -31,7 +31,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                 </li>
 
                 <li>
-                    <Button color="colorWhite" fontWeight="600" onClick={() => setStateChangeModalGlobal(true)} text="Sair" themeSize="none" themeType="none" />
+                    <Button color="colorWhite" fontWeight="600" onClick={() => setStateChangeModalLogoutGlobal(true)} text="Sair" themeSize="none" themeType="none" />
                 </li>
             </ul>
         </MinhaContaMenuMobileStyled>

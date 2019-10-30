@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { variable } from '../../style/variable';
 
-export const LogoutModalContainerStyled = styled.div`
+export const ModalLogoutContainerStyled = styled.div`
     background-color: ${variable.colorGrayDark};
     color: ${variable.colorWhite};
     font-size: 24px;
@@ -10,7 +10,7 @@ export const LogoutModalContainerStyled = styled.div`
     text-align: center;
 `;
 
-export const LogoutModalStyled = styled.div`
+export const ModalLogoutStyled = styled.div`
     align-items: center;
     background-color: ${variable.colorWhiteTransparent2};
     display: ${({ show }) => (show ? 'flex' : 'none')};

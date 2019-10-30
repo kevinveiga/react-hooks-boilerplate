@@ -5,16 +5,16 @@ import { HeaderAlternateContext } from '../../store/header/headerAlternateContex
 
 import { Button } from '../Button/Button';
 
-import { LogoutModalContainerStyled, LogoutModalStyled } from './LogoutModalStyled';
+import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyled';
 
-export const LogoutModal = ({ ...props }) => {
+export const ModalLogout = ({ ...props }) => {
     // CONTEXT
     const { setStateAuthTokenGlobal } = useContext(Context);
-    const { setStateChangeModalGlobal } = useContext(HeaderAlternateContext);
+    const { setStateChangeModalLogoutGlobal } = useContext(HeaderAlternateContext);
 
     return (
-        <LogoutModalStyled {...props}>
-            <LogoutModalContainerStyled>
+        <ModalLogoutStyled {...props}>
+            <ModalLogoutContainerStyled>
                 <p>
                     Você deseja sair da
                     <br />
@@ -23,8 +23,8 @@ export const LogoutModal = ({ ...props }) => {
 
                 <Button borderRadius="25px" display="inline-block" fontSize={18} height="40px" mx="auto" my={3} onClick={() => setStateAuthTokenGlobal(null)} text="Confirmar" textTransform="none" themeSize="small" />
 
-                <Button color="colorGray2" display="block" fontSize={18} mx="auto" onClick={() => setStateChangeModalGlobal(false)} text="Cancelar" themeSize="none" themeType="none" />
-            </LogoutModalContainerStyled>
-        </LogoutModalStyled>
+                <Button color="colorGray2" display="block" fontSize={18} mx="auto" onClick={() => setStateChangeModalLogoutGlobal(false)} text="Cancelar" themeSize="none" themeType="none" />
+            </ModalLogoutContainerStyled>
+        </ModalLogoutStyled>
     );
 };
