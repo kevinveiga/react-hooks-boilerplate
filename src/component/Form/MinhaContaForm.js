@@ -329,16 +329,20 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 Notificação de e-mail
                             </P>
 
-                            <InputCheckboxRadio color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_descontos" name="notificacao_descontos">
+                            <InputCheckboxRadio color="colorGray2" id="notificacao_descontos" name="notificacao_descontos">
                                 <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
-                                <Span verticalAlign="middle">Desejo receber avisos e descontos de cursos</Span>
+                                <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
+                                    Desejo receber avisos e descontos de cursos
+                                </Span>
                             </InputCheckboxRadio>
 
-                            <InputCheckboxRadio color="colorGray2" fontSize={{ d: 16, sm: 18 }} id="notificacao_conteudo" name="notificacao_conteudo">
+                            <InputCheckboxRadio color="colorGray2" id="notificacao_conteudo" name="notificacao_conteudo">
                                 <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
-                                <Span verticalAlign="middle">Desejo receber a curadoria de conteúdos e notícias</Span>
+                                <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
+                                    Desejo receber a curadoria de conteúdos e notícias
+                                </Span>
                             </InputCheckboxRadio>
                         </Cell>
 

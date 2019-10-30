@@ -147,49 +147,48 @@ export const InputAlternateStyled = styled.input`
         `};
 
     ${({ type }) =>
-        type === 'radio' ||
-        (type === 'checkbox' &&
-            css`
-                + label {
-                    cursor: pointer;
-                    user-select: none;
+        (type === 'radio' || type === 'checkbox') &&
+        css`
+            + label {
+                cursor: pointer;
+                min-height: 25px;
+                user-select: none;
 
+                &::before {
+                    background-color: ${variable.colorWhite};
+                    border: 2px solid ${variable.colorGray2};
+                    border-radius: ${variable.borderRadius};
+                    box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
+                    content: ' ';
+                    display: inline-block;
+                    height: 20px;
+                    margin-right: 10px;
+                    transition: box-shadow ${variable.transition};
+                    vertical-align: middle;
+                    width: 20px;
+                }
+
+                svg {
+                    display: none;
+                    left: 6px;
+                    position: absolute;
+                    top: 7px;
+                }
+            }
+
+            &:checked {
+                + label {
                     &::before {
-                        background-color: ${variable.colorWhite};
-                        border: 2px solid ${variable.colorGray2};
-                        border-radius: ${variable.borderRadius};
-                        box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
-                        content: ' ';
-                        display: inline-block;
-                        height: 20px;
-                        margin-right: 10px;
-                        transition: box-shadow ${variable.transition};
-                        vertical-align: middle;
-                        width: 20px;
+                        border: 2px solid ${variable.colorSecondary};
+                        box-shadow: inset 0 0 0 10px ${variable.colorPrimary};
                     }
 
                     svg {
-                        display: none;
-                        left: 6px;
-                        position: absolute;
-                        top: 52%;
-                        transform: translateY(-52%);
+                        display: block;
                     }
                 }
-
-                &:checked {
-                    + label {
-                        &::before {
-                            border: 2px solid ${variable.colorSecondary};
-                            box-shadow: inset 0 0 0 10px ${variable.colorPrimary};
-                        }
-
-                        svg {
-                            display: block;
-                        }
-                    }
-                }
-            `)};
+            }
+        `};
 `;
 
 export const InputMaskStyled = styled(IMaskInput)`
