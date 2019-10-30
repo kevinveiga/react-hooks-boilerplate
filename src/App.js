@@ -31,8 +31,6 @@ export const App = () => {
     const [stateLoader, setStateLoader] = useState(false);
 
     useEffect(() => {
-        console.log('A: ', stateAuthToken);
-
         const authInterceptorRequest = axios.interceptors.request.use(
             (config) => {
                 const token = stateAuthToken;
