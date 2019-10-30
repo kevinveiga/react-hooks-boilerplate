@@ -260,7 +260,7 @@ export const Home = ({ location }) => {
                 {videosLength > 0 && (
                     <VideoContainerStyled id="home-video-container">
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
-                            <Title2 themeColor="light">Vídeos Liberta</Title2>
+                            <Title2 themeColor="light">Vídeos</Title2>
 
                             <Suspense fallback={<P themeColor="light">Carregando...</P>}>
                                 <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />

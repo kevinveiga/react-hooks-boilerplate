@@ -109,6 +109,17 @@
 #### Boas práticas:
 
 -   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
+
+-   No return do JSX, caso não existam os dados, passar null. Ex:
+
+```js
+return stateBanner.data && stateBanner.data.sidebar_habilitada == '1' ? (
+    <Banner change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...otherProps}>
+        {parse(`${stateBanner.data.sidebar}`)}
+    </Banner>
+) : null;
+```
+
 -   Usar sempre a propriedade "key" nos elementos HTML em loops do React. Ex:
 
 ```html

@@ -48,22 +48,6 @@ export const HeaderMenu = ({ ...props }) => {
                 <li>
                     <LinkTo link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Login" />
                 </li>
-
-                {/* <li>
-                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://assistente.liberta.com.vc" target="_blank" text="Perfil de Investidor" />
-                </li>
-
-                {/* <li>
-                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://eventos.ibmec.br/fintech/" target="_blank" text="Fintech Week" />
-                </li> */}
-
-                {/* <li>
-                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Aprenda" />
-                </li>
-
-                <li>
-                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Quem Somos" />
-                </li> */}
             </ul>
 
             <div className="d-block d-lg-none header-menu-Social">

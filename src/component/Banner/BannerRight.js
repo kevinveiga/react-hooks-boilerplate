@@ -17,11 +17,9 @@ export const BannerRight = ({ elementChange, elementFadeOut, ...otherProps }) =>
     const stateChangeBannerScroll = useChangeBannerScroll(elementChange.elementId, elementChange.offset);
     const stateFadeOutBannerScroll = useFadeOutBannerScroll(elementFadeOut.elementId, elementFadeOut.offset);
 
-    return (
-        stateBanner.data.sidebar_habilitada === '1' && (
-            <BannerRightStyled change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...otherProps}>
-                {parse(`${stateBanner.data.sidebar}`)}
-            </BannerRightStyled>
-        )
-    );
+    return stateBanner.data.sidebar_habilitada === '1' ? (
+        <BannerRightStyled change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...otherProps}>
+            {parse(`${stateBanner.data.sidebar}`)}
+        </BannerRightStyled>
+    ) : null;
 };

@@ -40,12 +40,6 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                         <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
                             <Box width={2 / 10} />
 
-                            <Box display="flex" flexWrap="wrap" justifyContent="center" width={6 / 10}>
-                                <LinkTo ariaLabel="Home" link="/inicio">
-                                    <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
-                                </LinkTo>
-                            </Box>
-
                             <Box alignContent="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
                                 <Box>
                                     <Svg active={stateChangeMinhaContaMenuMobile} change={stateChangeHeaderScroll} fill="colorSecondary" name="svg-menu" onClick={() => setStateChangeMinhaContaMenuMobile(true)} />

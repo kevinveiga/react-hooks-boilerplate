@@ -49,7 +49,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
 
                     <Box width="100%">
                         <P color="colorPrimary" fontWeight="600">
-                            Equipe Liberta
+                            Equipe
                         </P>
                         <P>It looks like an Imperial cruiser. Our passenger.</P>
                         <P color="colorGray2" fontSize="14px">
@@ -83,7 +83,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
 
                     <Box width="100%">
                         <P color="colorPrimary" fontWeight="600">
-                            Equipe Liberta
+                            Equipe
                         </P>
                         <P>It looks like an Imperial cruiser. Our passenger.</P>
                         <P color="colorGray2" fontSize="14px">

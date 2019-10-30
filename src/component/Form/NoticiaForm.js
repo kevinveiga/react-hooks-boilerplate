@@ -98,11 +98,7 @@ const NoticiaForm = ({ ...props }) => {
                     </>
                 ) : (
                     <>
-                        <Title3 fontWeight="600" mb={4} themeColor="light">
-                            A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
-                        </Title3>
-
-                        <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
+                        <P themeColor="light">Texto</P>
                     </>
                 )}
             </Box>

@@ -17,7 +17,7 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     // CONTEXT
     const { stateAuthTokenGlobal } = useContext(Context);
 
-    return <Route render={(props) => (stateAuthTokenGlobal ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />)} {...otherProps} />;
+    return <Route render={(props) => (stateAuthTokenGlobal ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)} {...otherProps} />;
 };
 
 export const Router = withRouter((props) => {

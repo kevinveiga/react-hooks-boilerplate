@@ -61,13 +61,6 @@ export const HeaderStyled = styled.header`
             ? css`
                   background-color: ${variable.colorBlack3};
                   box-shadow: none;
-
-                  .svg-logo-liberta {
-                      fill: ${variable.colorWhite};
-                      [data-logo-liberta] {
-                          fill: transparent;
-                      }
-                  }
               `
             : css`
                   background-color: ${variable.colorWhite};
@@ -90,15 +83,6 @@ export const HeaderStyled = styled.header`
             button {
                 display: inline-block;
                 margin-left: 18px;
-            }
-        }
-
-        .svg-logo-liberta {
-            display: inline-block;
-            margin-right: 5px;
-
-            @media (min-width: ${variable.lg}) {
-                margin-right: 15px;
             }
         }
     }

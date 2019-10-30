@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -28,6 +29,38 @@ export const App = () => {
     const [stateHideFooter, setStateHideFooter] = useState(false);
     const [stateHideHeader, setStateHideHeader] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
+
+    useEffect(() => {
+        console.log('A: ', stateAuthToken);
+
+        const authInterceptorRequest = axios.interceptors.request.use(
+            (config) => {
+                const token = stateAuthToken;
+
+                if (token) {
+                    apiUrlConfiguracoes.headers.Authorization = `Bearer ${token}`;
+                }
+
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
+
+        const authInterceptorResponse = axios.interceptors.response.use(null, (error) => {
+            if (error.status === 401) {
+                setStateAuthToken(null);
+            }
+
+            return Promise.reject(error);
+        });
+
+        return () => {
+            axios.interceptors.request.eject(authInterceptorRequest);
+            axios.interceptors.response.eject(authInterceptorResponse);
+        };
+    }, [stateAuthToken, setStateAuthToken]);
 
     return (
         <ThemeProvider theme={theme}>

@@ -20,7 +20,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-const LoginForm = ({ ...props }) => {
+const LoginForm = ({ location, ...otherProps }) => {
     // CONTEXT
     const { setStateAuthTokenGlobal } = useContext(Context);
 
@@ -45,7 +45,7 @@ const LoginForm = ({ ...props }) => {
                 if (result.data && result.data.success == true) {
                     setStateAuthTokenGlobal(result.data.token);
 
-                    window.location.pathname = '/minha-conta/inicio';
+                    window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error(result);
@@ -81,7 +81,7 @@ const LoginForm = ({ ...props }) => {
                                         await triggerValidation({ name: input.name, value: input.value });
                                     }}
                                     touched={formState.touched}
-                                    {...props}
+                                    {...otherProps}
                                 />
                             </div>
 
@@ -101,7 +101,7 @@ const LoginForm = ({ ...props }) => {
                                     }}
                                     touched={formState.touched}
                                     type={stateViewPassword ? 'text' : 'password'}
-                                    {...props}
+                                    {...otherProps}
                                 />
 
                                 <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />

@@ -15,10 +15,12 @@ import { Container, Main } from '../../../style/layout';
 import { P, Title2, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
+import cadastroLogin from '../../../asset/image/cadastro-login.jpg';
+
 // LAZY
 const LoginForm = lazy(() => import('../../Form/LoginForm'));
 
-export const Login = () => {
+export const Login = ({ location }) => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
@@ -32,7 +34,7 @@ export const Login = () => {
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.footerAlternateHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
-                        <BgImageLazyLoad overlayColor="colorBlackTransparent3" url="https://picsum.photos/id/1011/1024/768" />
+                        <BgImageLazyLoad overlayColor="colorBlackTransparent5" url={cadastroLogin} />
 
                         <Box p={4} width="100%">
                             <P align="right" fontSize="24px" mb={4} textAlign="right" themeColor="light">
@@ -51,22 +53,12 @@ export const Login = () => {
 
                     <Box width={{ d: '100%', lg: 3 / 7 }}>
                         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                            <Box mb={{ d: 4, md: '75px' }} mt={{ d: 0, lg: 4 }} textAlign="center">
-                                <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
-                            </Box>
-
-                            <Title2 textAlign="center" themeColor="dark">
-                                Acesse a sala de aula
-                                <br />
-                                da Liberta
-                            </Title2>
-
                             <P color="colorGray2" fontSize={14} mt="30px" textAlign="center" themeColor="dark">
                                 Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/cadastro" text="Se cadastre aqui." />
                             </P>
 
                             <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                <LoginForm obj={{ colorLine: 'colorPrimary' }} />
+                                <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
                             </Suspense>
                         </Container>
                     </Box>

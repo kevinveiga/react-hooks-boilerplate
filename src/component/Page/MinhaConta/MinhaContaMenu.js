@@ -9,10 +9,6 @@ import { MinhaContaLeftStyled } from './MinhaContaStyled';
 export const MinhaContaMenu = () => {
     return (
         <MinhaContaLeftStyled alignContent="flex-start" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" justifyContent="flex-start" pr={2} py={5} width={2 / 10}>
-            <LinkTo ariaLabel="Home" link="/inicio" mb={5}>
-                <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
-            </LinkTo>
-
             <MinhaContaMenuStyled>
                 <ul>
                     <li>
