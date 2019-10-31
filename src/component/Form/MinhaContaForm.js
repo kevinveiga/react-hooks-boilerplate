@@ -14,6 +14,7 @@ import { responseError } from '../../util/responseError';
 import { Button } from '../Button/Button';
 import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { ModalMessage } from '../Modal/ModalMessage';
+import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
@@ -22,6 +23,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
+import { formatDate } from '../../util/formatDate';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     // ACTION
@@ -32,6 +34,8 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     const formatData = formatFormData(data);
 
     useSetFormValue(formatData, formId);
+
+    console.log('A: ', formatData);
 
     useEffect(() => {
         register({ name: 'data_nascimento' }, { ...customValidate.date });
@@ -269,9 +273,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
                                 <div>
                                     <Select name="endereco_uf" {...otherProps}>
-                                        <option value="rj">RJ</option>
-                                        <option value="rs">RS</option>
-                                        <option value="sp">SP</option>
+                                        <OptionUF />
                                     </Select>
                                 </div>
                             </Cell>
@@ -302,7 +304,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
                                 <div>
                                     <Select name="sexo" {...otherProps}>
-                                        <option value="indefinido">Indefinido</option>
+                                        <option value="">Indefinido</option>
                                         <option value="masculino">Masculino</option>
                                         <option value="feminino">Feminino</option>
                                     </Select>

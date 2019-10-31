@@ -9,6 +9,7 @@ import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { OptionUF } from './OptionUF';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 import { ConhecerMaisPartContentStyled, ConhecerMaisPartNumberStyled, ConhecerMaisPartTitleStyled, ConhecerMaisRadioStyled } from './ConhecerMaisFormStyled';
@@ -167,10 +168,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                                 }}
                                                 value={stateSelectEstado}
                                             >
-                                                <option value="">UF</option>
-                                                <option value="rj">RJ</option>
-                                                <option value="rs">RS</option>
-                                                <option value="sp">SP</option>
+                                                <OptionUF />
                                             </Select>
                                         </div>
                                     </Box>
