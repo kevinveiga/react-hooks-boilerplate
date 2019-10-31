@@ -1,7 +1,7 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 
 export const useSetFormValue = (data, formId) => {
-    useLayoutEffect(() => {
+    useEffect(() => {
         Object.keys(data).forEach((key) => {
             const htmlElement = document.querySelector(`#${formId} [name="${key}"]`);
 
@@ -22,6 +22,8 @@ export const useSetFormValue = (data, formId) => {
                 htmlElement[valueType] = data[key];
             }
         });
+
+        return undefined;
     }, [data, formId]);
 
     return null;
