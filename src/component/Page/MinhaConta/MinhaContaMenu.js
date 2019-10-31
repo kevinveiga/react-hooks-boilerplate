@@ -6,9 +6,11 @@ import { Svg } from '../../Svg/Svg';
 import { MinhaContaMenuStyled } from './MinhaContaMenuStyled';
 import { MinhaContaLeftStyled } from './MinhaContaStyled';
 
+import { variable } from '../../../style/variable';
+
 export const MinhaContaMenu = () => {
     return (
-        <MinhaContaLeftStyled alignContent="flex-start" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" justifyContent="flex-start" pr={2} py={5} width={2 / 10}>
+        <MinhaContaLeftStyled alignContent="flex-start" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" justifyContent="flex-start" minHeight={`calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight})`} pr={2} py={5} width={2 / 10}>
             <MinhaContaMenuStyled>
                 <ul>
                     <li>
