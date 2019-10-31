@@ -19,7 +19,7 @@ export const useSetFormValue = (data, formId) => {
                         valueType = 'value';
                 }
 
-                htmlElement[valueType] = data[key];
+                htmlElement[valueType] = data[key] == null ? '' : data[key];
             }
         });
 
