@@ -70,7 +70,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                 </HeaderAlternateStyled>
             )}
 
-            <ModalLogout show={stateChangeModalLogout} />
+            <ModalLogout visible={stateChangeModalLogout} />
         </HeaderAlternateContext.Provider>
     );
 };

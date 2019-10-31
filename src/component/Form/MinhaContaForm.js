@@ -4,12 +4,11 @@ import useForm from 'react-hook-form';
 
 import { apiUrlContato, defaultErrorMsg } from '../../config';
 
-import { useSetFormValue } from '../../store/util/setFormValue';
-
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormData } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
+import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
 import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
@@ -23,7 +22,6 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
-import { formatDate } from '../../util/formatDate';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     // ACTION
@@ -31,19 +29,19 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     // Valores inicias dos inputs
-    const formatData = formatFormData(data);
+    useEffect(() => {
+        const formatData = formatFormData(data);
 
-    useSetFormValue(formatData, formId);
-
-    console.log('A: ', formatData);
+        setFormValue(formatData, formId);
+    }, [data, formId]);
 
     useEffect(() => {
         register({ name: 'data_nascimento' }, { ...customValidate.date });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'endereco_logradouro' }, { ...customValidate.require });
         register({ name: 'endereco_cep' }, { ...customValidate.require });
         register({ name: 'endereco_cidade' }, { ...customValidate.require });
         register({ name: 'endereco_complemento' });
+        register({ name: 'endereco_logradouro' }, { ...customValidate.require });
         register({ name: 'endereco_uf' });
         register({ name: 'endereco_numero' }, { ...customValidate.number });
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
@@ -174,7 +172,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                             const input = e.target;
                                             triggerValidation({ name: input.name, value: input.value });
                                         }}
-                                        placeholder="Cep"
+                                        placeholder="00000-000"
                                         touched={formState.touched}
                                         {...otherProps}
                                     />
@@ -365,7 +363,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                 </Box>
             </Flex>
 
-            <ModalMessage show={stateModalMessage}>Dados salvos com sucesso.</ModalMessage>
+            <ModalMessage visible={stateModalMessage}>Dados salvos com sucesso.</ModalMessage>
         </>
     );
 };
