@@ -44,12 +44,14 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
         register({ name: 'endereco_numero' }, { ...customValidate.number });
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         // register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
+        register({ name: 'receber_avisos_descontos_de_cursos' });
+        register({ name: 'receber_curadoria_conteudos_noticias' });
         register({ name: 'sexo' });
         register({ name: 'telefone' }, { ...customValidate.phone });
     }, [register]);
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    const { errors, formState, handleSubmit, register, setValue, setError, triggerValidation } = useForm({
         defaultValues: formatFormDataGet(data),
         mode: 'onChange'
     });
@@ -272,7 +274,14 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 <Label color="colorGray2" text="Estado" />
 
                                 <div>
-                                    <Select name="endereco_uf" {...otherProps}>
+                                    <Select
+                                        name="endereco_uf"
+                                        onChange={async (e) => {
+                                            const input = e.target;
+                                            setValue(input.name, input.value);
+                                        }}
+                                        {...otherProps}
+                                    >
                                         <OptionUF />
                                     </Select>
                                 </div>
@@ -303,7 +312,14 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                 <Label color="colorGray2" text="Sexo" />
 
                                 <div>
-                                    <Select name="sexo" {...otherProps}>
+                                    <Select
+                                        name="sexo"
+                                        onChange={async (e) => {
+                                            const input = e.target;
+                                            setValue(input.name, input.value);
+                                        }}
+                                        {...otherProps}
+                                    >
                                         <option value="">Indefinido</option>
                                         <option value="masculino">Masculino</option>
                                         <option value="feminino">Feminino</option>

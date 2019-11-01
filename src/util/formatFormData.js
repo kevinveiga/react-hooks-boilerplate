@@ -12,7 +12,7 @@ export const formatFormDataGet = (formData) => {
             } else if (key === 'data_nascimento') {
                 formatFormDataGet[key] = formatData.formatDateGet(formData[key]);
             } else if (key === 'endereco_cep') {
-                formatFormDataSet[key] = formatData.formatCepGet(formData[key]);
+                formatFormDataGet[key] = formatData.formatCepGet(formData[key]);
             } else {
                 formatFormDataGet[key] = formData[key] == null ? '' : formData[key];
             }
