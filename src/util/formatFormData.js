@@ -1,4 +1,4 @@
-import { formatDateGet, formatDateSet, formatPhoneGet, formatPhoneSet } from './formatData';
+import * as formatData from './formatData';
 
 export const formatFormDataGet = (formData) => {
     const formatFormDataGet = {};
@@ -8,9 +8,11 @@ export const formatFormDataGet = (formData) => {
 
         if (Object.prototype.hasOwnProperty.call(formData, key)) {
             if (key === 'celular' || key === 'telefone') {
-                formatFormDataGet[key] = formatPhoneGet(formData[key]);
+                formatFormDataGet[key] = formatData.formatPhoneGet(formData[key]);
             } else if (key === 'data_nascimento') {
-                formatFormDataGet[key] = formatDateGet(formData[key]);
+                formatFormDataGet[key] = formatData.formatDateGet(formData[key]);
+            } else if (key === 'endereco_cep') {
+                formatFormDataSet[key] = formatData.formatCepGet(formData[key]);
             } else {
                 formatFormDataGet[key] = formData[key] == null ? '' : formData[key];
             }
@@ -28,9 +30,11 @@ export const formatFormDataSet = (formData) => {
 
         if (Object.prototype.hasOwnProperty.call(formData, key)) {
             if (key === 'celular' || key === 'telefone') {
-                formatFormDataSet[key] = formatPhoneSet(formData[key]);
+                formatFormDataSet[key] = formatData.formatPhoneSet(formData[key]);
             } else if (key === 'data_nascimento') {
-                formatFormDataSet[key] = formatDateSet(formData[key]);
+                formatFormDataSet[key] = formatData.formatDateSet(formData[key]);
+            } else if (key === 'endereco_cep') {
+                formatFormDataSet[key] = formatData.formatCepSet(formData[key]);
             } else {
                 formatFormDataSet[key] = formData[key] == null ? '' : formData[key];
             }
