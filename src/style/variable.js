@@ -5,6 +5,7 @@ export const variable = {
     durationSlow: '650ms',
     timing: 'ease-in-out',
     timeout1s: '1000',
+    timeout3s: '3000',
     transition: '250ms ease-in-out',
     transitionFast: '150ms ease-in-out',
     transitionSlow: '650ms ease-in-out',
