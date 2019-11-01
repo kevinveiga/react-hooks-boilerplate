@@ -36,7 +36,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     useEffect(() => {
         register({ name: 'data_nascimento' }, { ...customValidate.date });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'endereco_cep' }, { ...customValidate.cep, ...customValidate.require });
+        register({ name: 'endereco_cep' }, { ...customValidate.cep });
         register({ name: 'endereco_cidade' }, { ...customValidate.require });
         register({ name: 'endereco_complemento' });
         register({ name: 'endereco_logradouro' }, { ...customValidate.require });
