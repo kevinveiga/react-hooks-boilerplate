@@ -6,7 +6,7 @@ import { apiUrlContato, defaultErrorMsg } from '../../config';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
-import { formatFormData } from '../../util/formatFormData';
+import { formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
 import { setFormValue } from '../../util/setFormValue';
 
@@ -30,7 +30,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
     // Valores inicias dos inputs
     useEffect(() => {
-        const formatData = formatFormData(data);
+        const formatData = formatFormDataSet(data);
 
         setFormValue(formatData, formId);
     }, [data, formId]);

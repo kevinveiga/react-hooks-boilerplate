@@ -1,21 +1,41 @@
-import { formatDate } from './formatDate';
+import { formatDateGet, formatDateSet, formatPhoneGet, formatPhoneSet } from './formatData';
 
-export const formatFormData = (formData) => {
-    const formatFormData = {};
+export const formatFormDataGet = (formData) => {
+    const formatFormDataGet = {};
 
     for (let i = 0, l = Object.keys(formData).length; i < l; i += 1) {
         const key = Object.keys(formData)[i];
 
         if (Object.prototype.hasOwnProperty.call(formData, key)) {
             if (key === 'celular' || key === 'telefone') {
-                formatFormData[key] = formData[key] ? formData[key].replace(/\D/g, '') : '';
+                formatFormDataGet[key] = formatPhoneGet(formData[key]);
             } else if (key === 'data_nascimento') {
-                formatFormData[key] = formData[key] ? formatDate(formData[key]) : '';
+                formatFormDataGet[key] = formatDateGet(formData[key]);
             } else {
-                formatFormData[key] = formData[key] == null ? '' : formData[key];
+                formatFormDataGet[key] = formData[key] == null ? '' : formData[key];
             }
         }
     }
 
-    return formatFormData;
+    return formatFormDataGet;
+};
+
+export const formatFormDataSet = (formData) => {
+    const formatFormDataSet = {};
+
+    for (let i = 0, l = Object.keys(formData).length; i < l; i += 1) {
+        const key = Object.keys(formData)[i];
+
+        if (Object.prototype.hasOwnProperty.call(formData, key)) {
+            if (key === 'celular' || key === 'telefone') {
+                formatFormDataSet[key] = formatPhoneSet(formData[key]);
+            } else if (key === 'data_nascimento') {
+                formatFormDataSet[key] = formatDateSet(formData[key]);
+            } else {
+                formatFormDataSet[key] = formData[key] == null ? '' : formData[key];
+            }
+        }
+    }
+
+    return formatFormDataSet;
 };

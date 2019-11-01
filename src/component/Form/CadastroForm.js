@@ -9,7 +9,7 @@ import { Context } from '../../store/context';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
-import { formatFormData } from '../../util/formatFormData';
+import { formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
@@ -47,7 +47,7 @@ const CadastroForm = ({ ...props }) => {
     const submitForm = (formData) => {
         const fetchData = async () => {
             try {
-                const result = await axios.post(apiUrlCadastro, formatFormData(formData), { headers: { 'Content-Type': 'application/json' } });
+                const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
                     setStateAuthTokenGlobal(result.data.token);
