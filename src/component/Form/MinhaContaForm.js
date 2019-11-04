@@ -4,6 +4,8 @@ import useForm from 'react-hook-form';
 
 import { apiUrlPerfil, defaultErrorMsg } from '../../config';
 
+import { useModalMessage } from '../../store/modalMessage/modalMessage';
+
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataGet, formatFormDataSet } from '../../util/formatFormData';
@@ -25,7 +27,7 @@ import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
     // ACTION
-    const [stateModalMessage, setStateModalMessage] = useState(false);
+    const [stateModalMessage, setStateModalMessage] = useModalMessage(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     // Valores inicias dos inputs
@@ -95,7 +97,9 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                 <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                     <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 5 }} py={{ d: 2, md: 4 }}>
-                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
+                                <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                                 <Label color="colorGray2" text="Nome completo" />

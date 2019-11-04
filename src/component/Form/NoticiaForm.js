@@ -9,7 +9,6 @@ import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
-import { BgImageLazyLoad } from '../LazyLoad/BgImageLazyLoad';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
@@ -97,25 +96,25 @@ const NoticiaForm = ({ ...props }) => {
                         </P>
                     </>
                 ) : (
-                    <>
-                        <P themeColor="light">Texto</P>
-                    </>
+                    <P themeColor="light">Texto.</P>
                 )}
             </Box>
 
             <Box overflow="hidden" width={stateRetornoForm ? '0' : { d: 1, sm: 1 / 2 }}>
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
-                    <Grid display="grid" gridAutoColumns="1fr" gridRowGap={2} p={{ d: 3, md: 5 }}>
-                        <Cell mb={3} width="100%">
+                    <Grid display="grid" gridRowGap={2} p={{ d: 3, md: 5 }}>
+                        <Cell mb={3}>
                             <Title3 fontWeight="600" mb={1} themeColor="dark">
                                 Solicite contato
                             </Title3>
                             <p>e comece a investir em seu futuro</p>
                         </Cell>
 
-                        <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                        <Cell>
+                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                        </Cell>
 
-                        <Cell mb={3} width="100%">
+                        <Cell mb={3}>
                             <InputValidation
                                 error={errors.nome}
                                 maxLength="50"
@@ -131,7 +130,7 @@ const NoticiaForm = ({ ...props }) => {
                             {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
+                        <Cell mb={3}>
                             <InputValidation
                                 error={errors.email}
                                 maxLength="50"
@@ -147,7 +146,7 @@ const NoticiaForm = ({ ...props }) => {
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
-                        <Cell mb={5} width="100%">
+                        <Cell mb={5}>
                             <InputMaskValidation
                                 error={errors.telefone}
                                 mask={customMaskRegex.phone}
@@ -163,7 +162,7 @@ const NoticiaForm = ({ ...props }) => {
                             {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}
                         </Cell>
 
-                        <Cell mb={3} width="100%">
+                        <Cell mb={3}>
                             <Button fontSize={{ d: 16, md: 18 }} height="70px" text="Quero Investir" typeButton="submit" width="100%" />
                         </Cell>
                     </Grid>

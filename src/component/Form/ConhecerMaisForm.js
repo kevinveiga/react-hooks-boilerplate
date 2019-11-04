@@ -67,7 +67,9 @@ const ConhecerMaisForm = ({ ...props }) => {
                 <Box overflow="hidden" width="100%">
                     <FormStyled onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
-                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            <Cell>
+                                <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            </Cell>
 
                             <Cell>
                                 <ConhecerMaisPartTitleStyled onClick={() => setStatePart(1)}>

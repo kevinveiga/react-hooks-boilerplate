@@ -82,9 +82,11 @@ const CadastroForm = ({ ...props }) => {
                 <Box overflow="hidden" width="100%">
                     <FormStyled onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
-                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            <Cell>
+                                <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            </Cell>
 
-                            <Cell mb={3} width="100%">
+                            <Cell mb={3}>
                                 <div>
                                     <InputValidation
                                         error={errors.nome}
@@ -103,7 +105,7 @@ const CadastroForm = ({ ...props }) => {
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                             </Cell>
 
-                            <Cell mb={3} width="100%">
+                            <Cell mb={3}>
                                 <div>
                                     <InputValidation
                                         error={errors.email}
@@ -122,7 +124,7 @@ const CadastroForm = ({ ...props }) => {
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                             </Cell>
 
-                            <Cell mb={3} width="100%">
+                            <Cell mb={3}>
                                 <div>
                                     <InputMaskValidation
                                         error={errors.telefone}
@@ -141,7 +143,7 @@ const CadastroForm = ({ ...props }) => {
                                 {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}
                             </Cell>
 
-                            <Cell mb={4} width="100%">
+                            <Cell mb={4}>
                                 <div>
                                     <InputValidation
                                         error={errors.password}
@@ -163,7 +165,7 @@ const CadastroForm = ({ ...props }) => {
                                 {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
                             </Cell>
 
-                            <Cell mb={4} width="100%">
+                            <Cell mb={4}>
                                 <div>
                                     <InputValidation
                                         error={errors.confirm_password}
@@ -185,11 +187,11 @@ const CadastroForm = ({ ...props }) => {
                                 {errors.confirm_password && <InvalidInputMessageStyled>{errors.confirm_password.message}</InvalidInputMessageStyled>}
                             </Cell>
 
-                            <Cell mb={3} width="100%">
+                            <Cell mb={3}>
                                 <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Cadastrar-se" typeButton="submit" width="100%" />
                             </Cell>
 
-                            <Cell mb={3} textAlign="center" width="100%">
+                            <Cell mb={3} textAlign="center">
                                 <span>Você já possui uma conta?</span>
 
                                 <LinkTo link="/login">
@@ -197,7 +199,7 @@ const CadastroForm = ({ ...props }) => {
                                 </LinkTo>
                             </Cell>
 
-                            <Cell mb={3} textAlign="center" width="100%">
+                            <Cell mb={3} textAlign="center">
                                 <P color="colorGray2" fontSize={14} themeColor="dark">
                                     Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Termos de serviço" /> e{' '}
                                     <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Política de privacidade" />.
