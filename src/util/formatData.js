@@ -22,16 +22,14 @@ export const formatDateSet = (date) => {
         return '';
     }
 
-    const newDate = new Date(date);
+    const formatDate = date.replace(/\D/g, '');
+    const match = formatDate.match(customRegex.date);
 
-    const day = newDate
-        .getDate()
-        .toString()
-        .padStart(2, '0');
-    const month = (newDate.getMonth() + 1).toString().padStart(2, '0');
-    const year = newDate.getFullYear();
+    if (match) {
+        return new Date(`${match[9]}/${match[4]}/${match[2]}`);
+    }
 
-    return `${day}/${month}/${year}`;
+    return '';
 };
 
 export const formatPhoneGet = (phone) => {
