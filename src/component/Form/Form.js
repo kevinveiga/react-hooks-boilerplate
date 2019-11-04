@@ -8,13 +8,13 @@ export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
     return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
 };
 
-export const InputCheckboxRadio = ({ ariaLabel, children, id, text, typeInput = 'checkbox', value = '', ...otherProps }) => {
+export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value = true, ...otherProps }) => {
     const acessibility = ariaLabel || text;
     const content = children || text;
 
     return (
         <>
-            <InputAlternateStyled defaultValue={value} id={id} type={typeInput} {...otherProps} />
+            <InputAlternateStyled defaultChecked={checked} defaultValue={value} id={id} type={typeInput} {...otherProps} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
                 {content}
