@@ -1,9 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
+
+import { CadastroContext } from '../../../store/cadastro/cadastroContext';
 
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -17,13 +19,17 @@ import { variable } from '../../../style/variable';
 
 // LAZY
 const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
+const ConhecerMaisForm = lazy(() => import('../../Form/ConhecerMaisForm'));
 
 export const Cadastro = () => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
+    // ACTION
+    const [stateConhecerMais, setStateConhecerMais] = useState(true);
+
     return (
-        <>
+        <CadastroContext.Provider value={setStateConhecerMais}>
             <Helmet>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
@@ -53,9 +59,15 @@ export const Cadastro = () => {
                                 <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
                             </Box>
 
-                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
-                            </Suspense>
+                            {!stateConhecerMais ? (
+                                <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
+                                    <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
+                                </Suspense>
+                            ) : (
+                                <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
+                                    <ConhecerMaisForm obj={{ colorLine: 'colorPrimary' }} />
+                                </Suspense>
+                            )}
                         </Container>
                     </Box>
 
@@ -68,6 +80,6 @@ export const Cadastro = () => {
             </Main>
 
             <FooterAlternate />
-        </>
+        </CadastroContext.Provider>
     );
 };
