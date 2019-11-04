@@ -1,5 +1,39 @@
 import { customRegex } from './customRegex';
 
+export const formatBooleanSet = (value) => {
+    switch (value) {
+        case 'true':
+            return 1;
+        case 'false':
+            return 0;
+        default:
+            return value;
+    }
+};
+
+export const formatCepGet = (cep) => {
+    if (!cep) {
+        return '';
+    }
+
+    const formatCep = cep.replace(/\D/g, '');
+    const match = formatCep.match(customRegex.cep);
+
+    if (match) {
+        return `${match[1]}-${match[2]}`;
+    }
+
+    return '';
+};
+
+export const formatCepSet = (cep) => {
+    if (!cep) {
+        return '';
+    }
+
+    return cep.replace(/\D/g, '');
+};
+
 export const formatDateGet = (date) => {
     if (!date) {
         return '';
@@ -53,27 +87,4 @@ export const formatPhoneSet = (phone) => {
     }
 
     return phone.replace(/\D/g, '');
-};
-
-export const formatCepGet = (cep) => {
-    if (!cep) {
-        return '';
-    }
-
-    const formatCep = cep.replace(/\D/g, '');
-    const match = formatCep.match(customRegex.cep);
-
-    if (match) {
-        return `${match[1]}-${match[2]}`;
-    }
-
-    return '';
-};
-
-export const formatCepSet = (cep) => {
-    if (!cep) {
-        return '';
-    }
-
-    return cep.replace(/\D/g, '');
 };

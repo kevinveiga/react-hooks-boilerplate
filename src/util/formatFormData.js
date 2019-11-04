@@ -36,7 +36,7 @@ export const formatFormDataSet = (formData) => {
             } else if (key === 'endereco_cep') {
                 formatFormDataSet[key] = formatData.formatCepSet(formData[key]);
             } else {
-                formatFormDataSet[key] = formData[key] == null ? '' : formData[key];
+                formatFormDataSet[key] = formData[key] == null ? '' : formatData.formatBooleanSet(formData[key]);
             }
         }
     }
