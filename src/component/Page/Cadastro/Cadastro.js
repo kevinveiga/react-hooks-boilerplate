@@ -1,11 +1,9 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
-
-import { CadastroContext } from '../../../store/cadastro/cadastroContext';
 
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -19,17 +17,13 @@ import { variable } from '../../../style/variable';
 
 // LAZY
 const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
-const ConhecerMaisForm = lazy(() => import('../../Form/ConhecerMaisForm'));
 
 export const Cadastro = () => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
-    // ACTION
-    const [stateConhecerMais, setStateConhecerMais] = useState(false);
-
     return (
-        <CadastroContext.Provider value={setStateConhecerMais}>
+        <>
             <Helmet>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
@@ -38,8 +32,6 @@ export const Cadastro = () => {
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.footerAlternateHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
-                        <BgImageLazyLoad overlayColor="colorBlackTransparent3" url="https://picsum.photos/id/1011/1024/768" />
-
                         <Box p={4} width="100%">
                             <P align="right" fontSize="24px" mb={4} textAlign="right" themeColor="light">
                                 Aqui vai uma super frase de
@@ -57,15 +49,13 @@ export const Cadastro = () => {
 
                     <Box width={{ d: '100%', lg: 3 / 7 }}>
                         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                            {!stateConhecerMais ? (
-                                <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                    <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
-                                </Suspense>
-                            ) : (
-                                <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                    <ConhecerMaisForm obj={{ colorLine: 'colorPrimary' }} />
-                                </Suspense>
-                            )}
+                            <Box mb={{ d: 4, md: '75px' }} mt={{ d: 0, lg: 4 }} textAlign="center">
+                                <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
+                            </Box>
+
+                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
+                                <CadastroForm obj={{ colorLine: 'colorPrimary' }} />
+                            </Suspense>
                         </Container>
                     </Box>
 
@@ -78,6 +68,6 @@ export const Cadastro = () => {
             </Main>
 
             <FooterAlternate />
-        </CadastroContext.Provider>
+        </>
     );
 };
