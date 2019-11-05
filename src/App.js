@@ -7,14 +7,16 @@ import { apiUrlConfiguracoes } from './config';
 
 import { useSocialApi } from './service/social';
 
-import { Context } from './store/context';
 import { useAuth } from './store/auth/auth';
+import { Context } from './store/context';
+import { useModalMessage } from './store/modalMessage/modalMessage';
 
 import { Router } from './router';
 
 import { Footer } from './component/Footer/Footer';
 import { Header } from './component/Header/Header';
 import { Loader } from './component/Loader/Loader';
+import { ModalMessage } from './component/Modal/ModalMessage';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
@@ -28,17 +30,19 @@ export const App = () => {
     const [stateHideFooter, setStateHideFooter] = useState(false);
     const [stateHideHeader, setStateHideHeader] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
+    const [stateModalMessage, setStateModalMessage] = useModalMessage(false);
 
     return (
         <ThemeProvider theme={theme}>
             <Context.Provider
                 value={{
+                    stateAuthTokenGlobal: stateAuthToken,
+                    setStateAuthTokenGlobal: setStateAuthToken,
+                    stateSocialGlobal: stateSocial.data,
                     setStateHideFooterGlobal: setStateHideFooter,
                     setStateHideHeaderGlobal: setStateHideHeader,
                     setStateLoaderGlobal: setStateLoader,
-                    stateAuthTokenGlobal: stateAuthToken,
-                    setStateAuthTokenGlobal: setStateAuthToken,
-                    stateSocialGlobal: stateSocial.data
+                    setStateModalMessageGlobal: setStateModalMessage
                 }}
             >
                 <Normalize />
@@ -53,6 +57,7 @@ export const App = () => {
                         <Header hide={stateHideHeader} />
                         <Router />
                         <Footer hide={stateHideFooter} />
+                        <ModalMessage text={stateModalMessage} />
                     </BrowserRouter>
                 </HelmetProvider>
             </Context.Provider>

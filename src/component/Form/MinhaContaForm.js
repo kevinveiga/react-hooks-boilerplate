@@ -1,10 +1,10 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
 import { apiUrlPerfil, defaultErrorMsg } from '../../config';
 
-import { useModalMessage } from '../../store/modalMessage/modalMessage';
+import { Context } from '../../store/context';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -14,7 +14,6 @@ import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
 import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
-import { ModalMessage } from '../Modal/ModalMessage';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
 
@@ -26,8 +25,10 @@ import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
+    // CONTEXT
+    const { setStateModalMessageGlobal } = useContext(Context);
+
     // ACTION
-    const [stateModalMessage, setStateModalMessage] = useModalMessage(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     // Valores inicias dos inputs
@@ -64,7 +65,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateModalMessage(true);
+                    setStateModalMessageGlobal('Dados salvos com sucesso.');
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error(result);
@@ -83,8 +84,8 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
 
     return (
         <>
-            <Flex display="flex" flexWrap="wrap">
-                <Box height="150px" mb={4} width="150px">
+            <Flex display="flex" flexWrap="wrap" justifyContent="center">
+                {/* <Box height="150px" mb={4} width="150px">
                     <ImageCircleContainer>
                         <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
                     </ImageCircleContainer>
@@ -92,7 +93,7 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                     <InputFile id="foto" name="foto">
                         <Svg fill="colorWhite" height="20px" name="svg-camera" />
                     </InputFile>
-                </Box>
+                </Box> */}
 
                 <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                     <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
@@ -360,7 +361,15 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                     Notificação de e-mail
                                 </P>
 
-                                <InputCheckboxRadio color="colorGray2" id="receber_avisos_descontos_de_cursos" name="receber_avisos_descontos_de_cursos">
+                                <InputCheckboxRadio
+                                    color="colorGray2"
+                                    id="receber_avisos_descontos_de_cursos"
+                                    name="receber_avisos_descontos_de_cursos"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        setValue(input.name, input.checked);
+                                    }}
+                                >
                                     <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                                     <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
@@ -368,7 +377,15 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                                     </Span>
                                 </InputCheckboxRadio>
 
-                                <InputCheckboxRadio color="colorGray2" id="receber_curadoria_conteudos_noticias" name="receber_curadoria_conteudos_noticias">
+                                <InputCheckboxRadio
+                                    color="colorGray2"
+                                    id="receber_curadoria_conteudos_noticias"
+                                    name="receber_curadoria_conteudos_noticias"
+                                    onChange={async (e) => {
+                                        const input = e.target;
+                                        setValue(input.name, input.checked);
+                                    }}
+                                >
                                     <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                                     <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
@@ -384,8 +401,6 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
                     </FormStyled>
                 </Box>
             </Flex>
-
-            <ModalMessage visible={stateModalMessage}>Dados salvos com sucesso.</ModalMessage>
         </>
     );
 };

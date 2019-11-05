@@ -28,6 +28,7 @@ const ConhecerMaisForm = ({ ...props }) => {
         register({ name: 'data_nascimento' }, { ...customValidate.date });
         register({ name: 'endereco_cidade' });
         register({ name: 'endereco_estado' });
+        register({ name: 'sexo' });
     }, [register]);
 
     // FORM
@@ -37,9 +38,6 @@ const ConhecerMaisForm = ({ ...props }) => {
     });
 
     const submitForm = (formData) => {
-        console.log('A: ', formData);
-        console.log('B: ', formatFormDataSet(formData));
-
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
@@ -88,13 +86,33 @@ const ConhecerMaisForm = ({ ...props }) => {
                                 </ConhecerMaisPartTitleStyled>
 
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
-                                    <ConhecerMaisRadioStyled id="sexo_masculino" name="sexo" type="radio" />
+                                    <ConhecerMaisRadioStyled
+                                        defaultChecked={false}
+                                        defaultValue={true}
+                                        id="sexo_masculino"
+                                        name="sexo"
+                                        onChange={async (e) => {
+                                            const input = e.target;
+                                            setValue(input.name, input.checked);
+                                        }}
+                                        type="radio"
+                                    />
 
                                     <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="600" px={{ d: 3, md: 4 }} py={2}>
                                         Masculino
                                     </Label>
 
-                                    <ConhecerMaisRadioStyled id="sexo_feminino" name="sexo" type="radio" />
+                                    <ConhecerMaisRadioStyled
+                                        defaultChecked={false}
+                                        defaultValue={true}
+                                        id="sexo_feminino"
+                                        name="sexo"
+                                        onChange={async (e) => {
+                                            const input = e.target;
+                                            setValue(input.name, input.checked);
+                                        }}
+                                        type="radio"
+                                    />
 
                                     <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="600" ml={4} px={{ d: 3, md: 4 }} py={2}>
                                         Feminino

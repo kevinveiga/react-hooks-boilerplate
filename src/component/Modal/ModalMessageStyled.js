@@ -15,8 +15,8 @@ export const ModalMessageStyled = styled.div`
     transition: opacity ${variable.transitionSlow}, right ${variable.transitionSlow};
     z-index: -1;
 
-    ${({ visible }) =>
-        visible &&
+    ${({ text }) =>
+        text &&
         css`
             opacity: 0.8;
             right: 25px;
