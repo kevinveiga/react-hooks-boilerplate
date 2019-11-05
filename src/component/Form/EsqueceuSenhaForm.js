@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import useForm from 'react-hook-form';
 
 import { apiUrlLogin, defaultErrorMsg } from '../../config';
@@ -11,25 +11,18 @@ import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
-import { LinkTo } from '../Link/LinkTo';
-import { Svg } from '../Svg/Svg';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
-import { P } from '../../style/text';
 
-const LoginForm = ({ location, ...otherProps }) => {
+const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
     // CONTEXT
     const { setStateAuthTokenGlobal } = useContext(Context);
 
-    // ACTION
-    const [stateViewPassword, setStateViewPassword] = useState(false);
-
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
     }, [register]);
 
     // FORM
@@ -90,36 +83,8 @@ const LoginForm = ({ location, ...otherProps }) => {
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
-                        <Cell mb={4}>
-                            <div>
-                                <InputValidation
-                                    error={errors.password}
-                                    label="Senha"
-                                    maxLength="11"
-                                    name="password"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
-                                    }}
-                                    touched={formState.touched}
-                                    type={stateViewPassword ? 'text' : 'password'}
-                                    {...otherProps}
-                                />
-
-                                <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
-                            </div>
-
-                            {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
-                        </Cell>
-
                         <Cell mb={3}>
-                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Acessar" typeButton="submit" width="100%" />
-                        </Cell>
-
-                        <Cell mb={3} textAlign="center">
-                            <P color="colorGray2" fontSize={14} themeColor="dark">
-                                <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/esqueceu-senha" text="Esqueceu sua senha?" />
-                            </P>
+                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" m="auto" text="Enviar" typeButton="submit" width="50%" />
                         </Cell>
                     </Grid>
                 </FormStyled>
@@ -128,4 +93,4 @@ const LoginForm = ({ location, ...otherProps }) => {
     );
 };
 
-export default LoginForm;
+export default EsqueceuSenhaForm;

@@ -15,9 +15,9 @@ import { P, Title2, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
-const LoginForm = lazy(() => import('../../Form/LoginForm'));
+const EsqueceuSenhaForm = lazy(() => import('../../Form/EsqueceuSenhaForm'));
 
-export const Login = ({ location }) => {
+export const EsqueceuSenha = ({ location }) => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
@@ -53,17 +53,13 @@ export const Login = ({ location }) => {
                             </Box>
 
                             <Title2 textAlign="center" themeColor="dark">
-                                Acesse a sala de aula
+                                Esqueceu a senha?
                                 <br />
-                                da Liberta
+                                Receba uma nova por e-mail
                             </Title2>
 
-                            <P color="colorGray2" fontSize={14} mt="30px" textAlign="center" themeColor="dark">
-                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/cadastro" text="Se cadastre aqui." />
-                            </P>
-
                             <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
+                                <EsqueceuSenhaForm location={location} obj={{ colorLine: 'colorPrimary' }} />
                             </Suspense>
                         </Container>
                     </Box>
