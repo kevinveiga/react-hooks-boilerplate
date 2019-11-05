@@ -38,6 +38,18 @@ export const useAuth = () => {
     useEffect(() => {
         window.localStorage.setItem('token', JSON.stringify(stateAuthToken));
 
+        if (!stateAuthToken) {
+            if ('serviceWorker' in navigator) {
+                caches.keys().then((cacheNames) => {
+                    for (let i = 0, l = cacheNames.length; i < l; i += 1) {
+                        if (cacheNames[i] === 'api-cache') {
+                            caches.delete(cacheNames[i]);
+                        }
+                    }
+                });
+            }
+        }
+
         authInterceptorRequest();
         authInterceptorResponse();
 
