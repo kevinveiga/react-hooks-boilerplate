@@ -4,6 +4,7 @@
 // Detailed logging is very useful during development
 workbox.setConfig({ debug: false });
 
+// Fix precache error
 workbox.precaching.cleanupOutdatedCaches();
 
 // Updating SW lifecycle to update the app after user triggered refresh
