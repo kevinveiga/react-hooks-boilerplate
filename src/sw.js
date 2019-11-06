@@ -4,6 +4,8 @@
 // Detailed logging is very useful during development
 workbox.setConfig({ debug: false });
 
+workbox.precaching.cleanupOutdatedCaches();
+
 // Updating SW lifecycle to update the app after user triggered refresh
 workbox.core.clientsClaim();
 
@@ -49,9 +51,9 @@ workbox.routing.registerRoute(
 );
 
 // APP
-// Add same origin, except in precache and other files
+// Add same origin, except in precache, image-cache or image-cross-origin
 workbox.routing.registerRoute(
-    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
+    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|png|svg|ttf|webp|woff|woff2)).*$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'app-cache',
         plugins: [
@@ -62,46 +64,10 @@ workbox.routing.registerRoute(
     })
 );
 
-// CSS SAME-ORIGIN
-workbox.routing.registerRoute(
-    new RegExp('\\/(?:.+(css))$'),
-    new workbox.strategies.CacheFirst({
-        cacheName: 'css-cache',
-        plugins: [
-            new workbox.cacheableResponse.Plugin({
-                statuses: [0, 200]
-            }),
-            new workbox.expiration.Plugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 30,
-                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
-            })
-        ]
-    })
-);
-
-// FONT SAME-ORIGIN
-workbox.routing.registerRoute(
-    new RegExp('\\/(?:.+(eot|ttf|woff|woff2))$'),
-    new workbox.strategies.CacheFirst({
-        cacheName: 'font-cache',
-        plugins: [
-            new workbox.cacheableResponse.Plugin({
-                statuses: [0, 200]
-            }),
-            new workbox.expiration.Plugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 30,
-                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
-            })
-        ]
-    })
-);
-
 // IMG SAME-ORIGIN
-// Add same origin image, except in cross-origin app/uploads folder
+// Add same origin, except in asset/image folder or cross-origin app/uploads folder
 workbox.routing.registerRoute(
-    new RegExp('^(?!.+(/app/uploads))(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
+    new RegExp('^(?!.+(/app/uploads|/asset/image))(?:.+(gif|jpg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
         plugins: [
@@ -119,27 +85,9 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\..+/(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
+    new RegExp('.+\\.(?:.+(gif|jpg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cross-cache',
-        plugins: [
-            new workbox.cacheableResponse.Plugin({
-                statuses: [0, 200]
-            }),
-            new workbox.expiration.Plugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 30,
-                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
-            })
-        ]
-    })
-);
-
-// JS SAME-ORIGIN
-workbox.routing.registerRoute(
-    new RegExp('\\/(?:.+(js))$'),
-    new workbox.strategies.CacheFirst({
-        cacheName: 'js-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200]
