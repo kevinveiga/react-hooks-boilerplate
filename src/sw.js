@@ -11,27 +11,47 @@ workbox.core.clientsClaim();
 // workbox.core.skipWaiting();
 
 // API
-// workbox.routing.registerRoute(
-//     new RegExp('.+/api/v1/.+$'),
-//     new workbox.strategies.StaleWhileRevalidate({
-//         cacheName: 'api-cache',
-//         plugins: [
-//             new workbox.cacheableResponse.Plugin({
-//                 statuses: [0, 200]
-//             }),
-//             new workbox.expiration.Plugin({
-//                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-//                 maxEntries: 30,
-//                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
-//             })
-//         ]
-//     })
-// );
+// Add all api, except perfil api
+workbox.routing.registerRoute(
+    new RegExp('.+/api/v1/(?!(perfil$)).+$'),
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'api-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// API PERFIL
+// Add only perfil api
+workbox.routing.registerRoute(
+    new RegExp('.+/api/v1/(?:(perfil))$'),
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'api-cache-perfil',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
 
 // APP
-// Add same origin, except in precache, image-cache or image-cross-origin
+// Add same origin, except in precache and other files
 workbox.routing.registerRoute(
-    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|png|svg|ttf|webp|woff|woff2)).*$'),
+    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'app-cache',
         plugins: [
@@ -42,10 +62,46 @@ workbox.routing.registerRoute(
     })
 );
 
-// IMG SAME-ORIGIN
-// Add same origin, except in asset/image folder or cross-origin app/uploads folder
+// CSS SAME-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('^(?!.+(/app/uploads|/asset/image))(?:.+(gif|jpg|png|svg|webp))$'),
+    new RegExp('\\/(?:.+(css))$'),
+    new workbox.strategies.CacheFirst({
+        cacheName: 'css-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// FONT SAME-ORIGIN
+workbox.routing.registerRoute(
+    new RegExp('\\/(?:.+(eot|ttf|woff|woff2))$'),
+    new workbox.strategies.CacheFirst({
+        cacheName: 'font-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// IMG SAME-ORIGIN
+// Add same origin image, except in cross-origin app/uploads folder
+workbox.routing.registerRoute(
+    new RegExp('^(?!.+(/app/uploads))(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
         plugins: [
@@ -63,9 +119,27 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\.(?:.+(gif|jpg|png|svg|webp))$'),
+    new RegExp('.+\\..+/(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cross-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// JS SAME-ORIGIN
+workbox.routing.registerRoute(
+    new RegExp('\\/(?:.+(js))$'),
+    new workbox.strategies.CacheFirst({
+        cacheName: 'js-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200]
@@ -87,13 +161,13 @@ workbox.routing.registerRoute(
 //         plugins: [
 //             new workbox.cacheableResponse.Plugin({
 //                 headers: {
-//                     'X-Is-Cacheable': true
+//                     'X-Is-Cacheable': 'true'
 //                 },
 //                 statuses: [0, 200]
 //             }),
 //             new workbox.expiration.Plugin({
 //                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-//                 maxEntries: 30,
+//                 maxEntries: 15,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
 //         ]

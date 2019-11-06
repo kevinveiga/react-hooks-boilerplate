@@ -98,9 +98,11 @@ module.exports = {
         maxEntrypointSize: 500000 // int (in bytes)
     },
     plugins: [
+        // Precache on the exclude property was removed because of problems with server
+        // To add it back instead of exclude, use include
         new InjectManifest({
             importsDirectory: 'asset',
-            include: [/(.css)$/, /(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
+            exclude: [/(.css)$/, /(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`,
             templatedURLs: {
