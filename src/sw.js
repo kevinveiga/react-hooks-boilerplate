@@ -86,7 +86,7 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\.(?:.+(gif|jpg|png|svg|webp))$'),
+    new RegExp('.+\\..+/(?:.+(gif|jpg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cross-cache',
         plugins: [

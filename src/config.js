@@ -18,4 +18,6 @@ export const apiUrlNoticias = `${apiUrl}/noticias`;
 
 export const apiUrlPaywall = `${apiUrl}/paywall`;
 
+export const apiUrlPerfil = `${apiUrl}/perfil`;
+
 export const defaultErrorMsg = 'Erro desconhecido';

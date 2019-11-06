@@ -24,17 +24,12 @@ import { Cell, Grid } from '../../style/grid';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
 
-export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
+export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps }) => {
     // CONTEXT
     const { setStateModalMessageGlobal } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-
-    // Valores inicias dos inputs
-    useEffect(() => {
-        setFormValue(formatFormDataGet(data), formId);
-    }, [data, formId]);
 
     useEffect(() => {
         register({ name: 'data_nascimento' }, { ...customValidate.date });
@@ -59,12 +54,18 @@ export const MinhaContaForm = ({ data, formId, ...otherProps }) => {
         mode: 'onChange'
     });
 
+    // Valores inicias dos inputs
+    useEffect(() => {
+        setFormValue(formatFormDataGet(data), formId);
+    }, [data, formId]);
+
     const submitForm = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStatePerfilData({ update: true, url: apiUrlPerfil });
                     setStateModalMessageGlobal('Dados salvos com sucesso.');
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
