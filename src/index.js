@@ -43,6 +43,10 @@ const serviceWorkerRegister = () => {
 
                     console.info(`%c A new version of ${updateURL} is available`, 'color: #00bbee;');
                 }
+
+                if (e.data && e.data.type === 'SKIP_WAITING') {
+                    wb.skipWaiting();
+                }
             });
 
             wb.addEventListener('redundant', (e) => {
@@ -56,7 +60,7 @@ const serviceWorkerRegister = () => {
                     window.location.reload();
                 });
 
-                wb.messageSW({ type: 'SKYP_WAITING' });
+                wb.messageSW({ type: 'SKIP_WAITING' });
             });
 
             wb.register();
