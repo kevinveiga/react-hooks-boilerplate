@@ -36,8 +36,6 @@ const serviceWorkerRegister = () => {
             });
 
             wb.addEventListener('message', (e) => {
-                console.info('message: ', e);
-
                 if (e.data.type === 'CACHE_UPDATE') {
                     const { updateURL } = e.data.payload;
 
