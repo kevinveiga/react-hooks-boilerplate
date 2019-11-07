@@ -64,50 +64,6 @@ const serviceWorkerRegister = () => {
             });
 
             wb.register();
-
-            // navigator.serviceWorker
-            //     .register('/sw.js')
-            //     .then((registration) => {
-            //         console.info('%c Service Worker registered: ', 'color: #00bbee;', registration);
-
-            //         registration.addEventListener('updatefound', (e) => {
-            //             const installingServiceWorker = e.currentTarget.installing;
-
-            //             console.log('updatefound: ', e);
-
-            //             installingServiceWorker.addEventListener('statechange', (e) => {
-            //                 console.log('statechange: ', e);
-
-            //                 switch (e.currentTarget.state) {
-            //                     case 'installed':
-            //                         console.info('%c The installing Service Worker state is installed', 'color: #f39c12;');
-
-            //                         break;
-            //                     case 'installing':
-            //                         console.info('%c The installing Service Worker state is installing', 'color: #f39c12;');
-
-            //                         break;
-            //                     case 'activated':
-            //                         console.info('%c The installing Service Worker state is activated', 'color: #f39c12;');
-
-            //                         break;
-            //                     case 'activating':
-            //                         console.info('%c The installing Service Worker state is activating', 'color: #f39c12;');
-
-            //                         break;
-            //                     case 'redundant':
-            //                         console.info('%c The installing Service Worker state is redundant', 'color: #f39c12;');
-
-            //                         break;
-            //                     default:
-            //                         console.info('%c The installing Service Worker state is undefined', 'color: #f39c12;');
-            //                 }
-            //             });
-            //         });
-            //     })
-            //     .catch((registrationError) => {
-            //         console.error('%c Service Worker registration failed: ', 'color: #dc4b39;', registrationError);
-            //     });
         });
     } else {
         console.info('%c Navegador não suporta Service Worker', 'color: #dc4b39;');
