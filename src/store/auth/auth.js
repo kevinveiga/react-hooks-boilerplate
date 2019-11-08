@@ -24,9 +24,7 @@ export const useAuth = () => {
 
     const authInterceptorResponse = useCallback(() => {
         axios.interceptors.response.use(null, (error) => {
-            if (error.status === 401) {
-                setStateAuthToken(null);
-            }
+            console.error('Interceptors error: ', error);
 
             return Promise.reject(error);
         });
