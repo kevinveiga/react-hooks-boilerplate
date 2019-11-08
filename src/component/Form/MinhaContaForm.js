@@ -69,13 +69,13 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     setStateModalMessageGlobal('Dados salvos com sucesso.');
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
-                    console.error(result);
+                    console.error('result: ', result);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     setError('invalid', 'notMatch', responseError(error.response.data.errors));
                 } else {
-                    console.error(error);
+                    console.error('error: ', error);
                 }
             }
         };

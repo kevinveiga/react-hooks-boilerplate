@@ -48,13 +48,13 @@ const LoginForm = ({ location, ...otherProps }) => {
                     window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
-                    console.error(result);
+                    console.error('result: ', result);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     setError('invalid', 'notMatch', responseError(error.response.data.errors));
                 } else {
-                    console.error(error);
+                    console.error('error: ', error);
                 }
             }
         };

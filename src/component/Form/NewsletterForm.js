@@ -39,10 +39,10 @@ export const NewsletterForm = ({ ...props }) => {
                     setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
-                    console.error(result);
+                    console.error('result: ', result);
                 }
             } catch (error) {
-                console.error(error);
+                console.error('error: ', error);
             }
         };
 
