@@ -47,11 +47,11 @@ export const Home = ({ location }) => {
     const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
     const stateVideos = useVideoApi(`${apiUrlHome}/videos`, {});
 
-    const destaquesLength = stateDestaques.data.length;
-    const noticiasLength = stateNoticias.data.length;
-    const parceirosLength = stateParceiros.data.length;
-    const superDestaquesLength = stateSuperDestaques.data.length;
-    const videosLength = stateVideos.data.length;
+    const destaquesLength = stateDestaques.data && stateDestaques.data.length;
+    const noticiasLength = stateNoticias.data && stateNoticias.data.length;
+    const parceirosLength = stateParceiros.data && stateParceiros.data.length;
+    const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
+    const videosLength = stateVideos.data && stateVideos.data.length;
 
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0 && videosLength > 0;

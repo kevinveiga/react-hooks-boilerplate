@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { apiUrlNoticias } from '../../../config';
+import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoCategoriaApi, useCursoCategoriasApi } from '../../../service/curso';
 import { useSeoApi } from '../../../service/seo';
@@ -33,15 +33,14 @@ import { variable } from '../../../style/variable';
 
 export const MinhaContaCursos = ({ ...breadcrumb }) => {
     // API
-    const [stateCursos] = useCursoApi(apiUrlNoticias, {});
+    const [stateCursos] = useCursoApi(apiUrlCursos, {});
     const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi(null, {});
-    const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlNoticias}/categorias`, {});
-    const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('mais-acessados');
+    const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
 
-    const stateSeo = useSeoApi(`${apiUrlNoticias}/seo`, {});
+    const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
 
-    const cursosLength = stateCursos.data.length;
-    const cursosCategoriasLength = stateCursosCategorias.data.length;
+    const cursosLength = stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
+    const cursosCategoriasLength = stateCursosCategorias.data.data && stateCursosCategorias.data.data.length;
 
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursosLength > 0 && cursosCategoriasLength > 0;
@@ -50,23 +49,24 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
     const { setStateLoaderGlobal } = useContext(Context);
 
     // ACTION
+    const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('mais-vistos');
     const windowWidth = useWindowWidth();
 
     const handleCursoCategoriaChange = (e) => {
-        let apiValue = `${apiUrlNoticias}/categoria/${e.target.value}`;
+        let apiValue = `${apiUrlCursos}/categoria/${e.target.value}`;
 
-        if (e.target.value === 'mais-acessados') {
-            apiValue = apiUrlNoticias;
+        if (e.target.value === 'mais-vistos') {
+            apiValue = apiUrlCursos;
         }
 
         setStateCursosCategoriaData({ page: 1, url: apiValue });
         setStateCursosCategoriaSelected(e.target.value);
     };
 
-    // // Scroll para o topo
-    // if (!stateCursosCategoria.data) {
-    //     scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
-    // }
+    // Scroll para o topo
+    if (!stateCursosCategoria.data) {
+        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+    }
 
     useEffect(() => {
         if (stateCursos.isLoading || stateCursosCategoria.isLoading) {
@@ -97,25 +97,13 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
 
                             <Flex display="flex" flexWrap="wrap">
                                 <Tab group="tab-group-course" total={4}>
-                                    <input
-                                        checked={stateCursosCategoriaSelected === 'mais-acessados'}
-                                        id="tab-id-mais-acessados"
-                                        name="tab-group-course"
-                                        onChange={(e) => {
-                                            e.preventDefault();
-                                            handleCursoCategoriaChange(e);
-                                        }}
-                                        type="radio"
-                                        value="mais-acessados"
-                                    />
-
                                     {cursosCategoriasLength > 0 &&
-                                        stateCursosCategorias.data.map((categoria) => {
+                                        stateCursosCategorias.data.data.map((categoria) => {
                                             return (
                                                 <input
                                                     checked={stateCursosCategoriaSelected === categoria.slug}
                                                     id={`tab-id-course-${categoria.slug}`}
-                                                    key={categoria.slug}
+                                                    key={`${categoria.slug}-input`}
                                                     name="tab-group-course"
                                                     onChange={(e) => {
                                                         e.preventDefault();
@@ -134,12 +122,10 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                 handleCursoCategoriaChange(e);
                                             }}
                                         >
-                                            <option value="mais-acessados">Últimas</option>
-
                                             {cursosCategoriasLength > 0 &&
-                                                stateCursosCategorias.data.map((categoria) => {
+                                                stateCursosCategorias.data.data.map((categoria) => {
                                                     return (
-                                                        <option key={categoria.slug} value={categoria.slug}>
+                                                        <option key={`${categoria.slug}-option`} value={categoria.slug}>
                                                             {categoria.title}
                                                         </option>
                                                     );
@@ -150,52 +136,51 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                     </TabSelect>
 
                                     <TabsContent>
-                                        <TabContent>
-                                            <Flex display="flex" flexWrap="wrap">
-                                                {cursosLength > 0 &&
-                                                    stateCursos.data.map((categoriaMaisAcessadas, i) => {
-                                                        return (
-                                                            i > 0 &&
-                                                            (categoriaMaisAcessadas &&
-                                                                categoriaMaisAcessadas.posts.data.map((curso) => {
+                                        {cursosLength > 0 &&
+                                            stateCursos.data &&
+                                            Object.keys(stateCursos.data.data).map((key) => {
+                                                const categoria = stateCursos.data.data[key];
+
+                                                return (
+                                                    <TabContent key={key}>
+                                                        <Flex display="flex" flexWrap="wrap">
+                                                            {categoria &&
+                                                                categoria.data.map((curso) => {
                                                                     return (
                                                                         <Box key={curso.id} mb={5} width="100%">
                                                                             <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.slug}`} width="100%">
-                                                                                <ListBox color={categoriaMaisAcessadas.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                                <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                                     <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                         <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
                                                                                             <BgImageLazyLoad key={curso.id} url={curso.thumbnail && curso.thumbnail.attachment.url} />
 
-                                                                                            <ListTag>{categoriaMaisAcessadas.title}</ListTag>
+                                                                                            <ListTag>{curso.modalidade}</ListTag>
                                                                                         </Box>
 
                                                                                         <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
-                                                                                            <Box width="100%">
+                                                                                            <Box maxHeight="300px" mb={4} overflowY="hidden" width="100%">
                                                                                                 <ListTitle mb={3}>{curso.title}</ListTitle>
 
-                                                                                                <p>
-                                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                                                                                    tempor incididunt ut labore et dolore magna aliqua.
-                                                                                                </p>
+                                                                                                <p>{curso.content}</p>
                                                                                             </Box>
 
                                                                                             <Box width="100%">
                                                                                                 <Svg fill="colorSecondary" height="13px" name="svg-time" />
 
                                                                                                 <ListTime ml={1} mr={3}>
-                                                                                                    30 min
+                                                                                                    {curso.carga_horaria}
                                                                                                 </ListTime>
 
                                                                                                 <Svg fill="colorSecondary" height="14px" name="svg-level" />
 
-                                                                                                <ListLevel ml={1}>Iniciante</ListLevel>
+                                                                                                <ListLevel ml={1}>{curso.nivel}</ListLevel>
                                                                                             </Box>
                                                                                         </Box>
                                                                                     </Box>
 
                                                                                     <Box width="100%">
                                                                                         <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={30} themeColor="light">
-                                                                                            <Box mb={{ d: 2, md: 0 }} width="170px">
+                                                                                            <Box width="170px">
                                                                                                 <Span fontSize="16px" fontWeight="600" themeColor="light">
                                                                                                     PROGRESSO {30}%
                                                                                                 </Span>
@@ -210,83 +195,15 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                             </LinkTo>
                                                                         </Box>
                                                                     );
-                                                                }))
-                                                        );
-                                                    })}
-                                            </Flex>
-                                        </TabContent>
+                                                                })}
 
-                                        {cursosLength > 0 &&
-                                            stateCursos.data.map((categoria, i) => {
-                                                return (
-                                                    i > 0 && (
-                                                        <TabContent key={categoria.slug}>
-                                                            <Flex display="flex" flexWrap="wrap">
-                                                                {stateCursosCategoria.data &&
-                                                                    stateCursosCategoria.data.data &&
-                                                                    stateCursosCategoria.data.data.map((curso) => {
-                                                                        return (
-                                                                            <Box key={curso.id} mb={5} width="100%">
-                                                                                <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.slug}`} width="100%">
-                                                                                    <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
-                                                                                        <Box display={{ d: 'block', md: 'flex' }} width="100%">
-                                                                                            <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
-                                                                                                <BgImageLazyLoad key={curso.id} url={curso.thumbnail && curso.thumbnail.attachment.url} />
-
-                                                                                                <ListTag>{categoria.title}</ListTag>
-                                                                                            </Box>
-
-                                                                                            <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
-                                                                                                <Box width="100%">
-                                                                                                    <ListTitle mb={3}>{curso.title}</ListTitle>
-
-                                                                                                    <p>
-                                                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                                                                                        tempor incididunt ut labore et dolore magna aliqua.
-                                                                                                    </p>
-                                                                                                </Box>
-
-                                                                                                <Box width="100%">
-                                                                                                    <Svg fill="colorSecondary" height="13px" name="svg-time" />
-
-                                                                                                    <ListTime ml={1} mr={3}>
-                                                                                                        30 min
-                                                                                                    </ListTime>
-
-                                                                                                    <Svg fill="colorSecondary" height="14px" name="svg-level" />
-
-                                                                                                    <ListLevel ml={1}>Iniciante</ListLevel>
-                                                                                                </Box>
-                                                                                            </Box>
-                                                                                        </Box>
-
-                                                                                        <Box width="100%">
-                                                                                            <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={30} themeColor="light">
-                                                                                                <Box width="170px">
-                                                                                                    <Span fontSize="16px" fontWeight="600" themeColor="light">
-                                                                                                        PROGRESSO {30}%
-                                                                                                    </Span>
-                                                                                                </Box>
-
-                                                                                                <BarContainer my={{ d: 2, md: 0 }}>
-                                                                                                    <Bar />
-                                                                                                </BarContainer>
-                                                                                            </ProgressBar>
-                                                                                        </Box>
-                                                                                    </ListBox>
-                                                                                </LinkTo>
-                                                                            </Box>
-                                                                        );
-                                                                    })}
-
-                                                                {stateCursosCategoria.data && stateCursosCategoria.data.current_page < stateCursosCategoria.data.last_page && (
-                                                                    <Box display="flex" justifyContent="center" py={3} width="100%">
-                                                                        <Button text="Ver mais" themeType="border" onClick={() => setStateCursosCategoriaData({ page: parseInt(stateCursosCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
-                                                                    </Box>
-                                                                )}
-                                                            </Flex>
-                                                        </TabContent>
-                                                    )
+                                                            {stateCursosCategoria.data && stateCursosCategoria.data.current_page < stateCursosCategoria.data.last_page && (
+                                                                <Box display="flex" justifyContent="center" py={3} width="100%">
+                                                                    <Button text="Ver mais" themeType="border" onClick={() => setStateCursosCategoriaData({ page: parseInt(stateCursosCategoria.data.current_page, 10) + 1, url: `${apiUrlCursos}/categoria/${categoria.slug}` })} />
+                                                                </Box>
+                                                            )}
+                                                        </Flex>
+                                                    </TabContent>
                                                 );
                                             })}
                                     </TabsContent>
