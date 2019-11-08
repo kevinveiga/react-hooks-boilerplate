@@ -122,17 +122,17 @@ workbox.routing.registerRoute(
 // );
 
 // EVENT
-self.addEventListener('message', (e) => {
-    if (e.data && e.data.type === 'CACHE_UPDATE') {
-        const { updateURL } = e.data.payload;
+// self.addEventListener('message', (e) => {
+//     if (e.data && e.data.type === 'CACHE_UPDATE') {
+//         const { updateURL } = e.data.payload;
 
-        console.info(`%c A new version of ${updateURL} is available`, 'color: #00bbee;');
-    }
+//         console.info(`%c A new version of ${updateURL} is available`, 'color: #00bbee;');
+//     }
 
-    if (e.data && e.data.type === 'SKIP_WAITING') {
-        self.skipWaiting();
-    }
-});
+//     if (e.data && e.data.type === 'SKIP_WAITING') {
+//         self.skipWaiting();
+//     }
+// });
 
 // FETCH
 // If use FETCH do you need use loadModule method
