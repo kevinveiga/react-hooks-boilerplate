@@ -41,7 +41,7 @@ export const useAuth = () => {
             if ('serviceWorker' in navigator) {
                 caches.keys().then((cacheNames) => {
                     for (let i = 0, l = cacheNames.length; i < l; i += 1) {
-                        if (cacheNames[i] === 'api-cache-perfil') {
+                        if (cacheNames[i] === 'api-cache-perfil' || cacheNames[i] === 'api-cache-cursos-matricular') {
                             caches.delete(cacheNames[i]);
                         }
                     }

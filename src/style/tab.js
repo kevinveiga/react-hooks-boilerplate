@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { display, space, textAlign } from 'styled-system';
+import { display, space, textAlign, width } from 'styled-system';
 
 import { variable } from './variable';
 
@@ -52,8 +52,9 @@ const tabInput = (group, total) => {
 };
 
 export const Tab = styled.div`
-    ${textAlign};
     ${({ group, total }) => tabInput(group, total)};
+    ${textAlign};
+    ${width};
     overflow: hidden;
 
     > input[type='radio'] {

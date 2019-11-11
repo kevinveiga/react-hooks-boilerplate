@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoCategoriaApi, useCursoCategoriasApi } from '../../../service/curso';
-import { useSeoApi } from '../../../service/seo';
+// import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
 import { useWindowWidth } from '../../../store/util/windowWidth';
@@ -12,7 +12,7 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
-import { Button } from '../../Button/Button';
+// import { Button } from '../../Button/Button';
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -33,14 +33,14 @@ import { variable } from '../../../style/variable';
 
 export const MinhaContaCursos = ({ ...breadcrumb }) => {
     // API
-    const [stateCursos] = useCursoApi(apiUrlCursos, {});
+    const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
     const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi(null, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
 
-    const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
+    // const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
 
-    const cursosLength = stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
-    const cursosCategoriasLength = stateCursosCategorias.data.data && stateCursosCategorias.data.data.length;
+    const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
+    const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && stateCursosCategorias.data.data.length;
 
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursosLength > 0 && cursosCategoriasLength > 0;
@@ -49,17 +49,19 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
     const { setStateLoaderGlobal } = useContext(Context);
 
     // ACTION
-    const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('mais-vistos');
+    const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('todos');
     const windowWidth = useWindowWidth();
 
     const handleCursoCategoriaChange = (e) => {
         let apiValue = `${apiUrlCursos}/categoria/${e.target.value}`;
 
-        if (e.target.value === 'mais-vistos') {
+        if (e.target.value === 'todos') {
             apiValue = apiUrlCursos;
         }
 
-        setStateCursosCategoriaData({ page: 1, url: apiValue });
+        // Paginação desativada
+        // setStateCursosCategoriaData({ page: 1, url: apiValue });
+        setStateCursosCategoriaData({ url: apiValue });
         setStateCursosCategoriaSelected(e.target.value);
     };
 
@@ -80,10 +82,8 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
 
     return (
         <>
-            <Helmet>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
+            <Helmet>{/* <title>{stateSeo.data && stateSeo.data.title}</title>
+                <meta name="description" content={stateSeo.data && stateSeo.data.description} /> */}</Helmet>
 
             <HeaderAlternate currentBreadcrumbLabel="Cursos" {...breadcrumb} />
 
@@ -96,7 +96,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                             {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Cursos" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
 
                             <Flex display="flex" flexWrap="wrap">
-                                <Tab group="tab-group-course" total={4}>
+                                <Tab group="tab-group-course" total={4} width="100%">
                                     {cursosCategoriasLength > 0 &&
                                         stateCursosCategorias.data.data.map((categoria) => {
                                             return (
@@ -197,11 +197,11 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                     );
                                                                 })}
 
-                                                            {stateCursosCategoria.data && stateCursosCategoria.data.current_page < stateCursosCategoria.data.last_page && (
+                                                            {/* {stateCursosCategoria.data && stateCursosCategoria.data.current_page < stateCursosCategoria.data.last_page && (
                                                                 <Box display="flex" justifyContent="center" py={3} width="100%">
                                                                     <Button text="Ver mais" themeType="border" onClick={() => setStateCursosCategoriaData({ page: parseInt(stateCursosCategoria.data.current_page, 10) + 1, url: `${apiUrlCursos}/categoria/${categoria.slug}` })} />
                                                                 </Box>
-                                                            )}
+                                                            )} */}
                                                         </Flex>
                                                     </TabContent>
                                                 );

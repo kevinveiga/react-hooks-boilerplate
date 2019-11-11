@@ -3,7 +3,9 @@ import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom
 
 import { Context } from './store/context';
 
+import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
+import { Curso } from './component/Page/Curso/Curso';
 import { EsqueceuSenha } from './component/Page/Login/EsqueceuSenha';
 import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
@@ -45,7 +47,9 @@ export const Router = withRouter((props) => {
 
     return (
         <Switch>
+            <Route component={Aprenda} path="/aprenda" />
             <Route component={Cadastro} path="/cadastro" />
+            <Route component={Curso} path="/curso/:slug" />
             <Route component={EsqueceuSenha} path="/esqueceu-senha" />
             <Route component={Home} path="/inicio" />
             <Route component={Login} path="/login" />

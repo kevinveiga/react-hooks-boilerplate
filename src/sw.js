@@ -14,7 +14,7 @@ workbox.core.skipWaiting();
 // API
 // Add all api, except perfil api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?!(perfil$)).+$'),
+    new RegExp('.+/api/v1/(?!(perfil$|cursos/matricular$)).+$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'api-cache',
         plugins: [
@@ -36,6 +36,25 @@ workbox.routing.registerRoute(
     new RegExp('.+/api/v1/(?:(perfil))$'),
     new workbox.strategies.NetworkFirst({
         cacheName: 'api-cache-perfil',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// API MATRICULAR
+// Add only cursos/matricular api
+workbox.routing.registerRoute(
+    new RegExp('.+/api/v1/(?:(cursos/matricular))$'),
+    new workbox.strategies.NetworkFirst({
+        cacheName: 'api-cache-cursos-matricular',
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200]
