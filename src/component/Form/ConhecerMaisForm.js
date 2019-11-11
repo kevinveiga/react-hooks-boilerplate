@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useForm from 'react-hook-form';
 
-import { apiUrlCadastro, defaultErrorMsg } from '../../config';
+import { apiUrlPerfil, defaultErrorMsg } from '../../config';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -40,10 +40,10 @@ const ConhecerMaisForm = ({ ...props }) => {
     const submitForm = (formData) => {
         const fetchData = async () => {
             try {
-                const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
+                const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    // TODO: fazer redirect para página inicial do usuário
+                    window.location.pathname = '/minha-conta/inicio';
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error('result: ', result);

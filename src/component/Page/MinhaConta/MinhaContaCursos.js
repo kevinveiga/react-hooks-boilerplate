@@ -1,9 +1,10 @@
+import parse from 'html-react-parser';
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlCursos } from '../../../config';
 
-import { useCursoApi, useCursoCategoriaApi, useCursoCategoriasApi } from '../../../service/curso';
+import { useCursoApi, useCursoCategoriasApi } from '../../../service/curso';
 // import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
@@ -25,7 +26,7 @@ import { MinhaContaCenterStyled } from './MinhaContaStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
-import { ListBox, ListLevel, ListTag, ListTitle, ListTime } from '../../../style/list';
+import { ListBox, ListLevel, ListTitle, ListTime } from '../../../style/list';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { Tab, TabContent, TabsContent, TabSelect } from '../../../style/tab';
 import { Span } from '../../../style/text';
@@ -34,13 +35,12 @@ import { variable } from '../../../style/variable';
 export const MinhaContaCursos = ({ ...breadcrumb }) => {
     // API
     const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
-    const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi(null, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
 
     // const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
-    const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && stateCursosCategorias.data.data.length;
+    const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && Object.keys(stateCursosCategorias.data.data).length;
 
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursosLength > 0 && cursosCategoriasLength > 0;
@@ -53,32 +53,26 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
     const windowWidth = useWindowWidth();
 
     const handleCursoCategoriaChange = (e) => {
-        let apiValue = `${apiUrlCursos}/categoria/${e.target.value}`;
-
-        if (e.target.value === 'todos') {
-            apiValue = apiUrlCursos;
-        }
-
-        // Paginação desativada
-        // setStateCursosCategoriaData({ page: 1, url: apiValue });
-        setStateCursosCategoriaData({ url: apiValue });
         setStateCursosCategoriaSelected(e.target.value);
     };
 
-    // Scroll para o topo
-    if (!stateCursosCategoria.data) {
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
-    }
+
+        return undefined;
+    }, [isDataLoaded]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     useEffect(() => {
-        if (stateCursos.isLoading || stateCursosCategoria.isLoading) {
+        if (stateCursos.isLoading || stateCursosCategorias.isLoading) {
             setStateLoaderGlobal(true);
         } else {
             setTimeout(() => {
                 setStateLoaderGlobal(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderGlobal, stateCursos.isLoading, stateCursosCategoria.isLoading]);
+    }, [setStateLoaderGlobal, stateCursos.isLoading, stateCursosCategorias.isLoading]);
 
     return (
         <>
@@ -97,21 +91,35 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
 
                             <Flex display="flex" flexWrap="wrap">
                                 <Tab group="tab-group-course" total={4} width="100%">
+                                    <input
+                                        checked={stateCursosCategoriaSelected === 'todos'}
+                                        id="tab-id-course-todos"
+                                        name="tab-group-course"
+                                        onChange={(e) => {
+                                            e.preventDefault();
+                                            handleCursoCategoriaChange(e);
+                                        }}
+                                        type="radio"
+                                        value="todos"
+                                    />
+
                                     {cursosCategoriasLength > 0 &&
-                                        stateCursosCategorias.data.data.map((categoria) => {
+                                        stateCursosCategorias.data.data.map((categoria, i) => {
                                             return (
-                                                <input
-                                                    checked={stateCursosCategoriaSelected === categoria.slug}
-                                                    id={`tab-id-course-${categoria.slug}`}
-                                                    key={`${categoria.slug}-input`}
-                                                    name="tab-group-course"
-                                                    onChange={(e) => {
-                                                        e.preventDefault();
-                                                        handleCursoCategoriaChange(e);
-                                                    }}
-                                                    type="radio"
-                                                    value={categoria.slug}
-                                                />
+                                                i > 0 && (
+                                                    <input
+                                                        checked={stateCursosCategoriaSelected === categoria.slug}
+                                                        id={`tab-id-course-${categoria.slug}`}
+                                                        key={`${categoria.slug}-input`}
+                                                        name="tab-group-course"
+                                                        onChange={(e) => {
+                                                            e.preventDefault();
+                                                            handleCursoCategoriaChange(e);
+                                                        }}
+                                                        type="radio"
+                                                        value={categoria.slug}
+                                                    />
+                                                )
                                             );
                                         })}
 
@@ -122,12 +130,16 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                 handleCursoCategoriaChange(e);
                                             }}
                                         >
+                                            <option value="todos">Todos</option>
+
                                             {cursosCategoriasLength > 0 &&
-                                                stateCursosCategorias.data.data.map((categoria) => {
+                                                stateCursosCategorias.data.data.map((categoria, i) => {
                                                     return (
-                                                        <option key={`${categoria.slug}-option`} value={categoria.slug}>
-                                                            {categoria.title}
-                                                        </option>
+                                                        i > 0 && (
+                                                            <option key={`${categoria.slug}-option`} value={categoria.slug}>
+                                                                {categoria.title}
+                                                            </option>
+                                                        )
                                                     );
                                                 })}
                                         </select>
@@ -136,32 +148,95 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                     </TabSelect>
 
                                     <TabsContent>
+                                        <TabContent>
+                                            <Flex display="flex" flexWrap="wrap">
+                                                {cursosLength > 0 &&
+                                                    stateCursos.data &&
+                                                    Object.keys(stateCursos.data.data).map((key) => {
+                                                        const cursos = stateCursos.data.data[key];
+
+                                                        console.log('cursos: ', cursos);
+
+                                                        return (
+                                                            cursos.data &&
+                                                            cursos.data.map((curso) => {
+                                                                return (
+                                                                    <Box key={curso.id} mb={5} width="100%">
+                                                                        <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.slug}`} width="100%">
+                                                                            <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                                <Box display={{ d: 'block', md: 'flex' }} width="100%">
+                                                                                    <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
+                                                                                        <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
+                                                                                    </Box>
+
+                                                                                    <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
+                                                                                        <Box height="200px" mb={4} overflowY="hidden" width="100%">
+                                                                                            <ListTitle mb={3}>{curso.title}</ListTitle>
+
+                                                                                            <p>{parse(`${curso.content}`)}</p>
+                                                                                        </Box>
+
+                                                                                        <Box width="100%">
+                                                                                            <Svg fill="colorSecondary" height="13px" name="svg-time" />
+
+                                                                                            <ListTime ml={1} mr={3}>
+                                                                                                {curso.carga_horaria}
+                                                                                            </ListTime>
+
+                                                                                            <Svg fill="colorSecondary" height="14px" name="svg-level" />
+
+                                                                                            <ListLevel ml={1}>{curso.nivel}</ListLevel>
+                                                                                        </Box>
+                                                                                    </Box>
+                                                                                </Box>
+
+                                                                                <Box width="100%">
+                                                                                    <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={curso.progresso} themeColor="light">
+                                                                                        <Box width="170px">
+                                                                                            <Span fontSize="16px" fontWeight="600" themeColor="light">
+                                                                                                PROGRESSO {curso.progresso}%
+                                                                                            </Span>
+                                                                                        </Box>
+
+                                                                                        <BarContainer my={{ d: 2, md: 0 }}>
+                                                                                            <Bar />
+                                                                                        </BarContainer>
+                                                                                    </ProgressBar>
+                                                                                </Box>
+                                                                            </ListBox>
+                                                                        </LinkTo>
+                                                                    </Box>
+                                                                );
+                                                            })
+                                                        );
+                                                    })}
+                                            </Flex>
+                                        </TabContent>
+
                                         {cursosLength > 0 &&
                                             stateCursos.data &&
                                             Object.keys(stateCursos.data.data).map((key) => {
-                                                const categoria = stateCursos.data.data[key];
+                                                const cursos = stateCursos.data.data[key];
 
                                                 return (
                                                     <TabContent key={key}>
                                                         <Flex display="flex" flexWrap="wrap">
-                                                            {categoria &&
-                                                                categoria.data.map((curso) => {
+                                                            {cursos.data &&
+                                                                cursos.data.map((curso) => {
                                                                     return (
                                                                         <Box key={curso.id} mb={5} width="100%">
                                                                             <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.slug}`} width="100%">
                                                                                 <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                                     <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                         <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
-                                                                                            <BgImageLazyLoad key={curso.id} url={curso.thumbnail && curso.thumbnail.attachment.url} />
-
-                                                                                            <ListTag>{curso.modalidade}</ListTag>
+                                                                                            <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
                                                                                         </Box>
 
                                                                                         <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
-                                                                                            <Box maxHeight="300px" mb={4} overflowY="hidden" width="100%">
+                                                                                            <Box height="200px" mb={4} overflowY="hidden" width="100%">
                                                                                                 <ListTitle mb={3}>{curso.title}</ListTitle>
 
-                                                                                                <p>{curso.content}</p>
+                                                                                                <p>{parse(`${curso.content}`)}</p>
                                                                                             </Box>
 
                                                                                             <Box width="100%">
@@ -179,10 +254,10 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                     </Box>
 
                                                                                     <Box width="100%">
-                                                                                        <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={30} themeColor="light">
+                                                                                        <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={curso.progresso} themeColor="light">
                                                                                             <Box width="170px">
                                                                                                 <Span fontSize="16px" fontWeight="600" themeColor="light">
-                                                                                                    PROGRESSO {30}%
+                                                                                                    PROGRESSO {curso.progresso}%
                                                                                                 </Span>
                                                                                             </Box>
 
@@ -196,12 +271,6 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                         </Box>
                                                                     );
                                                                 })}
-
-                                                            {/* {stateCursosCategoria.data && stateCursosCategoria.data.current_page < stateCursosCategoria.data.last_page && (
-                                                                <Box display="flex" justifyContent="center" py={3} width="100%">
-                                                                    <Button text="Ver mais" themeType="border" onClick={() => setStateCursosCategoriaData({ page: parseInt(stateCursosCategoria.data.current_page, 10) + 1, url: `${apiUrlCursos}/categoria/${categoria.slug}` })} />
-                                                                </Box>
-                                                            )} */}
                                                         </Flex>
                                                     </TabContent>
                                                 );
