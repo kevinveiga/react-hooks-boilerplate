@@ -155,8 +155,6 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                     Object.keys(stateCursos.data.data).map((key) => {
                                                         const cursos = stateCursos.data.data[key];
 
-                                                        console.log('cursos: ', cursos);
-
                                                         return (
                                                             cursos.data &&
                                                             cursos.data.map((curso) => {

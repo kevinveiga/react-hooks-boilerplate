@@ -88,12 +88,12 @@ const ConhecerMaisForm = ({ ...props }) => {
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
                                     <ConhecerMaisRadioStyled
                                         defaultChecked={false}
-                                        defaultValue={true}
+                                        defaultValue="masculino"
                                         id="sexo_masculino"
                                         name="sexo"
                                         onChange={async (e) => {
                                             const input = e.target;
-                                            setValue(input.name, input.checked);
+                                            setValue(input.name, input.value);
                                         }}
                                         type="radio"
                                     />
@@ -104,12 +104,12 @@ const ConhecerMaisForm = ({ ...props }) => {
 
                                     <ConhecerMaisRadioStyled
                                         defaultChecked={false}
-                                        defaultValue={true}
+                                        defaultValue="feminino"
                                         id="sexo_feminino"
                                         name="sexo"
                                         onChange={async (e) => {
                                             const input = e.target;
-                                            setValue(input.name, input.checked);
+                                            setValue(input.name, input.value);
                                         }}
                                         type="radio"
                                     />
