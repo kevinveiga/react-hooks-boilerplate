@@ -100,7 +100,7 @@ module.exports = {
     plugins: [
         new InjectManifest({
             importsDirectory: 'asset',
-            include: [/(.css)$/, /(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
+            include: [/(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`,
             templatedURLs: {
