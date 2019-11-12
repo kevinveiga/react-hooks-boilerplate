@@ -52,23 +52,26 @@
 
         <script type="text/javascript">
             // SERVICE WORKER REGISTER
-            const serviceWorkerRegister = () => {
+            var serviceWorkerRegister = function() {
                 if ('serviceWorker' in navigator) {
-                    window.addEventListener('load', () => {
+                    window.addEventListener('load', function() {
                         navigator.serviceWorker
                             .register('/sw.js')
-                            .then((registration) => {
+                            .then(function(registration) {
                                 console.info('%c Service Worker registered: ', 'color: #00bbee;', registration);
 
-                                registration.addEventListener('updatefound', (e) => {
-                                    const newWorker = e.currentTarget.installing;
+                                registration.addEventListener('updatefound', function(e) {
+                                    var self = e;
+                                    var newWorker = self.currentTarget.installing;
 
-                                    console.log('updatefound: ', e);
+                                    console.log('updatefound: ', self);
 
-                                    newWorker.addEventListener('statechange', (e) => {
-                                        console.log('statechange: ', e);
+                                    newWorker.addEventListener('statechange', function(e) {
+                                        var self = e;
 
-                                        switch (e.currentTarget.state) {
+                                        console.log('statechange: ', self);
+
+                                        switch (self.currentTarget.state) {
                                             case 'installed':
                                                 console.info('%c The installing Service Worker state is installed', 'color: #f39c12;');
 
