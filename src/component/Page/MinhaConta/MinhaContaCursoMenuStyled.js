@@ -3,6 +3,40 @@ import { space, typography } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 
+export const MinhaContaCursoMenuAulaStyled = styled.div`
+    align-items: center;
+    background-color: 'transparent';
+    border-top: 1px solid ${variable.colorWhite};
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    min-height: 75px;
+    padding: ${variable.spacingSM} ${variable.spacingMD};
+    transition: background-color ${variable.transition};
+
+    > svg {
+        transform: rotate(0deg);
+        transform-origin: 50% 50% 0;
+        transition: transform ${variable.transition};
+    }
+
+    ${({ active }) =>
+        active &&
+        css`
+            > svg {
+                transform: rotate(180deg);
+            }
+        `};
+
+    ${({ hover }) =>
+        hover &&
+        css`
+            &:hover {
+                background-color: ${variable.colorPrimary};
+            }
+        `};
+`;
+
 export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`
     ${typography};
     height: 0.1px;
@@ -32,7 +66,7 @@ export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`
             width: 20px;
         }
 
-        svg {
+        > svg {
             display: none;
             left: 6px;
             position: absolute;
@@ -46,7 +80,7 @@ export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`
                 box-shadow: inset 0 0 0 10px ${variable.colorPrimary};
             }
 
-            svg {
+            > svg {
                 display: block;
             }
         }
@@ -69,40 +103,6 @@ export const MinhaContaCursoMenuAulaContentStyled = styled.div`
             overflow: visible;
             padding: ${variable.spacingMD};
             transform: scaleY(1);
-        `};
-`;
-
-export const MinhaContaCursoMenuAulaStyled = styled.div`
-    align-items: center;
-    background-color: 'transparent';
-    border-top: 1px solid ${variable.colorWhite};
-    cursor: pointer;
-    display: flex;
-    height: 75px;
-    justify-content: space-between;
-    padding: 0 ${variable.spacingMD};
-    transition: background-color ${variable.transition};
-
-    svg {
-        transform: rotate(0deg);
-        transform-origin: 50% 50% 0;
-        transition: transform ${variable.transition};
-    }
-
-    ${({ active }) =>
-        active &&
-        css`
-            svg {
-                transform: rotate(180deg);
-            }
-        `};
-
-    ${({ hover }) =>
-        hover &&
-        css`
-            &:hover {
-                background-color: ${variable.colorPrimary};
-            }
         `};
 `;
 

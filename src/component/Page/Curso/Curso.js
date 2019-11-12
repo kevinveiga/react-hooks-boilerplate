@@ -106,8 +106,8 @@ export const Curso = ({ match }) => {
     return (
         <>
             <Helmet>
-                <title>{stateCurso.data && stateCurso.data.title}</title>
-                <meta name="description" content={stateCurso.data && stateCurso.data.description} />
+                <title>{curso && curso.title}</title>
+                <meta name="description" content={curso && curso.description} />
             </Helmet>
 
             <Main>
@@ -120,7 +120,7 @@ export const Curso = ({ match }) => {
                     </Container>
                 )}
 
-                {cursoLength > 0 && stateCurso.data.data && (
+                {curso && (
                     <>
                         <Flex display="flex" flexWrap="wrap">
                             <Box height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">

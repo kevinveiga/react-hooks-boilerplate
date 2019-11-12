@@ -160,7 +160,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                             cursos.data.map((curso) => {
                                                                 return (
                                                                     <Box key={curso.id} mb={5} width="100%">
-                                                                        <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.slug}`} width="100%">
+                                                                        <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
                                                                             <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                                 <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                     <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
@@ -171,7 +171,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                         <Box height="200px" mb={4} overflowY="hidden" width="100%">
                                                                                             <ListTitle mb={3}>{curso.title}</ListTitle>
 
-                                                                                            <p>{parse(`${curso.content}`)}</p>
+                                                                                            <div>{parse(`${curso.content}`)}</div>
                                                                                         </Box>
 
                                                                                         <Box width="100%">
@@ -223,7 +223,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                 cursos.data.map((curso) => {
                                                                     return (
                                                                         <Box key={curso.id} mb={5} width="100%">
-                                                                            <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.slug}`} width="100%">
+                                                                            <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
                                                                                 <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                                     <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                         <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
@@ -234,7 +234,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                             <Box height="200px" mb={4} overflowY="hidden" width="100%">
                                                                                                 <ListTitle mb={3}>{curso.title}</ListTitle>
 
-                                                                                                <p>{parse(`${curso.content}`)}</p>
+                                                                                                <div>{parse(`${curso.content}`)}</div>
                                                                                             </Box>
 
                                                                                             <Box width="100%">

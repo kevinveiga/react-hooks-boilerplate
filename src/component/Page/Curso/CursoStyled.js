@@ -13,8 +13,8 @@ export const ConteudoCellStyled = styled.div`
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent1};
     color: ${variable.colorBlack2};
     cursor: pointer;
-    min-height: 75px;
     justify-content: center;
+    min-height: 75px;
     overflow: hidden;
     transition: background-color ${variable.transition};
 

@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import React, { useContext, useState } from 'react';
 
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
@@ -10,26 +11,28 @@ import { Svg } from '../../Svg/Svg';
 import { Box } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
-import { Span, P, Title4 } from '../../../style/text';
+import { P, Span, Title4 } from '../../../style/text';
 
-const MinhaContaCursoMenu = ({ ...props }) => {
-    // ACTION
-    const [statePart, setStatePart] = useState(null);
+const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
+    console.log('objectCurso: ', objectCurso);
 
     // CONTEXT
     const setStateMenuAula = useContext(MinhaContaCursoContext);
 
+    // ACTION
+    const [statePart, setStatePart] = useState(null);
+
     return (
-        <MinhaContaCursoMenuStyled {...props}>
+        <MinhaContaCursoMenuStyled {...otherProps}>
             <Box p={4}>
                 <Button display="block" fontWeight="400" mb={4} ml="auto" mr={{ d: 'auto', md: 0 }} onClick={() => setStateMenuAula(false)} text="Esconder aulas" textDecoration="underline" themeSize="none" themeType="none" />
 
-                <Title4 fontWeight="600">Teste</Title4>
+                <Title4 fontWeight="600">{objectCurso.title}</Title4>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                <p>{objectCurso.content}</p>
 
-                <ProgressBar progressPercent={40}>
-                    <P mb={1}>Progresso {40}%</P>
+                <ProgressBar progressPercent={objectCurso.progresso}>
+                    <P mb={1}>Progresso {objectCurso.progresso}%</P>
 
                     <BarContainer>
                         <Bar />
@@ -39,13 +42,13 @@ const MinhaContaCursoMenu = ({ ...props }) => {
 
             <Box>
                 <Grid display="grid">
-                    {[{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }].map((aula) => {
+                    {objectCurso.modulos.map((modulo) => {
                         return (
-                            <Cell key={aula.id}>
-                                <MinhaContaCursoMenuAulaStyled active={statePart == aula.id} hover={true} onClick={() => setStatePart(statePart == aula.id ? null : aula.id)}>
+                            <Cell key={modulo.id}>
+                                <MinhaContaCursoMenuAulaStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}>
                                     <div>
                                         <P fontSize="20px" mb={0}>
-                                            Introdução
+                                            {modulo.title}
                                         </P>
 
                                         <P fontSize="14px" mb={0}>
@@ -56,7 +59,7 @@ const MinhaContaCursoMenu = ({ ...props }) => {
                                     <Svg fill="colorSecondary" height="10px" mr={0} name="svg-arrow-down-2" />
                                 </MinhaContaCursoMenuAulaStyled>
 
-                                <MinhaContaCursoMenuAulaContentStyled active={statePart == aula.id}>
+                                <MinhaContaCursoMenuAulaContentStyled active={statePart == modulo.id}>
                                     <ul>
                                         {[{ id: '1' }, { id: '2' }].map((aulaContent) => {
                                             return (
