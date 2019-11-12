@@ -112,7 +112,7 @@ module.exports = {
             template: commonPaths.templatePath
         }),
         new ScriptExtHtmlWebpackPlugin({
-            defaultAttribute: 'async'
+            defaultAttribute: 'defer'
         }),
         new Webpack.ProgressPlugin()
     ],
