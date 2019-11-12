@@ -14,8 +14,6 @@ import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { P, Span, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
-    console.log('objectCurso: ', objectCurso);
-
     // CONTEXT
     const setStateMenuAula = useContext(MinhaContaCursoContext);
 
@@ -29,7 +27,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
 
                 <Title4 fontWeight="600">{objectCurso.title}</Title4>
 
-                <p>{objectCurso.content}</p>
+                <Box mb={4}>{parse(`${objectCurso.content}`)}</Box>
 
                 <ProgressBar progressPercent={objectCurso.progresso}>
                     <P mb={1}>Progresso {objectCurso.progresso}%</P>
