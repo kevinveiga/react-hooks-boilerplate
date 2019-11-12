@@ -9,7 +9,9 @@ workbox.precaching.cleanupOutdatedCaches();
 
 // Updating SW lifecycle to update the app after user triggered refresh
 workbox.core.clientsClaim();
-workbox.core.skipWaiting();
+
+// Don't use skipWaiting - BUG
+// workbox.core.skipWaiting();
 
 // API
 // Add all api, except perfil api
