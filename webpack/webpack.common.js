@@ -108,11 +108,13 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
+            cache: false,
             minify: true,
             template: commonPaths.templatePath
         }),
         new ScriptExtHtmlWebpackPlugin({
-            defaultAttribute: 'defer'
+            inline: [/main/, /runtime~main/, /vendor/],
+            defaultAttribute: 'async'
         }),
         new Webpack.ProgressPlugin()
     ],
