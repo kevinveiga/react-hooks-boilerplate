@@ -1,5 +1,4 @@
 const Dotenv = require('dotenv-webpack');
-const Webpack = require('webpack');
 
 const commonPaths = require('./paths');
 
@@ -13,7 +12,6 @@ module.exports = {
         //     'Access-Control-Allow-Origin': '*'
         // },
         historyApiFallback: true,
-        hot: true,
         host: 'localhost', // Para ver em outros dispositivos na mesma rede, mudar para ip local ex: 192.168.1.60
         index: 'index.html',
         open: true,
@@ -28,7 +26,6 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     mode: 'development',
     plugins: [
-        new Webpack.HotModuleReplacementPlugin(),
         new Dotenv({
             path: './.env.development'
         })
