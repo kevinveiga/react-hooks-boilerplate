@@ -42,7 +42,7 @@ export const Noticias = () => {
     const isDataLoaded = noticiasLength > 0 && noticiasCategoriasLength > 0;
 
     // CONTEXT
-    const { setStateLoaderGlobal } = useContext(Context);
+    const { setStateLoaderContext } = useContext(Context);
 
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
@@ -66,13 +66,13 @@ export const Noticias = () => {
 
     useEffect(() => {
         if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
-            setStateLoaderGlobal(true);
+            setStateLoaderContext(true);
         } else {
             setTimeout(() => {
-                setStateLoaderGlobal(false);
+                setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderGlobal, stateNoticias.isLoading, stateNoticiasCategoria.isLoading]);
+    }, [setStateLoaderContext, stateNoticias.isLoading, stateNoticiasCategoria.isLoading]);
 
     return (
         <>

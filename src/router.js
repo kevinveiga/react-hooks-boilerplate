@@ -18,14 +18,14 @@ import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
 
 const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     // CONTEXT
-    const { stateAuthTokenGlobal } = useContext(Context);
+    const { stateAuthTokenContext } = useContext(Context);
 
-    return <Route render={(props) => (stateAuthTokenGlobal ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)} {...otherProps} />;
+    return <Route render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)} {...otherProps} />;
 };
 
 export const Router = withRouter((props) => {
     // CONTEXT
-    const { setStateHideFooterGlobal, setStateHideHeaderGlobal } = useContext(Context);
+    const { setStateHideFooterContext, setStateHideHeaderContext } = useContext(Context);
 
     // ACTION
     // Oculta Header e Footer padrões do site de acordo com array do path
@@ -35,13 +35,13 @@ export const Router = withRouter((props) => {
                 path: ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta']
             })
         ) {
-            setStateHideFooterGlobal(true);
-            setStateHideHeaderGlobal(true);
+            setStateHideFooterContext(true);
+            setStateHideHeaderContext(true);
         } else {
-            setStateHideFooterGlobal(false);
-            setStateHideHeaderGlobal(false);
+            setStateHideFooterContext(false);
+            setStateHideHeaderContext(false);
         }
-    }, [props, setStateHideFooterGlobal, setStateHideHeaderGlobal]);
+    }, [props, setStateHideFooterContext, setStateHideHeaderContext]);
 
     const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };
 

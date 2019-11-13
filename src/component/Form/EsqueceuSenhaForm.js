@@ -19,7 +19,7 @@ import { Cell, Grid } from '../../style/grid';
 
 const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
     // CONTEXT
-    const { setStateAuthTokenGlobal } = useContext(Context);
+    const { setStateAuthTokenContext } = useContext(Context);
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
@@ -36,7 +36,7 @@ const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateAuthTokenGlobal(result.data.token);
+                    setStateAuthTokenContext(result.data.token);
 
                     window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
                 } else {

@@ -15,7 +15,7 @@ import { Cell, Grid } from '../../style/grid';
 
 export const PesquisaForm = ({ ...props }) => {
     // CONTEXT
-    const setStatePesquisaData = useContext(PesquisaContext);
+    const setStatePesquisaDataContext = useContext(PesquisaContext);
 
     // ACTION
     useEffect(() => {
@@ -36,7 +36,7 @@ export const PesquisaForm = ({ ...props }) => {
     const submitForm = (formData) => {
         window.history.replaceState('Pesquisa', '', formData.query);
 
-        setStatePesquisaData({ params: formData, url: `${apiUrlNoticias}/busca` });
+        setStatePesquisaDataContext({ params: formData, url: `${apiUrlNoticias}/busca` });
     };
 
     return (

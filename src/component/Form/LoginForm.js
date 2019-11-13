@@ -22,7 +22,7 @@ import { P } from '../../style/text';
 
 const LoginForm = ({ location, ...otherProps }) => {
     // CONTEXT
-    const { setStateAuthTokenGlobal } = useContext(Context);
+    const { setStateAuthTokenContext } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -43,7 +43,7 @@ const LoginForm = ({ location, ...otherProps }) => {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateAuthTokenGlobal(result.data.token);
+                    setStateAuthTokenContext(result.data.token);
 
                     window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
                 } else {

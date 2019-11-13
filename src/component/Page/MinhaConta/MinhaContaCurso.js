@@ -45,7 +45,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     const isDataLoaded = cursoLength > 0;
 
     // CONTEXT
-    const { setStateLoaderGlobal } = useContext(Context);
+    const { setStateLoaderContext } = useContext(Context);
 
     // ACTION
     const [stateTabSelected, setStateTabSelected] = useState('resumo');

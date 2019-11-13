@@ -29,9 +29,9 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     return (
         <HeaderAlternateContext.Provider
             value={{
-                stateChangeMinhaContaMenuMobileGlobal: stateChangeMinhaContaMenuMobile,
-                setStateChangeMinhaContaMenuMobileGlobal: setStateChangeMinhaContaMenuMobile,
-                setStateChangeModalLogoutGlobal: setStateChangeModalLogout
+                stateChangeMinhaContaMenuMobileContext: stateChangeMinhaContaMenuMobile,
+                setStateChangeMinhaContaMenuMobileContext: setStateChangeMinhaContaMenuMobile,
+                setStateChangeModalLogoutContext: setStateChangeModalLogout
             }}
         >
             {windowWidth < parseInt(variable.md, 10) ? (

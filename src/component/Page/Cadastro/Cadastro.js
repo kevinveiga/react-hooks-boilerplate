@@ -26,10 +26,10 @@ export const Cadastro = () => {
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
     // ACTION
-    const [stateConhecerMais, setStateConhecerMais] = useState(true);
+    const [stateConhecerMais, setStateConhecerMaisContext] = useState(true);
 
     return (
-        <CadastroContext.Provider value={setStateConhecerMais}>
+        <CadastroContext.Provider value={setStateConhecerMaisContext}>
             <Helmet>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />

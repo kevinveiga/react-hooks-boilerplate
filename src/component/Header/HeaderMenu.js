@@ -13,7 +13,7 @@ import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
     // CONTEXT
-    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useContext(HeaderContext);
+    const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useContext(HeaderContext);
 
     // ACTION
     const keyPress = (e) => {
@@ -27,26 +27,26 @@ export const HeaderMenu = ({ ...props }) => {
     };
 
     return (
-        <HeaderMenuStyled active={stateChangeMenuMobile} {...props}>
+        <HeaderMenuStyled active={stateChangeMenuMobileContext} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Início" />
+                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Início" />
                 </li>
 
                 <li>
-                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Notícias" />
+                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Notícias" />
                 </li>
 
                 <li>
-                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Aprenda" />
+                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Aprenda" />
                 </li>
 
                 <li>
-                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Vídeos" />
+                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Vídeos" />
                 </li>
 
                 <li>
-                    <LinkTo link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobile(false)} text="Login" />
+                    <LinkTo link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Login" />
                 </li>
             </ul>
 

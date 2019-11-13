@@ -36,13 +36,13 @@ export const App = () => {
         <ThemeProvider theme={theme}>
             <Context.Provider
                 value={{
-                    stateAuthTokenGlobal: stateAuthToken,
-                    setStateAuthTokenGlobal: setStateAuthToken,
-                    stateSocialGlobal: stateSocial.data,
-                    setStateHideFooterGlobal: setStateHideFooter,
-                    setStateHideHeaderGlobal: setStateHideHeader,
-                    setStateLoaderGlobal: setStateLoader,
-                    setStateModalMessageGlobal: setStateModalMessage
+                    stateAuthTokenContext: stateAuthToken,
+                    setStateAuthTokenContext: setStateAuthToken,
+                    stateSocialContext: stateSocial.data,
+                    setStateHideFooterContext: setStateHideFooter,
+                    setStateHideHeaderContext: setStateHideHeader,
+                    setStateLoaderContext: setStateLoader,
+                    setStateModalMessageContext: setStateModalMessage
                 }}
             >
                 <Normalize />

@@ -64,12 +64,12 @@
                                     var self = e;
                                     var newWorker = self.currentTarget.installing;
 
-                                    console.log('updatefound: ', self);
+                                    console.info('Updatefound: ', self);
 
                                     newWorker.addEventListener('statechange', function(e) {
                                         var self = e;
 
-                                        console.log('statechange: ', self);
+                                        console.info('Statechange: ', self);
 
                                         switch (self.currentTarget.state) {
                                             case 'installed':

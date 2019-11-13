@@ -46,7 +46,7 @@ export const Noticia = ({ match }) => {
     const isDataLoaded = noticiaLength > 0 && noticiaRelatedLength > 0;
 
     // ACTION
-    const [changeLeadwall, setChangeLeadwall] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
+    const [changeLeadwall, setChangeLeadwallContext] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo
@@ -55,7 +55,7 @@ export const Noticia = ({ match }) => {
     }
 
     return (
-        <NoticiaContext.Provider value={setChangeLeadwall}>
+        <NoticiaContext.Provider value={setChangeLeadwallContext}>
             <Helmet>
                 <title>{stateNoticia.data && stateNoticia.data.title}</title>
                 <meta name="description" content={stateNoticia.data && stateNoticia.data.seo && stateNoticia.data.seo.description} />

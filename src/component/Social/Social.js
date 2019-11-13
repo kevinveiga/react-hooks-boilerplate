@@ -9,36 +9,36 @@ import { SocialStyled } from './SocialStyled';
 
 export const Social = ({ ...props }) => {
     // CONTEXT
-    const { stateSocialGlobal } = useContext(Context);
+    const { stateSocialContext } = useContext(Context);
 
-    return stateSocialGlobal ? (
+    return stateSocialContext ? (
         <SocialStyled {...props}>
             <li>
-                <LinkToExternal text="Facebook" link={stateSocialGlobal.facebook} target="_blank">
+                <LinkToExternal text="Facebook" link={stateSocialContext.facebook} target="_blank">
                     <Svg name="svg-facebook" />
                 </LinkToExternal>
             </li>
 
             {/* <li>
-                <LinkToExternal text="Twitter" link={stateSocialGlobal.twitter} target="_blank">
+                <LinkToExternal text="Twitter" link={stateSocialContext.twitter} target="_blank">
                     <Svg name="svg-twitter" />
                 </LinkToExternal>
             </li> */}
 
             <li>
-                <LinkToExternal text="You Tube" link={stateSocialGlobal.youtube} target="_blank">
+                <LinkToExternal text="You Tube" link={stateSocialContext.youtube} target="_blank">
                     <Svg name="svg-youtube" />
                 </LinkToExternal>
             </li>
 
             <li>
-                <LinkToExternal text="Instagram" link={stateSocialGlobal.instagram} target="_blank">
+                <LinkToExternal text="Instagram" link={stateSocialContext.instagram} target="_blank">
                     <Svg name="svg-instagram" />
                 </LinkToExternal>
             </li>
 
             {/* <li>
-                <LinkToExternal text="Linkedin" link={stateSocialGlobal.linkedin} target="_blank">
+                <LinkToExternal text="Linkedin" link={stateSocialContext.linkedin} target="_blank">
                     <Svg name="svg-linkedin" />
                 </LinkToExternal>
             </li> */}

@@ -46,7 +46,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
     const isDataLoaded = cursosLength > 0 && cursosCategoriasLength > 0;
 
     // CONTEXT
-    const { setStateLoaderGlobal } = useContext(Context);
+    const { setStateLoaderContext } = useContext(Context);
 
     // ACTION
     const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('todos');
@@ -66,13 +66,13 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
 
     useEffect(() => {
         if (stateCursos.isLoading || stateCursosCategorias.isLoading) {
-            setStateLoaderGlobal(true);
+            setStateLoaderContext(true);
         } else {
             setTimeout(() => {
-                setStateLoaderGlobal(false);
+                setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderGlobal, stateCursos.isLoading, stateCursosCategorias.isLoading]);
+    }, [setStateLoaderContext, stateCursos.isLoading, stateCursosCategorias.isLoading]);
 
     return (
         <>

@@ -17,7 +17,7 @@ import { Cell, Grid } from '../../style/grid';
 
 const LeadwallForm = ({ ...props }) => {
     // CONTEXT
-    const setChangeLeadwall = useContext(NoticiaContext);
+    const setChangeLeadwallContext = useContext(NoticiaContext);
 
     // ACTION
     useEffect(() => {
@@ -36,7 +36,7 @@ const LeadwallForm = ({ ...props }) => {
 
                 if (result.data && result.data.success == true) {
                     window.localStorage.setItem('leadwall', 'true');
-                    setChangeLeadwall(true);
+                    setChangeLeadwallContext(true);
                 } else if (result.data.reason) {
                     setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {

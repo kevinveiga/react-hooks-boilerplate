@@ -15,7 +15,7 @@ import { Container } from '../../style/layout';
 export const Header = ({ ...hide }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
-    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useChangeMenuMobile();
+    const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
     const [statePesquisa, setStatePesquisa] = useState(false);
 
     const keyPress = (e) => {
@@ -25,8 +25,8 @@ export const Header = ({ ...hide }) => {
     };
 
     return (
-        <HeaderContext.Provider value={[stateChangeMenuMobile, setStateChangeMenuMobile]}>
-            <HeaderStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} id="header" {...hide}>
+        <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
+            <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header" {...hide}>
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                         <Grid display="grid" gridAutoColumns="1fr" px={2}>
@@ -46,7 +46,7 @@ export const Header = ({ ...hide }) => {
 
                     <Svg change={stateChangeHeaderScroll} name="svg-search" onClick={() => setStatePesquisa(!statePesquisa)} />
 
-                    <HeaderBtnMenuStyled active={stateChangeMenuMobile} change={stateChangeHeaderScroll} onClick={() => setStateChangeMenuMobile(true)}>
+                    <HeaderBtnMenuStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} onClick={() => setStateChangeMenuMobileContext(true)}>
                         <ul>
                             <li className="menu-lines" />
                             <li className="menu-lines" />
@@ -54,7 +54,7 @@ export const Header = ({ ...hide }) => {
                         </ul>
                     </HeaderBtnMenuStyled>
 
-                    <Svg active={stateChangeMenuMobile} name="svg-close" onClick={() => setStateChangeMenuMobile(false)} />
+                    <Svg active={stateChangeMenuMobileContext} name="svg-close" onClick={() => setStateChangeMenuMobileContext(false)} />
 
                     <HeaderMenu change={stateChangeHeaderScroll} />
                 </Container>

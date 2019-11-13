@@ -27,29 +27,29 @@ import { variable } from '../../../style/variable';
 
 export const Pesquisa = ({ match }) => {
     // API
-    const [statePesquisa, setStatePesquisaData] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` }, {});
+    const [statePesquisa, setStatePesquisaDataContext] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` }, {});
     const stateSeo = useSeoApi(`${apiUrlNoticias}/seo`, {});
 
     const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
 
     // CONTEXT
-    const { setStateLoaderGlobal } = useContext(Context);
+    const { setStateLoaderContext } = useContext(Context);
 
     // ACTION
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
 
     useEffect(() => {
         if (statePesquisa.isLoading) {
-            setStateLoaderGlobal(true);
+            setStateLoaderContext(true);
         } else {
             setTimeout(() => {
-                setStateLoaderGlobal(false);
+                setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderGlobal, statePesquisa.isLoading]);
+    }, [setStateLoaderContext, statePesquisa.isLoading]);
 
     return (
-        <PesquisaContext.Provider value={setStatePesquisaData}>
+        <PesquisaContext.Provider value={setStatePesquisaDataContext}>
             <Helmet>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />

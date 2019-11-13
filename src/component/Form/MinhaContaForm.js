@@ -26,7 +26,7 @@ import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps }) => {
     // CONTEXT
-    const { setStateModalMessageGlobal } = useContext(Context);
+    const { setStateModalMessageContext } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -66,7 +66,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
 
                 if (result.data && result.data.success == true) {
                     setStatePerfilData({ update: true, url: apiUrlPerfil });
-                    setStateModalMessageGlobal('Dados salvos com sucesso.');
+                    setStateModalMessageContext('Dados salvos com sucesso.');
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error('result: ', result);
