@@ -56,7 +56,7 @@
                 if ('serviceWorker' in navigator) {
                     window.addEventListener('load', function() {
                         navigator.serviceWorker
-                            .register('/sw.js')
+                            .register('/sw.js' + Math.random())
                             .then(function(registration) {
                                 console.info('%c Service Worker registered: ', 'color: #00bbee;', registration);
 
@@ -75,9 +75,9 @@
                                             case 'installed':
                                                 console.info('%c The installing Service Worker state is installed', 'color: #f39c12;');
 
-                                                if (navigator.serviceWorker.controller) {
-                                                    window.location.reload();
-                                                }
+                                                // if (navigator.serviceWorker.controller) {
+                                                //     window.location.reload();
+                                                // }
 
                                                 break;
                                             case 'installing':
