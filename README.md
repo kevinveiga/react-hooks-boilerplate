@@ -110,6 +110,14 @@
 
 -   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
 
+-   Ao criar um arquivo de Styled Component fora da pasta "style", colocar no final do nome "Styled". Ex: HomeStyled.js;
+
+-   Ao definir um nome de variável Styled Component dentro de um arquivo fora da pasta "style", colocar no final do nome "Styled". Ex:
+
+```js
+export const VideoContainerStyled = styled.section`...`;
+```
+
 -   No return do JSX, caso não existam os dados, passar null. Ex:
 
 ```js
