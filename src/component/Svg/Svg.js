@@ -30,6 +30,16 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgNoView {...otherProps} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...otherProps} />;
+        case 'svg-tipo-audio':
+            return <SvgStore.SvgTipoAudio {...otherProps} />;
+        case 'svg-tipo-download':
+            return <SvgStore.SvgTipoDownload {...otherProps} />;
+        case 'svg-tipo-imagem':
+            return <SvgStore.SvgTipoImagem {...otherProps} />;
+        case 'svg-tipo-post':
+            return <SvgStore.SvgTipoPost {...otherProps} />;
+        case 'svg-tipo-video':
+            return <SvgStore.SvgTipoVideo {...otherProps} />;
         case 'svg-valid':
             return <SvgStore.SvgValid {...otherProps} />;
         case 'svg-video-camera':

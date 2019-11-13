@@ -5,13 +5,13 @@ import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaCont
 
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
-import { MinhaContaCursoMenuAulaCheckboxStyled, MinhaContaCursoMenuAulaContentStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuAulaStyled } from './MinhaContaCursoMenuStyled';
+import { MinhaContaCursoMenuAulaCheckboxStyled, MinhaContaCursoMenuAulaContentStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuModuloStyled, MinhaContaCursoMenuModuloSvgStyled } from './MinhaContaCursoMenuStyled';
 import { Svg } from '../../Svg/Svg';
 
-import { Box } from '../../../style/flex';
+import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
-import { P, Span, Title4 } from '../../../style/text';
+import { P, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // CONTEXT
@@ -19,6 +19,38 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
 
     // ACTION
     const [statePart, setStatePart] = useState(null);
+
+    const tipoAula = (tipo) => {
+        const obj = { svg: '', title: '' };
+
+        switch (tipo) {
+            case 'audio':
+                obj.svg = tipo;
+                obj.title = 'Áudio';
+
+                break;
+            case 'download':
+                obj.svg = tipo;
+                obj.title = 'Download';
+
+                break;
+            case 'imagem':
+                obj.svg = tipo;
+                obj.title = 'Imagem';
+
+                break;
+            case 'post':
+                obj.svg = tipo;
+                obj.title = 'Artigo';
+
+                break;
+            default:
+                obj.svg = tipo;
+                obj.title = 'Vídeo';
+        }
+
+        return obj;
+    };
 
     return (
         <MinhaContaCursoMenuStyled {...otherProps}>
@@ -43,38 +75,42 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     {objectCurso.modulos.map((modulo) => {
                         return (
                             <Cell key={modulo.id}>
-                                <MinhaContaCursoMenuAulaStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}>
-                                    <div>
-                                        <P fontSize="20px" mb={0}>
+                                <MinhaContaCursoMenuModuloStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}>
+                                    <Box mr={3}>
+                                        <P fontSize="20px" mb={1}>
                                             {modulo.title}
                                         </P>
 
                                         <P fontSize="14px" mb={0}>
-                                            2 Aulas
+                                            {modulo.cursos.length} Aulas
                                         </P>
-                                    </div>
+                                    </Box>
 
-                                    <Svg fill="colorSecondary" height="10px" mr={0} name="svg-arrow-down-2" />
-                                </MinhaContaCursoMenuAulaStyled>
+                                    <MinhaContaCursoMenuModuloSvgStyled>
+                                        <Svg active={statePart == modulo.id} fill="colorSecondary" height="10px" mr={0} name="svg-arrow-down-2" />
+                                    </MinhaContaCursoMenuModuloSvgStyled>
+                                </MinhaContaCursoMenuModuloStyled>
 
                                 <MinhaContaCursoMenuAulaContentStyled active={statePart == modulo.id}>
                                     <ul>
-                                        {[{ id: '1' }, { id: '2' }].map((aulaContent) => {
+                                        {modulo.cursos.map((aula) => {
                                             return (
-                                                <li key={aulaContent.id}>
-                                                    <MinhaContaCursoMenuAulaCheckboxStyled defaultChecked={true} disabled={true} id={`${aulaContent.id}${aulaContent.id}`} name={`${aulaContent.id}${aulaContent.id}`} type="checkbox" />
+                                                <li key={aula.id}>
+                                                    <MinhaContaCursoMenuAulaCheckboxStyled defaultChecked={aula.lido} disabled={true} id={`${aula.id}${aula.id}`} name={`${aula.id}${aula.id}`} type="checkbox" />
 
-                                                    <Label color="colorGrayDark" forLabel={`${aulaContent.id}${aulaContent.id}`} fontWeight="600" mb={2}>
+                                                    <Label color="colorGrayDark" forLabel={`${aula.id}${aula.id}`} fontWeight="600" mb={2}>
                                                         <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
-                                                        <span>Analisando situações</span>
+                                                        <span>{aula.title}</span>
                                                     </Label>
 
-                                                    <P fontSize={14} ml={4}>
-                                                        <Svg fill="colorGrayDark" height="18px" mr={2} name="svg-video-camera" />
+                                                    <Flex alignItems="flex-end" display="flex" flexWrap="wrap" mb={4} ml={4}>
+                                                        <Box mr={2}>
+                                                            <Svg fill="colorGrayDark" height="22px" name={`svg-tipo-${tipoAula(aula.tipo).svg}`} />
+                                                        </Box>
 
-                                                        <Span verticalAlign="sub">Vídeo | 7min</Span>
-                                                    </P>
+                                                        <Box fontSize={14}>{tipoAula(aula.tipo).title}</Box>
+                                                    </Flex>
                                                 </li>
                                             );
                                         })}

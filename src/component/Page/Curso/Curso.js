@@ -83,17 +83,17 @@ export const Curso = ({ match }) => {
                 const result = await axios.post(`${apiUrlCursos}/matricular`, { curso_id: curso.id });
 
                 if (result.data && result.data.success == true) {
-                    window.location.pathname = `/minha-conta/curso/${curso.slug}`;
+                    window.location.pathname = `/minha-conta/curso/${curso.id}`;
                 } else {
                     console.error('result: ', result);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 403) {
-                    console.log('error: ', error);
+                    console.error('error: ', error);
 
-                    window.location.pathname = `/minha-conta/curso/${curso.slug}`;
+                    window.location.pathname = `/minha-conta/curso/${curso.id}`;
                 } else if (error.response && error.response.status === 401) {
-                    console.log('error: ', error);
+                    console.error('error: ', error);
                 } else {
                     console.error('error: ', error);
                 }
@@ -185,7 +185,7 @@ export const Curso = ({ match }) => {
                         <Wrap>
                             <Flex display={{ d: 'flex', sm: 'none' }} flexWrap="wrap" justifyContent="center">
                                 <Box mt={4}>
-                                    <Button fontSize="20px" onClick={() => handleMatricula()} text="Começar" />
+                                    <Button fontSize="20px" mx="auto" onClick={() => handleMatricula()} text="Começar" />
                                 </Box>
                             </Flex>
 
@@ -246,7 +246,9 @@ export const Curso = ({ match }) => {
                                                             {modulo.title}
                                                         </Span>
 
-                                                        <ConteudoCellSvgStyled>{statePart == modulo.id ? <Svg fill="colorSecondary" height="30px" name="svg-minus" /> : <Svg fill="colorSecondary" height="30px" name="svg-plus" />}</ConteudoCellSvgStyled>
+                                                        <ConteudoCellSvgStyled>
+                                                            <Svg fill="colorSecondary" height="30px" name={statePart == modulo.id ? 'svg-minus' : 'svg-plus'} />
+                                                        </ConteudoCellSvgStyled>
                                                     </Box>
 
                                                     <Box>
@@ -270,7 +272,7 @@ export const Curso = ({ match }) => {
                             </Title4>
 
                             <Box textAlign="center">
-                                <Button fontSize="24px" onClick={() => handleMatricula()} text="Começar" />
+                                <Button fontSize="24px" mx="auto" onClick={() => handleMatricula()} text="Começar" />
                             </Box>
                         </Container>
 
@@ -367,7 +369,7 @@ export const Curso = ({ match }) => {
                                         stateCurso.data.map((curso) => {
                                             return (
                                                 <Box key={curso.id} mb={5} width={{ d: 1, md: 1 / 3 }}>
-                                                    <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} onClick={() => setStateCursoUrl(`${apiUrlCursos}/${curso.slug}`)} to={`/curso/${curso.slug}`} width="100%">
+                                                    <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} onClick={() => setStateCursoUrl(`${apiUrlCursos}/${curso.id}`)} to={`/curso/${curso.id}`} width="100%">
                                                         <ListBox alignContent="space-between" color={stateCurso.featured_color} display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
                                                             <ListBoxHover zindex="3">
                                                                 <Flex alignContent="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">

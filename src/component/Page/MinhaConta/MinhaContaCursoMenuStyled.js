@@ -3,7 +3,7 @@ import { space, typography } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 
-export const MinhaContaCursoMenuAulaStyled = styled.div`
+export const MinhaContaCursoMenuModuloStyled = styled.div`
     align-items: center;
     background-color: 'transparent';
     border-top: 1px solid ${variable.colorWhite};
@@ -35,6 +35,13 @@ export const MinhaContaCursoMenuAulaStyled = styled.div`
                 background-color: ${variable.colorPrimary};
             }
         `};
+`;
+
+export const MinhaContaCursoMenuModuloSvgStyled = styled.div`
+    right: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 `;
 
 export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`

@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -182,19 +183,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         <TabContentStyled>
                                                             <Title2>Conteúdo</Title2>
 
-                                                            <p>
-                                                                It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off. Angle the deflector shield while I make the calculations for the jump to light speed. Stay sharp! There are two more coming in,
-                                                                theyre going to try to cut us off. Why dont you outrun them? I thought you said this thing was fast.
-                                                            </p>
-
-                                                            <p>Stay sharp! There are two more coming in, theyre going to try to cut us off. Why dont you outrun them? I thought you said this thing was fast.</p>
-
-                                                            <p>
-                                                                It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off. Angle the deflector shield while I make the calculations for the jump to light speed. Stay sharp! There are two more coming in,
-                                                                theyre going to try to cut us off. Why dont you outrun them? I thought you said this thing was fast.
-                                                            </p>
-
-                                                            <p>Stay sharp! There are two more coming in, theyre going to try to cut us off. Why dont you outrun them? I thought you said this thing was fast.</p>
+                                                            <div>{parse(`${curso.content}`)}</div>
                                                         </TabContentStyled>
 
                                                         {/* <TabContentStyled>
@@ -216,7 +205,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                     <Button fontWeight="400" onClick={() => setStateMenuAula(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
                                                 </MinhaContaExibirAulaStyled>
 
-                                                <Box width={{ d: 1, md: stateMenuAula ? 3 / 10 : 0 }}>
+                                                <Box height={stateMenuAula ? 'auto' : 0} width={{ d: 1, md: stateMenuAula ? 3 / 10 : 0 }}>
                                                     <Suspense fallback={<P>Carregando...</P>}>
                                                         <MinhaContaCursoMenu active={stateMenuAula} objectCurso={curso} />
                                                     </Suspense>
