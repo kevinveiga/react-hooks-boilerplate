@@ -110,6 +110,12 @@
 
 -   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
 
+-   Ao definir um nome de variável para um State de Contexto, colocar no final do nome "Context". Ex:
+
+```html
+<PesquisaContext.Provider value="{setStatePesquisaDataContext}">...</PesquisaContext.Provider>
+```
+
 -   Ao criar um arquivo de Styled Component fora da pasta "style", colocar no final do nome "Styled". Ex: HomeStyled.js;
 
 -   Ao definir um nome de variável Styled Component dentro de um arquivo fora da pasta "style", colocar no final do nome "Styled". Ex:
@@ -136,7 +142,7 @@ return stateBanner.data && stateBanner.data.sidebar_habilitada == '1' ? (
 
 -   Ao utilizar Styled System, cuidar para não usar a mesma propriedade no Style Components. Ex:
 
-```js
+```html
 <Box width="100%">...</Box>
 ```
 
