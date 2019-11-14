@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { border, flexbox, layout, space, typography } from 'styled-system';
 
+import { scrollbarAlternate } from './function';
 import { BgImageOverlay } from './image';
 import { variable } from './variable';
 
@@ -10,6 +11,7 @@ export const Box = styled.div`
     ${layout};
     ${space};
     ${typography};
+    ${scrollbarAlternate()};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition}, width ${variable.transition};
 
     ${({ hover }) =>

@@ -38,7 +38,7 @@ export const letterSpacing = (value = '0', align = '') => {
 export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary = variable.colorSecondary, scrollbarSize = '8px') => {
     return css`
         &::-webkit-scrollbar {
-            height: ${scrollbarSize};
+            height: 100%;
             width: ${scrollbarSize};
         }
 
@@ -62,6 +62,45 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
 
         &::-webkit-scrollbar-track {
             background-color: ${variable.colorWhite};
+        }
+
+        &::-webkit-scrollbar-track-piece {
+            background-color: transparent;
+            margin: 0;
+        }
+    `;
+};
+
+export const scrollbarAlternate = (colorPrimary = variable.colorBlack, colorSecondary = variable.colorWhite, scrollbarSize = '6px') => {
+    return css`
+        &::-webkit-scrollbar {
+            height: 100%;
+            width: ${scrollbarSize};
+        }
+
+        &::-webkit-scrollbar-button {
+            background-color: ${colorSecondary};
+            display: none;
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: ${colorSecondary};
+        }
+
+        &::-webkit-resizer {
+            background-color: ${colorSecondary};
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: ${colorPrimary};
+            border-radius: 10px;
+            height: 50px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: ${colorSecondary};
+            border-radius: 10px;
+            box-shadow: inset 0 0 0 1px ${variable.colorGray2};
         }
 
         &::-webkit-scrollbar-track-piece {

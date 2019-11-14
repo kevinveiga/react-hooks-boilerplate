@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { border, flexbox, layout, position, space, typography } from 'styled-system';
 
+import { scrollbarAlternate } from '../../../style/function';
 import { Image } from '../../../style/image';
 import { variable } from '../../../style/variable';
 
@@ -18,44 +19,10 @@ export const MinhaContaCenterStyled = styled.div`
 `;
 
 export const MinhaContaConversacaoStyled = styled.div`
+    ${scrollbarAlternate()};
     max-height: 50vh;
     overflow-y: auto;
     padding-right: 25px;
-
-    &::-webkit-scrollbar {
-        height: 100%;
-        width: 6px;
-    }
-
-    &::-webkit-scrollbar-button {
-        background-color: ${variable.colorWhite};
-        display: none;
-    }
-
-    &::-webkit-scrollbar-corner {
-        background-color: ${variable.colorWhite};
-    }
-
-    &::-webkit-resizer {
-        background-color: ${variable.colorWhite};
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: ${variable.colorBlack};
-        border-radius: 10px;
-        height: 50px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: ${variable.colorWhite};
-        border-radius: 10px;
-        box-shadow: inset 0 0 0 1px ${variable.colorGray2};
-    }
-
-    &::-webkit-scrollbar-track-piece {
-        background-color: transparent;
-        margin: 0;
-    }
 `;
 
 export const MinhaContaConversacaoImageContainerStyled = styled.div`
