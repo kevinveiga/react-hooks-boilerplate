@@ -5,8 +5,8 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useSeoApi = (initialUrl, initialData) => {
-    const [stateSeoUrl] = useState(initialUrl);
+export const useSeoApi = (url, initialData) => {
+    const [stateSeoUrl] = useState(url);
 
     const [stateSeo, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,

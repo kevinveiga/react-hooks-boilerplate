@@ -5,8 +5,8 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useContatoApi = (initialUrl, initialData) => {
-    const [stateContatoData, setStateContatoData] = useState(initialUrl);
+export const useContatoApi = (url, initialData) => {
+    const [stateContatoData, setStateContatoData] = useState(url);
 
     const [stateContato, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,

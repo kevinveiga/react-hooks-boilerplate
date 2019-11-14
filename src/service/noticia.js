@@ -5,8 +5,8 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useNoticiaApi = (initialUrl, initialData) => {
-    const [stateNoticiaUrl, setStateNoticiaUrl] = useState(initialUrl);
+export const useNoticiaApi = (url, initialData) => {
+    const [stateNoticiaUrl, setStateNoticiaUrl] = useState(url);
 
     const [stateNoticia, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -87,8 +87,8 @@ export const useNoticiaCategoriaApi = (obj, initialData) => {
     return [stateNoticiaCategoria, setStateNoticiaCategoriaData];
 };
 
-export const useNoticiaCategoriasApi = (initialUrl, initialData) => {
-    const [stateNoticiaCategoriasUrl] = useState(initialUrl);
+export const useNoticiaCategoriasApi = (url, initialData) => {
+    const [stateNoticiaCategoriasUrl] = useState(url);
 
     const [stateNoticiaCategorias, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,

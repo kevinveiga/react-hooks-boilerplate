@@ -5,8 +5,8 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useCursoApi = (initialUrl, initialData) => {
-    const [stateCursoUrl, setStateCursoUrl] = useState(initialUrl);
+export const useCursoApi = (url, initialData) => {
+    const [stateCursoUrl, setStateCursoUrl] = useState(url);
 
     const [stateCurso, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -87,8 +87,8 @@ export const useCursoCategoriaApi = (obj, initialData) => {
     return [stateCursoCategoria, setStateCursoCategoriaData];
 };
 
-export const useCursoCategoriasApi = (initialUrl, initialData) => {
-    const [stateCursoCategoriasUrl] = useState(initialUrl);
+export const useCursoCategoriasApi = (url, initialData) => {
+    const [stateCursoCategoriasUrl] = useState(url);
 
     const [stateCursoCategorias, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
