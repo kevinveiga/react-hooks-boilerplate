@@ -9,12 +9,12 @@ workbox.precaching.cleanupOutdatedCaches();
 
 // Updating SW lifecycle to update the app after user triggered refresh
 workbox.core.clientsClaim();
-// workbox.core.skipWaiting();
+workbox.core.skipWaiting();
 
 // API
 // Add all api, except perfil api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?!(perfil$)).+$'),
+    new RegExp('.+/api/v1/(?!(perfil$|cursos/meus-cursos$)).+$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'api-cache',
         plugins: [
@@ -23,7 +23,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 30,
+                maxEntries: 50,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
@@ -39,6 +39,34 @@ workbox.routing.registerRoute(
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200]
+            })
+        ]
+    })
+);
+
+// API MEUS CURSOS
+// Add only meus-cursos api
+workbox.routing.registerRoute(
+    new RegExp('.+/api/v1/(?:(cursos/meus-cursos))$'),
+    new workbox.strategies.NetworkFirst({
+        cacheName: 'api-cache-meus-cursos',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+);
+
+// APP
+// Add same origin, except in precache, css, image, js (same origin or cross origin)
+workbox.routing.registerRoute(
+    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'app-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
@@ -49,15 +77,19 @@ workbox.routing.registerRoute(
     })
 );
 
-// APP
-// Add same origin, except in precache, image-cache or image-cross-origin
+// CSS CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
-    new workbox.strategies.StaleWhileRevalidate({
-        cacheName: 'app-cache',
+    new RegExp('.+\\..+/(?:.+(css)).*$'),
+    new workbox.strategies.CacheFirst({
+        cacheName: 'css-cross-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 15,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
     })
@@ -94,6 +126,43 @@ workbox.routing.registerRoute(
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 30,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// JS SAME-ORIGIN
+// Add same origin, except in asset/js folder
+workbox.routing.registerRoute(
+    new RegExp('\\/(?:.+(js)).*$'),
+    new workbox.strategies.StaleWhileRevalidate({
+        cacheName: 'js-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 15,
+                purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
+            })
+        ]
+    })
+);
+
+// JS CROSS-ORIGIN
+workbox.routing.registerRoute(
+    new RegExp('.+\\..+/(?:.+(js)).*$'),
+    new workbox.strategies.CacheFirst({
+        cacheName: 'js-cross-cache',
+        plugins: [
+            new workbox.cacheableResponse.Plugin({
+                statuses: [0, 200]
+            }),
+            new workbox.expiration.Plugin({
+                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxEntries: 15,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
