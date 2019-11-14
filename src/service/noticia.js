@@ -47,8 +47,8 @@ export const useNoticiaApi = (initialUrl, initialData) => {
     return [stateNoticia, setStateNoticiaUrl];
 };
 
-export const useNoticiaCategoriaApi = (initialValue, initialData) => {
-    const [stateNoticiaCategoriaData, setStateNoticiaCategoriaData] = useState(initialValue);
+export const useNoticiaCategoriaApi = (obj, initialData) => {
+    const [stateNoticiaCategoriaData, setStateNoticiaCategoriaData] = useState(obj);
 
     const [stateNoticiaCategoria, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,

@@ -47,8 +47,8 @@ export const useCursoApi = (initialUrl, initialData) => {
     return [stateCurso, setStateCursoUrl];
 };
 
-export const useCursoCategoriaApi = (initialValue, initialData) => {
-    const [stateCursoCategoriaData, setStateCursoCategoriaData] = useState(initialValue);
+export const useCursoCategoriaApi = (obj, initialData) => {
+    const [stateCursoCategoriaData, setStateCursoCategoriaData] = useState(obj);
 
     const [stateCursoCategoria, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,

@@ -5,8 +5,8 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const usePesquisaApi = (initialValue, initialData) => {
-    const [statePesquisaData, setStatePesquisaData] = useState(initialValue);
+export const usePesquisaApi = (obj, initialData) => {
+    const [statePesquisaData, setStatePesquisaData] = useState(obj);
 
     const [statePesquisa, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
