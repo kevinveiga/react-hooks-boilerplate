@@ -163,30 +163,30 @@ export const Noticias = () => {
                                         stateNoticias.data.map((categoriaUltimas, i) => {
                                             return (
                                                 i > 0 &&
-                                                (categoriaUltimas &&
-                                                    categoriaUltimas.posts.data.map((noticia, j) => {
-                                                        return (
-                                                            <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
-                                                                <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                                    <NoticiaBox alignContent="space-between" color={categoriaUltimas.featured_color} display="flex" flexWrap="wrap" height="100%" themeColor="dark" verticalAlign="middle">
-                                                                        <Box width="100%">
-                                                                            {j / 3 === 0 && (
-                                                                                <Box height="200px" mb={4} overflow="hidden" width="100%">
-                                                                                    <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
-                                                                                </Box>
-                                                                            )}
+                                                categoriaUltimas &&
+                                                categoriaUltimas.posts.data.map((noticia, j) => {
+                                                    return (
+                                                        <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
+                                                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                <NoticiaBox alignContent="space-between" color={categoriaUltimas.featured_color} display="flex" flexWrap="wrap" height="100%" themeColor="dark" verticalAlign="middle">
+                                                                    <Box width="100%">
+                                                                        {j / 3 === 0 && (
+                                                                            <Box height="200px" mb={4} overflow="hidden" width="100%">
+                                                                                <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                            </Box>
+                                                                        )}
 
-                                                                            <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
+                                                                        <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
 
-                                                                            <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
-                                                                        </Box>
+                                                                        <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
+                                                                    </Box>
 
-                                                                        <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
-                                                                    </NoticiaBox>
-                                                                </LinkTo>
-                                                            </Box>
-                                                        );
-                                                    }))
+                                                                    <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
+                                                                </NoticiaBox>
+                                                            </LinkTo>
+                                                        </Box>
+                                                    );
+                                                })
                                             );
                                         })}
                                 </Flex>
