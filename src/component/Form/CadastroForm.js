@@ -192,11 +192,15 @@ const CadastroForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell mb={3} textAlign="center">
-                                <span>Você já possui uma conta?</span>
+                                <Box display={{ d: 'block', xs: 'inline-block' }}>
+                                    <span>Você já possui uma conta?</span>
+                                </Box>
 
-                                <LinkTo link="/login">
-                                    <Button fontSize={{ d: 14, sm: 16 }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }} text="Fazer Login" themeSize="small" themeType="border" />
-                                </LinkTo>
+                                <Box display={{ d: 'block', xs: 'inline-block' }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }}>
+                                    <LinkTo link="/login">
+                                        <Button fontSize={{ d: 14, sm: 16 }} text="Fazer Login" themeSize="small" themeType="border" />
+                                    </LinkTo>
+                                </Box>
                             </Cell>
 
                             <Cell mb={3} textAlign="center">

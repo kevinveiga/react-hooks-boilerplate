@@ -61,16 +61,25 @@ export const useCursoConteudoApi = (obj, initialData) => {
         if (stateCursoConteudoData.modulos) {
             const { conteudoId, modulos } = stateCursoConteudoData;
 
+            let exitLoop = false;
+            let nextModuloConteudoId;
+            let prevModuloConteudoId;
+
             for (let i1 = 0, l1 = modulos.length; i1 < l1; i1 += 1) {
-                const nextModuloConteudoId = modulos[i1 + 1] && modulos[i1 + 1].conteudos[0].id;
-                const prevModuloConteudoId = modulos[i1 - 1] && modulos[i1 - 1].conteudos[modulos[i1 - 1].conteudos.length - 1].id;
+                nextModuloConteudoId = modulos[i1 + 1] && modulos[i1 + 1].conteudos[0].id;
+                prevModuloConteudoId = modulos[i1 - 1] && modulos[i1 - 1].conteudos[modulos[i1 - 1].conteudos.length - 1].id;
 
                 for (let i2 = 0, l2 = modulos[i1].conteudos.length; i2 < l2; i2 += 1) {
                     if (modulos[i1].conteudos[i2].id === conteudoId) {
                         setStateCursoConteudoPrevNextId({ nextId: modulos[i1].conteudos[i2 + 1] ? modulos[i1].conteudos[i2 + 1].id : nextModuloConteudoId, prevId: modulos[i1].conteudos[i2 - 1] ? modulos[i1].conteudos[i2 - 1].id : prevModuloConteudoId });
 
+                        exitLoop = true;
                         break;
                     }
+                }
+
+                if (exitLoop) {
+                    break;
                 }
             }
         }
