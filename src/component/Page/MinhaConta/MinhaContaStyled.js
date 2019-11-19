@@ -65,7 +65,7 @@ export const MinhaContaConversacaoUlStyled = styled.ul`
     border-bottom: 1px solid ${variable.colorGrayLight2};
 `;
 
-export const MinhaContaExibirAulaStyled = styled.div`
+export const MinhaContaExibirConteudoStyled = styled.div`
     ${layout};
     ${position};
     ${space};

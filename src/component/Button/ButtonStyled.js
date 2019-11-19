@@ -18,15 +18,12 @@ export const ButtonStyled = styled.button`
     white-space: nowrap;
     ${({ width }) => width === undefined && 'width: auto'};
 
-    &:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-
-        &:active,
-        &:hover {
-            background-color: ${variable.colorGrayLight2};
-        }
-    }
+    ${({ disabled }) =>
+        disabled === true &&
+        css`
+            cursor: not-allowed;
+            opacity: 0.3;
+        `}
 
     ${({ themeSize }) =>
         themeSize === undefined &&
@@ -62,6 +59,15 @@ export const ButtonStyled = styled.button`
             ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
             ${({ textTransform }) => textTransform === undefined && 'text-transform: uppercase'};
 
+            svg {
+                fill: ${variable.colorSecondary};
+            }
+        `};
+
+    ${({ disabled, themeType }) =>
+        !disabled &&
+        themeType === undefined &&
+        css`
             &:active,
             &:hover {
                 background-color: ${variable.colorPrimaryHover};
@@ -71,11 +77,7 @@ export const ButtonStyled = styled.button`
                     fill: ${variable.colorWhite};
                 }
             }
-
-            svg {
-                fill: ${variable.colorSecondary};
-            }
-        `};
+        `}
 
     ${({ active, themeType }) =>
         active &&
@@ -98,6 +100,15 @@ export const ButtonStyled = styled.button`
             ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
             ${({ textTransform }) => textTransform === undefined && 'text-transform: capitalize'};
 
+            svg {
+                fill: ${variable.colorPrimary};
+            }
+        `};
+
+    ${({ disabled, themeType }) =>
+        !disabled &&
+        themeType === 'border' &&
+        css`
             &:active,
             &:hover {
                 background-color: ${variable.colorPrimaryHover};
@@ -108,11 +119,7 @@ export const ButtonStyled = styled.button`
                     fill: ${variable.colorWhite};
                 }
             }
-
-            svg {
-                fill: ${variable.colorPrimary};
-            }
-        `};
+        `}
 
     ${({ themeType }) =>
         themeType === 'none' &&
@@ -120,7 +127,12 @@ export const ButtonStyled = styled.button`
             background-color: transparent;
             ${({ color }) => color && `color: ${variable[color]}`};
             ${({ display }) => display === undefined && 'display: inline'};
+        `};
 
+    ${({ disabled, themeType }) =>
+        !disabled &&
+        themeType === 'none' &&
+        css`
             &:active,
             &:hover {
                 color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
@@ -129,7 +141,7 @@ export const ButtonStyled = styled.button`
                     fill: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
                 }
             }
-        `};
+        `}
 
     ${({ active, themeType }) =>
         active &&

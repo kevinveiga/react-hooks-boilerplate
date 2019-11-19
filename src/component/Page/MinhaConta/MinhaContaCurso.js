@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { apiUrlCursos } from '../../../config';
 
-import { useCursoApi } from '../../../service/curso';
+import { useCursoApi, useCursoConteudoApi } from '../../../service/curso';
 
 import { Context } from '../../../store/context';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
@@ -18,7 +18,7 @@ import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 
-import { MinhaContaCenterStyled, MinhaContaExibirAulaStyled } from './MinhaContaStyled';
+import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaContaStyled';
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -31,10 +31,12 @@ import { variable } from '../../../style/variable';
 const MinhaContaCursoMenu = lazy(() => import('./MinhaContaCursoMenu'));
 
 export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
-    // API
+    // API CURSO
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
+    const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
 
     const cursoLength = stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
+    const cursoConteudoLength = stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
 
     // Redirecionamento temporário
     if (stateCurso.isError == true) {
@@ -49,7 +51,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // ACTION
     const [stateTabSelected, setStateTabSelected] = useState('resumo');
-    const [stateMenuAula, setStateMenuAula] = useState(true);
+    const [stateMenuConteudo, setStateMenuConteudo] = useState(true);
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo
@@ -61,14 +63,52 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     }, [isDataLoaded]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
+    useEffect(() => {
+        if (stateCurso.isLoading || stateCursoConteudo.isLoading) {
+            setStateLoaderContext(true);
+        } else {
+            setTimeout(() => {
+                setStateLoaderContext(false);
+            }, variable.timeout1s);
+        }
+    }, [setStateLoaderContext, stateCurso.isLoading, stateCursoConteudo.isLoading]);
+
     const handleTabChange = (e) => {
         setStateTabSelected(e.target.value);
     };
 
+    const tipoConteudo = (conteudo) => {
+        switch (conteudo.tipo) {
+            case 'audio':
+                return '';
+            case 'download':
+                return '';
+            case 'imagem':
+                return <BgImageLazyLoad url={conteudo.imagem} />;
+            case 'post':
+                return parse(`${conteudo && conteudo.content}`);
+            case 'video':
+                return '';
+            default:
+                return (
+                    <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                        {/* TODO: colocar layout */}
+                        Conteudo não encontrada
+                    </Title4>
+                );
+        }
+    };
+
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
+    const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
 
-    console.log('curso: ', curso);
+    // ACTION CURSO AULA
+    useEffect(() => {
+        if (curso) {
+            setStateCursoConteudoData({ conteudoId: curso.modulos[0].conteudos[0].id, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos/${curso.id}` });
+        }
+    }, [curso, setStateCursoConteudoData]);
 
     return (
         <>
@@ -79,7 +119,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
             <HeaderAlternate currentBreadcrumbLabel={curso.title} {...breadcrumb} />
 
-            <MinhaContaCursoContext.Provider value={setStateMenuAula}>
+            <MinhaContaCursoContext.Provider value={{ setStateCursoConteudoDataContext: setStateCursoConteudoData, setStateMenuConteudoContext: setStateMenuConteudo }}>
                 <Main header="minhaConta">
                     {stateCurso.isError == true && (
                         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
@@ -97,32 +137,56 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                     {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Titulo do Curso" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
 
                                     <Flex display="flex" flexWrap="wrap">
-                                        <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuAula ? 7 / 10 : 1 }}>
-                                            <Box height="50vh" mb={3}>
-                                                <BgImageLazyLoad url={(windowWidth < parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1024) || (windowWidth > parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1920)} />
+                                        <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
+                                            <Box height="50vh" mb={3} overflowY="auto">
+                                                {tipoConteudo(conteudo)}
                                             </Box>
 
-                                            <Box mb={3} textAlign="right">
-                                                <Button borderColor="colorGray" color="colorBlack3" display="inline-block" text="Próxima Aula" themeType="border" width={{ d: '100%', sm: 'auto' }} />
-                                            </Box>
+                                            <Flex display="flex" justifyContent="space-between" mb={3} flexWrap="wrap">
+                                                <Box>
+                                                    <Button
+                                                        borderColor="colorGray"
+                                                        color="colorBlack3"
+                                                        disabled={!stateCursoConteudoPrevNextId.prevId}
+                                                        display="inline-block"
+                                                        onClick={() => setStateCursoConteudoData({ conteudoId: stateCursoConteudoPrevNextId.prevId, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos/${curso.id}` })}
+                                                        text="Conteúdo anterior"
+                                                        themeType="border"
+                                                        width={{ d: '100%', sm: 'auto' }}
+                                                    />
+                                                </Box>
+
+                                                <Box>
+                                                    <Button
+                                                        borderColor="colorGray"
+                                                        color="colorBlack3"
+                                                        disabled={!stateCursoConteudoPrevNextId.nextId}
+                                                        display="inline-block"
+                                                        onClick={() => setStateCursoConteudoData({ conteudoId: stateCursoConteudoPrevNextId.nextId, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos/${curso.id}` })}
+                                                        text="Próximo Conteúdo"
+                                                        themeType="border"
+                                                        width={{ d: '100%', sm: 'auto' }}
+                                                    />
+                                                </Box>
+                                            </Flex>
 
                                             {/* MinhaContaCursoMenu Mobile */}
                                             {windowWidth < parseInt(variable.md, 10) && (
                                                 <>
-                                                    <MinhaContaExibirAulaStyled display={stateMenuAula ? 'none' : 'block'} p={4}>
-                                                        <Button display="block" fontWeight="400" mx="auto" onClick={() => setStateMenuAula(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
-                                                    </MinhaContaExibirAulaStyled>
+                                                    <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} p={4}>
+                                                        <Button display="block" fontWeight="400" mx="auto" onClick={() => setStateMenuConteudo(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
+                                                    </MinhaContaExibirConteudoStyled>
 
                                                     <Box>
                                                         <Suspense fallback={<P>Carregando...</P>}>
-                                                            <MinhaContaCursoMenu active={stateMenuAula} objectCurso={curso} />
+                                                            <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
                                                         </Suspense>
                                                     </Box>
                                                 </>
                                             )}
 
                                             <Box>
-                                                <TabStyled group="tab-group" total={2}>
+                                                <TabStyled group="tab-group" total={1}>
                                                     <input
                                                         checked={stateTabSelected === 'resumo'}
                                                         id="tab-id-resumo"
@@ -161,9 +225,9 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             <label htmlFor="tab-id-resumo">Resumo</label>
                                                         </TabNavStyled>
 
-                                                        <TabNavStyled>
+                                                        {/* <TabNavStyled>
                                                             <label htmlFor="tab-id-conteudo">Conteúdo</label>
-                                                        </TabNavStyled>
+                                                        </TabNavStyled> */}
 
                                                         {/* <TabNavStyled>
                                                             <label htmlFor="tab-id-duvidas">Dúvidas</label>
@@ -172,19 +236,25 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                                     <TabsContentStyled>
                                                         <TabContentStyled>
-                                                            <Title2>Aula 12 - Por onde começar?</Title2>
+                                                            {stateCursoConteudo.isError == true || conteudo == false ? (
+                                                                <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                                                    {/* TODO: colocar layout */}
+                                                                    Conteúdo não encontrado
+                                                                </Title4>
+                                                            ) : (
+                                                                <>
+                                                                    <Title2>{conteudo && conteudo.title}</Title2>
 
-                                                            <p>
-                                                                It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off. Angle the deflector shield while I make the calculations for the jump to light speed. Stay sharp! There are two more coming in,
-                                                                theyre going to try to cut us off. Why dont you outrun them? I thought you said this thing was fast.
-                                                            </p>
+                                                                    <div>{parse(`${conteudo && conteudo.content}`)}</div>
+                                                                </>
+                                                            )}
                                                         </TabContentStyled>
 
-                                                        <TabContentStyled>
+                                                        {/* <TabContentStyled>
                                                             <Title2>Conteúdo</Title2>
 
                                                             <div>{parse(`${curso.content}`)}</div>
-                                                        </TabContentStyled>
+                                                        </TabContentStyled> */}
 
                                                         {/* <TabContentStyled>
                                                             <Title2>Dúvidas</Title2>
@@ -201,13 +271,13 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         {/* MinhaContaCursoMenu Desktop */}
                                         {windowWidth > parseInt(variable.md, 10) && (
                                             <>
-                                                <MinhaContaExibirAulaStyled display={stateMenuAula ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
-                                                    <Button fontWeight="400" onClick={() => setStateMenuAula(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
-                                                </MinhaContaExibirAulaStyled>
+                                                <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
+                                                    <Button fontWeight="400" onClick={() => setStateMenuConteudo(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
+                                                </MinhaContaExibirConteudoStyled>
 
-                                                <Box height={stateMenuAula ? 'auto' : 0} width={{ d: 1, md: stateMenuAula ? 3 / 10 : 0 }}>
+                                                <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, md: stateMenuConteudo ? 3 / 10 : 0 }}>
                                                     <Suspense fallback={<P>Carregando...</P>}>
-                                                        <MinhaContaCursoMenu active={stateMenuAula} objectCurso={curso} />
+                                                        <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
                                                     </Suspense>
                                                 </Box>
                                             </>

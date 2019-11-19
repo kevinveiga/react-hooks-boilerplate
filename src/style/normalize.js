@@ -170,11 +170,12 @@ export const Normalize = createGlobalStyle`
     }
 
     /* Re-set default cursor for disabled elements. */
-    button[disabled],
-    input[disabled],
-    select[disabled],
-    textarea[disabled] {
+    button[disabled='true'],
+    input[disabled='true'],
+    select[disabled='true'],
+    textarea[disabled='true'] {
         cursor: not-allowed;
+        opacity: 0.3;
     }
 
     fieldset {

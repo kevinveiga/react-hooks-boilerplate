@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useReducer, useState } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import * as ACTION from '../store/action/action';
 
@@ -45,6 +45,69 @@ export const useCursoApi = (url, initialData) => {
     }, [stateCursoUrl]);
 
     return [stateCurso, setStateCursoUrl];
+};
+
+export const useCursoConteudoApi = (obj, initialData) => {
+    const [stateCursoConteudoData, setStateCursoConteudoData] = useState(obj);
+    const [stateCursoConteudoPrevNextId, setStateCursoConteudoPrevNextId] = useState({});
+
+    const [stateCursoConteudo, dispatch] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
+
+    const prevNextId = useCallback(() => {
+        if (stateCursoConteudoData.modulos) {
+            const { conteudoId, modulos } = stateCursoConteudoData;
+
+            for (let i1 = 0, l1 = modulos.length; i1 < l1; i1 += 1) {
+                const nextModuloConteudoId = modulos[i1 + 1] && modulos[i1 + 1].conteudos[0].id;
+                const prevModuloConteudoId = modulos[i1 - 1] && modulos[i1 - 1].conteudos[modulos[i1 - 1].conteudos.length - 1].id;
+
+                for (let i2 = 0, l2 = modulos[i1].conteudos.length; i2 < l2; i2 += 1) {
+                    if (modulos[i1].conteudos[i2].id === conteudoId) {
+                        setStateCursoConteudoPrevNextId({ nextId: modulos[i1].conteudos[i2 + 1] ? modulos[i1].conteudos[i2 + 1].id : nextModuloConteudoId, prevId: modulos[i1].conteudos[i2 - 1] ? modulos[i1].conteudos[i2 - 1].id : prevModuloConteudoId });
+
+                        break;
+                    }
+                }
+            }
+        }
+    }, [stateCursoConteudoData, setStateCursoConteudoPrevNextId]);
+
+    useEffect(() => {
+        if (!stateCursoConteudoData) {
+            return undefined;
+        }
+
+        let didCancel = false;
+
+        const fetchData = async () => {
+            dispatch(ACTION.init());
+
+            try {
+                const result = await axios.get(`${stateCursoConteudoData.url}/${stateCursoConteudoData.conteudoId}`);
+
+                if (!didCancel) {
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                    prevNextId(stateCursoConteudoData.conteudoId, stateCursoConteudoData.modulos, stateCursoConteudoData.url);
+                }
+            } catch (error) {
+                if (!didCancel) {
+                    dispatch(ACTION.failure());
+                }
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            didCancel = true;
+        };
+    }, [prevNextId, stateCursoConteudoData]);
+
+    return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
 };
 
 export const useCursoCategoriaApi = (obj, initialData) => {

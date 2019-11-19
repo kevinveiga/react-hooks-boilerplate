@@ -45,6 +45,9 @@
             4,
             {
                 "flatTernaryExpressions": false,
+                "FunctionDeclaration": { "body": 1, "parameters": 3 },
+                "FunctionExpression": { "body": 1, "parameters": 3 },
+                "MemberExpression": 1,
                 "SwitchCase": 1
             }
         ],
@@ -137,7 +140,7 @@
                 "eventHandlerPropPrefix": "on"
             }
         ],
-        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent": ["error", 4, { "checkAttributes": false, "indentLogicalExpressions": false }],
         "react/jsx-indent-props": "off",
         "react/jsx-key": "error",
         "react/jsx-no-bind": "error",

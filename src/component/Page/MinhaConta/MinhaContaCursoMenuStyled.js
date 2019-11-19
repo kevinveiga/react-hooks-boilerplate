@@ -44,7 +44,11 @@ export const MinhaContaCursoMenuModuloSvgStyled = styled.div`
     transform: translateY(-50%);
 `;
 
-export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`
+export const MinhaContaCursoMenuConteudoStyled = styled.li`
+    cursor: pointer;
+`;
+
+export const MinhaContaCursoMenuConteudoCheckboxStyled = styled.input`
     ${typography};
     height: 0.1px;
     opacity: 0;
@@ -94,7 +98,7 @@ export const MinhaContaCursoMenuAulaCheckboxStyled = styled.input`
     }
 `;
 
-export const MinhaContaCursoMenuAulaContentStyled = styled.div`
+export const MinhaContaCursoMenuConteudoContentStyled = styled.div`
     ${space};
     background-color: ${variable.colorWhite};
     height: 0;
