@@ -70,7 +70,7 @@ export const Aprenda = () => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderContext, stateCursos.isLoading, stateCursosCategoria.isLoading]);
+    }, [stateCursos.isLoading, stateCursosCategoria.isLoading, setStateLoaderContext]);
 
     return (
         <>
@@ -153,7 +153,17 @@ export const Aprenda = () => {
                                                         return (
                                                             <Box key={curso.id} mb={5} width={{ d: 1, md: 1 / 3 }}>
                                                                 <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} width="100%">
-                                                                    <ListBox alignContent="space-between" color={categoria.featured_color} display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
+                                                                    <ListBox
+                                                                        alignContent="space-between"
+                                                                        color={categoria.featured_color}
+                                                                        display="flex"
+                                                                        flexWrap="wrap"
+                                                                        height="100%"
+                                                                        hover="true"
+                                                                        mx={2}
+                                                                        themeColor="dark"
+                                                                        verticalAlign="middle"
+                                                                    >
                                                                         <ListBoxHover zindex="3">
                                                                             <Flex alignContent="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
                                                                                 <Box textAlign="center">

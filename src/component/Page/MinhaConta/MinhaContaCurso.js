@@ -72,7 +72,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderContext, stateCurso.isLoading, stateCursoConteudo.isLoading]);
+    }, [stateCurso.isLoading, stateCursoConteudo.isLoading, setStateLoaderContext]);
 
     const handleTabChange = (e) => {
         setStateTabSelected(e.target.value);

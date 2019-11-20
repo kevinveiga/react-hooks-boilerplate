@@ -72,7 +72,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderContext, stateCursos.isLoading, stateCursosCategorias.isLoading]);
+    }, [stateCursos.isLoading, stateCursosCategorias.isLoading, setStateLoaderContext]);
 
     return (
         <>

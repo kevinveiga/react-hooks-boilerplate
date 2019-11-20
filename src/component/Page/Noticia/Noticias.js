@@ -72,7 +72,7 @@ export const Noticias = () => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderContext, stateNoticias.isLoading, stateNoticiasCategoria.isLoading]);
+    }, [stateNoticias.isLoading, stateNoticiasCategoria.isLoading, setStateLoaderContext]);
 
     return (
         <>
@@ -168,7 +168,15 @@ export const Noticias = () => {
                                                     return (
                                                         <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
                                                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                                <NoticiaBox alignContent="space-between" color={categoriaUltimas.featured_color} display="flex" flexWrap="wrap" height="100%" themeColor="dark" verticalAlign="middle">
+                                                                <NoticiaBox
+                                                                    alignContent="space-between"
+                                                                    color={categoriaUltimas.featured_color}
+                                                                    display="flex"
+                                                                    flexWrap="wrap"
+                                                                    height="100%"
+                                                                    themeColor="dark"
+                                                                    verticalAlign="middle"
+                                                                >
                                                                     <Box width="100%">
                                                                         {j / 3 === 0 && (
                                                                             <Box height="200px" mb={4} overflow="hidden" width="100%">
@@ -206,8 +214,23 @@ export const Noticias = () => {
                                                                     return j === 0 ? (
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" hover="true" key={noticia.id}>
                                                                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                                                <NoticiaBox alignContent="flex-end" color={categoria.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
-                                                                                    <BgImageLazyLoad key={noticia.id} overlayColor="colorBlackTransparent3" url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                <NoticiaBox
+                                                                                    alignContent="flex-end"
+                                                                                    color={categoria.featured_color}
+                                                                                    display="flex"
+                                                                                    flexWrap="wrap"
+                                                                                    height="100%"
+                                                                                    overflow="hidden"
+                                                                                    p={{ d: 3, md: 4 }}
+                                                                                    themeColor="light"
+                                                                                    verticalAlign="middle"
+                                                                                    width="100%"
+                                                                                >
+                                                                                    <BgImageLazyLoad
+                                                                                        key={noticia.id}
+                                                                                        overlayColor="colorBlackTransparent3"
+                                                                                        url={noticia.thumbnail && noticia.thumbnail.attachment.url}
+                                                                                    />
 
                                                                                     <Box>
                                                                                         <NoticiaBoxTagStyled>{categoria.title}</NoticiaBoxTagStyled>
@@ -256,7 +279,13 @@ export const Noticias = () => {
                                                                                     </p>
                                                                                 </NoticiaBox>
 
-                                                                                <Box display="inline-block" height={{ d: '100px', xs: '150px', md: '200px' }} overflow="hidden" verticalAlign="middle" width={2 / 5}>
+                                                                                <Box
+                                                                                    display="inline-block"
+                                                                                    height={{ d: '100px', xs: '150px', md: '200px' }}
+                                                                                    overflow="hidden"
+                                                                                    verticalAlign="middle"
+                                                                                    width={2 / 5}
+                                                                                >
                                                                                     <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                                                 </Box>
                                                                             </LinkTo>
@@ -266,7 +295,16 @@ export const Noticias = () => {
 
                                                             {stateNoticiasCategoria.data && stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
                                                                 <Cell display="flex" justifyContent="center" py={3}>
-                                                                    <Button text="Ver mais" themeType="border" onClick={() => setStateNoticiasCategoriaData({ page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1, url: `${apiUrlNoticias}/categoria/${categoria.slug}` })} />
+                                                                    <Button
+                                                                        text="Ver mais"
+                                                                        themeType="border"
+                                                                        onClick={() =>
+                                                                            setStateNoticiasCategoriaData({
+                                                                                page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1,
+                                                                                url: `${apiUrlNoticias}/categoria/${categoria.slug}`
+                                                                            })
+                                                                        }
+                                                                    />
                                                                 </Cell>
                                                             )}
                                                         </Grid>

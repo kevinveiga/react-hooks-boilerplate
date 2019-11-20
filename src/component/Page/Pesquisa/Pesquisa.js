@@ -46,7 +46,7 @@ export const Pesquisa = ({ match }) => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
-    }, [setStateLoaderContext, statePesquisa.isLoading]);
+    }, [statePesquisa.isLoading, setStateLoaderContext]);
 
     return (
         <PesquisaContext.Provider value={setStatePesquisaDataContext}>
@@ -82,7 +82,17 @@ export const Pesquisa = ({ match }) => {
                                             return (
                                                 <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={pesquisa.id} py={3}>
                                                     <LinkTo ariaLabel={pesquisa.title} height="100%" to={`/noticia/${pesquisa.slug}`} width="100%">
-                                                        <NoticiaBox alignContent="space-between" color={pesquisa.featured_color} display="inline-flex" flexWrap="wrap" minHeight={{ d: '100px', xs: '150px', md: '200px' }} pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={3 / 5}>
+                                                        <NoticiaBox
+                                                            alignContent="space-between"
+                                                            color={pesquisa.featured_color}
+                                                            display="inline-flex"
+                                                            flexWrap="wrap"
+                                                            minHeight={{ d: '100px', xs: '150px', md: '200px' }}
+                                                            pr={{ d: 1, sm: 4 }}
+                                                            themeColor="dark"
+                                                            verticalAlign="middle"
+                                                            width={3 / 5}
+                                                        >
                                                             <Box width="100%">
                                                                 <NoticiaBoxTitleStyled>{pesquisa.title}</NoticiaBoxTitleStyled>
 
