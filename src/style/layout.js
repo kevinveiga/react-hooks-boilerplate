@@ -52,8 +52,8 @@ export const Main = styled.main`
 export const VideoWrap = styled.div`
     div {
         height: 0;
-        padding-bottom: 50%;
-        padding-top: 25px;
+        padding-bottom: 55%;
+        padding-top: 5px;
 
         embed,
         iframe {

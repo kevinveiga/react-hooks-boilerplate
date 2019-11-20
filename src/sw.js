@@ -88,7 +88,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 15,
+                maxEntries: 10,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
@@ -136,7 +136,7 @@ workbox.routing.registerRoute(
 // Add same origin, except in asset/js folder
 workbox.routing.registerRoute(
     new RegExp('\\/(?:.+(js)).*$'),
-    new workbox.strategies.StaleWhileRevalidate({
+    new workbox.strategies.CacheFirst({
         cacheName: 'js-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
@@ -144,7 +144,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 15,
+                maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
@@ -162,7 +162,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 15,
+                maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]

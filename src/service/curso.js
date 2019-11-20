@@ -71,7 +71,10 @@ export const useCursoConteudoApi = (obj, initialData) => {
 
                 for (let i2 = 0, l2 = modulos[i1].conteudos.length; i2 < l2; i2 += 1) {
                     if (modulos[i1].conteudos[i2].id === conteudoId) {
-                        setStateCursoConteudoPrevNextId({ nextId: modulos[i1].conteudos[i2 + 1] ? modulos[i1].conteudos[i2 + 1].id : nextModuloConteudoId, prevId: modulos[i1].conteudos[i2 - 1] ? modulos[i1].conteudos[i2 - 1].id : prevModuloConteudoId });
+                        setStateCursoConteudoPrevNextId({
+                            nextId: modulos[i1].conteudos[i2 + 1] ? modulos[i1].conteudos[i2 + 1].id : nextModuloConteudoId,
+                            prevId: modulos[i1].conteudos[i2 - 1] ? modulos[i1].conteudos[i2 - 1].id : prevModuloConteudoId
+                        });
 
                         exitLoop = true;
                         break;

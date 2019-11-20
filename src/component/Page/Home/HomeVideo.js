@@ -21,9 +21,11 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     return (
         <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
             <Cell>
-                <VideoWrap>
-                    <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(objectVideos.data[0].video) || ''} />
-                </VideoWrap>
+                <Box maxHeight="55vh" minHeight="25vh" overflowY="hidden">
+                    <VideoWrap>
+                        <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(objectVideos.data[0].video) || ''} />
+                    </VideoWrap>
+                </Box>
 
                 <VideoBoxStyled p={4}>
                     <p>Vídeo</p>
@@ -36,7 +38,9 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
 
             <Cell>
                 <VideoBoxStyled p={4} themeColor="dark">
-                    <Title5 fontWeight="600">Próximos Vídeos</Title5>
+                    <Title5 fontWeight="600" themeColor="light">
+                        Próximos Vídeos
+                    </Title5>
                 </VideoBoxStyled>
 
                 <VideoUlStyled>
