@@ -119,6 +119,48 @@ export const useCursoConteudoApi = (obj, initialData) => {
     return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
 };
 
+export const useCursoConteudoVideoVisualizadoApi = (url, initialData) => {
+    const [stateCursoConteudoVideoVisualizadoUrl, setStateCursoConteudoVideoVisualizadoUrl] = useState(url);
+
+    const [stateCursoConteudoVideoVisualizado, dispatch] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
+
+    useEffect(() => {
+        if (!stateCursoConteudoVideoVisualizadoUrl) {
+            return undefined;
+        }
+
+        let didCancel = false;
+
+        const fetchData = async () => {
+            dispatch(ACTION.init());
+
+            try {
+                const result = await axios.get(stateCursoConteudoVideoVisualizadoUrl);
+
+                if (!didCancel) {
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                }
+            } catch (error) {
+                if (!didCancel) {
+                    dispatch(ACTION.failure());
+                }
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            didCancel = true;
+        };
+    }, [stateCursoConteudoVideoVisualizadoUrl]);
+
+    return [stateCursoConteudoVideoVisualizado, setStateCursoConteudoVideoVisualizadoUrl];
+};
+
 export const useCursoCategoriaApi = (obj, initialData) => {
     const [stateCursoCategoriaData, setStateCursoCategoriaData] = useState(obj);
 

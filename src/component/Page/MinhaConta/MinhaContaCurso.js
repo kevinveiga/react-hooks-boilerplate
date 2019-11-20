@@ -1,10 +1,11 @@
 import parse from 'html-react-parser';
 import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import YouTube from 'react-youtube';
 
 import { apiUrlCursos } from '../../../config';
 
-import { useCursoApi, useCursoConteudoApi } from '../../../service/curso';
+import { useCursoApi, useCursoConteudoApi, useCursoConteudoVideoVisualizadoApi } from '../../../service/curso';
 
 import { Context } from '../../../store/context';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
@@ -16,13 +17,13 @@ import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
-import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 
 import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaContaStyled';
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
 
 import { Box, Flex } from '../../../style/flex';
-import { Container, Main } from '../../../style/layout';
+import { Image } from '../../../style/image';
+import { Container, Main, VideoWrap } from '../../../style/layout';
 import { P, Title2, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
@@ -34,6 +35,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API CURSO
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
+    const [stateCursoConteudoVideoVisualizado, setStateCursoConteudoVideoVisualizadoUrl] = useCursoConteudoVideoVisualizadoApi(null, {});
 
     const cursoLength = stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
     const cursoConteudoLength = stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
@@ -77,6 +79,10 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
         setStateTabSelected(e.target.value);
     };
 
+    const videoVisualizado = (conteudoId) => {
+        setStateCursoConteudoVideoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${match.params.slug}/${conteudoId}/registrar-visualizacao`);
+    };
+
     const tipoConteudo = (conteudo) => {
         switch (conteudo.tipo) {
             case 'audio':
@@ -84,16 +90,20 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
             case 'download':
                 return '';
             case 'imagem':
-                return <BgImageLazyLoad url={conteudo.imagem} />;
+                return <Image maxHeight="55vh" minHeight="25vh" text={conteudo.title} url={conteudo.imagem} width="100%" />;
             case 'post':
                 return parse(`${conteudo && conteudo.content}`);
             case 'video':
-                return '';
+                return (
+                    <VideoWrap>
+                        <YouTube id="conteudoVideo" onEnd={videoVisualizado(conteudo.id)} videoId={conteudo.video_id} />
+                    </VideoWrap>
+                );
             default:
                 return (
                     <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
                         {/* TODO: colocar layout */}
-                        Conteudo não encontrada
+                        Conteúdo não encontrado
                     </Title4>
                 );
         }
@@ -138,7 +148,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                     <Flex display="flex" flexWrap="wrap">
                                         <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
-                                            <Box height="50vh" mb={3} overflowY="auto">
+                                            <Box maxHeight="55vh" minHeight="25vh" mb={3} overflowY="auto">
                                                 {tipoConteudo(conteudo)}
                                             </Box>
 
