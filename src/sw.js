@@ -14,7 +14,7 @@ workbox.core.skipWaiting();
 // API
 // Add all api, except perfil api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?!(perfil$|cursos/meus-cursos$)).+$'),
+    new RegExp('.+/api/v1/(?!(perfil|cursos/meus-cursos)).+$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'api-cache',
         plugins: [
@@ -33,7 +33,7 @@ workbox.routing.registerRoute(
 // API PERFIL
 // Add only perfil api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?:(perfil))$'),
+    new RegExp('.+/api/v1/(?:(perfil)).*$'),
     new workbox.strategies.NetworkFirst({
         cacheName: 'api-cache-perfil',
         plugins: [
@@ -47,7 +47,7 @@ workbox.routing.registerRoute(
 // API MEUS CURSOS
 // Add only meus-cursos api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?:(cursos/meus-cursos))$'),
+    new RegExp('.+/api/v1/(?:(cursos/meus-cursos)).*$'),
     new workbox.strategies.NetworkFirst({
         cacheName: 'api-cache-meus-cursos',
         plugins: [
