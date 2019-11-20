@@ -42,7 +42,14 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                 <VideoUlStyled>
                     {objectVideos.data.map((video, i, array) => {
                         return (
-                            <VideoLiStyled active={objectVideos.data.video === video.video || false} borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} hover="true" key={getVideoId(video.video)} onClick={() => setStateCurrentVideo(video)} p={4}>
+                            <VideoLiStyled
+                                active={objectVideos.data.video === video.video || false}
+                                borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
+                                hover="true"
+                                key={getVideoId(video.video)}
+                                onClick={() => setStateCurrentVideo(video)}
+                                p={4}
+                            >
                                 <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
                                     <Box width="100%">
                                         <Title5 fontWeight="600" mb={3} themeColor="dark">

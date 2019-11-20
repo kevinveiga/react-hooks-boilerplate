@@ -189,7 +189,14 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                 </Box>
 
                                                                                 <Box width="100%">
-                                                                                    <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={curso.progresso} themeColor="light">
+                                                                                    <ProgressBar
+                                                                                        alignItems="center"
+                                                                                        display={{ d: 'block', md: 'flex' }}
+                                                                                        px={{ d: 3, md: 4 }}
+                                                                                        py={2}
+                                                                                        progressPercent={curso.progresso}
+                                                                                        themeColor="light"
+                                                                                    >
                                                                                         <Box width="170px">
                                                                                             <Span fontSize="16px" fontWeight="600" themeColor="light">
                                                                                                 PROGRESSO {curso.progresso}%
@@ -224,13 +231,26 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                     return (
                                                                         <Box key={curso.id} mb={5} width="100%">
                                                                             <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
-                                                                                <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                                <ListBox
+                                                                                    color={curso.featured_color}
+                                                                                    display="flex"
+                                                                                    flexWrap="wrap"
+                                                                                    height="100%"
+                                                                                    mx={{ d: 0, md: 2 }}
+                                                                                    themeColor="dark"
+                                                                                >
                                                                                     <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                         <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
                                                                                             <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
                                                                                         </Box>
 
-                                                                                        <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
+                                                                                        <Box
+                                                                                            alignContent="space-between"
+                                                                                            display="flex"
+                                                                                            flexWrap="wrap"
+                                                                                            p={{ d: 3, md: 4 }}
+                                                                                            width={{ d: 1, md: 1 / 2 }}
+                                                                                        >
                                                                                             <Box height="200px" mb={4} overflowY="hidden" width="100%">
                                                                                                 <ListTitle mb={3}>{curso.title}</ListTitle>
 
@@ -252,7 +272,14 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                     </Box>
 
                                                                                     <Box width="100%">
-                                                                                        <ProgressBar alignItems="center" display={{ d: 'block', md: 'flex' }} px={{ d: 3, md: 4 }} py={2} progressPercent={curso.progresso} themeColor="light">
+                                                                                        <ProgressBar
+                                                                                            alignItems="center"
+                                                                                            display={{ d: 'block', md: 'flex' }}
+                                                                                            px={{ d: 3, md: 4 }}
+                                                                                            py={2}
+                                                                                            progressPercent={curso.progresso}
+                                                                                            themeColor="light"
+                                                                                        >
                                                                                             <Box width="170px">
                                                                                                 <Span fontSize="16px" fontWeight="600" themeColor="light">
                                                                                                     PROGRESSO {curso.progresso}%

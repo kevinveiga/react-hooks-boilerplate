@@ -99,7 +99,18 @@ export const Home = ({ location }) => {
                                 return (
                                     <BannerCellStyled display="flex" gridRow={1} hover="true" key={item.id}>
                                         <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
-                                            <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
+                                            <NoticiaBox
+                                                alignContent="flex-end"
+                                                color={item.category.featured_color}
+                                                display="flex"
+                                                flexWrap="wrap"
+                                                height="100%"
+                                                overflow="hidden"
+                                                p={{ d: 2, sm: 3, md: 4 }}
+                                                themeColor="light"
+                                                verticalAlign="middle"
+                                                width="100%"
+                                            >
                                                 <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
 
                                                 <Box>
@@ -142,7 +153,18 @@ export const Home = ({ location }) => {
                                                     return (
                                                         <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
                                                             <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
-                                                                <NoticiaBox alignContent="flex-end" color={item.category.featured_color} display="flex" flexWrap="wrap" height="100%" overflow="hidden" p={{ d: 2, sm: 3, md: 4 }} themeColor="light" verticalAlign="middle" width="100%">
+                                                                <NoticiaBox
+                                                                    alignContent="flex-end"
+                                                                    color={item.category.featured_color}
+                                                                    display="flex"
+                                                                    flexWrap="wrap"
+                                                                    height="100%"
+                                                                    overflow="hidden"
+                                                                    p={{ d: 2, sm: 3, md: 4 }}
+                                                                    themeColor="light"
+                                                                    verticalAlign="middle"
+                                                                    width="100%"
+                                                                >
                                                                     <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
 
                                                                     <Box>
@@ -193,7 +215,14 @@ export const Home = ({ location }) => {
                                             ) : (
                                                 <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
                                                     <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                        <NoticiaBox color={noticia.category.featured_color} display="inline-block" pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
+                                                        <NoticiaBox
+                                                            color={noticia.category.featured_color}
+                                                            display="inline-block"
+                                                            pr={{ d: 1, sm: 4 }}
+                                                            themeColor="dark"
+                                                            verticalAlign="middle"
+                                                            width={{ d: 3 / 5, lg: 4 / 5 }}
+                                                        >
                                                             <Box>
                                                                 <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 
@@ -232,7 +261,14 @@ export const Home = ({ location }) => {
                                         <Grid display="grid">
                                             {stateNoticias.data.slice(0, 4).map((noticia, i, newArray) => {
                                                 return (
-                                                    <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
+                                                    <Cell
+                                                        borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
+                                                        display="flex"
+                                                        hover="true"
+                                                        key={noticia.id}
+                                                        pb={3}
+                                                        pt={4}
+                                                    >
                                                         <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                             <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                                                 <Box>

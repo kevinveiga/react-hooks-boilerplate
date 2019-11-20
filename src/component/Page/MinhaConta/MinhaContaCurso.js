@@ -159,7 +159,13 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.prevId}
                                                         display="inline-block"
-                                                        onClick={() => setStateCursoConteudoData({ conteudoId: stateCursoConteudoPrevNextId.prevId, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos/${curso.id}` })}
+                                                        onClick={() =>
+                                                            setStateCursoConteudoData({
+                                                                conteudoId: stateCursoConteudoPrevNextId.prevId,
+                                                                modulos: curso.modulos,
+                                                                url: `${apiUrlCursos}/meus-cursos/${curso.id}`
+                                                            })
+                                                        }
                                                         text="Conteúdo anterior"
                                                         themeType="border"
                                                         width={{ d: '100%', sm: 'auto' }}
@@ -172,7 +178,13 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.nextId}
                                                         display="inline-block"
-                                                        onClick={() => setStateCursoConteudoData({ conteudoId: stateCursoConteudoPrevNextId.nextId, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos/${curso.id}` })}
+                                                        onClick={() =>
+                                                            setStateCursoConteudoData({
+                                                                conteudoId: stateCursoConteudoPrevNextId.nextId,
+                                                                modulos: curso.modulos,
+                                                                url: `${apiUrlCursos}/meus-cursos/${curso.id}`
+                                                            })
+                                                        }
                                                         text="Próximo Conteúdo"
                                                         themeType="border"
                                                         width={{ d: '100%', sm: 'auto' }}
@@ -184,7 +196,16 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                             {windowWidth < parseInt(variable.md, 10) && (
                                                 <>
                                                     <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} p={4}>
-                                                        <Button display="block" fontWeight="400" mx="auto" onClick={() => setStateMenuConteudo(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
+                                                        <Button
+                                                            display="block"
+                                                            fontWeight="400"
+                                                            mx="auto"
+                                                            onClick={() => setStateMenuConteudo(true)}
+                                                            text="Exibir aulas"
+                                                            textDecoration="underline"
+                                                            themeSize="none"
+                                                            themeType="none"
+                                                        />
                                                     </MinhaContaExibirConteudoStyled>
 
                                                     <Box>
@@ -282,7 +303,14 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         {windowWidth > parseInt(variable.md, 10) && (
                                             <>
                                                 <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
-                                                    <Button fontWeight="400" onClick={() => setStateMenuConteudo(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
+                                                    <Button
+                                                        fontWeight="400"
+                                                        onClick={() => setStateMenuConteudo(true)}
+                                                        text="Exibir aulas"
+                                                        textDecoration="underline"
+                                                        themeSize="none"
+                                                        themeType="none"
+                                                    />
                                                 </MinhaContaExibirConteudoStyled>
 
                                                 <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, md: stateMenuConteudo ? 3 / 10 : 0 }}>

@@ -7,7 +7,14 @@ import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaCont
 
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
-import { MinhaContaCursoMenuConteudoStyled, MinhaContaCursoMenuConteudoCheckboxStyled, MinhaContaCursoMenuConteudoContentStyled, MinhaContaCursoMenuStyled, MinhaContaCursoMenuModuloStyled, MinhaContaCursoMenuModuloSvgStyled } from './MinhaContaCursoMenuStyled';
+import {
+    MinhaContaCursoMenuConteudoStyled,
+    MinhaContaCursoMenuConteudoCheckboxStyled,
+    MinhaContaCursoMenuConteudoContentStyled,
+    MinhaContaCursoMenuStyled,
+    MinhaContaCursoMenuModuloStyled,
+    MinhaContaCursoMenuModuloSvgStyled
+} from './MinhaContaCursoMenuStyled';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -57,7 +64,18 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     return (
         <MinhaContaCursoMenuStyled {...otherProps}>
             <Box p={4}>
-                <Button display="block" fontWeight="400" mb={4} ml="auto" mr={{ d: 'auto', md: 0 }} onClick={() => setStateMenuConteudoContext(false)} text="Esconder aulas" textDecoration="underline" themeSize="none" themeType="none" />
+                <Button
+                    display="block"
+                    fontWeight="400"
+                    mb={4}
+                    ml="auto"
+                    mr={{ d: 'auto', md: 0 }}
+                    onClick={() => setStateMenuConteudoContext(false)}
+                    text="Esconder aulas"
+                    textDecoration="underline"
+                    themeSize="none"
+                    themeType="none"
+                />
 
                 <Title4 fontWeight="600">{objectCurso.title}</Title4>
 
@@ -100,10 +118,20 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                 <MinhaContaCursoMenuConteudoStyled
                                                     key={conteudo.id}
                                                     onClick={() => {
-                                                        setStateCursoConteudoDataContext({ conteudoId: conteudo.id, modulos: objectCurso.modulos, url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}` });
+                                                        setStateCursoConteudoDataContext({
+                                                            conteudoId: conteudo.id,
+                                                            modulos: objectCurso.modulos,
+                                                            url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}`
+                                                        });
                                                     }}
                                                 >
-                                                    <MinhaContaCursoMenuConteudoCheckboxStyled defaultChecked={conteudo.lido} disabled={true} id={`${modulo.id}${conteudo.id}`} name={`${modulo.id}${conteudo.id}`} type="checkbox" />
+                                                    <MinhaContaCursoMenuConteudoCheckboxStyled
+                                                        defaultChecked={conteudo.lido}
+                                                        disabled={true}
+                                                        id={`${modulo.id}${conteudo.id}`}
+                                                        name={`${modulo.id}${conteudo.id}`}
+                                                        type="checkbox"
+                                                    />
 
                                                     <Label color="colorGrayDark" forLabel={`${modulo.id}${conteudo.id}`} fontWeight="600" mb={2}>
                                                         <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />

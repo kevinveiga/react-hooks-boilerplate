@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { MinhaContaConversacaoStyled, MinhaContaConversacaoImageContainerStyled, MinhaContaConversacaoImageLineStyled, MinhaContaConversacaoLiStyled, MinhaContaConversacaoUlStyled } from './MinhaContaStyled';
+import {
+    MinhaContaConversacaoStyled,
+    MinhaContaConversacaoImageContainerStyled,
+    MinhaContaConversacaoImageLineStyled,
+    MinhaContaConversacaoLiStyled,
+    MinhaContaConversacaoUlStyled
+} from './MinhaContaStyled';
 
 import { Box } from '../../../style/flex';
 import { Image } from '../../../style/image';
