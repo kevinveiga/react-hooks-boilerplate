@@ -50,6 +50,8 @@ export const Main = styled.main`
 `;
 
 export const VideoWrap = styled.div`
+    background-color: ${({ bgColor }) => (bgColor ? variable[bgColor] : 'transparent')};
+
     div {
         height: 0;
         padding-bottom: 55%;
