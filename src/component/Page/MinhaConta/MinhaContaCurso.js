@@ -61,7 +61,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
 
         return undefined;
-    }, [isDataLoaded]);
+    }, [isDataLoaded, stateCursoConteudo]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
     useEffect(() => {
@@ -143,11 +143,11 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                         <Container mx="auto" px={{ d: 0, lg: 3 }}>
                             <Flex display="flex" flexWrap="wrap">
                                 <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} py={{ d: 3, sm: 5 }} width="100%">
-                                    {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Titulo do Curso" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
+                                    {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel={curso.title} obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
 
                                     <Flex display="flex" flexWrap="wrap">
                                         <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
-                                            <Box maxHeight="55vh" minHeight="25vh" mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}>
+                                            <Box maxHeight="80vh" minHeight="25vh" mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}>
                                                 {tipoConteudo(conteudo)}
                                             </Box>
 
@@ -158,6 +158,8 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.prevId}
                                                         display="inline-block"
+                                                        fontSize={{ d: '12px', sm: '16px' }}
+                                                        height={{ d: '40px', sm: '50px' }}
                                                         onClick={() =>
                                                             setStateCursoConteudoData({
                                                                 conteudoId: stateCursoConteudoPrevNextId.prevId,
@@ -166,6 +168,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             })
                                                         }
                                                         text="Conteúdo anterior"
+                                                        themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
                                                         width={{ d: '100%', sm: 'auto' }}
                                                     />
@@ -177,6 +180,8 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.nextId}
                                                         display="inline-block"
+                                                        fontSize={{ d: '12px', sm: '16px' }}
+                                                        height={{ d: '40px', sm: '50px' }}
                                                         onClick={() =>
                                                             setStateCursoConteudoData({
                                                                 conteudoId: stateCursoConteudoPrevNextId.nextId,
@@ -185,6 +190,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             })
                                                         }
                                                         text="Próximo Conteúdo"
+                                                        themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
                                                         width={{ d: '100%', sm: 'auto' }}
                                                     />
