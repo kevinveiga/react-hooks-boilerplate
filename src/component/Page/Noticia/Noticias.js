@@ -72,6 +72,8 @@ export const Noticias = () => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
+
+        return undefined;
     }, [stateNoticias.isLoading, stateNoticiasCategoria.isLoading, setStateLoaderContext]);
 
     return (

@@ -72,6 +72,8 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
+
+        return undefined;
     }, [stateCurso.isLoading, stateCursoConteudo.isLoading, setStateLoaderContext]);
 
     const handleTabChange = (e) => {
@@ -113,6 +115,8 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
         if (curso) {
             setStateCursoConteudoData({ conteudoId: curso.modulos[0].conteudos[0].id, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos/${curso.id}` });
         }
+
+        return undefined;
     }, [curso, setStateCursoConteudoData]);
 
     return (

@@ -21,6 +21,8 @@ export const NewsletterForm = ({ ...props }) => {
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+
+        return undefined;
     }, [register]);
 
     // FORM

@@ -24,6 +24,8 @@ const NoticiaForm = ({ ...props }) => {
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'email' }, { ...customValidate.email });
         register({ name: 'telefone' }, { ...customValidate.phone });
+
+        return undefined;
     }, [register]);
 
     // FORM
@@ -84,7 +86,14 @@ const NoticiaForm = ({ ...props }) => {
 
     return (
         <Flex display="flex" flexWrap="wrap">
-            <Box alignContent="center" display={stateRetornoForm ? 'inline-flex' : { d: 'none', sm: 'inline-flex' }} flexWrap="wrap" minHeight={stateRetornoForm ? '60vh' : '100%'} p="75px" width={stateRetornoForm ? '100%' : 1 / 2}>
+            <Box
+                alignContent="center"
+                display={stateRetornoForm ? 'inline-flex' : { d: 'none', sm: 'inline-flex' }}
+                flexWrap="wrap"
+                minHeight={stateRetornoForm ? '60vh' : '100%'}
+                p="75px"
+                width={stateRetornoForm ? '100%' : 1 / 2}
+            >
                 {stateRetornoForm ? (
                     <>
                         <Title3 fontWeight="600" mb={4} mx="auto" textAlign="center" themeColor="light">
@@ -111,7 +120,9 @@ const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell>
-                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            <InvalidResponseMessageContainerStyled>
+                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                            </InvalidResponseMessageContainerStyled>
                         </Cell>
 
                         <Cell mb={3}>

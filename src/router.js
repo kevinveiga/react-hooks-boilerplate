@@ -20,7 +20,12 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     // CONTEXT
     const { stateAuthTokenContext } = useContext(Context);
 
-    return <Route render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)} {...otherProps} />;
+    return (
+        <Route
+            render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
+            {...otherProps}
+        />
+    );
 };
 
 export const Router = withRouter((props) => {
@@ -41,6 +46,8 @@ export const Router = withRouter((props) => {
             setStateHideFooterContext(false);
             setStateHideHeaderContext(false);
         }
+
+        return undefined;
     }, [props, setStateHideFooterContext, setStateHideHeaderContext]);
 
     const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };

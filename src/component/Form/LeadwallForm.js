@@ -22,6 +22,8 @@ const LeadwallForm = ({ ...props }) => {
     // ACTION
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
+
+        return undefined;
     }, [register]);
 
     // FORM

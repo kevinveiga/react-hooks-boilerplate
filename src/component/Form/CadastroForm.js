@@ -37,6 +37,8 @@ const CadastroForm = ({ ...props }) => {
         register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
         register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
         register({ name: 'telefone' }, { ...customValidate.cellphone });
+
+        return undefined;
     }, [register]);
 
     // FORM
@@ -83,7 +85,9 @@ const CadastroForm = ({ ...props }) => {
                     <FormStyled onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                             <Cell>
-                                <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                                <InvalidResponseMessageContainerStyled>
+                                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                </InvalidResponseMessageContainerStyled>
                             </Cell>
 
                             <Cell mb={3}>
@@ -159,7 +163,15 @@ const CadastroForm = ({ ...props }) => {
                                         {...props}
                                     />
 
-                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                                    <Svg
+                                        height="20px"
+                                        name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
+                                        onClick={() => setStateViewPassword(!stateViewPassword)}
+                                        position="absolute"
+                                        right="25px"
+                                        top="14px"
+                                        zIndex={1}
+                                    />
                                 </div>
 
                                 {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
@@ -181,7 +193,15 @@ const CadastroForm = ({ ...props }) => {
                                         {...props}
                                     />
 
-                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                                    <Svg
+                                        height="20px"
+                                        name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
+                                        onClick={() => setStateViewPassword(!stateViewPassword)}
+                                        position="absolute"
+                                        right="25px"
+                                        top="14px"
+                                        zIndex={1}
+                                    />
                                 </div>
 
                                 {errors.confirm_password && <InvalidInputMessageStyled>{errors.confirm_password.message}</InvalidInputMessageStyled>}
@@ -205,7 +225,8 @@ const CadastroForm = ({ ...props }) => {
 
                             <Cell mb={3} textAlign="center">
                                 <P color="colorGray2" fontSize={14} themeColor="dark">
-                                    Clicando em &quot;Cadastrar-se&quot; você concordará com os <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Termos de serviço" /> e{' '}
+                                    Clicando em &quot;Cadastrar-se&quot; você concordará com os{' '}
+                                    <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Termos de serviço" /> e{' '}
                                     <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Política de privacidade" />.
                                 </P>
                             </Cell>

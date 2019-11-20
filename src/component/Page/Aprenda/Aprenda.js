@@ -70,6 +70,8 @@ export const Aprenda = () => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
+
+        return undefined;
     }, [stateCursos.isLoading, stateCursosCategoria.isLoading, setStateLoaderContext]);
 
     return (

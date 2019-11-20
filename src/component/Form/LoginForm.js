@@ -30,6 +30,8 @@ const LoginForm = ({ location, ...otherProps }) => {
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
         register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
+
+        return undefined;
     }, [register]);
 
     // FORM
@@ -68,7 +70,9 @@ const LoginForm = ({ location, ...otherProps }) => {
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                         <Cell>
-                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            <InvalidResponseMessageContainerStyled>
+                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                            </InvalidResponseMessageContainerStyled>
                         </Cell>
 
                         <Cell mb={3}>
@@ -106,7 +110,15 @@ const LoginForm = ({ location, ...otherProps }) => {
                                     {...otherProps}
                                 />
 
-                                <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                                <Svg
+                                    height="20px"
+                                    name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
+                                    onClick={() => setStateViewPassword(!stateViewPassword)}
+                                    position="absolute"
+                                    right="25px"
+                                    top="14px"
+                                    zIndex={1}
+                                />
                             </div>
 
                             {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}

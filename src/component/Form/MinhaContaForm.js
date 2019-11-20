@@ -46,6 +46,8 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         register({ name: 'receber_curadoria_conteudos_noticias' });
         register({ name: 'sexo' });
         register({ name: 'telefone' }, { ...customValidate.phone });
+
+        return undefined;
     }, [register]);
 
     // FORM
@@ -57,6 +59,8 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     // Valores inicias dos inputs
     useEffect(() => {
         setFormValue(formatFormDataGet(data), formId);
+
+        return undefined;
     }, [data, formId]);
 
     const submitForm = (formData) => {
@@ -100,7 +104,9 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 5 }} py={{ d: 2, md: 4 }}>
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                                <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                                <InvalidResponseMessageContainerStyled>
+                                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                </InvalidResponseMessageContainerStyled>
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>

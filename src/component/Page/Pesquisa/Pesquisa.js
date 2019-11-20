@@ -46,6 +46,8 @@ export const Pesquisa = ({ match }) => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
+
+        return undefined;
     }, [statePesquisa.isLoading, setStateLoaderContext]);
 
     return (

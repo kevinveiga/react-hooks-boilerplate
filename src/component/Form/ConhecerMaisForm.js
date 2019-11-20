@@ -29,6 +29,8 @@ const ConhecerMaisForm = ({ ...props }) => {
         register({ name: 'endereco_cidade' });
         register({ name: 'endereco_estado' });
         register({ name: 'sexo' });
+
+        return undefined;
     }, [register]);
 
     // FORM
@@ -73,7 +75,9 @@ const ConhecerMaisForm = ({ ...props }) => {
                     <FormStyled id="conhecerMaisFormId" onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
                             <Cell>
-                                <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                                <InvalidResponseMessageContainerStyled>
+                                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                </InvalidResponseMessageContainerStyled>
                             </Cell>
 
                             <Cell>
@@ -188,7 +192,11 @@ const ConhecerMaisForm = ({ ...props }) => {
                                         <div>
                                             <Select
                                                 name="endereco_estado"
-                                                obj={{ color: formState.touched.indexOf('endereco_estado') > -1 ? 'colorGrayDark' : 'colorGray', colorLine: 'colorPrimary', fontWeight: formState.touched.indexOf('endereco_estado') > -1 ? '600' : '400' }}
+                                                obj={{
+                                                    color: formState.touched.indexOf('endereco_estado') > -1 ? 'colorGrayDark' : 'colorGray',
+                                                    colorLine: 'colorPrimary',
+                                                    fontWeight: formState.touched.indexOf('endereco_estado') > -1 ? '600' : '400'
+                                                }}
                                                 onChange={async (e) => {
                                                     const input = e.target;
                                                     setValue(input.name, input.value);

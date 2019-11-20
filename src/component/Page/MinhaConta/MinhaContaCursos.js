@@ -72,6 +72,8 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                 setStateLoaderContext(false);
             }, variable.timeout1s);
         }
+
+        return undefined;
     }, [stateCursos.isLoading, stateCursosCategorias.isLoading, setStateLoaderContext]);
 
     return (
@@ -168,7 +170,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                     </Box>
 
                                                                                     <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
-                                                                                        <Box height="200px" mb={4} overflowY="hidden" width="100%">
+                                                                                        <Box height={{ d: 'auto', md: '200px' }} mb={4} overflowY="hidden" width="100%">
                                                                                             <ListTitle mb={3}>{curso.title}</ListTitle>
 
                                                                                             <div>{parse(`${curso.content}`)}</div>

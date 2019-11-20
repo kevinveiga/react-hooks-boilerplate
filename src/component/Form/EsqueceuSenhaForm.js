@@ -23,6 +23,8 @@ const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
+
+        return undefined;
     }, [register]);
 
     // FORM
@@ -61,7 +63,9 @@ const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                         <Cell>
-                            <InvalidResponseMessageContainerStyled>{errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}</InvalidResponseMessageContainerStyled>
+                            <InvalidResponseMessageContainerStyled>
+                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                            </InvalidResponseMessageContainerStyled>
                         </Cell>
 
                         <Cell mb={3}>

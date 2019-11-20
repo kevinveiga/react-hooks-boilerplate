@@ -20,6 +20,8 @@ export const PesquisaForm = ({ ...props }) => {
     // ACTION
     useEffect(() => {
         register({ name: 'query' });
+
+        return undefined;
     }, [register]);
 
     const keyPress = (e, fn) => {
