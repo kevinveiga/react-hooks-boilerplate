@@ -36,8 +36,7 @@ export const Pesquisa = ({ match }) => {
     const { setStateLoaderContext } = useContext(Context);
 
     // ACTION
-    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
-
+    // Loader
     useEffect(() => {
         if (statePesquisa.isLoading) {
             setStateLoaderContext(true);
@@ -120,10 +119,6 @@ export const Pesquisa = ({ match }) => {
                                 </Grid>
                             </Box>
                         </Flex>
-
-                        {/* <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!statePesquisa.isLoading} width="20%">
-                            <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'pesquisa', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
-                        </NoticiasBannerPerfilInvestidorStyled> */}
                     </Box>
                 </Container>
             </Main>

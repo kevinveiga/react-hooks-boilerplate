@@ -1,17 +1,19 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 
-import { useCursoConteudoVideoVisualizadoApi } from '../../../service/curso';
+import { useCursoConteudoVisualizadoApi } from '../../../service/curso';
 
 import { VideoWrap } from '../../../style/layout';
 
 const MinhaContaCursoVideo = ({ conteudo, apiUrl }) => {
     // API
-    const [stateCursoConteudoVideoVisualizado, setStateCursoConteudoVideoVisualizadoUrl] = useCursoConteudoVideoVisualizadoApi(null, {});
+    const [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, {});
 
     // ACTION
     const videoVisualizado = (value) => {
-        setStateCursoConteudoVideoVisualizadoUrl(value);
+        if (!conteudo.lido) {
+            setStateCursoConteudoVisualizadoUrl(value);
+        }
     };
 
     return (

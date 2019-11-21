@@ -64,6 +64,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
     }, [isDataLoaded]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
+    // Loader
     useEffect(() => {
         if (stateCursos.isLoading || stateCursosCategorias.isLoading) {
             setStateLoaderContext(true);

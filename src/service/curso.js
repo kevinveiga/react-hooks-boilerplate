@@ -122,17 +122,17 @@ export const useCursoConteudoApi = (obj, initialData) => {
     return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
 };
 
-export const useCursoConteudoVideoVisualizadoApi = (url, initialData) => {
-    const [stateCursoConteudoVideoVisualizadoUrl, setStateCursoConteudoVideoVisualizadoUrl] = useState(url);
+export const useCursoConteudoVisualizadoApi = (url, initialData) => {
+    const [stateCursoConteudoVisualizadoUrl, setStateCursoConteudoVisualizadoUrl] = useState(url);
 
-    const [stateCursoConteudoVideoVisualizado, dispatch] = useReducer(dataFetchReducer, {
+    const [stateCursoConteudoVisualizado, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
     });
 
     useEffect(() => {
-        if (!stateCursoConteudoVideoVisualizadoUrl) {
+        if (!stateCursoConteudoVisualizadoUrl) {
             return undefined;
         }
 
@@ -142,7 +142,7 @@ export const useCursoConteudoVideoVisualizadoApi = (url, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(stateCursoConteudoVideoVisualizadoUrl);
+                const result = await axios.get(stateCursoConteudoVisualizadoUrl);
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
@@ -159,9 +159,9 @@ export const useCursoConteudoVideoVisualizadoApi = (url, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [stateCursoConteudoVideoVisualizadoUrl]);
+    }, [stateCursoConteudoVisualizadoUrl]);
 
-    return [stateCursoConteudoVideoVisualizado, setStateCursoConteudoVideoVisualizadoUrl];
+    return [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl];
 };
 
 export const useCursoCategoriaApi = (obj, initialData) => {

@@ -91,8 +91,8 @@ const ConhecerMaisForm = ({ ...props }) => {
 
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
                                     <ConhecerMaisRadioStyled
-                                        defaultChecked={false}
-                                        defaultValue="masculino"
+                                        checked={false}
+                                        value="masculino"
                                         id="sexo_masculino"
                                         name="sexo"
                                         onChange={async (e) => {
@@ -107,8 +107,8 @@ const ConhecerMaisForm = ({ ...props }) => {
                                     </Label>
 
                                     <ConhecerMaisRadioStyled
-                                        defaultChecked={false}
-                                        defaultValue="feminino"
+                                        checked={false}
+                                        value="feminino"
                                         id="sexo_feminino"
                                         name="sexo"
                                         onChange={async (e) => {

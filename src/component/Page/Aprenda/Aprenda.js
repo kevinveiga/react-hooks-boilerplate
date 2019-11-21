@@ -62,6 +62,7 @@ export const Aprenda = () => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
     }
 
+    // Loader
     useEffect(() => {
         if (stateCursos.isLoading || stateCursosCategoria.isLoading) {
             setStateLoaderContext(true);

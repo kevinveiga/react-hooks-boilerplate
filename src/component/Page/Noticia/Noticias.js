@@ -64,6 +64,7 @@ export const Noticias = () => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
     }
 
+    // Loader
     useEffect(() => {
         if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
             setStateLoaderContext(true);

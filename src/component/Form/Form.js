@@ -14,7 +14,7 @@ export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, t
 
     return (
         <>
-            <InputAlternateStyled defaultChecked={checked} defaultValue={value} id={id} type={typeInput} {...otherProps} />
+            <InputAlternateStyled checked={checked} value={value} id={id} type={typeInput} {...otherProps} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
                 {content}
@@ -43,7 +43,15 @@ export const InputValidation = ({ error = '', touched, typeInput = 'text', value
 
     return (
         <>
-            <InputStyled autoComplete="off" defaultValue={value} invalid={error} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
+            <InputStyled
+                autoComplete="off"
+                defaultValue={value}
+                invalid={error}
+                obj={{ ...otherProps.obj }}
+                type={typeInput}
+                valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined}
+                {...otherProps}
+            />
 
             {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
 
@@ -57,7 +65,16 @@ export const InputMaskValidation = ({ error = '', mask = null, touched, typeInpu
 
     return (
         <>
-            <InputMaskStyled autoComplete="off" defaultValue={value} invalid={error} mask={mask} obj={{ ...otherProps.obj }} type={typeInput} valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined} {...otherProps} />
+            <InputMaskStyled
+                autoComplete="off"
+                defaultValue={value}
+                invalid={error}
+                mask={mask}
+                obj={{ ...otherProps.obj }}
+                type={typeInput}
+                valid={!error && touched.indexOf(otherProps.name) > -1 ? 'true' : undefined}
+                {...otherProps}
+            />
 
             {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
 
@@ -79,7 +96,7 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
 
 export const Select = ({ ariaLabel, children, value = '', ...otherProps }) => {
     return (
-        <SelectStyled aria-label={ariaLabel} defaultValue={value} {...otherProps}>
+        <SelectStyled aria-label={ariaLabel} value={value} {...otherProps}>
             {children}
         </SelectStyled>
     );
