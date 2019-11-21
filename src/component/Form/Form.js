@@ -14,7 +14,7 @@ export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, t
 
     return (
         <>
-            <InputAlternateStyled checked={checked} value={value} id={id} type={typeInput} {...otherProps} />
+            <InputAlternateStyled defaultChecked={checked} defaultValue={value} id={id} type={typeInput} {...otherProps} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
                 {content}
@@ -96,7 +96,7 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
 
 export const Select = ({ ariaLabel, children, value = '', ...otherProps }) => {
     return (
-        <SelectStyled aria-label={ariaLabel} value={value} {...otherProps}>
+        <SelectStyled aria-label={ariaLabel} defaultValue={value} {...otherProps}>
             {children}
         </SelectStyled>
     );
