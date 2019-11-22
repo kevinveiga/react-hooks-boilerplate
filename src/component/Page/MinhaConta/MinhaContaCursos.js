@@ -13,7 +13,6 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
-// import { Button } from '../../Button/Button';
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -202,7 +201,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                     >
                                                                                         <Box width="170px">
                                                                                             <Span fontSize="16px" fontWeight="600" themeColor="light">
-                                                                                                PROGRESSO {curso.progresso}%
+                                                                                                PROGRESSO {parseInt(curso.progresso, 10)}%
                                                                                             </Span>
                                                                                         </Box>
 
@@ -285,7 +284,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                         >
                                                                                             <Box width="170px">
                                                                                                 <Span fontSize="16px" fontWeight="600" themeColor="light">
-                                                                                                    PROGRESSO {curso.progresso}%
+                                                                                                    PROGRESSO {parseInt(curso.progresso, 10)}%
                                                                                                 </Span>
                                                                                             </Box>
 

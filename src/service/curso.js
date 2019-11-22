@@ -142,7 +142,7 @@ export const useCursoConteudoVisualizadoApi = (url, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(stateCursoConteudoVisualizadoUrl);
+                const result = await axios.post(stateCursoConteudoVisualizadoUrl);
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());

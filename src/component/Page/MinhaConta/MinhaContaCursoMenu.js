@@ -82,7 +82,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                 <Box mb={4}>{parse(`${objectCurso.content}`)}</Box>
 
                 <ProgressBar progressPercent={objectCurso.progresso}>
-                    <P mb={1}>Progresso {objectCurso.progresso}%</P>
+                    <P mb={1}>Progresso {parseInt(objectCurso.progresso, 10)}%</P>
 
                     <BarContainer>
                         <Bar />
@@ -115,36 +115,43 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                     <ul>
                                         {modulo.conteudos.map((conteudo) => {
                                             return (
-                                                <MinhaContaCursoMenuConteudoStyled
-                                                    key={conteudo.id}
-                                                    onClick={() => {
-                                                        setStateCursoConteudoDataContext({
-                                                            conteudoId: conteudo.id,
-                                                            modulos: objectCurso.modulos,
-                                                            url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}`
-                                                        });
-                                                    }}
-                                                >
-                                                    <MinhaContaCursoMenuConteudoCheckboxStyled
-                                                        defaultChecked={conteudo.lido}
-                                                        disabled={true}
-                                                        id={`${modulo.id}${conteudo.id}`}
-                                                        name={`${modulo.id}${conteudo.id}`}
-                                                        type="checkbox"
-                                                    />
+                                                <MinhaContaCursoMenuConteudoStyled key={conteudo.id}>
+                                                    <Flex alignItems="flex-start" display="flex" flexWrap="wrap" justifyContent="space-between" mb={4}>
+                                                        <Box width="30px">
+                                                            <MinhaContaCursoMenuConteudoCheckboxStyled
+                                                                defaultChecked={conteudo.lido}
+                                                                id={`${objectCurso.id}${conteudo.id}`}
+                                                                name={`${objectCurso.id}${conteudo.id}`}
+                                                                type="checkbox"
+                                                            />
 
-                                                    <Label color="colorGrayDark" forLabel={`${modulo.id}${conteudo.id}`} fontWeight="600" mb={2}>
-                                                        <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
-
-                                                        <span>{conteudo.title}</span>
-                                                    </Label>
-
-                                                    <Flex alignItems="flex-end" display="flex" flexWrap="wrap" mb={4} ml={4}>
-                                                        <Box mr={2}>
-                                                            <Svg fill="colorGrayDark" height="22px" name={`svg-tipo-${tipoConteudo(conteudo.tipo).svg}`} />
+                                                            <Label color="colorGrayDark" forLabel={`${objectCurso.id}${conteudo.id}`} fontWeight="600" mb={2}>
+                                                                <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
+                                                            </Label>
                                                         </Box>
 
-                                                        <Box fontSize={14}>{tipoConteudo(conteudo.tipo).title}</Box>
+                                                        <Box
+                                                            onClick={() => {
+                                                                setStateCursoConteudoDataContext({
+                                                                    conteudoId: conteudo.id,
+                                                                    modulos: objectCurso.modulos,
+                                                                    url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}`
+                                                                });
+                                                            }}
+                                                            width="calc(100% - 30px)"
+                                                        >
+                                                            <P fontSize={14} fontWeight="600" mb={2}>
+                                                                {conteudo.title}
+                                                            </P>
+
+                                                            <Flex alignItems="flex-end" display="flex" flexWrap="wrap" ml={4}>
+                                                                <Box mr={2}>
+                                                                    <Svg fill="colorGrayDark" height="22px" name={`svg-tipo-${tipoConteudo(conteudo.tipo).svg}`} />
+                                                                </Box>
+
+                                                                <Box fontSize={14}>{tipoConteudo(conteudo.tipo).title}</Box>
+                                                            </Flex>
+                                                        </Box>
                                                     </Flex>
                                                 </MinhaContaCursoMenuConteudoStyled>
                                             );
