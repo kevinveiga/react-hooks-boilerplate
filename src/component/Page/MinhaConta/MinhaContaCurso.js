@@ -32,7 +32,7 @@ const MinhaContaCursoMenu = lazy(() => import('./MinhaContaCursoMenu'));
 const MinhaContaCursoVideo = lazy(() => import('./MinhaContaCursoVideo'));
 
 export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
-    // API CURSO
+    // API
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
     const [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, {});

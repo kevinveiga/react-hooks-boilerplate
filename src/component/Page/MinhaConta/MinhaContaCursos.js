@@ -28,7 +28,7 @@ import { Container, Main } from '../../../style/layout';
 import { ListBox, ListLevel, ListTitle, ListTime } from '../../../style/list';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { Tab, TabContent, TabsContent, TabSelect } from '../../../style/tab';
-import { Span } from '../../../style/text';
+import { Span, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 export const MinhaContaCursos = ({ ...breadcrumb }) => {
@@ -75,6 +75,11 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
 
         return undefined;
     }, [stateCursos.isLoading, stateCursosCategorias.isLoading, setStateLoaderContext]);
+
+    // DATA
+    const meusCursos = cursosLength > 0 && stateCursos.data.data;
+
+    let noData;
 
     return (
         <>
@@ -152,14 +157,17 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                     <TabsContent>
                                         <TabContent>
                                             <Flex display="flex" flexWrap="wrap">
-                                                {cursosLength > 0 &&
-                                                    stateCursos.data &&
-                                                    Object.keys(stateCursos.data.data).map((key) => {
-                                                        const cursos = stateCursos.data.data[key];
+                                                {meusCursos &&
+                                                    Object.keys(meusCursos).map((key) => {
+                                                        const cursos = meusCursos[key];
+
+                                                        noData = true;
 
                                                         return (
-                                                            cursos.data &&
+                                                            cursos.data.length > 0 &&
                                                             cursos.data.map((curso) => {
+                                                                noData = false;
+
                                                                 return (
                                                                     <Box key={curso.id} mb={5} width="100%">
                                                                         <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
@@ -217,6 +225,13 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                             })
                                                         );
                                                     })}
+
+                                                {noData && (
+                                                    <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                                        {/* TODO: colocar layout */}
+                                                        Nenhum curso encontrado
+                                                    </Title4>
+                                                )}
                                             </Flex>
                                         </TabContent>
 
@@ -228,7 +243,7 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                 return (
                                                     <TabContent key={key}>
                                                         <Flex display="flex" flexWrap="wrap">
-                                                            {cursos.data &&
+                                                            {cursos.data.length > 0 ? (
                                                                 cursos.data.map((curso) => {
                                                                     return (
                                                                         <Box key={curso.id} mb={5} width="100%">
@@ -297,7 +312,13 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                             </LinkTo>
                                                                         </Box>
                                                                     );
-                                                                })}
+                                                                })
+                                                            ) : (
+                                                                <Title4 color="colorPrimary" key={key} mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                                                    {/* TODO: colocar layout */}
+                                                                    Nenhum curso encontrado
+                                                                </Title4>
+                                                            )}
                                                         </Flex>
                                                     </TabContent>
                                                 );

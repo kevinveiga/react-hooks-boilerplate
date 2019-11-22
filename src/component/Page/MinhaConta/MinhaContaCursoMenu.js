@@ -3,6 +3,8 @@ import React, { useContext, useState } from 'react';
 
 import { apiUrlCursos } from '../../../config';
 
+import { useCursoConteudoVisualizadoApi } from '../../../service/curso';
+
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 
 import { Button } from '../../Button/Button';
@@ -23,6 +25,9 @@ import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { P, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
+    // API
+    const [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, {});
+
     // CONTEXT
     const { setStateCursoConteudoDataContext, setStateMenuConteudoContext } = useContext(MinhaContaCursoContext);
 
@@ -122,6 +127,14 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                 defaultChecked={conteudo.lido}
                                                                 id={`${objectCurso.id}${conteudo.id}`}
                                                                 name={`${objectCurso.id}${conteudo.id}`}
+                                                                onChange={(e) => {
+                                                                    const input = e.target;
+                                                                    setStateCursoConteudoVisualizadoUrl(
+                                                                        `${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudo.id}/${
+                                                                            input.checked ? 'registrar-visualizacao' : 'remover-visualizacao'
+                                                                        }`
+                                                                    );
+                                                                }}
                                                                 type="checkbox"
                                                             />
 
