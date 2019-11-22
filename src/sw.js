@@ -79,7 +79,7 @@ workbox.routing.registerRoute(
 
 // CSS CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\..+/(?:.+(css)).*$'),
+    new RegExp('.+\\..+/(?:.+(css|css\\?.+))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'css-cross-cache',
         plugins: [
@@ -135,8 +135,8 @@ workbox.routing.registerRoute(
 // JS SAME-ORIGIN
 // Add same origin, except in asset/js folder
 workbox.routing.registerRoute(
-    new RegExp('\\/(?:.+(js)).*$'),
-    new workbox.strategies.CacheFirst({
+    new RegExp('\\/(?:.+(js|js\\?.+))$'),
+    new workbox.strategies.NetworkFirst({
         cacheName: 'js-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
@@ -153,7 +153,7 @@ workbox.routing.registerRoute(
 
 // JS CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\..+/(?:.+(js)).*$'),
+    new RegExp('.+\\..+/(?:.+(js|js\\?.+))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'js-cross-cache',
         plugins: [
@@ -162,7 +162,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 30,
+                maxEntries: 15,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]
