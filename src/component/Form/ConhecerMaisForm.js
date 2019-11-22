@@ -97,7 +97,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                         name="sexo"
                                         onChange={async (e) => {
                                             const input = e.target;
-                                            setValue(input.name, input.value);
+                                            await setValue(input.name, input.value);
                                         }}
                                         type="radio"
                                     />
@@ -113,7 +113,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                         name="sexo"
                                         onChange={async (e) => {
                                             const input = e.target;
-                                            setValue(input.name, input.value);
+                                            await setValue(input.name, input.value);
                                         }}
                                         type="radio"
                                     />
@@ -199,7 +199,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                                 }}
                                                 onChange={async (e) => {
                                                     const input = e.target;
-                                                    setValue(input.name, input.value);
+                                                    await setValue(input.name, input.value);
                                                 }}
                                             >
                                                 <OptionUF />

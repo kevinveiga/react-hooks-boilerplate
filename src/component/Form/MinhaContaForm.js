@@ -159,9 +159,9 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.telefone}
                                         mask={customMaskRegex.phone}
                                         name="telefone"
-                                        onChange={(e) => {
+                                        onChange={async (e) => {
                                             const input = e.target;
-                                            triggerValidation({ name: input.name, value: input.value });
+                                            await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         placeholder="Telefone"
                                         touched={formState.touched}
@@ -180,13 +180,13 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.endereco_cep}
                                         mask={customMaskRegex.cep}
                                         name="endereco_cep"
-                                        onBlur={(e) => {
+                                        onBlur={async (e) => {
                                             const input = e.target;
-                                            triggerValidation({ name: input.name, value: input.value });
+                                            await triggerValidation({ name: input.name, value: input.value });
                                         }}
-                                        onChange={(e) => {
+                                        onChange={async (e) => {
                                             const input = e.target;
-                                            triggerValidation({ name: input.name, value: input.value });
+                                            await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         placeholder="00000-000"
                                         touched={formState.touched}
@@ -227,9 +227,9 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         mask={Number}
                                         maxLength="5"
                                         name="endereco_numero"
-                                        onChange={(e) => {
+                                        onChange={async (e) => {
                                             const input = e.target;
-                                            triggerValidation({ name: input.name, value: input.value });
+                                            await triggerValidation({ name: input.name, value: input.value });
                                         }}
                                         placeholder="Número do endereço"
                                         touched={formState.touched}
@@ -290,7 +290,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_uf"
                                         onChange={async (e) => {
                                             const input = e.target;
-                                            setValue(input.name, input.value);
+                                            await setValue(input.name, input.value);
                                         }}
                                         {...otherProps}
                                     >
@@ -328,7 +328,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="sexo"
                                         onChange={async (e) => {
                                             const input = e.target;
-                                            setValue(input.name, input.value);
+                                            await setValue(input.name, input.value);
                                         }}
                                         {...otherProps}
                                     >
@@ -374,7 +374,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                     name="receber_avisos_descontos_de_cursos"
                                     onChange={async (e) => {
                                         const input = e.target;
-                                        setValue(input.name, input.checked);
+                                        await setValue(input.name, input.checked);
                                     }}
                                 >
                                     <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
@@ -390,7 +390,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                     name="receber_curadoria_conteudos_noticias"
                                     onChange={async (e) => {
                                         const input = e.target;
-                                        setValue(input.name, input.checked);
+                                        await setValue(input.name, input.checked);
                                     }}
                                 >
                                     <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
