@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { lazy, Suspense, useContext, useEffect } from 'react';
 
 import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
@@ -7,25 +7,32 @@ import { Context } from './store/context';
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
 import { Curso } from './component/Page/Curso/Curso';
+import { LoaderComponent, LoaderComponentError } from './component/Loader/LoaderComponent';
 import { EsqueceuSenha } from './component/Page/Login/EsqueceuSenha';
 import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
-import { MinhaConta } from './component/Page/MinhaConta/MinhaConta';
-import { MinhaContaCurso } from './component/Page/MinhaConta/MinhaContaCurso';
-import { MinhaContaCursos } from './component/Page/MinhaConta/MinhaContaCursos';
 import { Noticia } from './component/Page/Noticia/Noticia';
 import { Noticias } from './component/Page/Noticia/Noticias';
 import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
+
+// LAZY
+const MinhaConta = lazy(() => import('./component/Page/MinhaConta/MinhaConta'));
+const MinhaContaCurso = lazy(() => import('./component/Page/MinhaConta/MinhaContaCurso'));
+const MinhaContaCursos = lazy(() => import('./component/Page/MinhaConta/MinhaContaCursos'));
 
 const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     // CONTEXT
     const { stateAuthTokenContext } = useContext(Context);
 
     return (
-        <Route
-            render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
-            {...otherProps}
-        />
+        <LoaderComponentError>
+            <Suspense fallback={LoaderComponent()}>
+                <Route
+                    render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
+                    {...otherProps}
+                />
+            </Suspense>
+        </LoaderComponentError>
     );
 };
 
