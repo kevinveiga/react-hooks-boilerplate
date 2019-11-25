@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
+import { LoaderComponent } from '../Loader/LoaderComponent';
 import { Svg } from '../Svg/Svg';
 
 import { LeadwallStyled, LeadwallTermosStyled } from './LeadwallStyled';
@@ -23,7 +24,7 @@ export const Leadwall = ({ ...props }) => {
                     Deixe seu melhor e-mail para desbloquear o conteúdo.
                 </Title5>
 
-                <Suspense fallback={<P themeColor="light">Carregando...</P>}>
+                <Suspense fallback={LoaderComponent()}>
                     <LeadwallForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'leadwall' }} />
                 </Suspense>
             </LeadwallStyled>

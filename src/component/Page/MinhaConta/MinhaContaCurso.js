@@ -17,6 +17,7 @@ import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
 import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
+import { LoaderComponent } from '../../Loader/LoaderComponent';
 
 import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaContaStyled';
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
@@ -126,7 +127,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 {conteudo.tipo === 'imagem' && <Image maxHeight="55vh" minHeight="25vh" text={conteudo.title} url={conteudo.imagem} width="100%" />}
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
-                                                    <Suspense fallback={<P themeColor="light">Carregando...</P>}>
+                                                    <Suspense fallback={LoaderComponent()}>
                                                         <MinhaContaCursoVideo conteudo={conteudo} apiUrl={`${apiUrlCursos}/meus-cursos/${match.params.slug}/${conteudo.id}/registrar-visualizacao`} />
                                                     </Suspense>
                                                 )}
