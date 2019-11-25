@@ -1,4 +1,5 @@
 import React from 'react';
+
 import YouTube from 'react-youtube';
 
 import { useCursoConteudoVisualizadoApi } from '../../../service/curso';

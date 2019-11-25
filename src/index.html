@@ -47,7 +47,7 @@
 
         <!-- Facebook Code -->
         <!-- <div id="fb-root"></div> -->
-        <!-- <script defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script> -->
+        <!-- <script async crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script> -->
         <!-- Facebook Code -->
 
         <script type="text/javascript">
@@ -103,7 +103,7 @@
                                 });
                             })
                             .catch((registrationError) => {
-                                console.error('%c Service Worker registration failed: ', 'color: #dc4b39;', registrationError);
+                                console.info('%c Service Worker registration failed: ', 'color: #dc4b39;', registrationError);
                             });
 
                         navigator.serviceWorker.addEventListener('controllerchange', () => {

@@ -1,5 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+
+import axios from 'axios';
 import useForm from 'react-hook-form';
 
 import { apiUrlNewsletter, defaultErrorMsg } from '../../config';

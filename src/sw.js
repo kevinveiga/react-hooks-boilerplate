@@ -62,7 +62,7 @@ workbox.routing.registerRoute(
 // Add same origin, except in precache, css, image, js (same origin or cross origin)
 workbox.routing.registerRoute(
     new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
-    new workbox.strategies.StaleWhileRevalidate({
+    new workbox.strategies.NetworkFirst({
         cacheName: 'app-cache',
         plugins: [
             new workbox.cacheableResponse.Plugin({
@@ -98,7 +98,7 @@ workbox.routing.registerRoute(
 // IMG SAME-ORIGIN
 // Add same origin, except in asset/image folder or cross-origin app/uploads folder
 workbox.routing.registerRoute(
-    new RegExp('^(?!.+(/app/uploads|/asset/image))(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
+    new RegExp('^(?!.+(/app/uploads/))(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cache',
         plugins: [
@@ -116,7 +116,7 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\..+/(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
+    new RegExp('.+\\..+/app/uploads/(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cross-cache',
         plugins: [

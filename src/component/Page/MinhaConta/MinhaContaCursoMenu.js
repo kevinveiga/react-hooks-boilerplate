@@ -1,5 +1,6 @@
-import parse from 'html-react-parser';
 import React, { useContext, useState } from 'react';
+
+import parse from 'html-react-parser';
 
 import { apiUrlCursos } from '../../../config';
 

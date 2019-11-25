@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useIntersect } from '../../store/util/intersect';
 
 import { BgImage, BgImageOverlay } from '../../style/image';

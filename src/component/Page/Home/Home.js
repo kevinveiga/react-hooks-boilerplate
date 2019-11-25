@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react';
+
 import { Helmet } from 'react-helmet-async';
 import Slider from 'react-slick';
 
@@ -18,6 +19,7 @@ import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
 import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
+import { HomeVideo } from './HomeVideo';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { LinkToExternal } from '../../Link/LinkToExternal';
@@ -34,9 +36,6 @@ import { Cell, Grid } from '../../../style/grid';
 import { Container, Main, Wrap } from '../../../style/layout';
 import { P, Span, Title2, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
-
-// LAZY
-const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
     // API
@@ -298,9 +297,7 @@ export const Home = ({ location }) => {
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                             <Title2 themeColor="light">Vídeos</Title2>
 
-                            <Suspense fallback={<P themeColor="light">Carregando...</P>}>
-                                <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />
-                            </Suspense>
+                            <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />
 
                             <Box textAlign="center">
                                 <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">

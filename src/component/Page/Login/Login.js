@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react';
+
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlHome } from '../../../config';

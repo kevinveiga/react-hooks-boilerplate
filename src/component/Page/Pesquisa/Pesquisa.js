@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -8,15 +9,12 @@ import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
-// import { useMeasure } from '../../../store/util/measure';
 
-// import { BannerPerfilInvestidor } from '../../Banner/BannerPerfilInvestidor';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 
-// import { NoticiasBannerPerfilInvestidorStyled } from '../Noticia/NoticiaStyled';
 import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';

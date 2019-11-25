@@ -1,5 +1,6 @@
-import parse from 'html-react-parser';
 import React, { lazy, Suspense, useState } from 'react';
+
+import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
@@ -85,10 +86,22 @@ export const Noticia = ({ match }) => {
                         </Title1>
 
                         <Flex display="flex" flexWrap="wrap">
-                            <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} text="Notícia" url={stateNoticia.data.thumbnail && stateNoticia.data.thumbnail.attachment.url} width="100%" />
+                            <Image
+                                height={{ d: '300px', md: '400px' }}
+                                mb={{ d: 4, md: 5 }}
+                                text="Notícia"
+                                url={stateNoticia.data.thumbnail && stateNoticia.data.thumbnail.attachment.url}
+                                width="100%"
+                            />
                         </Flex>
 
-                        <NoticiaSocial display={{ d: 'none', lg: 'block' }} elementChange={{ elementId: 'noticia-article-author', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} title={stateNoticia.data.title} url={window.location.href} />
+                        <NoticiaSocial
+                            display={{ d: 'none', lg: 'block' }}
+                            elementChange={{ elementId: 'noticia-article-author', offset: -50 }}
+                            elementFadeOut={{ elementId: 'footer', offset: -500 }}
+                            title={stateNoticia.data.title}
+                            url={window.location.href}
+                        />
 
                         <NoticiaArticleAuthorStyled id="noticia-article-author" mb={3}>
                             <Flex display="flex" flexWrap="wrap">
@@ -146,8 +159,21 @@ export const Noticia = ({ match }) => {
                                     stateNoticia.data.related.map((noticia, i, newArray) => {
                                         return (
                                             <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
-                                                <LinkTo ariaLabel={noticia.title} height="100%" onClick={() => setStateNoticiaUrl(`${apiUrlNoticias}/${noticia.slug}`)} to={`/noticia/${noticia.slug}`} width="100%">
-                                                    <NoticiaBox color={noticia.category.featured_color} display="inline-block" pr={{ d: 1, sm: 4 }} themeColor="dark" verticalAlign="middle" width={{ d: 3 / 5, lg: 4 / 5 }}>
+                                                <LinkTo
+                                                    ariaLabel={noticia.title}
+                                                    height="100%"
+                                                    onClick={() => setStateNoticiaUrl(`${apiUrlNoticias}/${noticia.slug}`)}
+                                                    to={`/noticia/${noticia.slug}`}
+                                                    width="100%"
+                                                >
+                                                    <NoticiaBox
+                                                        color={noticia.category.featured_color}
+                                                        display="inline-block"
+                                                        pr={{ d: 1, sm: 4 }}
+                                                        themeColor="dark"
+                                                        verticalAlign="middle"
+                                                        width={{ d: 3 / 5, lg: 4 / 5 }}
+                                                    >
                                                         <Box>
                                                             <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 

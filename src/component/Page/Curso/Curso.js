@@ -1,6 +1,7 @@
+import React, { useEffect, useState } from 'react';
+
 import axios from 'axios';
 import parse from 'html-react-parser';
-import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 // import Slider from 'react-slick';
 
@@ -124,7 +125,12 @@ export const Curso = ({ match }) => {
                     <>
                         <Flex display="flex" flexWrap="wrap">
                             <Box height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">
-                                <BgImageLazyLoad url={(windowWidth < parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1024) || (windowWidth > parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1920)} />
+                                <BgImageLazyLoad
+                                    url={
+                                        (windowWidth < parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1024) ||
+                                        (windowWidth > parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1920)
+                                    }
+                                />
                             </Box>
                         </Flex>
 
@@ -240,7 +246,15 @@ export const Curso = ({ match }) => {
                                     <Grid display="grid" gridRowGap={3} gridTemplateColumns="100%" maxWidth="450px" mx="auto">
                                         {curso.modulos.map((modulo) => {
                                             return (
-                                                <ConteudoCellStyled active={statePart == modulo.id} hover={true} key={modulo.id} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)} pl={4} pr={5} py={3}>
+                                                <ConteudoCellStyled
+                                                    active={statePart == modulo.id}
+                                                    hover={true}
+                                                    key={modulo.id}
+                                                    onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}
+                                                    pl={4}
+                                                    pr={5}
+                                                    py={3}
+                                                >
                                                     <Box textAlign="center">
                                                         <Span fontSize={{ d: 20, md: 24 }} fontWeight="600" verticalAlign="middle">
                                                             {modulo.title}
@@ -288,9 +302,15 @@ export const Curso = ({ match }) => {
                                             Gabe Towels
                                         </Title2>
 
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                            nostrud exercitation ullamco laboris nisi ut al.
+                                        </p>
 
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                            nostrud exercitation ullamco laboris.
+                                        </p>
                                     </Cell>
 
                                     <Cell>

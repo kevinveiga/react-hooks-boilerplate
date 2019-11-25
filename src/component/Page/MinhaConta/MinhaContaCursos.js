@@ -1,5 +1,6 @@
-import parse from 'html-react-parser';
 import React, { useContext, useEffect, useState } from 'react';
+
+import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet-async';
 
 import { apiUrlCursos } from '../../../config';

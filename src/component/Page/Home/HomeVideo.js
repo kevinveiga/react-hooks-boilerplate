@@ -1,4 +1,5 @@
 import React from 'react';
+
 import YouTube from 'react-youtube';
 
 import { useCurrentVideo } from '../../../store/video/video';
@@ -14,7 +15,7 @@ import { Cell } from '../../../style/grid';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
-const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
+export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     // ACTION
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
@@ -75,5 +76,3 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
         </VideoGridStyled>
     );
 };
-
-export default HomeVideo;
