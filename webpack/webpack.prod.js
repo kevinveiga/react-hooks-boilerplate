@@ -16,27 +16,35 @@ module.exports = {
                 sourceMap: false
             })
         ],
+        // Keep the runtime chunk seperated to enable long term caching
+        // https://twitter.com/wSokra/status/969679223278505985
+        runtimeChunk: 'single',
         // Automatically split vendor and commons
         // https://twitter.com/wSokra/status/969633336732905474
         // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
         splitChunks: {
+            automaticNameDelimiter: '~',
+            automaticNameMaxLength: 30,
             cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'initial'
+                default: {
+                    minChunks: 1,
+                    priority: -20,
+                    reuseExistingChunk: true
                 },
-                async: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'async',
-                    chunks: 'async',
-                    minChunks: 4
+                vendor: {
+                    chunks: 'initial',
+                    enforce: true,
+                    name: 'vendor',
+                    priority: -10,
+                    test: /[\\/]node_modules[\\/]/
                 }
-            }
-        },
-        // Keep the runtime chunk seperated to enable long term caching
-        // https://twitter.com/wSokra/status/969679223278505985
-        runtimeChunk: true
+            },
+            chunks: 'async',
+            maxAsyncRequests: Infinity,
+            maxInitialRequests: Infinity,
+            maxSize: 200000,
+            minSize: 100000
+        }
     },
     plugins: [
         new CleanWebpackPlugin({

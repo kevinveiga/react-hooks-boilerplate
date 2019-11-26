@@ -144,7 +144,7 @@ workbox.routing.registerRoute(
             }),
             new workbox.expiration.Plugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
-                maxEntries: 30,
+                maxEntries: 50,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
         ]

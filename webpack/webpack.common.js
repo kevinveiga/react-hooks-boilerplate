@@ -94,7 +94,7 @@ module.exports = {
             return assetFilename.endsWith('.js');
         },
         hints: 'warning', // enum
-        maxAssetSize: 300000, // int (in bytes),
+        maxAssetSize: 300000, // int (in bytes)
         maxEntrypointSize: 500000 // int (in bytes)
     },
     plugins: [
@@ -113,7 +113,7 @@ module.exports = {
             template: commonPaths.templatePath
         }),
         new ScriptExtHtmlWebpackPlugin({
-            inline: [/main/, /runtime~main/, /vendor/],
+            inline: [/(main|main~\\?.+)$/, /(runtime|runtime~\\?.+)$/, /(vendor|vendor~\\?.+)$/],
             defaultAttribute: 'async'
         }),
         new Webpack.ProgressPlugin()
