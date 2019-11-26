@@ -142,7 +142,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                     <Flex display="flex" flexWrap="wrap">
                                         <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
-                                            <Box maxHeight="80vh" minHeight="25vh" mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}>
+                                            <Box maxHeight={stateMenuConteudo ? '450px' : '650px'} minHeight="25vh" mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}>
                                                 {conteudo.tipo === 'audio' && ''}
                                                 {conteudo.tipo === 'download' && ''}
                                                 {conteudo.tipo === 'imagem' && <Image maxHeight="55vh" minHeight="25vh" text={conteudo.title} url={conteudo.imagem} width="100%" />}
