@@ -7,7 +7,8 @@ import { Context } from './store/context';
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
 import { Curso } from './component/Page/Curso/Curso';
-import { LoaderComponent, LoaderComponentError } from './component/Loader/LoaderComponent';
+import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
+import { LoaderComponent } from './component/Loader/LoaderComponent';
 import { EsqueceuSenha } from './component/Page/Login/EsqueceuSenha';
 import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
@@ -25,14 +26,14 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     const { stateAuthTokenContext } = useContext(Context);
 
     return (
-        <LoaderComponentError>
+        <ErrorBoundary>
             <Suspense fallback={LoaderComponent()}>
                 <Route
                     render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
                     {...otherProps}
                 />
             </Suspense>
-        </LoaderComponentError>
+        </ErrorBoundary>
     );
 };
 
