@@ -32,7 +32,7 @@ import { Tab, TabContent, TabsContent, TabSelect } from '../../../style/tab';
 import { Span, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
-export const MinhaContaCursos = ({ ...breadcrumb }) => {
+const MinhaContaCursos = ({ ...breadcrumb }) => {
     // API
     const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
@@ -336,3 +336,5 @@ export const MinhaContaCursos = ({ ...breadcrumb }) => {
         </>
     );
 };
+
+export default MinhaContaCursos;

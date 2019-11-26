@@ -33,7 +33,7 @@ import { variable } from '../../../style/variable';
 const MinhaContaCursoMenu = lazy(() => import('./MinhaContaCursoMenu'));
 const MinhaContaCursoVideo = lazy(() => import('./MinhaContaCursoVideo'));
 
-export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
+const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
@@ -88,6 +88,17 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     const curso = cursoLength > 0 && stateCurso.data.data;
     const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
 
+    // ACTION CONTEUDO
+    useEffect(() => {
+        const conteudoAtualData = JSON.parse(window.localStorage.getItem('conteudoAtualData'));
+
+        if (curso.id == conteudoAtualData.cursoId) {
+            setStateCursoConteudoData({ conteudoId: conteudoAtualData.conteudoId, cursoId: conteudoAtualData.cursoId, modulos: conteudoAtualData.modulos, url: conteudoAtualData.url });
+        }
+
+        return undefined;
+    }, [curso, setStateCursoConteudoData]);
+
     return (
         <>
             <Helmet>
@@ -128,7 +139,7 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
                                                     <Suspense fallback={LoaderComponent()}>
-                                                        <MinhaContaCursoVideo conteudo={conteudo} apiUrl={`${apiUrlCursos}/meus-cursos/${match.params.slug}/${conteudo.id}/registrar-visualizacao`} />
+                                                        <MinhaContaCursoVideo conteudo={conteudo} apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}}/${conteudo.id}/registrar-visualizacao`} />
                                                     </Suspense>
                                                 )}
                                             </Box>
@@ -145,8 +156,9 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         onClick={() =>
                                                             setStateCursoConteudoData({
                                                                 conteudoId: stateCursoConteudoPrevNextId.prevId,
+                                                                cursoId: curso.id,
                                                                 modulos: curso.modulos,
-                                                                url: `${apiUrlCursos}/meus-cursos/${curso.id}`
+                                                                url: `${apiUrlCursos}/meus-cursos`
                                                             })
                                                         }
                                                         text="Conteúdo anterior"
@@ -169,8 +181,9 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
                                                             setStateCursoConteudoData({
                                                                 conteudoId: stateCursoConteudoPrevNextId.nextId,
+                                                                cursoId: curso.id,
                                                                 modulos: curso.modulos,
-                                                                url: `${apiUrlCursos}/meus-cursos/${curso.id}`
+                                                                url: `${apiUrlCursos}/meus-cursos`
                                                             });
                                                         }}
                                                         text="Próximo Conteúdo"
@@ -321,3 +334,5 @@ export const MinhaContaCurso = ({ match, ...breadcrumb }) => {
         </>
     );
 };
+
+export default MinhaContaCurso;

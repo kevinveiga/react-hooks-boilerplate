@@ -148,8 +148,9 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                             onClick={() => {
                                                                 setStateCursoConteudoDataContext({
                                                                     conteudoId: conteudo.id,
+                                                                    cursoId: objectCurso.id,
                                                                     modulos: objectCurso.modulos,
-                                                                    url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}`
+                                                                    url: `${apiUrlCursos}/meus-cursos`
                                                                 });
                                                             }}
                                                             width="calc(100% - 30px)"

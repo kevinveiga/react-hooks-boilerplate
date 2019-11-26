@@ -22,7 +22,7 @@ import { Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
 import { variable } from '../../../style/variable';
 
-export const MinhaConta = () => {
+const MinhaConta = () => {
     // API
     // const stateSeo = useSeoApi(`${apiUrlPerfil}/seo`, {});
     const [statePerfil, setStatePerfilData] = usePerfilApi({ url: apiUrlPerfil }, {});
@@ -90,3 +90,5 @@ export const MinhaConta = () => {
         </>
     );
 };
+
+export default MinhaConta;

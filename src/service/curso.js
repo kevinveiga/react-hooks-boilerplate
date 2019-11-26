@@ -99,11 +99,21 @@ export const useCursoConteudoApi = (obj, initialData) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(`${stateCursoConteudoData.url}/${stateCursoConteudoData.conteudoId}`);
+                const result = await axios.get(`${stateCursoConteudoData.url}/${stateCursoConteudoData.cursoId}/${stateCursoConteudoData.conteudoId}`);
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
-                    prevNextId(stateCursoConteudoData.conteudoId, stateCursoConteudoData.modulos, stateCursoConteudoData.url);
+                    prevNextId();
+
+                    window.localStorage.setItem(
+                        'conteudoAtualData',
+                        JSON.stringify({
+                            conteudoId: stateCursoConteudoData.conteudoId,
+                            cursoId: stateCursoConteudoData.cursoId,
+                            modulos: stateCursoConteudoData.modulos,
+                            url: stateCursoConteudoData.url
+                        })
+                    );
                 }
             } catch (error) {
                 if (!didCancel) {
