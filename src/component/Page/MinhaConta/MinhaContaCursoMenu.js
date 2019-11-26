@@ -150,6 +150,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                     conteudoId: conteudo.id,
                                                                     cursoId: objectCurso.id,
                                                                     modulos: objectCurso.modulos,
+                                                                    setCurrent: true,
                                                                     url: `${apiUrlCursos}/meus-cursos`
                                                                 });
                                                             }}

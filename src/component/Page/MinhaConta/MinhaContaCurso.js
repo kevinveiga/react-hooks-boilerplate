@@ -92,8 +92,18 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     useEffect(() => {
         const conteudoAtualData = JSON.parse(window.localStorage.getItem('conteudoAtualData'));
 
-        if (curso.id == conteudoAtualData.cursoId) {
-            setStateCursoConteudoData({ conteudoId: conteudoAtualData.conteudoId, cursoId: conteudoAtualData.cursoId, modulos: conteudoAtualData.modulos, url: conteudoAtualData.url });
+        if (curso) {
+            if (curso.id == conteudoAtualData.cursoId) {
+                setStateCursoConteudoData({
+                    conteudoId: conteudoAtualData.conteudoId,
+                    cursoId: conteudoAtualData.cursoId,
+                    modulos: conteudoAtualData.modulos,
+                    setCurrent: true,
+                    url: conteudoAtualData.url
+                });
+            } else {
+                setStateCursoConteudoData({ conteudoId: curso.modulos[0].conteudos[0].id, cursoId: curso.id, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos` });
+            }
         }
 
         return undefined;
@@ -158,6 +168,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                                 conteudoId: stateCursoConteudoPrevNextId.prevId,
                                                                 cursoId: curso.id,
                                                                 modulos: curso.modulos,
+                                                                setCurrent: true,
                                                                 url: `${apiUrlCursos}/meus-cursos`
                                                             })
                                                         }
@@ -183,6 +194,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                                 conteudoId: stateCursoConteudoPrevNextId.nextId,
                                                                 cursoId: curso.id,
                                                                 modulos: curso.modulos,
+                                                                setCurrent: true,
                                                                 url: `${apiUrlCursos}/meus-cursos`
                                                             });
                                                         }}

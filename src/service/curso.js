@@ -105,15 +105,17 @@ export const useCursoConteudoApi = (obj, initialData) => {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                     prevNextId();
 
-                    window.localStorage.setItem(
-                        'conteudoAtualData',
-                        JSON.stringify({
-                            conteudoId: stateCursoConteudoData.conteudoId,
-                            cursoId: stateCursoConteudoData.cursoId,
-                            modulos: stateCursoConteudoData.modulos,
-                            url: stateCursoConteudoData.url
-                        })
-                    );
+                    if (stateCursoConteudoData.setCurrent) {
+                        window.localStorage.setItem(
+                            'conteudoAtualData',
+                            JSON.stringify({
+                                conteudoId: stateCursoConteudoData.conteudoId,
+                                cursoId: stateCursoConteudoData.cursoId,
+                                modulos: stateCursoConteudoData.modulos,
+                                url: stateCursoConteudoData.url
+                            })
+                        );
+                    }
                 }
             } catch (error) {
                 if (!didCancel) {
