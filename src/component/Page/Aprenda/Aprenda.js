@@ -59,9 +59,13 @@ export const Aprenda = () => {
     };
 
     // Scroll para o topo
-    if (!stateCursosCategoria.data) {
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
-    }
+
+        return undefined;
+    }, [isDataLoaded]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     // Loader
     useEffect(() => {

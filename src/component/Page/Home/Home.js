@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 import Slider from 'react-slick';
@@ -64,7 +64,13 @@ export const Home = ({ location }) => {
     // Scroll para o topo ou para a section de vídeo
     const ancorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
 
-    scrollTo(ancorId, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
+        scrollTo(ancorId, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+
+        return undefined;
+    }, [ancorId, isDataLoaded]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     // CAROUSEL
     const carouselOptions = {

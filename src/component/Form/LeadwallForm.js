@@ -8,11 +8,12 @@ import { apiUrlPaywall, defaultErrorMsg } from '../../config';
 import { NoticiaContext } from '../../store/noticia/noticiaContext';
 
 import { customValidate } from '../../util/customValidate';
+import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 
-import { FormStyled } from './FormStyled';
+import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
@@ -47,7 +48,11 @@ const LeadwallForm = ({ ...props }) => {
                     console.error('result: ', result);
                 }
             } catch (error) {
-                console.error('error: ', error);
+                if (error.response) {
+                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                } else {
+                    console.error('error: ', error);
+                }
             }
         };
 
@@ -57,7 +62,13 @@ const LeadwallForm = ({ ...props }) => {
     return (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridColumnGap={4} gridRowGap={2}>
-                <Cell mb={3} width="100%">
+                <Cell>
+                    <InvalidResponseMessageContainerStyled>
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                    </InvalidResponseMessageContainerStyled>
+                </Cell>
+
+                <Cell mb={3}>
                     <InputValidation
                         error={errors.email}
                         maxLength="50"
@@ -73,7 +84,7 @@ const LeadwallForm = ({ ...props }) => {
                     />
                 </Cell>
 
-                <Cell mb={3} width="100%">
+                <Cell mb={3}>
                     <Button fontSize={18} text="Liberar conteúdo" textTransform="none" typeButton="submit" width="100%" />
                 </Cell>
             </Grid>

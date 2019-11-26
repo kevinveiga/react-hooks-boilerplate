@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet-async';
@@ -51,9 +51,13 @@ export const Noticia = ({ match }) => {
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo
-    if (!changeLeadwall) {
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
-    }
+
+        return undefined;
+    }, [isDataLoaded, match]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     return (
         <NoticiaContext.Provider value={setChangeLeadwallContext}>
