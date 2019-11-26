@@ -54,7 +54,7 @@ const LoginForm = ({ location, ...otherProps }) => {
                     console.error('result: ', result);
                 }
             } catch (error) {
-                if (error.response && error.response.status === 401) {
+                if (error.response) {
                     setError('invalid', 'notMatch', responseError(error.response.data.errors));
                 } else {
                     console.error('error: ', error);

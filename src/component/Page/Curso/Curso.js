@@ -93,8 +93,6 @@ export const Curso = ({ match }) => {
                     console.error('error: ', error);
 
                     window.location.pathname = `/minha-conta/curso/${curso.id}`;
-                } else if (error.response && error.response.status === 401) {
-                    console.error('error: ', error);
                 } else {
                     console.error('error: ', error);
                 }

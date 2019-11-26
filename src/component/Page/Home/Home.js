@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
 import { Helmet } from 'react-helmet-async';
 import Slider from 'react-slick';
