@@ -80,8 +80,36 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
         return undefined;
     }, [stateCurso.isLoading, stateCursoConteudo.isLoading, setStateLoaderContext]);
 
+    // Function
     const handleTabChange = (e) => {
         setStateTabSelected(e.target.value);
+    };
+
+    const handleMenuConteudo = (value) => {
+        setStateMenuConteudo(value);
+    };
+
+    const handleCursoConteudoPrevNext = (curso, conteudo) => {
+        if (conteudo) {
+            document.getElementById(`${curso.id}${conteudo.id}`).checked = true;
+
+            setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
+            setStateCursoConteudoData({
+                conteudoId: stateCursoConteudoPrevNextId.nextId,
+                cursoId: curso.id,
+                modulos: curso.modulos,
+                setCurrent: true,
+                url: `${apiUrlCursos}/meus-cursos`
+            });
+        } else {
+            setStateCursoConteudoData({
+                conteudoId: stateCursoConteudoPrevNextId.prevId,
+                cursoId: curso.id,
+                modulos: curso.modulos,
+                setCurrent: true,
+                url: `${apiUrlCursos}/meus-cursos`
+            });
+        }
     };
 
     // DATA
@@ -134,7 +162,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                         </Container>
                     )}
 
-                    {curso && (
+                    {curso && conteudo && (
                         <Container mx="auto" px={{ d: 0, lg: 3 }}>
                             <Flex display="flex" flexWrap="wrap">
                                 <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} py={{ d: 3, sm: 5 }} width="100%">
@@ -163,15 +191,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         display="inline-block"
                                                         fontSize={{ d: '12px', sm: '16px' }}
                                                         height={{ d: '40px', sm: '50px' }}
-                                                        onClick={() =>
-                                                            setStateCursoConteudoData({
-                                                                conteudoId: stateCursoConteudoPrevNextId.prevId,
-                                                                cursoId: curso.id,
-                                                                modulos: curso.modulos,
-                                                                setCurrent: true,
-                                                                url: `${apiUrlCursos}/meus-cursos`
-                                                            })
-                                                        }
+                                                        onClick={() => handleCursoConteudoPrevNext(curso)}
                                                         text="Conteúdo anterior"
                                                         themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
@@ -187,17 +207,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         display="inline-block"
                                                         fontSize={{ d: '12px', sm: '16px' }}
                                                         height={{ d: '40px', sm: '50px' }}
-                                                        onClick={() => {
-                                                            document.getElementById(`${curso.id}${conteudo.id}`).checked = true;
-                                                            setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
-                                                            setStateCursoConteudoData({
-                                                                conteudoId: stateCursoConteudoPrevNextId.nextId,
-                                                                cursoId: curso.id,
-                                                                modulos: curso.modulos,
-                                                                setCurrent: true,
-                                                                url: `${apiUrlCursos}/meus-cursos`
-                                                            });
-                                                        }}
+                                                        onClick={() => handleCursoConteudoPrevNext(curso, conteudo)}
                                                         text="Próximo Conteúdo"
                                                         themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
@@ -214,7 +224,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             display="block"
                                                             fontWeight="400"
                                                             mx="auto"
-                                                            onClick={() => setStateMenuConteudo(true)}
+                                                            onClick={() => handleMenuConteudo(true)}
                                                             text="Exibir aulas"
                                                             textDecoration="underline"
                                                             themeSize="none"
@@ -319,7 +329,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
                                                     <Button
                                                         fontWeight="400"
-                                                        onClick={() => setStateMenuConteudo(true)}
+                                                        onClick={() => handleMenuConteudo(true)}
                                                         text="Exibir aulas"
                                                         textDecoration="underline"
                                                         themeSize="none"
