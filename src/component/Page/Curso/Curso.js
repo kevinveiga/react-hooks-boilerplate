@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet-async';
-// import Slider from 'react-slick';
 
 import { apiUrlCursos } from '../../../config';
 
@@ -17,6 +16,7 @@ import { Button } from '../../Button/Button';
 import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 // import { LinkTo } from '../../Link/LinkTo';
+// import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { Svg } from '../../Svg/Svg';
 
 // import { CarouselStyled } from '../../Carousel/CarouselStyled';
@@ -27,6 +27,9 @@ import { Cell, Grid } from '../../../style/grid';
 import { Container, Main, Wrap } from '../../../style/layout';
 import { P, Span, Title2, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
+
+// LAZY
+// const Slider = lazy(() => import('react-slick'));
 
 export const Curso = ({ match }) => {
     // API
@@ -194,7 +197,7 @@ export const Curso = ({ match }) => {
                             </Flex>
 
                             <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
-                                <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', sm: '4fr 5fr' }}>
+                                <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', md: '4fr 5fr' }}>
                                     <Cell>
                                         <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
                                             {curso.title}
@@ -204,7 +207,7 @@ export const Curso = ({ match }) => {
                                     </Cell>
 
                                     <Cell>
-                                        <Box display="inline-block" height={{ d: '200px', sm: '300px' }} overflow="hidden" verticalAlign="middle" width="100%">
+                                        <Box display="inline-block" height={{ d: '200px', md: '300px' }} overflow="hidden" verticalAlign="middle" width="100%">
                                             <BgImageLazyLoad url={curso.imagens.galeria.curso_listagem} />
                                         </Box>
                                     </Cell>
@@ -294,7 +297,7 @@ export const Curso = ({ match }) => {
                                     Instrutor
                                 </Title2>
 
-                                <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', sm: '1fr 230px' }} justifyItems={{ d: 'center', sm: 'flex-end' }}>
+                                <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', md: '1fr 230px' }} justifyItems={{ d: 'center', md: 'flex-end' }}>
                                     <Cell>
                                         <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
                                             Gabe Towels
@@ -326,55 +329,57 @@ export const Curso = ({ match }) => {
                             </Title2>
 
                             <CarouselStyled maxWidth="600px" mx="auto">
-                                <Slider {...carouselOptions}>
-                                    <div>
-                                        <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
-                                            <Cell>
-                                                <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
-                                                </TooltipStyled>
-                                            </Cell>
+                                <Suspense fallback={LoaderComponent()}>
+                                    <Slider {...carouselOptions}>
+                                        <div>
+                                            <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
+                                                <Cell>
+                                                    <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
+                                                    </TooltipStyled>
+                                                </Cell>
 
-                                            <Cell alignContent="center" display="inline-flex">
-                                                <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
-                                                    <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
-                                                </Box>
+                                                <Cell alignContent="center" display="inline-flex">
+                                                    <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
+                                                        <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
+                                                    </Box>
 
-                                                <Box display="inline-block" overflow="hidden" verticalAlign="middle">
-                                                    <Title5 fontWeight="600" themeColor="dark">
-                                                        Gabe Towels
-                                                    </Title5>
+                                                    <Box display="inline-block" overflow="hidden" verticalAlign="middle">
+                                                        <Title5 fontWeight="600" themeColor="dark">
+                                                            Gabe Towels
+                                                        </Title5>
 
-                                                    <p>Aluno</p>
-                                                </Box>
-                                            </Cell>
-                                        </Grid>
-                                    </div>
+                                                        <p>Aluno</p>
+                                                    </Box>
+                                                </Cell>
+                                            </Grid>
+                                        </div>
 
-                                    <div>
-                                        <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
-                                            <Cell>
-                                                <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
-                                                </TooltipStyled>
-                                            </Cell>
+                                        <div>
+                                            <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
+                                                <Cell>
+                                                    <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
+                                                    </TooltipStyled>
+                                                </Cell>
 
-                                            <Cell alignContent="center" display="inline-flex">
-                                                <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
-                                                    <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
-                                                </Box>
+                                                <Cell alignContent="center" display="inline-flex">
+                                                    <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
+                                                        <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
+                                                    </Box>
 
-                                                <Box display="inline-block" overflow="hidden" verticalAlign="middle">
-                                                    <Title5 fontWeight="600" themeColor="dark">
-                                                        Gabe Towels
-                                                    </Title5>
+                                                    <Box display="inline-block" overflow="hidden" verticalAlign="middle">
+                                                        <Title5 fontWeight="600" themeColor="dark">
+                                                            Gabe Towels
+                                                        </Title5>
 
-                                                    <p>Aluno</p>
-                                                </Box>
-                                            </Cell>
-                                        </Grid>
-                                    </div>
-                                </Slider>
+                                                        <p>Aluno</p>
+                                                    </Box>
+                                                </Cell>
+                                            </Grid>
+                                        </div>
+                                    </Slider>
+                                </Suspense>
                             </CarouselStyled> */}
 
                         {/* <CursosRelacionadosStyled mb={5}>

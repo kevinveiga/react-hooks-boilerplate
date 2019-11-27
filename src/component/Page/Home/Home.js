@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 
 import { Helmet } from 'react-helmet-async';
-import Slider from 'react-slick';
 
 import { apiUrlHome } from '../../../config';
 
@@ -12,6 +11,7 @@ import { useSeoApi } from '../../../service/seo';
 import { useSuperDestaqueApi } from '../../../service/superDestaque';
 import { useVideoApi } from '../../../service/video';
 
+import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { groupByMod } from '../../../util/groupBy';
@@ -19,10 +19,10 @@ import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
 import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
-import { HomeVideo } from './HomeVideo';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { LinkToExternal } from '../../Link/LinkToExternal';
+import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 import { Svg } from '../../Svg/Svg';
 
@@ -34,8 +34,12 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Main, Wrap } from '../../../style/layout';
-import { P, Span, Title2, Title4, Title5 } from '../../../style/text';
+import { Span, Title2, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
+
+// LAZY
+const Slider = lazy(() => import('react-slick'));
+const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
     // API
@@ -59,6 +63,7 @@ export const Home = ({ location }) => {
     const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
 
     // ACTION
+    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo ou para a section de vídeo
@@ -133,62 +138,64 @@ export const Home = ({ location }) => {
                         </BannerContainerStyled>
                     ) : (
                         <CarouselStyled>
-                            <Slider {...carouselOptions}>
-                                {Object.keys(objectItens).map((key) => {
-                                    const group = objectItens[key];
+                            <Suspense fallback={LoaderComponent()}>
+                                <Slider {...carouselOptions}>
+                                    {Object.keys(objectItens).map((key) => {
+                                        const group = objectItens[key];
 
-                                    return (
-                                        <div key={key}>
-                                            <BannerContainerStyled key={key} display="grid" gridAutoColumns="1fr" gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}>
-                                                {group.map((item, i, newArray) => {
-                                                    let row = {};
+                                        return (
+                                            <div key={key}>
+                                                <BannerContainerStyled key={key} display="grid" gridAutoColumns="1fr" gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}>
+                                                    {group.map((item, i, newArray) => {
+                                                        let row = {};
 
-                                                    if (i === 0) {
-                                                        row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
-                                                    }
+                                                        if (i === 0) {
+                                                            row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
+                                                        }
 
-                                                    if (i === 1) {
-                                                        row = { d: 1, md: newArray.length === 2 ? '1 / span 2' : 1 };
-                                                    }
+                                                        if (i === 1) {
+                                                            row = { d: 1, md: newArray.length === 2 ? '1 / span 2' : 1 };
+                                                        }
 
-                                                    if (i === 2) {
-                                                        row = { d: 1, md: 2 };
-                                                    }
+                                                        if (i === 2) {
+                                                            row = { d: 1, md: 2 };
+                                                        }
 
-                                                    return (
-                                                        <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
-                                                            <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
-                                                                <NoticiaBox
-                                                                    alignContent="flex-end"
-                                                                    color={item.category.featured_color}
-                                                                    display="flex"
-                                                                    flexWrap="wrap"
-                                                                    height="100%"
-                                                                    overflow="hidden"
-                                                                    p={{ d: 2, sm: 3, md: 4 }}
-                                                                    themeColor="light"
-                                                                    verticalAlign="middle"
-                                                                    width="100%"
-                                                                >
-                                                                    <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
+                                                        return (
+                                                            <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
+                                                                <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                                                                    <NoticiaBox
+                                                                        alignContent="flex-end"
+                                                                        color={item.category.featured_color}
+                                                                        display="flex"
+                                                                        flexWrap="wrap"
+                                                                        height="100%"
+                                                                        overflow="hidden"
+                                                                        p={{ d: 2, sm: 3, md: 4 }}
+                                                                        themeColor="light"
+                                                                        verticalAlign="middle"
+                                                                        width="100%"
+                                                                    >
+                                                                        <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
 
-                                                                    <Box>
-                                                                        <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
+                                                                        <Box>
+                                                                            <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
 
-                                                                        <NoticiaBoxTitleStyled fontSize={{ d: 24, md: 32 }}>{item.title}</NoticiaBoxTitleStyled>
+                                                                            <NoticiaBoxTitleStyled fontSize={{ d: 24, md: 32 }}>{item.title}</NoticiaBoxTitleStyled>
 
-                                                                        <span>{`Por ${item.author}`}</span>
-                                                                    </Box>
-                                                                </NoticiaBox>
-                                                            </LinkTo>
-                                                        </BannerCellStyled>
-                                                    );
-                                                })}
-                                            </BannerContainerStyled>
-                                        </div>
-                                    );
-                                })}
-                            </Slider>
+                                                                            <span>{`Por ${item.author}`}</span>
+                                                                        </Box>
+                                                                    </NoticiaBox>
+                                                                </LinkTo>
+                                                            </BannerCellStyled>
+                                                        );
+                                                    })}
+                                                </BannerContainerStyled>
+                                            </div>
+                                        );
+                                    })}
+                                </Slider>
+                            </Suspense>
                         </CarouselStyled>
                     ))}
 
@@ -196,7 +203,7 @@ export const Home = ({ location }) => {
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             {destaquesLength > 0 && (
-                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 5 / 10 }}>
+                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 'calc(60% - (321px / 2))' }}>
                                     <Grid display="grid">
                                         {stateDestaques.data.slice(0, 4).map((noticia, i, newArray) => {
                                             return i === 0 ? (
@@ -258,7 +265,7 @@ export const Home = ({ location }) => {
 
                             {noticiasLength > 0 && (
                                 <>
-                                    <Box mb={5} px={{ d: 0, md: 3 }} width={{ d: 1, sm: 7 / 10, md: 3 / 10 }}>
+                                    <Box mb={5} px={{ d: 0, sm: 3 }} width={{ d: 1, sm: 'calc(100% - 321px)', md: 'calc(40% - (321px / 2))' }}>
                                         <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
                                             Últimas
                                         </Title4>
@@ -301,9 +308,11 @@ export const Home = ({ location }) => {
                 {videosLength > 0 && (
                     <VideoContainerStyled id="home-video-container">
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
-                            <Title2 themeColor="light">Vídeos</Title2>
+                            <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                            <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />
+                            <Suspense fallback={LoaderComponent()}>
+                                <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />
+                            </Suspense>
 
                             <Box textAlign="center">
                                 <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
