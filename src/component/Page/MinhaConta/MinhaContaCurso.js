@@ -92,7 +92,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     useEffect(() => {
         const conteudoAtualData = JSON.parse(window.localStorage.getItem('conteudoAtualData'));
 
-        if (curso) {
+        if (curso && conteudoAtualData) {
             if (curso.id == conteudoAtualData.cursoId) {
                 setStateCursoConteudoData({
                     conteudoId: conteudoAtualData.conteudoId,
