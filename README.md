@@ -146,6 +146,8 @@ return stateBanner.data && stateBanner.data.sidebar_habilitada == '1' ? (
 <Box width="100%">...</Box>
 ```
 
+ERRADO
+
 ```js
 export const Box = styled.div`
     ${layout}
@@ -154,6 +156,8 @@ export const Box = styled.div`
 ```
 
     o correto é verificar se a propriedade é "undefined", e nesse caso, usar o valor default. Ex:
+
+CERTO
 
 ```js
 export const Box = styled.div`
@@ -217,9 +221,9 @@ useEffect(() => {
     error={errors.telefone}
     mask={customMaskRegex.phone}
     name="telefone"
-    onChange={(e) => {
+    onChange={async (e) => {
         const input = e.target;
-        triggerValidation({ name: input.name, value: input.value });
+        await triggerValidation({ name: input.name, value: input.value });
     }}
     placeholder="Telefone"
     touched={formState.touched}
