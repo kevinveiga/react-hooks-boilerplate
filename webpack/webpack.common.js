@@ -113,7 +113,7 @@ module.exports = {
             template: commonPaths.templatePath
         }),
         new ScriptExtHtmlWebpackPlugin({
-            inline: [/(main|main~\\?.+)$/, /(runtime|runtime~\\?.+)$/, /(vendor|vendor~\\?.+)$/],
+            inline: [/^(main.*)$/, /^(runtime.*)$/, /^(vendor.*)$/],
             defaultAttribute: 'async'
         }),
         new Webpack.ProgressPlugin()
