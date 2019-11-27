@@ -21,6 +21,7 @@
 #### Executar apenas a primeira vez no terminal:
 
 -   npm i -g npm (atualiza NPM)
+-   npm i -g node-sass (atualiza node-sass globalmente)
 -   npm i (instala pacotes de tarefas)
 -   npm audit fix (corrigir pacotes)
 
@@ -112,8 +113,8 @@
 
 -   Ao definir um nome de variável para um State de Contexto, colocar no final do nome "Context". Ex:
 
-```html
-<PesquisaContext.Provider value="{setStatePesquisaDataContext}">...</PesquisaContext.Provider>
+```jsx
+<PesquisaContext.Provider value={setStatePesquisaDataContext}>...</PesquisaContext.Provider>
 ```
 
 -   Ao criar um arquivo de Styled Component fora da pasta "style", colocar no final do nome "Styled". Ex: HomeStyled.js;
@@ -126,23 +127,39 @@ export const VideoContainerStyled = styled.section`...`;
 
 -   No return do JSX, caso não existam os dados, passar null. Ex:
 
-```js
+```jsx
 return stateBanner.data && stateBanner.data.sidebar_habilitada == '1' ? (
-    <Banner change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...otherProps}>
+    <BannerStyled change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...otherProps}>
         {parse(`${stateBanner.data.sidebar}`)}
-    </Banner>
+    </BannerStyled>
 ) : null;
 ```
 
 -   Usar sempre a propriedade "key" nos elementos HTML em loops do React. Ex:
 
-```html
-<li key="{list.id}">{list.text}</li>
+```jsx
+<li key={list.id}>{list.text}</li>
+```
+
+-   Para usar funções em eventos, utilizar da seguinte maneira:
+
+```js
+const handle = useCallback(
+    (value) => (e) => {
+        setStateCurrent(value);
+        setState(e.target.value);
+    },
+    []
+);
+```
+
+```jsx
+<div onClick={handle(true)}>...</div>
 ```
 
 -   Ao utilizar Styled System, cuidar para não usar a mesma propriedade no Style Components. Ex:
 
-```html
+```jsx
 <Box width="100%">...</Box>
 ```
 
@@ -182,7 +199,7 @@ useEffect(() => {
 
 -   Para usar "placeholder" nos campos "input", basta passar a propriedade "placeholder". Ex:
 
-```js
+```jsx
 <InputValidation
     error={errors.email}
     maxLength="50"
@@ -199,7 +216,7 @@ useEffect(() => {
 
 -   Para usar um "label" como comportamento de "placeholder" nos campos "input", basta passar a propriedade "label". Ex:
 
-```js
+```jsx
 <InputValidation
     error={errors.email}
     label="E-mail"
@@ -216,7 +233,7 @@ useEffect(() => {
 
 -   Para usar máscara nos campo, utilizar o componente "InputMaskValidation", com a propriedade "mask". Ex:
 
-```js
+```jsx
 <InputValidation
     error={errors.telefone}
     mask={customMaskRegex.phone}
@@ -264,6 +281,12 @@ const { errors, formState, handleSubmit, register, setError, triggerValidation }
 
 -   [ES6](http://es6-features.org/)
 
+#### Sass
+
+-   Utilizar as variáveis sempre que possível;
+-   Media queries dentro do próprio elemento seguindo os padrões especificados no projeto;
+-   [Metodologia tipo modular](https://medium.com/@marcmintel/how-to-use-the-module-pattern-in-your-scss-sass-stylesheets-89fe38a6e1f3);
+
 #### Svg
 
 -   [Referência de uso](https://blog.lftechnology.com/using-svg-icons-components-in-react-44fbe8e5f91);
@@ -271,6 +294,13 @@ const { errors, formState, handleSubmit, register, setError, triggerValidation }
 -   Minificar código, utilizar site [https://jakearchibald.github.io/svgomg/](https://jakearchibald.github.io/svgomg/);
 -   No site de otimização, usar o valor 2 na precisão;
 -   Utilizar como componente React;
+
+#### Referências de CSS auxiliar
+
+-   [Bootstrap Display](https://getbootstrap.com/docs/4.3/utilities/display/);
+-   [Bootstrap Grid](https://getbootstrap.com/docs/4.3/layout/grid/);
+-   [Bootstrap Spacing](https://getbootstrap.com/docs/4.3/utilities/spacing/);
+-   [Bootstrap Text](https://getbootstrap.com/docs/4.3/utilities/text/);
 
 #### Referências de Webpack 4
 

@@ -251,11 +251,11 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                             <Box>
                                                 <TabStyled group="tab-group" total={1}>
-                                                    <input checked={stateTabSelected === 'resumo'} id="tab-id-resumo" name="tab-group" onChange={handleTabChange} type="radio" value="resumo" />
+                                                    <input checked={stateTabSelected === 'resumo'} id="tab-id-resumo" name="tab-group" onChange={handleTabChange()} type="radio" value="resumo" />
 
-                                                    <input checked={stateTabSelected === 'conteudo'} id="tab-id-conteudo" name="tab-group" onChange={handleTabChange} type="radio" value="conteudo" />
+                                                    <input checked={stateTabSelected === 'conteudo'} id="tab-id-conteudo" name="tab-group" onChange={handleTabChange()} type="radio" value="conteudo" />
 
-                                                    <input checked={stateTabSelected === 'duvidas'} id="tab-id-duvidas" name="tab-group" onChange={handleTabChange} type="radio" value="duvidas" />
+                                                    <input checked={stateTabSelected === 'duvidas'} id="tab-id-duvidas" name="tab-group" onChange={handleTabChange()} type="radio" value="duvidas" />
 
                                                     <TabsNavStyled>
                                                         <TabNavStyled>
