@@ -34,6 +34,11 @@ const ConhecerMaisForm = ({ ...props }) => {
         return undefined;
     }, [register]);
 
+    // Function
+    const handlePart = (nextPart) => {
+        setStatePart(nextPart + 1);
+    };
+
     // FORM
     const { errors, formState, handleSubmit, register, setError, setValue, triggerValidation } = useForm({
         defaultValues: { data_nascimento: '' },
@@ -216,10 +221,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                 <Button
                                     fontSize={{ d: 16, sm: 18 }}
                                     m="auto"
-                                    onClick={() => {
-                                        const nextPart = statePart;
-                                        setStatePart(nextPart + 1);
-                                    }}
+                                    onClick={() => handlePart(statePart)}
                                     text="Pular Etapa"
                                     textTransform="none"
                                     themeSize="small"

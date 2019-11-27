@@ -145,15 +145,15 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                         </Box>
 
                                                         <Box
-                                                            onClick={() => {
+                                                            onClick={() =>
                                                                 setStateCursoConteudoDataContext({
                                                                     conteudoId: conteudo.id,
                                                                     cursoId: objectCurso.id,
                                                                     modulos: objectCurso.modulos,
                                                                     setCurrent: true,
                                                                     url: `${apiUrlCursos}/meus-cursos`
-                                                                });
-                                                            }}
+                                                                })
+                                                            }
                                                             width="calc(100% - 30px)"
                                                         >
                                                             <P fontSize={14} fontWeight="600" mb={2}>
