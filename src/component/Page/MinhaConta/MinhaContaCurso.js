@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useContext, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet-async';
@@ -81,36 +81,45 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     }, [stateCurso.isLoading, stateCursoConteudo.isLoading, setStateLoaderContext]);
 
     // Function
-    const handleTabChange = (e) => {
-        setStateTabSelected(e.target.value);
-    };
+    const handleTabChange = useCallback(
+        () => (e) => {
+            setStateTabSelected(e.target.value);
+        },
+        []
+    );
 
-    const handleMenuConteudo = (value) => {
-        setStateMenuConteudo(value);
-    };
+    const handleMenuConteudo = useCallback(
+        (value) => () => {
+            setStateMenuConteudo(value);
+        },
+        []
+    );
 
-    const handleCursoConteudoPrevNext = (curso, conteudo) => {
-        if (conteudo) {
-            document.getElementById(`${curso.id}${conteudo.id}`).checked = true;
+    const handleCursoConteudoPrevNext = useCallback(
+        (curso, conteudo) => () => {
+            if (conteudo) {
+                document.getElementById(`${curso.id}${conteudo.id}`).checked = true;
 
-            setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
-            setStateCursoConteudoData({
-                conteudoId: stateCursoConteudoPrevNextId.nextId,
-                cursoId: curso.id,
-                modulos: curso.modulos,
-                setCurrent: true,
-                url: `${apiUrlCursos}/meus-cursos`
-            });
-        } else {
-            setStateCursoConteudoData({
-                conteudoId: stateCursoConteudoPrevNextId.prevId,
-                cursoId: curso.id,
-                modulos: curso.modulos,
-                setCurrent: true,
-                url: `${apiUrlCursos}/meus-cursos`
-            });
-        }
-    };
+                setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
+                setStateCursoConteudoData({
+                    conteudoId: stateCursoConteudoPrevNextId.nextId,
+                    cursoId: curso.id,
+                    modulos: curso.modulos,
+                    setCurrent: true,
+                    url: `${apiUrlCursos}/meus-cursos`
+                });
+            } else {
+                setStateCursoConteudoData({
+                    conteudoId: stateCursoConteudoPrevNextId.prevId,
+                    cursoId: curso.id,
+                    modulos: curso.modulos,
+                    setCurrent: true,
+                    url: `${apiUrlCursos}/meus-cursos`
+                });
+            }
+        },
+        [stateCursoConteudoPrevNextId, setStateCursoConteudoData, setStateCursoConteudoVisualizadoUrl]
+    );
 
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
@@ -120,8 +129,8 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     useEffect(() => {
         const conteudoAtualData = JSON.parse(window.localStorage.getItem('conteudoAtualData'));
 
-        if (curso && conteudoAtualData) {
-            if (curso.id == conteudoAtualData.cursoId) {
+        if (curso) {
+            if (conteudoAtualData && curso.id == conteudoAtualData.cursoId) {
                 setStateCursoConteudoData({
                     conteudoId: conteudoAtualData.conteudoId,
                     cursoId: conteudoAtualData.cursoId,
@@ -162,7 +171,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                         </Container>
                     )}
 
-                    {curso && conteudo && (
+                    {curso && (
                         <Container mx="auto" px={{ d: 0, lg: 3 }}>
                             <Flex display="flex" flexWrap="wrap">
                                 <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} py={{ d: 3, sm: 5 }} width="100%">
@@ -191,7 +200,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         display="inline-block"
                                                         fontSize={{ d: '12px', sm: '16px' }}
                                                         height={{ d: '40px', sm: '50px' }}
-                                                        onClick={() => handleCursoConteudoPrevNext(curso)}
+                                                        onClick={handleCursoConteudoPrevNext(curso)}
                                                         text="Conteúdo anterior"
                                                         themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
@@ -207,7 +216,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         display="inline-block"
                                                         fontSize={{ d: '12px', sm: '16px' }}
                                                         height={{ d: '40px', sm: '50px' }}
-                                                        onClick={() => handleCursoConteudoPrevNext(curso, conteudo)}
+                                                        onClick={handleCursoConteudoPrevNext(curso, conteudo)}
                                                         text="Próximo Conteúdo"
                                                         themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
@@ -224,7 +233,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             display="block"
                                                             fontWeight="400"
                                                             mx="auto"
-                                                            onClick={() => handleMenuConteudo(true)}
+                                                            onClick={handleMenuConteudo(true)}
                                                             text="Exibir aulas"
                                                             textDecoration="underline"
                                                             themeSize="none"
@@ -242,38 +251,11 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                             <Box>
                                                 <TabStyled group="tab-group" total={1}>
-                                                    <input
-                                                        checked={stateTabSelected === 'resumo'}
-                                                        id="tab-id-resumo"
-                                                        name="tab-group"
-                                                        onChange={(e) => {
-                                                            handleTabChange(e);
-                                                        }}
-                                                        type="radio"
-                                                        value="resumo"
-                                                    />
+                                                    <input checked={stateTabSelected === 'resumo'} id="tab-id-resumo" name="tab-group" onChange={handleTabChange} type="radio" value="resumo" />
 
-                                                    <input
-                                                        checked={stateTabSelected === 'conteudo'}
-                                                        id="tab-id-conteudo"
-                                                        name="tab-group"
-                                                        onChange={(e) => {
-                                                            handleTabChange(e);
-                                                        }}
-                                                        type="radio"
-                                                        value="conteudo"
-                                                    />
+                                                    <input checked={stateTabSelected === 'conteudo'} id="tab-id-conteudo" name="tab-group" onChange={handleTabChange} type="radio" value="conteudo" />
 
-                                                    <input
-                                                        checked={stateTabSelected === 'duvidas'}
-                                                        id="tab-id-duvidas"
-                                                        name="tab-group"
-                                                        onChange={(e) => {
-                                                            handleTabChange(e);
-                                                        }}
-                                                        type="radio"
-                                                        value="duvidas"
-                                                    />
+                                                    <input checked={stateTabSelected === 'duvidas'} id="tab-id-duvidas" name="tab-group" onChange={handleTabChange} type="radio" value="duvidas" />
 
                                                     <TabsNavStyled>
                                                         <TabNavStyled>
@@ -327,14 +309,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         {windowWidth > parseInt(variable.md, 10) && (
                                             <>
                                                 <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
-                                                    <Button
-                                                        fontWeight="400"
-                                                        onClick={() => handleMenuConteudo(true)}
-                                                        text="Exibir aulas"
-                                                        textDecoration="underline"
-                                                        themeSize="none"
-                                                        themeType="none"
-                                                    />
+                                                    <Button fontWeight="400" onClick={handleMenuConteudo(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
                                                 </MinhaContaExibirConteudoStyled>
 
                                                 <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, md: stateMenuConteudo ? 3 / 10 : 0 }}>

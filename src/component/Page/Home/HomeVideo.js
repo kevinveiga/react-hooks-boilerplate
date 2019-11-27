@@ -15,9 +15,14 @@ import { Cell } from '../../../style/grid';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
-export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
+const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     // ACTION
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
+
+    // Function
+    const handleCurrentVideo = (video) => () => {
+        setStateCurrentVideo(video);
+    };
 
     return (
         <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
@@ -52,7 +57,7 @@ export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                                 borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
                                 hover="true"
                                 key={getVideoId(video.video)}
-                                onClick={() => setStateCurrentVideo(video)}
+                                onClick={handleCurrentVideo(video)}
                                 p={4}
                             >
                                 <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
@@ -76,3 +81,5 @@ export const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
         </VideoGridStyled>
     );
 };
+
+export default HomeVideo;

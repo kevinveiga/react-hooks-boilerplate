@@ -22,32 +22,53 @@ export const HeaderMenu = ({ ...props }) => {
         }
     };
 
-    const search = () => {
+    const search = () => () => {
         window.location.pathname = `/pesquisa/${document.querySelector('input[name="pesquisa_mobile"]').value}`;
+    };
+
+    // Function
+    const handleChangeMenuMobile = (value) => () => {
+        setStateChangeMenuMobileContext(value);
     };
 
     return (
         <HeaderMenuStyled active={stateChangeMenuMobileContext} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Início" />
+                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Início" />
                 </li>
 
                 <li>
-                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Notícias" />
+                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Notícias" />
                 </li>
 
                 <li>
-                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Aprenda" />
+                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Aprenda" />
                 </li>
 
                 <li>
-                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Vídeos" />
+                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Vídeos" />
                 </li>
 
                 <li>
-                    <LinkTo link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={() => setStateChangeMenuMobileContext(false)} text="Login" />
+                    <LinkTo link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Cadastro/Login" />
                 </li>
+
+                {/* <li>
+                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://assistente.liberta.com.vc" target="_blank" text="Perfil de Investidor" />
+                </li>
+
+                {/* <li>
+                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://pages.liberta.com.vc/fintech-week-2019/" target="_blank" text="Fintech Week" />
+                </li> */}
+
+                {/* <li>
+                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Aprenda" />
+                </li>
+
+                <li>
+                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Quem Somos" />
+                </li> */}
             </ul>
 
             <div className="d-block d-lg-none header-menu-Social">
@@ -67,7 +88,7 @@ export const HeaderMenu = ({ ...props }) => {
                     </Grid>
                 </HeaderMenuPesquisaStyled>
 
-                <Svg change={true} name="svg-search" onClick={() => search()} />
+                <Svg change={true} name="svg-search" onClick={search()} />
 
                 <Social color="colorGray4" />
             </div>

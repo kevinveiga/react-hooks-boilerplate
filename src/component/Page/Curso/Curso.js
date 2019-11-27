@@ -81,7 +81,7 @@ export const Curso = ({ match }) => {
     const curso = cursoLength > 0 && stateCurso.data.data && stateCurso.data.data.data[0];
 
     // MATRICULA
-    const handleMatricula = () => {
+    const handleMatricula = () => () => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(`${apiUrlCursos}/matricular`, { curso_id: curso.id });
@@ -183,7 +183,7 @@ export const Curso = ({ match }) => {
                                     </Box>
 
                                     <Box display={{ d: 'none', sm: 'block' }}>
-                                        <Button fontSize="24px" onClick={() => handleMatricula()} text="Começar" />
+                                        <Button fontSize="24px" onClick={handleMatricula()} text="Começar" />
                                     </Box>
                                 </Flex>
                             </Container>
@@ -192,7 +192,7 @@ export const Curso = ({ match }) => {
                         <Wrap>
                             <Flex display={{ d: 'flex', sm: 'none' }} flexWrap="wrap" justifyContent="center">
                                 <Box mt={4}>
-                                    <Button fontSize="20px" mx="auto" onClick={() => handleMatricula()} text="Começar" />
+                                    <Button fontSize="20px" mx="auto" onClick={handleMatricula()} text="Começar" />
                                 </Box>
                             </Flex>
 
@@ -287,7 +287,7 @@ export const Curso = ({ match }) => {
                             </Title4>
 
                             <Box textAlign="center">
-                                <Button fontSize="24px" mx="auto" onClick={() => handleMatricula()} text="Começar" />
+                                <Button fontSize="24px" mx="auto" onClick={handleMatricula()} text="Começar" />
                             </Box>
                         </Container>
 

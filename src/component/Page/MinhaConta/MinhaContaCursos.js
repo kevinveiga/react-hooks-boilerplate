@@ -52,7 +52,8 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
     const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('todos');
     const windowWidth = useWindowWidth();
 
-    const handleCursoCategoriaChange = (e) => {
+    const handleCursoCategoriaChange = () => (e) => {
+        e.preventDefault();
         setStateCursosCategoriaSelected(e.target.value);
     };
 
@@ -103,10 +104,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                                         checked={stateCursosCategoriaSelected === 'todos'}
                                         id="tab-id-course-todos"
                                         name="tab-group-course"
-                                        onChange={(e) => {
-                                            e.preventDefault();
-                                            handleCursoCategoriaChange(e);
-                                        }}
+                                        onChange={handleCursoCategoriaChange()}
                                         type="radio"
                                         value="todos"
                                     />
@@ -120,10 +118,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                         id={`tab-id-course-${categoria.slug}`}
                                                         key={`${categoria.slug}-input`}
                                                         name="tab-group-course"
-                                                        onChange={(e) => {
-                                                            e.preventDefault();
-                                                            handleCursoCategoriaChange(e);
-                                                        }}
+                                                        onChange={handleCursoCategoriaChange()}
                                                         type="radio"
                                                         value={categoria.slug}
                                                     />
@@ -132,12 +127,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                                         })}
 
                                     <TabSelect ml="auto" mr="auto">
-                                        <select
-                                            onChange={(e) => {
-                                                e.preventDefault();
-                                                handleCursoCategoriaChange(e);
-                                            }}
-                                        >
+                                        <select onChange={handleCursoCategoriaChange()}>
                                             <option value="todos">Todos</option>
 
                                             {cursosCategoriasLength > 0 &&

@@ -14,6 +14,7 @@ const title = css`
     line-height: 1.3;
     ${({ align }) => align === 'center' && 'margin-left: auto; margin-right: auto; text-align: center;'};
     ${({ align }) => align === 'right' && 'margin-left: auto; margin-right: 0; text-align: right;'};
+    ${({ textTransform }) => textTransform && `text-transform: ${textTransform}`};
     z-index: 3;
 
     ${({ line }) =>

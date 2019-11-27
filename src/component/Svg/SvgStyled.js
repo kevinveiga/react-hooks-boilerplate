@@ -1,11 +1,15 @@
 import styled from 'styled-components';
-import { layout, space } from 'styled-system';
+import { space } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const SvgStyled = styled.svg`
-    ${layout};
     ${space};
     ${({ fill }) => fill && `fill: ${variable[fill]}`};
+    height: ${({ height }) => height || '15px'};
     ${({ stroke }) => stroke && `stroke: ${variable[stroke]}`};
+
+    @media (min-width: ${variable.sm}) {
+        height: ${({ height }) => height || '18px'};
+    }
 `;

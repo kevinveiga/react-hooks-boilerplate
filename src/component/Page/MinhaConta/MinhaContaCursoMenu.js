@@ -113,7 +113,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                     </Box>
 
                                     <MinhaContaCursoMenuModuloSvgStyled>
-                                        <Svg active={statePart == modulo.id} fill="colorSecondary" height="10px" mr={0} name="svg-arrow-down-2" />
+                                        <Svg active={statePart == modulo.id} fill="colorSecondary" mr={0} name="svg-arrow-down-2" />
                                     </MinhaContaCursoMenuModuloSvgStyled>
                                 </MinhaContaCursoMenuModuloStyled>
 

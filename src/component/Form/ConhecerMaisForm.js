@@ -35,8 +35,8 @@ const ConhecerMaisForm = ({ ...props }) => {
     }, [register]);
 
     // Function
-    const handlePart = (nextPart) => {
-        setStatePart(nextPart + 1);
+    const handlePart = (value) => () => {
+        setStatePart(value);
     };
 
     // FORM
@@ -87,7 +87,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell>
-                                <ConhecerMaisPartTitleStyled onClick={() => setStatePart(1)}>
+                                <ConhecerMaisPartTitleStyled onClick={handlePart(1)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 1}>1</ConhecerMaisPartNumberStyled>
 
                                     <Span color={statePart === 1 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
@@ -131,7 +131,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell>
-                                <ConhecerMaisPartTitleStyled onClick={() => setStatePart(2)}>
+                                <ConhecerMaisPartTitleStyled onClick={handlePart(2)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 2}>2</ConhecerMaisPartNumberStyled>
 
                                     <Span color={statePart === 2 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
@@ -162,7 +162,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell>
-                                <ConhecerMaisPartTitleStyled onClick={() => setStatePart(3)}>
+                                <ConhecerMaisPartTitleStyled onClick={handlePart(3)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 3}>3</ConhecerMaisPartNumberStyled>
 
                                     <Span color={statePart === 3 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
@@ -221,7 +221,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                 <Button
                                     fontSize={{ d: 16, sm: 18 }}
                                     m="auto"
-                                    onClick={() => handlePart(statePart)}
+                                    onClick={handlePart(statePart + 1)}
                                     text="Pular Etapa"
                                     textTransform="none"
                                     themeSize="small"

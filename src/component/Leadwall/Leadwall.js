@@ -14,7 +14,7 @@ export const Leadwall = ({ ...props }) => {
     return (
         <>
             <LeadwallStyled px={{ d: 3, sm: '15%' }} pb={{ d: 3, sm: 4 }} pt={{ d: 4, sm: 5 }} {...props}>
-                <Svg className="svg-lock" name="svg-lock" mb={4} />
+                <Svg name="svg-lock" mb={4} />
 
                 <Title3 fontWeight="600" themeColor="light">
                     Continue lendo: é grátis.
