@@ -42,7 +42,13 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
 
                             <Box alignContent="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
                                 <Box>
-                                    <Svg active={stateChangeMinhaContaMenuMobile} change={stateChangeHeaderScroll} fill="colorSecondary" name="svg-menu" onClick={() => setStateChangeMinhaContaMenuMobile(true)} />
+                                    <Svg
+                                        active={stateChangeMinhaContaMenuMobile}
+                                        change={stateChangeHeaderScroll}
+                                        fill="colorSecondary"
+                                        name="svg-menu"
+                                        onClick={() => setStateChangeMinhaContaMenuMobile(true)}
+                                    />
 
                                     <Svg active={stateChangeMinhaContaMenuMobile} name="svg-close" onClick={() => setStateChangeMinhaContaMenuMobile(false)} />
                                 </Box>
@@ -63,7 +69,16 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                             </Box>
 
                             <Box>
-                                <Button color="colorGray2" fontSize={18} fontWeight="600" hoverColor="colorWhite" onClick={() => setStateChangeModalLogout(true)} text="Logout" themeSize="none" themeType="none" />
+                                <Button
+                                    color="colorGray2"
+                                    fontSize={18}
+                                    fontWeight="600"
+                                    hoverColor="colorWhite"
+                                    onClick={() => setStateChangeModalLogout(true)}
+                                    text="Logout"
+                                    themeSize="none"
+                                    themeType="none"
+                                />
                             </Box>
                         </Flex>
                     </Container>

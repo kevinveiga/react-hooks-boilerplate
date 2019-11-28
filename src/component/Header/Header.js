@@ -12,8 +12,10 @@ import { Svg } from '../Svg/Svg';
 
 import { HeaderBtnMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
 
+import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
+import { variable } from '../../style/variable';
 
 export const Header = ({ ...hide }) => {
     // ACTION
@@ -49,15 +51,15 @@ export const Header = ({ ...hide }) => {
         <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
             <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header" {...hide}>
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
-                    <div className="row align-items-center justify-content-end justify-content-lg-between no-gutters">
-                        <div className="col-10 col-lg-auto text-center text-lg-left">
-                            <LinkTo ariaLabel="Home" link="/inicio">
-                                <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
-                            </LinkTo>
-                        </div>
-
-                        <div className="col-auto col-xl-7">
-                            <div className="d-block d-lg-none text-center">
+                    <Flex
+                        alignItems="center"
+                        display="flex"
+                        flexWrap="wrap"
+                        justifyContent={{ d: 'flex-end', lg: 'space-between' }}
+                        minHeight={{ d: variable.headerHeightMobile, lg: variable.headerHeight }}
+                    >
+                        <Box width={{ d: 'auto', xl: 7 / 12 }}>
+                            <Box display={{ d: 'block', lg: 'none' }}>
                                 <HeaderBtnMenuStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} onClick={handleChangeMenuMobile(true)}>
                                     <ul>
                                         <li className="menu-lines" />
@@ -67,12 +69,12 @@ export const Header = ({ ...hide }) => {
                                 </HeaderBtnMenuStyled>
 
                                 <Svg active={stateChangeMenuMobileContext} name="svg-close" onClick={handleChangeMenuMobile(false)} />
-                            </div>
+                            </Box>
 
                             <HeaderMenu change={stateChangeHeaderScroll} />
-                        </div>
+                        </Box>
 
-                        <div className="col-auto d-none d-lg-block text-right header-right">
+                        <Box display={{ d: 'none', lg: 'block' }} textAlign="right">
                             <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                                 <Grid display="grid" gridAutoColumns="1fr" px={2}>
                                     <Cell width="100%">
@@ -86,10 +88,10 @@ export const Header = ({ ...hide }) => {
                             <Social change={stateChangeHeaderScroll} />
 
                             <LinkTo ariaLabel="Cadastra-se" link="/cadastro">
-                                <Button text="Cadastra-se" textTransform="none" themeSize="small" />
+                                <Button ml={3} text="Cadastra-se" textTransform="none" themeSize="small" />
                             </LinkTo>
-                        </div>
-                    </div>
+                        </Box>
+                    </Flex>
                 </Container>
             </HeaderStyled>
         </HeaderContext.Provider>

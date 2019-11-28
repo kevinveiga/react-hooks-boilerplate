@@ -66,24 +66,4 @@ export const HeaderStyled = styled.header`
                   background-color: ${variable.colorWhite};
                   box-shadow: 0 1px 0 1px ${variable.colorBlackTransparent1};
               `};
-
-    &.content-padding-y {
-        padding-bottom: ${variable.spacingXS};
-        padding-top: ${variable.spacingXS};
-    }
-
-    .row {
-        min-height: ${variable.headerHeightMobile};
-
-        @media (min-width: ${variable.lg}) {
-            height: ${variable.headerHeight};
-        }
-
-        .header-right {
-            button {
-                display: inline-block;
-                margin-left: 18px;
-            }
-        }
-    }
 `;
