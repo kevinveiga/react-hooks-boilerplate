@@ -50,7 +50,7 @@ export const EsqueceuSenha = ({ location }) => {
                     <Box width={{ d: '100%', lg: 3 / 7 }}>
                         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                             <Box mb={{ d: 4, md: '75px' }} mt={{ d: 0, lg: 4 }} textAlign="center">
-                                <Svg className="svg-logo-liberta" name="svg-logo-liberta" />
+                                <Svg name="svg-logo-liberta" />
                             </Box>
 
                             <Title2 textAlign="center" themeColor="dark">

@@ -59,7 +59,7 @@ workbox.routing.registerRoute(
 );
 
 // APP
-// Add same origin, except in precache, css, image, js (same origin or cross origin)
+// Add same origin, except in precache, css, font, image, js (same origin or cross origin)
 workbox.routing.registerRoute(
     new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
     new workbox.strategies.NetworkFirst({

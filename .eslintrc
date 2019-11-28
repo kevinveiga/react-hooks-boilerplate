@@ -7,7 +7,6 @@
     "extends": ["airbnb", "plugin:jsx-a11y/recommended", "plugin:prettier/recommended", "prettier/react"],
     "globals": {
         "$": true,
-        "css": true,
         "document": true,
         "fetch": true,
         "jQuery": true,

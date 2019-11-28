@@ -48,7 +48,7 @@ export const NoticiaForm = ({ ...props }) => {
                 </Cell>
 
                 <Cell mb={3} width="100%">
-                    <Button className="btn btn-lg btn-100" text="Solicitar Contato" typeButton="submit" />
+                    <Button text="Solicitar Contato" typeButton="submit" />
                 </Cell>
             </Grid>
         </FormStyled>

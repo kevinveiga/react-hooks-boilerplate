@@ -62,9 +62,9 @@ export const Header = ({ ...hide }) => {
                             <Box display={{ d: 'block', lg: 'none' }}>
                                 <HeaderBtnMenuStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} onClick={handleChangeMenuMobile(true)}>
                                     <ul>
-                                        <li className="menu-lines" />
-                                        <li className="menu-lines" />
-                                        <li className="menu-lines" />
+                                        <li />
+                                        <li />
+                                        <li />
                                     </ul>
                                 </HeaderBtnMenuStyled>
 
