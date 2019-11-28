@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
 import { Helmet } from 'react-helmet-async';
@@ -52,11 +52,6 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
     const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('todos');
     const windowWidth = useWindowWidth();
 
-    const handleCursoCategoriaChange = () => (e) => {
-        e.preventDefault();
-        setStateCursosCategoriaSelected(e.target.value);
-    };
-
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
@@ -77,6 +72,16 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
 
         return undefined;
     }, [stateCursos.isLoading, stateCursosCategorias.isLoading, setStateLoaderContext]);
+
+    // Function
+    const handleCursoCategoriaChange = useCallback(
+        () => (element) => {
+            element.preventDefault();
+
+            setStateCursosCategoriaSelected(element.target.value);
+        },
+        []
+    );
 
     // DATA
     const meusCursos = cursosLength > 0 && stateCursos.data.data;

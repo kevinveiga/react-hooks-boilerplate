@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import useForm from 'react-hook-form';
@@ -50,6 +50,28 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
 
         return undefined;
     }, [register]);
+
+    // Function
+    const handleSetValue = useCallback(
+        () => (element) => {
+            setValue(element.target.name, element.target.value);
+        },
+        [setValue]
+    );
+
+    const handleSetValueChecked = useCallback(
+        () => (element) => {
+            setValue(element.target.name, element.target.checked);
+        },
+        [setValue]
+    );
+
+    const handleValidation = useCallback(
+        () => (element) => {
+            triggerValidation({ name: element.target.name, value: element.target.value });
+        },
+        [triggerValidation]
+    );
 
     // FORM
     const { errors, formState, handleSubmit, register, setValue, setError, triggerValidation } = useForm({
@@ -114,18 +136,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" text="Nome completo" />
 
                                 <div>
-                                    <InputValidation
-                                        error={errors.nome}
-                                        maxLength="50"
-                                        name="nome"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
-                                        placeholder="Nome"
-                                        touched={formState.touched}
-                                        {...otherProps}
-                                    />
+                                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={formState.touched} {...otherProps} />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -135,18 +146,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" text="E-mail" />
 
                                 <div>
-                                    <InputValidation
-                                        error={errors.email}
-                                        maxLength="50"
-                                        name="email"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
-                                        placeholder="E-mail"
-                                        touched={formState.touched}
-                                        {...otherProps}
-                                    />
+                                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...otherProps} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -160,10 +160,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.telefone}
                                         mask={customMaskRegex.phone}
                                         name="telefone"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="Telefone"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -181,14 +178,8 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.endereco_cep}
                                         mask={customMaskRegex.cep}
                                         name="endereco_cep"
-                                        onBlur={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onBlur={handleValidation()}
+                                        onChange={handleValidation()}
                                         placeholder="00000-000"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -206,10 +197,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.endereco_logradouro}
                                         maxLength="100"
                                         name="endereco_logradouro"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="Rua do endereço"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -228,10 +216,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         mask={Number}
                                         maxLength="5"
                                         name="endereco_numero"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="Número do endereço"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -249,10 +234,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.endereco_complemento}
                                         maxLength="100"
                                         name="endereco_complemento"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="Complemento do endereço"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -270,10 +252,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.endereco_cidade}
                                         maxLength="50"
                                         name="endereco_cidade"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="Cidade"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -287,14 +266,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" text="Estado" />
 
                                 <div>
-                                    <Select
-                                        name="endereco_uf"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await setValue(input.name, input.value);
-                                        }}
-                                        {...otherProps}
-                                    >
+                                    <Select name="endereco_uf" onChange={handleSetValue()} {...otherProps}>
                                         <OptionUF />
                                     </Select>
                                 </div>
@@ -308,10 +280,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.data_nascimento}
                                         mask={customMaskRegex.date}
                                         name="data_nascimento"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="dd/mm/aaaa"
                                         touched={formState.touched}
                                         {...otherProps}
@@ -325,14 +294,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" text="Sexo" />
 
                                 <div>
-                                    <Select
-                                        name="sexo"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await setValue(input.name, input.value);
-                                        }}
-                                        {...otherProps}
-                                    >
+                                    <Select name="sexo" onChange={handleSetValue()} {...otherProps}>
                                         <option value="">Indefinido</option>
                                         <option value="masculino">Masculino</option>
                                         <option value="feminino">Feminino</option>
@@ -348,10 +310,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         error={errors.password}
                                         maxLength="11"
                                         name="password"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await triggerValidation({ name: input.name, value: input.value });
-                                        }}
+                                        onChange={handleValidation()}
                                         placeholder="password"
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
@@ -369,15 +328,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                     Notificação de e-mail
                                 </P>
 
-                                <InputCheckboxRadio
-                                    color="colorGray2"
-                                    id="receber_avisos_descontos_de_cursos"
-                                    name="receber_avisos_descontos_de_cursos"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await setValue(input.name, input.checked);
-                                    }}
-                                >
+                                <InputCheckboxRadio color="colorGray2" id="receber_avisos_descontos_de_cursos" name="receber_avisos_descontos_de_cursos" onChange={handleSetValueChecked()}>
                                     <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                                     <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
@@ -385,15 +336,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                     </Span>
                                 </InputCheckboxRadio>
 
-                                <InputCheckboxRadio
-                                    color="colorGray2"
-                                    id="receber_curadoria_conteudos_noticias"
-                                    name="receber_curadoria_conteudos_noticias"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await setValue(input.name, input.checked);
-                                    }}
-                                >
+                                <InputCheckboxRadio color="colorGray2" id="receber_curadoria_conteudos_noticias" name="receber_curadoria_conteudos_noticias" onChange={handleSetValueChecked()}>
                                     <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                                     <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">

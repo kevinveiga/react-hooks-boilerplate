@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 
 import axios from 'axios';
 import useForm from 'react-hook-form';
@@ -27,6 +27,14 @@ const LeadwallForm = ({ ...props }) => {
 
         return undefined;
     }, [register]);
+
+    // Function
+    const handleValidation = useCallback(
+        () => (element) => {
+            triggerValidation({ name: element.target.name, value: element.target.value });
+        },
+        [triggerValidation]
+    );
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
@@ -73,10 +81,7 @@ const LeadwallForm = ({ ...props }) => {
                         error={errors.email}
                         maxLength="50"
                         name="email"
-                        onChange={async (e) => {
-                            const input = e.target;
-                            await triggerValidation({ name: input.name, value: input.value });
-                        }}
+                        onChange={handleValidation()}
                         placeholder="Insira seu e-mail"
                         right="15px"
                         touched={formState.touched}

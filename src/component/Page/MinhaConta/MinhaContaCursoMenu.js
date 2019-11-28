@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 
 import parse from 'html-react-parser';
 
@@ -34,6 +34,14 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
 
     // ACTION
     const [statePart, setStatePart] = useState(null);
+
+    // Function
+    const handleCursoConteudoVisualizadoUrl = useCallback(
+        (conteudoId) => (element) => {
+            setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}/${element.target.checked ? 'registrar-visualizacao' : 'remover-visualizacao'}`);
+        },
+        [objectCurso.id, setStateCursoConteudoVisualizadoUrl]
+    );
 
     const tipoConteudo = (tipo) => {
         const obj = { svg: '', title: '' };
@@ -128,14 +136,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                 defaultChecked={conteudo.lido}
                                                                 id={`${objectCurso.id}${conteudo.id}`}
                                                                 name={`${objectCurso.id}${conteudo.id}`}
-                                                                onChange={(e) => {
-                                                                    const input = e.target;
-                                                                    setStateCursoConteudoVisualizadoUrl(
-                                                                        `${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudo.id}/${
-                                                                            input.checked ? 'registrar-visualizacao' : 'remover-visualizacao'
-                                                                        }`
-                                                                    );
-                                                                }}
+                                                                onChange={handleCursoConteudoVisualizadoUrl(conteudo.id)}
                                                                 type="checkbox"
                                                             />
 

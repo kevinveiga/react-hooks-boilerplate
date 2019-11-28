@@ -200,52 +200,19 @@ useEffect(() => {
 -   Para usar "placeholder" nos campos "input", basta passar a propriedade "placeholder". Ex:
 
 ```jsx
-<InputValidation
-    error={errors.email}
-    maxLength="50"
-    name="email"
-    onChange={async (e) => {
-        const input = e.target;
-        await triggerValidation({ name: input.name, value: input.value });
-    }}
-    placeholder="E-mail"
-    touched={formState.touched}
-    {...otherProps}
-/>
+<InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...otherProps} />
 ```
 
 -   Para usar um "label" como comportamento de "placeholder" nos campos "input", basta passar a propriedade "label". Ex:
 
 ```jsx
-<InputValidation
-    error={errors.email}
-    label="E-mail"
-    maxLength="50"
-    name="email"
-    onChange={async (e) => {
-        const input = e.target;
-        await triggerValidation({ name: input.name, value: input.value });
-    }}
-    touched={formState.touched}
-    {...props}
-/>
+<InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...props} />
 ```
 
 -   Para usar máscara nos campo, utilizar o componente "InputMaskValidation", com a propriedade "mask". Ex:
 
 ```jsx
-<InputValidation
-    error={errors.telefone}
-    mask={customMaskRegex.phone}
-    name="telefone"
-    onChange={async (e) => {
-        const input = e.target;
-        await triggerValidation({ name: input.name, value: input.value });
-    }}
-    placeholder="Telefone"
-    touched={formState.touched}
-    {...props}
-/>
+<InputValidation error={errors.telefone} mask={customMaskRegex.phone} name="telefone" onChange={handleValidation()} placeholder="Telefone" touched={formState.touched} {...props} />
 ```
 
 -   Para passar valores iniciais nos campos, utilizar a função "useSetFormValue", que recebe como parâmetros, um objeto e o id do formulário, também utilizar a propriedade defaultValues na função "useForm". Ex:

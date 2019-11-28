@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import { HeaderContext } from '../../store/header/headerContext';
 
@@ -16,20 +16,29 @@ export const HeaderMenu = ({ ...props }) => {
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useContext(HeaderContext);
 
     // ACTION
-    const keyPress = (e) => {
-        if (e.keyCode == 13) {
-            window.location.pathname = `/pesquisa/${e.target.value}`;
-        }
-    };
-
-    const search = () => () => {
-        window.location.pathname = `/pesquisa/${document.querySelector('input[name="pesquisa_mobile"]').value}`;
-    };
-
     // Function
-    const handleChangeMenuMobile = (value) => () => {
-        setStateChangeMenuMobileContext(value);
-    };
+    const handleChangeMenuMobile = useCallback(
+        (value) => () => {
+            setStateChangeMenuMobileContext(value);
+        },
+        [setStateChangeMenuMobileContext]
+    );
+
+    const keyPress = useCallback(
+        () => (element) => {
+            if (element.keyCode == 13) {
+                window.location.pathname = `/pesquisa/${element.target.value}`;
+            }
+        },
+        []
+    );
+
+    const search = useCallback(
+        () => () => {
+            window.location.pathname = `/pesquisa/${document.querySelector('input[name="pesquisa_mobile"]').value}`;
+        },
+        []
+    );
 
     return (
         <HeaderMenuStyled active={stateChangeMenuMobileContext} {...props}>
@@ -75,15 +84,7 @@ export const HeaderMenu = ({ ...props }) => {
                 <HeaderMenuPesquisaStyled>
                     <Grid display="grid" gridAutoColumns="1fr" px={2}>
                         <Cell width="100%">
-                            <Input
-                                maxLength="50"
-                                name="pesquisa_mobile"
-                                placeholder="Procure"
-                                obj={{ color: 'colorWhite' }}
-                                onKeyDown={(e) => {
-                                    keyPress(e);
-                                }}
-                            />
+                            <Input maxLength="50" name="pesquisa_mobile" placeholder="Procure" obj={{ color: 'colorWhite' }} onKeyDown={keyPress()} />
                         </Cell>
                     </Grid>
                 </HeaderMenuPesquisaStyled>

@@ -60,13 +60,13 @@
                             .then(function(registration) {
                                 console.info('%c Service Worker registered: ', 'color: #00bbee;', registration);
 
-                                registration.addEventListener('updatefound', function(e) {
+                                registration.addEventListener('updatefound', function(event) {
                                     var self = e;
                                     var newWorker = self.currentTarget.installing;
 
                                     console.info('Updatefound: ', self);
 
-                                    newWorker.addEventListener('statechange', function(e) {
+                                    newWorker.addEventListener('statechange', function(event) {
                                         var self = e;
 
                                         console.info('Statechange: ', self);

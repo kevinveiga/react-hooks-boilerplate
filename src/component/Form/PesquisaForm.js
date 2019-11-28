@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 
 import useForm from 'react-hook-form';
 
@@ -25,11 +25,22 @@ export const PesquisaForm = ({ ...props }) => {
         return undefined;
     }, [register]);
 
-    const keyPress = (e, fn) => {
-        if (e.keyCode == 13) {
-            handleSubmit(fn);
-        }
-    };
+    // Function
+    const keyPress = useCallback(
+        (fn) => (element) => {
+            if (element.keyCode == 13) {
+                handleSubmit(fn);
+            }
+        },
+        [handleSubmit]
+    );
+
+    const handleValidation = useCallback(
+        () => (element) => {
+            triggerValidation({ name: element.target.name, value: element.target.value });
+        },
+        [triggerValidation]
+    );
 
     // FORM
     const { handleSubmit, register, triggerValidation } = useForm({
@@ -48,19 +59,7 @@ export const PesquisaForm = ({ ...props }) => {
                 <Cell mb={3}>
                     <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />
 
-                    <Input
-                        maxLength="50"
-                        name="query"
-                        onChange={async (e) => {
-                            const input = e.target;
-                            await triggerValidation({ name: input.name, value: input.value });
-                        }}
-                        onKeyDown={(e) => {
-                            keyPress(e, submitForm);
-                        }}
-                        placeholder="O que você procura?"
-                        {...props}
-                    />
+                    <Input maxLength="50" name="query" onChange={handleValidation()} onKeyDown={keyPress(submitForm)} placeholder="O que você procura?" {...props} />
                 </Cell>
 
                 <Cell mb={3}>

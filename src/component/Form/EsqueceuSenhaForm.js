@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 
 import axios from 'axios';
 import useForm from 'react-hook-form';
@@ -27,6 +27,14 @@ const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
 
         return undefined;
     }, [register]);
+
+    // Function
+    const handleValidation = useCallback(
+        () => (element) => {
+            triggerValidation({ name: element.target.name, value: element.target.value });
+        },
+        [triggerValidation]
+    );
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
@@ -71,18 +79,7 @@ const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
 
                         <Cell mb={3}>
                             <div>
-                                <InputValidation
-                                    error={errors.email}
-                                    label="E-mail"
-                                    maxLength="50"
-                                    name="email"
-                                    onChange={async (e) => {
-                                        const input = e.target;
-                                        await triggerValidation({ name: input.name, value: input.value });
-                                    }}
-                                    touched={formState.touched}
-                                    {...otherProps}
-                                />
+                                <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...otherProps} />
                             </div>
 
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}

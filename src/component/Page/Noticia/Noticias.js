@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 
@@ -8,12 +8,12 @@ import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '
 import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
+import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
-import { Label } from '../../Form/Form';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
@@ -25,7 +25,7 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Main } from '../../../style/layout';
-import { Tab } from '../../../style/tab';
+import { Tab, TabContent, TabsContent, TabLabel, TabNav, TabsNav, TabSelect } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
@@ -47,18 +47,8 @@ export const Noticias = () => {
 
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
+    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
-
-    const handleNoticiaCategoriaChange = (e) => {
-        let apiValue = `${apiUrlNoticias}/categoria/${e.target.value}`;
-
-        if (e.target.value === 'ultimas') {
-            apiValue = apiUrlNoticias;
-        }
-
-        setStateNoticiasCategoriaData({ page: 1, url: apiValue });
-        setStateNoticiasCategoriaSelected(e.target.value);
-    };
 
     // Scroll para o topo
     /* eslint-disable react-hooks/exhaustive-deps */
@@ -82,6 +72,23 @@ export const Noticias = () => {
         return undefined;
     }, [stateNoticias.isLoading, stateNoticiasCategoria.isLoading, setStateLoaderContext]);
 
+    // Function
+    const handleNoticiaCategoriaChange = useCallback(
+        () => (element) => {
+            element.preventDefault();
+
+            let apiValue = `${apiUrlNoticias}/categoria/${element.target.value}`;
+
+            if (element.target.value === 'ultimas') {
+                apiValue = apiUrlNoticias;
+            }
+
+            setStateNoticiasCategoriaData({ page: 1, url: apiValue });
+            setStateNoticiasCategoriaSelected(element.target.value);
+        },
+        [setStateNoticiasCategoriaData]
+    );
+
     return (
         <>
             <Helmet>
@@ -100,10 +107,7 @@ export const Noticias = () => {
                             checked={stateNoticiasCategoriaSelected === 'ultimas'}
                             id="tab-id-news-ultimas"
                             name="tab-group-news"
-                            onChange={(e) => {
-                                e.preventDefault();
-                                handleNoticiaCategoriaChange(e);
-                            }}
+                            onChange={handleNoticiaCategoriaChange()}
                             type="radio"
                             value="ultimas"
                         />
@@ -116,56 +120,49 @@ export const Noticias = () => {
                                         id={`tab-id-news-${categoria.slug}`}
                                         key={categoria.slug}
                                         name="tab-group-news"
-                                        onChange={(e) => {
-                                            e.preventDefault();
-                                            handleNoticiaCategoriaChange(e);
-                                        }}
+                                        onChange={handleNoticiaCategoriaChange()}
                                         type="radio"
                                         value={categoria.slug}
                                     />
                                 );
                             })}
 
-                        <div className="custom-select-container icon-right">
-                            <select
-                                className="btn btn-tab btn-tab-select"
-                                onChange={(e) => {
-                                    e.preventDefault();
-                                    handleNoticiaCategoriaChange(e);
-                                }}
-                            >
-                                <option value="ultimas">Últimas</option>
+                        {windowWidth < parseInt(variable.md, 10) && (
+                            <TabSelect>
+                                <select onChange={handleNoticiaCategoriaChange()}>
+                                    <option value="ultimas">Últimas</option>
 
-                                {noticiasCategoriasLength > 0 &&
-                                    stateNoticiasCategorias.data.map((categoria) => {
-                                        return (
-                                            <option key={categoria.slug} value={categoria.slug}>
-                                                {categoria.title}
-                                            </option>
-                                        );
-                                    })}
-                            </select>
+                                    {noticiasCategoriasLength > 0 &&
+                                        stateNoticiasCategorias.data.map((categoria) => {
+                                            return (
+                                                <option key={categoria.slug} value={categoria.slug}>
+                                                    {categoria.title}
+                                                </option>
+                                            );
+                                        })}
+                                </select>
 
-                            <Svg name="svg-arrow-down" />
-                        </div>
+                                <Svg name="svg-arrow-down" />
+                            </TabSelect>
+                        )}
 
-                        <ul className="tabs-nav">
-                            <li className="tab-nav">
-                                <Label className="btn btn-tab" forLabel="tab-id-news-ultimas" text="Últimas" />
-                            </li>
+                        <TabsNav display={{ d: 'none', md: 'block' }}>
+                            <TabNav>
+                                <TabLabel htmlFor="tab-id-news-ultimas">Últimas</TabLabel>
+                            </TabNav>
 
                             {noticiasCategoriasLength > 0 &&
                                 stateNoticiasCategorias.data.map((categoria) => {
                                     return (
-                                        <li className="tab-nav" key={categoria.slug}>
-                                            <Label className="btn btn-tab" forLabel={`tab-id-news-${categoria.slug}`} text={categoria.title} />
-                                        </li>
+                                        <TabNav key={categoria.slug}>
+                                            <TabLabel htmlFor={`tab-id-news-${categoria.slug}`}>{categoria.title}</TabLabel>
+                                        </TabNav>
                                     );
                                 })}
-                        </ul>
+                        </TabsNav>
 
-                        <ul className="tabs-content" id="noticias-tabs-content">
-                            <li className="tab-content">
+                        <TabsContent id="noticias-tabs-content">
+                            <TabContent>
                                 <Flex display="flex" flexWrap="wrap">
                                     {noticiasLength > 0 &&
                                         stateNoticias.data.map((categoriaUltimas, i) => {
@@ -206,13 +203,13 @@ export const Noticias = () => {
                                             );
                                         })}
                                 </Flex>
-                            </li>
+                            </TabContent>
 
                             {noticiasLength > 0 &&
                                 stateNoticias.data.map((categoria, i) => {
                                     return (
                                         i > 0 && (
-                                            <li className="tab-content" key={categoria.slug}>
+                                            <TabContent key={categoria.slug}>
                                                 <Flex display="flex" flexWrap="wrap">
                                                     <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
                                                         <Grid display="grid" gridRowGap={3}>
@@ -318,11 +315,11 @@ export const Noticias = () => {
                                                         </Grid>
                                                     </Box>
                                                 </Flex>
-                                            </li>
+                                            </TabContent>
                                         )
                                     );
                                 })}
-                        </ul>
+                        </TabsContent>
                     </Tab>
                 </Container>
             </Main>

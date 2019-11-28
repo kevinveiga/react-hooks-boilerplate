@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import { Helmet } from 'react-helmet-async';
 
@@ -45,19 +45,6 @@ export const Aprenda = () => {
     const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('mais-vistos');
     const windowWidth = useWindowWidth();
 
-    const handleCursoCategoriaChange = (e) => {
-        let apiValue = `${apiUrlCursos}/categorias/${e.target.value}`;
-
-        if (e.target.value === 'mais-vistos') {
-            apiValue = apiUrlCursos;
-        }
-
-        // Paginação desativada
-        // setStateCursosCategoriaData({ page: 1, url: apiValue });
-        setStateCursosCategoriaData({ url: apiValue });
-        setStateCursosCategoriaSelected(e.target.value);
-    };
-
     // Scroll para o topo
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
@@ -79,6 +66,25 @@ export const Aprenda = () => {
 
         return undefined;
     }, [stateCursos.isLoading, stateCursosCategoria.isLoading, setStateLoaderContext]);
+
+    // Function
+    const handleCursoCategoriaChange = useCallback(
+        () => (element) => {
+            element.preventDefault();
+
+            let apiValue = `${apiUrlCursos}/categorias/${element.target.value}`;
+
+            if (element.target.value === 'mais-vistos') {
+                apiValue = apiUrlCursos;
+            }
+
+            // Paginação desativada
+            // setStateCursosCategoriaData({ page: 1, url: apiValue });
+            setStateCursosCategoriaData({ url: apiValue });
+            setStateCursosCategoriaSelected(element.target.value);
+        },
+        [setStateCursosCategoriaData]
+    );
 
     return (
         <>
@@ -104,10 +110,7 @@ export const Aprenda = () => {
                                         id={`tab-id-course-${categoria.slug}`}
                                         key={categoria.slug}
                                         name="tab-group-course"
-                                        onChange={(e) => {
-                                            e.preventDefault();
-                                            handleCursoCategoriaChange(e);
-                                        }}
+                                        onChange={handleCursoCategoriaChange()}
                                         type="radio"
                                         value={categoria.slug}
                                     />
@@ -116,12 +119,7 @@ export const Aprenda = () => {
 
                         {windowWidth < parseInt(variable.md, 10) && (
                             <TabSelect ml="auto" mr="auto">
-                                <select
-                                    onChange={(e) => {
-                                        e.preventDefault();
-                                        handleCursoCategoriaChange(e);
-                                    }}
-                                >
+                                <select onChange={handleCursoCategoriaChange()}>
                                     {cursosCategoriasLength > 0 &&
                                         stateCursosCategorias.data.data.map((categoria) => {
                                             return (
@@ -184,7 +182,7 @@ export const Aprenda = () => {
 
                                                                         <Box width="100%">
                                                                             <Box height="200px" overflow="hidden" width="100%">
-                                                                                <BgImageLazyLoad key={curso.id} url={curso.thumbnail && curso.thumbnail.attachment.url} />
+                                                                                <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.galeria.curso_listagem} />
 
                                                                                 <ListTag>Gratuito</ListTag>
                                                                             </Box>

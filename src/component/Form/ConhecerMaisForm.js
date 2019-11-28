@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import useForm from 'react-hook-form';
@@ -35,9 +35,26 @@ const ConhecerMaisForm = ({ ...props }) => {
     }, [register]);
 
     // Function
-    const handlePart = (value) => () => {
-        setStatePart(value);
-    };
+    const handlePart = useCallback(
+        (value) => () => {
+            setStatePart(value);
+        },
+        []
+    );
+
+    const handleSetValue = useCallback(
+        () => (element) => {
+            setValue(element.target.name, element.target.value);
+        },
+        [setValue]
+    );
+
+    const handleValidation = useCallback(
+        () => (element) => {
+            triggerValidation({ name: element.target.name, value: element.target.value });
+        },
+        [triggerValidation]
+    );
 
     // FORM
     const { errors, formState, handleSubmit, register, setError, setValue, triggerValidation } = useForm({
@@ -96,33 +113,13 @@ const ConhecerMaisForm = ({ ...props }) => {
                                 </ConhecerMaisPartTitleStyled>
 
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
-                                    <ConhecerMaisRadioStyled
-                                        defaultChecked={false}
-                                        defaultValue="masculino"
-                                        id="sexo_masculino"
-                                        name="sexo"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await setValue(input.name, input.value);
-                                        }}
-                                        type="radio"
-                                    />
+                                    <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="masculino" id="sexo_masculino" name="sexo" onChange={handleSetValue()} type="radio" />
 
                                     <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="600" px={{ d: 3, md: 4 }} py={2}>
                                         Masculino
                                     </Label>
 
-                                    <ConhecerMaisRadioStyled
-                                        defaultChecked={false}
-                                        defaultValue="feminino"
-                                        id="sexo_feminino"
-                                        name="sexo"
-                                        onChange={async (e) => {
-                                            const input = e.target;
-                                            await setValue(input.name, input.value);
-                                        }}
-                                        type="radio"
-                                    />
+                                    <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="feminino" id="sexo_feminino" name="sexo" onChange={handleSetValue()} type="radio" />
 
                                     <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="600" ml={4} px={{ d: 3, md: 4 }} py={2}>
                                         Feminino
@@ -147,10 +144,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                             error={errors.data_nascimento}
                                             mask={customMaskRegex.date}
                                             name="data_nascimento"
-                                            onChange={async (e) => {
-                                                const input = e.target;
-                                                await triggerValidation({ name: input.name, value: input.value });
-                                            }}
+                                            onChange={handleValidation()}
                                             placeholder="dd/mm/aaaa"
                                             touched={formState.touched}
                                             {...props}
@@ -179,10 +173,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                                 error={errors.endereco_cidade}
                                                 maxLength="50"
                                                 name="endereco_cidade"
-                                                onChange={async (e) => {
-                                                    const input = e.target;
-                                                    await triggerValidation({ name: input.name, value: input.value });
-                                                }}
+                                                onChange={handleValidation()}
                                                 placeholder="Cidade"
                                                 touched={formState.touched}
                                                 {...props}
@@ -203,10 +194,7 @@ const ConhecerMaisForm = ({ ...props }) => {
                                                     colorLine: 'colorPrimary',
                                                     fontWeight: formState.touched.indexOf('endereco_estado') > -1 ? '600' : '400'
                                                 }}
-                                                onChange={async (e) => {
-                                                    const input = e.target;
-                                                    await setValue(input.name, input.value);
-                                                }}
+                                                onChange={handleSetValue()}
                                             >
                                                 <OptionUF />
                                             </Select>

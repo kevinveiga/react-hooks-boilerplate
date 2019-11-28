@@ -191,14 +191,14 @@ workbox.routing.registerRoute(
 // );
 
 // EVENT
-// self.addEventListener('message', (e) => {
-//     if (e.data && e.data.type === 'CACHE_UPDATE') {
-//         const { updateURL } = e.data.payload;
+// self.addEventListener('message', (event) => {
+//     if (event.data && event.data.type === 'CACHE_UPDATE') {
+//         const { updateURL } = event.data.payload;
 
 //         console.info(`%c A new version of ${updateURL} is available`, 'color: #00bbee;');
 //     }
 
-//     if (e.data && e.data.type === 'SKIP_WAITING') {
+//     if (event.data && event.data.type === 'SKIP_WAITING') {
 //         self.skipWaiting();
 //     }
 // });

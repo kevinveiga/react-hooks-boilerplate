@@ -82,8 +82,8 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // Function
     const handleTabChange = useCallback(
-        () => (e) => {
-            setStateTabSelected(e.target.value);
+        () => (element) => {
+            setStateTabSelected(element.target.value);
         },
         []
     );
@@ -182,7 +182,9 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                             <Box maxHeight={stateMenuConteudo ? '450px' : '650px'} minHeight="25vh" mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}>
                                                 {conteudo.tipo === 'audio' && ''}
                                                 {conteudo.tipo === 'download' && ''}
-                                                {conteudo.tipo === 'imagem' && <Image maxHeight="55vh" minHeight="25vh" text={conteudo.title} url={conteudo.imagem} width="100%" />}
+                                                {conteudo.tipo === 'imagem' && (
+                                                    <Image maxHeight={stateMenuConteudo ? '450px' : '650px'} minHeight="25vh" text={conteudo.title} url={conteudo.imagem} width="100%" />
+                                                )}
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
                                                     <Suspense fallback={LoaderComponent()}>
