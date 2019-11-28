@@ -50,6 +50,10 @@ const input = css`
             border-left: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
             border-top: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
             padding: ${variable.inputPadding} 15px ${variable.inputPadding} 55px;
+
+            @media (max-width: ${variable.sm}) {
+                border-right: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
+            }
         `};
 
     ${({ invalid }) => invalid && `border-color: ${variable.colorAlert}`};

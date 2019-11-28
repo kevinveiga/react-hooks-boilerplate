@@ -1,6 +1,16 @@
 import styled from 'styled-components';
+import { display } from 'styled-system';
 
 import { variable } from '../../style/variable';
+
+export const HeaderMenuMobileStyled = styled.div`
+    ${display};
+    bottom: 50px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 100%;
+`;
 
 export const HeaderMenuPesquisaStyled = styled.div`
     background-color: ${variable.colorBlack3};
@@ -72,13 +82,5 @@ export const HeaderMenuStyled = styled.nav`
             letter-spacing: 1px;
             transition: color ${variable.transition};
         }
-    }
-
-    .header-menu-Social {
-        bottom: 50px;
-        left: 50%;
-        position: absolute;
-        transform: translateX(-50%);
-        width: 100%;
     }
 `;
