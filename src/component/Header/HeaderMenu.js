@@ -9,6 +9,7 @@ import { Svg } from '../Svg/Svg';
 
 import { HeaderMenuMobileStyled, HeaderMenuPesquisaStyled, HeaderMenuStyled } from './HeaderMenuStyled';
 
+import { Box } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
@@ -58,29 +59,21 @@ export const HeaderMenu = ({ ...props }) => {
                 <li>
                     <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Vídeos" />
                 </li>
-
-                <li>
-                    <LinkTo link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Cadastro/Login" />
-                </li>
-
-                {/* <li>
-                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://assistente.liberta.com.vc" target="_blank" text="Perfil de Investidor" />
-                </li>
-
-                {/* <li>
-                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://pages.liberta.com.vc/fintech-week-2019/" target="_blank" text="Fintech Week" />
-                </li> */}
-
-                {/* <li>
-                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Aprenda" />
-                </li>
-
-                <li>
-                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Quem Somos" />
-                </li> */}
             </ul>
 
-            <HeaderMenuMobileStyled display={{ d: 'block', lg: 'none' }}>
+            <Box display={{ d: 'block', md: 'none' }}>
+                <ul>
+                    <li>
+                        <LinkTo color="colorWhite" fontWeight="600" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
+                    </li>
+
+                    <li>
+                        <LinkTo color="colorWhite" fontWeight="600" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                    </li>
+                </ul>
+            </Box>
+
+            <HeaderMenuMobileStyled display={{ d: 'block', md: 'none' }}>
                 <HeaderMenuPesquisaStyled>
                     <Grid display="grid" gridAutoColumns="1fr" px={2}>
                         <Cell width="100%">

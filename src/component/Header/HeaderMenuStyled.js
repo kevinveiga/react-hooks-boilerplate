@@ -5,7 +5,7 @@ import { variable } from '../../style/variable';
 
 export const HeaderMenuMobileStyled = styled.div`
     ${display};
-    bottom: 50px;
+    bottom: ${variable.spacingMD};
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
@@ -25,7 +25,7 @@ export const HeaderMenuStyled = styled.nav`
         background-color: ${variable.colorBlack3};
         height: calc(100vh - ${variable.headerHeightMobile});
         overflow-y: auto;
-        padding-top: 50px;
+        padding-top: ${variable.spacingMD};
         position: fixed;
         right: ${({ active }) => (active ? 0 : '-100%')};
         text-align: center;

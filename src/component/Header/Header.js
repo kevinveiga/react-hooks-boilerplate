@@ -7,7 +7,6 @@ import { Button } from '../Button/Button';
 import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
-import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
 import { HeaderBtnMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
@@ -55,11 +54,11 @@ export const Header = ({ ...hide }) => {
                         alignItems="center"
                         display="flex"
                         flexWrap="wrap"
-                        justifyContent={{ d: 'flex-end', lg: 'space-between' }}
-                        minHeight={{ d: variable.headerHeightMobile, lg: variable.headerHeight }}
+                        justifyContent={{ d: 'flex-end', md: 'space-between' }}
+                        minHeight={{ d: variable.headerHeightMobile, md: variable.headerHeight }}
                     >
-                        <Box width={{ d: 'auto', xl: 7 / 12 }}>
-                            <Box display={{ d: 'block', lg: 'none' }}>
+                        <Box width={{ d: 'auto', md: 7 / 12 }}>
+                            <Box display={{ d: 'block', md: 'none' }}>
                                 <HeaderBtnMenuStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} onClick={handleChangeMenuMobile(true)}>
                                     <ul>
                                         <li />
@@ -74,7 +73,7 @@ export const Header = ({ ...hide }) => {
                             <HeaderMenu change={stateChangeHeaderScroll} />
                         </Box>
 
-                        <Box display={{ d: 'none', lg: 'block' }} textAlign="right">
+                        <Box display={{ d: 'none', md: 'block' }} textAlign="right">
                             <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                                 <Grid display="grid" gridAutoColumns="1fr" px={2}>
                                     <Cell width="100%">
@@ -85,11 +84,11 @@ export const Header = ({ ...hide }) => {
 
                             <Svg change={stateChangeHeaderScroll} name="svg-search" onClick={handlePesquisa(statePesquisa)} />
 
-                            <Social change={stateChangeHeaderScroll} />
-
-                            <LinkTo ariaLabel="Cadastra-se" link="/cadastro">
-                                <Button ml={3} text="Cadastra-se" textTransform="none" themeSize="small" />
+                            <LinkTo ariaLabel="Seja Membro" link="/cadastro">
+                                <Button mx={3} text="Seja Membro" textTransform="none" themeSize="small" />
                             </LinkTo>
+
+                            <LinkTo fontWeight="600" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
                         </Box>
                     </Flex>
                 </Container>
