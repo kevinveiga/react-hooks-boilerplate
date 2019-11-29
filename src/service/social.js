@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useSocialApi = (url, initialData) => {
+export const useSocialApi = (initialData, url) => {
     const [stateSocialUrl] = useState(url);
 
     const [stateSocial, dispatch] = useReducer(dataFetchReducer, {
