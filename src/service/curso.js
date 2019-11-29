@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useCursoApi = (initialData, url) => {
+export const useCursoApi = (url, initialData) => {
     const [stateCursoUrl, setStateCursoUrl] = useState(url);
 
     const [stateCurso, dispatch] = useReducer(dataFetchReducer, {
@@ -47,7 +47,7 @@ export const useCursoApi = (initialData, url) => {
     return [stateCurso, setStateCursoUrl];
 };
 
-export const useCursoConteudoApi = (initialData, obj) => {
+export const useCursoConteudoApi = (obj, initialData) => {
     const [stateCursoConteudoData, setStateCursoConteudoData] = useState(obj);
     const [stateCursoConteudoPrevNextId, setStateCursoConteudoPrevNextId] = useState({});
 
@@ -134,7 +134,7 @@ export const useCursoConteudoApi = (initialData, obj) => {
     return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
 };
 
-export const useCursoConteudoVisualizadoApi = (initialData, url) => {
+export const useCursoConteudoVisualizadoApi = (url, initialData) => {
     const [stateCursoConteudoVisualizadoUrl, setStateCursoConteudoVisualizadoUrl] = useState(url);
 
     const [stateCursoConteudoVisualizado, dispatch] = useReducer(dataFetchReducer, {
@@ -176,7 +176,7 @@ export const useCursoConteudoVisualizadoApi = (initialData, url) => {
     return [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl];
 };
 
-export const useCursoCategoriaApi = (initialData, obj) => {
+export const useCursoCategoriaApi = (obj, initialData) => {
     const [stateCursoCategoriaData, setStateCursoCategoriaData] = useState(obj);
 
     const [stateCursoCategoria, dispatch] = useReducer(dataFetchReducer, {
@@ -216,7 +216,7 @@ export const useCursoCategoriaApi = (initialData, obj) => {
     return [stateCursoCategoria, setStateCursoCategoriaData];
 };
 
-export const useCursoCategoriasApi = (initialData, url) => {
+export const useCursoCategoriasApi = (url, initialData) => {
     const [stateCursoCategoriasUrl] = useState(url);
 
     const [stateCursoCategorias, dispatch] = useReducer(dataFetchReducer, {

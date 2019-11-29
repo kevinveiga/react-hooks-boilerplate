@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useVideoApi = (initialData, url) => {
+export const useVideoApi = (url, initialData) => {
     const [stateVideoUrl] = useState(url);
 
     const [stateVideo, dispatch] = useReducer(dataFetchReducer, {

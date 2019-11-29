@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const usePaywallApi = (initialData, url) => {
+export const usePaywallApi = (url, initialData) => {
     const [statePaywallData, setStatePaywallData] = useState(url);
 
     const [statePaywall, dispatch] = useReducer(dataFetchReducer, {

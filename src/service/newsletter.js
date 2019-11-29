@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useNewsletterApi = (initialData, url) => {
+export const useNewsletterApi = (url, initialData) => {
     const [stateNewsletterData, setStateNewsletterData] = useState(url);
 
     const [stateNewsletter, dispatch] = useReducer(dataFetchReducer, {

@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const usePerfilApi = (initialData, obj) => {
+export const usePerfilApi = (obj, initialData) => {
     const [statePerfilData, setStatePerfilData] = useState(obj);
 
     const [statePerfil, dispatch] = useReducer(dataFetchReducer, {

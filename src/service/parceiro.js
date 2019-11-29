@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useParceiroApi = (initialData, url) => {
+export const useParceiroApi = (url, initialData) => {
     const [stateParceiroUrl] = useState(url);
 
     const [stateParceiro, dispatch] = useReducer(dataFetchReducer, {

@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useSuperDestaqueApi = (initialData, url) => {
+export const useSuperDestaqueApi = (url, initialData) => {
     const [stateSuperDestaqueUrl] = useState(url);
 
     const [stateSuperDestaque, dispatch] = useReducer(dataFetchReducer, {

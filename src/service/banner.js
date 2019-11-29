@@ -5,7 +5,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useBannerApi = (initialData, url) => {
+export const useBannerApi = (url, initialData) => {
     const [stateBannerUrl] = useState(url);
 
     const [stateBanner, dispatch] = useReducer(dataFetchReducer, {
