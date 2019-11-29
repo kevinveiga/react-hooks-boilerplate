@@ -20,9 +20,7 @@ const ExternalJs = () => {
 
         //     const scriptDiffuser = document.createElement('script');
 
-        //     scriptDiffuser.async = true;
         //     scriptDiffuser.crossorigin = 'anonymous';
-        //     scriptDiffuser.rel = 'preconnect';
         //     scriptDiffuser.src = 'https://diffuser-cdn.app-us1.com/diffuser/diffuser.js';
 
         //     firstScript.parentNode.insertBefore(scriptDiffuser, firstScript);
@@ -35,9 +33,7 @@ const ExternalJs = () => {
         // // Facebook
         // const scriptFacebook = document.createElement('script');
 
-        // scriptFacebook.async = true;
         // scriptFacebook.crossorigin = 'anonymous';
-        // scriptFacebook.rel = 'preconnect';
         // scriptFacebook.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0';
 
         // firstScript.parentNode.insertBefore(scriptFacebook, firstScript);
@@ -63,9 +59,7 @@ const ExternalJs = () => {
 
         //     const scriptFacebookPixel = document.createElement('script');
 
-        //     scriptFacebookPixel.async = true;
         //     scriptFacebookPixel.crossorigin = 'anonymous';
-        //     scriptFacebookPixel.rel = 'preconnect';
         //     scriptFacebookPixel.src = 'https://connect.facebook.net/en_US/fbevents.js';
 
         //     firstScript.parentNode.insertBefore(scriptFacebookPixel, firstScript);
@@ -80,9 +74,7 @@ const ExternalJs = () => {
 
         // const scriptGoogleTagManager = document.createElement('script');
 
-        // scriptGoogleTagManager.async = true;
         // scriptGoogleTagManager.crossorigin = 'anonymous';
-        // scriptGoogleTagManager.rel = 'preconnect';
         // scriptGoogleTagManager.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WSNTRDP';
 
         // firstScript.parentNode.insertBefore(scriptGoogleTagManager, firstScript);
