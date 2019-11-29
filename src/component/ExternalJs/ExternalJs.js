@@ -20,6 +20,7 @@ const ExternalJs = () => {
 
         //     const scriptDiffuser = document.createElement('script');
 
+        //     scriptDiffuser.async = true;
         //     scriptDiffuser.crossorigin = 'anonymous';
         //     scriptDiffuser.src = 'https://diffuser-cdn.app-us1.com/diffuser/diffuser.js';
 
@@ -33,6 +34,7 @@ const ExternalJs = () => {
         // // Facebook
         // const scriptFacebook = document.createElement('script');
 
+        // scriptFacebook.async = true;
         // scriptFacebook.crossorigin = 'anonymous';
         // scriptFacebook.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0';
 
@@ -59,6 +61,7 @@ const ExternalJs = () => {
 
         //     const scriptFacebookPixel = document.createElement('script');
 
+        //     scriptFacebookPixel.async = true;
         //     scriptFacebookPixel.crossorigin = 'anonymous';
         //     scriptFacebookPixel.src = 'https://connect.facebook.net/en_US/fbevents.js';
 
@@ -74,6 +77,7 @@ const ExternalJs = () => {
 
         // const scriptGoogleTagManager = document.createElement('script');
 
+        // scriptGoogleTagManager.async = true;
         // scriptGoogleTagManager.crossorigin = 'anonymous';
         // scriptGoogleTagManager.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WSNTRDP';
 
