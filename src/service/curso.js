@@ -134,10 +134,47 @@ export const useCursoConteudoApi = (obj, initialData) => {
     return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
 };
 
-export const useCursoConteudoVisualizadoApi = (url, initialData) => {
+export const useCursoConteudoVisualizadoApi = (url, urlCurso, initialData) => {
     const [stateCursoConteudoVisualizadoUrl, setStateCursoConteudoVisualizadoUrl] = useState(url);
+    const [stateCursoProgressoUpdate, setStateCursoProgressoUpdate] = useState(false);
 
-    const [stateCursoConteudoVisualizado, dispatch] = useReducer(dataFetchReducer, {
+    const [stateCursoProgresso, dispatchCursoProgresso] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
+
+    useEffect(() => {
+        if (!urlCurso) {
+            return undefined;
+        }
+
+        let didCancel = false;
+
+        const fetchData = async () => {
+            dispatchCursoProgresso(ACTION.init());
+
+            try {
+                const result = await axios.get(urlCurso);
+
+                if (!didCancel) {
+                    dispatchCursoProgresso(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                }
+            } catch (error) {
+                if (!didCancel) {
+                    dispatchCursoProgresso(ACTION.failure());
+                }
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            didCancel = true;
+        };
+    }, [stateCursoProgressoUpdate, urlCurso]);
+
+    const [stateCursoConteudoVisualizado, dispatchCursoConteudoVisualizado] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
@@ -151,17 +188,18 @@ export const useCursoConteudoVisualizadoApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
+            dispatchCursoConteudoVisualizado(ACTION.init());
 
             try {
                 const result = await axios.post(stateCursoConteudoVisualizadoUrl);
 
                 if (!didCancel) {
-                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                    dispatchCursoConteudoVisualizado(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                    setStateCursoProgressoUpdate(stateCursoConteudoVisualizadoUrl);
                 }
             } catch (error) {
                 if (!didCancel) {
-                    dispatch(ACTION.failure());
+                    dispatchCursoConteudoVisualizado(ACTION.failure());
                 }
             }
         };
@@ -173,7 +211,7 @@ export const useCursoConteudoVisualizadoApi = (url, initialData) => {
         };
     }, [stateCursoConteudoVisualizadoUrl]);
 
-    return [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl];
+    return [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl];
 };
 
 export const useCursoCategoriaApi = (obj, initialData) => {

@@ -37,10 +37,11 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
-    const [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, {});
+    const [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, `${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
 
     const cursoLength = stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
     const cursoConteudoLength = stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
+    const cursoProgressoLength = stateCursoProgresso.data.data ? Object.keys(stateCursoProgresso.data.data).length : 0;
 
     // Redirecionamento temporário
     if (stateCurso.isError == true) {
@@ -98,6 +99,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     const handleCursoConteudoPrevNext = useCallback(
         (curso, conteudo) => () => {
             if (conteudo) {
+                // Muda checked do input checkbox
                 document.getElementById(`${curso.id}${conteudo.id}`).checked = true;
 
                 setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
@@ -124,6 +126,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
     const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
+    const cursoProgresso = cursoProgressoLength > 0 && stateCursoProgresso.data.data;
 
     // ACTION CONTEUDO
     useEffect(() => {
@@ -157,7 +160,9 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
             <MinhaContaCursoContext.Provider
                 value={{
+                    stateCursoProgressoContext: cursoProgresso.progresso,
                     setStateCursoConteudoDataContext: setStateCursoConteudoData,
+                    setStateCursoConteudoVisualizadoUrlContext: setStateCursoConteudoVisualizadoUrl,
                     setStateMenuConteudoContext: setStateMenuConteudo
                 }}
             >
@@ -188,7 +193,11 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
                                                     <Suspense fallback={LoaderComponent()}>
-                                                        <MinhaContaCursoVideo conteudo={conteudo} apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}}/${conteudo.id}/registrar-visualizacao`} />
+                                                        <MinhaContaCursoVideo
+                                                            apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`}
+                                                            conteudo={conteudo}
+                                                            cursoId={curso.id}
+                                                        />
                                                     </Suspense>
                                                 )}
                                             </Box>

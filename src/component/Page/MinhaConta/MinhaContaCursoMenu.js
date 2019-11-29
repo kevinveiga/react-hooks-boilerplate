@@ -4,8 +4,6 @@ import parse from 'html-react-parser';
 
 import { apiUrlCursos } from '../../../config';
 
-import { useCursoConteudoVisualizadoApi } from '../../../service/curso';
-
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 
 import { Button } from '../../Button/Button';
@@ -26,11 +24,8 @@ import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { P, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
-    // API
-    const [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, {});
-
     // CONTEXT
-    const { setStateCursoConteudoDataContext, setStateMenuConteudoContext } = useContext(MinhaContaCursoContext);
+    const { stateCursoProgressoContext, setStateCursoConteudoDataContext, setStateCursoConteudoVisualizadoUrlContext, setStateMenuConteudoContext } = useContext(MinhaContaCursoContext);
 
     // ACTION
     const [statePart, setStatePart] = useState(null);
@@ -38,9 +33,9 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // Function
     const handleCursoConteudoVisualizadoUrl = useCallback(
         (conteudoId) => (element) => {
-            setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}/${element.target.checked ? 'registrar-visualizacao' : 'remover-visualizacao'}`);
+            setStateCursoConteudoVisualizadoUrlContext(`${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}/${element.target.checked ? 'registrar-visualizacao' : 'remover-visualizacao'}`);
         },
-        [objectCurso.id, setStateCursoConteudoVisualizadoUrl]
+        [objectCurso.id, setStateCursoConteudoVisualizadoUrlContext]
     );
 
     const tipoConteudo = (tipo) => {
@@ -95,8 +90,8 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
 
                 <Box mb={4}>{parse(`${objectCurso.content}`)}</Box>
 
-                <ProgressBar progressPercent={objectCurso.progresso}>
-                    <P mb={1}>Progresso {parseInt(objectCurso.progresso, 10)}%</P>
+                <ProgressBar progressPercent={stateCursoProgressoContext}>
+                    <P mb={1}>Progresso {parseInt(stateCursoProgressoContext, 10)}%</P>
 
                     <BarContainer>
                         <Bar />

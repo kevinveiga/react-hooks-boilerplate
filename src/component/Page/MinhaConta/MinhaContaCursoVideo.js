@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import YouTube from 'react-youtube';
 
-import { useCursoConteudoVisualizadoApi } from '../../../service/curso';
+import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 
 import { VideoWrap } from '../../../style/layout';
 
-const MinhaContaCursoVideo = ({ conteudo, apiUrl }) => {
-    // API
-    const [stateCursoConteudoVisualizado, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, {});
+const MinhaContaCursoVideo = ({ apiUrl, conteudo, cursoId }) => {
+    // CONTEXT
+    const { setStateCursoConteudoVisualizadoUrlContext } = useContext(MinhaContaCursoContext);
 
     // ACTION
-    const videoVisualizado = (value) => {
-        if (!conteudo.lido) {
-            setStateCursoConteudoVisualizadoUrl(value);
-        }
-    };
+    // Function
+    const handleVideoVisualizado = useCallback(
+        (apiUrl) => () => {
+            if (!conteudo.lido) {
+                // Muda checked do input checkbox
+                document.getElementById(`${cursoId}${conteudo.id}`).checked = true;
+
+                setStateCursoConteudoVisualizadoUrlContext(apiUrl);
+            }
+        },
+        [conteudo, cursoId, setStateCursoConteudoVisualizadoUrlContext]
+    );
 
     return (
         <VideoWrap bgColor="colorBlack">
-            <YouTube id="conteudoVideo" onEnd={() => videoVisualizado(apiUrl)} videoId={conteudo.video_id} />
+            <YouTube id="conteudoVideo" onEnd={handleVideoVisualizado(apiUrl)} videoId={conteudo.video_id} />
         </VideoWrap>
     );
 };
