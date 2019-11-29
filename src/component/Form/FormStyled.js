@@ -165,18 +165,18 @@ export const InputAlternateStyled = styled.input`
                     box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
                     content: ' ';
                     display: inline-block;
-                    height: 20px;
+                    height: 16px;
                     margin-right: 10px;
                     transition: box-shadow ${variable.transition};
                     vertical-align: middle;
-                    width: 20px;
+                    width: 16px;
                 }
 
                 svg {
                     display: none;
                     left: 6px;
                     position: absolute;
-                    top: 7px;
+                    top: 6px;
                 }
             }
 
