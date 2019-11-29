@@ -157,19 +157,3 @@ export const NoticiaMateriasRelacionadasStyled = styled.section`
     ${NoticiaContainerStyled};
     ${space};
 `;
-
-export const NoticiasBannerPerfilInvestidorStyled = styled.div`
-    ${layout};
-    ${position};
-    ${space};
-    z-index: -1;
-
-    ${({ visible }) =>
-        visible
-            ? css`
-                  animation: ${animationFadeInTab()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
-              `
-            : css`
-                  animation: ${animationFadeOutTab()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
-              `};
-`;
