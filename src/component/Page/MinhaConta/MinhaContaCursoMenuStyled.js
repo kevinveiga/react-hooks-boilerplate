@@ -70,11 +70,11 @@ export const MinhaContaCursoMenuConteudoCheckboxStyled = styled.input`
             color: ${variable.colorWhite};
             content: ' ';
             display: inline-block;
-            height: 20px;
+            height: 16px;
             margin-right: 10px;
             transition: box-shadow ${variable.transition};
             vertical-align: sub;
-            width: 20px;
+            width: 16px;
         }
 
         > svg {
