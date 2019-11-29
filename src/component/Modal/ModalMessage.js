@@ -2,6 +2,6 @@ import React from 'react';
 
 import { ModalMessageStyled } from './ModalMessageStyled';
 
-export const ModalMessage = ({ ...otherProps }) => {
-    return <ModalMessageStyled {...otherProps}>{otherProps.text}</ModalMessageStyled>;
+export const ModalMessage = ({ text }) => {
+    return <ModalMessageStyled text={text}>{text}</ModalMessageStyled>;
 };

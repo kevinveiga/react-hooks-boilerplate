@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
@@ -17,10 +17,14 @@ import { Router } from './router';
 import { Footer } from './component/Footer/Footer';
 import { Header } from './component/Header/Header';
 import { Loader } from './component/Loader/Loader';
+import { LoaderComponent } from './component/Loader/LoaderComponent';
 import { ModalMessage } from './component/Modal/ModalMessage';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
+
+// LAZY
+const ExternalJs = lazy(() => import('./component/ExternalJs/ExternalJs'));
 
 export const App = () => {
     // API
@@ -34,34 +38,40 @@ export const App = () => {
     const [stateModalMessage, setStateModalMessage] = useModalMessage(false);
 
     return (
-        <ThemeProvider theme={theme}>
-            <Context.Provider
-                value={{
-                    stateAuthTokenContext: stateAuthToken,
-                    setStateAuthTokenContext: setStateAuthToken,
-                    stateSocialContext: stateSocial.data,
-                    setStateHideFooterContext: setStateHideFooter,
-                    setStateHideHeaderContext: setStateHideHeader,
-                    setStateLoaderContext: setStateLoader,
-                    setStateModalMessageContext: setStateModalMessage
-                }}
-            >
+        <>
+            <ThemeProvider theme={theme}>
                 <Normalize />
 
-                <HelmetProvider>
-                    <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
-                        <meta name="description" content="Liberta" />
-                    </Helmet>
+                <Context.Provider
+                    value={{
+                        stateAuthTokenContext: stateAuthToken,
+                        setStateAuthTokenContext: setStateAuthToken,
+                        stateSocialContext: stateSocial.data,
+                        setStateHideFooterContext: setStateHideFooter,
+                        setStateHideHeaderContext: setStateHideHeader,
+                        setStateLoaderContext: setStateLoader,
+                        setStateModalMessageContext: setStateModalMessage
+                    }}
+                >
+                    <HelmetProvider>
+                        <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
+                            <meta name="description" content="Liberta" />
+                        </Helmet>
 
-                    <BrowserRouter>
-                        <Loader active={stateLoader} />
-                        <Header hide={stateHideHeader} />
-                        <Router />
-                        <Footer hide={stateHideFooter} />
-                        <ModalMessage text={stateModalMessage} />
-                    </BrowserRouter>
-                </HelmetProvider>
-            </Context.Provider>
-        </ThemeProvider>
+                        <BrowserRouter>
+                            <Loader active={stateLoader} />
+                            <Header hide={stateHideHeader} />
+                            <Router />
+                            <Footer hide={stateHideFooter} />
+                            <ModalMessage text={stateModalMessage} />
+                        </BrowserRouter>
+                    </HelmetProvider>
+                </Context.Provider>
+            </ThemeProvider>
+
+            <Suspense fallback={LoaderComponent()}>
+                <ExternalJs />
+            </Suspense>
+        </>
     );
 };
