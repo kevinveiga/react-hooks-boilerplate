@@ -47,7 +47,6 @@
 
         <!-- Facebook Code -->
         <!-- <div id="fb-root"></div> -->
-        <!-- <script async crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script> -->
         <!-- Facebook Code -->
 
         <script type="text/javascript">
@@ -61,13 +60,13 @@
                                 console.info('%c Service Worker registered: ', 'color: #00bbee;', registration);
 
                                 registration.addEventListener('updatefound', function(event) {
-                                    var self = e;
+                                    var self = event;
                                     var newWorker = self.currentTarget.installing;
 
                                     console.info('Updatefound: ', self);
 
                                     newWorker.addEventListener('statechange', function(event) {
-                                        var self = e;
+                                        var self = event;
 
                                         console.info('Statechange: ', self);
 

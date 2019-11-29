@@ -55,6 +55,9 @@ export const useAuth = () => {
         return () => {
             axios.interceptors.request.eject(authInterceptorRequest);
             axios.interceptors.response.eject(authInterceptorResponse);
+
+            // Redirecionamento para Home
+            window.location.pathname = '/';
         };
     }, [stateAuthToken, authInterceptorRequest, authInterceptorResponse]);
 

@@ -100,7 +100,11 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    if (error.response.data.message) {
+                        setError('invalid', 'notMatch', error.response.data.message);
+                    } else {
+                        setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    }
                 } else {
                     console.error('error: ', error);
                 }
