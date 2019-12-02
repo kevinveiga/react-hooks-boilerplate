@@ -15,19 +15,39 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
         <MinhaContaMenuMobileStyled active={stateChangeMinhaContaMenuMobileContext} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateChangeMinhaContaMenuMobileContext(false)} text="Minha Conta" />
+                    <LinkTo
+                        link="/minha-conta/inicio"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
+                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        text="Minha Conta"
+                    />
                 </li>
 
                 <li>
-                    <LinkTo link="/minha-conta/cursos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateChangeMinhaContaMenuMobileContext(false)} text="Cursos" />
+                    <LinkTo
+                        link="/minha-conta/cursos"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
+                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        text="Cursos"
+                    />
                 </li>
 
                 <li>
-                    <LinkTo link="/minha-conta/entrevistas" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateChangeMinhaContaMenuMobileContext(false)} text="Entrevistas" />
+                    <LinkTo
+                        link="/minha-conta/entrevistas"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
+                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        text="Entrevistas"
+                    />
                 </li>
 
                 <li>
-                    <LinkTo link="/minha-conta/contato" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateChangeMinhaContaMenuMobileContext(false)} text="Contato" />
+                    <LinkTo
+                        link="/minha-conta/contato"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
+                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        text="Contato"
+                    />
                 </li>
 
                 <li>
