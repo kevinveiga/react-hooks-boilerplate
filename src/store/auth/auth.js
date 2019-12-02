@@ -47,9 +47,6 @@ export const useAuth = () => {
                     }
                 });
             }
-
-            // Redirect to home
-            window.location.pathname = '/';
         }
 
         authInterceptorRequest();
