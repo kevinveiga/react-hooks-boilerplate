@@ -87,7 +87,7 @@ const ConhecerMaisForm = ({ ...props }) => {
 
     return (
         <>
-            <Title3 align="center" fontWeight="600" mb={4} themeColor="dark">
+            <Title3 align="center" fontWeight="700" mb={4} themeColor="dark">
                 Queremos conhecer um pouco
                 <br />
                 mais sobre você
@@ -115,13 +115,13 @@ const ConhecerMaisForm = ({ ...props }) => {
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
                                     <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="masculino" id="sexo_masculino" name="sexo" onChange={handleSetValue()} type="radio" />
 
-                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="600" px={{ d: 3, md: 4 }} py={2}>
+                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="700" px={{ d: 3, md: 4 }} py={2}>
                                         Masculino
                                     </Label>
 
                                     <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="feminino" id="sexo_feminino" name="sexo" onChange={handleSetValue()} type="radio" />
 
-                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="600" ml={4} px={{ d: 3, md: 4 }} py={2}>
+                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="700" ml={4} px={{ d: 3, md: 4 }} py={2}>
                                         Feminino
                                     </Label>
                                 </ConhecerMaisPartContentStyled>

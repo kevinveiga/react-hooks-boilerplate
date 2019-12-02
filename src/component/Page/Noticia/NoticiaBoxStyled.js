@@ -35,7 +35,7 @@ export const NoticiaBoxTextStyled = styled.p`
 export const NoticiaBoxTitleStyled = styled.h2`
     ${typography};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
     margin-bottom: ${variable.spacingSM};
 

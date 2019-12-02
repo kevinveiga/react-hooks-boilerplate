@@ -48,7 +48,7 @@ export const Span = styled.span`
 export const Title1 = styled.h1`
     ${title};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 30px'};
-    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
 
     @media (min-width: ${variable.md}) {
@@ -60,7 +60,7 @@ export const Title1 = styled.h1`
 export const Title2 = styled.h2`
     ${title};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 26px'};
-    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
 
     @media (min-width: ${variable.md}) {

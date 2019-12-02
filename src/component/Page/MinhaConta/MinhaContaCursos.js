@@ -204,7 +204,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                         themeColor="light"
                                                                                     >
                                                                                         <Box width="170px">
-                                                                                            <Span fontSize="16px" fontWeight="600" themeColor="light">
+                                                                                            <Span fontSize="16px" fontWeight="700" themeColor="light">
                                                                                                 PROGRESSO {parseInt(curso.progresso, 10)}%
                                                                                             </Span>
                                                                                         </Box>
@@ -294,7 +294,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                                                             themeColor="light"
                                                                                         >
                                                                                             <Box width="170px">
-                                                                                                <Span fontSize="16px" fontWeight="600" themeColor="light">
+                                                                                                <Span fontSize="16px" fontWeight="700" themeColor="light">
                                                                                                     PROGRESSO {parseInt(curso.progresso, 10)}%
                                                                                                 </Span>
                                                                                             </Box>

@@ -24,7 +24,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
                     </MinhaContaConversacaoImageLineStyled>
 
                     <Box width="100%">
-                        <P fontWeight="600">Vita Silva</P>
+                        <P fontWeight="700">Vita Silva</P>
                         <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
                         <P color="colorGray2" fontSize="14px">
                             23 Ago. 2019
@@ -40,7 +40,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
                     </MinhaContaConversacaoImageLineStyled>
 
                     <Box width="100%">
-                        <P fontWeight="600">Ricardo Milos</P>
+                        <P fontWeight="700">Ricardo Milos</P>
                         <P>Our passengers must be hotter than I thought.</P>
                         <P color="colorGray2" fontSize="14px">
                             25 Ago. 2019
@@ -54,7 +54,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
                     </MinhaContaConversacaoImageContainerStyled>
 
                     <Box width="100%">
-                        <P color="colorPrimary" fontWeight="600">
+                        <P color="colorPrimary" fontWeight="700">
                             Equipe
                         </P>
                         <P>It looks like an Imperial cruiser. Our passenger.</P>
@@ -74,7 +74,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
                     </MinhaContaConversacaoImageLineStyled>
 
                     <Box width="100%">
-                        <P fontWeight="600">Gilberto Silva</P>
+                        <P fontWeight="700">Gilberto Silva</P>
                         <P>It looks like an Imperial cruiser. Our passengers must be hotter than I thought. Try and hold them off?</P>
                         <P color="colorGray2" fontSize="14px">
                             23 Ago. 2019
@@ -88,7 +88,7 @@ const MinhaContaConversacao = ({ obj, ...otherProps }) => {
                     </MinhaContaConversacaoImageContainerStyled>
 
                     <Box width="100%">
-                        <P color="colorPrimary" fontWeight="600">
+                        <P color="colorPrimary" fontWeight="700">
                             Equipe
                         </P>
                         <P>It looks like an Imperial cruiser. Our passenger.</P>

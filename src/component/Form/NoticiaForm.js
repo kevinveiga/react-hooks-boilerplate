@@ -105,7 +105,7 @@ const NoticiaForm = ({ ...props }) => {
             >
                 {stateRetornoForm ? (
                     <>
-                        <Title3 fontWeight="600" mb={4} mx="auto" textAlign="center" themeColor="light">
+                        <Title3 fontWeight="700" mb={4} mx="auto" textAlign="center" themeColor="light">
                             Você deu o primeiro passo para sua <br /> <Span color="colorGreen">liberdade</Span>
                         </Title3>
 
@@ -122,7 +122,7 @@ const NoticiaForm = ({ ...props }) => {
                 <FormStyled onSubmit={handleSubmit(submitForm)}>
                     <Grid display="grid" gridRowGap={2} p={{ d: 3, md: 5 }}>
                         <Cell mb={3}>
-                            <Title3 fontWeight="600" mb={1} themeColor="dark">
+                            <Title3 fontWeight="700" mb={1} themeColor="dark">
                                 Solicite contato
                             </Title3>
                             <p>e comece a investir em seu futuro</p>

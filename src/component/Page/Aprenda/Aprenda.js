@@ -93,7 +93,7 @@ export const Aprenda = () => {
 
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Title3 align="center" fontWeight="600" themeColor="dark">
+                    <Title3 align="center" fontWeight="700" themeColor="dark">
                         Conheça os cursos da Liberta
                     </Title3>
 

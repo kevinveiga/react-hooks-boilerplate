@@ -88,7 +88,7 @@ export const Header = ({ ...hide }) => {
                                 <Button mx={3} text="Seja Membro" textTransform="none" themeSize="small" />
                             </LinkTo>
 
-                            <LinkTo fontWeight="600" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                            <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
                         </Box>
                     </Flex>
                 </Container>

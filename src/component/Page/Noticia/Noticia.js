@@ -110,13 +110,13 @@ export const Noticia = ({ match }) => {
                         <NoticiaArticleAuthorStyled id="noticia-article-author" mb={3}>
                             <Flex display="flex" flexWrap="wrap">
                                 <Box width={{ d: 1, sm: 1 / 2 }}>
-                                    <Title5 color="colorPrimary" fontWeight="600" themeColor="dark">
+                                    <Title5 color="colorPrimary" fontWeight="700" themeColor="dark">
                                         {stateNoticia.data.author}
                                     </Title5>
                                 </Box>
 
                                 <Box textAlign={{ d: 'left', sm: 'right' }} width={{ d: 1, sm: 1 / 2 }}>
-                                    <Span fontWeight="600">{stateNoticia.data.date}</Span>
+                                    <Span fontWeight="700">{stateNoticia.data.date}</Span>
                                 </Box>
                             </Flex>
                         </NoticiaArticleAuthorStyled>

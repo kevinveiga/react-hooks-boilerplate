@@ -63,7 +63,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                     <Container mx="auto" px={{ d: 4, md: 3 }}>
                         <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                             <Box>
-                                <Title5 color="colorPrimary" fontWeight="600">
+                                <Title5 color="colorPrimary" fontWeight="700">
                                     <Breadcrumb currentLabel={currentBreadcrumbLabel} obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />
                                 </Title5>
                             </Box>
@@ -72,7 +72,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                                 <Button
                                     color="colorGray2"
                                     fontSize={18}
-                                    fontWeight="600"
+                                    fontWeight="700"
                                     hoverColor="colorWhite"
                                     onClick={() => setStateChangeModalLogout(true)}
                                     text="Logout"

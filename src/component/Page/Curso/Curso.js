@@ -141,7 +141,7 @@ export const Curso = ({ match }) => {
                                     <Box width={{ d: '100%', sm: 4 / 6, md: 3 / 4 }}>
                                         <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }} textAlign="center">
                                             <Box borderRight="1px solid rgba(216, 221, 225, 1)" pr={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="600" mb={0} themeColor="dark">
+                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
                                                     {curso.carga_horaria || 'Indefinido'}
                                                 </P>
 
@@ -151,7 +151,7 @@ export const Curso = ({ match }) => {
                                             </Box>
 
                                             <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="600" mb={0} themeColor="dark">
+                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
                                                     {curso.nivel || 'Indefinido'}
                                                 </P>
 
@@ -161,7 +161,7 @@ export const Curso = ({ match }) => {
                                             </Box>
 
                                             <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="600" mb={0} themeColor="dark">
+                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
                                                     {curso.modalidade || 'Indefinido'}
                                                 </P>
 
@@ -171,7 +171,7 @@ export const Curso = ({ match }) => {
                                             </Box>
 
                                             <Box borderRight={{ d: 0, sm: '1px solid rgba(216, 221, 225, 1)' }} px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="600" mb={0} themeColor="dark">
+                                                <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
                                                     Gratuito
                                                 </P>
 
@@ -225,7 +225,7 @@ export const Curso = ({ match }) => {
                                     {curso.capacitacoes.map((capacitacao) => {
                                         return (
                                             <Cell key={capacitacao.titulo}>
-                                                <Title4 fontWeight="600" line={true} mb={{ d: 3, md: 4 }} themeColor="dark">
+                                                <Title4 fontWeight="700" line={true} mb={{ d: 3, md: 4 }} themeColor="dark">
                                                     {capacitacao.titulo}
                                                 </Title4>
 
@@ -257,7 +257,7 @@ export const Curso = ({ match }) => {
                                                     py={3}
                                                 >
                                                     <Box textAlign="center">
-                                                        <Span fontSize={{ d: 20, md: 24 }} fontWeight="600" verticalAlign="middle">
+                                                        <Span fontSize={{ d: 20, md: 24 }} fontWeight="700" verticalAlign="middle">
                                                             {modulo.title}
                                                         </Span>
 
@@ -345,7 +345,7 @@ export const Curso = ({ match }) => {
                                                     </Box>
 
                                                     <Box display="inline-block" overflow="hidden" verticalAlign="middle">
-                                                        <Title5 fontWeight="600" themeColor="dark">
+                                                        <Title5 fontWeight="700" themeColor="dark">
                                                             Gabe Towels
                                                         </Title5>
 
@@ -369,7 +369,7 @@ export const Curso = ({ match }) => {
                                                     </Box>
 
                                                     <Box display="inline-block" overflow="hidden" verticalAlign="middle">
-                                                        <Title5 fontWeight="600" themeColor="dark">
+                                                        <Title5 fontWeight="700" themeColor="dark">
                                                             Gabe Towels
                                                         </Title5>
 

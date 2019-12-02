@@ -78,7 +78,7 @@ export const HeaderMenuStyled = styled.nav`
     li {
         > a,
         > button {
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 1px;
             transition: color ${variable.transition};
         }

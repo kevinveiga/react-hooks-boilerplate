@@ -86,7 +86,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     themeType="none"
                 />
 
-                <Title4 fontWeight="600">{objectCurso.title}</Title4>
+                <Title4 fontWeight="700">{objectCurso.title}</Title4>
 
                 <Box mb={4}>{parse(`${objectCurso.content}`)}</Box>
 
@@ -135,7 +135,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                 type="checkbox"
                                                             />
 
-                                                            <Label color="colorGrayDark" forLabel={`${objectCurso.id}${conteudo.id}`} fontWeight="600" mb={2}>
+                                                            <Label color="colorGrayDark" forLabel={`${objectCurso.id}${conteudo.id}`} fontWeight="700" mb={2}>
                                                                 <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
                                                             </Label>
                                                         </Box>
@@ -152,7 +152,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                             }
                                                             width="calc(100% - 30px)"
                                                         >
-                                                            <P fontSize={14} fontWeight="600" mb={2}>
+                                                            <P fontSize={14} fontWeight="700" mb={2}>
                                                                 {conteudo.title}
                                                             </P>
 

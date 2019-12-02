@@ -98,7 +98,7 @@ export const Noticias = () => {
 
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Title3 fontWeight="600" themeColor="dark">
+                    <Title3 fontWeight="700" themeColor="dark">
                         Notícias
                     </Title3>
 

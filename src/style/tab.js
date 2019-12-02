@@ -84,7 +84,7 @@ export const TabLabel = styled.label`
     border-radius: 25px;
     color: ${variable.colorBlack3};
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700;
     height: 45px;
     line-height: 40px;
     margin-right: ${variable.spacingSM};
@@ -130,7 +130,7 @@ export const TabSelect = styled.div`
         border-radius: 25px;
         color: ${variable.colorBlack3};
         cursor: pointer;
-        font-weight: 600;
+        font-weight: 700;
         height: 45px;
         line-height: 40px;
         min-width: 100px;

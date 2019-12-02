@@ -254,7 +254,7 @@ export const Home = ({ location }) => {
                                     </Grid>
 
                                     <Flex display="flex" justifyContent="flex-end">
-                                        <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary' }} link="/noticias">
+                                        <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary' }} link="/noticias">
                                             <span>Ver mais</span>
 
                                             <Svg name="svg-next" pl={2} />

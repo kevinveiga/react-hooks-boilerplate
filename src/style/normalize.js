@@ -3,26 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 import { scrollbar } from './function';
 import { variable } from './variable';
 
-import fontOpenSansBold from '../asset/font/OpenSans-Bold.ttf';
-import fontOpenSansRegular from '../asset/font/OpenSans-Regular.ttf';
-
 export const Normalize = createGlobalStyle`
     /* FONT */
-    @font-face {
-        font-display: fallback;
-        font-family: 'Open Sans';
-        font-style: normal;
-        font-weight: 600;
-        src: local('Helvetica'), url(${fontOpenSansBold}) format('truetype');
-    }
-
-    @font-face {
-        font-display: fallback;
-        font-family: 'Open Sans';
-        font-style: normal;
-        font-weight: 400;
-        src: local('Helvetica'), url(${fontOpenSansRegular}) format('truetype');
-    }
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 
     /* GENERAL */
     * {
@@ -285,7 +268,7 @@ export const Normalize = createGlobalStyle`
     b,
     strong,
     .strong {
-        font-weight: 600;
+        font-weight: 700;
     }
 
     /* Address odd 'em'-unit font size rendering in all browsers. */

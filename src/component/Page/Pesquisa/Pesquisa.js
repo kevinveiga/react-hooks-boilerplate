@@ -60,7 +60,7 @@ export const Pesquisa = ({ match }) => {
                         <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
                     </Box>
 
-                    <Title3 fontWeight="600" themeColor="dark">
+                    <Title3 fontWeight="700" themeColor="dark">
                         Resultado da Pesquisa
                     </Title3>
 

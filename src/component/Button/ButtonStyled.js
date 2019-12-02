@@ -10,7 +10,7 @@ export const ButtonStyled = styled.button`
     ${typography};
     ${({ borderRadius }) => borderRadius === undefined && `border-radius: ${variable.borderRadius}`};
     cursor: pointer;
-    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     ${({ textAlign }) => textAlign === undefined && 'text-align: center'};
     ${({ textDecoration }) => textDecoration && `text-decoration: ${textDecoration}`};
     transition: background-color ${variable.transition}, border ${variable.transition}, color ${variable.transition};

@@ -36,7 +36,7 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                 <VideoBoxStyled p={4}>
                     <p>Vídeo</p>
 
-                    <Title4 fontWeight="600" themeColor="dark">
+                    <Title4 fontWeight="700" themeColor="dark">
                         {(stateCurrentVideo && stateCurrentVideo.title) || objectVideos.data[0].title}
                     </Title4>
                 </VideoBoxStyled>
@@ -44,7 +44,7 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
 
             <Cell>
                 <VideoBoxStyled p={4} themeColor="dark">
-                    <Title5 fontWeight="600" themeColor="light">
+                    <Title5 fontWeight="700" themeColor="light">
                         Próximos Vídeos
                     </Title5>
                 </VideoBoxStyled>
@@ -62,7 +62,7 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                             >
                                 <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
                                     <Box width="100%">
-                                        <Title5 fontWeight="600" mb={3} themeColor="dark">
+                                        <Title5 fontWeight="700" mb={3} themeColor="dark">
                                             {video.title}
                                         </Title5>
                                     </Box>

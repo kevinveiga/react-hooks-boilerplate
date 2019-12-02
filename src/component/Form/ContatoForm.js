@@ -29,7 +29,7 @@ export const NoticiaForm = ({ ...props }) => {
         <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridAutoColumns="1fr" gridColumnGap={4} gridRowGap={2} p={5}>
                 <Cell mb={3} width="100%">
-                    <Title3 fontWeight="600" mb={1} themeColor="dark">
+                    <Title3 fontWeight="700" mb={1} themeColor="dark">
                         Solicite contato
                     </Title3>
                     <p>e comece a investir em seu futuro</p>

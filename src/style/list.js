@@ -51,7 +51,7 @@ export const ListBoxHover = styled.div`
     p {
         color: ${variable.colorWhite};
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 700;
 
         @media (min-width: ${variable.sm}) {
             font-size: 24px;
@@ -73,7 +73,7 @@ export const ListTag = styled.div`
     bottom: ${({ bottom }) => (bottom ? variable[bottom] : '0')};
     color: ${variable.colorWhite};
     font-size: 12px;
-    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 600'};
+    ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     line-height: 1;
     padding: ${variable.spacingXS} 10px;
     position: absolute;
@@ -90,6 +90,6 @@ export const ListTitle = styled.h2`
     ${space};
     ${typography};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 20px'};
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
 `;

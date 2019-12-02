@@ -21,7 +21,7 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
                     })}
 
                     {currentLabel && (
-                        <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 18 }} fontWeight="600">
+                        <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 18 }} fontWeight="700">
                             {currentLabel}
                         </BreadcrumbItemStyled>
                     )}

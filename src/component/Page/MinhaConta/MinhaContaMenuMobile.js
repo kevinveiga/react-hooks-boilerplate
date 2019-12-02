@@ -31,7 +31,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                 </li>
 
                 <li>
-                    <Button color="colorWhite" fontWeight="600" onClick={() => setStateChangeModalLogoutContext(true)} text="Sair" themeSize="none" themeType="none" />
+                    <Button color="colorWhite" fontWeight="700" onClick={() => setStateChangeModalLogoutContext(true)} text="Sair" themeSize="none" themeType="none" />
                 </li>
             </ul>
         </MinhaContaMenuMobileStyled>

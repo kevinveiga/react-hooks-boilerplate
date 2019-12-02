@@ -64,11 +64,11 @@ export const HeaderMenu = ({ ...props }) => {
             <Box display={{ d: 'block', md: 'none' }}>
                 <ul>
                     <li>
-                        <LinkTo color="colorWhite" fontWeight="600" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
+                        <LinkTo color="colorWhite" fontWeight="700" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
                     </li>
 
                     <li>
-                        <LinkTo color="colorWhite" fontWeight="600" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                        <LinkTo color="colorWhite" fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
                     </li>
                 </ul>
             </Box>

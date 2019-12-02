@@ -85,7 +85,7 @@ const CadastroForm = ({ ...props }) => {
                 Faça seu cadastro
             </Title4>
 
-            <Title2 align="center" fontWeight="600" themeColor="dark">
+            <Title2 align="center" fontWeight="700" themeColor="dark">
                 e comece a aprender
             </Title2>
 
@@ -204,8 +204,8 @@ const CadastroForm = ({ ...props }) => {
                             <Cell mb={3} textAlign="center">
                                 <P color="colorGray2" fontSize={14} themeColor="dark">
                                     Clicando em &quot;Cadastrar-se&quot; você concordará com os{' '}
-                                    <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Termos de serviço" /> e{' '}
-                                    <LinkTo fontWeight="600" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Política de privacidade" />.
+                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Termos de serviço" /> e{' '}
+                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Política de privacidade" />.
                                 </P>
                             </Cell>
                         </Grid>
