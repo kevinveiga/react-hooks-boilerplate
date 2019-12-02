@@ -67,18 +67,6 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            {
-                exclude: /(node_modules)/,
-                test: /\.(eot|ttf|woff|woff2)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: commonPaths.fontsFolder
-                        }
-                    }
-                ]
             }
         ]
     },
@@ -100,7 +88,7 @@ module.exports = {
     plugins: [
         new InjectManifest({
             importsDirectory: 'asset',
-            include: [/(.eot)$/, /(.gif)$/, /(.jpg)$/, /(.png)$/, /(.svg)$/, /(.ttf)$/, /(.webp)/, /(.woff)$/, /(.woff2)$/],
+            include: [/(.gif)$/, /(.jpg)$/, /(.png)$/, /(.svg)$/, /(.webp)$/],
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`,
             templatedURLs: {

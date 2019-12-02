@@ -61,7 +61,7 @@ workbox.routing.registerRoute(
 // APP
 // Add same origin, except in precache, css, font, image, js (same origin or cross origin)
 workbox.routing.registerRoute(
-    new RegExp('\\/(?!.+(css|eot|gif|js|jpg|jpeg|png|svg|ttf|webp|woff|woff2)).*$'),
+    new RegExp('\\/(?!.+(css|gif|js|jpg|jpeg|png|svg|webp)).*$'),
     new workbox.strategies.NetworkFirst({
         cacheName: 'app-cache',
         plugins: [
