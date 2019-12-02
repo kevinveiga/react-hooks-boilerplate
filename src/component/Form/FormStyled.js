@@ -97,7 +97,7 @@ const inputLabel = css`
 
             &:focus {
                 + label {
-                    top: -8px;
+                    top: -5px;
                 }
             }
         `};
@@ -107,9 +107,15 @@ const inputLabel = css`
         (invalid || valid) &&
         css`
             + label {
-                top: -8px;
+                top: -5px;
             }
         `};
+
+    &:-webkit-autofill {
+        + label {
+            top: -5px;
+        }
+    }
 `;
 
 export const InputStyled = styled.input`
