@@ -36,8 +36,8 @@ export const useAuth = () => {
     useEffect(() => {
         window.localStorage.setItem('token', JSON.stringify(stateAuthToken));
 
-        // Delete api-cache in logout
         if (!stateAuthToken) {
+            // Delete api-cache in logout
             if ('serviceWorker' in navigator) {
                 caches.keys().then((cacheNames) => {
                     for (let i = 0, l = cacheNames.length; i < l; i += 1) {
@@ -47,6 +47,9 @@ export const useAuth = () => {
                     }
                 });
             }
+
+            // Redirect to home
+            window.location.pathname = '/';
         }
 
         authInterceptorRequest();
@@ -55,9 +58,6 @@ export const useAuth = () => {
         return () => {
             axios.interceptors.request.eject(authInterceptorRequest);
             axios.interceptors.response.eject(authInterceptorResponse);
-
-            // Redirecionamento para Home
-            window.location.pathname = '/';
         };
     }, [stateAuthToken, authInterceptorRequest, authInterceptorResponse]);
 
