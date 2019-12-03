@@ -72,7 +72,7 @@ module.exports = {
     },
     output: {
         chunkFilename: devMode ? `${commonPaths.jsFolder}/[name].js` : `${commonPaths.jsFolder}/[name].[chunkhash].js`,
-        filename: devMode ? `${commonPaths.jsFolder}/[name].js` : `${commonPaths.jsFolder}/[name].[hash].js`,
+        filename: devMode ? `${commonPaths.jsFolder}/[name].js` : `${commonPaths.jsFolder}/[name].[contenthash].js`,
         path: commonPaths.outputPath,
         publicPath: '/'
     },

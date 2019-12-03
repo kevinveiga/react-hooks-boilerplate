@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import YouTube from 'react-youtube';
 
@@ -20,9 +20,12 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
     // Function
-    const handleCurrentVideo = (video) => () => {
-        setStateCurrentVideo(video);
-    };
+    const handleCurrentVideo = useCallback(
+        (video) => () => {
+            setStateCurrentVideo(video);
+        },
+        [setStateCurrentVideo]
+    );
 
     return (
         <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
