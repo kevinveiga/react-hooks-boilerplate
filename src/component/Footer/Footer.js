@@ -1,22 +1,22 @@
 import React from 'react';
 
-import { FooterAlternate } from './FooterAlternate';
+import { FooterAlternative } from './FooterAlternative';
 import { FooterPrincipal } from './FooterPrincipal';
 
 const Footer = () => {
     // FOOTER ALTERNATE
     const arrayPathName = ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta'];
-    let footerAlternate = false;
+    let FooterAlternative = false;
 
     for (let i = 0, l = arrayPathName.length; i < l; i += 1) {
         if (arrayPathName[i] === window.location.pathname) {
-            footerAlternate = true;
+            FooterAlternative = true;
 
             break;
         }
     }
 
-    return footerAlternate ? <FooterAlternate /> : <FooterPrincipal />;
+    return FooterAlternative ? <FooterAlternative /> : <FooterPrincipal />;
 };
 
 export default Footer;

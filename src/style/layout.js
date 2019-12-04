@@ -34,14 +34,14 @@ export const Main = styled.main`
         header === false &&
         css`
             margin-top: 0;
-            min-height: calc(100vh - ${variable.footerAlternateHeight});
+            min-height: calc(100vh - ${variable.FooterAlternativeHeight});
         `};
 
     ${({ header }) =>
         header === 'minhaConta' &&
         css`
             margin-top: ${variable.headerHeightMobile};
-            min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight});
+            min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.FooterAlternativeHeight});
 
             @media (min-width: ${variable.md}) {
                 margin-top: 0;

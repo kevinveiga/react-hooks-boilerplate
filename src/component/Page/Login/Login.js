@@ -29,7 +29,7 @@ export const Login = ({ location }) => {
             </Helmet>
 
             <Main backgroundColor="colorGrayLight5" header={false}>
-                <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.footerAlternateHeight})`}>
+                <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
                         <Box p={4} width="100%">
                             <P align="right" fontSize="24px" mb={4} textAlign="right" themeColor="light">

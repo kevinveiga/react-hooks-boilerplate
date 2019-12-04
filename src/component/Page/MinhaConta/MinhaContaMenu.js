@@ -15,7 +15,7 @@ export const MinhaContaMenu = () => {
             display={{ d: 'none', lg: 'flex' }}
             flexWrap="wrap"
             justifyContent="flex-start"
-            minHeight={`calc(100vh - ${variable.headerHeightMobile} - ${variable.footerAlternateHeight})`}
+            minHeight={`calc(100vh - ${variable.headerHeightMobile} - ${variable.FooterAlternativeHeight})`}
             pr={2}
             py={5}
             width={2 / 10}

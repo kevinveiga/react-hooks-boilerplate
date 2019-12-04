@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { HeaderAlternateContext } from '../../../store/header/headerAlternateContext';
+import { HeaderAlternativeContext } from '../../../store/header/HeaderAlternativeContext';
 
 import { Button } from '../../Button/Button';
 import { LinkTo } from '../../Link/LinkTo';
@@ -9,7 +9,7 @@ import { MinhaContaMenuMobileStyled } from './MinhaContaMenuStyled';
 
 export const MinhaContaMenuMobile = ({ ...props }) => {
     // CONTEXT
-    const { stateChangeMinhaContaMenuMobileContext, setStateChangeMinhaContaMenuMobileContext, setStateChangeModalLogoutContext } = useContext(HeaderAlternateContext);
+    const { stateChangeMinhaContaMenuMobileContext, setStateChangeMinhaContaMenuMobileContext, setStateChangeModalLogoutContext } = useContext(HeaderAlternativeContext);
 
     return (
         <MinhaContaMenuMobileStyled active={stateChangeMinhaContaMenuMobileContext} {...props}>

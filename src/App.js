@@ -32,6 +32,7 @@ export const App = () => {
         <>
             <ThemeProvider theme={theme}>
                 <Normalize />
+
                 <HelmetProvider>
                     <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
                         <meta name="description" content="Liberta" />

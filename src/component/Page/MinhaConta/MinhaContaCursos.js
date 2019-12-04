@@ -14,7 +14,7 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
-import { HeaderAlternate } from '../../Header/HeaderAlternate';
+import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { MinhaContaMenu } from './MinhaContaMenu';
@@ -92,7 +92,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
             <Helmet>{/* <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} /> */}</Helmet>
 
-            <HeaderAlternate currentBreadcrumbLabel="Cursos" {...breadcrumb} />
+            <HeaderAlternative currentBreadcrumbLabel="Cursos" {...breadcrumb} />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>

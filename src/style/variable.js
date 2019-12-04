@@ -95,7 +95,7 @@ export const variable = {
     spacingXL: '100px',
 
     // Size
-    footerAlternateHeight: '50px',
+    FooterAlternativeHeight: '50px',
     footerHeight: '650px',
     footerHeightMobile: '600px',
     headerHeight: '100px',

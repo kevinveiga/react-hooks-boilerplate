@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile, useChangeModalLogout } from '../../store/header/header';
-import { HeaderAlternateContext } from '../../store/header/headerAlternateContext';
+import { HeaderAlternativeContext } from '../../store/header/HeaderAlternativeContext';
 import { useWindowWidth } from '../../store/util/windowWidth';
 
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
@@ -11,7 +11,7 @@ import { MinhaContaMenuMobile } from '../Page/MinhaConta/MinhaContaMenuMobile';
 import { ModalLogout } from '../Modal/ModalLogout';
 import { Svg } from '../Svg/Svg';
 
-import { HeaderAlternateStyled } from './HeaderAlternateStyled';
+import { HeaderAlternativeStyled } from './HeaderAlternativeStyled';
 import { HeaderStyled } from './HeaderStyled';
 
 import { Box, Flex } from '../../style/flex';
@@ -19,7 +19,7 @@ import { Container } from '../../style/layout';
 import { Title5 } from '../../style/text';
 import { variable } from '../../style/variable';
 
-export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
+export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useChangeMinhaContaMenuMobile();
@@ -27,7 +27,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     const windowWidth = useWindowWidth();
 
     return (
-        <HeaderAlternateContext.Provider
+        <HeaderAlternativeContext.Provider
             value={{
                 stateChangeMinhaContaMenuMobileContext: stateChangeMinhaContaMenuMobile,
                 setStateChangeMinhaContaMenuMobileContext: setStateChangeMinhaContaMenuMobile,
@@ -59,7 +59,7 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                     </Container>
                 </HeaderStyled>
             ) : (
-                <HeaderAlternateStyled>
+                <HeaderAlternativeStyled>
                     <Container mx="auto" px={{ d: 4, md: 3 }}>
                         <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                             <Box>
@@ -82,10 +82,10 @@ export const HeaderAlternate = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
                             </Box>
                         </Flex>
                     </Container>
-                </HeaderAlternateStyled>
+                </HeaderAlternativeStyled>
             )}
 
             <ModalLogout visible={stateChangeModalLogout} />
-        </HeaderAlternateContext.Provider>
+        </HeaderAlternativeContext.Provider>
     );
 };

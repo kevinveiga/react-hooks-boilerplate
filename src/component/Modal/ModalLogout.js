@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react';
 
 import { Context } from '../../store/context';
-import { HeaderAlternateContext } from '../../store/header/headerAlternateContext';
+import { HeaderAlternativeContext } from '../../store/header/HeaderAlternativeContext';
 
 import { Button } from '../Button/Button';
 
@@ -10,7 +10,7 @@ import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyl
 export const ModalLogout = ({ ...props }) => {
     // CONTEXT
     const { setStateAuthTokenContext } = useContext(Context);
-    const { setStateChangeModalLogoutContext } = useContext(HeaderAlternateContext);
+    const { setStateChangeModalLogoutContext } = useContext(HeaderAlternativeContext);
 
     // ACTION
     const handleLogout = useCallback(

@@ -12,7 +12,7 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { MinhaContaForm } from '../../Form/MinhaContaForm';
-import { HeaderAlternate } from '../../Header/HeaderAlternate';
+import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { MinhaContaMenu } from './MinhaContaMenu';
 
 import { MinhaContaCenterStyled } from './MinhaContaStyled';
@@ -49,7 +49,7 @@ const MinhaConta = () => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Helmet> */}
 
-            <HeaderAlternate />
+            <HeaderAlternative />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 2, lg: 3 }}>

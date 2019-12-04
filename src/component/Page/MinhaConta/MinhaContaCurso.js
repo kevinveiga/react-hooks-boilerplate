@@ -15,7 +15,7 @@ import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
-import { HeaderAlternate } from '../../Header/HeaderAlternate';
+import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 
 import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaContaStyled';
@@ -155,7 +155,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 <meta name="description" content={curso && curso.description} />
             </Helmet>
 
-            <HeaderAlternate currentBreadcrumbLabel={curso.title} {...breadcrumb} />
+            <HeaderAlternative currentBreadcrumbLabel={curso.title} {...breadcrumb} />
 
             <MinhaContaCursoContext.Provider
                 value={{
