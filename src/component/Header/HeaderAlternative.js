@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile, useChangeModalLogout } from '../../store/header/header';
-import { HeaderAlternativeContext } from '../../store/header/HeaderAlternativeContext';
+import { HeaderAlternativeContext } from '../../store/header/headerAlternativeContext';
 import { useWindowWidth } from '../../store/util/windowWidth';
 
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';

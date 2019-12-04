@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { HeaderAlternativeContext } from '../../../store/header/HeaderAlternativeContext';
+import { HeaderAlternativeContext } from '../../../store/header/headerAlternativeContext';
 
 import { Button } from '../../Button/Button';
 import { LinkTo } from '../../Link/LinkTo';

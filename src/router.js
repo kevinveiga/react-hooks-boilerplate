@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext } from 'react';
+import React, { lazy, Suspense, useContext, useEffect } from 'react';
 
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
@@ -37,7 +37,32 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     );
 };
 
-export const Router = withRouter(() => {
+export const Router = withRouter(({ ...props }) => {
+    // CONTEXT
+    const { setStateFooterAlternativeContext, setStateHeaderAlternativeContext } = useContext(Context);
+
+    // ACTION
+    // Mudar Header e Footer principais para alternativos de acordo com array do arrayPathname
+    const arrayPathname = ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta'];
+
+    useEffect(() => {
+        console.log('route: ', props.location);
+
+        setStateFooterAlternativeContext(false);
+        setStateHeaderAlternativeContext(false);
+
+        for (let i = 0, l = arrayPathname.length; i < l; i += 1) {
+            if (arrayPathname[i] === props.location.pathname) {
+                setStateFooterAlternativeContext(true);
+                setStateHeaderAlternativeContext(true);
+
+                break;
+            }
+        }
+
+        return undefined;
+    }, [arrayPathname, props, setStateFooterAlternativeContext, setStateHeaderAlternativeContext]);
+
     const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };
 
     return (

@@ -25,6 +25,8 @@ const ModalMessage = lazy(() => import('./component/Modal/ModalMessage'));
 export const App = () => {
     // ACTION
     const [stateAuthToken, setStateAuthToken] = useAuth();
+    const [stateFooterAlternative, setStateFooterAlternative] = useState(false);
+    const [stateHeaderAlternative, setStateHeaderAlternative] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
     const [stateModalMessage, setStateModalMessage] = useModalMessage(false);
 
@@ -41,8 +43,12 @@ export const App = () => {
                     <BrowserRouter>
                         <Context.Provider
                             value={{
+                                stateFooterAlternativeContext: stateFooterAlternative,
+                                stateHeaderAlternativeContext: stateHeaderAlternative,
                                 stateAuthTokenContext: stateAuthToken,
                                 setStateAuthTokenContext: setStateAuthToken,
+                                setStateFooterAlternativeContext: setStateFooterAlternative,
+                                setStateHeaderAlternativeContext: setStateHeaderAlternative,
                                 setStateLoaderContext: setStateLoader,
                                 setStateModalMessageContext: setStateModalMessage
                             }}
@@ -50,13 +56,13 @@ export const App = () => {
                             <Loader active={stateLoader} />
 
                             <Suspense fallback={LoaderComponent()}>
-                                <Header />
+                                <Header alternative={stateHeaderAlternative} />
                             </Suspense>
 
                             <Router />
 
                             <Suspense fallback={LoaderComponent()}>
-                                <Footer />
+                                <Footer alternative={stateFooterAlternative} />
                             </Suspense>
 
                             <Suspense fallback={LoaderComponent()}>

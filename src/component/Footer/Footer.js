@@ -1,22 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { Context } from '../../store/context';
 
 import { FooterAlternative } from './FooterAlternative';
 import { FooterPrincipal } from './FooterPrincipal';
 
 const Footer = () => {
-    // FOOTER ALTERNATE
-    const arrayPathName = ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta'];
-    let FooterAlternative = false;
+    // CONTEXT
+    const { stateFooterAlternativeContext } = useContext(Context);
 
-    for (let i = 0, l = arrayPathName.length; i < l; i += 1) {
-        if (arrayPathName[i] === window.location.pathname) {
-            FooterAlternative = true;
-
-            break;
-        }
-    }
-
-    return FooterAlternative ? <FooterAlternative /> : <FooterPrincipal />;
+    return stateFooterAlternativeContext ? <FooterAlternative /> : <FooterPrincipal />;
 };
 
 export default Footer;

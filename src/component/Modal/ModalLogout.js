@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react';
 
 import { Context } from '../../store/context';
-import { HeaderAlternativeContext } from '../../store/header/HeaderAlternativeContext';
+import { HeaderAlternativeContext } from '../../store/header/headerAlternativeContext';
 
 import { Button } from '../Button/Button';
 
