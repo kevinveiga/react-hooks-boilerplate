@@ -15,7 +15,6 @@ import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
-import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 
@@ -337,8 +336,6 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                     )}
                 </Main>
             </MinhaContaCursoContext.Provider>
-
-            <FooterAlternate />
         </>
     );
 };

@@ -16,7 +16,7 @@ import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
-const Header = ({ ...hide }) => {
+const Header = () => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
@@ -48,7 +48,7 @@ const Header = ({ ...hide }) => {
 
     return (
         <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
-            <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header" {...hide}>
+            <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <Flex
                         alignItems="center"

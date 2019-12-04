@@ -227,5 +227,3 @@ workbox.routing.registerRoute(
 //     };
 //     event.waitUntil(self.registration.showNotification(title, options));
 // });
-
-workbox.precaching.precacheAndRoute(self.__precacheManifest);

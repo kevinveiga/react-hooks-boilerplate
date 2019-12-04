@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useContext, useEffect } from 'react';
+import React, { lazy, Suspense, useContext } from 'react';
 
-import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import { Context } from './store/context';
 
@@ -37,28 +37,7 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     );
 };
 
-export const Router = withRouter((props) => {
-    // CONTEXT
-    const { setStateHideFooterContext, setStateHideHeaderContext } = useContext(Context);
-
-    // ACTION
-    // Oculta Header e Footer padrões do site de acordo com array do path
-    useEffect(() => {
-        if (
-            matchPath(window.location.pathname, {
-                path: ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta']
-            })
-        ) {
-            setStateHideFooterContext(true);
-            setStateHideHeaderContext(true);
-        } else {
-            setStateHideFooterContext(false);
-            setStateHideHeaderContext(false);
-        }
-
-        return undefined;
-    }, [props, setStateHideFooterContext, setStateHideHeaderContext]);
-
+export const Router = withRouter(() => {
     const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };
 
     return (

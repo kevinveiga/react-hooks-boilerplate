@@ -8,7 +8,6 @@ import { useSeoApi } from '../../../service/seo';
 
 import { CadastroContext } from '../../../store/cadastro/cadastroContext';
 
-import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
@@ -79,8 +78,6 @@ export const Cadastro = () => {
                     </Box>
                 </Flex>
             </Main>
-
-            <FooterAlternate />
         </CadastroContext.Provider>
     );
 };

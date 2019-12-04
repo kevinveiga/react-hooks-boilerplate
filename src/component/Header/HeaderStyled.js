@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { LinkToStyled } from '../Link/LinkToStyled';
+
 import { variable } from '../../style/variable';
 
 export const HeaderBtnMenuStyled = styled.button.attrs({ type: 'button' })`
@@ -47,7 +49,6 @@ export const HeaderPesquisaStyled = styled.div`
 `;
 
 export const HeaderStyled = styled.header`
-    display: ${({ hide }) => (hide ? 'none' : 'block')};
     height: auto;
     left: 0;
     position: fixed;
@@ -61,6 +62,10 @@ export const HeaderStyled = styled.header`
             ? css`
                   background-color: ${variable.colorBlack3};
                   box-shadow: none;
+
+                  ${LinkToStyled} {
+                      color: ${variable.colorWhite};
+                  }
               `
             : css`
                   background-color: ${variable.colorWhite};

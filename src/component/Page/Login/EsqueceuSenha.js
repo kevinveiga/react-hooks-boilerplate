@@ -6,7 +6,6 @@ import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
 
-import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
@@ -72,8 +71,6 @@ export const EsqueceuSenha = ({ location }) => {
                     </Box>
                 </Flex>
             </Main>
-
-            <FooterAlternate />
         </>
     );
 };

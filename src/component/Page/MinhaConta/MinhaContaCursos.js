@@ -14,7 +14,6 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
-import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
@@ -326,8 +325,6 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                     </Flex>
                 </Container>
             </Main>
-
-            <FooterAlternate />
         </>
     );
 };

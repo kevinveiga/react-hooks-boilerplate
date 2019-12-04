@@ -11,7 +11,6 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
 
-import { FooterAlternate } from '../../Footer/FooterAlternate';
 import { MinhaContaForm } from '../../Form/MinhaContaForm';
 import { HeaderAlternate } from '../../Header/HeaderAlternate';
 import { MinhaContaMenu } from './MinhaContaMenu';
@@ -85,8 +84,6 @@ const MinhaConta = () => {
                     </Flex>
                 </Container>
             </Main>
-
-            <FooterAlternate />
         </>
     );
 };
