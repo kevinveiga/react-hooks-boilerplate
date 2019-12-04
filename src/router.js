@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useContext, useEffect } from 'react';
 
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import { Context } from './store/context';
 
@@ -43,25 +43,18 @@ export const Router = withRouter(({ ...props }) => {
 
     // ACTION
     // Mudar Header e Footer principais para alternativos de acordo com array do arrayPathname
-    const arrayPathname = ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta'];
-
+    /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
-        console.log('route: ', props.location);
+        const alternative = matchPath(props.location.pathname, {
+            path: ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta']
+        });
 
-        setStateFooterAlternativeContext(false);
-        setStateHeaderAlternativeContext(false);
-
-        for (let i = 0, l = arrayPathname.length; i < l; i += 1) {
-            if (arrayPathname[i] === props.location.pathname) {
-                setStateFooterAlternativeContext(true);
-                setStateHeaderAlternativeContext(true);
-
-                break;
-            }
-        }
+        setStateFooterAlternativeContext(alternative);
+        setStateHeaderAlternativeContext(alternative);
 
         return undefined;
-    }, [arrayPathname, props, setStateFooterAlternativeContext, setStateHeaderAlternativeContext]);
+    }, [props.location.pathname]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };
 
