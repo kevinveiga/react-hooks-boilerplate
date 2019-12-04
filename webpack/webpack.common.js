@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const Webpack = require('webpack');
-const { InjectManifest } = require('workbox-webpack-plugin');
 
 const commonPaths = require('./paths');
 
@@ -86,15 +85,6 @@ module.exports = {
         maxEntrypointSize: 500000 // int (in bytes)
     },
     plugins: [
-        new InjectManifest({
-            importsDirectory: 'asset',
-            include: [/(.gif)$/, /(.jpg)$/, /(.png)$/, /(.svg)$/, /(.webp)$/],
-            swDest: `${commonPaths.outputPath}/sw.js`,
-            swSrc: `${commonPaths.srcPath}/sw.js`,
-            templatedURLs: {
-                '/manifest.json': '[manifestHash]'
-            }
-        }),
         new HtmlWebpackPlugin({
             cache: false,
             minify: true,
