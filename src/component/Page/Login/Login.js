@@ -1,12 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
 import { apiUrlHome } from '../../../config';
 
-import { useSeoApi } from '../../../service/seo';
-
 import { LinkTo } from '../../Link/LinkTo';
+import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -18,15 +15,9 @@ import { variable } from '../../../style/variable';
 const LoginForm = lazy(() => import('../../Form/LoginForm'));
 
 export const Login = ({ location }) => {
-    // API
-    const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
-
     return (
         <>
-            <Helmet>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
+            <Seo url={`${apiUrlHome}/seo`} />
 
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
