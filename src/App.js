@@ -14,17 +14,17 @@ import { useModalMessage } from './store/modalMessage/modalMessage';
 
 import { Router } from './router';
 
-import { Footer } from './component/Footer/Footer';
-import { Header } from './component/Header/Header';
 import { Loader } from './component/Loader/Loader';
 import { LoaderComponent } from './component/Loader/LoaderComponent';
-import { ModalMessage } from './component/Modal/ModalMessage';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
 
 // LAZY
+const Footer = lazy(() => import('./component/Footer/Footer'));
+const Header = lazy(() => import('./component/Header/Header'));
 const ExternalJs = lazy(() => import('./component/ExternalJs/ExternalJs'));
+const ModalMessage = lazy(() => import('./component/Modal/ModalMessage'));
 
 export const App = () => {
     // API
@@ -60,10 +60,20 @@ export const App = () => {
 
                         <BrowserRouter>
                             <Loader active={stateLoader} />
-                            <Header hide={stateHideHeader} />
+
+                            <Suspense fallback={LoaderComponent()}>
+                                <Header hide={stateHideHeader} />
+                            </Suspense>
+
                             <Router />
-                            <Footer hide={stateHideFooter} />
-                            <ModalMessage text={stateModalMessage} />
+
+                            <Suspense fallback={LoaderComponent()}>
+                                <Footer hide={stateHideFooter} />
+                            </Suspense>
+
+                            <Suspense fallback={LoaderComponent()}>
+                                <ModalMessage text={stateModalMessage} />
+                            </Suspense>
                         </BrowserRouter>
                     </HelmetProvider>
                 </Context.Provider>

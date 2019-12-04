@@ -77,17 +77,17 @@ workbox.routing.registerRoute(
     })
 );
 
-// CSS CROSS-ORIGIN
+// GOOGLE FONTS
 workbox.routing.registerRoute(
-    new RegExp('.+\\..+/(?:.+(css|css\\?.+))$'),
+    new RegExp('/^https://fonts.googleapis.com/'),
     new workbox.strategies.CacheFirst({
-        cacheName: 'css-cross-cache',
+        cacheName: 'google-fonts-webfonts',
         plugins: [
             new workbox.cacheableResponse.Plugin({
                 statuses: [0, 200]
             }),
             new workbox.expiration.Plugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
                 maxEntries: 10,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })

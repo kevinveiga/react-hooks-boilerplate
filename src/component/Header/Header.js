@@ -16,7 +16,7 @@ import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
-export const Header = ({ ...hide }) => {
+const Header = ({ ...hide }) => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
@@ -96,3 +96,5 @@ export const Header = ({ ...hide }) => {
         </HeaderContext.Provider>
     );
 };
+
+export default Header;
