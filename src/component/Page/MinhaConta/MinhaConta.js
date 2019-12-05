@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
 import { apiUrlPerfil } from '../../../config';
 
-import { useSeoApi } from '../../../service/seo';
 import { usePerfilApi } from '../../../service/perfil';
 
 import { useWindowWidth } from '../../../store/util/windowWidth';
@@ -23,7 +20,6 @@ import { variable } from '../../../style/variable';
 
 const MinhaConta = () => {
     // API
-    // const stateSeo = useSeoApi(`${apiUrlPerfil}/seo`, {});
     const [statePerfil, setStatePerfilData] = usePerfilApi({ url: apiUrlPerfil }, {});
 
     const perfilLength = statePerfil.data ? Object.keys(statePerfil.data).length : 0;
@@ -44,11 +40,6 @@ const MinhaConta = () => {
 
     return (
         <>
-            {/* <Helmet>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet> */}
-
             <HeaderAlternative />
 
             <Main header="minhaConta">

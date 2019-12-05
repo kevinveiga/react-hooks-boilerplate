@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
-import { Helmet } from 'react-helmet-async';
 
 import { apiUrlCursos } from '../../../config';
 
@@ -18,7 +17,7 @@ import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { MinhaContaMenu } from './MinhaContaMenu';
-
+// import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { MinhaContaCenterStyled } from './MinhaContaStyled';
@@ -35,7 +34,6 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
     // API
     const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
-
     // const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
@@ -89,8 +87,10 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
 
     return (
         <>
-            <Helmet>{/* <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} /> */}</Helmet>
+            {/* <Seo>
+                <title>{stateSeo.data && stateSeo.data.title}</title>
+                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
+            </Seo> */}
 
             <HeaderAlternative currentBreadcrumbLabel="Cursos" {...breadcrumb} />
 

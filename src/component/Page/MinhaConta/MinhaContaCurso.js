@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, useCallback, useContext, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
-import { Helmet } from 'react-helmet-async';
 
 import { apiUrlCursos } from '../../../config';
 
@@ -17,6 +16,7 @@ import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
 import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
+import { Seo } from '../../Seo/Seo';
 
 import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaContaStyled';
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
@@ -38,9 +38,9 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
     const [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, `${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
 
-    const cursoLength = stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
-    const cursoConteudoLength = stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
-    const cursoProgressoLength = stateCursoProgresso.data.data ? Object.keys(stateCursoProgresso.data.data).length : 0;
+    const cursoLength = stateCurso.data && stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
+    const cursoConteudoLength = stateCursoConteudo.data && stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
+    const cursoProgressoLength = stateCursoProgresso.data && stateCursoProgresso.data.data ? Object.keys(stateCursoProgresso.data.data).length : 0;
 
     // Redirecionamento temporário
     if (stateCurso.isError == true) {
@@ -150,10 +150,10 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     return (
         <>
-            <Helmet>
+            <Seo>
                 <title>{curso && curso.title}</title>
                 <meta name="description" content={curso && curso.description} />
-            </Helmet>
+            </Seo>
 
             <HeaderAlternative currentBreadcrumbLabel={curso.title} {...breadcrumb} />
 

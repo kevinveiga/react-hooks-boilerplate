@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
 import parse from 'html-react-parser';
-import { Helmet } from 'react-helmet-async';
 
 import { apiUrlCursos } from '../../../config';
 
@@ -17,6 +16,7 @@ import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselB
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 // import { LinkTo } from '../../Link/LinkTo';
 // import { LoaderComponent } from '../../Loader/LoaderComponent';
+import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 // import { CarouselStyled } from '../../Carousel/CarouselStyled';
@@ -39,9 +39,9 @@ export const Curso = ({ match }) => {
     // const cursoRelatedLength = cursoLength > 0 && stateCurso.data.related.length;
 
     // Redirecionamento temporário
-    if (stateCurso.isError == true) {
-        window.location.pathname = '/';
-    }
+    // if (stateCurso.isError == true) {
+    //     window.location.pathname = '/';
+    // }
 
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursoLength > 0;
@@ -107,10 +107,10 @@ export const Curso = ({ match }) => {
 
     return (
         <>
-            <Helmet>
+            <Seo>
                 <title>{curso && curso.title}</title>
                 <meta name="description" content={curso && curso.description} />
-            </Helmet>
+            </Seo>
 
             <Main>
                 {stateCurso.isError == true && (

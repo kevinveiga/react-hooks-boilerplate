@@ -1,11 +1,5 @@
 import React, { lazy, Suspense, useState } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
-import { apiUrlHome } from '../../../config';
-
-import { useSeoApi } from '../../../service/seo';
-
 import { CadastroContext } from '../../../store/cadastro/cadastroContext';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -22,19 +16,11 @@ const CadastroForm = lazy(() => import('../../Form/CadastroForm'));
 const ConhecerMaisForm = lazy(() => import('../../Form/ConhecerMaisForm'));
 
 export const Cadastro = () => {
-    // API
-    const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
-
     // ACTION
-    const [stateConhecerMais, setStateConhecerMaisContext] = useState(true);
+    const [stateConhecerMais, setStateConhecerMaisContext] = useState(false);
 
     return (
         <CadastroContext.Provider value={setStateConhecerMaisContext}>
-            <Helmet>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
-
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>

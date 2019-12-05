@@ -1,7 +1,6 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
-import { Helmet } from 'react-helmet-async';
 
 import { apiUrlNoticias } from '../../../config';
 
@@ -17,9 +16,10 @@ import { Leadwall } from '../../Leadwall/Leadwall';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
 import { NoticiaSocial } from './NoticiaSocial';
+import { Seo } from '../../Seo/Seo';
 
 import { NoticiaBoxAuthorStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
-import { NoticiaArticleStyled, NoticiaArticleAuthorStyled, NoticiaAuthorStyled, NoticiaFormContainerStyled, NoticiaMateriasRelacionadasStyled } from './NoticiaStyled';
+import { NoticiaArticleStyled, NoticiaArticleAuthorStyled, NoticiaAuthorStyled, NoticiaMateriasRelacionadasStyled } from './NoticiaStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
@@ -28,8 +28,10 @@ import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
+import logo from '../../../asset/image/logo.png';
+
 // LAZY
-const NoticiaForm = lazy(() => import('../../Form/NoticiaForm'));
+// const NoticiaForm = lazy(() => import('../../Form/NoticiaForm'));
 
 export const Noticia = ({ match }) => {
     // API
@@ -61,7 +63,7 @@ export const Noticia = ({ match }) => {
 
     return (
         <NoticiaContext.Provider value={setChangeLeadwallContext}>
-            <Helmet>
+            <Seo>
                 <title>{stateNoticia.data && stateNoticia.data.title}</title>
                 <meta name="description" content={stateNoticia.data && stateNoticia.data.seo && stateNoticia.data.seo.description} />
                 <meta property="og:author" content={stateNoticia.data && stateNoticia.data.author} />
@@ -71,7 +73,7 @@ export const Noticia = ({ match }) => {
                 <meta property="og:title" content={stateNoticia.data && stateNoticia.data.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={window.location.href} />
-            </Helmet>
+            </Seo>
 
             <Main>
                 {stateNoticia.isError == true && (
@@ -125,17 +127,17 @@ export const Noticia = ({ match }) => {
 
                         <Leadwall change={changeLeadwall} />
 
-                        <NoticiaFormContainerStyled mb="75px">
+                        {/* <NoticiaFormContainerStyled mb="75px">
                             <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
                                 <NoticiaForm />
                             </Suspense>
-                        </NoticiaFormContainerStyled>
+                        </NoticiaFormContainerStyled> */}
 
                         <NoticiaAuthorStyled mb="75px">
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
                                     <ImageCircleContainer>
-                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar} />
+                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar || logo} />
                                     </ImageCircleContainer>
                                 </Box>
 

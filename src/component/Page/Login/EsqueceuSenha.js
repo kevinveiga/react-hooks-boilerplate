@@ -1,11 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
-import { apiUrlHome } from '../../../config';
-
-import { useSeoApi } from '../../../service/seo';
-
+import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
@@ -18,16 +13,8 @@ import { variable } from '../../../style/variable';
 const EsqueceuSenhaForm = lazy(() => import('../../Form/EsqueceuSenhaForm'));
 
 export const EsqueceuSenha = ({ location }) => {
-    // API
-    const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
-
     return (
         <>
-            <Helmet>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
-
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>

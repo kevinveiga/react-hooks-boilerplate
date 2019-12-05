@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
 import { apiUrlNoticias } from '../../../config';
 
 import { usePesquisaApi } from '../../../service/pesquisa';
@@ -14,6 +12,7 @@ import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
+import { Seo } from '../../Seo/Seo';
 
 import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
@@ -49,10 +48,10 @@ export const Pesquisa = ({ match }) => {
 
     return (
         <PesquisaContext.Provider value={setStatePesquisaDataContext}>
-            <Helmet>
+            <Seo>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
+            </Seo>
 
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>

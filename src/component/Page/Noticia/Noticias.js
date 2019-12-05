@@ -1,14 +1,12 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
 import { apiUrlNoticias } from '../../../config';
 
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
-import { useMeasure } from '../../../store/util/measure';
+// import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
@@ -17,7 +15,7 @@ import { Button } from '../../Button/Button';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
-
+import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
@@ -47,7 +45,7 @@ export const Noticias = () => {
 
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo
@@ -91,10 +89,10 @@ export const Noticias = () => {
 
     return (
         <>
-            <Helmet>
+            <Seo>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
+            </Seo>
 
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>

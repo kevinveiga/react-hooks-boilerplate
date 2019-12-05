@@ -1,7 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
 import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoCategoriaApi, useCursoCategoriasApi } from '../../../service/curso';
@@ -15,7 +13,7 @@ import { scrollTo } from '../../../util/scrollTo';
 // import { Button } from '../../Button/Button';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
-
+// import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -88,8 +86,10 @@ export const Aprenda = () => {
 
     return (
         <>
-            <Helmet>{/* <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} /> */}</Helmet>
+            {/* <Seo>
+                <title>{stateSeo.data && stateSeo.data.title}</title>
+                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
+            </Seo> */}
 
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
