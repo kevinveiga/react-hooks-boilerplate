@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from 'react';
 import { apiUrlNoticias } from '../../../config';
 
 import { usePesquisaApi } from '../../../service/pesquisa';
-import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
@@ -12,7 +11,6 @@ import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
-import { Seo } from '../../Seo/Seo';
 
 import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
@@ -25,7 +23,6 @@ import { variable } from '../../../style/variable';
 export const Pesquisa = ({ match }) => {
     // API
     const [statePesquisa, setStatePesquisaDataContext] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` }, {});
-    const stateSeo = useSeoApi(`${apiUrlNoticias}/seo`, {});
 
     const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
 
@@ -48,11 +45,6 @@ export const Pesquisa = ({ match }) => {
 
     return (
         <PesquisaContext.Provider value={setStatePesquisaDataContext}>
-            <Seo>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Seo>
-
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <Box mb={5} width={{ d: 1, md: 4 / 5 }}>

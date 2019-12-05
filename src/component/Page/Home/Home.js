@@ -1,7 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 
-import { Helmet } from 'react-helmet-async';
-
 import { apiUrlHome } from '../../../config';
 
 import { useDestaqueApi } from '../../../service/destaque';
@@ -24,6 +22,7 @@ import { LinkTo } from '../../Link/LinkTo';
 import { LinkToExternal } from '../../Link/LinkToExternal';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
+import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { BannerCellStyled, BannerContainerStyled } from '../../Banner/BannerStyled';
@@ -63,7 +62,7 @@ export const Home = ({ location }) => {
     const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
 
     // ACTION
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
+    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo ou para a section de vídeo
@@ -96,10 +95,10 @@ export const Home = ({ location }) => {
 
     return (
         <>
-            <Helmet>
+            <Seo>
                 <title>{stateSeo.data && stateSeo.data.title}</title>
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Helmet>
+            </Seo>
 
             <Main>
                 {superDestaquesLength > 0 &&

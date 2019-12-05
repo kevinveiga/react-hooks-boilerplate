@@ -3,7 +3,6 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoCategoriaApi, useCursoCategoriasApi } from '../../../service/curso';
-// import { useSeoApi } from '../../../service/seo';
 
 import { Context } from '../../../store/context';
 import { useWindowWidth } from '../../../store/util/windowWidth';
@@ -13,7 +12,6 @@ import { scrollTo } from '../../../util/scrollTo';
 // import { Button } from '../../Button/Button';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
-// import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -28,7 +26,6 @@ export const Aprenda = () => {
     const [stateCursos] = useCursoApi(apiUrlCursos, {});
     const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi(null, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
-    // const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
     const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && stateCursosCategorias.data.data.length;
@@ -86,11 +83,6 @@ export const Aprenda = () => {
 
     return (
         <>
-            {/* <Seo>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Seo> */}
-
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <Title3 align="center" fontWeight="700" themeColor="dark">

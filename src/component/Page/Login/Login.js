@@ -1,9 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-import { apiUrlHome } from '../../../config';
-
 import { LinkTo } from '../../Link/LinkTo';
-import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -17,8 +14,6 @@ const LoginForm = lazy(() => import('../../Form/LoginForm'));
 export const Login = ({ location }) => {
     return (
         <>
-            <Seo url={`${apiUrlHome}/seo`} />
-
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>

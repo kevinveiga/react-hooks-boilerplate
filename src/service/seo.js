@@ -6,8 +6,6 @@ export const useSeoApi = (url) => {
 
     const [stateSeo, setStateSeo] = useState(JSON.parse('{ "data": [] }'));
 
-    console.log('useSeoApi');
-
     useEffect(() => {
         if (!stateSeoUrl) {
             return undefined;
