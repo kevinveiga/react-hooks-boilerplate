@@ -4,12 +4,10 @@ import { apiUrlHome } from '../../../config';
 
 import { useDestaqueApi } from '../../../service/destaque';
 import { useNoticiaApi } from '../../../service/noticia';
-import { useParceiroApi } from '../../../service/parceiro';
 import { useSeoApi } from '../../../service/seo';
 import { useSuperDestaqueApi } from '../../../service/superDestaque';
-import { useVideoApi } from '../../../service/video';
 
-import { useMeasure } from '../../../store/util/measure';
+// import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { groupByMod } from '../../../util/groupBy';
@@ -44,19 +42,15 @@ export const Home = ({ location }) => {
     // API
     const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`, {});
     const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
-    const stateParceiros = useParceiroApi(`${apiUrlHome}/parceiros`, {});
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
     const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
-    const stateVideos = useVideoApi(`${apiUrlHome}/videos`, {});
 
     const destaquesLength = stateDestaques.data && stateDestaques.data.length;
     const noticiasLength = stateNoticias.data && stateNoticias.data.length;
-    const parceirosLength = stateParceiros.data && stateParceiros.data.length;
     const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
-    const videosLength = stateVideos.data && stateVideos.data.length;
 
     // Verificação se todos os dados de API estão carregados
-    const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && parceirosLength > 0 && superDestaquesLength > 0 && videosLength > 0;
+    const isDataLoaded = destaquesLength > 0 && noticiasLength > 0 && superDestaquesLength > 0;
 
     // Agrupando itens com um grupo de 3
     const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
@@ -304,26 +298,24 @@ export const Home = ({ location }) => {
                     </Container>
                 </Wrap>
 
-                {videosLength > 0 && (
-                    <VideoContainerStyled id="home-video-container">
-                        <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
-                            <Title2 themeColor="light">Vídeos Liberta</Title2>
+                <VideoContainerStyled id="home-video-container">
+                    <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
+                        <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                            <Suspense fallback={LoaderComponent()}>
-                                <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} objectVideos={stateVideos} />
-                            </Suspense>
+                        <Suspense fallback={LoaderComponent()}>
+                            <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} />
+                        </Suspense>
 
-                            <Box textAlign="center">
-                                <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
-                                    <Button>
-                                        <Svg display={{ d: 'none', lg: 'inline-block' }} height="25px" mr={2} name="svg-youtube" />
-                                        <Span verticalAlign="middle">Siga nosso canal no Youtube</Span>
-                                    </Button>
-                                </LinkToExternal>
-                            </Box>
-                        </Container>
-                    </VideoContainerStyled>
-                )}
+                        <Box textAlign="center">
+                            <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
+                                <Button>
+                                    <Svg display={{ d: 'none', lg: 'inline-block' }} height="25px" mr={2} name="svg-youtube" />
+                                    <Span verticalAlign="middle">Siga nosso canal no Youtube</Span>
+                                </Button>
+                            </LinkToExternal>
+                        </Box>
+                    </Container>
+                </VideoContainerStyled>
             </Main>
         </>
     );

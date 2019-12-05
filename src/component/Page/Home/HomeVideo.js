@@ -2,6 +2,10 @@ import React, { useCallback } from 'react';
 
 import YouTube from 'react-youtube';
 
+import { apiUrlHome } from '../../../config';
+
+import { useVideoApi } from '../../../service/video';
+
 import { useCurrentVideo } from '../../../store/video/video';
 
 import { getVideoId } from '../../../util/getVideoId';
@@ -15,7 +19,12 @@ import { Cell } from '../../../style/grid';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
-const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
+const HomeVideo = ({ ancor, ...otherProps }) => {
+    // API
+    const stateVideos = useVideoApi(`${apiUrlHome}/videos`, {});
+
+    const videosLength = stateVideos.data && stateVideos.data.length;
+
     // ACTION
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
 
@@ -27,12 +36,12 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
         [setStateCurrentVideo]
     );
 
-    return (
+    return videosLength ? (
         <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
             <Cell>
                 <Box maxHeight="470px" minHeight="25vh" overflowY="hidden">
                     <VideoWrap>
-                        <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(objectVideos.data[0].video) || ''} />
+                        <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(stateVideos.data[0].video) || ''} />
                     </VideoWrap>
                 </Box>
 
@@ -40,7 +49,7 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                     <p>Vídeo</p>
 
                     <Title4 fontWeight="700" themeColor="dark">
-                        {(stateCurrentVideo && stateCurrentVideo.title) || objectVideos.data[0].title}
+                        {(stateCurrentVideo && stateCurrentVideo.title) || stateVideos.data[0].title}
                     </Title4>
                 </VideoBoxStyled>
             </Cell>
@@ -53,10 +62,10 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                 </VideoBoxStyled>
 
                 <VideoUlStyled>
-                    {objectVideos.data.map((video, i, array) => {
+                    {stateVideos.data.map((video, i, array) => {
                         return (
                             <VideoLiStyled
-                                active={objectVideos.data.video === video.video || false}
+                                active={stateVideos.data.video === video.video || false}
                                 borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
                                 hover="true"
                                 key={getVideoId(video.video)}
@@ -82,7 +91,7 @@ const HomeVideo = ({ ancor, objectVideos, ...otherProps }) => {
                 </VideoUlStyled>
             </Cell>
         </VideoGridStyled>
-    );
+    ) : null;
 };
 
 export default HomeVideo;
