@@ -14,7 +14,7 @@ workbox.core.skipWaiting();
 // API
 // Add all api, except perfil api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?!(perfil|cursos/meus-cursos)).+$'),
+    new RegExp('.+(/api/v1/)(?!(perfil|cursos/meus-cursos)).+$'),
     new workbox.strategies.StaleWhileRevalidate({
         cacheName: 'api-cache',
         plugins: [
@@ -33,7 +33,7 @@ workbox.routing.registerRoute(
 // API PERFIL
 // Add only perfil api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?:(perfil)).*$'),
+    new RegExp('.+(/api/v1/)(?:(perfil)).*$'),
     new workbox.strategies.NetworkFirst({
         cacheName: 'api-cache-perfil',
         plugins: [
@@ -47,7 +47,7 @@ workbox.routing.registerRoute(
 // API MEUS CURSOS
 // Add only meus-cursos api
 workbox.routing.registerRoute(
-    new RegExp('.+/api/v1/(?:(cursos/meus-cursos)).*$'),
+    new RegExp('.+(/api/v1/)(?:(cursos/meus-cursos)).*$'),
     new workbox.strategies.NetworkFirst({
         cacheName: 'api-cache-meus-cursos',
         plugins: [
@@ -79,7 +79,7 @@ workbox.routing.registerRoute(
 
 // GOOGLE FONTS
 workbox.routing.registerRoute(
-    new RegExp('/^https://fonts.googleapis.com/'),
+    new RegExp('^(https://fonts.googleapis.com/)'),
     new workbox.strategies.CacheFirst({
         cacheName: 'google-fonts-webfonts',
         plugins: [
@@ -116,7 +116,7 @@ workbox.routing.registerRoute(
 
 // IMG CROSS-ORIGIN
 workbox.routing.registerRoute(
-    new RegExp('.+\\..+/app/uploads/(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
+    new RegExp('.+\\..+(/app/uploads/)(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
     new workbox.strategies.CacheFirst({
         cacheName: 'image-cross-cache',
         plugins: [

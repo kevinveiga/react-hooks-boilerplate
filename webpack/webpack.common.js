@@ -88,7 +88,7 @@ module.exports = {
     plugins: [
         new InjectManifest({
             importsDirectory: 'asset',
-            include: [/(.gif)$/, /(.jpg)$/, /(.png)$/, /(.svg)$/, /(.webp)$/],
+            include: [/(.html)$/, /(.json)$/],
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`,
             templatedURLs: {
