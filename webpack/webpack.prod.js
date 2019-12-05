@@ -42,9 +42,7 @@ module.exports = {
             },
             chunks: 'async',
             maxAsyncRequests: Infinity,
-            maxInitialRequests: Infinity,
-            maxSize: 200000,
-            minSize: 100000
+            maxInitialRequests: Infinity
         }
     },
     plugins: [
