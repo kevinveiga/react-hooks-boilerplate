@@ -28,7 +28,6 @@ module.exports = {
             automaticNameMaxLength: 30,
             cacheGroups: {
                 default: {
-                    minChunks: 1,
                     priority: -20,
                     reuseExistingChunk: true
                 },
@@ -42,7 +41,10 @@ module.exports = {
             },
             chunks: 'async',
             maxAsyncRequests: Infinity,
-            maxInitialRequests: Infinity
+            maxInitialRequests: Infinity,
+            minChunks: 1,
+            minSize: 30000,
+            name: true
         }
     },
     plugins: [

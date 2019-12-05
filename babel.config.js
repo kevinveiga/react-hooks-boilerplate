@@ -8,6 +8,7 @@ module.exports = function getBabelConfiguration(api) {
             '@babel/preset-env',
             {
                 corejs: '3',
+                modules: false,
                 targets: {
                     esmodules: true
                 },
