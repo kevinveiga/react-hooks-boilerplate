@@ -17,7 +17,7 @@ import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessa
 
 import { Cell, Grid } from '../../style/grid';
 
-const LeadwallForm = ({ ...props }) => {
+export const LeadwallForm = ({ ...props }) => {
     // CONTEXT
     const setChangeLeadwallContext = useContext(NoticiaContext);
 
@@ -96,5 +96,3 @@ const LeadwallForm = ({ ...props }) => {
         </FormStyled>
     );
 };
-
-export default LeadwallForm;

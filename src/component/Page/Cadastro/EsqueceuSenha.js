@@ -1,36 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { CadastroContext } from '../../../store/cadastro/cadastroContext';
-
-import { CadastroForm } from '../../Form/CadastroForm';
-import { ConhecerMaisForm } from '../../Form/ConhecerMaisForm';
+import { EsqueceuSenhaForm } from '../../Form/EsqueceuSenhaForm';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
-import { P, Title5 } from '../../../style/text';
+import { P, Title2, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
-export const Cadastro = ({ location }) => {
-    console.log('location: ', location);
+import cadastroLogin from '../../../asset/image/cadastro-login.jpg';
 
-    // ACTION
-    const [stateConhecerMais, setStateConhecerMaisContext] = useState(false);
-
+export const EsqueceuSenha = ({ location }) => {
     return (
-        <CadastroContext.Provider value={setStateConhecerMaisContext}>
+        <>
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
                     <Box alignContent="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
+                        <BgImageLazyLoad overlayColor="colorBlackTransparent5" url={cadastroLogin} />
+
                         <Box p={4} width="100%">
                             <P align="right" fontSize="24px" mb={4} textAlign="right" themeColor="light">
-                                Aqui vai uma super frase de
+                                &quot;Aqui vai uma super frase de
                                 <br />
                                 propósito para encantar o
                                 <br />
-                                cliente maroto.
+                                cliente maroto.&quot;
                             </P>
 
                             <Title5 fontSize="16px" color="colorPrimary" textAlign="right" themeColor="dark">
@@ -45,11 +41,13 @@ export const Cadastro = ({ location }) => {
                                 <Svg name="svg-logo-liberta" />
                             </Box>
 
-                            {!stateConhecerMais ? (
-                                <CadastroForm location={location} obj={{ colorLine: 'colorPrimary' }} />
-                            ) : (
-                                <ConhecerMaisForm location={location} obj={{ colorLine: 'colorPrimary' }} />
-                            )}
+                            <Title2 textAlign="center" themeColor="dark">
+                                Esqueceu a senha?
+                                <br />
+                                Receba uma nova por e-mail
+                            </Title2>
+
+                            <EsqueceuSenhaForm location={location} obj={{ colorLine: 'colorPrimary' }} />
                         </Container>
                     </Box>
 
@@ -60,6 +58,6 @@ export const Cadastro = ({ location }) => {
                     </Box>
                 </Flex>
             </Main>
-        </CadastroContext.Provider>
+        </>
     );
 };

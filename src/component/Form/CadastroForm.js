@@ -24,7 +24,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
 
-const CadastroForm = ({ ...props }) => {
+export const CadastroForm = ({ ...props }) => {
     // CONTEXT
     const setStateConhecerMaisContext = useContext(CadastroContext);
     const { setStateAuthTokenContext } = useContext(Context);
@@ -215,5 +215,3 @@ const CadastroForm = ({ ...props }) => {
         </>
     );
 };
-
-export default CadastroForm;

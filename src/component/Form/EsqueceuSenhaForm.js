@@ -18,7 +18,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
-const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
+export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
     // CONTEXT
     const { setStateAuthTokenContext } = useContext(Context);
 
@@ -94,5 +94,3 @@ const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
         </Flex>
     );
 };
-
-export default EsqueceuSenhaForm;

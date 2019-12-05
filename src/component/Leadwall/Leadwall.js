@@ -1,14 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
-import { LoaderComponent } from '../Loader/LoaderComponent';
+import { LeadwallForm } from '../Form/LeadwallForm';
 import { Svg } from '../Svg/Svg';
 
 import { LeadwallStyled, LeadwallTermosStyled } from './LeadwallStyled';
 
-import { P, Title3, Title5 } from '../../style/text';
-
-// LAZY
-const LeadwallForm = lazy(() => import('../Form/LeadwallForm'));
+import { Title3, Title5 } from '../../style/text';
 
 export const Leadwall = ({ ...props }) => {
     return (
@@ -24,9 +21,7 @@ export const Leadwall = ({ ...props }) => {
                     Deixe seu melhor e-mail para desbloquear o conteúdo.
                 </Title5>
 
-                <Suspense fallback={LoaderComponent()}>
-                    <LeadwallForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'leadwall' }} />
-                </Suspense>
+                <LeadwallForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'leadwall' }} />
             </LeadwallStyled>
 
             <LeadwallTermosStyled mb="75px" px={{ d: 3, sm: '15%' }} py={{ d: 2, sm: 3 }} {...props}>

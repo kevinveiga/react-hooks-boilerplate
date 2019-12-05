@@ -21,7 +21,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-const LoginForm = ({ location, ...otherProps }) => {
+export const LoginForm = ({ location, ...otherProps }) => {
     // CONTEXT
     const { setStateAuthTokenContext } = useContext(Context);
 
@@ -134,5 +134,3 @@ const LoginForm = ({ location, ...otherProps }) => {
         </Flex>
     );
 };
-
-export default LoginForm;

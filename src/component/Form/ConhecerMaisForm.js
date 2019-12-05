@@ -21,7 +21,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Span, Title3 } from '../../style/text';
 
-const ConhecerMaisForm = ({ ...props }) => {
+export const ConhecerMaisForm = ({ ...props }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
@@ -226,5 +226,3 @@ const ConhecerMaisForm = ({ ...props }) => {
         </>
     );
 };
-
-export default ConhecerMaisForm;

@@ -1,5 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
+import { LoginForm } from '../../Form/LoginForm';
+import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
@@ -8,10 +10,8 @@ import { Container, Main } from '../../../style/layout';
 import { P, Title2, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
-// LAZY
-const LoginForm = lazy(() => import('../../Form/LoginForm'));
-
 export const Login = ({ location }) => {
+    console.log('location: ', location);
     return (
         <>
             <Main backgroundColor="colorGrayLight5" header={false}>
@@ -48,9 +48,7 @@ export const Login = ({ location }) => {
                                 Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/cadastro" text="Se cadastre aqui." />
                             </P>
 
-                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
-                            </Suspense>
+                            <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
                         </Container>
                     </Box>
 

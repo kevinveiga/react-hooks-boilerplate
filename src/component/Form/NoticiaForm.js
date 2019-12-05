@@ -17,7 +17,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Span, Title3 } from '../../style/text';
 
-const NoticiaForm = ({ ...props }) => {
+export const NoticiaForm = ({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
@@ -166,5 +166,3 @@ const NoticiaForm = ({ ...props }) => {
         </Flex>
     );
 };
-
-export default NoticiaForm;
