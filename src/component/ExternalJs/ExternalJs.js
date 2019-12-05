@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const ExternalJs = () => {
+export const ExternalJs = () => {
     useEffect(() => {
         // const firstScript = document.getElementsByTagName('script')[0];
 
@@ -88,5 +88,3 @@ const ExternalJs = () => {
 
     return null;
 };
-
-export default ExternalJs;

@@ -1,5 +1,7 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 
+import Slider from 'react-slick';
+
 import { apiUrlHome } from '../../../config';
 
 import { useDestaqueApi } from '../../../service/destaque';
@@ -35,7 +37,6 @@ import { Span, Title2, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
-const Slider = lazy(() => import('react-slick'));
 const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
@@ -131,64 +132,62 @@ export const Home = ({ location }) => {
                         </BannerContainerStyled>
                     ) : (
                         <CarouselStyled>
-                            <Suspense fallback={LoaderComponent()}>
-                                <Slider {...carouselOptions}>
-                                    {Object.keys(objectItens).map((key) => {
-                                        const group = objectItens[key];
+                            <Slider {...carouselOptions}>
+                                {Object.keys(objectItens).map((key) => {
+                                    const group = objectItens[key];
 
-                                        return (
-                                            <div key={key}>
-                                                <BannerContainerStyled key={key} display="grid" gridAutoColumns="1fr" gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}>
-                                                    {group.map((item, i, newArray) => {
-                                                        let row = {};
+                                    return (
+                                        <div key={key}>
+                                            <BannerContainerStyled key={key} display="grid" gridAutoColumns="1fr" gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}>
+                                                {group.map((item, i, newArray) => {
+                                                    let row = {};
 
-                                                        if (i === 0) {
-                                                            row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
-                                                        }
+                                                    if (i === 0) {
+                                                        row = { d: 1, md: newArray.length > 0 ? '1 / span 2' : 1 };
+                                                    }
 
-                                                        if (i === 1) {
-                                                            row = { d: 1, md: newArray.length === 2 ? '1 / span 2' : 1 };
-                                                        }
+                                                    if (i === 1) {
+                                                        row = { d: 1, md: newArray.length === 2 ? '1 / span 2' : 1 };
+                                                    }
 
-                                                        if (i === 2) {
-                                                            row = { d: 1, md: 2 };
-                                                        }
+                                                    if (i === 2) {
+                                                        row = { d: 1, md: 2 };
+                                                    }
 
-                                                        return (
-                                                            <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
-                                                                <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
-                                                                    <NoticiaBox
-                                                                        alignContent="flex-end"
-                                                                        color={item.category.featured_color}
-                                                                        display="flex"
-                                                                        flexWrap="wrap"
-                                                                        height="100%"
-                                                                        overflow="hidden"
-                                                                        p={{ d: 2, sm: 3, md: 4 }}
-                                                                        themeColor="light"
-                                                                        verticalAlign="middle"
-                                                                        width="100%"
-                                                                    >
-                                                                        <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
+                                                    return (
+                                                        <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
+                                                            <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                                                                <NoticiaBox
+                                                                    alignContent="flex-end"
+                                                                    color={item.category.featured_color}
+                                                                    display="flex"
+                                                                    flexWrap="wrap"
+                                                                    height="100%"
+                                                                    overflow="hidden"
+                                                                    p={{ d: 2, sm: 3, md: 4 }}
+                                                                    themeColor="light"
+                                                                    verticalAlign="middle"
+                                                                    width="100%"
+                                                                >
+                                                                    <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
 
-                                                                        <Box>
-                                                                            <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
+                                                                    <Box>
+                                                                        <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
 
-                                                                            <NoticiaBoxTitleStyled fontSize={{ d: 24, md: 32 }}>{item.title}</NoticiaBoxTitleStyled>
+                                                                        <NoticiaBoxTitleStyled fontSize={{ d: 24, md: 32 }}>{item.title}</NoticiaBoxTitleStyled>
 
-                                                                            <span>{`Por ${item.author}`}</span>
-                                                                        </Box>
-                                                                    </NoticiaBox>
-                                                                </LinkTo>
-                                                            </BannerCellStyled>
-                                                        );
-                                                    })}
-                                                </BannerContainerStyled>
-                                            </div>
-                                        );
-                                    })}
-                                </Slider>
-                            </Suspense>
+                                                                        <span>{`Por ${item.author}`}</span>
+                                                                    </Box>
+                                                                </NoticiaBox>
+                                                            </LinkTo>
+                                                        </BannerCellStyled>
+                                                    );
+                                                })}
+                                            </BannerContainerStyled>
+                                        </div>
+                                    );
+                                })}
+                            </Slider>
                         </CarouselStyled>
                     ))}
 

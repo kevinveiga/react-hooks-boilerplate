@@ -18,7 +18,7 @@ import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
-const Header = () => {
+export const Header = () => {
     // CONTEXT
     const { stateHeaderAlternativeContext } = useContext(Context);
 
@@ -109,5 +109,3 @@ const Header = () => {
         </HeaderContext.Provider>
     ) : null;
 };
-
-export default Header;

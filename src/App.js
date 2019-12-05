@@ -1,26 +1,23 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
+import { Router } from './router';
+
 import { useAuth } from './store/auth/auth';
 import { Context } from './store/context';
 import { useModalMessage } from './store/modalMessage/modalMessage';
 
-import { Router } from './router';
-
+import { ExternalJs } from './component/ExternalJs/ExternalJs';
+import { Footer } from './component/Footer/Footer';
+import { Header } from './component/Header/Header';
 import { Loader } from './component/Loader/Loader';
-import { LoaderComponent } from './component/Loader/LoaderComponent';
+import { ModalMessage } from './component/Modal/ModalMessage';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
-
-// LAZY
-const ExternalJs = lazy(() => import('./component/ExternalJs/ExternalJs'));
-const Footer = lazy(() => import('./component/Footer/Footer'));
-const Header = lazy(() => import('./component/Header/Header'));
-const ModalMessage = lazy(() => import('./component/Modal/ModalMessage'));
 
 export const App = () => {
     // ACTION
@@ -55,27 +52,19 @@ export const App = () => {
                         >
                             <Loader active={stateLoader} />
 
-                            <Suspense fallback={LoaderComponent()}>
-                                <Header alternative={stateHeaderAlternative} />
-                            </Suspense>
+                            <Header alternative={stateHeaderAlternative} />
 
                             <Router />
 
-                            <Suspense fallback={LoaderComponent()}>
-                                <Footer alternative={stateFooterAlternative} />
-                            </Suspense>
+                            <Footer alternative={stateFooterAlternative} />
 
-                            <Suspense fallback={LoaderComponent()}>
-                                <ModalMessage text={stateModalMessage} />
-                            </Suspense>
+                            <ModalMessage text={stateModalMessage} />
                         </Context.Provider>
                     </BrowserRouter>
                 </HelmetProvider>
             </ThemeProvider>
 
-            <Suspense fallback={LoaderComponent()}>
-                <ExternalJs />
-            </Suspense>
+            <ExternalJs />
         </>
     );
 };
