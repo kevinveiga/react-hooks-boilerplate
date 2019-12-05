@@ -92,6 +92,7 @@ module.exports = {
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`,
             templatedURLs: {
+                '/index.html': '[manifestHash]',
                 '/manifest.json': '[manifestHash]'
             }
         }),
