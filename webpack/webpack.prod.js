@@ -30,14 +30,12 @@ module.exports = {
             automaticNameDelimiter: '~',
             automaticNameMaxLength: 30,
             cacheGroups: {
-                common: {
+                default: {
                     chunks: 'async',
                     enforce: true,
-                    name: 'common',
-                    priority: 10,
+                    priority: -20,
                     reuseExistingChunk: true
                 },
-                default: false,
                 vendor: {
                     chunks: 'all',
                     name(module) {
@@ -45,7 +43,7 @@ module.exports = {
 
                         return `npm.${packageName.replace('@', '')}`;
                     },
-                    priority: 20,
+                    priority: -10,
                     test: /[\\/]node_modules[\\/]/
                 },
                 vendors: false
