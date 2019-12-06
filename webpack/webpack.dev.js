@@ -25,7 +25,7 @@ module.exports = {
         //     }
         // }
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     mode: 'development',
     plugins: [
         new Dotenv({
