@@ -111,5 +111,11 @@ module.exports = {
         extensions: ['*', '.js'],
         modules: ['src', 'node_modules']
     },
+    stats: {
+        errorDetails: true,
+        maxModules: Infinity,
+        moduleTrace: true,
+        optimizationBailout: false
+    },
     target: 'web'
 };
