@@ -9,7 +9,6 @@ module.exports = {
     optimization: {
         concatenateModules: true,
         flagIncludedChunks: true,
-        mangleExports: true,
         mangleWasmImports: true,
         mergeDuplicateChunks: true,
         moduleIds: 'hashed',
