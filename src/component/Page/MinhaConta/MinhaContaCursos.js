@@ -30,7 +30,7 @@ import { Tab, TabContent, TabsContent, TabSelect } from '../../../style/tab';
 import { Span, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
-const MinhaContaCursos = ({ ...breadcrumb }) => {
+const MinhaContaCursos = () => {
     // API
     const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
@@ -83,7 +83,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
     // DATA
     const meusCursos = cursosLength > 0 && stateCursos.data.data;
 
-    let noData;
+    let noData = true;
 
     return (
         <>
@@ -92,7 +92,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Seo> */}
 
-            <HeaderAlternative currentBreadcrumbLabel="Cursos" {...breadcrumb} />
+            <HeaderAlternative currentBreadcrumbLabel="Cursos" />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>
@@ -100,7 +100,7 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                         <MinhaContaMenu />
 
                         <MinhaContaCenterStyled p={{ d: 3, md: 5 }} width={{ d: '100%', lg: 8 / 10 }}>
-                            {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Cursos" obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
+                            {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Cursos" obj={{ hoverColor: 'colorWhite' }} />}
 
                             <Flex display="flex" flexWrap="wrap">
                                 <Tab group="tab-group-course" total={4} width="100%">
@@ -155,8 +155,6 @@ const MinhaContaCursos = ({ ...breadcrumb }) => {
                                                 {meusCursos &&
                                                     Object.keys(meusCursos).map((key) => {
                                                         const cursos = meusCursos[key];
-
-                                                        noData = true;
 
                                                         return (
                                                             cursos.data.length > 0 &&
