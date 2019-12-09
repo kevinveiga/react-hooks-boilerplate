@@ -97,8 +97,8 @@ export const Header = () => {
 
                             {/* <Social change={stateChangeHeaderScroll} /> */}
 
-                            <LinkTo ariaLabel="Seja Membro" link="/cadastro">
-                                <Button mx={3} text="Seja Membro" textTransform="none" themeSize="small" />
+                            <LinkTo ariaLabel="Seja Membro" link="/cadastro" mx={3}>
+                                <Button text="Seja Membro" textTransform="none" themeSize="small" />
                             </LinkTo>
 
                             <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
