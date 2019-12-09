@@ -3,7 +3,9 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import useForm from 'react-hook-form';
 
-import { apiUrlLogin, defaultErrorMsg } from '../../config';
+import { apiUrlCursos, apiUrlLogin, defaultErrorMsg } from '../../config';
+
+import { cursoMatricula } from '../../service/curso';
 
 import { Context } from '../../store/context';
 
@@ -56,9 +58,15 @@ export const LoginForm = ({ location, ...otherProps }) => {
                 if (result.data && result.data.success == true) {
                     setStateAuthTokenContext(result.data.token);
 
-                    window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
+                    // Matricular curso ou redirecionar para Minha Conta Início
+                    if (JSON.parse(window.sessionStorage.getItem('cursoId'))) {
+                        cursoMatricula(JSON.parse(window.sessionStorage.getItem('cursoId')), `${apiUrlCursos}/matricular`);
+                    } else {
+                        window.location.pathname = '/minha-conta/inicio';
+                    }
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
+
                     console.error('result: ', result);
                 }
             } catch (error) {

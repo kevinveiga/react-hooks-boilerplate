@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
 import parse from 'html-react-parser';
 
 import { apiUrlCursos } from '../../../config';
 
-import { useCursoApi } from '../../../service/curso';
+import { cursoMatricula, useCursoApi } from '../../../service/curso';
 
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -81,28 +80,8 @@ export const Curso = ({ match }) => {
     const curso = cursoLength > 0 && stateCurso.data.data && stateCurso.data.data.data[0];
 
     // MATRICULA
-    const handleMatricula = () => () => {
-        const fetchData = async () => {
-            try {
-                const result = await axios.post(`${apiUrlCursos}/matricular`, { curso_id: curso.id });
-
-                if (result.data && result.data.success == true) {
-                    window.location.pathname = `/minha-conta/curso/${curso.id}`;
-                } else {
-                    console.error('result: ', result);
-                }
-            } catch (error) {
-                if (error.response && error.response.status === 403) {
-                    console.error('error: ', error);
-
-                    window.location.pathname = `/minha-conta/curso/${curso.id}`;
-                } else {
-                    console.error('error: ', error);
-                }
-            }
-        };
-
-        fetchData();
+    const handleMatricula = (cursoId) => () => {
+        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
     };
 
     return (
@@ -183,7 +162,7 @@ export const Curso = ({ match }) => {
                                     </Box>
 
                                     <Box display={{ d: 'none', sm: 'block' }}>
-                                        <Button fontSize="24px" onClick={handleMatricula()} text="Começar" />
+                                        <Button fontSize="24px" onClick={handleMatricula(curso.id)} text="Começar" />
                                     </Box>
                                 </Flex>
                             </Container>
@@ -192,7 +171,7 @@ export const Curso = ({ match }) => {
                         <Wrap>
                             <Flex display={{ d: 'flex', sm: 'none' }} flexWrap="wrap" justifyContent="center">
                                 <Box mt={4}>
-                                    <Button fontSize="20px" mx="auto" onClick={handleMatricula()} text="Começar" />
+                                    <Button fontSize="20px" mx="auto" onClick={handleMatricula(curso.id)} text="Começar" />
                                 </Box>
                             </Flex>
 
@@ -287,7 +266,7 @@ export const Curso = ({ match }) => {
                             </Title4>
 
                             <Box textAlign="center">
-                                <Button fontSize="24px" mx="auto" onClick={handleMatricula()} text="Começar" />
+                                <Button fontSize="24px" mx="auto" onClick={handleMatricula(curso.id)} text="Começar" />
                             </Box>
                         </Container>
 

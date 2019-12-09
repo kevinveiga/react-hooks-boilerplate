@@ -5,6 +5,36 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
+export const cursoMatricula = (cursoId, url) => {
+    const fetchData = async () => {
+        try {
+            const result = await axios.post(url, { curso_id: cursoId });
+
+            if (result.data && result.data.success == true) {
+                window.sessionStorage.setItem('cursoId', null);
+
+                window.location.pathname = `/minha-conta/curso/${cursoId}`;
+            } else {
+                console.error('result: ', result);
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 403) {
+                window.sessionStorage.setItem('cursoId', JSON.stringify(cursoId));
+
+                console.error('error: ', error);
+
+                window.location.pathname = `/minha-conta/curso/${cursoId}`;
+            } else {
+                console.error('error: ', error);
+            }
+        }
+    };
+
+    fetchData();
+
+    return null;
+};
+
 export const useCursoApi = (url, initialData) => {
     const [stateCursoUrl, setStateCursoUrl] = useState(url);
 

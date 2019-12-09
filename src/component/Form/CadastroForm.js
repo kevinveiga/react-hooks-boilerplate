@@ -65,6 +65,7 @@ export const CadastroForm = ({ ...props }) => {
                     setStateConhecerMaisContext(true);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
+
                     console.error('result: ', result);
                 }
             } catch (error) {

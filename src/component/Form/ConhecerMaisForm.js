@@ -3,7 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import useForm from 'react-hook-form';
 
-import { apiUrlPerfil, defaultErrorMsg } from '../../config';
+import { apiUrlCursos, apiUrlPerfil, defaultErrorMsg } from '../../config';
+
+import { cursoMatricula } from '../../service/curso';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -68,9 +70,15 @@ export const ConhecerMaisForm = ({ ...props }) => {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    window.location.pathname = window.sessionStorage.getItem('cursoPath') || '/minha-conta/inicio';
+                    // Matricular curso ou redirecionar para Minha Conta Início
+                    if (JSON.parse(window.sessionStorage.getItem('cursoId'))) {
+                        cursoMatricula(JSON.parse(window.sessionStorage.getItem('cursoId')), `${apiUrlCursos}/matricular`);
+                    } else {
+                        window.location.pathname = '/minha-conta/inicio';
+                    }
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
+
                     console.error('result: ', result);
                 }
             } catch (error) {

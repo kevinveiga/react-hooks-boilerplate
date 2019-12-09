@@ -52,6 +52,7 @@ export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
                     window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
+
                     console.error('result: ', result);
                 }
             } catch (error) {
