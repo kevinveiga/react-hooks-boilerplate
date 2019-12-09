@@ -218,7 +218,7 @@ export const Noticias = () => {
                                                                         <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" hover="true" key={noticia.id}>
                                                                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                                                                 <NoticiaBox
-                                                                                    alignContent="flex-end"
+                                                                                    alignItems="flex-end"
                                                                                     color={categoria.featured_color}
                                                                                     display="flex"
                                                                                     flexWrap="wrap"

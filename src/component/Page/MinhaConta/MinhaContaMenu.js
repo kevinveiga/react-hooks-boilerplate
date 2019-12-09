@@ -11,7 +11,7 @@ import { variable } from '../../../style/variable';
 export const MinhaContaMenu = () => {
     return (
         <MinhaContaLeftStyled
-            alignContent="flex-start"
+            alignItems="flex-start"
             display={{ d: 'none', lg: 'flex' }}
             flexWrap="wrap"
             justifyContent="flex-start"

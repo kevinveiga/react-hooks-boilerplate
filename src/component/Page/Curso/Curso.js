@@ -116,7 +116,7 @@ export const Curso = ({ match }) => {
 
                         <CursoTopInfoStyled>
                             <Container mx="auto" px={3} py={{ d: 2, sm: 3 }}>
-                                <Flex alignContent="center" display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'space-between' }}>
+                                <Flex alignItems="center" display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'space-between' }}>
                                     <Box width={{ d: '100%', sm: 4 / 6, md: 3 / 4 }}>
                                         <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }} textAlign="center">
                                             <Box borderRight="1px solid rgba(216, 221, 225, 1)" pr={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
@@ -318,7 +318,7 @@ export const Curso = ({ match }) => {
                                                     </TooltipStyled>
                                                 </Cell>
 
-                                                <Cell alignContent="center" display="inline-flex">
+                                                <Cell alignItems="center" display="inline-flex">
                                                     <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
                                                         <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
                                                     </Box>
@@ -342,7 +342,7 @@ export const Curso = ({ match }) => {
                                                     </TooltipStyled>
                                                 </Cell>
 
-                                                <Cell alignContent="center" display="inline-flex">
+                                                <Cell alignItems="center" display="inline-flex">
                                                     <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
                                                         <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
                                                     </Box>
@@ -374,7 +374,7 @@ export const Curso = ({ match }) => {
                                                     <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} onClick={() => setStateCursoUrl(`${apiUrlCursos}/${curso.id}`)} to={`/curso/${curso.id}`} width="100%">
                                                         <ListBox alignContent="space-between" color={stateCurso.featured_color} display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
                                                             <ListBoxHover zindex="3">
-                                                                <Flex alignContent="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
+                                                                <Flex alignItems="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
                                                                     <Box textAlign="center">
                                                                         <Svg fill="colorWhite" height="50px" mb={2} name="svg-plus" />
 

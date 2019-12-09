@@ -163,7 +163,7 @@ export const Aprenda = () => {
                                                                         verticalAlign="middle"
                                                                     >
                                                                         <ListBoxHover zindex="3">
-                                                                            <Flex alignContent="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
+                                                                            <Flex alignItems="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
                                                                                 <Box textAlign="center">
                                                                                     <Svg fill="colorWhite" height="50px" mb={2} name="svg-plus" />
 

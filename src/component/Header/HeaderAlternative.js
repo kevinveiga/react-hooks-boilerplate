@@ -37,10 +37,10 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
             {windowWidth < parseInt(variable.md, 10) ? (
                 <HeaderStyled active={stateChangeMinhaContaMenuMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
                     <Container mx="auto" px={{ d: 4, md: 3 }}>
-                        <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
+                        <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
                             <Box width={2 / 10} />
 
-                            <Box alignContent="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
+                            <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
                                 <Box>
                                     <Svg
                                         active={stateChangeMinhaContaMenuMobile}
@@ -61,7 +61,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
             ) : (
                 <HeaderAlternativeStyled>
                     <Container mx="auto" px={{ d: 4, md: 3 }}>
-                        <Flex alignContent="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
+                        <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                             <Box>
                                 <Title5 color="colorPrimary" fontWeight="700">
                                     <Breadcrumb currentLabel={currentBreadcrumbLabel} obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />

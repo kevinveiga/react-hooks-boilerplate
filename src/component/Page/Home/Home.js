@@ -104,7 +104,7 @@ export const Home = ({ location }) => {
                                     <BannerCellStyled display="flex" gridRow={1} hover="true" key={item.id}>
                                         <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                             <NoticiaBox
-                                                alignContent="flex-end"
+                                                alignItems="flex-end"
                                                 color={item.category.featured_color}
                                                 display="flex"
                                                 flexWrap="wrap"
@@ -158,7 +158,7 @@ export const Home = ({ location }) => {
                                                         <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
                                                             <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
                                                                 <NoticiaBox
-                                                                    alignContent="flex-end"
+                                                                    alignItems="flex-end"
                                                                     color={item.category.featured_color}
                                                                     display="flex"
                                                                     flexWrap="wrap"

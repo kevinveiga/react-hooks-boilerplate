@@ -97,7 +97,7 @@ export const NoticiaForm = ({ ...props }) => {
     return (
         <Flex display="flex" flexWrap="wrap">
             <Box
-                alignContent="center"
+                alignItems="center"
                 display={stateRetornoForm ? 'inline-flex' : { d: 'none', sm: 'inline-flex' }}
                 flexWrap="wrap"
                 minHeight={stateRetornoForm ? '60vh' : '100%'}
