@@ -11,7 +11,11 @@ import { P, Title2, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 export const Login = ({ location }) => {
-    console.log('location: ', location);
+    // Guardar path do curso para redirecionamento no cadastro
+    if (location.state && location.state.referer.pathname) {
+        window.sessionStorage.setItem('cursoPath', location.state.referer.pathname);
+    }
+
     return (
         <>
             <Main backgroundColor="colorGrayLight5" header={false}>

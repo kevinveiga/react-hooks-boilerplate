@@ -68,7 +68,7 @@ export const ConhecerMaisForm = ({ ...props }) => {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    window.location.pathname = '/minha-conta/inicio';
+                    window.location.pathname = window.sessionStorage.getItem('cursoPath') || '/minha-conta/inicio';
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
                     console.error('result: ', result);

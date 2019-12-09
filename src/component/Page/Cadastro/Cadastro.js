@@ -14,8 +14,6 @@ import { P, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 export const Cadastro = ({ location }) => {
-    console.log('location: ', location);
-
     // ACTION
     const [stateConhecerMais, setStateConhecerMaisContext] = useState(false);
 
