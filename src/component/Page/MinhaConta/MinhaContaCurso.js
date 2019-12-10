@@ -40,7 +40,6 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     const cursoLength = stateCurso.data && stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
     const cursoConteudoLength = stateCursoConteudo.data && stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
-    const cursoProgressoLength = stateCursoProgresso.data && stateCursoProgresso.data.data ? Object.keys(stateCursoProgresso.data.data).length : 0;
 
     // Redirecionamento temporário
     if (stateCurso.isError == true) {
@@ -125,7 +124,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
     const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
-    const cursoProgresso = cursoProgressoLength > 0 && stateCursoProgresso.data.data;
+    const cursoProgresso = (stateCursoProgresso.data && stateCursoProgresso.data.data) || 0;
 
     // ACTION CONTEUDO
     useEffect(() => {
@@ -159,7 +158,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
             <MinhaContaCursoContext.Provider
                 value={{
-                    stateCursoProgressoContext: cursoProgresso.progresso,
+                    stateCursoProgressoContext: cursoProgresso,
                     setStateCursoConteudoDataContext: setStateCursoConteudoData,
                     setStateCursoConteudoVisualizadoUrlContext: setStateCursoConteudoVisualizadoUrl,
                     setStateMenuConteudoContext: setStateMenuConteudo
