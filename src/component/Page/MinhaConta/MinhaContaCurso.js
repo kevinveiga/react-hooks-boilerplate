@@ -209,6 +209,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         display="inline-block"
                                                         fontSize={{ d: '12px', sm: '14px' }}
                                                         height={{ d: '40px', sm: '50px' }}
+                                                        hoverColor="colorGray"
                                                         onClick={handleCursoConteudoPrevNext(curso)}
                                                         text="Conteúdo anterior"
                                                         textTransform="uppercase"
@@ -226,6 +227,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         display="inline-block"
                                                         fontSize={{ d: '12px', sm: '14px' }}
                                                         height={{ d: '40px', sm: '50px' }}
+                                                        hoverColor="colorGray"
                                                         onClick={handleCursoConteudoPrevNext(curso, conteudo)}
                                                         text="Próximo Conteúdo"
                                                         textTransform="uppercase"
