@@ -5,6 +5,39 @@ import { LinkToStyled } from '../Link/LinkToStyled';
 
 import { variable } from '../../style/variable';
 
+export const HeaderMinhaContaMenuStyled = styled.nav`
+    background-color: ${({ change }) => (change ? variable.colorBlack3 : variable.colorWhite)};
+    box-shadow: 0 2px 6px 0 ${variable.colorBlackTransparent3};
+    height: auto;
+    margin-top: 10px;
+    overflow: hidden;
+    position: absolute;
+    text-align: left;
+    transform: scaleY(0);
+    transform-origin: 0 0 0;
+    transition: background-color ${variable.transition}, transform ${variable.transition};
+    width: 100%;
+
+    ul {
+        li {
+            > a,
+            > button {
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                padding: 15px;
+            }
+        }
+    }
+
+    ${({ active }) =>
+        active &&
+        css`
+            overflow: visible;
+            transform: scaleY(1);
+        `};
+`;
+
 export const HeaderBtnMenuStyled = styled.button.attrs({ type: 'button' })`
     display: ${({ active }) => (active ? 'none' : 'block')};
     margin: auto;

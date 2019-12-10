@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile, useChangeModalLogout } from '../../store/header/header';
 import { HeaderAlternativeContext } from '../../store/header/headerAlternativeContext';
@@ -25,6 +25,21 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
     const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useChangeMinhaContaMenuMobile();
     const [stateChangeModalLogout, setStateChangeModalLogout] = useChangeModalLogout();
     const windowWidth = useWindowWidth();
+
+    // Function
+    const handleChangeMinhaContaMenuMobile = useCallback(
+        (value) => () => {
+            setStateChangeMinhaContaMenuMobile(value);
+        },
+        [setStateChangeMinhaContaMenuMobile]
+    );
+
+    const handleChangeModalLogout = useCallback(
+        (value) => () => {
+            setStateChangeModalLogout(value);
+        },
+        [setStateChangeModalLogout]
+    );
 
     return (
         <HeaderAlternativeContext.Provider
@@ -53,10 +68,10 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                         change={stateChangeHeaderScroll}
                                         fill="colorSecondary"
                                         name="svg-menu"
-                                        onClick={() => setStateChangeMinhaContaMenuMobile(true)}
+                                        onClick={handleChangeMinhaContaMenuMobile(true)}
                                     />
 
-                                    <Svg active={stateChangeMinhaContaMenuMobile} name="svg-close" onClick={() => setStateChangeMinhaContaMenuMobile(false)} />
+                                    <Svg active={stateChangeMinhaContaMenuMobile} name="svg-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
                                 </Box>
 
                                 <MinhaContaMenuMobile change={stateChangeHeaderScroll} />
@@ -80,7 +95,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                     fontSize={18}
                                     fontWeight="700"
                                     hoverColor="colorWhite"
-                                    onClick={() => setStateChangeModalLogout(true)}
+                                    onClick={handleChangeModalLogout(true)}
                                     text="Logout"
                                     themeSize="none"
                                     themeType="none"

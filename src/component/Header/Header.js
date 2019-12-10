@@ -1,17 +1,18 @@
 import React, { useCallback, useContext, useState } from 'react';
 
 import { Context } from '../../store/context';
-import { useChangeHeaderScroll, useChangeMenuMobile } from '../../store/header/header';
+import { useChangeHeaderScroll, useChangeMenuMobile, useChangeModalLogout } from '../../store/header/header';
 import { HeaderContext } from '../../store/header/headerContext';
 
 import { Button } from '../Button/Button';
 import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
+import { ModalLogout } from '../Modal/ModalLogout';
 // import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
-import { HeaderBtnMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
+import { HeaderBtnMenuStyled, HeaderMinhaContaMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -25,7 +26,9 @@ export const Header = () => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
+    const [stateChangeModalLogout, setStateChangeModalLogout] = useChangeModalLogout();
     const [statePesquisa, setStatePesquisa] = useState(false);
+    const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
 
     // Function
     const handleChangeMenuMobile = useCallback(
@@ -33,6 +36,20 @@ export const Header = () => {
             setStateChangeMenuMobileContext(value);
         },
         [setStateChangeMenuMobileContext]
+    );
+
+    const handleChangeModalLogout = useCallback(
+        (value) => () => {
+            setStateChangeModalLogout(value);
+        },
+        [setStateChangeModalLogout]
+    );
+
+    const handleHeaderMinhaContaMenu = useCallback(
+        (value) => () => {
+            setStateHeaderMinhaContaMenu(!value);
+        },
+        []
     );
 
     const handlePesquisa = useCallback(
@@ -98,7 +115,32 @@ export const Header = () => {
                             {/* <Social change={stateChangeHeaderScroll} /> */}
 
                             {stateUserContext && stateUserContext.nome ? (
-                                <Button ml={3} text={`Olá ${stateUserContext.nome}`} textTransform="none" themeSize="none" themeType="none" />
+                                <Box display="inline-block" ml={3}>
+                                    <Button onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
+                                        Olá {stateUserContext.nome}
+                                        <Svg active={stateHeaderMinhaContaMenu} height="6px" ml={2} name="svg-arrow-down" />
+                                    </Button>
+
+                                    <HeaderMinhaContaMenuStyled active={stateHeaderMinhaContaMenu}>
+                                        <ul>
+                                            <li>
+                                                <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Minha Conta" />
+                                            </li>
+
+                                            <li>
+                                                <LinkTo link="/minha-conta/cursos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Cursos" />
+                                            </li>
+
+                                            <li>
+                                                <LinkTo link="/minha-conta/entrevistas" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Entrevistas" />
+                                            </li>
+
+                                            <li>
+                                                <Button onClick={handleChangeModalLogout(true)} text="Sair" themeSize="none" themeType="none" />
+                                            </li>
+                                        </ul>
+                                    </HeaderMinhaContaMenuStyled>
+                                </Box>
                             ) : (
                                 <>
                                     <LinkTo ariaLabel="Seja Membro" link="/cadastro" mx={3}>
@@ -112,6 +154,8 @@ export const Header = () => {
                     </Flex>
                 </Container>
             </HeaderStyled>
+
+            <ModalLogout visible={stateChangeModalLogout} />
         </HeaderContext.Provider>
     ) : null;
 };
