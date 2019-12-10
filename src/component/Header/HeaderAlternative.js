@@ -34,7 +34,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                 setStateChangeModalLogoutContext: setStateChangeModalLogout
             }}
         >
-            {windowWidth < parseInt(variable.md, 10) ? (
+            {windowWidth < parseInt(variable.lg, 10) ? (
                 <HeaderStyled active={stateChangeMinhaContaMenuMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
                     <Container mx="auto" px={{ d: 4, md: 3 }}>
                         <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
