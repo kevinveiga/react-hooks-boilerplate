@@ -118,10 +118,10 @@ export const Header = () => {
                                 <Box display="inline-block" ml={3}>
                                     <Button onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
                                         Olá {stateUserContext.nome}
-                                        <Svg active={stateHeaderMinhaContaMenu} height="6px" ml={2} name="svg-arrow-down" />
+                                        <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
                                     </Button>
 
-                                    <HeaderMinhaContaMenuStyled active={stateHeaderMinhaContaMenu}>
+                                    <HeaderMinhaContaMenuStyled active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll}>
                                         <ul>
                                             <li>
                                                 <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Minha Conta" />
