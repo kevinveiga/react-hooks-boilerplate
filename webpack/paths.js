@@ -13,7 +13,6 @@ module.exports = {
     outputPath: path.resolve(__dirname, '../', paths.public),
     srcPath: path.resolve(__dirname, '../', paths.src),
     templatePath: path.resolve(__dirname, '../', `${paths.src}/index.html`),
-    fontsFolder: `${paths.asset}/font`,
     imagesFolder: `${paths.asset}/image`,
     jsFolder: `${paths.asset}/js`
 };

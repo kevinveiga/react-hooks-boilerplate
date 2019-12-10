@@ -57,7 +57,7 @@ export const ButtonStyled = styled.button`
             background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorPrimary)};
             color: ${({ color }) => (color ? variable[color] : variable.colorSecondary)};
             ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
-            ${({ textTransform }) => textTransform === undefined && 'text-transform: uppercase'};
+            text-transform: ${({ textTransform }) => textTransform || 'uppercase'};
 
             svg {
                 fill: ${variable.colorSecondary};
@@ -98,7 +98,7 @@ export const ButtonStyled = styled.button`
             border: 2px solid ${({ borderColor }) => (borderColor ? variable[borderColor] : variable.colorPrimary)};
             color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
             ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
-            ${({ textTransform }) => textTransform === undefined && 'text-transform: capitalize'};
+            text-transform: ${({ textTransform }) => textTransform || 'capitalize'};
 
             svg {
                 fill: ${variable.colorPrimary};

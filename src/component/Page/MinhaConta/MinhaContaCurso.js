@@ -207,10 +207,11 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.prevId}
                                                         display="inline-block"
-                                                        fontSize={{ d: '12px', sm: '16px' }}
+                                                        fontSize={{ d: '12px', sm: '14px' }}
                                                         height={{ d: '40px', sm: '50px' }}
                                                         onClick={handleCursoConteudoPrevNext(curso)}
                                                         text="Conteúdo anterior"
+                                                        textTransform="uppercase"
                                                         themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
                                                         width={{ d: '100%', sm: 'auto' }}
@@ -223,10 +224,11 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.nextId}
                                                         display="inline-block"
-                                                        fontSize={{ d: '12px', sm: '16px' }}
+                                                        fontSize={{ d: '12px', sm: '14px' }}
                                                         height={{ d: '40px', sm: '50px' }}
                                                         onClick={handleCursoConteudoPrevNext(curso, conteudo)}
                                                         text="Próximo Conteúdo"
+                                                        textTransform="uppercase"
                                                         themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
                                                         themeType="border"
                                                         width={{ d: '100%', sm: 'auto' }}
