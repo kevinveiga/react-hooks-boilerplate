@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { ButtonStyled } from '../Button/ButtonStyled';
 import { LinkToStyled } from '../Link/LinkToStyled';
 
 import { variable } from '../../style/variable';
@@ -37,6 +38,7 @@ export const HeaderPesquisaStyled = styled.div`
     left: 0;
     overflow-x: hidden;
     position: absolute;
+    top: -15px;
     transition: background-color ${variable.transition}, left ${variable.transition}, width ${variable.transition};
     width: 0;
 
@@ -63,8 +65,22 @@ export const HeaderStyled = styled.header`
                   background-color: ${variable.colorBlack3};
                   box-shadow: none;
 
+                  ${ButtonStyled} {
+                      &:not(:hover) {
+                          color: ${variable.colorWhite};
+                      }
+                  }
+
                   ${LinkToStyled} {
-                      color: ${variable.colorWhite};
+                      &:not(:hover) {
+                          color: ${variable.colorWhite};
+                      }
+
+                      ${ButtonStyled} {
+                          &:not(:hover) {
+                              color: ${variable.colorSecondary};
+                          }
+                      }
                   }
               `
             : css`

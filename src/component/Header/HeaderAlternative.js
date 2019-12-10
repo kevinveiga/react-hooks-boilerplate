@@ -40,6 +40,12 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                         <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
                             <Box width={2 / 10} />
 
+                            <Box display="flex" flexWrap="wrap" justifyContent="center" width={6 / 10}>
+                                <LinkTo ariaLabel="Home" link="/inicio">
+                                    <Svg name="svg-logo-liberta" />
+                                </LinkTo>
+                            </Box>
+
                             <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
                                 <Box>
                                     <Svg
@@ -79,6 +85,10 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                     themeSize="none"
                                     themeType="none"
                                 />
+
+                                <LinkTo ariaLabel="Voltar para Home" link="/inicio" ml={3}>
+                                    <Button text="Voltar para Home" themeSize="small" />
+                                </LinkTo>
                             </Box>
                         </Flex>
                     </Container>

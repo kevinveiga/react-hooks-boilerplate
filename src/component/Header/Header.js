@@ -20,7 +20,7 @@ import { variable } from '../../style/variable';
 
 export const Header = () => {
     // CONTEXT
-    const { stateHeaderAlternativeContext } = useContext(Context);
+    const { stateHeaderAlternativeContext, stateUserContext } = useContext(Context);
 
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
@@ -97,11 +97,17 @@ export const Header = () => {
 
                             {/* <Social change={stateChangeHeaderScroll} /> */}
 
-                            <LinkTo ariaLabel="Seja Membro" link="/cadastro" mx={3}>
-                                <Button text="Seja Membro" textTransform="none" themeSize="small" />
-                            </LinkTo>
+                            {stateUserContext && stateUserContext.nome ? (
+                                <Button ml={3} text={`Olá ${stateUserContext.nome}`} textTransform="none" themeSize="none" themeType="none" />
+                            ) : (
+                                <>
+                                    <LinkTo ariaLabel="Seja Membro" link="/cadastro" mx={3}>
+                                        <Button text="Seja Membro" textTransform="none" themeSize="small" />
+                                    </LinkTo>
 
-                            <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                                    <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                                </>
+                            )}
                         </Box>
                     </Flex>
                 </Container>

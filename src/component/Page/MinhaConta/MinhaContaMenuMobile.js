@@ -41,8 +41,21 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                     />
                 </li>
 
+                {/* <li>
+                    <LinkTo link="/minha-conta/contato" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateChangeMinhaContaMenuMobileContext(false)} text="Contato" />
+                </li> */}
+
                 <li>
                     <Button color="colorWhite" fontWeight="700" onClick={() => setStateChangeModalLogoutContext(true)} text="Sair" themeSize="none" themeType="none" />
+                </li>
+
+                <li>
+                    <LinkTo
+                        link="/inicio"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
+                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        text="Voltar para Home"
+                    />
                 </li>
             </ul>
         </MinhaContaMenuMobileStyled>

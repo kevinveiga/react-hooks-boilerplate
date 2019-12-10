@@ -1,5 +1,6 @@
 import React, { useCallback, useContext } from 'react';
 
+import { Context } from '../../store/context';
 import { HeaderContext } from '../../store/header/headerContext';
 
 import { Input } from '../Form/Form';
@@ -14,6 +15,7 @@ import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
     // CONTEXT
+    const { stateUserContext } = useContext(Context);
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useContext(HeaderContext);
 
     // ACTION
@@ -59,18 +61,45 @@ export const HeaderMenu = ({ ...props }) => {
                 <li>
                     <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Vídeos" />
                 </li>
+
+                {/* <li>
+                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://assistente.liberta.com.vc" target="_blank" text="Perfil de Investidor" />
+                </li>
+
+                {/* <li>
+                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://pages.liberta.com.vc/fintech-week-2019/" target="_blank" text="Fintech Week" />
+                </li> */}
+
+                {/* <li>
+                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Quem Somos" />
+                </li> */}
             </ul>
 
             <Box display={{ d: 'block', md: 'none' }}>
-                <ul>
-                    <li>
-                        <LinkTo color="colorWhite" fontWeight="700" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
-                    </li>
+                {stateUserContext && stateUserContext.nome ? (
+                    <ul>
+                        <li>
+                            <LinkTo
+                                color="colorWhite"
+                                fontWeight="700"
+                                link="/minha-conta/inicio"
+                                obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                                onClick={handleChangeMenuMobile(false)}
+                                text={`Olá ${stateUserContext.nome}`}
+                            />
+                        </li>
+                    </ul>
+                ) : (
+                    <ul>
+                        <li>
+                            <LinkTo color="colorWhite" fontWeight="700" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
+                        </li>
 
-                    <li>
-                        <LinkTo color="colorWhite" fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
-                    </li>
-                </ul>
+                        <li>
+                            <LinkTo color="colorWhite" fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                        </li>
+                    </ul>
+                )}
             </Box>
 
             <HeaderMenuMobileStyled display={{ d: 'block', md: 'none' }}>
