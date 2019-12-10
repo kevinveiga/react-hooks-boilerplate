@@ -7,14 +7,17 @@ import { apiUrlPerfil, defaultErrorMsg } from '../../config';
 
 import { Context } from '../../store/context';
 
+import { useWindowWidth } from '../../store/util/windowWidth';
+
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataGet, formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
+import { scrollTo } from '../../util/scrollTo';
 import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
-import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
 
@@ -22,20 +25,31 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
-import { Image, ImageCircleContainer } from '../../style/image';
+// import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
+import { variable } from '../../style/variable';
 
 export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps }) => {
     // CONTEXT
     const { setStateModalMessageContext } = useContext(Context);
 
     // ACTION
-    const [stateViewPassword, setStateViewPassword] = useState(false);
+    // const [stateViewPassword, setStateViewPassword] = useState(false);
+    const [stateIsSubmit, setStateIsSubmit] = useState(false);
+    const windowWidth = useWindowWidth();
+
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
+        scrollTo(null, stateIsSubmit, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+
+        return undefined;
+    }, [stateIsSubmit]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     useEffect(() => {
         register({ name: 'data_nascimento' }, { ...customValidate.date });
         register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'endereco_cep' }, { ...customValidate.cep });
+        register({ name: 'endereco_cep' }, { ...customValidate.cep, ...customValidate.require });
         register({ name: 'endereco_cidade' }, { ...customValidate.require });
         register({ name: 'endereco_complemento' });
         register({ name: 'endereco_logradouro' }, { ...customValidate.require });
@@ -46,7 +60,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         register({ name: 'receber_avisos_descontos_de_cursos' });
         register({ name: 'receber_curadoria_conteudos_noticias' });
         register({ name: 'sexo' });
-        register({ name: 'telefone' }, { ...customValidate.phone });
+        register({ name: 'telefone' }, { ...customValidate.phone, ...customValidate.require });
 
         return undefined;
     }, [register]);
@@ -87,6 +101,8 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     }, [data, formId]);
 
     const submitForm = (formData) => {
+        setStateIsSubmit(true);
+
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
@@ -113,6 +129,8 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         };
 
         fetchData();
+
+        setStateIsSubmit(false);
     };
 
     return (
@@ -138,7 +156,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                                <Label color="colorGray2" text="Nome completo" />
+                                <Label color="colorGray2" mb="-10px" text="Nome completo" />
 
                                 <div>
                                     <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={formState.touched} {...otherProps} />
@@ -148,7 +166,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                                <Label color="colorGray2" text="E-mail" />
+                                <Label color="colorGray2" mb="-10px" text="E-mail" />
 
                                 <div>
                                     <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...otherProps} />
@@ -158,7 +176,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
-                                <Label color="colorGray2" text="Celular" />
+                                <Label color="colorGray2" mb="-10px" text="Celular" />
 
                                 <div>
                                     <InputMaskValidation
@@ -176,7 +194,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell>
-                                <Label color="colorGray2" text="CEP" />
+                                <Label color="colorGray2" mb="-10px" text="CEP" />
 
                                 <div>
                                     <InputMaskValidation
@@ -195,7 +213,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '2 / span 2' }}>
-                                <Label color="colorGray2" text="Endereço" />
+                                <Label color="colorGray2" mb="-10px" text="Endereço" />
 
                                 <div>
                                     <InputValidation
@@ -213,7 +231,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell>
-                                <Label color="colorGray2" text="Nº" />
+                                <Label color="colorGray2" mb="-10px" text="Nº" />
 
                                 <div>
                                     <InputMaskValidation
@@ -232,7 +250,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                                <Label color="colorGray2" text="Complemento" />
+                                <Label color="colorGray2" mb="-10px" text="Complemento" />
 
                                 <div>
                                     <InputValidation
@@ -250,7 +268,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                                <Label color="colorGray2" text="Cidade" />
+                                <Label color="colorGray2" mb="-10px" text="Cidade" />
 
                                 <div>
                                     <InputValidation
@@ -268,7 +286,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell>
-                                <Label color="colorGray2" text="Estado" />
+                                <Label color="colorGray2" mb="-10px" text="Estado" />
 
                                 <div>
                                     <Select name="endereco_uf" onChange={handleSetValue()} {...otherProps}>
@@ -278,7 +296,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                                <Label color="colorGray2" text="Data de Nascimento" />
+                                <Label color="colorGray2" mb="-10px" text="Data de Nascimento" />
 
                                 <div>
                                     <InputMaskValidation
@@ -296,11 +314,10 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
-                                <Label color="colorGray2" text="Sexo" />
+                                <Label color="colorGray2" mb="-10px" text="Sexo" />
 
                                 <div>
                                     <Select name="sexo" onChange={handleSetValue()} {...otherProps}>
-                                        <option value="">Indefinido</option>
                                         <option value="masculino">Masculino</option>
                                         <option value="feminino">Feminino</option>
                                     </Select>
@@ -308,7 +325,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             {/* <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                                <Label color="colorGray2" text="Senha" />
+                                <Label color="colorGray2" mb="-10px" text="Senha" />
 
                                 <div>
                                     <InputValidation
