@@ -36,7 +36,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
-    const [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, `${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
+    const [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, `${apiUrlCursos}/meus-cursos/${match.params.slug}/progresso`, {});
 
     const cursoLength = stateCurso.data && stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
     const cursoConteudoLength = stateCursoConteudo.data && stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;

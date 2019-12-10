@@ -21,7 +21,7 @@ import { theme } from './style/theme';
 
 export const App = () => {
     // ACTION
-    const [stateAuthToken, setStateAuthToken] = useAuth();
+    const [stateUser, setStateUser] = useAuth();
     const [stateFooterAlternative, setStateFooterAlternative] = useState(false);
     const [stateHeaderAlternative, setStateHeaderAlternative] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
@@ -42,8 +42,8 @@ export const App = () => {
                             value={{
                                 stateFooterAlternativeContext: stateFooterAlternative,
                                 stateHeaderAlternativeContext: stateHeaderAlternative,
-                                stateAuthTokenContext: stateAuthToken,
-                                setStateAuthTokenContext: setStateAuthToken,
+                                stateUserContext: stateUser,
+                                setstateUserContext: setStateUser,
                                 setStateFooterAlternativeContext: setStateFooterAlternative,
                                 setStateHeaderAlternativeContext: setStateHeaderAlternative,
                                 setStateLoaderContext: setStateLoader,

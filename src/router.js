@@ -23,13 +23,13 @@ const MinhaContaCursos = lazy(() => import('./component/Page/MinhaConta/MinhaCon
 
 const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     // CONTEXT
-    const { stateAuthTokenContext } = useContext(Context);
+    const { stateUserContext } = useContext(Context);
 
     return (
         <ErrorBoundary>
             <Suspense fallback={LoaderComponent()}>
                 <Route
-                    render={(props) => (stateAuthTokenContext ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
+                    render={(props) => (stateUserContext.token ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
                     {...otherProps}
                 />
             </Suspense>

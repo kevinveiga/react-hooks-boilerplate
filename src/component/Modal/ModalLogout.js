@@ -9,18 +9,18 @@ import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyl
 
 export const ModalLogout = ({ ...props }) => {
     // CONTEXT
-    const { setStateAuthTokenContext } = useContext(Context);
+    const { setStateUserContext } = useContext(Context);
     const { setStateChangeModalLogoutContext } = useContext(HeaderAlternativeContext);
 
     // ACTION
     const handleLogout = useCallback(
         () => () => {
-            setStateAuthTokenContext(null);
+            setStateUserContext(null);
 
             // Redirecionamento para Home
             window.location.pathname = '/';
         },
-        [setStateAuthTokenContext]
+        [setStateUserContext]
     );
 
     return (

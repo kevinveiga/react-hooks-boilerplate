@@ -2,13 +2,13 @@ import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
 export const useAuth = () => {
-    const [stateAuthToken, setStateAuthToken] = useState(JSON.parse(window.localStorage.getItem('token')));
+    const [stateUser, setStateUser] = useState(JSON.parse(window.localStorage.getItem('user')) || JSON.parse('{ "nome": null, "token": null }'));
 
     const authInterceptorRequest = useCallback(() => {
         axios.interceptors.request.use(
             (response) => {
                 const config = response;
-                const token = stateAuthToken;
+                const { token } = stateUser;
 
                 if (token) {
                     config.headers.Authorization = `Bearer ${token}`;
@@ -20,7 +20,7 @@ export const useAuth = () => {
                 return Promise.reject(error);
             }
         );
-    }, [stateAuthToken]);
+    }, [stateUser]);
 
     const authInterceptorResponse = useCallback(() => {
         axios.interceptors.response.use(null, (error) => {
@@ -34,9 +34,9 @@ export const useAuth = () => {
     authInterceptorResponse();
 
     useEffect(() => {
-        window.localStorage.setItem('token', JSON.stringify(stateAuthToken));
+        window.localStorage.setItem('user', JSON.stringify(stateUser));
 
-        if (!stateAuthToken) {
+        if (!stateUser.token) {
             // Delete api-cache in logout
             if ('serviceWorker' in navigator) {
                 caches.keys().then((cacheNames) => {
@@ -56,7 +56,7 @@ export const useAuth = () => {
             axios.interceptors.request.eject(authInterceptorRequest);
             axios.interceptors.response.eject(authInterceptorResponse);
         };
-    }, [stateAuthToken, authInterceptorRequest, authInterceptorResponse]);
+    }, [authInterceptorRequest, authInterceptorResponse, stateUser]);
 
-    return [stateAuthToken, setStateAuthToken];
+    return [stateUser, setStateUser];
 };

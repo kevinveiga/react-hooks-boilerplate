@@ -25,7 +25,7 @@ import { P } from '../../style/text';
 
 export const LoginForm = ({ location, ...otherProps }) => {
     // CONTEXT
-    const { setStateAuthTokenContext } = useContext(Context);
+    const { setStateUserContext } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -56,7 +56,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateAuthTokenContext(result.data.token);
+                    setStateUserContext(result.data.token);
 
                     // Matricular curso ou redirecionar para Minha Conta Início
                     if (JSON.parse(window.sessionStorage.getItem('cursoId'))) {

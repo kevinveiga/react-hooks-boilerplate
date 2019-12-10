@@ -27,7 +27,7 @@ import { P, Title2, Title4 } from '../../style/text';
 export const CadastroForm = ({ ...props }) => {
     // CONTEXT
     const setStateConhecerMaisContext = useContext(CadastroContext);
-    const { setStateAuthTokenContext } = useContext(Context);
+    const { setStateUserContext } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -61,7 +61,7 @@ export const CadastroForm = ({ ...props }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateAuthTokenContext(result.data.token);
+                    setStateUserContext(result.data.token);
                     setStateConhecerMaisContext(true);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
