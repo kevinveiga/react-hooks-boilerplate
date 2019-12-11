@@ -7,10 +7,11 @@ module.exports = function getBabelConfiguration(api) {
         [
             '@babel/preset-env',
             {
-                corejs: { version: '3', proposals: false },
+                corejs: { version: '3' },
                 loose: true,
                 modules: false,
                 targets: {
+                    browsers: ['last 2 versions'],
                     esmodules: true
                 },
                 useBuiltIns: 'entry'
