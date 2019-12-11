@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "",
     "main": "webpack.config.js",
-    "sideEffects": false,
     "scripts": {
         "prebuild": "echo \"PreBuild\"",
         "build": "npm run prod",
@@ -15,6 +14,7 @@
     "keywords": [],
     "author": "Kevin M. Veiga",
     "license": "ISC",
+    "sideEffects": false,
     "devDependencies": {
         "@babel/core": "^7.7.5",
         "@babel/preset-env": "^7.7.6",

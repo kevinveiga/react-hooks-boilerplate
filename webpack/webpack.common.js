@@ -51,7 +51,7 @@ module.exports = {
                             },
                             mozjpeg: {
                                 progressive: true,
-                                quality: 65
+                                quality: 60
                             },
                             optipng: {
                                 enabled: false
@@ -62,7 +62,7 @@ module.exports = {
                                 speed: 4
                             },
                             webp: {
-                                quality: 75
+                                quality: 70
                             }
                         }
                     }
