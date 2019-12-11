@@ -101,7 +101,7 @@ export const Header = () => {
                             <HeaderMenu change={stateChangeHeaderScroll} />
                         </Box>
 
-                        <Box display={{ d: 'none', md: 'block' }} textAlign="right">
+                        <Box alignItems="center" display={{ d: 'none', md: 'flex' }} height="50px" textAlign="right">
                             <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                                 <Grid display="grid" gridAutoColumns="1fr" px={2}>
                                     <Cell width="100%">

@@ -71,7 +71,6 @@ export const HeaderPesquisaStyled = styled.div`
     left: 0;
     overflow-x: hidden;
     position: absolute;
-    top: -15px;
     transition: background-color ${variable.transition}, left ${variable.transition}, width ${variable.transition};
     width: 0;
 
