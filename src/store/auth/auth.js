@@ -1,5 +1,6 @@
-import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+
+import axios from 'axios';
 
 export const useAuth = () => {
     const [stateUser, setStateUser] = useState(JSON.parse(window.localStorage.getItem('user')) || JSON.parse('{ "nome": null, "token": null }'));

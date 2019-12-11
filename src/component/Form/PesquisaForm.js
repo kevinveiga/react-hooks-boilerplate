@@ -48,9 +48,11 @@ export const PesquisaForm = ({ ...props }) => {
     });
 
     const submitForm = (formData) => {
-        window.history.replaceState('Pesquisa', '', formData.query);
+        if (formData.query) {
+            window.history.replaceState('Pesquisa', '', formData.query);
 
-        setStatePesquisaDataContext({ params: formData, url: `${apiUrlNoticias}/busca` });
+            setStatePesquisaDataContext({ params: formData, url: `${apiUrlNoticias}/busca` });
+        }
     };
 
     return (
