@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
+import Resizer from 'react-image-file-resizer';
 import useForm from 'react-hook-form';
 
 import { apiUrlPerfil, defaultErrorMsg } from '../../config';
@@ -17,7 +18,7 @@ import { scrollTo } from '../../util/scrollTo';
 import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
-import { InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
 
@@ -25,9 +26,11 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
-// import { Image, ImageCircleContainer } from '../../style/image';
+import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
 import { variable } from '../../style/variable';
+
+import logo from '../../asset/image/logo.png';
 
 export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps }) => {
     // CONTEXT
@@ -66,6 +69,18 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     }, [register]);
 
     // Function
+    const handleFileChange = useCallback(
+        () => (event) => {
+            if (event.target.files[0]) {
+                Resizer.imageFileResizer(event.target.files[0], 300, 300, 'JPEG', 70, 0, (uri) => {
+                    console.log(uri);
+                    // TO DO: AXIOS
+                });
+            }
+        },
+        []
+    );
+
     const handleSetValue = useCallback(
         () => (element) => {
             setValue(element.target.name, element.target.value);
@@ -109,7 +124,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
 
                 if (result.data && result.data.success == true) {
                     setStatePerfilData({ update: true, url: apiUrlPerfil });
-                    setStateModalMessageContext('Dados salvos com sucesso.');
+                    setStateModalMessageContext({ text: 'Dados salvos com sucesso.' });
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
@@ -136,15 +151,15 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     return (
         <>
             <Flex display="flex" flexWrap="wrap" justifyContent="center">
-                {/* <Box height="150px" mb={4} width="150px">
+                <Box height="150px" mb={4} width="150px">
                     <ImageCircleContainer>
-                        <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
+                        <Image objectFit="none" text="autor" url={logo} />
                     </ImageCircleContainer>
 
-                    <InputFile id="foto" name="foto">
+                    {/* <InputFile id="foto" name="foto" onChange={handleFileChange()}>
                         <Svg fill="colorWhite" height="20px" name="svg-camera" />
-                    </InputFile>
-                </Box> */}
+                    </InputFile> */}
+                </Box>
 
                 <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                     <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
