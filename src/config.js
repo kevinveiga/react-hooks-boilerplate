@@ -20,4 +20,6 @@ export const apiUrlPaywall = `${apiUrl}/paywall`;
 
 export const apiUrlPerfil = `${apiUrl}/perfil`;
 
+export const dataErrorMsg = 'Algo deu errado, tente novamente.';
+
 export const defaultErrorMsg = 'Erro desconhecido';

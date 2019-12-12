@@ -18,21 +18,14 @@ export const useAuth = () => {
                 return config;
             },
             (error) => {
+                console.error('Interceptors request error: ', error);
+
                 return Promise.reject(error);
             }
         );
     }, [stateUser]);
 
-    const authInterceptorResponse = useCallback(() => {
-        axios.interceptors.response.use(null, (error) => {
-            console.error('Interceptors error: ', error);
-
-            return Promise.reject(error);
-        });
-    }, []);
-
     authInterceptorRequest();
-    authInterceptorResponse();
 
     useEffect(() => {
         window.localStorage.setItem('user', JSON.stringify(stateUser));
@@ -51,13 +44,11 @@ export const useAuth = () => {
         }
 
         authInterceptorRequest();
-        authInterceptorResponse();
 
         return () => {
             axios.interceptors.request.eject(authInterceptorRequest);
-            axios.interceptors.response.eject(authInterceptorResponse);
         };
-    }, [authInterceptorRequest, authInterceptorResponse, stateUser]);
+    }, [authInterceptorRequest, stateUser]);
 
     return [stateUser, setStateUser];
 };

@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 import { variable } from '../../style/variable';
 
 export const ModalMessageStyled = styled.div`
-    background-color: ${variable.colorPrimary};
+    background-color: ${({ bgColor }) => (bgColor ? variable[bgColor] : variable.colorPrimary)};
     border-radius: ${variable.borderRadius};
     bottom: 25px;
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent3};
+    color: ${({ color }) => (color ? variable[color] : variable.colorWhite)};
     opacity: 0;
     padding: ${variable.spacingSM} ${variable.spacingMD};
     pointer-events: none;

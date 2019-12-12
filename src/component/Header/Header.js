@@ -115,7 +115,7 @@ export const Header = () => {
                             {/* <Social change={stateChangeHeaderScroll} /> */}
 
                             {stateUserContext && stateUserContext.nome ? (
-                                <Box display="inline-block" ml={3}>
+                                <Box display="inline-block" minWidth="150px" ml={3}>
                                     <Button onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
                                         Olá {stateUserContext.nome}
                                         <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
