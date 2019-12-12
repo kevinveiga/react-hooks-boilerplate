@@ -1,11 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { apiUrlNoticias } from '../../../config';
 
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
-import { Context } from '../../../store/context';
 // import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -40,9 +39,6 @@ export const Noticias = () => {
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = noticiasLength > 0 && noticiasCategoriasLength > 0;
 
-    // CONTEXT
-    const { setStateLoaderContext } = useContext(Context);
-
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
     // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
@@ -56,19 +52,6 @@ export const Noticias = () => {
         return undefined;
     }, [isDataLoaded]);
     /* eslint-enable react-hooks/exhaustive-deps */
-
-    // Loader
-    useEffect(() => {
-        if (stateNoticias.isLoading || stateNoticiasCategoria.isLoading) {
-            setStateLoaderContext(true);
-        } else {
-            setTimeout(() => {
-                setStateLoaderContext(false);
-            }, variable.timeout1s);
-        }
-
-        return undefined;
-    }, [stateNoticias.isLoading, stateNoticiasCategoria.isLoading, setStateLoaderContext]);
 
     // Function
     const handleNoticiaCategoriaChange = useCallback(

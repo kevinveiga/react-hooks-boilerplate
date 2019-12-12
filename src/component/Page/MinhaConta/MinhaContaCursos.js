@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
 
@@ -7,7 +7,6 @@ import { apiUrlCursos } from '../../../config';
 import { useCursoApi, useCursoCategoriasApi } from '../../../service/curso';
 // import { useSeoApi } from '../../../service/seo';
 
-import { Context } from '../../../store/context';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
@@ -42,9 +41,6 @@ const MinhaContaCursos = () => {
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursosLength > 0 && cursosCategoriasLength > 0;
 
-    // CONTEXT
-    const { setStateLoaderContext } = useContext(Context);
-
     // ACTION
     const [stateCursosCategoriaSelected, setStateCursosCategoriaSelected] = useState('todos');
     const windowWidth = useWindowWidth();
@@ -56,19 +52,6 @@ const MinhaContaCursos = () => {
         return undefined;
     }, [isDataLoaded]);
     /* eslint-enable react-hooks/exhaustive-deps */
-
-    // Loader
-    useEffect(() => {
-        if (stateCursos.isLoading || stateCursosCategorias.isLoading) {
-            setStateLoaderContext(true);
-        } else {
-            setTimeout(() => {
-                setStateLoaderContext(false);
-            }, variable.timeout1s);
-        }
-
-        return undefined;
-    }, [stateCursos.isLoading, stateCursosCategorias.isLoading, setStateLoaderContext]);
 
     // Function
     const handleCursoCategoriaChange = useCallback(

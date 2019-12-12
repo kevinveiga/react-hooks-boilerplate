@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useCallback, useContext, useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
 
@@ -6,7 +6,6 @@ import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoConteudoApi, useCursoConteudoVisualizadoApi } from '../../../service/curso';
 
-import { Context } from '../../../store/context';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -49,9 +48,6 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursoLength > 0;
 
-    // CONTEXT
-    const { setStateLoaderContext } = useContext(Context);
-
     // ACTION
     const [stateMenuConteudo, setStateMenuConteudo] = useState(true);
     const [stateTabSelected, setStateTabSelected] = useState('resumo');
@@ -65,19 +61,6 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
         return undefined;
     }, [isDataLoaded, stateCursoConteudo]);
     /* eslint-enable react-hooks/exhaustive-deps */
-
-    // Loader
-    useEffect(() => {
-        if (stateCurso.isLoading || stateCursoConteudo.isLoading) {
-            setStateLoaderContext(true);
-        } else {
-            setTimeout(() => {
-                setStateLoaderContext(false);
-            }, variable.timeout1s);
-        }
-
-        return undefined;
-    }, [stateCurso.isLoading, stateCursoConteudo.isLoading, setStateLoaderContext]);
 
     // Function
     const handleTabChange = useCallback(

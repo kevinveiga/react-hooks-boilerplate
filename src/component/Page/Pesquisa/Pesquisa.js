@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
 import { apiUrlNoticias } from '../../../config';
 
 import { usePesquisaApi } from '../../../service/pesquisa';
 
-import { Context } from '../../../store/context';
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
@@ -18,30 +17,12 @@ import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Main } from '../../../style/layout';
 import { P, Title3, Title4 } from '../../../style/text';
-import { variable } from '../../../style/variable';
 
 export const Pesquisa = ({ match }) => {
     // API
     const [statePesquisa, setStatePesquisaDataContext] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` }, {});
 
     const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
-
-    // CONTEXT
-    const { setStateLoaderContext } = useContext(Context);
-
-    // ACTION
-    // Loader
-    useEffect(() => {
-        if (statePesquisa.isLoading) {
-            setStateLoaderContext(true);
-        } else {
-            setTimeout(() => {
-                setStateLoaderContext(false);
-            }, variable.timeout1s);
-        }
-
-        return undefined;
-    }, [statePesquisa.isLoading, setStateLoaderContext]);
 
     return (
         <PesquisaContext.Provider value={setStatePesquisaDataContext}>
