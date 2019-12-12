@@ -8,9 +8,11 @@ export const setFormValue = (data, formId) => {
             switch (htmlElement.type) {
                 case 'checkbox':
                     valueType = 'checked';
+
                     break;
                 case 'radio':
                     valueType = 'checked';
+
                     break;
                 default:
                     valueType = 'value';

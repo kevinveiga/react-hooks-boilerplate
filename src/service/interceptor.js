@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import axios from 'axios';
 
-import { dataErrorMsg } from '../config';
+import { responseErrorStatus } from '../util/responseErrorStatus';
 
 import { variable } from '../style/variable';
 
@@ -20,7 +20,7 @@ export const useInterceptor = (setStateLoader, setStateModalMessage) => {
                 console.error('Interceptors request error: ', error);
 
                 setStateLoader(false);
-                setStateModalMessage({ bgColor: 'colorRed', text: dataErrorMsg });
+                setStateModalMessage({ bgColor: 'colorRed', text: responseErrorStatus(error.response.status) });
 
                 return Promise.reject(error);
             }
@@ -40,7 +40,7 @@ export const useInterceptor = (setStateLoader, setStateModalMessage) => {
                 console.error('Interceptors response error: ', error);
 
                 setStateLoader(false);
-                setStateModalMessage({ bgColor: 'colorRed', text: dataErrorMsg });
+                setStateModalMessage({ bgColor: 'colorRed', text: responseErrorStatus(error.response.status) });
 
                 return Promise.reject(error);
             }
