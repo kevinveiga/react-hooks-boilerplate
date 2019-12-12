@@ -12,7 +12,7 @@ import { ModalLogout } from '../Modal/ModalLogout';
 // import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
-import { HeaderBtnMenuStyled, HeaderMinhaContaMenuStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
+import { HeaderBtnMenuStyled, HeaderMinhaContaMenuStyled, HeaderMinhaContaNomeStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -116,10 +116,10 @@ export const Header = () => {
 
                             {stateUserContext && stateUserContext.nome ? (
                                 <Box display="inline-block" minWidth="150px" ml={3}>
-                                    <Button onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
+                                    <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
                                         Olá {stateUserContext.nome}
                                         <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
-                                    </Button>
+                                    </HeaderMinhaContaNomeStyled>
 
                                     <HeaderMinhaContaMenuStyled active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll}>
                                         <ul>

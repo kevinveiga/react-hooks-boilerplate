@@ -38,6 +38,27 @@ export const HeaderMinhaContaMenuStyled = styled.nav`
         `};
 `;
 
+export const HeaderMinhaContaNomeStyled = styled.button`
+    cursor: pointer;
+    font-weight: 700;
+    max-width: 200px;
+    table-layout: fixed;
+    text-overflow: ellipsis;
+    transition: color ${variable.transition};
+    white-space: nowrap;
+
+    @media (min-width: ${variable.lg}) {
+        &:active,
+        &:hover {
+            color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
+
+            svg {
+                fill: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
+            }
+        }
+    }
+`;
+
 export const HeaderBtnMenuStyled = styled.button.attrs({ type: 'button' })`
     display: ${({ active }) => (active ? 'none' : 'block')};
     margin: auto;
