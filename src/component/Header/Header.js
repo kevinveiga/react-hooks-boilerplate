@@ -19,9 +19,9 @@ import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
-export const Header = () => {
+export const Header = ({ alternative }) => {
     // CONTEXT
-    const { stateHeaderAlternativeContext, stateUserContext } = useContext(Context);
+    const { stateUserContext } = useContext(Context);
 
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
@@ -68,7 +68,7 @@ export const Header = () => {
         []
     );
 
-    return !stateHeaderAlternativeContext ? (
+    return !alternative ? (
         <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
             <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>

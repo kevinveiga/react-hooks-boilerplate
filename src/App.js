@@ -36,8 +36,6 @@ export const App = () => {
                     <BrowserRouter>
                         <Context.Provider
                             value={{
-                                stateFooterAlternativeContext: stateFooterAlternative,
-                                stateHeaderAlternativeContext: stateHeaderAlternative,
                                 stateUserContext: stateUser,
                                 setStateFooterAlternativeContext: setStateFooterAlternative,
                                 setStateHeaderAlternativeContext: setStateHeaderAlternative,
