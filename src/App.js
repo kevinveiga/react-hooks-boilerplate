@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
@@ -6,8 +6,8 @@ import { ThemeProvider } from 'styled-components';
 
 import { Router } from './router';
 
+import { AppProvider } from './store/app/app';
 import { UserProvider } from './store/auth/auth';
-import { Context } from './store/context';
 
 import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Footer } from './component/Footer/Footer';
@@ -18,10 +18,6 @@ import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
 
 export const App = () => {
-    // ACTION
-    const [stateFooterAlternative, setStateFooterAlternative] = useState(false);
-    const [stateHeaderAlternative, setStateHeaderAlternative] = useState(false);
-
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -33,22 +29,17 @@ export const App = () => {
                     </Helmet>
 
                     <BrowserRouter>
-                        <UserProvider>
-                            <Context.Provider
-                                value={{
-                                    setStateFooterAlternativeContext: setStateFooterAlternative,
-                                    setStateHeaderAlternativeContext: setStateHeaderAlternative
-                                }}
-                            >
+                        <AppProvider>
+                            <UserProvider>
                                 <Interceptor />
 
-                                <Header alternative={stateHeaderAlternative} />
+                                <Header />
 
                                 <Router />
 
-                                <Footer alternative={stateFooterAlternative} />
-                            </Context.Provider>
-                        </UserProvider>
+                                <Footer />
+                            </UserProvider>
+                        </AppProvider>
                     </BrowserRouter>
                 </HelmetProvider>
             </ThemeProvider>

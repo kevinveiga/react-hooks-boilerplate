@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
+import { useApp } from '../../store/app/app';
 import { getLocalStorageUser } from '../../store/auth/auth';
 import { useChangeHeaderScroll, useChangeMenuMobile, useChangeModalLogout } from '../../store/header/header';
 import { HeaderContext } from '../../store/header/headerContext';
@@ -19,13 +20,14 @@ import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
-export const Header = ({ alternative }) => {
+export const Header = () => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
     const [stateChangeModalLogout, setStateChangeModalLogout] = useChangeModalLogout();
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
+    const { stateHeaderAlternativeContext } = useApp();
 
     // Function
     const handleChangeMenuMobile = useCallback(
@@ -68,7 +70,7 @@ export const Header = ({ alternative }) => {
     // DATA
     const user = getLocalStorageUser();
 
-    return !alternative ? (
+    return !stateHeaderAlternativeContext ? (
         <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
             <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>

@@ -5,8 +5,8 @@ import useForm from 'react-hook-form';
 
 import { apiUrlCadastro, defaultErrorMsg } from '../../config';
 
+import { useUser } from '../../store/auth/auth';
 import { CadastroContext } from '../../store/cadastro/cadastroContext';
-import { Context } from '../../store/context';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -24,13 +24,13 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
 
-export const CadastroForm = ({ ...props }) => {
+export const CadastroForm = ({ location, ...otherProps }) => {
     // CONTEXT
     const setStateConhecerMaisContext = useContext(CadastroContext);
-    const { setStateUserContext } = useContext(Context);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
+    const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
         register({ name: 'confirm_password' }, { ...customValidate.password, ...customValidate.require });
@@ -61,7 +61,7 @@ export const CadastroForm = ({ ...props }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateUserContext(result.data.token);
+                    setStateUser(result.data);
                     setStateConhecerMaisContext(true);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
@@ -102,7 +102,7 @@ export const CadastroForm = ({ ...props }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} touched={formState.touched} {...props} />
+                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} touched={formState.touched} {...otherProps} />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -110,7 +110,7 @@ export const CadastroForm = ({ ...props }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...props} />
+                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...otherProps} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -125,7 +125,7 @@ export const CadastroForm = ({ ...props }) => {
                                         name="telefone"
                                         onChange={handleValidation()}
                                         touched={formState.touched}
-                                        {...props}
+                                        {...otherProps}
                                     />
                                 </div>
 
@@ -142,7 +142,7 @@ export const CadastroForm = ({ ...props }) => {
                                         onChange={handleValidation()}
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
-                                        {...props}
+                                        {...otherProps}
                                     />
 
                                     <Svg
@@ -169,7 +169,7 @@ export const CadastroForm = ({ ...props }) => {
                                         onChange={handleValidation()}
                                         touched={formState.touched}
                                         type={stateViewPassword ? 'text' : 'password'}
-                                        {...props}
+                                        {...otherProps}
                                     />
 
                                     <Svg

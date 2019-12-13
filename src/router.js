@@ -1,9 +1,9 @@
-import React, { lazy, Suspense, useContext, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 
 import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
+import { useApp } from './store/app/app';
 import { getLocalStorageUser } from './store/auth/auth';
-import { Context } from './store/context';
 
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
@@ -37,11 +37,20 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
     );
 };
 
-export const Router = withRouter(({ ...props }) => {
-    // CONTEXT
-    const { setStateFooterAlternativeContext, setStateHeaderAlternativeContext } = useContext(Context);
+// const LazyRoute = ({ component: Component, ...otherProps }) => {
+//     return (
+//         <ErrorBoundary>
+//             <Suspense fallback={LoaderComponent()}>
+//                 <Route render={(props) => <Component {...props} />} {...otherProps} />
+//             </Suspense>
+//         </ErrorBoundary>
+//     );
+// };
 
+export const Router = withRouter(({ ...props }) => {
     // ACTION
+    const { setStateFooterAlternativeContext, setStateHeaderAlternativeContext } = useApp();
+
     // Mudar Header e Footer principais para alternativos de acordo com array do arrayPathname
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
