@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useContext, useEffect } from 'react';
 
 import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
+import { getLocalStorageUser } from './store/auth/auth';
 import { Context } from './store/context';
 
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
@@ -22,14 +23,13 @@ const MinhaContaCurso = lazy(() => import('./component/Page/MinhaConta/MinhaCont
 const MinhaContaCursos = lazy(() => import('./component/Page/MinhaConta/MinhaContaCursos'));
 
 const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
-    // CONTEXT
-    const { stateUserContext } = useContext(Context);
+    const user = getLocalStorageUser();
 
     return (
         <ErrorBoundary>
             <Suspense fallback={LoaderComponent()}>
                 <Route
-                    render={(props) => (stateUserContext.token ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
+                    render={(props) => (user && user.token ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
                     {...otherProps}
                 />
             </Suspense>
