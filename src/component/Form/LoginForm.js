@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import useForm from 'react-hook-form';
@@ -7,7 +7,7 @@ import { apiUrlCursos, apiUrlLogin, defaultErrorMsg } from '../../config';
 
 import { cursoMatricula } from '../../service/curso';
 
-import { Context } from '../../store/context';
+import { useUser } from '../../store/auth/auth';
 
 import { customValidate } from '../../util/customValidate';
 import { responseError } from '../../util/responseError';
@@ -24,11 +24,9 @@ import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
 export const LoginForm = ({ location, ...otherProps }) => {
-    // CONTEXT
-    const { setStateUserContext } = useContext(Context);
-
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
+    const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
@@ -56,11 +54,13 @@ export const LoginForm = ({ location, ...otherProps }) => {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateUserContext(result.data.token);
+                    const cursoId = JSON.parse(window.sessionStorage.getItem('cursoId'));
+
+                    setStateUser(result.data);
 
                     // Matricular curso ou redirecionar para Minha Conta Início
-                    if (JSON.parse(window.sessionStorage.getItem('cursoId'))) {
-                        cursoMatricula(JSON.parse(window.sessionStorage.getItem('cursoId')), `${apiUrlCursos}/matricular`);
+                    if (JSON.parse(cursoId)) {
+                        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
                     } else {
                         window.location.pathname = '/minha-conta/inicio';
                     }

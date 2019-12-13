@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from 'react';
 
-import { Context } from '../../store/context';
+import { getLocalStorageUser } from '../../store/auth/auth';
 import { HeaderContext } from '../../store/header/headerContext';
 
 import { Input } from '../Form/Form';
@@ -15,10 +15,8 @@ import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
     // CONTEXT
-    const { stateUserContext } = useContext(Context);
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useContext(HeaderContext);
 
-    // ACTION
     // Function
     const handleChangeMenuMobile = useCallback(
         (value) => () => {
@@ -42,6 +40,9 @@ export const HeaderMenu = ({ ...props }) => {
         },
         []
     );
+
+    // DATA
+    const user = getLocalStorageUser();
 
     return (
         <HeaderMenuStyled active={stateChangeMenuMobileContext} {...props}>
@@ -76,7 +77,7 @@ export const HeaderMenu = ({ ...props }) => {
             </ul>
 
             <Box display={{ d: 'block', md: 'none' }}>
-                {stateUserContext && stateUserContext.nome ? (
+                {user && user.nome ? (
                     <ul>
                         <li>
                             <LinkTo
@@ -85,7 +86,7 @@ export const HeaderMenu = ({ ...props }) => {
                                 link="/minha-conta/inicio"
                                 obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
                                 onClick={handleChangeMenuMobile(false)}
-                                text={`Olá ${stateUserContext.nome}`}
+                                text={`Olá ${user.nome}`}
                             />
                         </li>
                     </ul>

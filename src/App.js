@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { Router } from './router';
 
-import { useAuth } from './store/auth/auth';
+import { UserProvider } from './store/auth/auth';
 import { Context } from './store/context';
 
 import { ExternalJs } from './component/ExternalJs/ExternalJs';
@@ -21,7 +21,6 @@ export const App = () => {
     // ACTION
     const [stateFooterAlternative, setStateFooterAlternative] = useState(false);
     const [stateHeaderAlternative, setStateHeaderAlternative] = useState(false);
-    const [stateUser, setStateUser] = useAuth();
 
     return (
         <>
@@ -34,22 +33,22 @@ export const App = () => {
                     </Helmet>
 
                     <BrowserRouter>
-                        <Context.Provider
-                            value={{
-                                stateUserContext: stateUser,
-                                setStateFooterAlternativeContext: setStateFooterAlternative,
-                                setStateHeaderAlternativeContext: setStateHeaderAlternative,
-                                setStateUserContext: setStateUser
-                            }}
-                        >
-                            <Interceptor />
+                        <UserProvider>
+                            <Context.Provider
+                                value={{
+                                    setStateFooterAlternativeContext: setStateFooterAlternative,
+                                    setStateHeaderAlternativeContext: setStateHeaderAlternative
+                                }}
+                            >
+                                <Interceptor />
 
-                            <Header alternative={stateHeaderAlternative} />
+                                <Header alternative={stateHeaderAlternative} />
 
-                            <Router />
+                                <Router />
 
-                            <Footer alternative={stateFooterAlternative} />
-                        </Context.Provider>
+                                <Footer alternative={stateFooterAlternative} />
+                            </Context.Provider>
+                        </UserProvider>
                     </BrowserRouter>
                 </HelmetProvider>
             </ThemeProvider>

@@ -1,54 +1,50 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import axios from 'axios';
 
-export const useAuth = () => {
-    const [stateUser, setStateUser] = useState(JSON.parse(window.localStorage.getItem('user')) || JSON.parse('{ "nome": null, "token": null }'));
+const UserContext = createContext(undefined);
 
-    const authInterceptorRequest = useCallback(() => {
-        axios.interceptors.request.use(
-            (response) => {
-                const config = response;
-                const { token } = stateUser;
+export const getLocalStorageUser = () => {
+    return JSON.parse(window.localStorage.getItem('user'));
+};
 
-                if (token) {
-                    config.headers.Authorization = `Bearer ${token}`;
+export const logout = () => {
+    window.localStorage.setItem('user', null);
+
+    // Delete api-cache in logout
+    if ('serviceWorker' in navigator) {
+        caches.keys().then((cacheNames) => {
+            for (let i = 0, l = cacheNames.length; i < l; i += 1) {
+                if (cacheNames[i] === 'api-cache' || cacheNames[i] === 'api-cache-perfil') {
+                    caches.delete(cacheNames[i]);
                 }
-
-                return config;
-            },
-            (error) => {
-                console.error('Interceptors request error: ', error);
-
-                return Promise.reject(error);
             }
-        );
-    }, [stateUser]);
+        });
+    }
 
-    authInterceptorRequest();
+    return null;
+};
+
+export const UserProvider = ({ children }) => {
+    const [stateUser, setStateUser] = useState(getLocalStorageUser());
 
     useEffect(() => {
         window.localStorage.setItem('user', JSON.stringify(stateUser));
 
-        if (!stateUser.token) {
-            // Delete api-cache in logout
-            if ('serviceWorker' in navigator) {
-                caches.keys().then((cacheNames) => {
-                    for (let i = 0, l = cacheNames.length; i < l; i += 1) {
-                        if (cacheNames[i] === 'api-cache' || cacheNames[i] === 'api-cache-perfil') {
-                            caches.delete(cacheNames[i]);
-                        }
-                    }
-                });
-            }
-        }
+        return undefined;
+    }, [stateUser]);
 
-        authInterceptorRequest();
+    const user = useMemo(() => [stateUser, setStateUser], [stateUser, setStateUser]);
 
-        return () => {
-            axios.interceptors.request.eject(authInterceptorRequest);
-        };
-    }, [authInterceptorRequest, stateUser]);
+    return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+};
 
-    return [stateUser, setStateUser];
+export const useUser = () => {
+    const context = useContext(UserContext);
+
+    if (context === undefined) {
+        throw new Error('useUser can only be used inside UserProvider');
+    }
+
+    return context;
 };

@@ -1,11 +1,13 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import axios from 'axios';
 import useForm from 'react-hook-form';
 
-import { apiUrlLogin, defaultErrorMsg } from '../../config';
+import { apiUrlCursos, apiUrlLogin, defaultErrorMsg } from '../../config';
 
-import { Context } from '../../store/context';
+import { cursoMatricula } from '../../service/curso';
+
+import { useUser } from '../../store/auth/auth';
 
 import { customValidate } from '../../util/customValidate';
 import { responseError } from '../../util/responseError';
@@ -19,8 +21,8 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
 export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
-    // CONTEXT
-    const { setStateUserContext } = useContext(Context);
+    // ACTION
+    const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email });
@@ -47,9 +49,16 @@ export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateUserContext(result.data.token);
+                    const cursoId = JSON.parse(window.sessionStorage.getItem('cursoId'));
 
-                    window.location.pathname = (location.state && location.state.referer.pathname) || '/minha-conta/inicio';
+                    setStateUser(result.data);
+
+                    // Matricular curso ou redirecionar para Minha Conta Início
+                    if (JSON.parse(cursoId)) {
+                        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
+                    } else {
+                        window.location.pathname = '/minha-conta/inicio';
+                    }
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 

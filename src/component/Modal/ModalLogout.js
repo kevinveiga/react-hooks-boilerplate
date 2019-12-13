@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from 'react';
 
-import { Context } from '../../store/context';
+import { logout } from '../../store/auth/auth';
 import { HeaderAlternativeContext } from '../../store/header/headerAlternativeContext';
 
 import { Button } from '../Button/Button';
@@ -9,18 +9,17 @@ import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyl
 
 export const ModalLogout = ({ ...props }) => {
     // CONTEXT
-    const { setStateUserContext } = useContext(Context);
     const { setStateChangeModalLogoutContext } = useContext(HeaderAlternativeContext);
 
     // ACTION
     const handleLogout = useCallback(
         () => () => {
-            setStateUserContext(null);
+            logout();
 
             // Redirecionamento para Home
             window.location.pathname = '/';
         },
-        [setStateUserContext]
+        []
     );
 
     return (

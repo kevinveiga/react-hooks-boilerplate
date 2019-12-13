@@ -23,7 +23,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Span, Title3 } from '../../style/text';
 
-export const ConhecerMaisForm = ({ ...props }) => {
+export const ConhecerMaisForm = ({ location, ...otherProps }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
@@ -70,9 +70,11 @@ export const ConhecerMaisForm = ({ ...props }) => {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    const cursoId = JSON.parse(window.sessionStorage.getItem('cursoId'));
+
                     // Matricular curso ou redirecionar para Minha Conta Início
-                    if (JSON.parse(window.sessionStorage.getItem('cursoId'))) {
-                        cursoMatricula(JSON.parse(window.sessionStorage.getItem('cursoId')), `${apiUrlCursos}/matricular`);
+                    if (cursoId) {
+                        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
                     } else {
                         window.location.pathname = '/minha-conta/inicio';
                     }
@@ -155,7 +157,7 @@ export const ConhecerMaisForm = ({ ...props }) => {
                                             onChange={handleValidation()}
                                             placeholder="dd/mm/aaaa"
                                             touched={formState.touched}
-                                            {...props}
+                                            {...otherProps}
                                         />
                                     </div>
 
@@ -184,7 +186,7 @@ export const ConhecerMaisForm = ({ ...props }) => {
                                                 onChange={handleValidation()}
                                                 placeholder="Cidade"
                                                 touched={formState.touched}
-                                                {...props}
+                                                {...otherProps}
                                             />
                                         </div>
 

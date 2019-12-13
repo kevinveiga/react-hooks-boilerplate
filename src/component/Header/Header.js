@@ -1,6 +1,6 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { Context } from '../../store/context';
+import { getLocalStorageUser } from '../../store/auth/auth';
 import { useChangeHeaderScroll, useChangeMenuMobile, useChangeModalLogout } from '../../store/header/header';
 import { HeaderContext } from '../../store/header/headerContext';
 
@@ -20,9 +20,6 @@ import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
 export const Header = ({ alternative }) => {
-    // CONTEXT
-    const { stateUserContext } = useContext(Context);
-
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
@@ -67,6 +64,9 @@ export const Header = ({ alternative }) => {
         },
         []
     );
+
+    // DATA
+    const user = getLocalStorageUser();
 
     return !alternative ? (
         <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
@@ -114,10 +114,10 @@ export const Header = ({ alternative }) => {
 
                             {/* <Social change={stateChangeHeaderScroll} /> */}
 
-                            {stateUserContext && stateUserContext.nome ? (
+                            {user && user.nome ? (
                                 <Box display="inline-block" minWidth="150px" ml={3}>
                                     <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
-                                        Olá {stateUserContext.nome}
+                                        Olá {user.nome}
                                         <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
                                     </HeaderMinhaContaNomeStyled>
 

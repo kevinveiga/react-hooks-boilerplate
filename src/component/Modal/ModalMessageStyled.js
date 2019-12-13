@@ -21,6 +21,6 @@ export const ModalMessageStyled = styled.div`
         css`
             opacity: 0.8;
             right: 25px;
-            z-index: 3;
+            z-index: 5;
         `};
 `;

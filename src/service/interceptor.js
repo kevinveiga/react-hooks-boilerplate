@@ -2,6 +2,8 @@ import { useCallback, useEffect } from 'react';
 
 import axios from 'axios';
 
+import { getLocalStorageUser } from '../store/auth/auth';
+
 import { responseErrorStatus } from '../util/responseErrorStatus';
 
 import { variable } from '../style/variable';
@@ -11,6 +13,11 @@ export const useInterceptor = (setStateLoader, setStateModalMessage) => {
         axios.interceptors.request.use(
             (response) => {
                 const config = response;
+                const user = getLocalStorageUser();
+
+                if (user && user.token) {
+                    config.headers.Authorization = `Bearer ${user.token}`;
+                }
 
                 setStateLoader(true);
 
