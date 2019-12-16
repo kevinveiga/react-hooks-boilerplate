@@ -1,5 +1,6 @@
 export const setFormValue = (data, formId) => {
-    Object.keys(data).forEach((key) => {
+    for (let i = 0, l = Object.keys(data).length; i < l; i += 1) {
+        const key = Object.keys(data)[i];
         const htmlElement = document.querySelector(`#${formId} [name="${key}"]`);
 
         if (htmlElement) {
@@ -20,7 +21,7 @@ export const setFormValue = (data, formId) => {
 
             htmlElement[valueType] = data[key] == null ? '' : data[key];
         }
-    });
+    }
 
     return null;
 };
