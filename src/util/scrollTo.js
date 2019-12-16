@@ -14,18 +14,18 @@ const fnScroll = (ancor) => {
     return null;
 };
 
-export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
+export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0, timer = 0) => {
     if (isDataLoaded) {
         // Verifica se o scroll já está sendo feito
         if (!scrollOnce) {
             const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
 
             let ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
-            let timer = 0;
+            let scrollTimer = timer;
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
             if (ancorId && Math.trunc(ancor) !== Math.trunc(scrollYPos)) {
-                timer = 500;
+                scrollTimer = 500;
             }
 
             setTimeout(() => {
@@ -33,7 +33,7 @@ export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0) => {
                 ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
 
                 fnScroll(ancor);
-            }, timer);
+            }, scrollTimer);
 
             scrollOnce = true;
         }
