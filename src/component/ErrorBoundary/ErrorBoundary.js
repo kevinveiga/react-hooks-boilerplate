@@ -24,7 +24,7 @@ export class ErrorBoundary extends Component {
 
         if (hasError) {
             // You can render any custom fallback UI
-            return <P themeColor="light">Erro no carregamento...</P>;
+            return <P>Erro no carregamento...</P>;
         }
 
         return children;

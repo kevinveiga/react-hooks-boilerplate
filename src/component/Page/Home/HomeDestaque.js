@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { apiUrlHome } from '../../../config';
 
 import { useDestaqueApi } from '../../../service/destaque';
+
+import { useHome } from '../../../store/home/home';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
@@ -19,6 +21,18 @@ const HomeDestaque = () => {
     const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`, {});
 
     const destaquesLength = stateDestaques.data && stateDestaques.data.length;
+
+    // ACTION
+    const [stateDataLength, setStateDataLength] = useHome();
+
+    // Retornando length de Data para o parent
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
+        if (destaquesLength > 0) {
+            setStateDataLength({ ...stateDataLength, homeDestaqueLength: destaquesLength });
+        }
+    }, [destaquesLength, setStateDataLength]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     return (
         destaquesLength > 0 && (

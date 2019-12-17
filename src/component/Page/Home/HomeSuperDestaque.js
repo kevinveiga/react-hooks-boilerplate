@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Slider from 'react-slick';
 
@@ -6,6 +6,7 @@ import { apiUrlHome } from '../../../config';
 
 import { useSuperDestaqueApi } from '../../../service/superDestaque';
 
+import { useHome } from '../../../store/home/home';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { groupByMod } from '../../../util/groupBy';
@@ -29,7 +30,17 @@ const HomeSuperDestaque = () => {
     const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
 
     // ACTION
+    const [stateDataLength, setStateDataLength] = useHome();
     const windowWidth = useWindowWidth();
+
+    // Retornando length de Data para o parent
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
+        if (superDestaquesLength > 0) {
+            setStateDataLength({ ...stateDataLength, homeSuperDestaqueLength: superDestaquesLength });
+        }
+    }, [superDestaquesLength, setStateDataLength]);
+    /* eslint-enable react-hooks/exhaustive-deps */
 
     // Agrupando itens com um grupo de 3
     const objectItens = superDestaquesLength > 0 ? groupByMod(stateSuperDestaques.data, 3) : {};
