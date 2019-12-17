@@ -5,6 +5,7 @@ import { apiUrlHome } from '../../../config';
 import { useSeoApi } from '../../../service/seo';
 
 import { HomeProvider } from '../../../store/home/home';
+import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { Button } from '../../Button/Button';
@@ -42,6 +43,7 @@ export const Home = ({ location }) => {
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
     // ACTION
+    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     return (

@@ -22,15 +22,15 @@ const HomeNoticia = () => {
     const noticiasLength = stateNoticias.data && stateNoticias.data.length;
 
     // ACTION
-    const [stateDataLength, setStateDataLength] = useHome();
+    const [stateDataLength, changeDataLength] = useHome();
 
     // Retornando length de Data para o parent
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         if (noticiasLength > 0) {
-            setStateDataLength({ ...stateDataLength, homeNoticiaLength: noticiasLength });
+            changeDataLength({ homeNoticiaLength: noticiasLength });
         }
-    }, [noticiasLength, setStateDataLength]);
+    }, [noticiasLength]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
     return (

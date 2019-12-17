@@ -23,15 +23,15 @@ const HomeDestaque = () => {
     const destaquesLength = stateDestaques.data && stateDestaques.data.length;
 
     // ACTION
-    const [stateDataLength, setStateDataLength] = useHome();
+    const [stateDataLength, changeDataLength] = useHome();
 
     // Retornando length de Data para o parent
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         if (destaquesLength > 0) {
-            setStateDataLength({ ...stateDataLength, homeDestaqueLength: destaquesLength });
+            changeDataLength({ homeDestaqueLength: destaquesLength });
         }
-    }, [destaquesLength, setStateDataLength]);
+    }, [destaquesLength]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
     return (

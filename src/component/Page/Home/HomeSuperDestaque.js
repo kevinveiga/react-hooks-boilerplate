@@ -30,16 +30,16 @@ const HomeSuperDestaque = () => {
     const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
 
     // ACTION
-    const [stateDataLength, setStateDataLength] = useHome();
+    const [stateDataLength, changeDataLength] = useHome();
     const windowWidth = useWindowWidth();
 
     // Retornando length de Data para o parent
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         if (superDestaquesLength > 0) {
-            setStateDataLength({ ...stateDataLength, homeSuperDestaqueLength: superDestaquesLength });
+            changeDataLength({ homeSuperDestaqueLength: superDestaquesLength });
         }
-    }, [superDestaquesLength, setStateDataLength]);
+    }, [superDestaquesLength]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
     // Agrupando itens com um grupo de 3

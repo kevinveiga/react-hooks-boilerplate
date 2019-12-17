@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import { useWindowWidth } from '../util/windowWidth';
 
@@ -11,6 +11,13 @@ const HomeContext = createContext(undefined);
 export const HomeProvider = ({ children, location }) => {
     const [stateDataLength, setStateDataLength] = useState({ homeDestaqueLength: 0, homeNoticiaLength: 0, homeSuperDestaqueLength: 0 });
     const windowWidth = useWindowWidth();
+
+    const changeDataLength = useCallback(
+        (obj) => {
+            setStateDataLength({ ...stateDataLength, ...obj });
+        },
+        [stateDataLength]
+    );
 
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
@@ -33,13 +40,11 @@ export const HomeProvider = ({ children, location }) => {
 
         scrollTo(ancorId, isAllDataLoad, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
 
-        console.log('aqui: ', isAllDataLoad);
-
         return undefined;
     }, [location, stateDataLength]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
-    const dataLength = useMemo(() => [stateDataLength, setStateDataLength], [stateDataLength, setStateDataLength]);
+    const dataLength = useMemo(() => [stateDataLength, changeDataLength], [stateDataLength, changeDataLength]);
 
     return <HomeContext.Provider value={dataLength}>{children}</HomeContext.Provider>;
 };
