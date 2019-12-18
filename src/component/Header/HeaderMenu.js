@@ -81,7 +81,6 @@ export const HeaderMenu = ({ ...props }) => {
                     <ul>
                         <li>
                             <LinkTo
-                                color="colorWhite"
                                 fontWeight="700"
                                 link="/minha-conta/inicio"
                                 obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
@@ -93,11 +92,11 @@ export const HeaderMenu = ({ ...props }) => {
                 ) : (
                     <ul>
                         <li>
-                            <LinkTo color="colorWhite" fontWeight="700" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
+                            <LinkTo fontWeight="700" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
                         </li>
 
                         <li>
-                            <LinkTo color="colorWhite" fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                            <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
                         </li>
                     </ul>
                 )}

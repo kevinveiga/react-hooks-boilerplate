@@ -117,6 +117,7 @@ export const HeaderStyled = styled.header`
             ? css`
                   background-color: ${variable.colorBlack3};
                   box-shadow: none;
+                  color: ${variable.colorWhite};
 
                   ${ButtonStyled} {
                       &:not(:hover) {

@@ -35,8 +35,6 @@ export const HeaderMenuStyled = styled.nav`
         z-index: 10;
 
         li {
-            color: ${variable.colorGray4};
-
             > a,
             > button {
                 padding: 15px;
@@ -55,7 +53,6 @@ export const HeaderMenuStyled = styled.nav`
 
     @media (min-width: ${variable.md}) {
         li {
-            color: ${({ change }) => (change ? variable.colorWhite : variable.colorSecondary)};
             display: inline-block;
 
             > a,
