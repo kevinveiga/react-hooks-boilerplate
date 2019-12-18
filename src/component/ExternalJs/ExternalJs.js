@@ -27,18 +27,32 @@ export const ExternalJs = () => {
         //     firstScript.parentNode.insertBefore(scriptDiffuser, firstScript);
         // }
 
-        // window.vgo('setAccount', '475837977');
+        // window.vgo('setAccount', '00000');
         // window.vgo('setTrackByDefault', true);
         // window.vgo('process');
 
         // // Facebook
-        // const scriptFacebook = document.createElement('script');
+        // if (!window.fbAsyncInit) {
+        //     const FB = {};
 
-        // scriptFacebook.async = true;
-        // scriptFacebook.crossorigin = 'anonymous';
-        // scriptFacebook.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0';
+        //     window.fbAsyncInit = () => {
+        //         FB.init({
+        //             appId: '00000',
+        //             xfbml: true,
+        //             version: 'v5.0'
+        //         });
+        //         FB.AppEvents.logPageView();
+        //     };
+        // }
 
-        // firstScript.parentNode.insertBefore(scriptFacebook, firstScript);
+        // if (!document.getElementById('facebook-jssdk')) {
+        //     const scriptFacebook = document.createElement('script');
+
+        //     scriptFacebook.id = 'facebook-jssdk';
+        //     scriptFacebook.src = 'https://connect.facebook.net/en_US/sdk.js';
+
+        //     firstScript.parentNode.insertBefore(scriptFacebook, firstScript);
+        // }
 
         // // Facebook Pixel
         // if (!window.fbq) {
@@ -68,7 +82,7 @@ export const ExternalJs = () => {
         //     firstScript.parentNode.insertBefore(scriptFacebookPixel, firstScript);
         // }
 
-        // window.fbq('init', '299072640905686');
+        // window.fbq('init', '00000');
         // window.fbq('track', 'PageView');
 
         // // Google Tag Manager
