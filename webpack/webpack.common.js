@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const Webpack = require('webpack');
 const { InjectManifest } = require('workbox-webpack-plugin');
@@ -98,8 +99,13 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             cache: false,
+            filename: 'index.html',
             minify: true,
             template: commonPaths.templatePath
+        }),
+        new PreloadWebpackPlugin({
+            include: 'asyncChunks',
+            rel: 'preload'
         }),
         new ScriptExtHtmlWebpackPlugin({
             inline: [/(main.*)$/, /(runtime.*)$/, /(vendor.*)$/],

@@ -39,7 +39,7 @@ export const useInterceptor = (setStateLoader, setStateModalMessage) => {
             (response) => {
                 setTimeout(() => {
                     setStateLoader(false);
-                }, variable.timeout1s);
+                }, parseInt(variable.timeout1s, 10) / 2);
 
                 return response;
             },

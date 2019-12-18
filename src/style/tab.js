@@ -107,6 +107,10 @@ export const TabsNav = styled.ul`
 
 export const TabNav = styled.li`
     display: inline-block;
+
+    label {
+        font-size: 14px;
+    }
 `;
 
 export const TabSelect = styled.div`
@@ -130,6 +134,7 @@ export const TabSelect = styled.div`
         border-radius: 25px;
         color: ${variable.colorBlack3};
         cursor: pointer;
+        font-size: 14px;
         font-weight: 700;
         height: 45px;
         line-height: 40px;
