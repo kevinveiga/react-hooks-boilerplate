@@ -19,26 +19,30 @@ export const HomeProvider = ({ children, location }) => {
         [stateDataLength]
     );
 
-    /* eslint-disable react-hooks/exhaustive-deps */
-    useEffect(() => {
-        let isAllDataLoad = true;
-
+    const allDataLength = useCallback(() => {
         for (let i = 0, l = Object.keys(stateDataLength).length; i < l; i += 1) {
             const key = Object.keys(stateDataLength)[i];
 
             if (Object.prototype.hasOwnProperty.call(stateDataLength, key)) {
                 if (stateDataLength[key] === 0) {
-                    isAllDataLoad = false;
-
-                    break;
+                    return false;
                 }
             }
         }
 
-        // Scroll para o topo ou para a section de vídeo
-        const ancorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
+        return true;
+    }, [stateDataLength]);
 
-        scrollTo(ancorId, isAllDataLoad, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+    /* eslint-disable react-hooks/exhaustive-deps */
+    useEffect(() => {
+        const isAllDataLength = allDataLength();
+
+        if (isAllDataLength) {
+            // Scroll para o topo ou para a section de vídeo
+            const ancorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
+
+            scrollTo(ancorId, isAllDataLength, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+        }
 
         return undefined;
     }, [location, stateDataLength]);
