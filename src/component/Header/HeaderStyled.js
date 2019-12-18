@@ -125,7 +125,8 @@ export const HeaderStyled = styled.header`
                   }
 
                   ${LinkToStyled} {
-                      &:not(:hover) {
+                      &:not(:hover),
+                      &:not('.active') {
                           color: ${variable.colorWhite};
                       }
 
