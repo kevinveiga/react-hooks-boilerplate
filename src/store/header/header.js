@@ -34,9 +34,3 @@ export const useChangeMinhaContaMenuMobile = () => {
 
     return [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile];
 };
-
-export const useChangeModalLogout = () => {
-    const [stateChangeModalLogout, setStateChangeModalLogout] = useState(false);
-
-    return [stateChangeModalLogout, setStateChangeModalLogout];
-};
