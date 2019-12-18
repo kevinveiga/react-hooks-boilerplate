@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import { useApp } from '../../../store/app/app';
 import { HeaderAlternativeContext } from '../../../store/header/headerAlternativeContext';
 
 import { Button } from '../../Button/Button';
@@ -9,7 +10,10 @@ import { MinhaContaMenuMobileStyled } from './MinhaContaMenuStyled';
 
 export const MinhaContaMenuMobile = ({ ...props }) => {
     // CONTEXT
-    const { stateChangeMinhaContaMenuMobileContext, setStateChangeMinhaContaMenuMobileContext, setStateChangeModalLogoutContext } = useContext(HeaderAlternativeContext);
+    const { stateChangeMinhaContaMenuMobileContext, setStateChangeMinhaContaMenuMobileContext } = useContext(HeaderAlternativeContext);
+
+    // ACTION
+    const { setStateModalLogoutContext } = useApp();
 
     return (
         <MinhaContaMenuMobileStyled active={stateChangeMinhaContaMenuMobileContext} {...props}>
@@ -46,7 +50,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                 </li> */}
 
                 <li>
-                    <Button color="colorWhite" fontWeight="700" onClick={() => setStateChangeModalLogoutContext(true)} text="Sair" themeSize="none" themeType="none" />
+                    <Button color="colorWhite" fontWeight="700" onClick={() => setStateModalLogoutContext(true)} text="Sair" themeSize="none" themeType="none" />
                 </li>
 
                 <li>

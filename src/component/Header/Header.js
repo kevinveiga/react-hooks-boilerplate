@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import { useApp } from '../../store/app/app';
 import { getLocalStorageUser } from '../../store/auth/auth';
-import { useChangeHeaderScroll, useChangeMenuMobile, useChangeModalLogout } from '../../store/header/header';
+import { useChangeHeaderScroll, useChangeMenuMobile } from '../../store/header/header';
 import { HeaderContext } from '../../store/header/headerContext';
 
 import { Button } from '../Button/Button';
@@ -22,12 +22,11 @@ import { variable } from '../../style/variable';
 
 export const Header = () => {
     // ACTION
+    const { stateModalLogoutContext, stateHeaderAlternativeContext, setStateModalLogoutContext } = useApp();
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
-    const [stateChangeModalLogout, setStateChangeModalLogout] = useChangeModalLogout();
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
-    const { stateHeaderAlternativeContext } = useApp();
 
     // Function
     const handleChangeMenuMobile = useCallback(
@@ -39,9 +38,9 @@ export const Header = () => {
 
     const handleChangeModalLogout = useCallback(
         (value) => () => {
-            setStateChangeModalLogout(value);
+            setStateModalLogoutContext(value);
         },
-        [setStateChangeModalLogout]
+        [setStateModalLogoutContext]
     );
 
     const handleHeaderMinhaContaMenu = useCallback(
@@ -157,7 +156,7 @@ export const Header = () => {
                 </Container>
             </HeaderStyled>
 
-            <ModalLogout visible={stateChangeModalLogout} />
+            <ModalLogout visible={stateModalLogoutContext} />
         </HeaderContext.Provider>
     ) : null;
 };

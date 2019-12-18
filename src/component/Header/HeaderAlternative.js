@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
-import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile, useChangeModalLogout } from '../../store/header/header';
+import { useApp } from '../../store/app/app';
+import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile } from '../../store/header/header';
 import { HeaderAlternativeContext } from '../../store/header/headerAlternativeContext';
 import { useWindowWidth } from '../../store/util/windowWidth';
 
@@ -21,9 +22,9 @@ import { variable } from '../../style/variable';
 
 export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
     // ACTION
+    const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useChangeMinhaContaMenuMobile();
-    const [stateChangeModalLogout, setStateChangeModalLogout] = useChangeModalLogout();
     const windowWidth = useWindowWidth();
 
     // Function
@@ -36,17 +37,16 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
 
     const handleChangeModalLogout = useCallback(
         (value) => () => {
-            setStateChangeModalLogout(value);
+            setStateModalLogoutContext(value);
         },
-        [setStateChangeModalLogout]
+        [setStateModalLogoutContext]
     );
 
     return (
         <HeaderAlternativeContext.Provider
             value={{
                 stateChangeMinhaContaMenuMobileContext: stateChangeMinhaContaMenuMobile,
-                setStateChangeMinhaContaMenuMobileContext: setStateChangeMinhaContaMenuMobile,
-                setStateChangeModalLogoutContext: setStateChangeModalLogout
+                setStateChangeMinhaContaMenuMobileContext: setStateChangeMinhaContaMenuMobile
             }}
         >
             {windowWidth < parseInt(variable.lg, 10) ? (
@@ -110,7 +110,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                 </HeaderAlternativeStyled>
             )}
 
-            <ModalLogout visible={stateChangeModalLogout} />
+            <ModalLogout visible={stateModalLogoutContext} />
         </HeaderAlternativeContext.Provider>
     );
 };

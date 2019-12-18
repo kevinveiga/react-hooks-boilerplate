@@ -1,25 +1,31 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 
+import { useModalMessage } from '../modalMessage/modalMessage';
+
 const AppContext = createContext(undefined);
 
 export const AppProvider = ({ children }) => {
-    const [stateChangeModalLogout, setStateChangeModalLogout] = useState(false);
+    const [stateModalMessage, setStateModalMessage] = useModalMessage();
+    const [stateModalLogout, setstateModalLogout] = useState(false);
     const [stateFooterAlternative, setStateFooterAlternative] = useState(null);
     const [stateHeaderAlternative, setStateHeaderAlternative] = useState(null);
 
-    const modalLogout = useMemo(() => [stateChangeModalLogout, setStateChangeModalLogout], [stateChangeModalLogout, setStateChangeModalLogout]);
-    const footer = useMemo(() => [stateFooterAlternative, setStateFooterAlternative], [stateFooterAlternative, setStateFooterAlternative]);
-    const header = useMemo(() => [stateHeaderAlternative, setStateHeaderAlternative], [stateHeaderAlternative, setStateHeaderAlternative]);
+    const modalLogout = useMemo(() => [stateModalLogout, setstateModalLogout], [stateModalLogout, setstateModalLogout]);
+    const modalMessage = useMemo(() => [stateModalMessage, setStateModalMessage], [stateModalMessage, setStateModalMessage]);
+    const footerAlternative = useMemo(() => [stateFooterAlternative, setStateFooterAlternative], [stateFooterAlternative, setStateFooterAlternative]);
+    const headerAlternative = useMemo(() => [stateHeaderAlternative, setStateHeaderAlternative], [stateHeaderAlternative, setStateHeaderAlternative]);
 
     return (
         <AppContext.Provider
             value={{
-                stateChangeModalLogoutContext: modalLogout[0],
-                stateFooterAlternativeContext: footer[0],
-                stateHeaderAlternativeContext: header[0],
-                setStateChangeModalLogoutContext: modalLogout[1],
-                setStateFooterAlternativeContext: footer[1],
-                setStateHeaderAlternativeContext: header[1]
+                stateModalLogoutContext: modalLogout[0],
+                stateModalMessageContext: modalMessage[0],
+                stateFooterAlternativeContext: footerAlternative[0],
+                stateHeaderAlternativeContext: headerAlternative[0],
+                setStateModalLogoutContext: modalLogout[1],
+                setStateModalMessageContext: modalMessage[1],
+                setStateFooterAlternativeContext: footerAlternative[1],
+                setStateHeaderAlternativeContext: headerAlternative[1]
             }}
         >
             {children}
