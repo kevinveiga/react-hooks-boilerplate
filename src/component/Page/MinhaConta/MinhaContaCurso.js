@@ -6,6 +6,7 @@ import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoConteudoApi, useCursoConteudoVisualizadoApi } from '../../../service/curso';
 
+import { HeaderAlternativeProvider } from '../../../store/header/headerAlternative';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -137,7 +138,9 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 <meta name="description" content={curso && curso.description} />
             </Seo>
 
-            <HeaderAlternative currentBreadcrumbLabel={curso.title} {...breadcrumb} />
+            <HeaderAlternativeProvider>
+                <HeaderAlternative currentBreadcrumbLabel={curso.title} {...breadcrumb} />
+            </HeaderAlternativeProvider>
 
             <MinhaContaCursoContext.Provider
                 value={{

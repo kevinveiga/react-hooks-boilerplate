@@ -33,16 +33,17 @@ export const ExternalJs = () => {
 
         // // Facebook
         // if (!window.fbAsyncInit) {
-        //     const FB = {};
-
-        //     window.fbAsyncInit = () => {
+        //     /* eslint-disable func-names, no-undef */
+        //     window.fbAsyncInit = function() {
         //         FB.init({
-        //             appId: '00000',
-        //             xfbml: true,
-        //             version: 'v5.0'
+        //             appId: '793744697682790',
+        //             version: 'v5.0',
+        //             xfbml: true
         //         });
+
         //         FB.AppEvents.logPageView();
         //     };
+        //     /* eslint-enable func-names, no-undef */
         // }
 
         // if (!document.getElementById('facebook-jssdk')) {

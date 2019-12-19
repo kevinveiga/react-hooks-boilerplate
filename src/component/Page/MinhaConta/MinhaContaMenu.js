@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { LinkTo } from '../../Link/LinkTo';
-import { Svg } from '../../Svg/Svg';
 
 import { MinhaContaMenuStyled } from './MinhaContaMenuStyled';
 import { MinhaContaLeftStyled } from './MinhaContaStyled';
@@ -23,16 +22,20 @@ export const MinhaContaMenu = () => {
             <MinhaContaMenuStyled>
                 <ul>
                     <li>
-                        <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimaryHover', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} text="Minha Conta" />
+                        <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Minha Conta" />
                     </li>
 
                     <li>
-                        <LinkTo link="/minha-conta/cursos" obj={{ activeColor: 'colorPrimaryHover', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} text="Cursos" />
+                        <LinkTo link="/minha-conta/cursos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Cursos" />
                     </li>
 
                     <li>
-                        <LinkTo link="/minha-conta/entrevistas" obj={{ activeColor: 'colorPrimaryHover', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} text="Entrevistas" />
+                        <LinkTo link="/minha-conta/entrevistas" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Entrevistas" />
                     </li>
+
+                    {/* <li>
+                        <LinkTo link="/minha-conta/contato" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Contato" />
+                    </li> */}
                 </ul>
             </MinhaContaMenuStyled>
         </MinhaContaLeftStyled>

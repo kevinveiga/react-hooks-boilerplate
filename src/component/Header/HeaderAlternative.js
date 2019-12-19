@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 
 import { useApp } from '../../store/app/app';
-import { useChangeHeaderScroll, useChangeMinhaContaMenuMobile } from '../../store/header/header';
-import { HeaderAlternativeContext } from '../../store/header/headerAlternativeContext';
+import { useChangeHeaderScroll } from '../../store/header/header';
+import { useHeaderAlternative } from '../../store/header/headerAlternative';
 import { useWindowWidth } from '../../store/util/windowWidth';
 
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
@@ -24,15 +24,15 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
     // ACTION
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
-    const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useChangeMinhaContaMenuMobile();
+    const [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile] = useHeaderAlternative();
     const windowWidth = useWindowWidth();
 
     // Function
     const handleChangeMinhaContaMenuMobile = useCallback(
         (value) => () => {
-            setStateChangeMinhaContaMenuMobile(value);
+            setStateMinhaContaMenuMobile(value);
         },
-        [setStateChangeMinhaContaMenuMobile]
+        [setStateMinhaContaMenuMobile]
     );
 
     const handleChangeModalLogout = useCallback(
@@ -43,14 +43,9 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
     );
 
     return (
-        <HeaderAlternativeContext.Provider
-            value={{
-                stateChangeMinhaContaMenuMobileContext: stateChangeMinhaContaMenuMobile,
-                setStateChangeMinhaContaMenuMobileContext: setStateChangeMinhaContaMenuMobile
-            }}
-        >
+        <>
             {windowWidth < parseInt(variable.lg, 10) ? (
-                <HeaderStyled active={stateChangeMinhaContaMenuMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
+                <HeaderStyled active={stateMinhaContaMenuMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
                     <Container mx="auto" px={{ d: 4, md: 3 }}>
                         <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
                             <Box width={2 / 10} />
@@ -63,15 +58,9 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
 
                             <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
                                 <Box>
-                                    <Svg
-                                        active={stateChangeMinhaContaMenuMobile}
-                                        change={stateChangeHeaderScroll}
-                                        fill="colorSecondary"
-                                        name="svg-menu"
-                                        onClick={handleChangeMinhaContaMenuMobile(true)}
-                                    />
+                                    <Svg active={stateMinhaContaMenuMobile} change={stateChangeHeaderScroll} fill="colorSecondary" name="svg-menu" onClick={handleChangeMinhaContaMenuMobile(true)} />
 
-                                    <Svg active={stateChangeMinhaContaMenuMobile} name="svg-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
+                                    <Svg active={stateMinhaContaMenuMobile} name="svg-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
                                 </Box>
 
                                 <MinhaContaMenuMobile change={stateChangeHeaderScroll} />
@@ -111,6 +100,6 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
             )}
 
             <ModalLogout visible={stateModalLogoutContext} />
-        </HeaderAlternativeContext.Provider>
+        </>
     );
 };

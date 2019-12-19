@@ -5,18 +5,24 @@ import { apiUrlNoticias } from '../../../config';
 import { usePesquisaApi } from '../../../service/pesquisa';
 
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
+// import { useMeasure } from '../../../store/util/measure';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
+// import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 
+// import { NoticiasBannerPerfilInvestidorStyled } from '../Noticia/NoticiaStyled';
 import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Main } from '../../../style/layout';
 import { P, Title3, Title4 } from '../../../style/text';
+
+// LAZY
+// const BannerPerfilInvestidor = lazy(() => import('../../Banner/BannerPerfilInvestidor'));
 
 export const Pesquisa = ({ match }) => {
     // API
@@ -25,8 +31,8 @@ export const Pesquisa = ({ match }) => {
     const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
 
     return (
-        <PesquisaContext.Provider value={setStatePesquisaDataContext}>
-            <Main>
+        <Main>
+            <PesquisaContext.Provider value={setStatePesquisaDataContext}>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <Box mb={5} width={{ d: 1, md: 4 / 5 }}>
                         <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
@@ -38,8 +44,8 @@ export const Pesquisa = ({ match }) => {
 
                     <Box>
                         <Flex display="flex" flexWrap="wrap" id="pesquisa">
-                            <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
-                                <Grid display="grid" gridAutoColumns="auto" gridAutoRows="auto" gridRowGap={3}>
+                            <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width="100%">
+                                <Grid display="grid" gridRowGap={3}>
                                     {pesquisaLength < 1 && (
                                         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                                             <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark" width={{ d: 1, md: 2 / 3 }}>
@@ -89,9 +95,29 @@ export const Pesquisa = ({ match }) => {
                                 </Grid>
                             </Box>
                         </Flex>
+
+                        {/* <NoticiasBannerPerfilInvestidorStyled
+                            display={{ d: 'none', md: 'block' }}
+                            pl={3}
+                            position="absolute"
+                            ref={stateBannerRef}
+                            right={0}
+                            top={0}
+                            visible={!statePesquisa.isLoading}
+                            width="20%"
+                        >
+                            <Suspense fallback={LoaderComponent()}>
+                                <BannerPerfilInvestidor
+                                    boxMeasure={stateBannerMeasure}
+                                    boxMeasurePadding={16}
+                                    elementChange={{ elementId: 'pesquisa', offset: -50 }}
+                                    elementFadeOut={{ elementId: 'footer', offset: -500 }}
+                                />
+                            </Suspense>
+                        </NoticiasBannerPerfilInvestidorStyled> */}
                     </Box>
                 </Container>
-            </Main>
-        </PesquisaContext.Provider>
+            </PesquisaContext.Provider>
+        </Main>
     );
 };

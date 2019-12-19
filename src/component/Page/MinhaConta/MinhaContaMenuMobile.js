@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { useApp } from '../../../store/app/app';
-import { HeaderAlternativeContext } from '../../../store/header/headerAlternativeContext';
+import { useHeaderAlternative } from '../../../store/header/headerAlternative';
 
 import { Button } from '../../Button/Button';
 import { LinkTo } from '../../Link/LinkTo';
@@ -9,20 +9,18 @@ import { LinkTo } from '../../Link/LinkTo';
 import { MinhaContaMenuMobileStyled } from './MinhaContaMenuStyled';
 
 export const MinhaContaMenuMobile = ({ ...props }) => {
-    // CONTEXT
-    const { stateChangeMinhaContaMenuMobileContext, setStateChangeMinhaContaMenuMobileContext } = useContext(HeaderAlternativeContext);
-
     // ACTION
     const { setStateModalLogoutContext } = useApp();
+    const [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile] = useHeaderAlternative();
 
     return (
-        <MinhaContaMenuMobileStyled active={stateChangeMinhaContaMenuMobileContext} {...props}>
+        <MinhaContaMenuMobileStyled active={stateMinhaContaMenuMobile} {...props}>
             <ul>
                 <li>
                     <LinkTo
                         link="/minha-conta/inicio"
                         obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
-                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        onClick={() => setStateMinhaContaMenuMobile(false)}
                         text="Minha Conta"
                     />
                 </li>
@@ -31,7 +29,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                     <LinkTo
                         link="/minha-conta/cursos"
                         obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
-                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        onClick={() => setStateMinhaContaMenuMobile(false)}
                         text="Cursos"
                     />
                 </li>
@@ -40,13 +38,13 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                     <LinkTo
                         link="/minha-conta/entrevistas"
                         obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
-                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        onClick={() => setStateMinhaContaMenuMobile(false)}
                         text="Entrevistas"
                     />
                 </li>
 
                 {/* <li>
-                    <LinkTo link="/minha-conta/contato" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateChangeMinhaContaMenuMobileContext(false)} text="Contato" />
+                    <LinkTo link="/minha-conta/contato" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }} onClick={() => setStateMinhaContaMenuMobile(false)} text="Contato" />
                 </li> */}
 
                 <li>
@@ -57,7 +55,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                     <LinkTo
                         link="/inicio"
                         obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
-                        onClick={() => setStateChangeMinhaContaMenuMobileContext(false)}
+                        onClick={() => setStateMinhaContaMenuMobile(false)}
                         text="Voltar para Home"
                     />
                 </li>

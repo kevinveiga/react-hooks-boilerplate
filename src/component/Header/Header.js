@@ -2,8 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 import { useApp } from '../../store/app/app';
 import { getLocalStorageUser } from '../../store/auth/auth';
-import { useChangeHeaderScroll, useChangeMenuMobile } from '../../store/header/header';
-import { HeaderContext } from '../../store/header/headerContext';
+import { useChangeHeaderScroll, useHeader } from '../../store/header/header';
 
 import { Button } from '../Button/Button';
 import { Input } from '../Form/Form';
@@ -24,19 +23,19 @@ export const Header = () => {
     // ACTION
     const { stateModalLogoutContext, stateHeaderAlternativeContext, setStateModalLogoutContext } = useApp();
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
-    const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useChangeMenuMobile();
+    const [stateMenuMobile, setStateMenuMobile] = useHeader();
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
 
     // Function
-    const handleChangeMenuMobile = useCallback(
+    const handleMenuMobile = useCallback(
         (value) => () => {
-            setStateChangeMenuMobileContext(value);
+            setStateMenuMobile(value);
         },
-        [setStateChangeMenuMobileContext]
+        [setStateMenuMobile]
     );
 
-    const handleChangeModalLogout = useCallback(
+    const handleModalLogout = useCallback(
         (value) => () => {
             setStateModalLogoutContext(value);
         },
@@ -70,8 +69,8 @@ export const Header = () => {
     const user = getLocalStorageUser();
 
     return !stateHeaderAlternativeContext ? (
-        <HeaderContext.Provider value={[stateChangeMenuMobileContext, setStateChangeMenuMobileContext]}>
-            <HeaderStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} id="header">
+        <>
+            <HeaderStyled active={stateMenuMobile} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <Flex
                         alignItems="center"
@@ -88,7 +87,7 @@ export const Header = () => {
 
                         <Box width={{ d: 'auto', md: 7 / 12 }}>
                             <Box display={{ d: 'block', md: 'none' }}>
-                                <HeaderBtnMenuStyled active={stateChangeMenuMobileContext} change={stateChangeHeaderScroll} onClick={handleChangeMenuMobile(true)}>
+                                <HeaderBtnMenuStyled active={stateMenuMobile} change={stateChangeHeaderScroll} onClick={handleMenuMobile(true)}>
                                     <ul>
                                         <li />
                                         <li />
@@ -96,7 +95,7 @@ export const Header = () => {
                                     </ul>
                                 </HeaderBtnMenuStyled>
 
-                                <Svg active={stateChangeMenuMobileContext} name="svg-close" onClick={handleChangeMenuMobile(false)} />
+                                <Svg active={stateMenuMobile} name="svg-close" onClick={handleMenuMobile(false)} />
                             </Box>
 
                             <HeaderMenu change={stateChangeHeaderScroll} />
@@ -137,7 +136,7 @@ export const Header = () => {
                                             </li>
 
                                             <li>
-                                                <Button onClick={handleChangeModalLogout(true)} text="Sair" themeSize="none" themeType="none" />
+                                                <Button onClick={handleModalLogout(true)} text="Sair" themeSize="none" themeType="none" />
                                             </li>
                                         </ul>
                                     </HeaderMinhaContaMenuStyled>
@@ -157,6 +156,6 @@ export const Header = () => {
             </HeaderStyled>
 
             <ModalLogout visible={stateModalLogoutContext} />
-        </HeaderContext.Provider>
+        </>
     ) : null;
 };

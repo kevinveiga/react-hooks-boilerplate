@@ -8,6 +8,7 @@ import { Router } from './router';
 
 import { AppProvider } from './store/app/app';
 import { UserProvider } from './store/auth/auth';
+import { HeaderProvider } from './store/header/header';
 
 import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Footer } from './component/Footer/Footer';
@@ -33,7 +34,9 @@ export const App = () => {
                             <UserProvider>
                                 <Interceptor />
 
-                                <Header />
+                                <HeaderProvider>
+                                    <Header />
+                                </HeaderProvider>
 
                                 <Router />
 

@@ -1,7 +1,7 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback } from 'react';
 
 import { getLocalStorageUser } from '../../store/auth/auth';
-import { HeaderContext } from '../../store/header/headerContext';
+import { useHeader } from '../../store/header/header';
 
 import { Input } from '../Form/Form';
 import { LinkTo } from '../Link/LinkTo';
@@ -14,15 +14,15 @@ import { Box } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
-    // CONTEXT
-    const [stateChangeMenuMobileContext, setStateChangeMenuMobileContext] = useContext(HeaderContext);
+    // ACTION
+    const [stateMenuMobile, setStateMenuMobile] = useHeader();
 
     // Function
-    const handleChangeMenuMobile = useCallback(
+    const handleMenuMobile = useCallback(
         (value) => () => {
-            setStateChangeMenuMobileContext(value);
+            setStateMenuMobile(value);
         },
-        [setStateChangeMenuMobileContext]
+        [setStateMenuMobile]
     );
 
     const keyPress = useCallback(
@@ -45,22 +45,22 @@ export const HeaderMenu = ({ ...props }) => {
     const user = getLocalStorageUser();
 
     return (
-        <HeaderMenuStyled active={stateChangeMenuMobileContext} {...props}>
+        <HeaderMenuStyled active={stateMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Início" />
+                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Início" />
                 </li>
 
                 <li>
-                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Notícias" />
+                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Notícias" />
                 </li>
 
                 <li>
-                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Aprenda" />
+                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Aprenda" />
                 </li>
 
                 <li>
-                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Vídeos" />
+                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Vídeos" />
                 </li>
 
                 {/* <li>
@@ -72,7 +72,7 @@ export const HeaderMenu = ({ ...props }) => {
                 </li> */}
 
                 {/* <li>
-                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleChangeMenuMobile(false)} text="Quem Somos" />
+                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Quem Somos" />
                 </li> */}
             </ul>
 
@@ -84,7 +84,7 @@ export const HeaderMenu = ({ ...props }) => {
                                 fontWeight="700"
                                 link="/minha-conta/inicio"
                                 obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
-                                onClick={handleChangeMenuMobile(false)}
+                                onClick={handleMenuMobile(false)}
                                 text={`Olá ${user.nome}`}
                             />
                         </li>

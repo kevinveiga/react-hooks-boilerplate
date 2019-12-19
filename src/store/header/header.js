@@ -1,6 +1,26 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import { variable } from '../../style/variable';
+
+const HeaderContext = createContext(undefined);
+
+export const HeaderProvider = ({ children }) => {
+    const [stateMenuMobile, setStateMenuMobile] = useState(false);
+
+    const menuMobile = useMemo(() => [stateMenuMobile, setStateMenuMobile], [stateMenuMobile, setStateMenuMobile]);
+
+    return <HeaderContext.Provider value={menuMobile}>{children}</HeaderContext.Provider>;
+};
+
+export const useHeader = () => {
+    const context = useContext(HeaderContext);
+
+    if (context === undefined) {
+        throw new Error('useHeader can only be used inside HeaderProvider');
+    }
+
+    return context;
+};
 
 export const useChangeHeaderScroll = (elementId, offset = 0) => {
     const [stateChangeHeader, setStateChangeHeader] = useState(false);
@@ -12,7 +32,7 @@ export const useChangeHeaderScroll = (elementId, offset = 0) => {
         setStateChangeHeader(scrollYPos > position + offset);
     }, [elementId, offset]);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
         return () => {
@@ -21,16 +41,4 @@ export const useChangeHeaderScroll = (elementId, offset = 0) => {
     }, [handleScroll]);
 
     return stateChangeHeader;
-};
-
-export const useChangeMenuMobile = () => {
-    const [stateChangeMenuMobile, setStateChangeMenuMobile] = useState(false);
-
-    return [stateChangeMenuMobile, setStateChangeMenuMobile];
-};
-
-export const useChangeMinhaContaMenuMobile = () => {
-    const [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile] = useState(false);
-
-    return [stateChangeMinhaContaMenuMobile, setStateChangeMinhaContaMenuMobile];
 };
