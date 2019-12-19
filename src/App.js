@@ -10,7 +10,6 @@ import { AppProvider } from './store/app/app';
 import { UserProvider } from './store/auth/auth';
 import { HeaderProvider } from './store/header/header';
 
-import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Footer } from './component/Footer/Footer';
 import { Header } from './component/Header/Header';
 import { Interceptor } from './component/Interceptor/Interceptor';
@@ -20,34 +19,30 @@ import { theme } from './style/theme';
 
 export const App = () => {
     return (
-        <>
-            <ThemeProvider theme={theme}>
-                <Normalize />
+        <ThemeProvider theme={theme}>
+            <Normalize />
 
-                <HelmetProvider>
-                    <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
-                        <meta name="description" content="Liberta" />
-                    </Helmet>
+            <HelmetProvider>
+                <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
+                    <meta name="description" content="Liberta" />
+                </Helmet>
 
-                    <BrowserRouter>
-                        <AppProvider>
-                            <UserProvider>
-                                <Interceptor />
+                <BrowserRouter>
+                    <AppProvider>
+                        <UserProvider>
+                            <Interceptor />
 
-                                <HeaderProvider>
-                                    <Header />
-                                </HeaderProvider>
+                            <HeaderProvider>
+                                <Header />
+                            </HeaderProvider>
 
-                                <Router />
+                            <Router />
 
-                                <Footer />
-                            </UserProvider>
-                        </AppProvider>
-                    </BrowserRouter>
-                </HelmetProvider>
-            </ThemeProvider>
-
-            <ExternalJs />
-        </>
+                            <Footer />
+                        </UserProvider>
+                    </AppProvider>
+                </BrowserRouter>
+            </HelmetProvider>
+        </ThemeProvider>
     );
 };
