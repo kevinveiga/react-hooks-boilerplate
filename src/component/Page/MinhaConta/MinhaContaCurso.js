@@ -14,6 +14,7 @@ import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
+import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { Seo } from '../../Seo/Seo';
@@ -176,13 +177,15 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 )}
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
-                                                    <Suspense fallback={LoaderComponent()}>
-                                                        <MinhaContaCursoVideo
-                                                            apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`}
-                                                            conteudo={conteudo}
-                                                            cursoId={curso.id}
-                                                        />
-                                                    </Suspense>
+                                                    <ErrorBoundary>
+                                                        <Suspense fallback={LoaderComponent()}>
+                                                            <MinhaContaCursoVideo
+                                                                apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`}
+                                                                conteudo={conteudo}
+                                                                cursoId={curso.id}
+                                                            />
+                                                        </Suspense>
+                                                    </ErrorBoundary>
                                                 )}
                                             </Box>
 

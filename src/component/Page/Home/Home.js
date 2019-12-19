@@ -10,6 +10,11 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { Button } from '../../Button/Button';
 import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
+import { HomeDestaque } from './HomeDestaque';
+// import { HomeEquipe } from './HomeEquipe';
+import { HomeNoticia } from './HomeNoticia';
+// import { HomeParceiro } from './HomeParceiro';
+import { HomeSuperDestaque } from './HomeSuperDestaque';
 import { LinkToExternal } from '../../Link/LinkToExternal';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 
@@ -31,11 +36,6 @@ import { variable } from '../../../style/variable';
 // import xpInvestimentos from '../../../asset/image/xp-investimentos.png';
 
 // LAZY
-const HomeDestaque = lazy(() => import('./HomeDestaque'));
-// const HomeEquipe = lazy(() => import('./HomeEquipe'));
-const HomeNoticia = lazy(() => import('./HomeNoticia'));
-// const HomeParceiro = lazy(() => import('./HomeParceiro'));
-const HomeSuperDestaque = lazy(() => import('./HomeSuperDestaque'));
 const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
@@ -55,26 +55,14 @@ export const Home = ({ location }) => {
 
             <Main>
                 <HomeProvider location={location}>
-                    <ErrorBoundary>
-                        <Suspense fallback={LoaderComponent()}>
-                            <HomeSuperDestaque />
-                        </Suspense>
-                    </ErrorBoundary>
+                    <HomeSuperDestaque />
 
                     <Wrap>
                         <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                             <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
-                                <ErrorBoundary>
-                                    <Suspense fallback={LoaderComponent()}>
-                                        <HomeDestaque />
-                                    </Suspense>
-                                </ErrorBoundary>
+                                <HomeDestaque />
 
-                                <ErrorBoundary>
-                                    <Suspense fallback={LoaderComponent()}>
-                                        <HomeNoticia />
-                                    </Suspense>
-                                </ErrorBoundary>
+                                <HomeNoticia />
                             </Flex>
                         </Container>
                     </Wrap>
@@ -83,9 +71,11 @@ export const Home = ({ location }) => {
                         <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                             <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                            <Suspense fallback={LoaderComponent()}>
-                                <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} />
-                            </Suspense>
+                            <ErrorBoundary>
+                                <Suspense fallback={LoaderComponent()}>
+                                    <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} />
+                                </Suspense>
+                            </ErrorBoundary>
 
                             <Box textAlign="center">
                                 <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
@@ -111,17 +101,13 @@ export const Home = ({ location }) => {
                             Equipe
                         </Title3>
 
-                        <Suspense fallback={LoaderComponent()}>
-                            <HomeEquipe />
-                        </Suspense>
+                        <HomeEquipe />
 
                         <Title3 color="colorGray2" fontWeight="700" themeColor="dark">
                             Parceiros
                         </Title3>
 
-                        <Suspense fallback={LoaderComponent()}>
-                            <HomeParceiro />
-                        </Suspense>
+                        <HomeParceiro />
 
                         <Title2 align="center" color="colorGray2" themeColor="dark">
                             Empresas Parceiras

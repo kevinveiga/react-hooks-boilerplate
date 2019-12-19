@@ -11,20 +11,30 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
+// import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
+// import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { LinkTo } from '../../Link/LinkTo';
+// import { LinkToExternal } from '../../Link/LinkToExternal';
 import { NoticiaBox } from './NoticiaBox';
 import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
+// import { NoticiasBannerPerfilInvestidorStyled } from './NoticiaStyled';
 import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
+// import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab, TabContent, TabsContent, TabLabel, TabNav, TabsNav, TabSelect } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 import { variable } from '../../../style/variable';
+
+// import bannerAnuncio from '../../../asset/image/banner-anuncio.jpg';
+
+// LAZY
+// const BannerPerfilInvestidor = lazy(() => import('../../Banner/BannerPerfilInvestidor'));
 
 export const Noticias = () => {
     // API
@@ -184,6 +194,12 @@ export const Noticias = () => {
                                             );
                                         })}
                                 </Flex>
+
+                                {/* <Grid display="grid">
+                                    <LinkToExternal link="https://libertainvestimentos.com.br" target="_blank" textAlign="center">
+                                        <Image text="Anúncio" url={bannerAnuncio} />
+                                    </LinkToExternal>
+                                </Grid> */}
                             </TabContent>
 
                             {noticiasLength > 0 &&
@@ -300,6 +316,14 @@ export const Noticias = () => {
                                         )
                                     );
                                 })}
+
+                            {/* <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!stateNoticiasCategoria.isLoading && stateNoticiasCategoriaSelected !== 'ultimas'} width="20%">
+                                <ErrorBoundary>
+                                    <Suspense fallback={LoaderComponent()}>
+                                        <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'noticias-tabs-content', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
+                                    </Suspense>
+                                </ErrorBoundary>
+                            </NoticiasBannerPerfilInvestidorStyled> */}
                         </TabsContent>
                     </Tab>
                 </Container>

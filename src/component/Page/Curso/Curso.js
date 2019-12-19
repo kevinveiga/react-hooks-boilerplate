@@ -8,10 +8,12 @@ import { cursoMatricula, useCursoApi } from '../../../service/curso';
 
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
+import { getImageLg, getImageMd, getImageSm } from '../../../util/getResponsiveImage';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
 import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
+// import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 // import { LinkTo } from '../../Link/LinkTo';
 // import { LoaderComponent } from '../../Loader/LoaderComponent';
@@ -107,8 +109,9 @@ export const Curso = ({ match }) => {
                             <Box height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">
                                 <BgImageLazyLoad
                                     url={
-                                        (windowWidth < parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1024) ||
-                                        (windowWidth > parseInt(variable.lg, 10) && curso.imagens.destaque.destaque_1920)
+                                        (windowWidth < parseInt(variable.sm, 10) && getImageSm(curso.imagens.destaque)) ||
+                                        (windowWidth < parseInt(variable.md, 10) && getImageMd(curso.imagens.destaque)) ||
+                                        (windowWidth > parseInt(variable.md, 10) && getImageLg(curso.imagens.destaque))
                                     }
                                 />
                             </Box>
@@ -308,57 +311,59 @@ export const Curso = ({ match }) => {
                             </Title2>
 
                             <CarouselStyled maxWidth="600px" mx="auto">
-                                <Suspense fallback={LoaderComponent()}>
-                                    <Slider {...carouselOptions}>
-                                        <div>
-                                            <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
-                                                <Cell>
-                                                    <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
-                                                    </TooltipStyled>
-                                                </Cell>
+                                <ErrorBoundary>
+                                    <Suspense fallback={LoaderComponent()}>
+                                        <Slider {...carouselOptions}>
+                                            <div>
+                                                <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
+                                                    <Cell>
+                                                        <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
+                                                        </TooltipStyled>
+                                                    </Cell>
 
-                                                <Cell alignItems="center" display="inline-flex">
-                                                    <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
-                                                        <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
-                                                    </Box>
+                                                    <Cell alignItems="center" display="inline-flex">
+                                                        <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
+                                                            <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
+                                                        </Box>
 
-                                                    <Box display="inline-block" overflow="hidden" verticalAlign="middle">
-                                                        <Title5 fontWeight="700" themeColor="dark">
-                                                            Gabe Towels
-                                                        </Title5>
+                                                        <Box display="inline-block" overflow="hidden" verticalAlign="middle">
+                                                            <Title5 fontWeight="700" themeColor="dark">
+                                                                Gabe Towels
+                                                            </Title5>
 
-                                                        <p>Aluno</p>
-                                                    </Box>
-                                                </Cell>
-                                            </Grid>
-                                        </div>
+                                                            <p>Aluno</p>
+                                                        </Box>
+                                                    </Cell>
+                                                </Grid>
+                                            </div>
 
-                                        <div>
-                                            <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
-                                                <Cell>
-                                                    <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
-                                                    </TooltipStyled>
-                                                </Cell>
+                                            <div>
+                                                <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>
+                                                    <Cell>
+                                                        <TooltipStyled px={{ d: 4, sm: '75px' }} py={{ d: 3, sm: 5 }}>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut al.</p>
+                                                        </TooltipStyled>
+                                                    </Cell>
 
-                                                <Cell alignItems="center" display="inline-flex">
-                                                    <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
-                                                        <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
-                                                    </Box>
+                                                    <Cell alignItems="center" display="inline-flex">
+                                                        <Box borderRadius="50%" display="inline-block" height="100px" mr={3} overflow="hidden" verticalAlign="middle" width="100px">
+                                                            <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
+                                                        </Box>
 
-                                                    <Box display="inline-block" overflow="hidden" verticalAlign="middle">
-                                                        <Title5 fontWeight="700" themeColor="dark">
-                                                            Gabe Towels
-                                                        </Title5>
+                                                        <Box display="inline-block" overflow="hidden" verticalAlign="middle">
+                                                            <Title5 fontWeight="700" themeColor="dark">
+                                                                Gabe Towels
+                                                            </Title5>
 
-                                                        <p>Aluno</p>
-                                                    </Box>
-                                                </Cell>
-                                            </Grid>
-                                        </div>
-                                    </Slider>
-                                </Suspense>
+                                                            <p>Aluno</p>
+                                                        </Box>
+                                                    </Cell>
+                                                </Grid>
+                                            </div>
+                                        </Slider>
+                                    </Suspense>
+                                </ErrorBoundary>
                             </CarouselStyled> */}
 
                         {/* <CursosRelacionadosStyled mb={5}>
@@ -372,7 +377,7 @@ export const Curso = ({ match }) => {
                                             return (
                                                 <Box key={curso.id} mb={5} width={{ d: 1, md: 1 / 3 }}>
                                                     <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} onClick={() => setStateCursoUrl(`${apiUrlCursos}/${curso.id}`)} to={`/curso/${curso.id}`} width="100%">
-                                                        <ListBox alignContent="space-between" color={stateCurso.featured_color} display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
+                                                        <ListBox alignItems="space-between" color={stateCurso.featured_color} display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
                                                             <ListBoxHover zindex="3">
                                                                 <Flex alignItems="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
                                                                     <Box textAlign="center">

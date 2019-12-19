@@ -16,7 +16,7 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } fr
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 
-const HomeDestaque = () => {
+export const HomeDestaque = () => {
     // API
     const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`, {});
 
@@ -97,5 +97,3 @@ const HomeDestaque = () => {
         )
     );
 };
-
-export default HomeDestaque;

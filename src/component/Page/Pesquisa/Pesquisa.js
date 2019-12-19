@@ -7,6 +7,7 @@ import { usePesquisaApi } from '../../../service/pesquisa';
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 // import { useMeasure } from '../../../store/util/measure';
 
+// import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 // import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { PesquisaForm } from '../../Form/PesquisaForm';
@@ -106,14 +107,16 @@ export const Pesquisa = ({ match }) => {
                             visible={!statePesquisa.isLoading}
                             width="20%"
                         >
-                            <Suspense fallback={LoaderComponent()}>
-                                <BannerPerfilInvestidor
-                                    boxMeasure={stateBannerMeasure}
-                                    boxMeasurePadding={16}
-                                    elementChange={{ elementId: 'pesquisa', offset: -50 }}
-                                    elementFadeOut={{ elementId: 'footer', offset: -500 }}
-                                />
-                            </Suspense>
+                            <ErrorBoundary>
+                                <Suspense fallback={LoaderComponent()}>
+                                    <BannerPerfilInvestidor
+                                        boxMeasure={stateBannerMeasure}
+                                        boxMeasurePadding={16}
+                                        elementChange={{ elementId: 'pesquisa', offset: -50 }}
+                                        elementFadeOut={{ elementId: 'footer', offset: -500 }}
+                                    />
+                                </Suspense>
+                            </ErrorBoundary>
                         </NoticiasBannerPerfilInvestidorStyled> */}
                     </Box>
                 </Container>

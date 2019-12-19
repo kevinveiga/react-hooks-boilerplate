@@ -23,7 +23,7 @@ import { NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBo
 import { Box } from '../../../style/flex';
 import { variable } from '../../../style/variable';
 
-const HomeSuperDestaque = () => {
+export const HomeSuperDestaque = () => {
     // API
     const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
 
@@ -159,5 +159,3 @@ const HomeSuperDestaque = () => {
         ))
     );
 };
-
-export default HomeSuperDestaque;
