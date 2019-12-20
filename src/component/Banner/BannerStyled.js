@@ -50,7 +50,6 @@ export const BannerRightStyled = styled.div`
             }
 
             @media (min-width: ${variable.md}) {
-                ${({ boxMeasure, boxMeasurePadding }) => boxMeasure && `left: calc(${boxMeasure.x}px + ${boxMeasurePadding || 0}px)`};
                 position: fixed;
                 right: auto;
                 top: 150px;
