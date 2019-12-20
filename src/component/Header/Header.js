@@ -9,7 +9,6 @@ import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
 import { ModalLogout } from '../Modal/ModalLogout';
-// import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
 import { HeaderBtnMenuStyled, HeaderMinhaContaMenuStyled, HeaderMinhaContaNomeStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
@@ -111,8 +110,6 @@ export const Header = () => {
                             </HeaderPesquisaStyled>
 
                             <Svg change={stateChangeHeaderScroll} name="svg-search" onClick={handlePesquisa(statePesquisa)} />
-
-                            {/* <Social change={stateChangeHeaderScroll} /> */}
 
                             {user && user.nome ? (
                                 <Box display="inline-block" minWidth="150px" ml={3}>

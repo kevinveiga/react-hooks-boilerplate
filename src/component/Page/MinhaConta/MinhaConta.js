@@ -4,7 +4,6 @@ import { apiUrlPerfil } from '../../../config';
 
 import { usePerfilApi } from '../../../service/perfil';
 
-import { HeaderAlternativeProvider } from '../../../store/header/headerAlternative';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
@@ -41,9 +40,7 @@ const MinhaConta = () => {
 
     return (
         <>
-            <HeaderAlternativeProvider>
-                <HeaderAlternative />
-            </HeaderAlternativeProvider>
+            <HeaderAlternative />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 2, lg: 3 }}>

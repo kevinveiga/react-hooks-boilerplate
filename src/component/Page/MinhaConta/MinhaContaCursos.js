@@ -7,7 +7,6 @@ import { apiUrlCursos } from '../../../config';
 import { useCursoApi, useCursoCategoriasApi } from '../../../service/curso';
 // import { useSeoApi } from '../../../service/seo';
 
-import { HeaderAlternativeProvider } from '../../../store/header/headerAlternative';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
@@ -76,9 +75,7 @@ const MinhaContaCursos = () => {
                 <meta name="description" content={stateSeo.data && stateSeo.data.description} />
             </Seo> */}
 
-            <HeaderAlternativeProvider>
-                <HeaderAlternative currentBreadcrumbLabel="Cursos" />
-            </HeaderAlternativeProvider>
+            <HeaderAlternative currentBreadcrumbLabel="Cursos" />
 
             <Main header="minhaConta">
                 <Container mx="auto" px={{ d: 0, lg: 3 }}>
