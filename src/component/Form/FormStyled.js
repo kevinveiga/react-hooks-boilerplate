@@ -18,7 +18,6 @@ const input = css`
     font-size: 16px;
     font-weight: ${({ obj }) => (obj && obj.fontWeight ? obj.fontWeight : '600')};
     height: ${variable.inputHeight};
-    letter-spacing: 0;
     padding: ${variable.inputPadding} 2px;
     table-layout: fixed;
     text-overflow: ellipsis;

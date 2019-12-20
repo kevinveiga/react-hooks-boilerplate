@@ -24,7 +24,6 @@ export const HeaderMinhaContaMenuStyled = styled.nav`
             > button {
                 font-size: 14px;
                 font-weight: 700;
-                letter-spacing: 1px;
                 padding: 15px;
             }
         }

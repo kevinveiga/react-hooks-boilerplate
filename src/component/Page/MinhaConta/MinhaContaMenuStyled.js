@@ -11,7 +11,6 @@ export const MinhaContaMenuStyled = styled.nav`
         > a,
         > button {
             font-weight: 700;
-            letter-spacing: 1px;
             padding: 15px;
         }
     }
@@ -35,7 +34,6 @@ export const MinhaContaMenuMobileStyled = styled.nav`
         > button {
             color: ${variable.colorWhite};
             font-weight: 700;
-            letter-spacing: 1px;
             padding: 15px;
         }
     }
