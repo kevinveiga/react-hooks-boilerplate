@@ -80,7 +80,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     ml="auto"
                     mr={{ d: 'auto', md: 0 }}
                     onClick={() => setStateMenuConteudoContext(false)}
-                    text="Esconder aulas"
+                    text="Ocultar menu"
                     textDecoration="underline"
                     themeSize="none"
                     themeType="none"

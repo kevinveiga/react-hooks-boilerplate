@@ -166,11 +166,22 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                     <Flex display="flex" flexWrap="wrap">
                                         <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
-                                            <Box maxHeight={stateMenuConteudo ? '450px' : '650px'} minHeight="25vh" mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}>
+                                            <Box
+                                                maxHeight={stateMenuConteudo ? '450px' : '600px'}
+                                                minHeight={{ d: '25vh', sm: '35vh' }}
+                                                mb={3}
+                                                overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}
+                                            >
                                                 {conteudo.tipo === 'audio' && ''}
                                                 {conteudo.tipo === 'download' && ''}
                                                 {conteudo.tipo === 'imagem' && (
-                                                    <Image maxHeight={stateMenuConteudo ? '450px' : '650px'} minHeight="25vh" text={conteudo.title} url={conteudo.imagem} width="100%" />
+                                                    <Image
+                                                        maxHeight={stateMenuConteudo ? '450px' : '600px'}
+                                                        minHeight={{ d: '25vh', sm: '35vh' }}
+                                                        text={conteudo.title}
+                                                        url={conteudo.imagem}
+                                                        width="100%"
+                                                    />
                                                 )}
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
@@ -193,7 +204,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.prevId}
                                                         display="inline-block"
-                                                        fontSize={{ d: '12px', sm: '14px' }}
+                                                        fontSize={{ d: '11px', sm: '14px' }}
                                                         height={{ d: '40px', sm: '50px' }}
                                                         hoverColor="colorGray"
                                                         onClick={handleCursoConteudoPrevNext(curso)}
@@ -211,7 +222,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         color="colorBlack3"
                                                         disabled={!stateCursoConteudoPrevNextId.nextId}
                                                         display="inline-block"
-                                                        fontSize={{ d: '12px', sm: '14px' }}
+                                                        fontSize={{ d: '11px', sm: '14px' }}
                                                         height={{ d: '40px', sm: '50px' }}
                                                         hoverColor="colorGray"
                                                         onClick={handleCursoConteudoPrevNext(curso, conteudo)}
@@ -233,7 +244,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                             fontWeight="400"
                                                             mx="auto"
                                                             onClick={handleMenuConteudo(true)}
-                                                            text="Exibir aulas"
+                                                            text="Exibir menu"
                                                             textDecoration="underline"
                                                             themeSize="none"
                                                             themeType="none"
@@ -308,7 +319,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         {windowWidth > parseInt(variable.md, 10) && (
                                             <>
                                                 <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
-                                                    <Button fontWeight="400" onClick={handleMenuConteudo(true)} text="Exibir aulas" textDecoration="underline" themeSize="none" themeType="none" />
+                                                    <Button fontWeight="400" onClick={handleMenuConteudo(true)} text="Exibir menu" textDecoration="underline" themeSize="none" themeType="none" />
                                                 </MinhaContaExibirConteudoStyled>
 
                                                 <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, md: stateMenuConteudo ? 3 / 10 : 0 }}>

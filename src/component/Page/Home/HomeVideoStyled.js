@@ -20,8 +20,12 @@ export const VideoGridStyled = styled(Grid)`
 
 export const VideoUlStyled = styled.ul`
     ${scrollbar(variable.colorPrimary, variable.colorWhite)};
-    max-height: 540px;
+    max-height: 440px;
     overflow-y: auto;
+
+    @media (min-width: ${variable.md}) {
+        max-height: 540px;
+    }
 `;
 
 export const VideoLiStyled = styled.li`

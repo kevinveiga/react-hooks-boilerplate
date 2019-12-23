@@ -39,7 +39,7 @@ const HomeVideo = ({ ancor, ...otherProps }) => {
     return videosLength ? (
         <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
             <Cell>
-                <Box maxHeight="470px" minHeight="25vh" overflowY="hidden">
+                <Box maxHeight="470px" minHeight={{ d: '25vh', sm: '35vh' }} overflowY="hidden">
                     <VideoWrap>
                         <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(stateVideos.data[0].video) || ''} />
                     </VideoWrap>
