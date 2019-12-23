@@ -4,6 +4,8 @@ import { useApp } from '../../store/app/app';
 import { getLocalStorageUser } from '../../store/auth/auth';
 import { useChangeHeaderScroll, useHeader } from '../../store/header/header';
 
+import { removeLastName } from '../../util/removeLastName';
+
 import { Button } from '../Button/Button';
 import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
@@ -114,7 +116,7 @@ export const Header = () => {
                             {user && user.nome ? (
                                 <Box display="inline-block" minWidth="150px" ml={3}>
                                     <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
-                                        Olá {user.nome}
+                                        Olá {removeLastName(user.nome)}
                                         <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
                                     </HeaderMinhaContaNomeStyled>
 
