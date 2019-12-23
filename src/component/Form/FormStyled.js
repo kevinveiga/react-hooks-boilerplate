@@ -230,6 +230,7 @@ export const LabelStyled = styled.label`
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     ${({ px }) => px === undefined && 'padding-left: 2px; padding-right: 2px'};
     ${({ py }) => py === undefined && 'padding-bottom: 0; padding-top: 0'};
+    z-index: 1;
 `;
 
 export const SelectStyled = styled.select`
