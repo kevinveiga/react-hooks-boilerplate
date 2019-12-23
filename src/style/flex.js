@@ -18,7 +18,7 @@ export const Box = styled.div`
         hover &&
         css`
             &:hover {
-                background-color: ${variable.colorGrayLight3};
+                background-color: ${variable.colorGrayTransparent5};
                 box-shadow: 0 1px 10px 1px ${variable.colorGrayLight4};
 
                 ${BgImageOverlay} {
