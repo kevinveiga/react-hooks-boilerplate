@@ -42,7 +42,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                         <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                             <Box>
                                 <Title5 color="colorPrimary" fontWeight="700">
-                                    <Breadcrumb currentLabel={currentBreadcrumbLabel} obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />
+                                    <Breadcrumb currentLabel={currentBreadcrumbLabel} obj={{ hoverColor: 'colorWhite', underline: true }} {...breadcrumb} />
                                 </Title5>
                             </Box>
 

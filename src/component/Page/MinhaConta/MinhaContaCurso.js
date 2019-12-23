@@ -162,7 +162,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                         <Container mx="auto" px={{ d: 0, lg: 3 }}>
                             <Flex display="flex" flexWrap="wrap">
                                 <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} py={{ d: 3, sm: 5 }} width="100%">
-                                    {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel={curso.title} obj={{ hoverColor: 'colorWhite' }} {...breadcrumb} />}
+                                    {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel={curso.title} obj={{ hoverColor: 'colorWhite', underline: true }} {...breadcrumb} />}
 
                                     <Flex display="flex" flexWrap="wrap">
                                         <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
