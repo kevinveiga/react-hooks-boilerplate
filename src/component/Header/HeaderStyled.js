@@ -5,6 +5,24 @@ import { LinkToStyled } from '../Link/LinkToStyled';
 
 import { variable } from '../../style/variable';
 
+export const HeaderMinhaContaMenuBackgroundStyled = styled.div`
+    background-color: transparent;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+
+    ${({ active }) =>
+        active &&
+        css`
+            display: block;
+            z-index: 10;
+        `};
+`;
+
 export const HeaderMinhaContaMenuStyled = styled.nav`
     background-color: ${({ change }) => (change ? variable.colorBlack3 : variable.colorWhite)};
     box-shadow: 0 2px 6px 0 ${variable.colorBlackTransparent3};
@@ -17,6 +35,7 @@ export const HeaderMinhaContaMenuStyled = styled.nav`
     transform-origin: 0 0 0;
     transition: background-color ${variable.transition}, transform ${variable.transition};
     width: 100%;
+    z-index: 11;
 
     ul {
         li {
@@ -45,6 +64,7 @@ export const HeaderMinhaContaNomeStyled = styled.button`
     text-overflow: ellipsis;
     transition: color ${variable.transition};
     white-space: nowrap;
+    z-index: 11;
 
     @media (min-width: ${variable.lg}) {
         &:active,

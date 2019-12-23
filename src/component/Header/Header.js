@@ -11,9 +11,10 @@ import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
 import { ModalLogout } from '../Modal/ModalLogout';
+// import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
-import { HeaderBtnMenuStyled, HeaderMinhaContaMenuStyled, HeaderMinhaContaNomeStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
+import { HeaderBtnMenuStyled, HeaderMinhaContaMenuBackgroundStyled, HeaderMinhaContaMenuStyled, HeaderMinhaContaNomeStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -113,9 +114,11 @@ export const Header = () => {
 
                             <Svg change={stateChangeHeaderScroll} name="svg-search" onClick={handlePesquisa(statePesquisa)} />
 
+                            {/* <Social change={stateChangeHeaderScroll} /> */}
+
                             {user && user.nome ? (
                                 <Box display="inline-block" minWidth="150px" ml={3}>
-                                    <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} textTransform="none" themeSize="none" themeType="none">
+                                    <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}>
                                         Olá {removeLastName(user.nome)}
                                         <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
                                     </HeaderMinhaContaNomeStyled>
@@ -123,15 +126,30 @@ export const Header = () => {
                                     <HeaderMinhaContaMenuStyled active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll}>
                                         <ul>
                                             <li>
-                                                <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Minha Conta" />
+                                                <LinkTo
+                                                    link="/minha-conta/inicio"
+                                                    obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
+                                                    onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
+                                                    text="Minha Conta"
+                                                />
                                             </li>
 
                                             <li>
-                                                <LinkTo link="/minha-conta/cursos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Cursos" />
+                                                <LinkTo
+                                                    link="/minha-conta/cursos"
+                                                    obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
+                                                    onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
+                                                    text="Cursos"
+                                                />
                                             </li>
 
                                             <li>
-                                                <LinkTo link="/minha-conta/entrevistas" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }} text="Entrevistas" />
+                                                <LinkTo
+                                                    link="/minha-conta/entrevistas"
+                                                    obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
+                                                    onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
+                                                    text="Entrevistas"
+                                                />
                                             </li>
 
                                             <li>
@@ -139,6 +157,8 @@ export const Header = () => {
                                             </li>
                                         </ul>
                                     </HeaderMinhaContaMenuStyled>
+
+                                    <HeaderMinhaContaMenuBackgroundStyled active={stateHeaderMinhaContaMenu} onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} />
                                 </Box>
                             ) : (
                                 <>
