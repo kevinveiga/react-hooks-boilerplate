@@ -8,6 +8,7 @@ export const ListBox = styled.div`
     ${layout};
     ${space};
     ${typography};
+    background-color: ${({ bgColor }) => (bgColor ? variable[bgColor] : variable.colorWhite)};
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent1};
     color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
