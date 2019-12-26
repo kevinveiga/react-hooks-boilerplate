@@ -161,13 +161,13 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                     {curso && (
                         <Container mx="auto" px={{ d: 0, lg: 3 }}>
                             <Flex display="flex" flexWrap="wrap">
-                                <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} py={{ d: 3, sm: 5 }} width="100%">
+                                <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} pb={{ d: 3, sm: 5 }} width="100%">
                                     {windowWidth < parseInt(variable.md, 10) && (
                                         <Breadcrumb currentLabel={curso.title} obj={{ hoverColor: 'colorWhite', textDecoration: 'underline' }} {...breadcrumb} />
                                     )}
 
                                     <Flex display="flex" flexWrap="wrap">
-                                        <Box pr={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
+                                        <Box pr={{ d: 3, sm: 5 }} pt={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
                                             <Box
                                                 maxHeight={stateMenuConteudo ? '450px' : '600px'}
                                                 minHeight={{ d: '25vh', sm: '35vh' }}
@@ -320,7 +320,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         {/* MinhaContaCursoMenu Desktop */}
                                         {windowWidth > parseInt(variable.md, 10) && (
                                             <>
-                                                <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="-35px">
+                                                <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="25px">
                                                     <Button fontWeight="400" onClick={handleMenuConteudo(true)} text="Exibir menu" textDecoration="underline" themeSize="none" themeType="none" />
                                                 </MinhaContaExibirConteudoStyled>
 
