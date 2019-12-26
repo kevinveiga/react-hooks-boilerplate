@@ -12,6 +12,7 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
+import { Button } from '../../Button/Button';
 import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
@@ -210,10 +211,9 @@ const MinhaContaCursos = () => {
                                                 )}
 
                                                 {noData && isDataLoaded && (
-                                                    <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                                                        {/* TODO: colocar layout */}
-                                                        Nenhum curso encontrado
-                                                    </Title4>
+                                                    <LinkTo link="/aprenda" mx="auto" mt={5}>
+                                                        <Button text="Ver mais cursos" />
+                                                    </LinkTo>
                                                 )}
                                             </Flex>
                                         </TabContent>

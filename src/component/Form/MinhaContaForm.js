@@ -383,7 +383,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" m="auto" text="Salvar" typeButton="submit" />
+                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" text="Salvar" typeButton="submit" />
                             </Cell>
                         </Grid>
                     </FormStyled>

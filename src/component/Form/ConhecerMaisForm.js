@@ -218,7 +218,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                             {statePart < 3 && (
                                 <Button
                                     fontSize={{ d: 16, sm: 18 }}
-                                    m="auto"
+                                    mx="auto"
                                     onClick={handlePart(statePart + 1)}
                                     text="Pular Etapa"
                                     textTransform="none"
@@ -228,7 +228,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 />
                             )}
 
-                            {statePart === 3 && <Button fontSize={{ d: 16, sm: 18 }} m="auto" text="Concluir" textTransform="none" themeSize="small" typeButton="submit" width="160px" />}
+                            {statePart === 3 && <Button fontSize={{ d: 16, sm: 18 }} mx="auto" text="Concluir" textTransform="none" themeSize="small" typeButton="submit" width="160px" />}
                         </Box>
                     </FormStyled>
                 </Box>
