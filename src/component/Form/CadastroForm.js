@@ -205,8 +205,8 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                             <Cell mb={3} textAlign="center">
                                 <P color="colorGray2" fontSize={14} themeColor="dark">
                                     Clicando em &quot;Cadastrar-se&quot; você concordará com os{' '}
-                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Termos de serviço" /> e{' '}
-                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/falta-link" text="Política de privacidade" />.
+                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/falta-link" text="Termos de serviço" /> e{' '}
+                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/falta-link" text="Política de privacidade" />.
                                 </P>
                             </Cell>
                         </Grid>

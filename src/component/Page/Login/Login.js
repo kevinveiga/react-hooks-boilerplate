@@ -44,7 +44,7 @@ export const Login = ({ location }) => {
                             </Title2>
 
                             <P color="colorGray2" fontSize={14} mt="30px" textAlign="center" themeColor="dark">
-                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/cadastro" text="Se cadastre aqui." />
+                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
                             </P>
 
                             <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
@@ -53,7 +53,7 @@ export const Login = ({ location }) => {
 
                     <Box order={{ d: '-1', lg: '2' }} textAlign={{ d: 'center', lg: 'left' }} width={{ d: '100%', lg: 1 / 7 }}>
                         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                            <LinkTo ariaLabel="Home" obj={{ hoverColor: 'colorPrimary', underline: true }} link="/inicio" text="Voltar para home" />
+                            <LinkTo ariaLabel="Home" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/inicio" text="Voltar para home" />
                         </Container>
                     </Box>
                 </Flex>

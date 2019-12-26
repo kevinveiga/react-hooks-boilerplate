@@ -133,7 +133,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
 
                         <Cell mb={3} textAlign="center">
                             <P color="colorGray2" fontSize={14} themeColor="dark">
-                                <LinkTo obj={{ hoverColor: 'colorGray2', underline: true }} link="/esqueceu-senha" text="Esqueceu sua senha?" />
+                                <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/esqueceu-senha" text="Esqueceu sua senha?" />
                             </P>
                         </Cell>
                     </Grid>
