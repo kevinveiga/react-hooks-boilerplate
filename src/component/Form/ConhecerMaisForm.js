@@ -28,10 +28,10 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
     const [statePart, setStatePart] = useState(1);
 
     useEffect(() => {
-        register({ name: 'data_nascimento' }, { ...customValidate.date });
-        register({ name: 'endereco_cidade' });
-        register({ name: 'endereco_estado' });
-        register({ name: 'sexo' });
+        register('data_nascimento', { ...customValidate.date });
+        register('endereco_cidade');
+        register('endereco_estado');
+        register('sexo');
 
         return undefined;
     }, [register]);
@@ -53,13 +53,22 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
 
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, setValue, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         defaultValues: { data_nascimento: '' },
         mode: 'onChange'
     });
@@ -156,7 +165,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                             name="data_nascimento"
                                             onChange={handleValidation()}
                                             placeholder="dd/mm/aaaa"
-                                            touched={formState.touched}
+                                            touched={touched}
                                             {...otherProps}
                                         />
                                     </div>
@@ -185,7 +194,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                                 name="endereco_cidade"
                                                 onChange={handleValidation()}
                                                 placeholder="Cidade"
-                                                touched={formState.touched}
+                                                touched={touched}
                                                 {...otherProps}
                                             />
                                         </div>
@@ -200,9 +209,9 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                             <Select
                                                 name="endereco_estado"
                                                 obj={{
-                                                    color: formState.touched.indexOf('endereco_estado') > -1 ? 'colorGrayDark' : 'colorGray',
+                                                    color: touched['endereco_estado'] ? 'colorGrayDark' : 'colorGray',
                                                     colorLine: 'colorPrimary',
-                                                    fontWeight: formState.touched.indexOf('endereco_estado') > -1 ? '600' : '400'
+                                                    fontWeight: touched['endereco_estado'] ? '600' : '400'
                                                 }}
                                                 onChange={handleSetValue()}
                                             >

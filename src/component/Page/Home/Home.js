@@ -73,7 +73,7 @@ export const Home = ({ location }) => {
 
                             <ErrorBoundary>
                                 <Suspense fallback={LoaderComponent()}>
-                                    <HomeVideo ancor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} />
+                                    <HomeVideo anchor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} />
                                 </Suspense>
                             </ErrorBoundary>
 

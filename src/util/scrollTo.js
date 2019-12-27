@@ -1,38 +1,38 @@
 let scrollOnce = false;
 
-const fnScroll = (ancor) => {
+const fnScroll = (anchor) => {
     try {
         window.scroll({
             behavior: 'smooth',
             left: 0,
-            top: ancor
+            top: anchor
         });
     } catch (error) {
-        window.scrollTo(0, ancor);
+        window.scrollTo(0, anchor);
     }
 
     return null;
 };
 
-export const scrollTo = (ancorId = null, isDataLoaded = false, offset = 0, timer = 0) => {
-    if (isDataLoaded) {
+export const scrollTo = (anchorId = null, doScroll = false, offset = 0, timer = 0) => {
+    if (doScroll) {
         // Verifica se o scroll já está sendo feito
         if (!scrollOnce) {
             const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
 
-            let ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+            let anchor = document.querySelector(anchorId) ? document.querySelector(anchorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
             let scrollTimer = timer;
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
-            if (ancorId && Math.trunc(ancor) !== Math.trunc(scrollYPos)) {
+            if (anchorId && Math.trunc(anchor) !== Math.trunc(scrollYPos)) {
                 scrollTimer = 500;
             }
 
             setTimeout(() => {
                 // Busca a posição da âncora novamente depois do timer, para o valor ser correto
-                ancor = document.querySelector(ancorId) ? document.querySelector(ancorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+                anchor = document.querySelector(anchorId) ? document.querySelector(anchorId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
 
-                fnScroll(ancor);
+                fnScroll(anchor);
             }, scrollTimer);
 
             scrollOnce = true;

@@ -8,16 +8,16 @@ export const useCurrentVideo = (elementId, offset) => {
             return undefined;
         }
 
-        const ancor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+        const anchor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
 
         try {
             window.scroll({
                 behavior: 'smooth',
                 left: 0,
-                top: ancor
+                top: anchor
             });
         } catch (error) {
-            window.scrollTo(0, ancor);
+            window.scrollTo(0, anchor);
         }
 
         return undefined;

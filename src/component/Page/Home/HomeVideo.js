@@ -19,14 +19,14 @@ import { Cell } from '../../../style/grid';
 import { VideoWrap } from '../../../style/layout';
 import { Title4, Title5 } from '../../../style/text';
 
-const HomeVideo = ({ ancor, ...otherProps }) => {
+const HomeVideo = ({ anchor, ...otherProps }) => {
     // API
     const stateVideos = useVideoApi(`${apiUrlHome}/videos`, {});
 
     const videosLength = stateVideos.data && stateVideos.data.length;
 
     // ACTION
-    const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(ancor.elementId, ancor.offset);
+    const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo(anchor.elementId, anchor.offset);
 
     // Function
     const handleCurrentVideo = useCallback(

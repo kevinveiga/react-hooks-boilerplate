@@ -8,8 +8,6 @@ import { apiUrlPerfil, defaultErrorMsg } from '../../config';
 
 import { useApp } from '../../store/app/app';
 
-import { useWindowWidth } from '../../store/util/windowWidth';
-
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataGet, formatFormDataSet } from '../../util/formatFormData';
@@ -28,7 +26,6 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 // import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
-import { variable } from '../../style/variable';
 
 // import logo from '../../asset/image/logo.png';
 
@@ -36,16 +33,6 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     // ACTION
     // const [stateViewPassword, setStateViewPassword] = useState(false);
     const { setStateModalMessageContext } = useApp();
-    const [stateIsSubmit, setStateIsSubmit] = useState(false);
-    const windowWidth = useWindowWidth();
-
-    /* eslint-disable react-hooks/exhaustive-deps */
-    useEffect(() => {
-        scrollTo(null, stateIsSubmit, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
-
-        return undefined;
-    }, [stateIsSubmit]);
-    /* eslint-enable react-hooks/exhaustive-deps */
 
     useEffect(() => {
         register('data_nascimento', { ...customValidate.date });
@@ -77,6 +64,15 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
             }
         },
         []
+    );
+
+    const handleScrollTo = useCallback(
+        () => () => {
+            const anchorElement = (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') || (document.querySelector(`#${formId}`) && `#${formId}`);
+
+            scrollTo(anchorElement, true);
+        },
+        [formId]
     );
 
     const handleSetValue = useCallback(
@@ -123,8 +119,6 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     }, [data, formId]);
 
     const submitForm = (formData) => {
-        setStateIsSubmit(true);
-
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
@@ -151,8 +145,6 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         };
 
         fetchData();
-
-        setStateIsSubmit(false);
     };
 
     return (
@@ -390,7 +382,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Cell>
 
                             <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" text="Salvar" typeButton="submit" />
+                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" onClick={handleScrollTo()} text="Salvar" typeButton="submit" />
                             </Cell>
                         </Grid>
                     </FormStyled>

@@ -117,7 +117,9 @@ const inputLabel = css`
     }
 `;
 
-export const InputStyled = styled.input`
+export const InputStyled = styled.input.attrs(({ invalid }) => ({
+    'data-invalid': invalid ? true : undefined
+}))`
     ${input};
     ${inputLabel};
 `;
@@ -200,7 +202,9 @@ export const InputAlternateStyled = styled.input`
         `};
 `;
 
-export const InputMaskStyled = styled(IMaskInput)`
+export const InputMaskStyled = styled(IMaskInput).attrs(({ invalid }) => ({
+    'data-invalid': invalid ? true : undefined
+}))`
     ${input};
     ${inputLabel};
 `;

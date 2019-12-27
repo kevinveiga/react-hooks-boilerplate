@@ -39,9 +39,9 @@ export const HomeProvider = ({ children, location }) => {
 
         if (isAllDataLength) {
             // Scroll para o topo ou para a section de vídeo
-            const ancorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
+            const anchorId = location.pathname === '/inicio/home-video-container' ? '#home-video-container' : null;
 
-            scrollTo(ancorId, isAllDataLength, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+            scrollTo(anchorId, isAllDataLength, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
         }
 
         return undefined;

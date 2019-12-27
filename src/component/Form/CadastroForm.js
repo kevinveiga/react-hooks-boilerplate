@@ -12,6 +12,7 @@ import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
+import { scrollTo } from '../../util/scrollTo';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
@@ -43,6 +44,15 @@ export const CadastroForm = ({ location, ...otherProps }) => {
     }, [register]);
 
     // Function
+    const handleScrollTo = useCallback(
+        () => () => {
+            const anchorElement = (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') || (document.querySelector('#cadastroFormId') && '#cadastroFormId');
+
+            scrollTo(anchorElement, true);
+        },
+        []
+    );
+
     const handleValidation = useCallback(
         () => (element) => {
             setValue(element.target.name, element.target.value);
@@ -101,7 +111,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
             <Flex display="flex" flexWrap="wrap">
                 <Box overflow="hidden" width="100%">
-                    <FormStyled onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled id="cadastroFormId" onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>
@@ -196,7 +206,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                             </Cell>
 
                             <Cell mb={3}>
-                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Cadastrar-se" typeButton="submit" width="100%" />
+                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" onClick={handleScrollTo()} text="Cadastrar-se" typeButton="submit" width="100%" />
                             </Cell>
 
                             <Cell mb={3} textAlign="center">
