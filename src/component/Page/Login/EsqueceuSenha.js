@@ -1,16 +1,14 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
-import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
+import { EsqueceuSenhaForm } from '../../Form/EsqueceuSenhaForm';
 import { LinkTo } from '../../Link/LinkTo';
+import { Splash } from '../../Splash/Splash';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
-import { P, Title2, Title5 } from '../../../style/text';
+import { Title2 } from '../../../style/text';
 import { variable } from '../../../style/variable';
-
-// LAZY
-const EsqueceuSenhaForm = lazy(() => import('../../Form/EsqueceuSenhaForm'));
 
 export const EsqueceuSenha = ({ location }) => {
     return (
@@ -18,19 +16,7 @@ export const EsqueceuSenha = ({ location }) => {
             <Main backgroundColor="colorGrayLight5" header={false}>
                 <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
                     <Box alignItems="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
-                        <Box p={4} width="100%">
-                            <P align="right" fontSize="24px" mb={4} textAlign="right" themeColor="light">
-                                &quot;Aqui vai uma super frase de
-                                <br />
-                                propósito para encantar o
-                                <br />
-                                cliente maroto.&quot;
-                            </P>
-
-                            <Title5 fontSize="16px" color="colorPrimary" textAlign="right" themeColor="dark">
-                                Autor
-                            </Title5>
-                        </Box>
+                        <Splash />
                     </Box>
 
                     <Box width={{ d: '100%', lg: 3 / 7 }}>
@@ -45,9 +31,7 @@ export const EsqueceuSenha = ({ location }) => {
                                 Receba uma nova por e-mail
                             </Title2>
 
-                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
-                                <EsqueceuSenhaForm location={location} obj={{ colorLine: 'colorPrimary' }} />
-                            </Suspense>
+                            <EsqueceuSenhaForm location={location} obj={{ colorLine: 'colorPrimary' }} />
                         </Container>
                     </Box>
 
