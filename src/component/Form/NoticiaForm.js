@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlContato, defaultErrorMsg } from '../../config';
 
@@ -10,6 +10,7 @@ import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
+import { BgImageLazyLoad } from '../LazyLoad/BgImageLazyLoad';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
@@ -17,14 +18,16 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Span, Title3 } from '../../style/text';
 
+import liberdade from '../../asset/image/os-melhores-investimentos-em-sua-liberdade.webp';
+
 export const NoticiaForm = ({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     useEffect(() => {
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
-        register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'telefone' }, { ...customValidate.phone });
+        register('nome', { ...customValidate.name, ...customValidate.require });
+        register('email', { ...customValidate.email });
+        register('telefone', { ...customValidate.phone });
 
         return undefined;
     }, [register]);
@@ -32,13 +35,22 @@ export const NoticiaForm = ({ ...props }) => {
     // Function
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         mode: 'onChange'
     });
 
@@ -104,6 +116,8 @@ export const NoticiaForm = ({ ...props }) => {
                 p="75px"
                 width={stateRetornoForm ? '100%' : 1 / 2}
             >
+                <BgImageLazyLoad overlayColor="colorBlackTransparent7" url={liberdade} />
+
                 {stateRetornoForm ? (
                     <>
                         <Title3 fontWeight="700" mb={4} mx="auto" textAlign="center" themeColor="light">
@@ -115,7 +129,13 @@ export const NoticiaForm = ({ ...props }) => {
                         </P>
                     </>
                 ) : (
-                    <P themeColor="light">Texto.</P>
+                    <>
+                        <Title3 fontWeight="700" mb={4} themeColor="light">
+                            A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
+                        </Title3>
+
+                        <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
+                    </>
                 )}
             </Box>
 
@@ -136,12 +156,12 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={formState.touched} {...props} />
+                            <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={touched} {...props} />
                             {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...props} />
+                            <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={touched} {...props} />
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
@@ -152,7 +172,7 @@ export const NoticiaForm = ({ ...props }) => {
                                 name="telefone"
                                 onChange={handleValidation()}
                                 placeholder="Telefone"
-                                touched={formState.touched}
+                                touched={touched}
                                 {...props}
                             />
                             {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}

@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlNoticias } from '../../config';
 
@@ -20,7 +20,7 @@ export const PesquisaForm = ({ ...props }) => {
 
     // ACTION
     useEffect(() => {
-        register({ name: 'query' });
+        register('query');
 
         return undefined;
     }, [register]);
@@ -37,13 +37,14 @@ export const PesquisaForm = ({ ...props }) => {
 
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { handleSubmit, register, triggerValidation } = useForm({
+    const { handleSubmit, register, setValue, triggerValidation } = useForm({
         mode: 'onSubmit'
     });
 

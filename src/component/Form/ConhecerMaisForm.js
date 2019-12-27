@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlCursos, apiUrlPerfil, defaultErrorMsg } from '../../config';
 
@@ -76,7 +76,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                     if (cursoId) {
                         cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
                     } else {
-                        window.location.pathname = '/minha-conta/inicio';
+                        window.location.pathname = '/minha-conta/cursos';
                     }
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
@@ -125,13 +125,13 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
                                     <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="masculino" id="sexo_masculino" name="sexo" onChange={handleSetValue()} type="radio" />
 
-                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="700" px={{ d: 3, md: 4 }} py={2}>
+                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="700" px={{ d: 3, md: 4 }} onClick={handlePart(2)} py={2}>
                                         Masculino
                                     </Label>
 
                                     <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="feminino" id="sexo_feminino" name="sexo" onChange={handleSetValue()} type="radio" />
 
-                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="700" ml={4} px={{ d: 3, md: 4 }} py={2}>
+                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="700" ml={4} onClick={handlePart(2)} px={{ d: 3, md: 4 }} py={2}>
                                         Feminino
                                     </Label>
                                 </ConhecerMaisPartContentStyled>

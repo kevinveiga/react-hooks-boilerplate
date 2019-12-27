@@ -1,12 +1,12 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import Resizer from 'react-image-file-resizer';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlPerfil, defaultErrorMsg } from '../../config';
 
-import { Context } from '../../store/context';
+import { useApp } from '../../store/app/app';
 
 import { useWindowWidth } from '../../store/util/windowWidth';
 
@@ -18,7 +18,7 @@ import { scrollTo } from '../../util/scrollTo';
 import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
-import { InputCheckboxRadio, InputFile, InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
 
@@ -26,18 +26,16 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
-import { Image, ImageCircleContainer } from '../../style/image';
+// import { Image, ImageCircleContainer } from '../../style/image';
 import { P, Span } from '../../style/text';
 import { variable } from '../../style/variable';
 
-import logo from '../../asset/image/logo.png';
+// import logo from '../../asset/image/logo.png';
 
 export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps }) => {
-    // CONTEXT
-    const { setStateModalMessageContext } = useContext(Context);
-
     // ACTION
     // const [stateViewPassword, setStateViewPassword] = useState(false);
+    const { setStateModalMessageContext } = useApp();
     const [stateIsSubmit, setStateIsSubmit] = useState(false);
     const windowWidth = useWindowWidth();
 
@@ -50,20 +48,20 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     /* eslint-enable react-hooks/exhaustive-deps */
 
     useEffect(() => {
-        register({ name: 'data_nascimento' }, { ...customValidate.date });
-        register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'endereco_cep' }, { ...customValidate.cep, ...customValidate.require });
-        register({ name: 'endereco_cidade' }, { ...customValidate.require });
-        register({ name: 'endereco_complemento' });
-        register({ name: 'endereco_logradouro' }, { ...customValidate.require });
-        register({ name: 'endereco_uf' });
-        register({ name: 'endereco_numero' }, { ...customValidate.number });
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
-        // register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
-        register({ name: 'receber_avisos_descontos_de_cursos' });
-        register({ name: 'receber_curadoria_conteudos_noticias' });
-        register({ name: 'sexo' });
-        register({ name: 'telefone' }, { ...customValidate.phone, ...customValidate.require });
+        register('data_nascimento', { ...customValidate.date });
+        register('email', { ...customValidate.email });
+        register('endereco_cep', { ...customValidate.cep, ...customValidate.require });
+        register('endereco_cidade', { ...customValidate.require });
+        register('endereco_complemento');
+        register('endereco_logradouro', { ...customValidate.require });
+        register('endereco_uf');
+        register('endereco_numero', { ...customValidate.number });
+        register('nome', { ...customValidate.name, ...customValidate.require });
+        // register('password', { ...customValidate.password, ...customValidate.require });
+        register('receber_avisos_descontos_de_cursos');
+        register('receber_curadoria_conteudos_noticias');
+        register('sexo');
+        register('telefone', { ...customValidate.phone, ...customValidate.require });
 
         return undefined;
     }, [register]);
@@ -97,13 +95,22 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
 
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setValue, setError, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         defaultValues: formatFormDataGet(data),
         mode: 'onChange'
     });
@@ -151,15 +158,15 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     return (
         <>
             <Flex display="flex" flexWrap="wrap" justifyContent="center">
-                <Box height="150px" mb={4} width="150px">
+                {/* <Box height="150px" mb={4} width="150px">
                     <ImageCircleContainer>
                         <Image objectFit="none" text="autor" url={logo} />
                     </ImageCircleContainer>
 
-                    {/* <InputFile id="foto" name="foto" onChange={handleFileChange()}>
+                    <InputFile id="foto" name="foto" onChange={handleFileChange()}>
                         <Svg fill="colorWhite" height="20px" name="svg-camera" />
-                    </InputFile> */}
-                </Box>
+                    </InputFile>
+                </Box> */}
 
                 <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
                     <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
@@ -174,7 +181,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" mb="-10px" text="Nome completo" />
 
                                 <div>
-                                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={formState.touched} {...otherProps} />
+                                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -184,7 +191,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" mb="-10px" text="E-mail" />
 
                                 <div>
-                                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...otherProps} />
+                                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -200,7 +207,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="telefone"
                                         onChange={handleValidation()}
                                         placeholder="Telefone"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -219,7 +226,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         onBlur={handleValidation()}
                                         onChange={handleValidation()}
                                         placeholder="00000-000"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -237,7 +244,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_logradouro"
                                         onChange={handleValidation()}
                                         placeholder="Rua do endereço"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -256,7 +263,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_numero"
                                         onChange={handleValidation()}
                                         placeholder="Número do endereço"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -274,7 +281,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_complemento"
                                         onChange={handleValidation()}
                                         placeholder="Complemento do endereço"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -292,7 +299,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_cidade"
                                         onChange={handleValidation()}
                                         placeholder="Cidade"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -320,7 +327,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="data_nascimento"
                                         onChange={handleValidation()}
                                         placeholder="dd/mm/aaaa"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -349,7 +356,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="password"
                                         onChange={handleValidation()}
                                         placeholder="password"
-                                        touched={formState.touched}
+                                        touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}
                                     />

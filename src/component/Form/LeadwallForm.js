@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 
 import axios from 'axios';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlPaywall, defaultErrorMsg } from '../../config';
 
@@ -23,7 +23,7 @@ export const LeadwallForm = ({ ...props }) => {
 
     // ACTION
     useEffect(() => {
-        register({ name: 'email' }, { ...customValidate.email });
+        register('email', { ...customValidate.email });
 
         return undefined;
     }, [register]);
@@ -31,13 +31,22 @@ export const LeadwallForm = ({ ...props }) => {
     // Function
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         mode: 'onChange'
     });
 
@@ -79,16 +88,7 @@ export const LeadwallForm = ({ ...props }) => {
                 </Cell>
 
                 <Cell mb={3}>
-                    <InputValidation
-                        error={errors.email}
-                        maxLength="50"
-                        name="email"
-                        onChange={handleValidation()}
-                        placeholder="Insira seu e-mail"
-                        right="15px"
-                        touched={formState.touched}
-                        {...props}
-                    />
+                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="Insira seu e-mail" right="15px" touched={touched} {...props} />
                 </Cell>
 
                 <Cell mb={3}>

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlNewsletter, defaultErrorMsg } from '../../config';
 
@@ -20,8 +20,8 @@ export const NewsletterForm = ({ ...props }) => {
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     useEffect(() => {
-        register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
+        register('email', { ...customValidate.email, ...customValidate.require });
+        register('nome', { ...customValidate.name, ...customValidate.require });
 
         return undefined;
     }, [register]);
@@ -29,13 +29,22 @@ export const NewsletterForm = ({ ...props }) => {
     // Function
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         mode: 'onChange'
     });
 
@@ -81,12 +90,12 @@ export const NewsletterForm = ({ ...props }) => {
                 </InvalidResponseMessageContainerStyled>
 
                 <Cell mb={3}>
-                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={formState.touched} {...props} />
+                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={touched} {...props} />
                     {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell mb={3}>
-                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...props} />
+                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={touched} {...props} />
                     {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                 </Cell>
 

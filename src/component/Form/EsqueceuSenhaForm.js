@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 
 import axios from 'axios';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlCursos, apiUrlLogin, defaultErrorMsg } from '../../config';
 
@@ -25,7 +25,7 @@ export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
     const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
-        register({ name: 'email' }, { ...customValidate.email });
+        register('email', { ...customValidate.email });
 
         return undefined;
     }, [register]);
@@ -33,13 +33,22 @@ export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
     // Function
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         mode: 'onChange'
     });
 
@@ -57,7 +66,7 @@ export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
                     if (JSON.parse(cursoId)) {
                         cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
                     } else {
-                        window.location.pathname = '/minha-conta/inicio';
+                        window.location.pathname = '/minha-conta/cursos';
                     }
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
@@ -89,7 +98,7 @@ export const EsqueceuSenhaForm = ({ location, ...otherProps }) => {
 
                         <Cell mb={3}>
                             <div>
-                                <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...otherProps} />
+                                <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...otherProps} />
                             </div>
 
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}

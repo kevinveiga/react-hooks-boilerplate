@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { apiUrlCadastro, defaultErrorMsg } from '../../config';
 
@@ -33,11 +33,11 @@ export const CadastroForm = ({ location, ...otherProps }) => {
     const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
-        register({ name: 'confirm_password' }, { ...customValidate.password, ...customValidate.require });
-        register({ name: 'email' }, { ...customValidate.email });
-        register({ name: 'nome' }, { ...customValidate.name, ...customValidate.require });
-        register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
-        register({ name: 'telefone' }, { ...customValidate.cellphone });
+        register('confirm_password', { ...customValidate.password, ...customValidate.require });
+        register('email', { ...customValidate.email });
+        register('nome', { ...customValidate.name, ...customValidate.require });
+        register('password', { ...customValidate.password, ...customValidate.require });
+        register('telefone', { ...customValidate.cellphone });
 
         return undefined;
     }, [register]);
@@ -45,13 +45,22 @@ export const CadastroForm = ({ location, ...otherProps }) => {
     // Function
     const handleValidation = useCallback(
         () => (element) => {
-            triggerValidation({ name: element.target.name, value: element.target.value });
+            setValue(element.target.name, element.target.value);
+            triggerValidation([element.target.name]);
         },
-        [triggerValidation]
+        [setValue, triggerValidation]
     );
 
     // FORM
-    const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+    const {
+        errors,
+        formState: { touched },
+        handleSubmit,
+        register,
+        setError,
+        setValue,
+        triggerValidation
+    } = useForm({
         mode: 'onChange'
     });
 
@@ -102,7 +111,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} touched={formState.touched} {...otherProps} />
+                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -110,7 +119,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...otherProps} />
+                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -124,7 +133,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                         mask={customMaskRegex.phone}
                                         name="telefone"
                                         onChange={handleValidation()}
-                                        touched={formState.touched}
+                                        touched={touched}
                                         {...otherProps}
                                     />
                                 </div>
@@ -140,7 +149,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                         maxLength="11"
                                         name="password"
                                         onChange={handleValidation()}
-                                        touched={formState.touched}
+                                        touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}
                                     />
@@ -167,7 +176,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                         maxLength="11"
                                         name="confirm_password"
                                         onChange={handleValidation()}
-                                        touched={formState.touched}
+                                        touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}
                                     />

@@ -35,6 +35,7 @@
         "camelcase": "warn",
         "comma-dangle": "off",
         "curly": "warn",
+        "dot-notation": "off",
         "eqeqeq": "off",
         "global-require": "off",
         "import/extensions": "off",
