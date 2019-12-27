@@ -49,7 +49,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
 
     useEffect(() => {
         register('data_nascimento', { ...customValidate.date });
-        register('email', { ...customValidate.email });
+        register('email', { ...customValidate.email, ...customValidate.require });
         register('endereco_cep', { ...customValidate.cep, ...customValidate.require });
         register('endereco_cidade', { ...customValidate.require });
         register('endereco_complemento');
