@@ -29,5 +29,13 @@ export const useIntersect = ({ root = null, rootMargin = '0px', threshold = 0 })
         };
     }, [stateNode, root, rootMargin, threshold]);
 
+    useEffect(() => {
+        if (stateEntry.isIntersecting) {
+            setStateNode(null);
+        }
+
+        return undefined;
+    }, [stateEntry]);
+
     return [stateEntry, setStateNode];
 };
