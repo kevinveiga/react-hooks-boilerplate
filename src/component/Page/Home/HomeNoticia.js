@@ -15,7 +15,7 @@ import { Box } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Title4 } from '../../../style/text';
 
-export const HomeNoticia = () => {
+const HomeNoticia = () => {
     // API
     const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
 
@@ -65,3 +65,5 @@ export const HomeNoticia = () => {
         )
     );
 };
+
+export default HomeNoticia;
