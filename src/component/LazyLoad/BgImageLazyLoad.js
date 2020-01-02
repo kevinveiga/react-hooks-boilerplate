@@ -13,7 +13,7 @@ export const BgImageLazyLoad = ({ url, ...otherProps }) => {
     return (
         <>
             <BgImage size="15%" url={imagePlaceholder} zindex="-2" />
-            <BgImageOverlay ref={setStateNode} url={url} {...otherProps} />
+            <BgImageOverlay ref={setStateNode} url={stateEntry.isIntersecting && url} {...otherProps} />
         </>
     );
 };
