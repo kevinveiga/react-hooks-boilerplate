@@ -5,11 +5,13 @@ import { apiUrlHome } from '../../../config';
 import { useSeoApi } from '../../../service/seo';
 
 import { HomeProvider } from '../../../store/home/home';
-import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { Button } from '../../Button/Button';
 import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
+import { HomeDestaque } from './HomeDestaque';
+import { HomeNoticia } from './HomeNoticia';
+import { HomeSuperDestaque } from './HomeSuperDestaque';
 
 import { LinkToExternal } from '../../Link/LinkToExternal';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
@@ -32,11 +34,9 @@ import { variable } from '../../../style/variable';
 // import xpInvestimentos from '../../../asset/image/xp-investimentos.png';
 
 // LAZY
-const HomeDestaque = lazy(() => import('./HomeDestaque'));
+// const BannerPerfilInvestidor = lazy(() => import('../../Banner/BannerPerfilInvestidor'));
 // const HomeEquipe = lazy(() => import('./HomeEquipe'));
-const HomeNoticia = lazy(() => import('./HomeNoticia'));
 // const HomeParceiro = lazy(() => import('./HomeParceiro'));
-const HomeSuperDestaque = lazy(() => import('./HomeSuperDestaque'));
 const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
@@ -44,7 +44,6 @@ export const Home = ({ location }) => {
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
     // ACTION
-    const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     return (
@@ -56,26 +55,14 @@ export const Home = ({ location }) => {
 
             <Main>
                 <HomeProvider location={location}>
-                    <ErrorBoundary>
-                        <Suspense fallback={LoaderComponent()}>
-                            <HomeSuperDestaque />
-                        </Suspense>
-                    </ErrorBoundary>
+                    <HomeSuperDestaque />
 
                     <Wrap>
                         <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                             <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
-                                <ErrorBoundary>
-                                    <Suspense fallback={LoaderComponent()}>
-                                        <HomeDestaque />
-                                    </Suspense>
-                                </ErrorBoundary>
+                                <HomeDestaque />
 
-                                <ErrorBoundary>
-                                    <Suspense fallback={LoaderComponent()}>
-                                        <HomeNoticia />
-                                    </Suspense>
-                                </ErrorBoundary>
+                                <HomeNoticia />
                             </Flex>
                         </Container>
                     </Wrap>

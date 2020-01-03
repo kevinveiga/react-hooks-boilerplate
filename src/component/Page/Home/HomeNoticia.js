@@ -15,7 +15,7 @@ import { Box } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Title4 } from '../../../style/text';
 
-const HomeNoticia = () => {
+export const HomeNoticia = () => {
     // API
     const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
 
@@ -35,7 +35,7 @@ const HomeNoticia = () => {
 
     return (
         noticiasLength > 0 && (
-            <Box mb={5} px={{ d: 0, sm: 3 }} width={{ d: 1, sm: 'calc(100% - 321px)', md: 'calc(40% - (321px / 2))' }}>
+            <Box mb={5} pl={{ d: 0, sm: 3 }} width={{ d: 1, sm: 'calc(100% - 321px)', md: '40%' }}>
                 <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
                     Últimas
                 </Title4>
@@ -65,5 +65,3 @@ const HomeNoticia = () => {
         )
     );
 };
-
-export default HomeNoticia;

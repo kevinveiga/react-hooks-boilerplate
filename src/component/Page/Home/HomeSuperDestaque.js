@@ -1,7 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 
-// import Slider from 'react-slick';
-
 import { apiUrlHome } from '../../../config';
 
 import { useSuperDestaqueApi } from '../../../service/superDestaque';
@@ -28,7 +26,7 @@ import { variable } from '../../../style/variable';
 // LAZY
 const Slider = lazy(() => import('react-slick'));
 
-const HomeSuperDestaque = () => {
+export const HomeSuperDestaque = () => {
     // API
     const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
 
@@ -168,5 +166,3 @@ const HomeSuperDestaque = () => {
         ))
     );
 };
-
-export default HomeSuperDestaque;

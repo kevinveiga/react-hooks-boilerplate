@@ -16,7 +16,7 @@ import { NoticiaBoxAuthorStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } fr
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 
-const HomeDestaque = () => {
+export const HomeDestaque = () => {
     // API
     const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`, {});
 
@@ -36,7 +36,7 @@ const HomeDestaque = () => {
 
     return (
         destaquesLength > 0 && (
-            <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 'calc(60% - (321px / 2))' }}>
+            <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: '60%' }}>
                 <Grid display="grid">
                     {stateDestaques.data.slice(0, 4).map((noticia, i, newArray) => {
                         return i === 0 ? (
@@ -97,5 +97,3 @@ const HomeDestaque = () => {
         )
     );
 };
-
-export default HomeDestaque;
