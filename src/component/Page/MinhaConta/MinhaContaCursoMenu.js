@@ -86,7 +86,9 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     themeType="none"
                 />
 
-                <Title4 fontWeight="700">{objectCurso.title}</Title4>
+                <Title4 fontWeight="700" mb={3}>
+                    {objectCurso.title}
+                </Title4>
 
                 <Box mb={4}>{parse(`${objectCurso.content}`)}</Box>
 
@@ -106,7 +108,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                             <Cell key={modulo.id}>
                                 <MinhaContaCursoMenuModuloStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}>
                                     <Box mr={3}>
-                                        <P fontSize="20px" mb={1}>
+                                        <P fontSize="18px" mb={1}>
                                             {modulo.title}
                                         </P>
 

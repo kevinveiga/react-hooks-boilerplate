@@ -24,7 +24,7 @@ import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabSt
 import { Box, Flex } from '../../../style/flex';
 import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
-import { P, Title2, Title4 } from '../../../style/text';
+import { P, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
@@ -292,7 +292,9 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                                 </Title4>
                                                             ) : (
                                                                 <>
-                                                                    <Title2>{conteudo && conteudo.title}</Title2>
+                                                                    <Title4 fontWeight="700" mb={3}>
+                                                                        {conteudo && conteudo.title}
+                                                                    </Title4>
 
                                                                     <div>{parse(`${conteudo && conteudo.content}`)}</div>
                                                                 </>
@@ -300,13 +302,13 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                         </TabContentStyled>
 
                                                         {/* <TabContentStyled>
-                                                            <Title2>Conteúdo</Title2>
+                                                            <Title4>Conteúdo</Title4>
 
                                                             <div>{parse(`${curso.content}`)}</div>
                                                         </TabContentStyled> */}
 
                                                         {/* <TabContentStyled>
-                                                            <Title2>Dúvidas</Title2>
+                                                            <Title4>Dúvidas</Title4>
 
                                                             <Suspense fallback={<P>Carregando...</P>}>
                                                                 <MinhaContaConversacao obj={null} />

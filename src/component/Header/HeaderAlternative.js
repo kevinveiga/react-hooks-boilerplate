@@ -50,7 +50,6 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                 <Button
                                     color="colorGray2"
                                     textDecoration="underline"
-                                    fontSize={18}
                                     fontWeight="400"
                                     hoverColor="colorWhite"
                                     onClick={handleChangeModalLogout(true)}
@@ -64,7 +63,6 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                 <LinkTo
                                     ariaLabel="Voltar para Home"
                                     color="colorGray2"
-                                    fontSize={18}
                                     link="/inicio"
                                     obj={{ hoverColor: 'colorWhite', textDecoration: 'underline', verticalAlign: 'middle' }}
                                     text="Voltar para Home"

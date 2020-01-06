@@ -13,19 +13,23 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
                 <>
                     {breadcrumb.map((item) => {
                         return (
-                            <BreadcrumbItemStyled display="inline-block" fontSize={{ d: 14, md: 18 }} key={item.path}>
-                                <LinkTo obj={obj} link={item.path} text={item.label} />
+                            <BreadcrumbItemStyled display="inline-block" fontSize={{ d: 14, md: 16 }} key={item.path}>
+                                <LinkTo obj={obj} link={item.path} text="Voltar" />
                                 <Span mx={{ d: 1, md: 2 }}> &gt; </Span>
                             </BreadcrumbItemStyled>
                         );
                     })}
 
                     {currentLabel && (
-                        <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 18 }} fontWeight="700">
+                        <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 16 }} fontWeight="700">
                             {currentLabel}
                         </BreadcrumbItemStyled>
                     )}
                 </>
+            ) : currentLabel ? (
+                <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 16 }} fontWeight="700">
+                    {currentLabel}
+                </BreadcrumbItemStyled>
             ) : (
                 <BreadcrumbItemStyled>Minha Conta</BreadcrumbItemStyled>
             )}

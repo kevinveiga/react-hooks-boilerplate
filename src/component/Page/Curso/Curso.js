@@ -106,8 +106,9 @@ export const Curso = ({ match }) => {
                 {curso && (
                     <>
                         <Flex display="flex" flexWrap="wrap">
-                            <Box height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">
+                            <Box bgColor="colorGray3" height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">
                                 <BgImageLazyLoad
+                                    filter={(windowWidth > parseInt(variable.md, 10) && 'blur(150px)') || undefined}
                                     url={
                                         (windowWidth < parseInt(variable.sm, 10) && getImageSm(curso.imagens.destaque)) ||
                                         (windowWidth < parseInt(variable.md, 10) && getImageMd(curso.imagens.destaque)) ||
@@ -181,7 +182,7 @@ export const Curso = ({ match }) => {
                             <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
                                 <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', md: '4fr 5fr' }}>
                                     <Cell>
-                                        <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
+                                        <Title2 fontSize={{ d: '26px', md: '36px' }} mb={{ d: 3, md: 4 }} themeColor="dark">
                                             {curso.title}
                                         </Title2>
 
@@ -207,7 +208,7 @@ export const Curso = ({ match }) => {
                                     {curso.capacitacoes.map((capacitacao) => {
                                         return (
                                             <Cell key={capacitacao.titulo}>
-                                                <Title4 fontWeight="700" line={true} mb={{ d: 3, md: 4 }} themeColor="dark">
+                                                <Title4 fontSize={{ d: '18px', md: '20px' }} fontWeight="700" line={true} mb={{ d: 3, md: 4 }} themeColor="dark">
                                                     {capacitacao.titulo}
                                                 </Title4>
 
@@ -238,8 +239,8 @@ export const Curso = ({ match }) => {
                                                     pr={5}
                                                     py={3}
                                                 >
-                                                    <Box textAlign="center">
-                                                        <Span fontSize={{ d: 20, md: 24 }} fontWeight="700" verticalAlign="middle">
+                                                    <Box mt={2} textAlign="center">
+                                                        <Span fontSize={{ d: 18, md: 20 }} fontWeight="700" verticalAlign="middle">
                                                             {modulo.title}
                                                         </Span>
 
