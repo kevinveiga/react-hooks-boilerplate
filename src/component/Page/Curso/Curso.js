@@ -106,7 +106,7 @@ export const Curso = ({ match }) => {
                 {curso && (
                     <>
                         <Flex display="flex" flexWrap="wrap">
-                            <Box bgColor="colorGray3" height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">
+                            <Box backgroundColor="colorGray3" height={{ d: '280px', md: '380px' }} overflow="hidden" verticalAlign="middle" width="100%">
                                 <BgImageLazyLoad
                                     filter={(windowWidth > parseInt(variable.md, 10) && 'blur(150px)') || undefined}
                                     url={

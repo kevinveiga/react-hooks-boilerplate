@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ModalMessageStyled } from './ModalMessageStyled';
 
-export const ModalMessage = ({ bgColor, color, text }) => {
+export const ModalMessage = ({ backgroundColor, color, text }) => {
     return (
-        <ModalMessageStyled bgColor={bgColor} color={color} text={text}>
+        <ModalMessageStyled backgroundColor={backgroundColor} color={color} text={text}>
             {text}
         </ModalMessageStyled>
     );

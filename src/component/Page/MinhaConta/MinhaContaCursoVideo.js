@@ -25,7 +25,7 @@ const MinhaContaCursoVideo = ({ apiUrl, conteudo, cursoId }) => {
     );
 
     return (
-        <VideoWrap bgColor="colorBlack">
+        <VideoWrap backgroundColor="colorBlack">
             <YouTube id="conteudoVideo" onEnd={handleVideoVisualizado(apiUrl)} videoId={conteudo.video_id} />
         </VideoWrap>
     );

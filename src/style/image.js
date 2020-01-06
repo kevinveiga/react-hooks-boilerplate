@@ -27,7 +27,7 @@ export const ImageCircleContainer = styled.div`
 
 export const BgImage = styled.div`
     ${({ attachment }) => attachment && `background-attachment: ${attachment}`};
-    background-color: ${({ bgColor }) => (bgColor ? variable[bgColor] : 'transparent')};
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
     ${({ url }) => url && `background-image: url('${url}')`};
     background-position: 50% 50%;
     background-repeat: no-repeat;

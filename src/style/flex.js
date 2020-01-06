@@ -12,7 +12,8 @@ export const Box = styled.div`
     ${space};
     ${typography};
     ${scrollbarAlternate()};
-    background-color: ${({ bgColor }) => (bgColor ? variable[bgColor] : 'transparent')};
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
+    ${({ color }) => color && `color: ${variable[color]}`};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition}, width ${variable.transition};
 
     ${({ hover }) =>

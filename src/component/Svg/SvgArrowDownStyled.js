@@ -7,7 +7,7 @@ export const SvgArrowDownStyled = styled.svg`
     ${space};
     fill: ${({ fill, change }) => (change ? variable.colorWhite : fill ? variable[fill] : variable.colorSecondary)};
     height: ${({ height }) => height || '10px'};
-    transform: rotate(0deg);
+    transform: ${({ transform }) => transform || 'rotate(0deg)'};
     transform-origin: 50% 50% 0;
     transition: fill ${variable.transition}, transform ${variable.transition};
 
