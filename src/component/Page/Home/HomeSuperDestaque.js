@@ -85,7 +85,7 @@ export const HomeSuperDestaque = () => {
                                     verticalAlign="middle"
                                     width="100%"
                                 >
-                                    <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
+                                    <BgImageLazyLoad filter="grayscale(100%)" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
 
                                     <Box>
                                         <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
@@ -141,7 +141,7 @@ export const HomeSuperDestaque = () => {
                                                                 verticalAlign="middle"
                                                                 width="100%"
                                                             >
-                                                                <BgImageLazyLoad grayscale="true" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
+                                                                <BgImageLazyLoad filter="grayscale(100%)" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
 
                                                                 <Box>
                                                                     <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>

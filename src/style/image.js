@@ -49,7 +49,7 @@ export const BgImage = styled.div`
 `;
 
 export const BgImageOverlay = styled(BgImage)`
-    ${({ grayscale }) => grayscale && `filter: grayscale(100%)`};
+    ${({ filter }) => filter && `filter: ${filter}`};
     transition: filter ${variable.transitionSlow}, transform ${variable.transitionSlow};
 
     &::after {
@@ -69,7 +69,11 @@ export const BgImageOverlay = styled(BgImage)`
 export const BgImageOverlayTopBottom = styled(BgImageOverlay)`
     &::after {
         background-color: transparent;
-        background-image: linear-gradient(180deg, ${({ overlayColorTop }) => (overlayColorTop ? variable[overlayColorTop] : variable.colorBlackTransparent5)} 0%, ${({ overlayColorBottom }) => (overlayColorBottom ? variable[overlayColorBottom] : variable.colorBlackTransparent1)} 100%);
+        background-image: linear-gradient(
+            180deg,
+            ${({ overlayColorTop }) => (overlayColorTop ? variable[overlayColorTop] : variable.colorBlackTransparent5)} 0%,
+            ${({ overlayColorBottom }) => (overlayColorBottom ? variable[overlayColorBottom] : variable.colorBlackTransparent1)} 100%
+        );
         background-repeat: repeat-x;
     }
 `;

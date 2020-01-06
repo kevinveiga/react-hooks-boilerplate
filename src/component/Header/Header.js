@@ -163,7 +163,7 @@ export const Header = () => {
                             ) : (
                                 <>
                                     <LinkTo ariaLabel="Seja Membro" link="/cadastro" mx={3}>
-                                        <Button text="Seja Membro" textTransform="none" themeSize="small" />
+                                        <Button text="Seja Membro" themeSize="small" />
                                     </LinkTo>
 
                                     <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
