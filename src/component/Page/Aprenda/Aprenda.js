@@ -155,7 +155,7 @@ export const Aprenda = () => {
                                                                     </ListBoxHover>
 
                                                                     <Box width="100%">
-                                                                        <Box height="200px" overflow="hidden" width="100%">
+                                                                        <Box overflow="hidden" pt="calc((9/16) * 100%)" width="100%">
                                                                             <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.galeria.curso_listagem} />
 
                                                                             <ListTag>Gratuito</ListTag>
