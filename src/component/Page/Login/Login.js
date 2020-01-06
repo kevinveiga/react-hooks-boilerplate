@@ -8,7 +8,7 @@ import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container, Main } from '../../../style/layout';
-import { P, Title2 } from '../../../style/text';
+import { Title2 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 export const Login = ({ location }) => {
@@ -25,15 +25,11 @@ export const Login = ({ location }) => {
                             <Svg name="svg-logo-liberta" />
                         </Box>
 
-                        <Title2 textAlign="center" themeColor="dark">
+                        <Title2 px={{ d: 1, sm: 5 }} themeColor="dark">
                             Acesse a sala de aula
                             <br />
                             da Liberta
                         </Title2>
-
-                        <P color="colorGray2" fontSize={14} mt="30px" textAlign="center" themeColor="dark">
-                            Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
-                        </P>
 
                         <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
                     </Container>
