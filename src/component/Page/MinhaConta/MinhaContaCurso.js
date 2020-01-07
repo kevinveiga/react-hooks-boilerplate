@@ -15,6 +15,7 @@ import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
 import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { HeaderAlternative } from '../../Header/HeaderAlternative';
+import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { Seo } from '../../Seo/Seo';
 
@@ -22,7 +23,6 @@ import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaC
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
 
 import { Box, Flex } from '../../../style/flex';
-import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
@@ -57,7 +57,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // Scroll para o topo
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
-        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.lg, 10) ? 0 : 80);
 
         return undefined;
     }, [isDataLoaded, stateCursoConteudo]);
@@ -162,28 +162,19 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                         <Container mx="auto" px={{ d: 0, lg: 3 }}>
                             <Flex display="flex" flexWrap="wrap">
                                 <MinhaContaCenterStyled pl={{ d: 3, sm: 5 }} pb={{ d: 3, sm: 5 }} width="100%">
-                                    {windowWidth < parseInt(variable.md, 10) && (
+                                    {windowWidth < parseInt(variable.lg, 10) && (
                                         <Breadcrumb currentLabel={curso.title} obj={{ hoverColor: 'colorWhite', textDecoration: 'underline' }} {...breadcrumb} />
                                     )}
 
                                     <Flex display="flex" flexWrap="wrap">
-                                        <Box pr={{ d: 3, sm: 5 }} pt={{ d: 3, sm: 5 }} width={{ d: 1, md: stateMenuConteudo ? 7 / 10 : 1 }}>
-                                            <Box
-                                                maxHeight={stateMenuConteudo ? '450px' : '600px'}
-                                                minHeight={{ d: '25vh', sm: '35vh' }}
-                                                mb={3}
-                                                overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'}
-                                            >
+                                        <Box pr={{ d: 3, sm: 5 }} pt={{ d: 0, lg: 5 }} width={{ d: 1, lg: stateMenuConteudo ? 7 / 10 : 1 }}>
+                                            <Box mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'} width="100%">
                                                 {conteudo.tipo === 'audio' && ''}
                                                 {conteudo.tipo === 'download' && ''}
                                                 {conteudo.tipo === 'imagem' && (
-                                                    <Image
-                                                        maxHeight={stateMenuConteudo ? '450px' : '600px'}
-                                                        minHeight={{ d: '25vh', sm: '35vh' }}
-                                                        text={conteudo.title}
-                                                        url={conteudo.imagem}
-                                                        width="100%"
-                                                    />
+                                                    <Box pt="calc((9 / 16) * 100%)">
+                                                        <BgImageLazyLoad url={conteudo.imagem && conteudo.imagem} />
+                                                    </Box>
                                                 )}
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
@@ -238,7 +229,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                             </Flex>
 
                                             {/* MinhaContaCursoMenu Mobile */}
-                                            {windowWidth < parseInt(variable.md, 10) && (
+                                            {windowWidth < parseInt(variable.lg, 10) && (
                                                 <>
                                                     <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} p={4}>
                                                         <Button
@@ -320,13 +311,13 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         </Box>
 
                                         {/* MinhaContaCursoMenu Desktop */}
-                                        {windowWidth > parseInt(variable.md, 10) && (
+                                        {windowWidth > parseInt(variable.lg, 10) && (
                                             <>
                                                 <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="25px">
                                                     <Button fontWeight="400" onClick={handleMenuConteudo(true)} text="Exibir menu" textDecoration="underline" themeSize="none" themeType="none" />
                                                 </MinhaContaExibirConteudoStyled>
 
-                                                <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, md: stateMenuConteudo ? 3 / 10 : 0 }}>
+                                                <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, lg: stateMenuConteudo ? 3 / 10 : 0 }}>
                                                     <Suspense fallback={<P>Carregando...</P>}>
                                                         <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
                                                     </Suspense>

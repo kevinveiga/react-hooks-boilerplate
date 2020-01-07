@@ -78,7 +78,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     fontWeight="400"
                     mb={4}
                     ml="auto"
-                    mr={{ d: 'auto', md: 0 }}
+                    mr={{ d: 'auto', lg: 0 }}
                     onClick={() => setStateMenuConteudoContext(false)}
                     text="Ocultar menu"
                     textDecoration="underline"

@@ -53,17 +53,7 @@ export const VideoWrap = styled.div`
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
 
     div {
-        height: 0;
-        padding-bottom: 50%;
-        padding-top: 45%;
-
-        @media (min-width: ${variable.sm}) {
-            padding-top: 15%;
-        }
-
-        @media (min-width: ${variable.lg}) {
-            padding-top: 30px;
-        }
+        padding-top: calc((9 / 16) * 100%);
 
         embed,
         iframe {

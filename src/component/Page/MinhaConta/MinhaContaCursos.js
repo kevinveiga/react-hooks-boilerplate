@@ -151,7 +151,7 @@ const MinhaContaCursos = () => {
                                                                             <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                                 <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                     <Box overflow="hidden" width={{ d: 1, md: 7 / 12 }}>
-                                                                                        <Box pt="calc((9/16) * 100%)">
+                                                                                        <Box pt="calc((9 / 16) * 100%)">
                                                                                             <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
                                                                                         </Box>
                                                                                     </Box>

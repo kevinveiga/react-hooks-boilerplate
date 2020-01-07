@@ -70,7 +70,7 @@ export const MinhaContaExibirConteudoStyled = styled.div`
     ${position};
     ${space};
 
-    @media (max-width: ${variable.md}) {
+    @media (max-width: ${variable.lg}) {
         background-color: ${variable.colorGrayLight3};
     }
 `;

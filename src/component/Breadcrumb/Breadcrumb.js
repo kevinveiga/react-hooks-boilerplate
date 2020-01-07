@@ -8,26 +8,26 @@ import { Span } from '../../style/text';
 
 export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
     return (
-        <BreadcrumbStyled mb={{ d: 4, md: 0 }}>
+        <BreadcrumbStyled mb={{ d: 4, lg: 0 }}>
             {breadcrumb ? (
                 <>
                     {breadcrumb.map((item) => {
                         return (
-                            <BreadcrumbItemStyled display="inline-block" fontSize={{ d: 14, md: 16 }} key={item.path}>
+                            <BreadcrumbItemStyled display="inline-block" fontSize={{ d: 14, lg: 16 }} key={item.path}>
                                 <LinkTo obj={obj} link={item.path} text="Voltar" />
-                                <Span mx={{ d: 1, md: 2 }}> &gt; </Span>
+                                <Span mx={{ d: 1, lg: 2 }}> &gt; </Span>
                             </BreadcrumbItemStyled>
                         );
                     })}
 
                     {currentLabel && (
-                        <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 16 }} fontWeight="700">
+                        <BreadcrumbItemStyled display={{ d: 'block', lg: 'inline-block' }} fontSize={{ d: 24, lg: 16 }} fontWeight="700">
                             {currentLabel}
                         </BreadcrumbItemStyled>
                     )}
                 </>
             ) : currentLabel ? (
-                <BreadcrumbItemStyled display={{ d: 'block', md: 'inline-block' }} fontSize={{ d: 24, md: 16 }} fontWeight="700">
+                <BreadcrumbItemStyled display={{ d: 'block', lg: 'inline-block' }} fontSize={{ d: 24, lg: 16 }} fontWeight="700">
                     {currentLabel}
                 </BreadcrumbItemStyled>
             ) : (
