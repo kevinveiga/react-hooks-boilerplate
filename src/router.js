@@ -11,6 +11,7 @@ import { Curso } from './component/Page/Curso/Curso';
 import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
 import { LoaderComponent } from './component/Loader/LoaderComponent';
 import { EsqueceuSenha } from './component/Page/Login/EsqueceuSenha';
+import { EsqueceuSenhaReiniciar } from './component/Page/Login/EsqueceuSenhaReiniciar';
 import { Home } from './component/Page/Home/Home';
 import { Login } from './component/Page/Login/Login';
 import { Noticia } from './component/Page/Noticia/Noticia';
@@ -55,7 +56,7 @@ export const Router = withRouter(({ ...props }) => {
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         const alternative = matchPath(props.location.pathname, {
-            path: ['/cadastro', '/esqueceu-senha', '/login', '/minha-conta']
+            path: ['/cadastro', '/esqueci-minha-senha', '/login', '/minha-conta']
         });
 
         setStateFooterAlternativeContext(alternative);
@@ -72,7 +73,8 @@ export const Router = withRouter(({ ...props }) => {
             <Route component={Aprenda} path="/aprenda" />
             <Route component={Cadastro} path="/cadastro" />
             <Route component={Curso} path="/curso/:slug" />
-            <Route component={EsqueceuSenha} path="/esqueceu-senha" />
+            <Route component={EsqueceuSenha} path="/esqueci-minha-senha" />
+            <Route component={EsqueceuSenhaReiniciar} path="/esqueci-minha-senha/token/:slug" />
             <Route component={Home} path="/inicio" />
             <Route component={Login} path="/login" />
 

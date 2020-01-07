@@ -8,6 +8,8 @@ export const apiUrlContato = `${apiUrl}/contato`;
 
 export const apiUrlCursos = `${apiUrl}/cursos`;
 
+export const apiUrlEsqueceuSenha = `${apiUrl}/password`;
+
 export const apiUrlHome = `${apiUrl}/home`;
 
 export const apiUrlLogin = `${apiUrl}/auth/login`;
