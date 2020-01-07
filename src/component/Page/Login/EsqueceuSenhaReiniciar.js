@@ -18,8 +18,6 @@ export const EsqueceuSenhaReiniciar = ({ match }) => {
     // API
     const stateEsqueceuSenha = useEsqueceuSenhaApi(`${apiUrlEsqueceuSenha}/find/${match.params.slug}`);
 
-    console.log('stateEsqueceuSenha: ', stateEsqueceuSenha);
-
     return (
         <Main backgroundColor="colorGrayLight5" header={false}>
             <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>

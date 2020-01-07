@@ -16,13 +16,15 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
+import { P } from '../../style/text';
 
 export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
     // ACTION
+    const [stateRetornoForm, setStateRetornoForm] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
-        register('confirm_password', { ...customValidate.password, ...customValidate.require });
+        register('password_confirmation', { ...customValidate.password, ...customValidate.require });
         register('password', { ...customValidate.password, ...customValidate.require });
 
         return undefined;
@@ -61,8 +63,7 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                 const result = await axios.post(`${apiUrlEsqueceuSenha}/reset`, newFormData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    // TODO
-                    console.log('result.data: ', result.data);
+                    setStateRetornoForm(true);
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
@@ -82,75 +83,83 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
 
     return (
         <Flex display="flex" flexWrap="wrap">
-            <Box overflow="hidden" width="100%">
-                <FormStyled onSubmit={handleSubmit(submitForm)}>
-                    <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
-                        <Cell>
-                            <InvalidResponseMessageContainerStyled>
-                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-                            </InvalidResponseMessageContainerStyled>
-                        </Cell>
+            {stateRetornoForm ? (
+                <Box width="100%">
+                    <P color="colorPrimary" fontSize={24} mt={5} mx="auto" textAlign="center">
+                        Senha alterada com sucesso.
+                    </P>
+                </Box>
+            ) : (
+                <Box overflow="hidden" width="100%">
+                    <FormStyled onSubmit={handleSubmit(submitForm)}>
+                        <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
+                            <Cell>
+                                <InvalidResponseMessageContainerStyled>
+                                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                </InvalidResponseMessageContainerStyled>
+                            </Cell>
 
-                        <Cell mb={4}>
-                            <div>
-                                <InputValidation
-                                    error={errors.password}
-                                    label="Senha"
-                                    maxLength="20"
-                                    name="password"
-                                    onChange={handleValidation()}
-                                    touched={touched}
-                                    type={stateViewPassword ? 'text' : 'password'}
-                                    {...otherProps}
-                                />
+                            <Cell mb={4}>
+                                <div>
+                                    <InputValidation
+                                        error={errors.password}
+                                        label="Senha"
+                                        maxLength="20"
+                                        name="password"
+                                        onChange={handleValidation()}
+                                        touched={touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        {...otherProps}
+                                    />
 
-                                <Svg
-                                    height="20px"
-                                    name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
-                                    onClick={() => setStateViewPassword(!stateViewPassword)}
-                                    position="absolute"
-                                    right="25px"
-                                    top="14px"
-                                    zIndex={1}
-                                />
-                            </div>
+                                    <Svg
+                                        height="20px"
+                                        name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
+                                        onClick={() => setStateViewPassword(!stateViewPassword)}
+                                        position="absolute"
+                                        right="25px"
+                                        top="14px"
+                                        zIndex={1}
+                                    />
+                                </div>
 
-                            {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
-                        </Cell>
+                                {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
+                            </Cell>
 
-                        <Cell mb={4}>
-                            <div>
-                                <InputValidation
-                                    error={errors.confirm_password}
-                                    label="Confirmação de senha"
-                                    maxLength="11"
-                                    name="confirm_password"
-                                    onChange={handleValidation()}
-                                    touched={touched}
-                                    type={stateViewPassword ? 'text' : 'password'}
-                                    {...otherProps}
-                                />
+                            <Cell mb={4}>
+                                <div>
+                                    <InputValidation
+                                        error={errors.password_confirmation}
+                                        label="Confirmação de senha"
+                                        maxLength="11"
+                                        name="password_confirmation"
+                                        onChange={handleValidation()}
+                                        touched={touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        {...otherProps}
+                                    />
 
-                                <Svg
-                                    height="20px"
-                                    name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
-                                    onClick={() => setStateViewPassword(!stateViewPassword)}
-                                    position="absolute"
-                                    right="25px"
-                                    top="14px"
-                                    zIndex={1}
-                                />
-                            </div>
+                                    <Svg
+                                        height="20px"
+                                        name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
+                                        onClick={() => setStateViewPassword(!stateViewPassword)}
+                                        position="absolute"
+                                        right="25px"
+                                        top="14px"
+                                        zIndex={1}
+                                    />
+                                </div>
 
-                            {errors.confirm_password && <InvalidInputMessageStyled>{errors.confirm_password.message}</InvalidInputMessageStyled>}
-                        </Cell>
+                                {errors.password_confirmation && <InvalidInputMessageStyled>{errors.password_confirmation.message}</InvalidInputMessageStyled>}
+                            </Cell>
 
-                        <Cell mb={3}>
-                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" text="Enviar" typeButton="submit" width="50%" />
-                        </Cell>
-                    </Grid>
-                </FormStyled>
-            </Box>
+                            <Cell mb={3}>
+                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" text="Enviar" typeButton="submit" width="50%" />
+                            </Cell>
+                        </Grid>
+                    </FormStyled>
+                </Box>
+            )}
         </Flex>
     );
 };
