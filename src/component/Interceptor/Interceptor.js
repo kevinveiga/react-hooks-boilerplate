@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 
 import { useInterceptor } from '../../service/interceptor';
 
-import { useApp } from '../../store/app/app';
+import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
 import { Loader } from '../Loader/Loader';
 import { ModalMessage } from '../Modal/ModalMessage';
 
 export const Interceptor = () => {
     // ACTION
-    const { stateModalMessageContext, setStateModalMessageContext } = useApp();
+    const [stateModalMessage, setStateModalMessage] = useModalMessage();
     const [stateLoader, setStateLoader] = useState(false);
 
-    useInterceptor(setStateLoader, setStateModalMessageContext);
+    useInterceptor(setStateLoader, setStateModalMessage);
 
     return (
         <>
             <Loader active={stateLoader} />
 
-            <ModalMessage {...stateModalMessageContext} />
+            <ModalMessage {...stateModalMessage} />
         </>
     );
 };

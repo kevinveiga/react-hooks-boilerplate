@@ -39,7 +39,7 @@ export const EsqueceuSenhaReiniciar = ({ match }) => {
                             Receba uma nova por e-mail
                         </Title2>
 
-                        <EsqueceuSenhaReiniciarForm email={stateEsqueceuSenha.data && stateEsqueceuSenha.data.email} obj={{ colorLine: 'colorPrimary' }} token={match.params.slug} />
+                        <EsqueceuSenhaReiniciarForm email={stateEsqueceuSenha.data && stateEsqueceuSenha.data.data} obj={{ colorLine: 'colorPrimary' }} token={match.params.slug} />
                     </Container>
                 </Box>
 

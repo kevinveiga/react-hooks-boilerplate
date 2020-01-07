@@ -51,14 +51,10 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
     });
 
     const submitForm = (formData) => {
-        console.log('formData: ', formData);
-
         const newFormData = formData;
 
         newFormData.email = email;
         newFormData.token = token;
-
-        console.log('newFormData: ', newFormData);
 
         const fetchData = async () => {
             try {

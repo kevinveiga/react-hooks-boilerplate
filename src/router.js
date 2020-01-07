@@ -73,7 +73,7 @@ export const Router = withRouter(({ ...props }) => {
             <Route component={Aprenda} path="/aprenda" />
             <Route component={Cadastro} path="/cadastro" />
             <Route component={Curso} path="/curso/:slug" />
-            <Route component={EsqueceuSenha} path="/esqueci-minha-senha" />
+            <Route component={EsqueceuSenha} exact={true} path="/esqueci-minha-senha" />
             <Route component={EsqueceuSenhaReiniciar} path="/esqueci-minha-senha/token/:slug" />
             <Route component={Home} path="/inicio" />
             <Route component={Login} path="/login" />
