@@ -103,7 +103,7 @@ export const Normalize = createGlobalStyle`
         text-align: center;
         text-decoration: none;
 
-        @media (min-width: ${variable.md}) {
+        @media (min-width: ${variable.lg}) {
             font-size: 14px;
         }
     }
