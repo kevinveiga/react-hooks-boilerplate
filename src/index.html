@@ -10,7 +10,7 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-TileColor" content="#00aba9" />
         <meta name="theme-color" content="#ffffff" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
         <!-- SEO -->
         <meta name="robots" content="all" />
@@ -26,9 +26,9 @@
         <!-- END BASE PATH -->
 
         <!-- FAVICON -->
-        <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-        <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-        <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+        <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+        <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+        <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
         <!-- END FAVICON -->
 
         <!-- MANIFEST -->
@@ -36,7 +36,7 @@
         <!-- END MANIFEST -->
 
         <!-- DNS PREFETCH -->
-        <!-- <link crossorigin="crossorigin" href="//stage-api.liberta.com.vc" rel="dns-prefetch" />
+        <!-- <link crossorigin="crossorigin" href="//api.com.vc" rel="dns-prefetch" /> -->
 
         <link crossorigin="crossorigin" href="//ad.doubleclick.net" rel="dns-prefetch" />
         <link crossorigin="crossorigin" href="//ajax.googleapis.com" rel="dns-prefetch" />
@@ -49,11 +49,19 @@
         <link crossorigin="crossorigin" href="//storage.googleapis.com" rel="dns-prefetch" />
         <link crossorigin="crossorigin" href="//www.google-analytics.com" rel="dns-prefetch" />
         <link crossorigin="crossorigin" href="//www.googletagmanager.com" rel="dns-prefetch" />
-        <link crossorigin="crossorigin" href="//www.youtube.com" rel="dns-prefetch" /> -->
+        <link crossorigin="crossorigin" href="//www.youtube.com" rel="dns-prefetch" />
         <!-- END DNS PREFETCH -->
 
         <!-- NOSCRIPT -->
         <noscript>
+            <!-- Facebook Pixel Code -->
+            <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=00000&ev=PageView&noscript=1" />
+            <!-- End Facebook Pixel Code -->
+
+            <!-- Google Tag Manager (noscript) -->
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSNTRDP" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+            <!-- End Google Tag Manager (noscript) -->
+
             <div style="left: 50%; position: absolute; text-align: center; top: 50%; transform: translate3d(-50%, -50%, 0);">
                 <p>
                     A aplicação precisa do JavaScript ativado
@@ -69,17 +77,18 @@
     <body>
         <div id="app"></div>
 
-        <!-- Facebook Code -->
-        <!-- <div id="fb-root"></div> -->
-        <!-- End Facebook Code -->
+        <!-- Facebook -->
+        <div id="fb-root"></div>
+        <!-- End Facebook -->
 
-        <script type="text/javascript">
-            // SERVICE WORKER REGISTER
+        <!-- SCRIPT -->
+        <script>
+            // Service Worker Register
             var serviceWorkerRegister = function() {
                 if ('serviceWorker' in navigator) {
                     window.addEventListener('load', function() {
                         navigator.serviceWorker
-                            .register('/sw.js')
+                            .register('/sw.js?')
                             .then(function(registration) {
                                 console.info('%c Service Worker registered: ', 'color: #00bbee;', registration);
 
@@ -139,6 +148,8 @@
             };
 
             serviceWorkerRegister();
+            // End Service Worker Register
         </script>
+        <!-- END SCRIPT -->
     </body>
 </html>
