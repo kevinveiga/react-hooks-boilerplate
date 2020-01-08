@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
@@ -10,17 +10,17 @@ import { AppProvider } from './store/app/app';
 import { UserProvider } from './store/auth/auth';
 import { HeaderProvider } from './store/header/header';
 
-import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
+// import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
 import { Footer } from './component/Footer/Footer';
 import { Header } from './component/Header/Header';
 import { Interceptor } from './component/Interceptor/Interceptor';
-import { LoaderComponent } from './component/Loader/LoaderComponent';
+// import { LoaderComponent } from './component/Loader/LoaderComponent';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
 
 // LAZY
-const ExternalJs = lazy(() => import('./component/ExternalJs/ExternalJs'));
+// const ExternalJs = lazy(() => import('./component/ExternalJs/ExternalJs'));
 
 export const App = () => {
     return (
@@ -45,11 +45,11 @@ export const App = () => {
 
                             <Footer />
 
-                            <ErrorBoundary>
+                            {/* <ErrorBoundary>
                                 <Suspense fallback={LoaderComponent()}>
                                     <ExternalJs />
                                 </Suspense>
-                            </ErrorBoundary>
+                            </ErrorBoundary> */}
                         </UserProvider>
                     </AppProvider>
                 </BrowserRouter>

@@ -5,26 +5,28 @@ const ExternalJs = () => {
         const firstScript = document.getElementsByTagName('script')[0];
 
         // Facebook
-        if (!window.fbAsyncInit) {
-            const FB = {};
-
-            window.fbAsyncInit = () => {
-                FB.init({
-                    appId: '793744697682790',
-                    xfbml: true,
-                    version: 'v5.0'
-                });
-                FB.AppEvents.logPageView();
-            };
-        }
-
         if (!document.getElementById('facebook-jssdk')) {
+            console.log('aqui');
             const scriptFacebook = document.createElement('script');
 
+            scriptFacebook.async = true;
             scriptFacebook.id = 'facebook-jssdk';
             scriptFacebook.src = 'https://connect.facebook.net/en_US/sdk.js';
 
             firstScript.parentNode.insertBefore(scriptFacebook, firstScript);
+        }
+
+        if (!window.fbAsyncInit) {
+            /* eslint-disable func-names, no-undef */
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId: '793744697682790',
+                    autoLogAppEvents: true,
+                    xfbml: true,
+                    version: 'v5.0'
+                });
+            };
+            /* eslint-disable func-names, no-undef */
         }
 
         // Facebook Pixel
