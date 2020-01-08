@@ -6,7 +6,6 @@ const ExternalJs = () => {
 
         // Facebook
         if (!document.getElementById('facebook-jssdk')) {
-            console.log('aqui');
             const scriptFacebook = document.createElement('script');
 
             scriptFacebook.async = true;
