@@ -5,6 +5,7 @@ import axios from 'axios';
 import { getLocalStorageUser } from '../store/auth/auth';
 
 import { responseErrorStatus } from '../util/responseErrorStatus';
+import { sleep } from '../util/sleep';
 
 import { variable } from '../style/variable';
 
@@ -37,9 +38,13 @@ export const useInterceptor = (setStateLoader, setStateModalMessage) => {
     const interceptorResponse = useCallback(() => {
         axios.interceptors.response.use(
             (response) => {
-                setTimeout(() => {
+                const delay = async () => {
+                    await sleep(parseInt(variable.timeout1s, 10) / 2);
+
                     setStateLoader(false);
-                }, parseInt(variable.timeout1s, 10) / 2);
+                };
+
+                delay();
 
                 return response;
             },
