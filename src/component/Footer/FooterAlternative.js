@@ -7,7 +7,7 @@ import { FooterAlternativeStyled } from './FooterAlternativeStyled';
 import { Container } from '../../style/layout';
 import { P } from '../../style/text';
 
-export const FooterAlternative = () => {
+const FooterAlternative = () => {
     return (
         <FooterAlternativeStyled>
             <Container mx="auto" p={3}>
@@ -19,3 +19,5 @@ export const FooterAlternative = () => {
         </FooterAlternativeStyled>
     );
 };
+
+export default FooterAlternative;

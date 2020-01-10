@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import YouTube from 'react-youtube';
 
@@ -7,14 +7,15 @@ import { apiUrlHome } from '../../../config';
 import { useVideoApi } from '../../../service/video';
 
 import { useCurrentVideo } from '../../../store/video/video';
+import { useIntersect } from '../../../store/util/intersect';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { getVideoId } from '../../../util/getVideoId';
 
 import { Button } from '../../Button/Button';
-import { IntersectionObserver } from '../../IntersectionObserver/IntersectionObserver';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkToExternal } from '../../Link/LinkToExternal';
+import { LoaderPlaceholder } from '../../Loader/LoaderPlaceholder';
 import { Svg } from '../../Svg/Svg';
 
 import { VideoContainerStyled } from './HomeStyled';
@@ -28,14 +29,23 @@ import { Span, Title2, Title4, Title5 } from '../../../style/text';
 
 const HomeVideo = ({ anchor, ...otherProps }) => {
     // API
-    const stateVideos = useVideoApi(`${apiUrlHome}/videos`, {});
+    const [stateVideos, setStateVideoData] = useVideoApi({ isIntersecting: false });
 
     const videosLength = stateVideos.data && stateVideos.data.length;
 
     // ACTION
+    const [stateEntry, setStateNode] = useIntersect({});
     const windowWidth = useWindowWidth();
 
     const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo('#home-video', windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+
+    useEffect(() => {
+        if (stateEntry.isIntersecting) {
+            setStateVideoData({ isIntersecting: true, url: `${apiUrlHome}/videos` });
+        }
+
+        return undefined;
+    }, [stateEntry, setStateVideoData]);
 
     // Function
     const handleCurrentVideo = useCallback(
@@ -46,8 +56,8 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
     );
 
     return (
-        videosLength > 0 && (
-            <IntersectionObserver>
+        <div ref={setStateNode}>
+            {stateEntry.isIntersecting && videosLength > 0 ? (
                 <VideoContainerStyled id="home-video">
                     <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                         <Title2 themeColor="light">Vídeos Liberta</Title2>
@@ -117,8 +127,10 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
                         </Box>
                     </Container>
                 </VideoContainerStyled>
-            </IntersectionObserver>
-        )
+            ) : (
+                <LoaderPlaceholder />
+            )}
+        </div>
     );
 };
 

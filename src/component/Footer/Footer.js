@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 
 import { matchPath, withRouter } from 'react-router-dom';
 
-import { FooterAlternative } from './FooterAlternative';
-import { FooterPrincipal } from './FooterPrincipal';
+import { ComponentLazyLoad } from '../LazyLoad/ComponentLazyLoad';
+
+// LAZY
+const FooterAlternative = lazy(() => import('./FooterAlternative'));
+const FooterPrincipal = lazy(() => import('./FooterPrincipal'));
 
 export const Footer = withRouter(({ ...props }) => {
     const [stateAlternative, setStateAlternative] = useState(false);
@@ -18,5 +21,5 @@ export const Footer = withRouter(({ ...props }) => {
         return undefined;
     }, [props.location.pathname]);
 
-    return stateAlternative ? <FooterAlternative /> : <FooterPrincipal />;
+    return stateAlternative ? <ComponentLazyLoad component={FooterAlternative} /> : <ComponentLazyLoad component={FooterPrincipal} />;
 });

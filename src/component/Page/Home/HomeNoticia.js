@@ -6,7 +6,6 @@ import { useNoticiaApi } from '../../../service/noticia';
 
 import { useHome } from '../../../store/home/home';
 
-import { IntersectionObserver } from '../../IntersectionObserver/IntersectionObserver';
 import { LinkTo } from '../../Link/LinkTo';
 import { LoaderPlaceholder } from '../../Loader/LoaderPlaceholder';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
