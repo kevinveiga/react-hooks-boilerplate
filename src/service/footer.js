@@ -1,39 +1,29 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-import * as ACTION from '../store/action/action';
+export const useFooterApi = (obj) => {
+    const [stateFooterData, setStateFooterData] = useState(obj);
 
-import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
-
-export const useFooterApi = (url, initialData) => {
-    const [stateFooterUrl] = useState(url);
-
-    const [stateFooter, dispatch] = useReducer(dataFetchReducer, {
-        data: initialData,
-        isError: false,
-        isLoading: false
-    });
+    const [stateFooter, setStateFooter] = useState(JSON.parse('{ "data": [] }'));
 
     useEffect(() => {
-        if (!stateFooterUrl) {
+        if (!stateFooterData.isIntersecting || !stateFooterData.url) {
             return undefined;
         }
 
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
-                const result = await axios.get(stateFooterUrl);
+                const result = await axios.get(stateFooterData.url);
 
                 if (!didCancel) {
-                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                    setStateFooter(result);
                 }
             } catch (error) {
                 if (!didCancel) {
-                    dispatch(ACTION.failure());
+                    console.error('Erro ao buscar dados do Footer');
                 }
             }
         };
@@ -43,7 +33,7 @@ export const useFooterApi = (url, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [stateFooterUrl]);
+    }, [stateFooterData]);
 
-    return stateFooter;
+    return [stateFooter, setStateFooterData];
 };
