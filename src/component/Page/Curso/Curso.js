@@ -274,37 +274,31 @@ export const Curso = ({ match }) => {
                             </Box>
                         </Container>
 
-                        <Wrap>
-                            <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
-                                <Title2 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                                    Instrutor
-                                </Title2>
+                        {curso.instrutores.length > 0 && (
+                            <Wrap>
+                                <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
+                                    <Title2 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                        Instrutor
+                                    </Title2>
 
-                                <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', md: '1fr 230px' }} justifyItems={{ d: 'center', md: 'flex-end' }}>
-                                    <Cell>
-                                        <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
-                                            Gabe Towels
-                                        </Title2>
+                                    <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', md: '1fr 230px' }} justifyItems={{ d: 'center', md: 'flex-end' }}>
+                                        <Cell>
+                                            <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
+                                                {curso.instrutores[0].nome}
+                                            </Title2>
 
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                            nostrud exercitation ullamco laboris nisi ut al.
-                                        </p>
+                                            <div>{parse(`${curso.instrutores[0].bio}`)}</div>
+                                        </Cell>
 
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                            nostrud exercitation ullamco laboris.
-                                        </p>
-                                    </Cell>
-
-                                    <Cell>
-                                        <Box borderRadius="50%" height="230px" overflow="hidden" verticalAlign="middle" width="230px">
-                                            <BgImageLazyLoad url="https://picsum.photos/id/1011/1024/768" />
-                                        </Box>
-                                    </Cell>
-                                </Grid>
-                            </Container>
-                        </Wrap>
+                                        <Cell>
+                                            <Box borderRadius="50%" height="230px" overflow="hidden" verticalAlign="middle" width="230px">
+                                                <BgImageLazyLoad url={curso.instrutores[0].avatar} />
+                                            </Box>
+                                        </Cell>
+                                    </Grid>
+                                </Container>
+                            </Wrap>
+                        )}
 
                         {/* <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
                             <Title2 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
