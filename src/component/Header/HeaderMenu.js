@@ -60,7 +60,7 @@ export const HeaderMenu = ({ ...props }) => {
                 </li>
 
                 <li>
-                    <LinkTo link="/inicio/home-video-container" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Vídeos" />
+                    <LinkTo link="/inicio/home-video" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Vídeos" />
                 </li>
 
                 {/* <li>

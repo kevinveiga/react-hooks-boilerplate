@@ -56,9 +56,9 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
     );
 
     return (
-        <div ref={setStateNode}>
+        <div id="home-video" ref={setStateNode}>
             {stateEntry.isIntersecting && videosLength > 0 ? (
-                <VideoContainerStyled id="home-video">
+                <VideoContainerStyled>
                     <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                         <Title2 themeColor="light">Vídeos Liberta</Title2>
 
