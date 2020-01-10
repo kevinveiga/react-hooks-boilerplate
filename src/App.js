@@ -10,17 +10,13 @@ import { AppProvider } from './store/app/app';
 import { UserProvider } from './store/auth/auth';
 import { HeaderProvider } from './store/header/header';
 
-// import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
+// import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Footer } from './component/Footer/Footer';
 import { Header } from './component/Header/Header';
 import { Interceptor } from './component/Interceptor/Interceptor';
-// import { LoaderComponent } from './component/Loader/LoaderComponent';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
-
-// LAZY
-// const ExternalJs = lazy(() => import('./component/ExternalJs/ExternalJs'));
 
 export const App = () => {
     return (
@@ -45,11 +41,7 @@ export const App = () => {
 
                             <Footer />
 
-                            {/* <ErrorBoundary>
-                                <Suspense fallback={<LoaderComponent />}>
-                                    <ExternalJs />
-                                </Suspense>
-                            </ErrorBoundary> */}
+                            {/* <ExternalJs /> */}
                         </UserProvider>
                     </AppProvider>
                 </BrowserRouter>
