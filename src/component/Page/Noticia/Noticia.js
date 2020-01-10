@@ -14,6 +14,7 @@ import { scrollTo } from '../../../util/scrollTo';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { Leadwall } from '../../Leadwall/Leadwall';
 import { LinkTo } from '../../Link/LinkTo';
+// import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { NoticiaBox } from './NoticiaBox';
 import { NoticiaSocial } from './NoticiaSocial';
 import { Seo } from '../../Seo/Seo';
@@ -27,8 +28,6 @@ import { Image, ImageCircleContainer } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { P, Span, Title1, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
-
-import logo from '../../../asset/image/logo.png';
 
 // LAZY
 // const NoticiaForm = lazy(() => import('../../Form/NoticiaForm'));
@@ -128,7 +127,7 @@ export const Noticia = ({ match }) => {
                         <Leadwall change={changeLeadwall} />
 
                         {/* <NoticiaFormContainerStyled mb="75px">
-                            <Suspense fallback={<P themeColor="dark">Carregando...</P>}>
+                            <Suspense fallback={<LoaderComponent />}>
                                 <NoticiaForm />
                             </Suspense>
                         </NoticiaFormContainerStyled> */}
@@ -137,7 +136,7 @@ export const Noticia = ({ match }) => {
                             <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }}>
                                 <Box display="inline-block">
                                     <ImageCircleContainer>
-                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar || logo} />
+                                        <Image objectFit="none" text="autor" url={stateNoticia.data.author_avatar || null} />
                                     </ImageCircleContainer>
                                 </Box>
 

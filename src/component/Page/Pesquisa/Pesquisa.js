@@ -108,7 +108,7 @@ export const Pesquisa = ({ match }) => {
                             width="20%"
                         >
                             <ErrorBoundary>
-                                <Suspense fallback={LoaderComponent()}>
+                                <Suspense fallback={<LoaderComponent />}>
                                     <BannerPerfilInvestidor
                                         boxMeasure={stateBannerMeasure}
                                         boxMeasurePadding={16}

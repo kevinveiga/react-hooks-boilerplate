@@ -319,7 +319,7 @@ export const Noticias = () => {
 
                             {/* <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!stateNoticiasCategoria.isLoading && stateNoticiasCategoriaSelected !== 'ultimas'} width="20%">
                                 <ErrorBoundary>
-                                    <Suspense fallback={LoaderComponent()}>
+                                    <Suspense fallback={<LoaderComponent />}>
                                         <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'noticias-tabs-content', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
                                     </Suspense>
                                 </ErrorBoundary>

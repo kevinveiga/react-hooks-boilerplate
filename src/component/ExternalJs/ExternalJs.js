@@ -19,7 +19,7 @@ const ExternalJs = () => {
             /* eslint-disable func-names, no-undef */
             window.fbAsyncInit = function() {
                 FB.init({
-                    appId: '793744697682790',
+                    appId: '00000',
                     autoLogAppEvents: true,
                     xfbml: true,
                     version: 'v5.0'
@@ -56,7 +56,7 @@ const ExternalJs = () => {
             firstScript.parentNode.insertBefore(scriptFacebookPixel, firstScript);
         }
 
-        window.fbq('init', '299072640905686');
+        window.fbq('init', '00000');
         window.fbq('track', 'PageView');
 
         // Google Tag Manager

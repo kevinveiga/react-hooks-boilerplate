@@ -1,8 +1,7 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 
-import { matchPath, Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { useApp } from './store/app/app';
 import { getLocalStorageUser } from './store/auth/auth';
 
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
@@ -28,7 +27,7 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
 
     return (
         <ErrorBoundary>
-            <Suspense fallback={LoaderComponent()}>
+            <Suspense fallback={<LoaderComponent />}>
                 <Route
                     render={(props) => (user && user.token ? <Component breadcrumb={breadcrumb} {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />)}
                     {...otherProps}
@@ -41,31 +40,14 @@ const PrivateRoute = ({ breadcrumb, component: Component, ...otherProps }) => {
 // const LazyRoute = ({ component: Component, ...otherProps }) => {
 //     return (
 //         <ErrorBoundary>
-//             <Suspense fallback={LoaderComponent()}>
+//             <Suspense fallback={<LoaderComponent />}>
 //                 <Route render={(props) => <Component {...props} />} {...otherProps} />
 //             </Suspense>
 //         </ErrorBoundary>
 //     );
 // };
 
-export const Router = withRouter(({ ...props }) => {
-    // ACTION
-    const { setStateFooterAlternativeContext, setStateHeaderAlternativeContext } = useApp();
-
-    // Mudar Header e Footer principais para alternativos de acordo com array do arrayPathname
-    /* eslint-disable react-hooks/exhaustive-deps */
-    useEffect(() => {
-        const alternative = matchPath(props.location.pathname, {
-            path: ['/cadastro', '/esqueci-minha-senha', '/login', '/minha-conta']
-        });
-
-        setStateFooterAlternativeContext(alternative);
-        setStateHeaderAlternativeContext(alternative);
-
-        return undefined;
-    }, [props.location.pathname]);
-    /* eslint-enable react-hooks/exhaustive-deps */
-
+export const Router = ({ ...props }) => {
     const minhaContaInicioRoute = { label: 'Minha Conta', path: '/minha-conta/inicio' };
 
     return (
@@ -95,4 +77,4 @@ export const Router = withRouter(({ ...props }) => {
             <Route component={Home} path="*" />
         </Switch>
     );
-});
+};

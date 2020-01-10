@@ -46,7 +46,7 @@ export const App = () => {
                             <Footer />
 
                             {/* <ErrorBoundary>
-                                <Suspense fallback={LoaderComponent()}>
+                                <Suspense fallback={<LoaderComponent />}>
                                     <ExternalJs />
                                 </Suspense>
                             </ErrorBoundary> */}

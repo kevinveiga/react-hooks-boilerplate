@@ -179,7 +179,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 {conteudo.tipo === 'post' && parse(`${conteudo && conteudo.content}`)}
                                                 {conteudo.tipo === 'video' && (
                                                     <ErrorBoundary>
-                                                        <Suspense fallback={LoaderComponent()}>
+                                                        <Suspense fallback={<LoaderComponent />}>
                                                             <MinhaContaCursoVideo
                                                                 apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`}
                                                                 conteudo={conteudo}

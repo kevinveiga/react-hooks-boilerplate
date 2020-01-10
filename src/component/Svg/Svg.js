@@ -28,6 +28,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgMenu {...otherProps} />;
         case 'svg-no-view':
             return <SvgStore.SvgNoView {...otherProps} />;
+        case 'svg-placeholder-loader':
+            return <SvgStore.SvgPlaceholderLoader {...otherProps} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...otherProps} />;
         case 'svg-tipo-audio':

@@ -313,7 +313,7 @@ export const Curso = ({ match }) => {
 
                             <CarouselStyled maxWidth="600px" mx="auto">
                                 <ErrorBoundary>
-                                    <Suspense fallback={LoaderComponent()}>
+                                    <Suspense fallback={<LoaderComponent />}>
                                         <Slider {...carouselOptions}>
                                             <div>
                                                 <Grid display="grid" gridRowGap={4} justifyItems="center" mb={5} px={1}>

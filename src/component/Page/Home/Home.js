@@ -1,31 +1,23 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy } from 'react';
 
 import { apiUrlHome } from '../../../config';
 
 import { useSeoApi } from '../../../service/seo';
 
 import { HomeProvider } from '../../../store/home/home';
-import { useWindowWidth } from '../../../store/util/windowWidth';
 
-import { Button } from '../../Button/Button';
-import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { HomeDestaque } from './HomeDestaque';
 import { HomeNoticia } from './HomeNoticia';
 import { HomeSuperDestaque } from './HomeSuperDestaque';
-
-import { LinkToExternal } from '../../Link/LinkToExternal';
-import { LoaderComponent } from '../../Loader/LoaderComponent';
-
+import { ComponentLazyLoad } from '../../LazyLoad/ComponentLazyLoad';
+import { LinkTo } from '../../Link/LinkTo';
 import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
-
-import { VideoContainerStyled } from './HomeStyled';
 
 import { Box, Flex } from '../../../style/flex';
 // import { Image } from '../../../style/image';
 import { Container, Main, Wrap } from '../../../style/layout';
-import { Span, Title2 } from '../../../style/text';
-import { variable } from '../../../style/variable';
+import { Title4 } from '../../../style/text';
 
 // import brasilParalelo from '../../../asset/image/brasil-paralelo.png';
 // import infomoney from '../../../asset/image/infomoney.png';
@@ -43,9 +35,6 @@ export const Home = ({ location }) => {
     // API
     const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
 
-    // ACTION
-    const windowWidth = useWindowWidth();
-
     return (
         <>
             <Seo>
@@ -60,33 +49,30 @@ export const Home = ({ location }) => {
                     <Wrap>
                         <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
                             <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
-                                <HomeDestaque />
+                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: '60%' }}>
+                                    <HomeDestaque />
 
-                                <HomeNoticia />
+                                    <Flex display="flex" justifyContent="flex-end">
+                                        <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary' }} link="/noticias">
+                                            <span>Ver mais</span>
+
+                                            <Svg name="svg-next" pl={2} />
+                                        </LinkTo>
+                                    </Flex>
+                                </Box>
+
+                                <Box mb={5} pl={{ d: 0, sm: 3 }} width={{ d: 1, sm: 'calc(100% - 321px)', md: '40%' }}>
+                                    <Title4 color="colorGray2" fontWeight="700" themeColor="dark">
+                                        Últimas
+                                    </Title4>
+
+                                    <HomeNoticia />
+                                </Box>
                             </Flex>
                         </Container>
                     </Wrap>
 
-                    <VideoContainerStyled id="home-video-container">
-                        <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
-                            <Title2 themeColor="light">Vídeos Liberta</Title2>
-
-                            <ErrorBoundary>
-                                <Suspense fallback={LoaderComponent()}>
-                                    <HomeVideo anchor={{ elementId: '#home-video-container', offset: windowWidth < parseInt(variable.md, 10) ? 0 : 80 }} />
-                                </Suspense>
-                            </ErrorBoundary>
-
-                            <Box textAlign="center">
-                                <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
-                                    <Button>
-                                        <Svg display={{ d: 'none', lg: 'inline-block' }} height="25px" mr={2} name="svg-youtube" />
-                                        <Span verticalAlign="middle">Siga nosso canal no Youtube</Span>
-                                    </Button>
-                                </LinkToExternal>
-                            </Box>
-                        </Container>
-                    </VideoContainerStyled>
+                    <ComponentLazyLoad component={HomeVideo} />
 
                     {/* <Container mx="auto" my={{ d: 3, md: 4 }} px={3}>
                         <Title2 align="center" themeColor="dark">

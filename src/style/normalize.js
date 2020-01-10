@@ -234,7 +234,7 @@ export const Normalize = createGlobalStyle`
     svg {
         display: inline-block;
         fill: ${variable.colorPrimary};
-        height: 18px;
+        height: auto;
         margin: auto;
         overflow: hidden;
         position: relative;
