@@ -37,9 +37,9 @@ const FooterPrincipal = () => {
     }, [stateEntry, setStateFooterData]);
 
     return (
-        <div ref={setStateNode}>
+        <div id="footer" ref={setStateNode}>
             {stateEntry.isIntersecting && stateFooter.data ? (
-                <FooterStyled id="footer">
+                <FooterStyled>
                     <Container mx="auto" px={3}>
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             <Box width={{ d: 1, md: 5 / 12, lg: 4 / 12 }}>
