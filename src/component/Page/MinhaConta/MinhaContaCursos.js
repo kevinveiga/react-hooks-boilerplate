@@ -208,16 +208,27 @@ const MinhaContaCursos = () => {
                                                     })}
 
                                                 {noData && !isDataLoaded && (
-                                                    <Title4 color="colorPrimary" mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                                                        {/* TODO: colocar layout */}
-                                                        Carregando...
-                                                    </Title4>
+                                                    <Box mb={5} textAlign="center" width="100%">
+                                                        <Title4 color="colorPrimary" themeColor="dark">
+                                                            Carregando...
+                                                        </Title4>
+                                                    </Box>
                                                 )}
 
                                                 {noData && isDataLoaded && (
-                                                    <LinkTo link="/aprenda" mx="auto" mt={5}>
-                                                        <Button text="Ver mais cursos" />
-                                                    </LinkTo>
+                                                    <>
+                                                        <Box mb={5} textAlign="center" width="100%">
+                                                            <Title4 color="colorPrimary" themeColor="dark">
+                                                                Nenhum curso encontrado.
+                                                            </Title4>
+                                                        </Box>
+
+                                                        <Box mb={5} textAlign="center" width="100%">
+                                                            <LinkTo link="/aprenda">
+                                                                <Button text="Ver mais cursos" />
+                                                            </LinkTo>
+                                                        </Box>
+                                                    </>
                                                 )}
                                             </Flex>
                                         </TabContent>
