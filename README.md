@@ -109,6 +109,8 @@
 
 #### Boas práticas:
 
+-   Nomeação de funções e propriedades: [https://medium.com/javascript-in-plain-english/handy-naming-conventions-for-event-handler-functions-props-in-react-fc1cbb791364](https://medium.com/javascript-in-plain-english/handy-naming-conventions-for-event-handler-functions-props-in-react-fc1cbb791364)
+
 -   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
 
 -   Ao definir um nome de variável para um State de Contexto, colocar no final do nome "Context". Ex:
