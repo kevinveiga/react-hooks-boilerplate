@@ -165,6 +165,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                             name="data_nascimento"
                                             onChange={handleValidation()}
                                             placeholder="dd/mm/aaaa"
+                                            pr={4}
                                             touched={touched}
                                             {...otherProps}
                                         />
@@ -193,6 +194,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                                 maxLength="50"
                                                 name="endereco_cidade"
                                                 onChange={handleValidation()}
+                                                pr={4}
                                                 placeholder="Cidade"
                                                 touched={touched}
                                                 {...otherProps}

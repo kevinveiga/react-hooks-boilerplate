@@ -93,7 +93,7 @@ export const EsqueceuSenhaForm = ({ ...props }) => {
 
                             <Cell mb={4}>
                                 <div>
-                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...props} />
+                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} pr={4} touched={touched} {...props} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}

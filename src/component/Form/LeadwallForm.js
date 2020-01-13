@@ -88,7 +88,7 @@ export const LeadwallForm = ({ ...props }) => {
                 </Cell>
 
                 <Cell mb={3}>
-                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="Insira seu e-mail" right="15px" touched={touched} {...props} />
+                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="Insira seu e-mail" pr={4} right="15px" touched={touched} {...props} />
                 </Cell>
 
                 <Cell mb={3}>

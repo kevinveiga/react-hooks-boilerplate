@@ -11,6 +11,7 @@ export const FormStyled = styled.form`
 `;
 
 const input = css`
+    ${space};
     background-color: transparent;
     ${({ obj }) => `border-bottom: 1px solid ${obj && obj.colorLine ? variable[obj.colorLine] : variable.colorGray}`};
     color: ${({ obj }) => (obj && obj.color ? variable[obj.color] : variable.colorGrayDark)};
@@ -18,7 +19,10 @@ const input = css`
     font-size: 16px;
     font-weight: ${({ obj }) => (obj && obj.fontWeight ? obj.fontWeight : '600')};
     height: ${variable.inputHeight};
-    padding: ${variable.inputPadding} 2px;
+    padding-bottom: ${variable.inputPadding};
+    padding-left: 2px;
+    ${({ pr }) => pr === undefined && 'padding-right: 2px'};
+    padding-top: ${variable.inputPadding};
     table-layout: fixed;
     text-overflow: ellipsis;
     transition: border ${variable.transition}, box-shadow ${variable.transition}, color ${variable.transition};

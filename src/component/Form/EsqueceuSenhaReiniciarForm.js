@@ -107,6 +107,7 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                                         maxLength="20"
                                         name="password"
                                         onChange={handleValidation()}
+                                        pr={4}
                                         touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}
@@ -134,6 +135,7 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                                         maxLength="11"
                                         name="password_confirmation"
                                         onChange={handleValidation()}
+                                        pr={4}
                                         touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}

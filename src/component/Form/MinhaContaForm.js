@@ -174,7 +174,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" mb="-10px" text="Nome completo" />
 
                                 <div>
-                                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={touched} {...otherProps} />
+                                    <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" pr={4} touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -184,7 +184,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 <Label color="colorGray2" mb="-10px" text="E-mail" />
 
                                 <div>
-                                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={touched} {...otherProps} />
+                                    <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" pr={4} touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -200,6 +200,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="telefone"
                                         onChange={handleValidation()}
                                         placeholder="Telefone"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -219,6 +220,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         onBlur={handleValidation()}
                                         onChange={handleValidation()}
                                         placeholder="00000-000"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -237,6 +239,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_logradouro"
                                         onChange={handleValidation()}
                                         placeholder="Rua do endereço"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -256,6 +259,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_numero"
                                         onChange={handleValidation()}
                                         placeholder="Número do endereço"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -274,6 +278,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_complemento"
                                         onChange={handleValidation()}
                                         placeholder="Complemento do endereço"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -292,6 +297,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="endereco_cidade"
                                         onChange={handleValidation()}
                                         placeholder="Cidade"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -320,6 +326,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="data_nascimento"
                                         onChange={handleValidation()}
                                         placeholder="dd/mm/aaaa"
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -349,6 +356,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                         name="password"
                                         onChange={handleValidation()}
                                         placeholder="password"
+                                        pr={4}
                                         touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}

@@ -18,8 +18,6 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Span, Title3 } from '../../style/text';
 
-import liberdade from '../../asset/image/os-melhores-investimentos-em-sua-liberdade.webp';
-
 export const NoticiaForm = ({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
@@ -116,8 +114,6 @@ export const NoticiaForm = ({ ...props }) => {
                 p="75px"
                 width={stateRetornoForm ? '100%' : 1 / 2}
             >
-                <BgImageLazyLoad overlayColor="colorBlackTransparent7" url={liberdade} />
-
                 {stateRetornoForm ? (
                     <>
                         <Title3 fontWeight="700" mb={4} mx="auto" textAlign="center" themeColor="light">
@@ -156,12 +152,12 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" touched={touched} {...props} />
+                            <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" pr={4} touched={touched} {...props} />
                             {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={touched} {...props} />
+                            <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" pr={4} touched={touched} {...props} />
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
@@ -172,6 +168,7 @@ export const NoticiaForm = ({ ...props }) => {
                                 name="telefone"
                                 onChange={handleValidation()}
                                 placeholder="Telefone"
+                                pr={4}
                                 touched={touched}
                                 {...props}
                             />

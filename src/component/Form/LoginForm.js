@@ -103,7 +103,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
 
                         <Cell mb={3}>
                             <div>
-                                <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...otherProps} />
+                                <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} pr={4} touched={touched} {...otherProps} />
                             </div>
 
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -117,6 +117,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
                                     maxLength="20"
                                     name="password"
                                     onChange={handleValidation()}
+                                    pr={4}
                                     touched={touched}
                                     type={stateViewPassword ? 'text' : 'password'}
                                     {...otherProps}

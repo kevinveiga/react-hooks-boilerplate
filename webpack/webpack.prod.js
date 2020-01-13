@@ -15,9 +15,9 @@ module.exports = {
         namedChunks: false,
         namedModules: false,
         nodeEnv: 'production',
-        occurrenceOrder: false,
+        occurrenceOrder: true,
         providedExports: true,
-        removeAvailableModules: true,
+        removeAvailableModules: false,
         removeEmptyChunks: true,
         // Keep the runtime chunk seperated to enable long term caching
         // https://twitter.com/wSokra/status/969679223278505985

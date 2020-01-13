@@ -121,7 +121,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} touched={touched} {...otherProps} />
+                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} pr={4} touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -129,7 +129,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...otherProps} />
+                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} pr={4} touched={touched} {...otherProps} />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -143,6 +143,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                         mask={customMaskRegex.phone}
                                         name="telefone"
                                         onChange={handleValidation()}
+                                        pr={4}
                                         touched={touched}
                                         {...otherProps}
                                     />
@@ -159,6 +160,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                         maxLength="11"
                                         name="password"
                                         onChange={handleValidation()}
+                                        pr={4}
                                         touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}
@@ -186,6 +188,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                         maxLength="11"
                                         name="confirm_password"
                                         onChange={handleValidation()}
+                                        pr={4}
                                         touched={touched}
                                         type={stateViewPassword ? 'text' : 'password'}
                                         {...otherProps}
