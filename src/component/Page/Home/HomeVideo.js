@@ -121,7 +121,9 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
                             <LinkToExternal link="https://www.youtube.com/channel/UCzIIAGs9UiniQgKtXsgFPnQ" target="_blank">
                                 <Button>
                                     <Svg display={{ d: 'none', lg: 'inline-block' }} height="25px" mr={2} name="svg-youtube" />
-                                    <Span verticalAlign="middle">Siga nosso canal no Youtube</Span>
+                                    <Span fontWeight="700" verticalAlign="middle">
+                                        Siga nosso canal no Youtube
+                                    </Span>
                                 </Button>
                             </LinkToExternal>
                         </Box>

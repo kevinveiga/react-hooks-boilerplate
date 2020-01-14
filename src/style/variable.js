@@ -97,8 +97,7 @@ export const variable = {
 
     // Size
     FooterAlternativeHeight: '50px',
-    footerHeight: '650px',
-    footerHeightMobile: '600px',
+    footerHeight: '600px',
     headerHeight: '100px',
     headerHeightMobile: '70px'
 };

@@ -47,7 +47,7 @@ const MinhaConta = () => {
                     <Flex display="flex" flexWrap="wrap">
                         <MinhaContaMenu />
 
-                        <MinhaContaCenterStyled px={{ d: 2, sm: 5, xl: '100px' }} py={{ d: 4, sm: 5, xl: '75px' }} width={{ d: '100%', lg: 8 / 10 }}>
+                        <MinhaContaCenterStyled px={{ d: 2, sm: 5, xl: '75px' }} py={{ d: 4, sm: 5, xl: '75px' }} width={{ d: '100%', lg: 8 / 10 }}>
                             {perfilLength > 0 && (
                                 <MinhaContaForm
                                     data={{

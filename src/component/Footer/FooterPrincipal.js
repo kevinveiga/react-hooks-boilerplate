@@ -14,7 +14,7 @@ import { LoaderPlaceholder } from '../Loader/LoaderPlaceholder';
 import { SocialAlternate } from '../Social/SocialAlternate';
 import { Svg } from '../Svg/Svg';
 
-import { FooterAtendimentoStyled, FooterInfoStyled, FooterStyled } from './FooterStyled';
+import { FooterAtendimentoStyled, FooterStyled } from './FooterStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Container } from '../../style/layout';
@@ -78,24 +78,14 @@ const FooterPrincipal = () => {
                             my={{ d: variable.spacingSM, sm: variable.spacingLG }}
                             py={{ d: 5, sm: 4 }}
                         >
-                            <Box pr={{ d: 0, sm: 2 }} width={{ d: 1, sm: 1 / 3 }}>
-                                {/* <Svg display={{ d: 'none', md: 'inline-block' }} fill="colorWhite" height="30px" mr={2} name="svg-headphone" verticalAlign="top" /> */}
-
+                            <Box pr={{ d: 0, md: 3 }} width={{ d: 1, sm: 1 / 2 }}>
                                 {parse(`${stateFooter.data.bloco_1}`)}
                             </Box>
 
-                            <Box borderLeft="1px solid rgba(255, 255, 255, 0.2)" px={{ d: 0, sm: 3 }} width={{ d: 1, sm: 1 / 3 }}>
+                            <Box pl={{ d: 0, md: 3 }} width={{ d: 1, sm: 1 / 2 }}>
                                 {parse(`${stateFooter.data.bloco_2}`)}
                             </Box>
-
-                            <Box borderLeft="1px solid rgba(255, 255, 255, 0.2)" pl={{ d: 0, sm: 3 }} width={{ d: 1, sm: 1 / 3 }}>
-                                {parse(`${stateFooter.data.bloco_3}`)}
-                            </Box>
                         </FooterAtendimentoStyled>
-
-                        <FooterInfoStyled display="flex" flexWrap="wrap" justifyContent={{ d: 'flex-start', sm: 'center' }} mb={2}>
-                            {parse(`${stateFooter.data.texto_copyright}`)}
-                        </FooterInfoStyled>
                     </Container>
                 </FooterStyled>
             ) : (
