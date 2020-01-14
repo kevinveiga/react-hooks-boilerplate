@@ -5,36 +5,25 @@ import { apiUrlNoticias } from '../../../config';
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
 import { useSeoApi } from '../../../service/seo';
 
-// import { useMeasure } from '../../../store/util/measure';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
 
 import { Button } from '../../Button/Button';
-// import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
-// import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { LinkTo } from '../../Link/LinkTo';
-// import { LinkToExternal } from '../../Link/LinkToExternal';
 import { NoticiaBox } from './NoticiaBox';
 import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
-// import { NoticiasBannerPerfilInvestidorStyled } from './NoticiaStyled';
 import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-// import { Image } from '../../../style/image';
 import { Container, Main } from '../../../style/layout';
 import { Tab, TabContent, TabsContent, TabLabel, TabNav, TabsNav, TabSelect } from '../../../style/tab';
 import { Title3 } from '../../../style/text';
 import { variable } from '../../../style/variable';
-
-// import bannerAnuncio from '../../../asset/image/banner-anuncio.jpg';
-
-// LAZY
-// const BannerPerfilInvestidor = lazy(() => import('../../Banner/BannerPerfilInvestidor'));
 
 export const Noticias = () => {
     // API
@@ -51,7 +40,6 @@ export const Noticias = () => {
 
     // ACTION
     const [stateNoticiasCategoriaSelected, setStateNoticiasCategoriaSelected] = useState('ultimas');
-    // const [stateBannerRef, stateBannerMeasure] = useMeasure(true);
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo
@@ -78,6 +66,18 @@ export const Noticias = () => {
             setStateNoticiasCategoriaSelected(element.target.value);
         },
         [setStateNoticiasCategoriaData]
+    );
+
+    const handleNoticiaCategoriaVerMais = useCallback(
+        (value) => () => {
+            const apiValue = `${apiUrlNoticias}/categoria/${value}`;
+
+            setStateNoticiasCategoriaData({ page: 1, url: apiValue });
+            setStateNoticiasCategoriaSelected(value);
+
+            scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+        },
+        [isDataLoaded, setStateNoticiasCategoriaData, windowWidth]
     );
 
     return (
@@ -158,48 +158,62 @@ export const Noticias = () => {
                                     {noticiasLength > 0 &&
                                         stateNoticias.data.map((categoriaUltimas, i) => {
                                             return (
-                                                i > 0 &&
-                                                categoriaUltimas &&
-                                                categoriaUltimas.posts.data.map((noticia, j) => {
-                                                    return (
-                                                        <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
-                                                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                                <NoticiaBox
-                                                                    alignContent="space-between"
-                                                                    color={categoriaUltimas.featured_color}
-                                                                    display="flex"
-                                                                    flexWrap="wrap"
-                                                                    height="100%"
-                                                                    themeColor="dark"
-                                                                    verticalAlign="middle"
-                                                                >
-                                                                    <Box width="100%">
-                                                                        {j / 3 === 0 && (
-                                                                            <Box height="200px" mb={4} overflow="hidden" width="100%">
-                                                                                <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                <>
+                                                    {i > 0 &&
+                                                        categoriaUltimas &&
+                                                        categoriaUltimas.posts.data.map((noticia, j) => {
+                                                            return (
+                                                                <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
+                                                                    <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                        <NoticiaBox
+                                                                            alignContent="space-between"
+                                                                            color={categoriaUltimas.featured_color}
+                                                                            display="flex"
+                                                                            flexWrap="wrap"
+                                                                            height="100%"
+                                                                            themeColor="dark"
+                                                                            verticalAlign="middle"
+                                                                        >
+                                                                            <Box width="100%">
+                                                                                {j / 3 === 0 && (
+                                                                                    <Box height="200px" mb={4} overflow="hidden" width="100%">
+                                                                                        <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                    </Box>
+                                                                                )}
+
+                                                                                <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
+
+                                                                                <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
                                                                             </Box>
-                                                                        )}
 
-                                                                        <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
+                                                                            <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
+                                                                        </NoticiaBox>
+                                                                    </LinkTo>
+                                                                </Box>
+                                                            );
+                                                        })}
 
-                                                                        <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
-                                                                    </Box>
+                                                    {i > 0 && (
+                                                        <Box order={`3${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
+                                                            <Box borderRight="1px solid rgba(216, 221, 225, 0.8)" mx={{ d: 0, md: 5 }} textAlign="right">
+                                                                <Button
+                                                                    display="inline-block"
+                                                                    fontWeight="700"
+                                                                    onClick={handleNoticiaCategoriaVerMais(categoriaUltimas.slug)}
+                                                                    themeSize="none"
+                                                                    themeType="none"
+                                                                >
+                                                                    <span>Ver mais</span>
 
-                                                                    <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
-                                                                </NoticiaBox>
-                                                            </LinkTo>
+                                                                    <Svg name="svg-next" pl={2} pr={3} />
+                                                                </Button>
+                                                            </Box>
                                                         </Box>
-                                                    );
-                                                })
+                                                    )}
+                                                </>
                                             );
                                         })}
                                 </Flex>
-
-                                {/* <Grid display="grid">
-                                    <LinkToExternal link="https://libertainvestimentos.com.br" target="_blank" textAlign="center">
-                                        <Image text="Anúncio" url={bannerAnuncio} />
-                                    </LinkToExternal>
-                                </Grid> */}
                             </TabContent>
 
                             {noticiasLength > 0 &&
@@ -209,7 +223,7 @@ export const Noticias = () => {
                                             <TabContent key={categoria.slug}>
                                                 <Flex display="flex" flexWrap="wrap">
                                                     <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
-                                                        <Grid display="grid" gridRowGap={3}>
+                                                        <Grid display="grid">
                                                             {stateNoticiasCategoria.data &&
                                                                 stateNoticiasCategoria.data.data &&
                                                                 stateNoticiasCategoria.data.data.map((noticia, j) => {
@@ -316,14 +330,6 @@ export const Noticias = () => {
                                         )
                                     );
                                 })}
-
-                            {/* <NoticiasBannerPerfilInvestidorStyled display={{ d: 'none', md: 'block' }} pl={3} position="absolute" ref={stateBannerRef} right={0} top={0} visible={!stateNoticiasCategoria.isLoading && stateNoticiasCategoriaSelected !== 'ultimas'} width="20%">
-                                <ErrorBoundary>
-                                    <Suspense fallback={<LoaderComponent />}>
-                                        <BannerPerfilInvestidor boxMeasure={stateBannerMeasure} boxMeasurePadding={16} elementChange={{ elementId: 'noticias-tabs-content', offset: -50 }} elementFadeOut={{ elementId: 'footer', offset: -500 }} />
-                                    </Suspense>
-                                </ErrorBoundary>
-                            </NoticiasBannerPerfilInvestidorStyled> */}
                         </TabsContent>
                     </Tab>
                 </Container>
