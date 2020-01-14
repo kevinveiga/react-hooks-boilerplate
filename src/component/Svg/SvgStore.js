@@ -85,8 +85,15 @@ export const SvgLinkedin = ({ ...props }) => {
 export const SvgLogoLoader = ({ ...props }) => {
     return (
         <SvgLogoLoaderStyled {...props} version={1} viewBox="0 0 93.2 124" xmlns="http://www.w3.org/2000/svg">
-            <mask id="logo-loader-part-mask-content" mask-type="luminance" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
-                <path d="M46.5 0C26.1.2 5.5 11 0 36.8h17.9A30.5 30.5 0 0 1 46.6 16a33.8 33.8 0 0 1 12.1 2.5c4.3 1.8 8.3 2 12.5-2.2l5.4-6.6a48.7 48.7 0 0 0-30-9.8z" id="logo-loader-part-1">
+            <clipPath id="cp-logo-loader-1">
+                <path d="M0 0h93.2v55H0z" />
+            </clipPath>
+
+            <g clipPath="url('#cp-logo-loader-1')">
+                <path
+                    d="M46.51 2C26.1 2.2 5.57 12.91 0 38.78h17.88c5.7-15.6 19.53-20.88 28.72-20.7a33.8 33.8 0 0112.12 2.53c4.27 1.77 8.32 2.02 12.52-2.19l5.36-6.65C67.88 4.92 57.22 2.08 46.51 2z"
+                    id="logo-loader-part-1"
+                >
                     <animate attributeName="opacity" attributeType="CSS" begin="250ms" dur="1650ms" id="opacity-1" keyTimes="0; 0.3; 0.5; 0.7; 1" repeatCount="indefinite" values="1; 1; 0; 1; 1" />
                     <animateTransform
                         attributeName="transform"
@@ -102,9 +109,7 @@ export const SvgLogoLoader = ({ ...props }) => {
                         to="360 45 45"
                     />
                 </path>
-            </mask>
-
-            <path d="M0 0h93.2v55H0z" fill="rgba(0, 0, 0, 1)" id="logo-loader-part-mask-container" mask="url(#logo-loader-part-mask-content)" />
+            </g>
 
             <path id="logo-loader-part-2">
                 <animate
@@ -153,31 +158,31 @@ export const SvgNoView = ({ ...props }) => {
 export const SvgPlaceholderLoader = ({ ...props }) => {
     return (
         <SvgPlaceholderLoaderStyled {...props} version={1} viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <clipPath id="cp-1">
-                    <circle cx="100" cy="100" r="10" />
+            <clipPath id="cp-placeholder-loader-1">
+                <circle cx="100" cy="100" r="10" />
 
-                    <circle cx="150" cy="100" r="10" />
+                <circle cx="150" cy="100" r="10" />
 
-                    <circle cx="200" cy="100" r="10" />
-                </clipPath>
+                <circle cx="200" cy="100" r="10" />
+            </clipPath>
 
-                <linearGradient id="lg-1">
-                    <stop offset="0%" stopColor="rgba(216, 221, 225, 1)" stopOpacity="1">
-                        <animate attributeName="offset" keyTimes="0; 1" dur="2s" repeatCount="indefinite" values="-2; 1" />
-                    </stop>
+            <linearGradient id="lg-placeholder-loader-1">
+                <stop offset="0%" stopColor="rgba(216, 221, 225, 1)" stopOpacity="1">
+                    <animate attributeName="offset" keyTimes="0; 1" dur="2s" repeatCount="indefinite" values="-2; 1" />
+                </stop>
 
-                    <stop offset="50%" stopColor="rgba(103, 111, 115, 1)" stopOpacity="1">
-                        <animate attributeName="offset" keyTimes="0; 1" dur="2s" repeatCount="indefinite" values="-1; 2" />
-                    </stop>
+                <stop offset="50%" stopColor="rgba(103, 111, 115, 1)" stopOpacity="1">
+                    <animate attributeName="offset" keyTimes="0; 1" dur="2s" repeatCount="indefinite" values="-1; 2" />
+                </stop>
 
-                    <stop offset="100%" stopColor="rgba(216, 221, 225, 1)" stopOpacity="1">
-                        <animate attributeName="offset" keyTimes="0; 1" dur="2s" repeatCount="indefinite" values="0; 3" />
-                    </stop>
-                </linearGradient>
-            </defs>
+                <stop offset="100%" stopColor="rgba(216, 221, 225, 1)" stopOpacity="1">
+                    <animate attributeName="offset" keyTimes="0; 1" dur="2s" repeatCount="indefinite" values="0; 3" />
+                </stop>
+            </linearGradient>
 
-            <rect x="0" y="0" width="300" height="200" clipPath="url('#cp-1')" style={{ fill: 'url("#lg-1")' }} />
+            <g clipPath="url('#cp-placeholder-loader-1')">
+                <rect x="0" y="0" width="300" height="200" style={{ fill: 'url("#lg-placeholder-loader-1")' }} />
+            </g>
         </SvgPlaceholderLoaderStyled>
     );
 };
