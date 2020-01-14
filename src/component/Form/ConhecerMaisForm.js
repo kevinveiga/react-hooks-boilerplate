@@ -30,7 +30,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
     useEffect(() => {
         register('data_nascimento', { ...customValidate.date });
         register('endereco_cidade');
-        register('endereco_estado');
+        register('endereco_uf');
         register('sexo');
 
         return undefined;
@@ -209,11 +209,11 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
 
                                         <div>
                                             <Select
-                                                name="endereco_estado"
+                                                name="endereco_uf"
                                                 obj={{
-                                                    color: touched['endereco_estado'] ? 'colorGrayDark' : 'colorGray',
+                                                    color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
                                                     colorLine: 'colorPrimary',
-                                                    fontWeight: touched['endereco_estado'] ? '600' : '400'
+                                                    fontWeight: touched['endereco_uf'] ? '600' : '400'
                                                 }}
                                                 onChange={handleSetValue()}
                                             >
