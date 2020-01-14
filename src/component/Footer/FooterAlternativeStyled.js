@@ -7,5 +7,5 @@ export const FooterAlternativeStyled = styled.footer`
     height: 50px;
     overflow-y: hidden;
     width: 100%;
-    z-index: 3;
+    z-index: -1;
 `;

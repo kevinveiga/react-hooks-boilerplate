@@ -9,7 +9,6 @@ export const ModalMessageStyled = styled.div`
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent3};
     color: ${({ color }) => (color ? variable[color] : variable.colorWhite)};
     opacity: 0;
-    padding: ${variable.spacingSM} ${variable.spacingMD};
     pointer-events: none;
     position: fixed;
     right: -25px;
@@ -20,6 +19,7 @@ export const ModalMessageStyled = styled.div`
         text &&
         css`
             opacity: 0.8;
+            padding: ${variable.spacingSM} ${variable.spacingMD};
             right: 25px;
             z-index: 5;
         `};
