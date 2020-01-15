@@ -20,19 +20,18 @@ import { theme } from './style/theme';
 
 export const App = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <Normalize />
+        <HelmetProvider>
+            <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
+                <meta name="description" content="Liberta" />
+            </Helmet>
 
-            <HelmetProvider>
-                <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
-                    <meta name="description" content="Liberta" />
-                </Helmet>
+            <BrowserRouter>
+                <AppProvider>
+                    <UserProvider>
+                        <Interceptor />
 
-                <BrowserRouter>
-                    <AppProvider>
-                        <UserProvider>
-                            <Interceptor />
-
+                        <ThemeProvider theme={theme}>
+                            <Normalize />
                             <HeaderProvider>
                                 <Header />
                             </HeaderProvider>
@@ -40,12 +39,12 @@ export const App = () => {
                             <Router />
 
                             <Footer />
+                        </ThemeProvider>
 
-                            {/* <ExternalJs /> */}
-                        </UserProvider>
-                    </AppProvider>
-                </BrowserRouter>
-            </HelmetProvider>
-        </ThemeProvider>
+                        {/* <ExternalJs /> */}
+                    </UserProvider>
+                </AppProvider>
+            </BrowserRouter>
+        </HelmetProvider>
     );
 };

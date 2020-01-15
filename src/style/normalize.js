@@ -4,9 +4,6 @@ import { scrollbar } from './function';
 import { variable } from './variable';
 
 export const Normalize = createGlobalStyle`
-    /* FONT */
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
-
     /* GENERAL */
     * {
         border: 0;
