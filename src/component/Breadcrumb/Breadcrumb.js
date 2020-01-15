@@ -31,7 +31,7 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
                     {currentLabel}
                 </BreadcrumbItemStyled>
             ) : (
-                <BreadcrumbItemStyled>Minha Conta</BreadcrumbItemStyled>
+                <BreadcrumbItemStyled fontSize={{ d: 14, lg: 16 }}>Minha Conta</BreadcrumbItemStyled>
             )}
         </BreadcrumbStyled>
     );
