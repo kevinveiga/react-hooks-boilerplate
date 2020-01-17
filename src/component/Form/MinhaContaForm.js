@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
-import Resizer from 'react-image-file-resizer';
 import { useForm } from 'react-hook-form';
 
 import { apiUrlPerfil, defaultErrorMsg } from '../../config';
@@ -58,10 +57,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     const handleFileChange = useCallback(
         () => (event) => {
             if (event.target.files[0]) {
-                Resizer.imageFileResizer(event.target.files[0], 300, 300, 'JPEG', 70, 0, (uri) => {
-                    console.log(uri);
-                    // TO DO: AXIOS
-                });
+                // TO DO: AXIOS
             }
         },
         []
