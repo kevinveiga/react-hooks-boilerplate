@@ -76,7 +76,7 @@ export const NewsletterForm = ({ ...props }) => {
                 Obrigado por se cadastrar em nossa newsletter!
             </Title5>
 
-            <P fontSize={14} textAlign="center">
+            <P fontSize={14} textAlign="center" themeColor="light">
                 Você receberá em seu e-mail os melhores conteúdos
                 <br />
                 sobre investimentos e mercado financeiro.
