@@ -19,8 +19,6 @@ export const usePesquisaApi = (obj, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.post(statePesquisaData.url, statePesquisaData.params, { headers: { 'Content-Type': 'application/json' } });
 

@@ -23,8 +23,6 @@ export const useNewsletterApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.post(stateNewsletterData.url, stateNewsletterData.data, { headers: { 'Content-Type': 'application/json' } });
 

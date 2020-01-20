@@ -23,8 +23,6 @@ export const useParceiroApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(stateParceiroUrl);
 

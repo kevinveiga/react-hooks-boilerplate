@@ -23,8 +23,6 @@ export const usePaywallApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.post(statePaywallData.url, statePaywallData.data, { headers: { 'Content-Type': 'application/json' } });
 

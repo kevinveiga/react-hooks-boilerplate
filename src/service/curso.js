@@ -53,8 +53,6 @@ export const useCursoApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(stateCursoUrl);
 
@@ -127,8 +125,6 @@ export const useCursoConteudoApi = (obj, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(`${stateCursoConteudoData.url}/${stateCursoConteudoData.cursoId}/${stateCursoConteudoData.conteudoId}`);
 
@@ -258,8 +254,6 @@ export const useCursoCategoriaApi = (obj, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(stateCursoCategoriaData.url, { params: { page: stateCursoCategoriaData.page } });
 
@@ -298,8 +292,6 @@ export const useCursoCategoriasApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(stateCursoCategoriasUrl);
 
