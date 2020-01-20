@@ -5,7 +5,6 @@ import parse from 'html-react-parser';
 import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoCategoriasApi } from '../../../service/curso';
-// import { useSeoApi } from '../../../service/seo';
 
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -17,7 +16,6 @@ import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { MinhaContaMenu } from './MinhaContaMenu';
-// import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { MinhaContaCenterStyled } from './MinhaContaStyled';
@@ -34,7 +32,6 @@ const MinhaContaCursos = () => {
     // API
     const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
-    // const stateSeo = useSeoApi(`${apiUrlCursos}/seo`, {});
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
     const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && Object.keys(stateCursosCategorias.data.data).length;

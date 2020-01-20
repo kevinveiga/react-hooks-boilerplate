@@ -1,11 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
-export const useFooterApi = (obj) => {
+import * as ACTION from '../store/action/action';
+
+import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
+
+export const useFooterApi = (obj, initialData) => {
     const [stateFooterData, setStateFooterData] = useState(obj);
 
-    const [stateFooter, setStateFooter] = useState(JSON.parse('{ "data": [] }'));
+    const [stateFooter, dispatch] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
 
     useEffect(() => {
         if (!stateFooterData.isIntersecting || !stateFooterData.url) {
@@ -19,11 +27,11 @@ export const useFooterApi = (obj) => {
                 const result = await axios.get(stateFooterData.url);
 
                 if (!didCancel) {
-                    setStateFooter(result);
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
-                    console.error('Erro ao buscar dados do Footer');
+                    dispatch(ACTION.failure());
                 }
             }
         };

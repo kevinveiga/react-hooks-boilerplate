@@ -1,17 +1,13 @@
 import React, { lazy } from 'react';
 
-import { apiUrlHome } from '../../../config';
-
-import { useSeoApi } from '../../../service/seo';
-
 import { HomeProvider } from '../../../store/home/home';
 
 import { HomeDestaque } from './HomeDestaque';
 import { HomeNoticia } from './HomeNoticia';
 import { HomeSuperDestaque } from './HomeSuperDestaque';
+import { HomeSeo } from './HomeSeo';
 import { ComponentLazyLoad } from '../../LazyLoad/ComponentLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
-import { Seo } from '../../Seo/Seo';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -32,15 +28,9 @@ import { Title4 } from '../../../style/text';
 const HomeVideo = lazy(() => import('./HomeVideo'));
 
 export const Home = ({ location }) => {
-    // API
-    const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
-
     return (
         <>
-            <Seo>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Seo>
+            <HomeSeo />
 
             <Main>
                 <HomeProvider location={location}>

@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { apiUrlNoticias } from '../../../config';
 
 import { useNoticiaApi, useNoticiaCategoriaApi, useNoticiaCategoriasApi } from '../../../service/noticia';
-import { useSeoApi } from '../../../service/seo';
 
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -13,7 +12,7 @@ import { Button } from '../../Button/Button';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from './NoticiaBox';
-import { Seo } from '../../Seo/Seo';
+import { NoticiasSeo } from './NoticiasSeo';
 import { Svg } from '../../Svg/Svg';
 
 import { NoticiaBoxAuthorStyled, NoticiaBoxDateTimeStyled, NoticiaBoxTagStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
@@ -30,7 +29,6 @@ export const Noticias = () => {
     const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
     const [stateNoticiasCategoria, setStateNoticiasCategoriaData] = useNoticiaCategoriaApi(null, {});
     const stateNoticiasCategorias = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
-    const stateSeo = useSeoApi(`${apiUrlNoticias}/seo`, {});
 
     const noticiasLength = stateNoticias.data.length;
     const noticiasCategoriasLength = stateNoticiasCategorias.data.length;
@@ -82,10 +80,7 @@ export const Noticias = () => {
 
     return (
         <>
-            <Seo>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Seo>
+            <NoticiasSeo />
 
             <Main>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>

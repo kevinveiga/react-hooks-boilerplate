@@ -1,11 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
-export const useSeoApi = (url) => {
+import * as ACTION from '../store/action/action';
+
+import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
+
+export const useSeoApi = (url, initialData) => {
     const [stateSeoUrl] = useState(url);
 
-    const [stateSeo, setStateSeo] = useState(JSON.parse('{ "data": [] }'));
+    const [stateSeo, dispatch] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
 
     useEffect(() => {
         if (!stateSeoUrl) {
@@ -19,11 +27,11 @@ export const useSeoApi = (url) => {
                 const result = await axios.get(stateSeoUrl);
 
                 if (!didCancel) {
-                    setStateSeo(result);
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
-                    console.error('Erro ao buscar dados de SEO');
+                    dispatch(ACTION.failure());
                 }
             }
         };

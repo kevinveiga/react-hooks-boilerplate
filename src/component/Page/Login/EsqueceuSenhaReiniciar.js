@@ -16,7 +16,7 @@ import { variable } from '../../../style/variable';
 
 export const EsqueceuSenhaReiniciar = ({ match }) => {
     // API
-    const stateEsqueceuSenha = useEsqueceuSenhaApi(`${apiUrlEsqueceuSenha}/find/${match.params.slug}`);
+    const stateEsqueceuSenha = useEsqueceuSenhaApi(`${apiUrlEsqueceuSenha}/find/${match.params.slug}`, {});
 
     return (
         <Main backgroundColor="colorGrayLight5" header={false}>

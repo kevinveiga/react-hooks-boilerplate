@@ -23,8 +23,6 @@ export const useNoticiaApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(stateNoticiaUrl);
 
@@ -49,9 +47,9 @@ export const useNoticiaApi = (url, initialData) => {
 };
 
 export const useNoticiaCategoriaApi = (obj, initialData) => {
-    const [stateNoticiaCategoriaData, setStateNoticiaCategoriaData] = useState(obj);
+    const [stateNoticiasCategoriaData, setStateNoticiasCategoriaData] = useState(obj);
 
-    const [stateNoticiaCategoria, dispatch] = useReducer(dataFetchReducer, {
+    const [stateNoticiasCategoria, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
@@ -61,12 +59,10 @@ export const useNoticiaCategoriaApi = (obj, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
-                const result = await axios.get(stateNoticiaCategoriaData.url, { params: { page: stateNoticiaCategoriaData.page } });
+                const result = await axios.get(stateNoticiasCategoriaData.url, { params: { page: stateNoticiasCategoriaData.page } });
 
-                const isAppend = stateNoticiaCategoriaData.page > 1;
+                const isAppend = stateNoticiasCategoriaData.page > 1;
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), append: isAppend, payload: result.data } : ACTION.failure());
@@ -83,9 +79,9 @@ export const useNoticiaCategoriaApi = (obj, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [stateNoticiaCategoriaData]);
+    }, [stateNoticiasCategoriaData]);
 
-    return [stateNoticiaCategoria, setStateNoticiaCategoriaData];
+    return [stateNoticiasCategoria, setStateNoticiasCategoriaData];
 };
 
 export const useNoticiaCategoriasApi = (url, initialData) => {
@@ -101,8 +97,6 @@ export const useNoticiaCategoriasApi = (url, initialData) => {
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatch(ACTION.init());
-
             try {
                 const result = await axios.get(stateNoticiaCategoriasUrl);
 

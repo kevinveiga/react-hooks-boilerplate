@@ -23,7 +23,7 @@ import { variable } from '../../style/variable';
 
 const FooterPrincipal = () => {
     // API
-    const [stateFooter, setStateFooterData] = useFooterApi({ isIntersecting: false });
+    const [stateFooter, setStateFooterData] = useFooterApi({ isIntersecting: false }, {});
 
     // ACTION
     const [stateEntry, setStateNode] = useIntersect({});
