@@ -1,6 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-
-import { matchPath, withRouter } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
 
 import { useApp } from '../../store/app/app';
 import { getLocalStorageUser } from '../../store/auth/auth';
@@ -23,24 +21,13 @@ import { Cell, Grid } from '../../style/grid';
 import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
-export const Header = withRouter(({ ...props }) => {
+export const Header = () => {
     // ACTION
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [stateMenuMobile, setStateMenuMobile] = useHeader();
-    const [stateAlternative, setStateAlternative] = useState(false);
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
-
-    useEffect(() => {
-        const alternative = matchPath(props.location.pathname, {
-            path: ['/cadastro', '/esqueci-minha-senha', '/login', '/minha-conta']
-        });
-
-        setStateAlternative(alternative);
-
-        return undefined;
-    }, [props.location.pathname]);
 
     // Function
     const handleMenuMobile = useCallback(
@@ -83,7 +70,7 @@ export const Header = withRouter(({ ...props }) => {
     // DATA
     const user = getLocalStorageUser();
 
-    return !stateAlternative ? (
+    return (
         <>
             <HeaderStyled active={stateMenuMobile} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
@@ -189,5 +176,5 @@ export const Header = withRouter(({ ...props }) => {
 
             <ModalLogout visible={stateModalLogoutContext} />
         </>
-    ) : null;
-});
+    );
+};

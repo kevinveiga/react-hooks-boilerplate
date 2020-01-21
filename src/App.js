@@ -8,11 +8,8 @@ import { Router } from './router';
 
 import { AppProvider } from './store/app/app';
 import { UserProvider } from './store/auth/auth';
-import { HeaderProvider } from './store/header/header';
 
 // import { ExternalJs } from './component/ExternalJs/ExternalJs';
-import { Footer } from './component/Footer/Footer';
-import { Header } from './component/Header/Header';
 import { Interceptor } from './component/Interceptor/Interceptor';
 
 import { Normalize } from './style/normalize';
@@ -32,13 +29,8 @@ export const App = () => {
 
                         <ThemeProvider theme={theme}>
                             <Normalize />
-                            <HeaderProvider>
-                                <Header />
-                            </HeaderProvider>
 
                             <Router />
-
-                            <Footer />
                         </ThemeProvider>
 
                         {/* <ExternalJs /> */}

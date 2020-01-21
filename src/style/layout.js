@@ -18,8 +18,8 @@ export const Main = styled.main`
     width: 100%;
     z-index: 0;
 
-    ${({ header }) =>
-        header === undefined &&
+    ${({ type }) =>
+        type === 'LayoutDefault' &&
         css`
             margin-top: ${variable.headerHeightMobile};
             min-height: calc(100vh - ${variable.headerHeightMobile});
@@ -30,15 +30,8 @@ export const Main = styled.main`
             }
         `};
 
-    ${({ header }) =>
-        header === false &&
-        css`
-            margin-top: 0;
-            min-height: calc(100vh - ${variable.FooterAlternativeHeight});
-        `};
-
-    ${({ header }) =>
-        header === 'minhaConta' &&
+    ${({ type }) =>
+        type === 'LayoutMinhaConta' &&
         css`
             margin-top: ${variable.headerHeightMobile};
             min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.FooterAlternativeHeight});
@@ -46,6 +39,13 @@ export const Main = styled.main`
             @media (min-width: ${variable.lg}) {
                 margin-top: 0;
             }
+        `};
+
+    ${({ type }) =>
+        type === 'LayoutNoHF' &&
+        css`
+            margin-top: 0;
+            min-height: 100vh;
         `};
 `;
 
