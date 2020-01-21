@@ -24,7 +24,7 @@ import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabSt
 
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
-import { P, Title4 } from '../../../style/text';
+import { Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
@@ -242,7 +242,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 </MinhaContaExibirConteudoStyled>
 
                                                 <Box>
-                                                    <Suspense fallback={<P>Carregando...</P>}>
+                                                    <Suspense fallback={<LoaderComponent />}>
                                                         <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
                                                     </Suspense>
                                                 </Box>
@@ -298,7 +298,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                     {/* <TabContentStyled>
                                                         <Title4>Dúvidas</Title4>
 
-                                                        <Suspense fallback={<P>Carregando...</P>}>
+                                                        <Suspense fallback={<LoaderComponent />}>
                                                             <MinhaContaConversacao obj={null} />
                                                         </Suspense>
                                                     </TabContentStyled> */}
@@ -315,7 +315,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                             </MinhaContaExibirConteudoStyled>
 
                                             <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, lg: stateMenuConteudo ? 3 / 10 : 0 }}>
-                                                <Suspense fallback={<P>Carregando...</P>}>
+                                                <Suspense fallback={<LoaderComponent />}>
                                                     <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
                                                 </Suspense>
                                             </Box>

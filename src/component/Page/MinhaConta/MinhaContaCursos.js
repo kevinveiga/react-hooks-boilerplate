@@ -68,11 +68,6 @@ const MinhaContaCursos = () => {
 
     return (
         <>
-            {/* <Seo>
-                <title>{stateSeo.data && stateSeo.data.title}</title>
-                <meta name="description" content={stateSeo.data && stateSeo.data.description} />
-            </Seo> */}
-
             <HeaderAlternative currentBreadcrumbLabel="Cursos" />
 
             <Container mx="auto" px={{ d: 0, lg: 3 }}>
