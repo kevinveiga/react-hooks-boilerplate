@@ -65,26 +65,26 @@ const routes = [
     {
         breadcrumb: [{ label: 'Cursos', path: '/minha-conta/cursos' }],
         component: MinhaContaCurso,
-        isAuth: true,
+        hasAuth: true,
         layout: LayoutMinhaConta,
         path: '/minha-conta/curso/:slug'
     },
     {
         component: MinhaContaCursos,
-        isAuth: true,
+        hasAuth: true,
         layout: LayoutMinhaConta,
         path: '/minha-conta/cursos'
     },
     {
         component: MinhaContaCursos,
         exact: true,
-        isAuth: true,
+        hasAuth: true,
         layout: LayoutMinhaConta,
         path: '/minha-conta'
     },
     {
         component: MinhaConta,
-        isAuth: true,
+        hasAuth: true,
         layout: LayoutMinhaConta,
         path: '/minha-conta/inicio'
     },
@@ -105,7 +105,7 @@ const routes = [
     },
     {
         component: MinhaContaCursos,
-        isAuth: true,
+        hasAuth: true,
         layout: LayoutMinhaConta,
         path: '/minha-conta/*'
     },
@@ -121,20 +121,18 @@ export const Router = () => {
 
     return (
         <Switch>
-            {routes.map(({ breadcrumb, exact, isAuth, component: Component, layout: Layout, path }) => {
-                const protect = isAuth;
-
+            {routes.map(({ breadcrumb, exact, hasAuth, component: Component, layout: Layout, path }) => {
                 return (
                     <Route
                         exact={exact || false}
-                        isAuth={isAuth || false}
+                        hasAuth={hasAuth || false}
                         key={path}
                         path={path}
                         render={(props) => (
                             <Layout>
                                 <ErrorBoundary>
                                     <Suspense fallback={<LoaderComponent />}>
-                                        {protect ? (
+                                        {hasAuth ? (
                                             user && user.token ? (
                                                 <Component breadcrumb={breadcrumb} {...props} />
                                             ) : (
