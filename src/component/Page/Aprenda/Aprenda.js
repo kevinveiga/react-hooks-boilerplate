@@ -64,6 +64,9 @@ export const Aprenda = () => {
         [setStateCursosCategoriaData]
     );
 
+    // DATA
+    let noData = true;
+
     return (
         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
             <Title3 align="center" fontWeight="700" themeColor="dark">
@@ -127,8 +130,10 @@ export const Aprenda = () => {
                             return (
                                 <TabContent key={key}>
                                     <Flex display="flex" flexWrap="wrap">
-                                        {categoria &&
+                                        {categoria.data.length > 0 ? (
                                             categoria.data.map((curso) => {
+                                                noData = false;
+
                                                 return (
                                                     <Box key={curso.id} mb={5} width={{ d: 1, md: 1 / 3 }}>
                                                         <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} width="100%">
@@ -182,7 +187,13 @@ export const Aprenda = () => {
                                                         </LinkTo>
                                                     </Box>
                                                 );
-                                            })}
+                                            })
+                                        ) : (
+                                            <Title4 color="colorPrimary" key={key} mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                                {/* TODO: colocar layout */}
+                                                Nenhum curso encontrado
+                                            </Title4>
+                                        )}
 
                                         {/* {stateCursosCategoria.data && stateCursosCategoria.data.current_page < stateCursosCategoria.data.last_page && (
                                             <Box display="flex" justifyContent="center" py={3}>
