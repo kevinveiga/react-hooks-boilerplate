@@ -34,6 +34,7 @@ export const customValidate = {
         pattern: { message: validateMessage.NUMBER, value: customRegex.number }
     },
     password: {
+        maxLength: { message: 'Máximo de 50 caracteres', value: 50 },
         minLength: { message: 'Mínimo de 6 caracteres', value: 6 },
         pattern: { message: validateMessage.PASSWORD, value: customRegex.password }
     },

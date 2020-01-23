@@ -157,7 +157,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                     <InputValidation
                                         error={errors.password}
                                         label="Senha"
-                                        maxLength="11"
+                                        maxLength="50"
                                         name="password"
                                         onChange={handleValidation()}
                                         pr={4}
@@ -185,7 +185,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                     <InputValidation
                                         error={errors.confirm_password}
                                         label="Confirmação de senha"
-                                        maxLength="11"
+                                        maxLength="50"
                                         name="confirm_password"
                                         onChange={handleValidation()}
                                         pr={4}
