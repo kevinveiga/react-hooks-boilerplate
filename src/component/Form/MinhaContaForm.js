@@ -53,7 +53,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         return undefined;
     }, [register]);
 
-    // Function
+    // FUNCTION
     const handleFileChange = useCallback(
         () => (event) => {
             if (event.target.files[0]) {

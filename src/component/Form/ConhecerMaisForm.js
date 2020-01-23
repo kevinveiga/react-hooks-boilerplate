@@ -36,7 +36,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
         return undefined;
     }, [register]);
 
-    // Function
+    // FUNCTION
     const handlePart = useCallback(
         (value) => () => {
             setStatePart(value);

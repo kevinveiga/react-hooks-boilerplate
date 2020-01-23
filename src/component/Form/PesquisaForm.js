@@ -25,7 +25,7 @@ export const PesquisaForm = ({ ...props }) => {
         return undefined;
     }, [register]);
 
-    // Function
+    // FUNCTION
     const keyPress = useCallback(
         (fn) => (element) => {
             if (element.keyCode == 13) {

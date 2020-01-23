@@ -11,7 +11,7 @@ const MinhaContaCursoVideo = ({ apiUrl, conteudo, cursoId }) => {
     const { setStateCursoConteudoVisualizadoUrlContext } = useContext(MinhaContaCursoContext);
 
     // ACTION
-    // Function
+    // FUNCTION
     const handleVideoVisualizado = useCallback(
         (apiUrl) => () => {
             if (!conteudo.lido) {

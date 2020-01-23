@@ -49,7 +49,7 @@ export const Noticias = () => {
     }, [isDataLoaded]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
-    // Function
+    // FUNCTION
     const handleNoticiaCategoriaChange = useCallback(
         () => (element) => {
             element.preventDefault();

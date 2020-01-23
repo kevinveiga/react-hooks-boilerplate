@@ -17,7 +17,7 @@ export const HeaderAlternativeMobile = () => {
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
     const [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile] = useHeaderAlternative();
 
-    // Function
+    // FUNCTION
     const handleChangeMinhaContaMenuMobile = useCallback(
         (value) => () => {
             setStateMinhaContaMenuMobile(value);

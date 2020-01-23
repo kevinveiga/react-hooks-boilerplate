@@ -63,7 +63,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     }, [isDataLoaded, stateCursoConteudo]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
-    // Function
+    // FUNCTION
     const handleTabChange = useCallback(
         () => (element) => {
             setStateTabSelected(element.target.value);

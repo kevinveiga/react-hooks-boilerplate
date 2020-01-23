@@ -43,7 +43,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
         return undefined;
     }, [register]);
 
-    // Function
+    // FUNCTION
     const handleScrollTo = useCallback(
         () => () => {
             const anchorElement = (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') || (document.querySelector('#cadastroFormId') && '#cadastroFormId');

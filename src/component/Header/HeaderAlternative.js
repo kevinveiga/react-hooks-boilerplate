@@ -22,7 +22,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
     const windowWidth = useWindowWidth();
 
-    // Function
+    // FUNCTION
     const handleChangeModalLogout = useCallback(
         (value) => () => {
             setStateModalLogoutContext(value);

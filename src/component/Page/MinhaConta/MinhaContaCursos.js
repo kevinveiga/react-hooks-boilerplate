@@ -51,7 +51,7 @@ const MinhaContaCursos = () => {
     }, [isDataLoaded]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
-    // Function
+    // FUNCTION
     const handleCursoCategoriaChange = useCallback(
         () => (element) => {
             element.preventDefault();

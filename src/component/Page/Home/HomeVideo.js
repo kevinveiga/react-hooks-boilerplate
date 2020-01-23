@@ -47,7 +47,7 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
         return undefined;
     }, [stateEntry, setStateVideoData]);
 
-    // Function
+    // FUNCTION
     const handleCurrentVideo = useCallback(
         (video) => () => {
             setStateCurrentVideo(video);

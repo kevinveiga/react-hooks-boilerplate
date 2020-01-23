@@ -26,7 +26,7 @@ export const NewsletterForm = ({ ...props }) => {
         return undefined;
     }, [register]);
 
-    // Function
+    // FUNCTION
     const handleValidation = useCallback(
         () => (element) => {
             setValue(element.target.name, element.target.value);

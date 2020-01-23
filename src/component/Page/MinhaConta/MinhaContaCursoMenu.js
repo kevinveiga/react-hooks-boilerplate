@@ -30,7 +30,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // ACTION
     const [statePart, setStatePart] = useState(null);
 
-    // Function
+    // FUNCTION
     const handleCursoConteudoVisualizadoUrl = useCallback(
         (conteudoId) => (element) => {
             setStateCursoConteudoVisualizadoUrlContext(`${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}/${element.target.checked ? 'registrar-visualizacao' : 'remover-visualizacao'}`);

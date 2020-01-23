@@ -17,7 +17,7 @@ export const HeaderMenu = ({ ...props }) => {
     // ACTION
     const [stateMenuMobile, setStateMenuMobile] = useHeader();
 
-    // Function
+    // FUNCTION
     const handleMenuMobile = useCallback(
         (value) => () => {
             setStateMenuMobile(value);

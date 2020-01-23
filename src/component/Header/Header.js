@@ -29,7 +29,7 @@ export const Header = () => {
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
 
-    // Function
+    // FUNCTION
     const handleMenuMobile = useCallback(
         (value) => () => {
             setStateMenuMobile(value);
