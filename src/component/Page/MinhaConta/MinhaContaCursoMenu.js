@@ -113,7 +113,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                         </P>
 
                                         <P fontSize="14px" mb={0}>
-                                            {modulo.conteudos.length} Conteúdos
+                                            {modulo.conteudos.length} Conteúdo{modulo.conteudos.length > 1 && 's'}
                                         </P>
                                     </Box>
 
