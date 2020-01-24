@@ -14,17 +14,18 @@ export class ErrorBoundary extends Component {
     }
 
     // You can also log the error to an error reporting service
-    // componentDidCatch(error, info) {
-    //     logErrorToMyService(error, info);
-    // }
+    componentDidCatch(error, info) {
+        console.info('Error: ', error);
+        console.info('Info: ', info);
+    }
 
     render() {
         const { hasError } = this.state;
-        const { children } = this.props;
+        const { children, text } = this.props;
 
         if (hasError) {
             // You can render any custom fallback UI
-            return <P>Erro no carregamento...</P>;
+            return <P>{text || 'Erro de conexão.'}</P>;
         }
 
         return children;

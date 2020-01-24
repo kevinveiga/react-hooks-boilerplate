@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 
 import { apiUrlCursos } from '../../../config';
 
+import * as ACTION from '../../../store/action/action';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 
 import { Button } from '../../Button/Button';
@@ -25,7 +26,7 @@ import { P, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // CONTEXT
-    const { stateCursoProgressoContext, setStateCursoConteudoDataContext, setStateCursoConteudoVisualizadoUrlContext, setStateMenuConteudoContext } = useContext(MinhaContaCursoContext);
+    const { stateCursoProgressoContext, setStateCursoConteudoDataContext, setStateCursoConteudoVisualizadoDataContext, setStateMenuConteudoContext } = useContext(MinhaContaCursoContext);
 
     // ACTION
     const [statePart, setStatePart] = useState(null);
@@ -33,9 +34,13 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // FUNCTION
     const handleCursoConteudoVisualizadoUrl = useCallback(
         (conteudoId) => (element) => {
-            setStateCursoConteudoVisualizadoUrlContext(`${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}/${element.target.checked ? 'registrar-visualizacao' : 'remover-visualizacao'}`);
+            setStateCursoConteudoVisualizadoDataContext({
+                action: element.target.checked ? ACTION.add() : ACTION.remove(),
+                cursoId: objectCurso.id,
+                url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}`
+            });
         },
-        [objectCurso.id, setStateCursoConteudoVisualizadoUrlContext]
+        [objectCurso.id, setStateCursoConteudoVisualizadoDataContext]
     );
 
     const tipoConteudo = (tipo) => {

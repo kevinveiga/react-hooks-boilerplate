@@ -6,6 +6,7 @@ import { apiUrlCursos } from '../../../config';
 
 import { useCursoApi, useCursoConteudoApi, useCursoConteudoVisualizadoApi } from '../../../service/curso';
 
+import * as ACTION from '../../../store/action/action';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
@@ -36,7 +37,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
     const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
-    const [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl] = useCursoConteudoVisualizadoApi(null, `${apiUrlCursos}/meus-cursos/${match.params.slug}/progresso`, {});
+    const [stateCursoProgresso, setStateCursoConteudoVisualizadoData] = useCursoConteudoVisualizadoApi(null, {});
 
     const cursoLength = stateCurso.data && stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
     const cursoConteudoLength = stateCursoConteudo.data && stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;
@@ -50,7 +51,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     const isDataLoaded = cursoLength > 0;
 
     // ACTION
-    const [stateMenuConteudo, setStateMenuConteudo] = useState(true);
+    const [stateCursoMenuConteudo, setStateCursoMenuConteudo] = useState(true);
     const [stateTabSelected, setStateTabSelected] = useState('resumo');
     const windowWidth = useWindowWidth();
 
@@ -73,18 +74,23 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     const handleMenuConteudo = useCallback(
         (value) => () => {
-            setStateMenuConteudo(value);
+            setStateCursoMenuConteudo(value);
         },
         []
     );
 
-    const handleCursoConteudoPrevNext = useCallback(
+    const handleCursoConteudoNext = useCallback(
         (curso, conteudo) => () => {
             if (conteudo) {
                 // Muda checked do input checkbox
-                document.getElementById(`${curso.id}${conteudo.id}`).checked = true;
+                const element = document.getElementById(`${curso.id}${conteudo.id}`);
 
-                setStateCursoConteudoVisualizadoUrl(`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`);
+                if (!element.checked) {
+                    element.checked = true;
+
+                    setStateCursoConteudoVisualizadoData({ action: ACTION.add(), cursoId: curso.id, url: `${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}` });
+                }
+
                 setStateCursoConteudoData({
                     conteudoId: stateCursoConteudoPrevNextId.nextId,
                     cursoId: curso.id,
@@ -92,23 +98,31 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                     setCurrent: true,
                     url: `${apiUrlCursos}/meus-cursos`
                 });
-            } else {
-                setStateCursoConteudoData({
-                    conteudoId: stateCursoConteudoPrevNextId.prevId,
-                    cursoId: curso.id,
-                    modulos: curso.modulos,
-                    setCurrent: true,
-                    url: `${apiUrlCursos}/meus-cursos`
-                });
             }
         },
-        [stateCursoConteudoPrevNextId, setStateCursoConteudoData, setStateCursoConteudoVisualizadoUrl]
+        [stateCursoConteudoPrevNextId, setStateCursoConteudoData, setStateCursoConteudoVisualizadoData]
+    );
+
+    const handleCursoConteudoPrev = useCallback(
+        (curso) => () => {
+            setStateCursoConteudoData({
+                conteudoId: stateCursoConteudoPrevNextId.prevId,
+                cursoId: curso.id,
+                modulos: curso.modulos,
+                setCurrent: true,
+                url: `${apiUrlCursos}/meus-cursos`
+            });
+        },
+        [stateCursoConteudoPrevNextId, setStateCursoConteudoData]
     );
 
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
     const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
-    const cursoProgresso = (stateCursoProgresso.data && stateCursoProgresso.data.data) || 0;
+
+    const cursoProgresso = stateCursoProgresso.data && stateCursoProgresso.data.data;
+
+    console.log('A: ', cursoProgresso);
 
     // ACTION CONTEUDO
     useEffect(() => {
@@ -142,10 +156,10 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
             <MinhaContaCursoContext.Provider
                 value={{
-                    stateCursoProgressoContext: cursoProgresso,
+                    stateCursoProgressoContext: cursoProgresso || curso.progresso,
                     setStateCursoConteudoDataContext: setStateCursoConteudoData,
-                    setStateCursoConteudoVisualizadoUrlContext: setStateCursoConteudoVisualizadoUrl,
-                    setStateMenuConteudoContext: setStateMenuConteudo
+                    setStateCursoConteudoVisualizadoDataContext: setStateCursoConteudoVisualizadoData,
+                    setStateCursoMenuConteudoContext: setStateCursoMenuConteudo
                 }}
             >
                 {stateCurso.isError == true && (
@@ -164,7 +178,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                 {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel={curso.title} obj={{ hoverColor: 'colorWhite', textDecoration: 'underline' }} {...breadcrumb} />}
 
                                 <Flex display="flex" flexWrap="wrap">
-                                    <Box pr={{ d: 3, sm: 5 }} pt={{ d: 0, lg: 5 }} width={{ d: 1, lg: stateMenuConteudo ? 7 / 10 : 1 }}>
+                                    <Box pr={{ d: 3, sm: 5 }} pt={{ d: 0, lg: 5 }} width={{ d: 1, lg: stateCursoMenuConteudo ? 7 / 10 : 1 }}>
                                         <Box mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'} width="100%">
                                             {conteudo.tipo === 'audio' && ''}
                                             {conteudo.tipo === 'download' && ''}
@@ -177,11 +191,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                             {conteudo.tipo === 'video' && (
                                                 <ErrorBoundary>
                                                     <Suspense fallback={<LoaderComponent />}>
-                                                        <MinhaContaCursoVideo
-                                                            apiUrl={`${apiUrlCursos}/meus-cursos/${curso.id}/${conteudo.id}/registrar-visualizacao`}
-                                                            conteudo={conteudo}
-                                                            cursoId={curso.id}
-                                                        />
+                                                        <MinhaContaCursoVideo conteudoId={conteudo.id} conteudoProvedor={conteudo.provedor} conteudoVideoId={conteudo.video_id} cursoId={curso.id} />
                                                     </Suspense>
                                                 </ErrorBoundary>
                                             )}
@@ -197,7 +207,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                     fontSize={{ d: '11px', sm: '14px' }}
                                                     height={{ d: '40px', sm: '50px' }}
                                                     hoverColor="colorGray"
-                                                    onClick={handleCursoConteudoPrevNext(curso)}
+                                                    onClick={handleCursoConteudoPrev(curso)}
                                                     text="Conteúdo anterior"
                                                     textTransform="uppercase"
                                                     themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
@@ -215,7 +225,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                     fontSize={{ d: '11px', sm: '14px' }}
                                                     height={{ d: '40px', sm: '50px' }}
                                                     hoverColor="colorGray"
-                                                    onClick={handleCursoConteudoPrevNext(curso, conteudo)}
+                                                    onClick={handleCursoConteudoNext(curso, conteudo)}
                                                     text="Próximo Conteúdo"
                                                     textTransform="uppercase"
                                                     themeSize={windowWidth < parseInt(variable.sm, 10) ? 'small' : undefined}
@@ -228,7 +238,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                         {/* MinhaContaCursoMenu Mobile */}
                                         {windowWidth < parseInt(variable.lg, 10) && (
                                             <>
-                                                <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} p={4}>
+                                                <MinhaContaExibirConteudoStyled display={stateCursoMenuConteudo ? 'none' : 'block'} p={4}>
                                                     <Button
                                                         display="block"
                                                         fontWeight="400"
@@ -243,7 +253,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
                                                 <Box>
                                                     <Suspense fallback={<LoaderComponent />}>
-                                                        <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
+                                                        <MinhaContaCursoMenu active={stateCursoMenuConteudo} objectCurso={curso} />
                                                     </Suspense>
                                                 </Box>
                                             </>
@@ -310,13 +320,13 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                     {/* MinhaContaCursoMenu Desktop */}
                                     {windowWidth > parseInt(variable.lg, 10) && (
                                         <>
-                                            <MinhaContaExibirConteudoStyled display={stateMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="25px">
+                                            <MinhaContaExibirConteudoStyled display={stateCursoMenuConteudo ? 'none' : 'block'} position="absolute" right="50px" top="25px">
                                                 <Button fontWeight="400" onClick={handleMenuConteudo(true)} text="Exibir menu" textDecoration="underline" themeSize="none" themeType="none" />
                                             </MinhaContaExibirConteudoStyled>
 
-                                            <Box height={stateMenuConteudo ? 'auto' : 0} width={{ d: 1, lg: stateMenuConteudo ? 3 / 10 : 0 }}>
+                                            <Box height={stateCursoMenuConteudo ? 'auto' : 0} width={{ d: 1, lg: stateCursoMenuConteudo ? 3 / 10 : 0 }}>
                                                 <Suspense fallback={<LoaderComponent />}>
-                                                    <MinhaContaCursoMenu active={stateMenuConteudo} objectCurso={curso} />
+                                                    <MinhaContaCursoMenu active={stateCursoMenuConteudo} objectCurso={curso} />
                                                 </Suspense>
                                             </Box>
                                         </>

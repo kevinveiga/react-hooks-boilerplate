@@ -96,6 +96,7 @@
         ],
         "no-unused-vars": "off",
         "no-use-before-define": "off",
+        "object-shorthand": "off",
         "prettier/prettier": [
             "warn",
             {

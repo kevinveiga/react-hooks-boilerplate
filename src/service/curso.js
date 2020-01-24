@@ -2,8 +2,9 @@ import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
-import * as ACTION from '../store/action/action';
+import { apiUrlCursos } from '../config';
 
+import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const cursoMatricula = (cursoId, url) => {
@@ -161,35 +162,36 @@ export const useCursoConteudoApi = (obj, initialData) => {
     return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
 };
 
-export const useCursoConteudoVisualizadoApi = (url, urlCurso, initialData) => {
-    const [stateCursoConteudoVisualizadoUrl, setStateCursoConteudoVisualizadoUrl] = useState(url);
-    const [stateCursoProgressoUpdate, setStateCursoProgressoUpdate] = useState(false);
+export const useCursoConteudoVisualizadoApi = (obj, initialData) => {
+    const [stateCursoConteudoVisualizadoData, setStateCursoConteudoVisualizadoData] = useState(obj);
 
-    const [stateCursoProgresso, dispatchCursoProgresso] = useReducer(dataFetchReducer, {
+    const [stateCursoProgresso, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
         isError: false,
         isLoading: false
     });
 
     useEffect(() => {
-        if (!urlCurso) {
+        if (!stateCursoConteudoVisualizadoData) {
             return undefined;
         }
 
         let didCancel = false;
 
         const fetchData = async () => {
-            dispatchCursoProgresso(ACTION.init());
-
             try {
-                const result = await axios.get(urlCurso);
+                const action = stateCursoConteudoVisualizadoData.action.type === ACTION.remove().type ? 'remover-visualizacao' : 'registrar-visualizacao';
+
+                const resultVisualization = await axios.post(`${stateCursoConteudoVisualizadoData.url}/${action}`);
+
+                const resultProgresso = resultVisualization.data && (await axios.get(`${apiUrlCursos}/meus-cursos/${stateCursoConteudoVisualizadoData.cursoId}/progresso`));
 
                 if (!didCancel) {
-                    dispatchCursoProgresso(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                    dispatch(resultProgresso ? { ...ACTION.success(), payload: resultProgresso.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
-                    dispatchCursoProgresso(ACTION.failure());
+                    dispatch(ACTION.failure());
                 }
             }
         };
@@ -199,46 +201,9 @@ export const useCursoConteudoVisualizadoApi = (url, urlCurso, initialData) => {
         return () => {
             didCancel = true;
         };
-    }, [stateCursoProgressoUpdate, urlCurso]);
+    }, [stateCursoConteudoVisualizadoData]);
 
-    const [stateCursoConteudoVisualizado, dispatchCursoConteudoVisualizado] = useReducer(dataFetchReducer, {
-        data: initialData,
-        isError: false,
-        isLoading: false
-    });
-
-    useEffect(() => {
-        if (!stateCursoConteudoVisualizadoUrl) {
-            return undefined;
-        }
-
-        let didCancel = false;
-
-        const fetchData = async () => {
-            dispatchCursoConteudoVisualizado(ACTION.init());
-
-            try {
-                const result = await axios.post(stateCursoConteudoVisualizadoUrl);
-
-                if (!didCancel) {
-                    dispatchCursoConteudoVisualizado(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
-                    setStateCursoProgressoUpdate(stateCursoConteudoVisualizadoUrl);
-                }
-            } catch (error) {
-                if (!didCancel) {
-                    dispatchCursoConteudoVisualizado(ACTION.failure());
-                }
-            }
-        };
-
-        fetchData();
-
-        return () => {
-            didCancel = true;
-        };
-    }, [stateCursoConteudoVisualizadoUrl]);
-
-    return [stateCursoProgresso, setStateCursoConteudoVisualizadoUrl];
+    return [stateCursoProgresso, setStateCursoConteudoVisualizadoData];
 };
 
 export const useCursoCategoriaApi = (obj, initialData) => {

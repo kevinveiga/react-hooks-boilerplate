@@ -1,32 +1,41 @@
 import React, { useCallback, useContext } from 'react';
 
+// import Vimeo from '@u-wave/react-vimeo';
 import YouTube from 'react-youtube';
 
+import { apiUrlCursos } from '../../../config';
+
+import * as ACTION from '../../../store/action/action';
 import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
 
 import { VideoWrap } from '../../../style/layout';
 
-const MinhaContaCursoVideo = ({ apiUrl, conteudo, cursoId }) => {
+const MinhaContaCursoVideo = ({ conteudoId, conteudoProvedor, conteudoVideoId, cursoId }) => {
     // CONTEXT
-    const { setStateCursoConteudoVisualizadoUrlContext } = useContext(MinhaContaCursoContext);
+    const { setStateCursoConteudoVisualizadoDataContext } = useContext(MinhaContaCursoContext);
 
-    // ACTION
     // FUNCTION
     const handleVideoVisualizado = useCallback(
-        (apiUrl) => () => {
-            if (!conteudo.lido) {
-                // Muda checked do input checkbox
-                document.getElementById(`${cursoId}${conteudo.id}`).checked = true;
+        () => () => {
+            const element = document.getElementById(`${cursoId}${conteudoId}`);
 
-                setStateCursoConteudoVisualizadoUrlContext(apiUrl);
+            if (!element.checked) {
+                // Muda checked do input checkbox
+                element.checked = true;
+
+                setStateCursoConteudoVisualizadoDataContext({ action: ACTION.add(), cursoId: cursoId, url: `${apiUrlCursos}/meus-cursos/${cursoId}/${conteudoId}` });
             }
         },
-        [conteudo, cursoId, setStateCursoConteudoVisualizadoUrlContext]
+        [conteudoId, cursoId, setStateCursoConteudoVisualizadoDataContext]
     );
 
     return (
         <VideoWrap backgroundColor="colorBlack">
-            <YouTube id="conteudoVideo" onEnd={handleVideoVisualizado(apiUrl)} videoId={conteudo.video_id} />
+            {/* {conteudoProvedor === 'vimeo' ? (
+                <Vimeo id="conteudoVideo" onEnd={handleVideoVisualizado()} video={conteudoVideoId} />
+            ) : ( */}
+            <YouTube id="conteudoVideo" onEnd={handleVideoVisualizado()} videoId={conteudoVideoId} />
+            {/* )} */}
         </VideoWrap>
     );
 };
