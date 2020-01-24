@@ -122,8 +122,6 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     const cursoProgresso = stateCursoProgresso.data && stateCursoProgresso.data.data;
 
-    console.log('A: ', cursoProgresso);
-
     // ACTION CONTEUDO
     useEffect(() => {
         const conteudoAtualData = JSON.parse(window.localStorage.getItem('conteudoAtualData'));
