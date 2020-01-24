@@ -44,7 +44,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // Redirecionamento temporário
     if (stateCurso.isError == true) {
-        window.location.pathname = '/';
+        window.location.pathname = '/minha-conta/cursos';
     }
 
     // Verificação se todos os dados de API estão carregados
@@ -118,9 +118,8 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
-    const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
-
     const cursoProgresso = stateCursoProgresso.data && stateCursoProgresso.data.data;
+    const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
 
     // ACTION CONTEUDO
     useEffect(() => {

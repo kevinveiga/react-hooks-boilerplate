@@ -26,7 +26,7 @@ import { P, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // CONTEXT
-    const { stateCursoProgressoContext, setStateCursoConteudoDataContext, setStateCursoConteudoVisualizadoDataContext, setStateMenuConteudoContext } = useContext(MinhaContaCursoContext);
+    const { stateCursoProgressoContext, setStateCursoConteudoDataContext, setStateCursoConteudoVisualizadoDataContext, setStateCursoMenuConteudoContext } = useContext(MinhaContaCursoContext);
 
     // ACTION
     const [statePart, setStatePart] = useState(null);
@@ -84,7 +84,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     mb={4}
                     ml="auto"
                     mr={{ d: 'auto', lg: 0 }}
-                    onClick={() => setStateMenuConteudoContext(false)}
+                    onClick={() => setStateCursoMenuConteudoContext(false)}
                     text="Ocultar menu"
                     textDecoration="underline"
                     themeSize="none"
