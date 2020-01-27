@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import parse from 'html-react-parser';
 
@@ -26,10 +26,22 @@ import { P, Title4 } from '../../../style/text';
 
 const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     // CONTEXT
-    const { stateCursoProgressoContext, setStateCursoConteudoDataContext, setStateCursoConteudoVisualizadoDataContext, setStateCursoMenuConteudoContext } = useContext(MinhaContaCursoContext);
+    const {
+        stateCursoConteudoPrevNextContext,
+        stateCursoProgressoContext,
+        setStateCursoConteudoDataContext,
+        setStateCursoConteudoVisualizadoDataContext,
+        setStateCursoMenuConteudoContext
+    } = useContext(MinhaContaCursoContext);
 
     // ACTION
     const [statePart, setStatePart] = useState(null);
+
+    useEffect(() => {
+        setStatePart(stateCursoConteudoPrevNextContext.moduloCurrentId);
+
+        return undefined;
+    }, [stateCursoConteudoPrevNextContext.moduloCurrentId]);
 
     // FUNCTION
     const handleCursoConteudoVisualizadoUrl = useCallback(
@@ -152,6 +164,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                 setStateCursoConteudoDataContext({
                                                                     conteudoId: conteudo.id,
                                                                     cursoId: objectCurso.id,
+                                                                    moduloCurrentId: modulo.id,
                                                                     modulos: objectCurso.modulos,
                                                                     setCurrent: true,
                                                                     url: `${apiUrlCursos}/meus-cursos`

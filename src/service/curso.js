@@ -79,7 +79,7 @@ export const useCursoApi = (url, initialData) => {
 
 export const useCursoConteudoApi = (obj, initialData) => {
     const [stateCursoConteudoData, setStateCursoConteudoData] = useState(obj);
-    const [stateCursoConteudoPrevNextId, setStateCursoConteudoPrevNextId] = useState({});
+    const [stateCursoConteudoPrevNext, setStateCursoConteudoPrevNext] = useState({});
 
     const [stateCursoConteudo, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -91,7 +91,6 @@ export const useCursoConteudoApi = (obj, initialData) => {
         if (stateCursoConteudoData.modulos) {
             const { conteudoId, modulos } = stateCursoConteudoData;
 
-            let exitLoop = false;
             let nextModuloConteudoId;
             let prevModuloConteudoId;
 
@@ -101,22 +100,20 @@ export const useCursoConteudoApi = (obj, initialData) => {
 
                 for (let i2 = 0, l2 = modulos[i1].conteudos.length; i2 < l2; i2 += 1) {
                     if (modulos[i1].conteudos[i2].id === conteudoId) {
-                        setStateCursoConteudoPrevNextId({
+                        setStateCursoConteudoPrevNext({
+                            moduloCurrentId: modulos[i1].id,
                             nextId: modulos[i1].conteudos[i2 + 1] ? modulos[i1].conteudos[i2 + 1].id : nextModuloConteudoId,
                             prevId: modulos[i1].conteudos[i2 - 1] ? modulos[i1].conteudos[i2 - 1].id : prevModuloConteudoId
                         });
 
-                        exitLoop = true;
-                        break;
+                        return modulos[i1].id;
                     }
-                }
-
-                if (exitLoop) {
-                    break;
                 }
             }
         }
-    }, [stateCursoConteudoData, setStateCursoConteudoPrevNextId]);
+
+        return 0;
+    }, [stateCursoConteudoData, setStateCursoConteudoPrevNext]);
 
     useEffect(() => {
         if (!stateCursoConteudoData) {
@@ -131,7 +128,6 @@ export const useCursoConteudoApi = (obj, initialData) => {
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
-                    prevNextId();
 
                     if (stateCursoConteudoData.setCurrent) {
                         window.localStorage.setItem(
@@ -139,6 +135,7 @@ export const useCursoConteudoApi = (obj, initialData) => {
                             JSON.stringify({
                                 conteudoId: stateCursoConteudoData.conteudoId,
                                 cursoId: stateCursoConteudoData.cursoId,
+                                moduloCurrentId: prevNextId(),
                                 modulos: stateCursoConteudoData.modulos,
                                 url: stateCursoConteudoData.url
                             })
@@ -159,7 +156,7 @@ export const useCursoConteudoApi = (obj, initialData) => {
         };
     }, [prevNextId, stateCursoConteudoData]);
 
-    return [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData];
+    return [stateCursoConteudo, stateCursoConteudoPrevNext, setStateCursoConteudoData];
 };
 
 export const useCursoConteudoVisualizadoApi = (obj, initialData) => {

@@ -36,7 +36,7 @@ const MinhaContaCursoVideo = lazy(() => import('./MinhaContaCursoVideo'));
 const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API
     const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
-    const [stateCursoConteudo, stateCursoConteudoPrevNextId, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
+    const [stateCursoConteudo, stateCursoConteudoPrevNext, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
     const [stateCursoProgresso, setStateCursoConteudoVisualizadoData] = useCursoConteudoVisualizadoApi(null, {});
 
     const cursoLength = stateCurso.data && stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
@@ -92,28 +92,30 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 }
 
                 setStateCursoConteudoData({
-                    conteudoId: stateCursoConteudoPrevNextId.nextId,
+                    conteudoId: stateCursoConteudoPrevNext.nextId,
                     cursoId: curso.id,
+                    moduloCurrentId: stateCursoConteudoPrevNext.moduloCurrentId,
                     modulos: curso.modulos,
                     setCurrent: true,
                     url: `${apiUrlCursos}/meus-cursos`
                 });
             }
         },
-        [stateCursoConteudoPrevNextId, setStateCursoConteudoData, setStateCursoConteudoVisualizadoData]
+        [stateCursoConteudoPrevNext, setStateCursoConteudoData, setStateCursoConteudoVisualizadoData]
     );
 
     const handleCursoConteudoPrev = useCallback(
         (curso) => () => {
             setStateCursoConteudoData({
-                conteudoId: stateCursoConteudoPrevNextId.prevId,
+                conteudoId: stateCursoConteudoPrevNext.prevId,
                 cursoId: curso.id,
+                moduloCurrentId: stateCursoConteudoPrevNext.moduloCurrentId,
                 modulos: curso.modulos,
                 setCurrent: true,
                 url: `${apiUrlCursos}/meus-cursos`
             });
         },
-        [stateCursoConteudoPrevNextId, setStateCursoConteudoData]
+        [stateCursoConteudoPrevNext, setStateCursoConteudoData]
     );
 
     // DATA
@@ -130,12 +132,13 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 setStateCursoConteudoData({
                     conteudoId: conteudoAtualData.conteudoId,
                     cursoId: conteudoAtualData.cursoId,
+                    moduloCurrentId: conteudoAtualData.moduloCurrentId,
                     modulos: conteudoAtualData.modulos,
                     setCurrent: true,
                     url: conteudoAtualData.url
                 });
             } else {
-                setStateCursoConteudoData({ conteudoId: curso.modulos[0].conteudos[0].id, cursoId: curso.id, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos` });
+                setStateCursoConteudoData({ conteudoId: curso.modulos[0].conteudos[0].id, cursoId: curso.id, moduloCurrentId: null, modulos: curso.modulos, url: `${apiUrlCursos}/meus-cursos` });
             }
         }
 
@@ -153,6 +156,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
             <MinhaContaCursoContext.Provider
                 value={{
+                    stateCursoConteudoPrevNextContext: stateCursoConteudoPrevNext,
                     stateCursoProgressoContext: cursoProgresso || curso.progresso,
                     setStateCursoConteudoDataContext: setStateCursoConteudoData,
                     setStateCursoConteudoVisualizadoDataContext: setStateCursoConteudoVisualizadoData,
@@ -199,7 +203,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 <Button
                                                     borderColor="colorGray"
                                                     color="colorBlack3"
-                                                    disabled={!stateCursoConteudoPrevNextId.prevId}
+                                                    disabled={!stateCursoConteudoPrevNext.prevId}
                                                     display="inline-block"
                                                     fontSize={{ d: '11px', sm: '14px' }}
                                                     height={{ d: '40px', sm: '50px' }}
@@ -217,7 +221,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 <Button
                                                     borderColor="colorGray"
                                                     color="colorBlack3"
-                                                    disabled={!stateCursoConteudoPrevNextId.nextId}
+                                                    disabled={!stateCursoConteudoPrevNext.nextId}
                                                     display="inline-block"
                                                     fontSize={{ d: '11px', sm: '14px' }}
                                                     height={{ d: '40px', sm: '50px' }}
