@@ -7,7 +7,7 @@
 -   spinal-case: Nomes no CSS, arquivos no geral, exceto pastas de componentes e arquivos de componentes - Ex: topo-imagem-1.jpg, Header.js;
 -   snake_case: Nomes de pastas, exceto pastas de componentes - Ex: folder_name, ComponenteA;
 
-## INSTALAÇÕES NECESSÁRIAS PARA O PROJETO
+## INSTALAÇÕES NECESSÁRIAS PARA O PROJETO (SEMPRE MANTER ATUALIZADO)
 
 -   [GIT](https://git-scm.com/downloads)
 -   [NodeJS](https://nodejs.org/en/download/)
@@ -21,7 +21,6 @@
 #### Executar apenas a primeira vez no terminal:
 
 -   npm i -g npm (atualiza NPM)
--   npm i -g node-sass (atualiza node-sass globalmente)
 -   npm i (instala pacotes de tarefas)
 -   npm audit fix (corrigir pacotes)
 
