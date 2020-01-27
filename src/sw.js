@@ -12,7 +12,7 @@ workbox.core.clientsClaim();
 workbox.core.skipWaiting();
 
 // API
-// Add all api, except perfil api
+// Add all api, except perfil and meus-cursos api
 workbox.routing.registerRoute(
     new RegExp('.+(/api/v1/)(?!(perfil|cursos/meus-cursos)).+$'),
     new workbox.strategies.StaleWhileRevalidate({

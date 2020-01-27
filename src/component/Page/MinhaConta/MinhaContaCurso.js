@@ -118,7 +118,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // DATA
     const curso = cursoLength > 0 && stateCurso.data.data;
-    const cursoProgresso = stateCursoProgresso.data && stateCursoProgresso.data.data;
+    const cursoProgresso = stateCursoProgresso.data && stateCursoProgresso.data.data && stateCursoProgresso.data.data.progresso;
     const conteudo = cursoConteudoLength > 0 && stateCursoConteudo.data.data;
 
     // ACTION CONTEUDO

@@ -182,12 +182,10 @@ export const useCursoConteudoVisualizadoApi = (obj, initialData) => {
             try {
                 const action = stateCursoConteudoVisualizadoData.action.type === ACTION.remove().type ? 'remover-visualizacao' : 'registrar-visualizacao';
 
-                const resultVisualization = await axios.post(`${stateCursoConteudoVisualizadoData.url}/${action}`);
-
-                const resultProgresso = resultVisualization.data && (await axios.get(`${apiUrlCursos}/meus-cursos/${stateCursoConteudoVisualizadoData.cursoId}/progresso`));
+                const result = await axios.post(`${stateCursoConteudoVisualizadoData.url}/${action}`);
 
                 if (!didCancel) {
-                    dispatch(resultProgresso ? { ...ACTION.success(), payload: resultProgresso.data } : ACTION.failure());
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {
                 if (!didCancel) {
