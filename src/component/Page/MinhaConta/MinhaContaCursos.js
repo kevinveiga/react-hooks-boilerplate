@@ -30,8 +30,8 @@ import { variable } from '../../../style/variable';
 
 const MinhaContaCursos = () => {
     // API
-    const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`, {});
-    const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
+    const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`);
+    const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`);
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
     const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && Object.keys(stateCursosCategorias.data.data).length;

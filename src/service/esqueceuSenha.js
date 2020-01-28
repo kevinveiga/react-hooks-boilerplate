@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useEsqueceuSenhaApi = (url, initialData) => {
+export const useEsqueceuSenhaApi = (url, initialData = {}) => {
     const [stateEsqueceuSenhaUrl] = useState(url);
 
     const [stateEsqueceuSenha, dispatch] = useReducer(dataFetchReducer, {

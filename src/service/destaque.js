@@ -6,7 +6,7 @@ import * as ACTION from '../store/action/action';
 
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const useDestaqueApi = (url, initialData) => {
+export const useDestaqueApi = (url, initialData = {}) => {
     const [stateDestaqueUrl] = useState(url);
 
     const [stateDestaque, dispatch] = useReducer(dataFetchReducer, {

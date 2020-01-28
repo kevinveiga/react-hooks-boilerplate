@@ -27,7 +27,7 @@ import { P, Title3, Title4 } from '../../../style/text';
 
 export const Pesquisa = ({ match }) => {
     // API
-    const [statePesquisa, setStatePesquisaDataContext] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` }, {});
+    const [statePesquisa, setStatePesquisaDataContext] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` });
 
     const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
 

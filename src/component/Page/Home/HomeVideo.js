@@ -29,7 +29,7 @@ import { Span, Title2, Title4, Title5 } from '../../../style/text';
 
 const HomeVideo = ({ anchor, ...otherProps }) => {
     // API
-    const [stateVideos, setStateVideoData] = useVideoApi({ isIntersecting: false }, {});
+    const [stateVideos, setStateVideoData] = useVideoApi({ isIntersecting: false });
 
     const videosLength = stateVideos.data && stateVideos.data.length;
 

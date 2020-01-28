@@ -2,11 +2,14 @@ import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
-import { apiUrlCursos } from '../config';
-
 import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
+/**
+ * @description Registrar matrícula do curso, grava em sessionStorage o id do curso e faz um redirect.
+ * @param {number} cursoId Id do curso.
+ * @param {string} url Url da api.
+ */
 export const cursoMatricula = (cursoId, url) => {
     const fetchData = async () => {
         try {
@@ -37,7 +40,12 @@ export const cursoMatricula = (cursoId, url) => {
     return null;
 };
 
-export const useCursoApi = (url, initialData) => {
+/**
+ * @description Retorna o state com todos os cursos ou somente um.
+ * @param {string} url Url da api.
+ * @param {object} initialData Dados iniciais.
+ */
+export const useCursoApi = (url, initialData = {}) => {
     const [stateCursoUrl, setStateCursoUrl] = useState(url);
 
     const [stateCurso, dispatch] = useReducer(dataFetchReducer, {
@@ -77,8 +85,12 @@ export const useCursoApi = (url, initialData) => {
     return [stateCurso, setStateCursoUrl];
 };
 
-export const useCursoConteudoApi = (obj, initialData) => {
-    const [stateCursoConteudoData, setStateCursoConteudoData] = useState(obj);
+/**
+ * @description Retorna o state dos dados do conteúdo, o state dos dados de conteúdo anterior e próximo, e o setState do conteúdo.
+ * @param {object} initialData Dados iniciais.
+ */
+export const useCursoConteudoApi = (initialData = {}) => {
+    const [stateCursoConteudoData, setStateCursoConteudoData] = useState();
     const [stateCursoConteudoPrevNext, setStateCursoConteudoPrevNext] = useState({});
 
     const [stateCursoConteudo, dispatch] = useReducer(dataFetchReducer, {
@@ -159,8 +171,12 @@ export const useCursoConteudoApi = (obj, initialData) => {
     return [stateCursoConteudo, stateCursoConteudoPrevNext, setStateCursoConteudoData];
 };
 
-export const useCursoConteudoVisualizadoApi = (obj, initialData) => {
-    const [stateCursoConteudoVisualizadoData, setStateCursoConteudoVisualizadoData] = useState(obj);
+/**
+ * @description Retorna o state do progresso do curso e o setState do conteúdo visualizado do curso.
+ * @param {object} initialData Dados iniciais.
+ */
+export const useCursoConteudoVisualizadoApi = (initialData = {}) => {
+    const [stateCursoConteudoVisualizadoData, setStateCursoConteudoVisualizadoData] = useState();
 
     const [stateCursoProgresso, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -201,8 +217,12 @@ export const useCursoConteudoVisualizadoApi = (obj, initialData) => {
     return [stateCursoProgresso, setStateCursoConteudoVisualizadoData];
 };
 
-export const useCursoCategoriaApi = (obj, initialData) => {
-    const [stateCursoCategoriaData, setStateCursoCategoriaData] = useState(obj);
+/**
+ * @description Retorna o state da categoria dos cursos e o setState da categoria dos cursos
+ * @param {object} initialData Dados iniciais.
+ */
+export const useCursoCategoriaApi = (initialData = {}) => {
+    const [stateCursoCategoriaData, setStateCursoCategoriaData] = useState();
 
     const [stateCursoCategoria, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -239,7 +259,11 @@ export const useCursoCategoriaApi = (obj, initialData) => {
     return [stateCursoCategoria, setStateCursoCategoriaData];
 };
 
-export const useCursoCategoriasApi = (url, initialData) => {
+/**
+ * @description Retorna o state de todas as categorias dos cursos.
+ * @param {object} initialData Dados iniciais.
+ */
+export const useCursoCategoriasApi = (url, initialData = {}) => {
     const [stateCursoCategoriasUrl] = useState(url);
 
     const [stateCursoCategorias, dispatch] = useReducer(dataFetchReducer, {

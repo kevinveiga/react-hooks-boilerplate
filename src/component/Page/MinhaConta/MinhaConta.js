@@ -20,7 +20,7 @@ import { variable } from '../../../style/variable';
 
 const MinhaConta = () => {
     // API
-    const [statePerfil, setStatePerfilData] = usePerfilApi({ url: apiUrlPerfil }, {});
+    const [statePerfil, setStatePerfilData] = usePerfilApi({ url: apiUrlPerfil });
 
     const perfilLength = statePerfil.data ? Object.keys(statePerfil.data).length : 0;
 

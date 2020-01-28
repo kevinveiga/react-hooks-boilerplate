@@ -26,7 +26,7 @@ import { variable } from '../../../style/variable';
 
 export const HomeSuperDestaque = () => {
     // API
-    const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`, {});
+    const stateSuperDestaques = useSuperDestaqueApi(`${apiUrlHome}/super_destaques`);
 
     const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
 

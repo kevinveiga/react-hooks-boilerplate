@@ -35,9 +35,9 @@ const MinhaContaCursoVideo = lazy(() => import('./MinhaContaCursoVideo'));
 
 const MinhaContaCurso = ({ match, ...breadcrumb }) => {
     // API
-    const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`, {});
-    const [stateCursoConteudo, stateCursoConteudoPrevNext, setStateCursoConteudoData] = useCursoConteudoApi(null, {});
-    const [stateCursoProgresso, setStateCursoConteudoVisualizadoData] = useCursoConteudoVisualizadoApi(null, {});
+    const [stateCurso] = useCursoApi(`${apiUrlCursos}/meus-cursos/${match.params.slug}`);
+    const [stateCursoConteudo, stateCursoConteudoPrevNext, setStateCursoConteudoData] = useCursoConteudoApi();
+    const [stateCursoProgresso, setStateCursoConteudoVisualizadoData] = useCursoConteudoVisualizadoApi();
 
     const cursoLength = stateCurso.data && stateCurso.data.data ? Object.keys(stateCurso.data.data).length : 0;
     const cursoConteudoLength = stateCursoConteudo.data && stateCursoConteudo.data.data ? Object.keys(stateCursoConteudo.data.data).length : 0;

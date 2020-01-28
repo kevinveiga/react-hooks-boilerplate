@@ -26,9 +26,9 @@ import { variable } from '../../../style/variable';
 
 export const Noticias = () => {
     // API
-    const [stateNoticias] = useNoticiaApi(apiUrlNoticias, {});
-    const [stateNoticiasCategoria, setStateNoticiasCategoriaData] = useNoticiaCategoriaApi(null, {});
-    const stateNoticiasCategorias = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`, {});
+    const [stateNoticias] = useNoticiaApi(apiUrlNoticias);
+    const [stateNoticiasCategoria, setStateNoticiasCategoriaData] = useNoticiaCategoriaApi();
+    const stateNoticiasCategorias = useNoticiaCategoriasApi(`${apiUrlNoticias}/categorias`);
 
     const noticiasLength = stateNoticias.data.length;
     const noticiasCategoriasLength = stateNoticiasCategorias.data.length;

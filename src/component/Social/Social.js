@@ -11,7 +11,7 @@ import { SocialStyled } from './SocialStyled';
 
 export const Social = ({ ...props }) => {
     // API
-    const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`, {});
+    const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`);
 
     return stateSocial.data ? (
         <SocialStyled {...props}>

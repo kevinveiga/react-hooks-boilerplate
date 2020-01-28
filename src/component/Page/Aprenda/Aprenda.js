@@ -22,9 +22,9 @@ import { variable } from '../../../style/variable';
 
 export const Aprenda = () => {
     // API
-    const [stateCursos] = useCursoApi(apiUrlCursos, {});
-    const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi(null, {});
-    const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`, {});
+    const [stateCursos] = useCursoApi(apiUrlCursos);
+    const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi();
+    const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`);
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
     const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && stateCursosCategorias.data.data.length;

@@ -12,7 +12,7 @@ import { BannerRightStyled } from './BannerStyled';
 
 export const BannerRight = ({ elementChange, elementFadeOut, ...otherProps }) => {
     // API
-    const stateBanner = useBannerApi(`${apiUrlConfiguracoes}/sidebar`, {});
+    const stateBanner = useBannerApi(`${apiUrlConfiguracoes}/sidebar`);
 
     // ACTION
     const stateChangeBannerScroll = useChangeBannerScroll(elementChange.elementId, elementChange.offset);

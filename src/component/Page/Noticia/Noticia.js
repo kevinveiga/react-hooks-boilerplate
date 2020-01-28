@@ -34,7 +34,7 @@ import { variable } from '../../../style/variable';
 
 export const Noticia = ({ match }) => {
     // API
-    const [stateNoticia, setStateNoticiaUrl] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`, {});
+    const [stateNoticia, setStateNoticiaUrl] = useNoticiaApi(`${apiUrlNoticias}/${match.params.slug}`);
 
     const noticiaLength = stateNoticia.data ? Object.keys(stateNoticia.data).length : 0;
     const noticiaRelatedLength = noticiaLength > 0 && stateNoticia.data.related.length;

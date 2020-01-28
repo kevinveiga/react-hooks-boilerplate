@@ -8,7 +8,7 @@ import { Seo } from '../../Seo/Seo';
 
 export const HomeSeo = () => {
     // API
-    const stateSeo = useSeoApi(`${apiUrlHome}/seo`, {});
+    const stateSeo = useSeoApi(`${apiUrlHome}/seo`);
 
     return (
         <Seo>

@@ -15,7 +15,7 @@ import { Title2 } from '../../../style/text';
 
 export const EsqueceuSenhaReiniciar = ({ match }) => {
     // API
-    const stateEsqueceuSenha = useEsqueceuSenhaApi(`${apiUrlEsqueceuSenha}/find/${match.params.slug}`, {});
+    const stateEsqueceuSenha = useEsqueceuSenhaApi(`${apiUrlEsqueceuSenha}/find/${match.params.slug}`);
 
     return (
         <Flex display="flex" flexWrap="wrap" minHeight="calc(100vh)">

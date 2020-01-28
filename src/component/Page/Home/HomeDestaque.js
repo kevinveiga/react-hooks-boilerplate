@@ -18,7 +18,7 @@ import { Cell, Grid } from '../../../style/grid';
 
 export const HomeDestaque = () => {
     // API
-    const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`, {});
+    const stateDestaques = useDestaqueApi(`${apiUrlHome}/destaques`);
 
     const destaquesLength = stateDestaques.data && stateDestaques.data.length;
 

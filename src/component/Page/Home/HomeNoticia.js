@@ -17,7 +17,7 @@ import { Cell, Grid } from '../../../style/grid';
 
 export const HomeNoticia = () => {
     // API
-    const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`, {});
+    const [stateNoticias] = useNoticiaApi(`${apiUrlHome}/ultimas_noticias`);
 
     const noticiasLength = stateNoticias.data && stateNoticias.data.length;
 

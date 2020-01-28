@@ -34,7 +34,7 @@ import { variable } from '../../../style/variable';
 
 export const Curso = ({ match }) => {
     // API
-    const [stateCurso, setStateCursoUrl] = useCursoApi(`${apiUrlCursos}/${match.params.slug}`, {});
+    const [stateCurso, setStateCursoUrl] = useCursoApi(`${apiUrlCursos}/${match.params.slug}`);
 
     const cursoLength = stateCurso.data.data ? stateCurso.data.data.data.length : 0;
     // const cursoRelatedLength = cursoLength > 0 && stateCurso.data.related.length;
