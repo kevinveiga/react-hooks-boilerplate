@@ -12,7 +12,8 @@ module.exports = function getBabelConfiguration(api) {
                 modules: false,
                 targets: {
                     browsers: ['last 2 versions'],
-                    esmodules: true
+                    esmodules: true,
+                    node: 'current'
                 },
                 useBuiltIns: 'entry'
             }
