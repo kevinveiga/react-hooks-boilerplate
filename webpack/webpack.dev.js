@@ -18,6 +18,7 @@ module.exports = {
         liveReload: false,
         open: true,
         port: 3000,
+        publicPath: '/asset/',
         // proxy: {
         //     '/api/v1': {
         //         target: 'https://api.devserver',
