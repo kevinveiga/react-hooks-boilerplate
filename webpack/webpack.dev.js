@@ -17,13 +17,14 @@ module.exports = {
         index: 'index.html',
         liveReload: false,
         open: true,
-        port: 3000
+        port: 3000,
         // proxy: {
         //     '/api/v1': {
         //         target: 'https://api.devserver',
         //         secure: false
         //     }
         // }
+        watchContentBase: true
     },
     devtool: 'source-map',
     mode: 'development',
