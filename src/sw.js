@@ -1,27 +1,30 @@
 /* eslint no-restricted-globals: "off" */
 /* eslint no-underscore-dangle: "off" */
-
-// Detailed logging is very useful during development
-workbox.setConfig({ debug: false });
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { clientsClaim, skipWaiting } from 'workbox-core';
+import { ExpirationPlugin } from 'workbox-expiration';
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 // Fix precache error
-workbox.precaching.cleanupOutdatedCaches();
+cleanupOutdatedCaches();
 
 // Updating SW lifecycle to update the app after user triggered refresh
-workbox.core.clientsClaim();
-workbox.core.skipWaiting();
+clientsClaim();
+skipWaiting();
 
 // API
 // Add all api, except perfil and meus-cursos api
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('.+(/api/v1/)(?!(perfil|cursos/meus-cursos)).+$'),
-    new workbox.strategies.StaleWhileRevalidate({
+    new StaleWhileRevalidate({
         cacheName: 'api-cache',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 50,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -32,12 +35,12 @@ workbox.routing.registerRoute(
 
 // API PERFIL
 // Add only perfil api
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('.+(/api/v1/)(?:(perfil)).*$'),
-    new workbox.strategies.NetworkFirst({
+    new NetworkFirst({
         cacheName: 'api-cache-perfil',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             })
         ]
@@ -46,12 +49,12 @@ workbox.routing.registerRoute(
 
 // API MEUS CURSOS
 // Add only meus-cursos api
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('.+(/api/v1/)(?:(cursos/meus-cursos)).*$'),
-    new workbox.strategies.NetworkFirst({
+    new NetworkFirst({
         cacheName: 'api-cache-meus-cursos',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             })
         ]
@@ -60,15 +63,15 @@ workbox.routing.registerRoute(
 
 // APP
 // Add same origin, except in precache, css, font, image, js (same origin or cross origin)
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('\\/(?!.+(css|gif|js|jpg|jpeg|png|svg|webp)).*$'),
-    new workbox.strategies.NetworkFirst({
+    new NetworkFirst({
         cacheName: 'app-cache',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -78,15 +81,15 @@ workbox.routing.registerRoute(
 );
 
 // GOOGLE FONTS
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('^(https://fonts.googleapis.com/)'),
-    new workbox.strategies.CacheFirst({
+    new CacheFirst({
         cacheName: 'google-fonts-webfonts',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
                 maxEntries: 10,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -97,15 +100,15 @@ workbox.routing.registerRoute(
 
 // IMG SAME-ORIGIN
 // Add same origin, except in asset/image folder or cross-origin app/uploads folder
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('^(?!.+(/app/uploads/))(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
-    new workbox.strategies.CacheFirst({
+    new CacheFirst({
         cacheName: 'image-cache',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -115,15 +118,15 @@ workbox.routing.registerRoute(
 );
 
 // IMG CROSS-ORIGIN
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('.+\\..+(/app/uploads/)(?:.+(gif|jpg|jpeg|png|svg|webp))$'),
-    new workbox.strategies.CacheFirst({
+    new CacheFirst({
         cacheName: 'image-cross-cache',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -134,15 +137,15 @@ workbox.routing.registerRoute(
 
 // JS SAME-ORIGIN
 // Add same origin, except in asset/js folder
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('\\/(?:.+(js|js\\?.+))$'),
-    new workbox.strategies.NetworkFirst({
+    new NetworkFirst({
         cacheName: 'js-cache',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 50,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -152,15 +155,15 @@ workbox.routing.registerRoute(
 );
 
 // JS CROSS-ORIGIN
-workbox.routing.registerRoute(
+registerRoute(
     new RegExp('.+\\..+/(?:.+(js|js\\?.+))$'),
-    new workbox.strategies.CacheFirst({
+    new CacheFirst({
         cacheName: 'js-cross-cache',
         plugins: [
-            new workbox.cacheableResponse.Plugin({
+            new CacheableResponsePlugin({
                 statuses: [0, 200]
             }),
-            new workbox.expiration.Plugin({
+            new ExpirationPlugin({
                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
                 maxEntries: 15,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -170,18 +173,18 @@ workbox.routing.registerRoute(
 );
 
 // URL EXTERNAL - PICSUM
-// workbox.routing.registerRoute(
+// registerRoute(
 //     new RegExp('^https://picsum.photos/id/'),
-//     new workbox.strategies.CacheFirst({
+//     new CacheFirst({
 //         cacheName: 'picsum-cache',
 //         plugins: [
-//             new workbox.cacheableResponse.Plugin({
+//             new CacheableResponsePlugin({
 //                 headers: {
 //                     'X-Is-Cacheable': 'true'
 //                 },
 //                 statuses: [0, 200]
 //             }),
-//             new workbox.expiration.Plugin({
+//             new ExpirationPlugin({
 //                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
 //                 maxEntries: 15,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
@@ -212,8 +215,8 @@ workbox.routing.registerRoute(
 // self.addEventListener('fetch', (event) => {
 //     if (event.request.url.endsWith('.png')) {
 //         // Referencing workbox.strategies will now work as expected.
-//         const cacheFirst = new workbox.strategies.CacheFirst();
-//         event.respondWith(cacheFirst.makeRequest({ request: event.request }));
+//         const cacheFirst = new CacheFirst();
+//         event.respondWith(cacheFirst.handle({ request: event.request }));
 //     }
 // });
 
@@ -226,4 +229,4 @@ workbox.routing.registerRoute(
 //     event.waitUntil(self.registration.showNotification(title, options));
 // });
 
-workbox.precaching.precacheAndRoute(self.__precacheManifest);
+precacheAndRoute(self.__WB_MANIFEST);

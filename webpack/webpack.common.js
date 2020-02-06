@@ -87,14 +87,9 @@ module.exports = {
     },
     plugins: [
         new InjectManifest({
-            importsDirectory: 'asset',
-            include: [/(.html)$/, /(.json)$/],
+            mode: process.env.NODE_ENV,
             swDest: `${commonPaths.outputPath}/sw.js`,
-            swSrc: `${commonPaths.srcPath}/sw.js`,
-            templatedURLs: {
-                '/index.html': '[manifestHash]',
-                '/manifest.json': '[manifestHash]'
-            }
+            swSrc: `${commonPaths.srcPath}/sw.js`
         }),
         new HtmlWebpackPlugin({
             cache: false,
