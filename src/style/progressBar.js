@@ -21,6 +21,7 @@ export const ProgressBar = styled.div`
     ${space};
     background-color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorGray : 'transparent')};
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
+    white-space: nowrap;
 
     ${BarContainer} {
         border: 1px solid ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};

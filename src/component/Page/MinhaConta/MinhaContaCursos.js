@@ -179,7 +179,7 @@ const MinhaContaCursos = () => {
                                                                                     progressPercent={curso.progresso}
                                                                                     themeColor="light"
                                                                                 >
-                                                                                    <Box width="170px">
+                                                                                    <Box pr={3}>
                                                                                         <Span fontSize="16px" fontWeight="700" themeColor="light">
                                                                                             PROGRESSO {parseInt(curso.progresso, 10)}%
                                                                                         </Span>
@@ -273,7 +273,7 @@ const MinhaContaCursos = () => {
                                                                                         progressPercent={curso.progresso}
                                                                                         themeColor="light"
                                                                                     >
-                                                                                        <Box width="170px">
+                                                                                        <Box pr={3}>
                                                                                             <Span fontSize="16px" fontWeight="700" themeColor="light">
                                                                                                 PROGRESSO {parseInt(curso.progresso, 10)}%
                                                                                             </Span>

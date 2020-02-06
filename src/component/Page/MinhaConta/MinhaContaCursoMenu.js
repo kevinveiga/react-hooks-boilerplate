@@ -122,7 +122,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                 <Grid display="grid">
                     {objectCurso.modulos.map((modulo) => {
                         return (
-                            <Cell key={modulo.id}>
+                            <Cell display="table" key={modulo.id}>
                                 <MinhaContaCursoMenuModuloStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}>
                                     <Box mr={3}>
                                         <P fontSize="18px" mb={1}>
