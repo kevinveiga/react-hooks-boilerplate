@@ -87,6 +87,8 @@ module.exports = {
     },
     plugins: [
         new InjectManifest({
+            exclude: [/(.json)$/],
+            include: [/(.gif)$/, /(.html)$/, /(.jpg)$/, /(.js)$/, /(.png)$/, /(.svg)$/],
             mode: process.env.NODE_ENV,
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`
