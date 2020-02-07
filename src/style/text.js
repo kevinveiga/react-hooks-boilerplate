@@ -36,6 +36,7 @@ export const P = styled.p`
     ${space};
     ${typography};
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
+    ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
 
 export const Span = styled.span`
@@ -43,6 +44,7 @@ export const Span = styled.span`
     ${space};
     ${typography};
     ${({ color }) => color && `color: ${variable[color]}`};
+    ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
 
 export const Title1 = styled.h1`

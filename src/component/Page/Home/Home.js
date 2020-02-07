@@ -26,6 +26,7 @@ import { Title4 } from '../../../style/text';
 // const HomeEquipe = lazy(() => import('./HomeEquipe'));
 // const HomeParceiro = lazy(() => import('./HomeParceiro'));
 const HomeVideo = lazy(() => import('./HomeVideo'));
+const Quotation = lazy(() => import('../../Quotation/Quotation'));
 
 export const Home = ({ location }) => {
     return (
@@ -34,6 +35,8 @@ export const Home = ({ location }) => {
 
             <HomeProvider location={location}>
                 <HomeSuperDestaque />
+
+                <ComponentLazyLoad component={Quotation} />
 
                 <Wrap>
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
