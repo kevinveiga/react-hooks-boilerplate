@@ -16,8 +16,8 @@ module.exports = {
         lazy: false,
         liveReload: true,
         open: true,
-        port: 8080,
-        // public: 'localhost:8080',
+        port: 3000,
+        // public: 'localhost:3000',
         publicPath: '/',
         // proxy: {
         // '*': commonPaths.outputPath
