@@ -1,7 +1,5 @@
 const Dotenv = require('dotenv-webpack');
 
-const commonPaths = require('./paths');
-
 module.exports = {
     devServer: {
         // allowedHosts: ['http://api.devserver/'],
