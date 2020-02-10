@@ -8,7 +8,7 @@ export const Container = styled.section`
     ${space};
 
     @media (min-width: ${variable.lg}) {
-        max-width: 1280px;
+        ${({ maxWidth }) => maxWidth === undefined && 'max-width: 1280px'};
     }
 `;
 

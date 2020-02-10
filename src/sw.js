@@ -25,7 +25,7 @@ registerRoute(
                 statuses: [0, 200]
             }),
             new ExpirationPlugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
                 maxEntries: 50,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
@@ -72,7 +72,7 @@ registerRoute(
                 statuses: [0, 200]
             }),
             new ExpirationPlugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
@@ -109,7 +109,7 @@ registerRoute(
                 statuses: [0, 200]
             }),
             new ExpirationPlugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
@@ -127,7 +127,7 @@ registerRoute(
                 statuses: [0, 200]
             }),
             new ExpirationPlugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
                 maxEntries: 30,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
@@ -146,7 +146,7 @@ registerRoute(
                 statuses: [0, 200]
             }),
             new ExpirationPlugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
                 maxEntries: 50,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
@@ -164,7 +164,7 @@ registerRoute(
                 statuses: [0, 200]
             }),
             new ExpirationPlugin({
-                maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+                maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
                 maxEntries: 15,
                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
             })
@@ -185,7 +185,7 @@ registerRoute(
 //                 statuses: [0, 200]
 //             }),
 //             new ExpirationPlugin({
-//                 maxAgeSeconds: 15 * 24 * 60 * 60, // 15 days
+//                 maxAgeSeconds: 60 * 60 * 24 * 15, // 15 days
 //                 maxEntries: 15,
 //                 purgeOnQuotaError: true // Automatically cleanup if quota is exceeded
 //             })
