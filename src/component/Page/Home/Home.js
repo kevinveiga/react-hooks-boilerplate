@@ -36,10 +36,10 @@ export const Home = ({ location }) => {
             <HomeProvider location={location}>
                 <HomeSuperDestaque />
 
-                <ComponentLazyLoad component={Quotation} />
-
                 <Wrap>
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
+                        <ComponentLazyLoad component={Quotation} />
+
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: '60%' }}>
                                 <HomeDestaque />

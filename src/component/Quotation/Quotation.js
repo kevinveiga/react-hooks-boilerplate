@@ -9,7 +9,7 @@ import { useSocket } from '../../service/socket';
 
 import { Svg } from '../Svg/Svg';
 
-import { Box, Flex } from '../../style/flex';
+import { Cell, Grid } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
 const Quotation = () => {
@@ -19,7 +19,9 @@ const Quotation = () => {
     // API
     const stateSocketData = useSocket(socket, 'quotationData');
 
-    const socketDataArray = JSON.parse(stateSocketData || '[]');
+    const socketData = JSON.parse(stateSocketData || '{}');
+
+    const socketDataLength = socketData ? Object.keys(socketData).length : 0;
 
     const quotationSvg = useCallback((value) => {
         switch (value) {
@@ -32,28 +34,79 @@ const Quotation = () => {
         }
     }, []);
 
-    return socketDataArray.length > 0 ? (
-        <Flex display="flex" flexWrap="nowrap" justifyContent="space-between" overflowX="hidden">
-            {socketDataArray.map((quotation) => {
-                return (
-                    <Box key={quotation.Alias} minWidth="150px" p={3} width="100%">
-                        <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
+    return socketDataLength > 0 ? (
+        <Grid
+            borderY={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }}
+            display="grid"
+            gridColumnGap={{ d: 2, md: 3 }}
+            mb={{ d: 3, md: 4 }}
+            justifyContent="space-between"
+            overflowX="hidden"
+            py={{ d: 2, md: 3 }}
+        >
+            {socketData['bolsa'] &&
+                socketData['bolsa'].map((quotation) => {
+                    return (
+                        <Cell gridRow={1} key={quotation.Alias} minWidth="150px">
+                            <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
+
+                            <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                                {quotation.Name.toUpperCase()}
+                            </Span>
+
+                            <P fontSize={14} mb={0} whiteSpace="nowrap">
+                                <Span pr={1}>{quotation.Value}</Span>
+
+                                <Span color={quotation.Direction === 'negativo' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
+                                    {parse(`${quotation.Spread}`)}
+                                </Span>
+                            </P>
+                        </Cell>
+                    );
+                })}
+
+            {socketData['cdiSelic'] && (
+                <>
+                    <Cell gridRow={1} minWidth="150px">
+                        <Svg height="14px" name={quotationSvg()} pr={1} />
 
                         <Span fontSize={14} fontWeight={700} verticalAlign="middle">
-                            {quotation.Name.toUpperCase()}
+                            CDI
                         </Span>
 
-                        <P fontSize={14} whiteSpace="nowrap">
-                            <Span pr={1}>{quotation.Value}</Span>
-
-                            <Span color={quotation.Direction === 'negativo' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
-                                {parse(`${quotation.Spread}`)}
-                            </Span>
+                        <P fontSize={14} mb={0} whiteSpace="nowrap">
+                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].cdi).toFixed(2)}%</Span>
                         </P>
-                    </Box>
-                );
-            })}
-        </Flex>
+                    </Cell>
+
+                    <Cell gridRow={1} minWidth="150px">
+                        <Svg height="14px" name={quotationSvg()} pr={1} />
+
+                        <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                            SELIC
+                        </Span>
+
+                        <P fontSize={14} mb={0} whiteSpace="nowrap">
+                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].selic).toFixed(2)}%</Span>
+                        </P>
+                    </Cell>
+                </>
+            )}
+
+            {socketData['poupanca'] && (
+                <Cell gridRow={1} minWidth="150px">
+                    <Svg height="14px" name={quotationSvg()} pr={1} />
+
+                    <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                        POUPANÇA
+                    </Span>
+
+                    <P fontSize={14} mb={0} whiteSpace="nowrap">
+                        <Span pr={1}>{parseFloat(socketData['poupanca'][0].valor).toFixed(2)}%</Span>
+                    </P>
+                </Cell>
+            )}
+        </Grid>
     ) : null;
 };
 

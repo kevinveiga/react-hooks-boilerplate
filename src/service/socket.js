@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useSocket = (socket, serverEvent) => {
-    const [stateSocketData, setStateSocketData] = useState('[]');
+    const [stateSocketData, setStateSocketData] = useState('{}');
 
     useEffect(() => {
         socket.open();
