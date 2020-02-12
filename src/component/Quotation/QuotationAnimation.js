@@ -1,28 +1,38 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import parse from 'html-react-parser';
-import socketIOClient from 'socket.io-client';
 
-import { socketUrl } from '../../config';
-
-import { useSocket } from '../../service/socket';
+import { useWindowWidth } from '../../store/util/windowWidth';
 
 import { Svg } from '../Svg/Svg';
 
-import { Cell, Grid } from '../../style/grid';
+import { QuotationAnimationStyled } from './QuotationStyled';
+
+import { Cell } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
-const Quotation = () => {
-    // SOCKET
-    const socket = socketIOClient(socketUrl, { autoConnect: false, reconnectionAttempts: 50, reconnectionDelay: 2000, timeout: 10000 });
+export const QuotationAnimation = ({ socketData }) => {
+    // ACTION
+    const quotationRef = useRef();
+    const [stateAnimationPosition, setStateAnimationPosition] = useState(0);
+    const windowWidth = useWindowWidth();
 
-    // API
-    const stateSocketData = useSocket(socket, 'quotationData');
+    useEffect(() => {
+        if (quotationRef.current) {
+            const containerWidth = quotationRef.current.offsetWidth;
+            let totalWidth = 0;
 
-    const socketData = JSON.parse(stateSocketData || '{}');
+            for (let i = 0, l = quotationRef.current.childElementCount; i < l; i += 1) {
+                totalWidth += quotationRef.current.children[i].offsetWidth;
+            }
 
-    const socketDataLength = socketData ? Object.keys(socketData).length : 0;
+            setStateAnimationPosition(containerWidth < totalWidth ? containerWidth - totalWidth : 0);
+        }
 
+        return undefined;
+    }, [socketData, windowWidth]);
+
+    // FUNCTION
     const quotationSvg = useCallback((value) => {
         switch (value) {
             case 'bitcoin':
@@ -34,15 +44,20 @@ const Quotation = () => {
         }
     }, []);
 
-    return socketDataLength > 0 ? (
-        <Grid
+    return (
+        <QuotationAnimationStyled
+            animationPosition={stateAnimationPosition}
             borderY={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }}
             display="grid"
+            duration="7s"
+            direction="alternate"
             gridColumnGap={{ d: 2, md: 3 }}
-            mb={{ d: 3, md: 4 }}
+            iterationCount="infinite"
             justifyContent="space-between"
-            overflowX="hidden"
+            mb={{ d: 3, md: 4 }}
             py={{ d: 2, md: 3 }}
+            ref={quotationRef}
+            timingFunction="ease-out"
         >
             {socketData['bolsa'] &&
                 socketData['bolsa'].map((quotation) => {
@@ -75,7 +90,7 @@ const Quotation = () => {
                         </Span>
 
                         <P fontSize={14} mb={0} whiteSpace="nowrap">
-                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].cdi).toFixed(2)}%</Span>
+                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].cdi).toFixed(2)}% a.a</Span>
                         </P>
                     </Cell>
 
@@ -87,7 +102,7 @@ const Quotation = () => {
                         </Span>
 
                         <P fontSize={14} mb={0} whiteSpace="nowrap">
-                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].selic).toFixed(2)}%</Span>
+                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].selic).toFixed(2)}% a.a</Span>
                         </P>
                     </Cell>
                 </>
@@ -102,12 +117,10 @@ const Quotation = () => {
                     </Span>
 
                     <P fontSize={14} mb={0} whiteSpace="nowrap">
-                        <Span pr={1}>{parseFloat(socketData['poupanca'][0].valor).toFixed(2)}%</Span>
+                        <Span pr={1}>{parseFloat(socketData['poupanca'][0].valor).toFixed(2)}% a.m</Span>
                     </P>
                 </Cell>
             )}
-        </Grid>
-    ) : null;
+        </QuotationAnimationStyled>
+    );
 };
-
-export default Quotation;
