@@ -198,7 +198,7 @@ const MinhaContaCursos = () => {
                                                     );
                                                 })}
 
-                                            {noData && !isDataLoaded && (
+                                            {noData && stateCursos.isLoading && (
                                                 <Box mb={5} textAlign="center" width="100%">
                                                     <Title4 color="colorPrimary" themeColor="dark">
                                                         Carregando...
@@ -206,7 +206,7 @@ const MinhaContaCursos = () => {
                                                 </Box>
                                             )}
 
-                                            {noData && isDataLoaded && (
+                                            {noData && !cursosLength > 0 && !stateCursos.isLoading && (
                                                 <>
                                                     <Box mb={5} textAlign="center" width="100%">
                                                         <Title4 color="colorPrimary" themeColor="dark">
