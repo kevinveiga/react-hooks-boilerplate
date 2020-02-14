@@ -95,8 +95,7 @@ export const QuotationAnimation = ({ socketData }) => {
                         <Span pr={1}>{cdi.value}% a.a</Span>
 
                         <Span color={cdi.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
-                            {cdi.operator === '+' && cdi.variation !== 0 && cdi.operator}
-                            {cdi.variation.toFixed(2)}%
+                            {cdi.variation}%
                         </Span>
                     </P>
                 </Cell>
@@ -114,8 +113,7 @@ export const QuotationAnimation = ({ socketData }) => {
                         <Span pr={1}>{selic.value}% a.a</Span>
 
                         <Span color={selic.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
-                            {selic.operator === '+' && selic.variation !== 0 && selic.operator}
-                            {selic.variation.toFixed(2)}%
+                            {selic.variation}%
                         </Span>
                     </P>
                 </Cell>
@@ -133,8 +131,7 @@ export const QuotationAnimation = ({ socketData }) => {
                         <Span pr={1}>{poupanca.value}% a.m</Span>
 
                         <Span color={poupanca.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
-                            {poupanca.operator === '+' && poupanca.variation !== 0 && poupanca.operator}
-                            {poupanca.variation.toFixed(2)}%
+                            {poupanca.variation}%
                         </Span>
                     </P>
                 </Cell>
