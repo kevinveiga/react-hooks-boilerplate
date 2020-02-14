@@ -26,7 +26,7 @@ export const QuotationAnimation = ({ socketData }) => {
                 totalWidth += quotationRef.current.children[i].offsetWidth;
             }
 
-            setStateAnimationPosition(containerWidth < totalWidth ? containerWidth - totalWidth : 0);
+            setStateAnimationPosition(containerWidth < totalWidth ? containerWidth - totalWidth - 5 : 0);
         }
 
         return undefined;
