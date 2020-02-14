@@ -44,6 +44,14 @@ export const QuotationAnimation = ({ socketData }) => {
         }
     }, []);
 
+    // DATA
+    const { bolsa } = socketData;
+    const { cdi } = socketData;
+    const { poupanca } = socketData;
+    const { selic } = socketData;
+
+    console.log('socketData: ', socketData);
+
     return (
         <QuotationAnimationStyled
             animationPosition={stateAnimationPosition}
@@ -59,8 +67,8 @@ export const QuotationAnimation = ({ socketData }) => {
             ref={quotationRef}
             timingFunction="ease-out"
         >
-            {socketData['bolsa'] &&
-                socketData['bolsa'].map((quotation) => {
+            {bolsa &&
+                bolsa.map((quotation) => {
                     return (
                         <Cell gridRow={1} key={quotation.Alias} minWidth="150px">
                             <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
@@ -80,35 +88,45 @@ export const QuotationAnimation = ({ socketData }) => {
                     );
                 })}
 
-            {socketData['cdiSelic'] && (
-                <>
-                    <Cell gridRow={1} minWidth="150px">
-                        <Svg height="14px" name={quotationSvg()} pr={1} />
+            {cdi && (
+                <Cell gridRow={1} minWidth="150px">
+                    <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                        <Span fontSize={14} fontWeight={700} verticalAlign="middle">
-                            CDI
+                    <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                        CDI
+                    </Span>
+
+                    <P fontSize={14} mb={0} whiteSpace="nowrap">
+                        <Span pr={1}>{cdi.value}% a.a</Span>
+
+                        <Span color={cdi.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
+                            {cdi.operator === '+' && cdi.variation !== 0 && cdi.operator}
+                            {cdi.variation.toFixed(2)}%
                         </Span>
-
-                        <P fontSize={14} mb={0} whiteSpace="nowrap">
-                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].cdi).toFixed(2)}% a.a</Span>
-                        </P>
-                    </Cell>
-
-                    <Cell gridRow={1} minWidth="150px">
-                        <Svg height="14px" name={quotationSvg()} pr={1} />
-
-                        <Span fontSize={14} fontWeight={700} verticalAlign="middle">
-                            SELIC
-                        </Span>
-
-                        <P fontSize={14} mb={0} whiteSpace="nowrap">
-                            <Span pr={1}>{parseFloat(socketData['cdiSelic'][0].selic).toFixed(2)}% a.a</Span>
-                        </P>
-                    </Cell>
-                </>
+                    </P>
+                </Cell>
             )}
 
-            {socketData['poupanca'] && (
+            {selic && (
+                <Cell gridRow={1} minWidth="150px">
+                    <Svg height="14px" name={quotationSvg()} pr={1} />
+
+                    <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                        SELIC
+                    </Span>
+
+                    <P fontSize={14} mb={0} whiteSpace="nowrap">
+                        <Span pr={1}>{selic.value}% a.a</Span>
+
+                        <Span color={selic.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
+                            {selic.operator === '+' && selic.variation !== 0 && selic.operator}
+                            {selic.variation.toFixed(2)}%
+                        </Span>
+                    </P>
+                </Cell>
+            )}
+
+            {poupanca && (
                 <Cell gridRow={1} minWidth="150px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
@@ -117,7 +135,12 @@ export const QuotationAnimation = ({ socketData }) => {
                     </Span>
 
                     <P fontSize={14} mb={0} whiteSpace="nowrap">
-                        <Span pr={1}>{parseFloat(socketData['poupanca'][0].valor).toFixed(2)}% a.m</Span>
+                        <Span pr={1}>{poupanca.value}% a.m</Span>
+
+                        <Span color={poupanca.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
+                            {poupanca.operator === '+' && poupanca.variation !== 0 && poupanca.operator}
+                            {poupanca.variation.toFixed(2)}%
+                        </Span>
                     </P>
                 </Cell>
             )}
