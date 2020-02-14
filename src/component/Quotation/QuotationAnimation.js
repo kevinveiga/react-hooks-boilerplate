@@ -45,12 +45,7 @@ export const QuotationAnimation = ({ socketData }) => {
     }, []);
 
     // DATA
-    const { bolsa } = socketData;
-    const { cdi } = socketData;
-    const { poupanca } = socketData;
-    const { selic } = socketData;
-
-    console.log('socketData: ', socketData);
+    const { bolsa, cdi, poupanca, selic } = socketData;
 
     return (
         <QuotationAnimationStyled
