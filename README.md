@@ -10,7 +10,11 @@
 ## INSTALAÇÕES NECESSÁRIAS PARA O PROJETO (SEMPRE MANTER ATUALIZADO)
 
 -   [GIT](https://git-scm.com/downloads)
--   [NodeJS](https://nodejs.org/en/download/)
+-   [NodeJS 10 ou superior](https://nodejs.org/en/download/)
+
+## CONFIGURAÇÃO:
+
+-   Configurar arquivos .env\*
 
 ## MODO DE USAR O TERMINAL
 
