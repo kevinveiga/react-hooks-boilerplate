@@ -8,6 +8,7 @@ import { HomeSuperDestaque } from './HomeSuperDestaque';
 import { HomeSeo } from './HomeSeo';
 import { ComponentLazyLoad } from '../../LazyLoad/ComponentLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
+import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
@@ -38,7 +39,7 @@ export const Home = ({ location }) => {
 
                 <Wrap>
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
-                        <ComponentLazyLoad component={Quotation} />
+                        <ComponentLazyLoad component={Quotation} placeholder={<LoaderComponent />} />
 
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: '60%' }}>
