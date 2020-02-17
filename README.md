@@ -14,7 +14,7 @@
 
 ## MODO DE USAR O TERMINAL
 
--   Na pasta do projeto clicar com o direito do mouse e clicar em "Git Bash Here"
+-   Na pasta do projeto clicar com o botão direito do mouse e escolher "Abrir no terminal" ou "Git Bash Here"
 
 ## FRONTEND
 
