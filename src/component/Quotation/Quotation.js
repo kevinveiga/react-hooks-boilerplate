@@ -12,7 +12,7 @@ import { Grid } from '../../style/grid';
 
 const Quotation = () => {
     // SOCKET
-    const socket = socketIOClient(socketUrl, { autoConnect: false, reconnectionAttempts: 50, reconnectionDelay: 2000, timeout: 10000 });
+    const socket = socketIOClient(socketUrl, { autoConnect: false, reconnectionAttempts: 10, reconnectionDelay: 2000, timeout: 15000 });
 
     // API
     const stateSocketData = useSocket(socket, 'quotationData');
