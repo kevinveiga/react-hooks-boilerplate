@@ -44,9 +44,9 @@ export const SvgChecked = ({ ...props }) => {
 
 export const SvgClose = ({ ...props }) => {
     return (
-        <SvgCloseStyled {...props} version={1} viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+        <SvgStyled {...props} version={1} viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.2.5a.7.7 0 0 0-.5 1.3l6.8 6.7-6.8 6.7a.7.7 0 0 0 .5 1.3.7.7 0 0 0 .5-.3l6.8-6.7 6.7 6.7a.7.7 0 0 0 .5.3.7.7 0 0 0 .5-1.3L9.5 8.5l6.7-6.7a.7.7 0 1 0-1-1L8.5 7.4 1.7.7a.7.7 0 0 0-.5-.2z" />
-        </SvgCloseStyled>
+        </SvgStyled>
     );
 };
 
@@ -144,6 +144,14 @@ export const SvgMenu = ({ ...props }) => {
         <SvgMenuStyled {...props} version={1} viewBox="0 0 459 306" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0v51h459V0zm0 127.5v51h459v-51zM0 255v51h459v-51z" />
         </SvgMenuStyled>
+    );
+};
+
+export const SvgMenuClose = ({ ...props }) => {
+    return (
+        <SvgCloseStyled {...props} version={1} viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.2.5a.7.7 0 0 0-.5 1.3l6.8 6.7-6.8 6.7a.7.7 0 0 0 .5 1.3.7.7 0 0 0 .5-.3l6.8-6.7 6.7 6.7a.7.7 0 0 0 .5.3.7.7 0 0 0 .5-1.3L9.5 8.5l6.7-6.7a.7.7 0 1 0-1-1L8.5 7.4 1.7.7a.7.7 0 0 0-.5-.2z" />
+        </SvgCloseStyled>
     );
 };
 

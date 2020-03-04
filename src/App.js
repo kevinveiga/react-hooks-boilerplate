@@ -11,6 +11,7 @@ import { UserProvider } from './store/auth/auth';
 
 // import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Interceptor } from './component/Interceptor/Interceptor';
+import { ModalCookie } from './component/Modal/ModalCookie';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
@@ -31,6 +32,8 @@ export const App = () => {
                             <Normalize />
 
                             <Router />
+
+                            <ModalCookie />
                         </ThemeProvider>
 
                         {/* <ExternalJs /> */}

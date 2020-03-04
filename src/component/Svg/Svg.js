@@ -26,6 +26,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgLogoLoader {...otherProps} />;
         case 'svg-menu':
             return <SvgStore.SvgMenu {...otherProps} />;
+        case 'svg-menu-close':
+            return <SvgStore.SvgMenuClose {...otherProps} />;
         case 'svg-no-view':
             return <SvgStore.SvgNoView {...otherProps} />;
         case 'svg-placeholder-loader':

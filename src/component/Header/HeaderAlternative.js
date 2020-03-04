@@ -58,9 +58,11 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                     themeSize="none"
                                     themeType="none"
                                 />
+
                                 <Span color="colorGray2" mx={2}>
                                     |
                                 </Span>
+
                                 <LinkTo
                                     ariaLabel="Voltar para Home"
                                     color="colorGray2"

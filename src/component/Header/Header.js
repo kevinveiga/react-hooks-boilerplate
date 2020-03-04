@@ -97,7 +97,7 @@ export const Header = () => {
                                     </ul>
                                 </HeaderBtnMenuStyled>
 
-                                <Svg active={stateMenuMobile} name="svg-close" onClick={handleMenuMobile(false)} />
+                                <Svg active={stateMenuMobile} name="svg-menu-close" onClick={handleMenuMobile(false)} />
                             </Box>
 
                             <HeaderMenu change={stateChangeHeaderScroll} />

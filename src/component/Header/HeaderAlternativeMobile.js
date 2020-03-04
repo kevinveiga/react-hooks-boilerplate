@@ -41,7 +41,7 @@ export const HeaderAlternativeMobile = () => {
                         <Box>
                             <Svg active={stateMinhaContaMenuMobile} change={stateChangeHeaderScroll} fill="colorSecondary" name="svg-menu" onClick={handleChangeMinhaContaMenuMobile(true)} />
 
-                            <Svg active={stateMinhaContaMenuMobile} name="svg-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
+                            <Svg active={stateMinhaContaMenuMobile} name="svg-menu-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
                         </Box>
 
                         <MinhaContaMenuMobile change={stateChangeHeaderScroll} />
