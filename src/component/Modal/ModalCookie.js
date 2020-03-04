@@ -23,7 +23,7 @@ export const ModalCookie = () => {
 
     return (
         <ModalCookieStyled visible={!cookieConfirm}>
-            <Flex alignItems="center" display="flex">
+            <Flex alignItems="center" display="flex" justifyContent="space-between">
                 <Box pl={{ d: 2, md: 5 }}>
                     Este site usa cookies para melhorar sua experiência de navegação e entregar o melhor serviço possível.
                     <br />

@@ -9,7 +9,7 @@ export const ModalCookieStyled = styled.div`
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent3};
     color: ${variable.colorWhite};
     display: ${({ visible }) => (visible ? 'block' : 'none')};
-    font-size: 14px;
+    font-size: 12px;
     left: 50%;
     padding: ${variable.spacingMD};
     position: fixed;
@@ -20,6 +20,7 @@ export const ModalCookieStyled = styled.div`
     z-index: ${({ visible }) => (visible ? 15 : -1)};
 
     @media (min-width: ${variable.md}) {
+        font-size: 14px;
         white-space: nowrap;
         width: auto;
     }
