@@ -38,6 +38,21 @@ export const InputFile = ({ ariaLabel, children, id, text, typeInput = 'file', v
     );
 };
 
+export const InputFileValidation = ({ ariaLabel, children, error = '', id, text, touched, typeInput = 'file', value = '', ...otherProps }) => {
+    const acessibility = ariaLabel || text;
+    const content = children || text;
+
+    return (
+        <>
+            <InputAlternateStyled defaultValue={value} id={id} invalid={error} type={typeInput} valid={!error && touched[otherProps.name] ? 'true' : undefined} {...otherProps} />
+
+            <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
+                {content}
+            </Label>
+        </>
+    );
+};
+
 export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...otherProps }) => {
     const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;
 
