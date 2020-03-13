@@ -152,59 +152,66 @@ export const Noticias = () => {
                                 {noticiasLength > 0 &&
                                     stateNoticias.data.map((categoriaUltimas, i) => {
                                         return (
-                                            <>
-                                                {i > 0 &&
-                                                    categoriaUltimas &&
-                                                    categoriaUltimas.posts.data.map((noticia, j) => {
-                                                        return (
-                                                            <Box hover="true" key={noticia.id} mb={5} order={`${j}${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
-                                                                <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
-                                                                    <NoticiaBox
-                                                                        alignContent="space-between"
-                                                                        color={categoriaUltimas.featured_color}
-                                                                        display="flex"
-                                                                        flexWrap="wrap"
-                                                                        height="100%"
-                                                                        themeColor="dark"
-                                                                        verticalAlign="middle"
-                                                                    >
-                                                                        <Box width="100%">
-                                                                            {j / 3 === 0 && (
-                                                                                <Box height="200px" mb={4} overflow="hidden" width="100%">
-                                                                                    <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
-                                                                                </Box>
-                                                                            )}
+                                            i > 0 &&
+                                            categoriaUltimas &&
+                                            categoriaUltimas.posts.data.map((noticia, j) => {
+                                                return (
+                                                    <Box
+                                                        display="flex"
+                                                        flexWrap="wrap"
+                                                        key={`${categoriaUltimas.title}-${noticia.id}`}
+                                                        px={{ d: 0, md: 2 }}
+                                                        order={`${j}${i}`}
+                                                        width={{ d: 1, md: 1 / 3 }}
+                                                    >
+                                                        <Box hover="true" mb={5} width={1}>
+                                                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                <NoticiaBox
+                                                                    alignContent="space-between"
+                                                                    color={categoriaUltimas.featured_color}
+                                                                    display="flex"
+                                                                    flexWrap="wrap"
+                                                                    height="100%"
+                                                                    themeColor="dark"
+                                                                    verticalAlign="middle"
+                                                                >
+                                                                    <Box width="100%">
+                                                                        {j / 3 === 0 && (
+                                                                            <Box height="200px" mb={4} overflow="hidden" width="100%">
+                                                                                <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                            </Box>
+                                                                        )}
 
-                                                                            <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
+                                                                        <NoticiaBoxTagStyled>{categoriaUltimas.title}</NoticiaBoxTagStyled>
 
-                                                                            <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
-                                                                        </Box>
+                                                                        <NoticiaBoxTitleStyled>{noticia.title}</NoticiaBoxTitleStyled>
+                                                                    </Box>
 
-                                                                        <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
-                                                                    </NoticiaBox>
-                                                                </LinkTo>
-                                                            </Box>
-                                                        );
-                                                    })}
-
-                                                {i > 0 && (
-                                                    <Box order={`3${i}`} px={{ d: 0, md: 2 }} width={{ d: 1, md: 1 / 3 }}>
-                                                        <Box borderRight="1px solid rgba(216, 221, 225, 0.8)" mx={{ d: 0, md: 5 }} textAlign="right">
-                                                            <Button
-                                                                display="inline-block"
-                                                                fontWeight="700"
-                                                                onClick={handleNoticiaCategoriaVerMais(categoriaUltimas.slug)}
-                                                                themeSize="none"
-                                                                themeType="none"
-                                                            >
-                                                                <span>Ver mais</span>
-
-                                                                <Svg name="svg-next" pl={2} pr={3} />
-                                                            </Button>
+                                                                    <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
+                                                                </NoticiaBox>
+                                                            </LinkTo>
                                                         </Box>
+
+                                                        {j === categoriaUltimas.posts.data.length - 1 && (
+                                                            <Box alignSelf="flex-end" px={{ d: 0, md: 2 }} width={1}>
+                                                                <Box borderRight="1px solid rgba(216, 221, 225, 0.8)" textAlign="right">
+                                                                    <Button
+                                                                        display="inline-block"
+                                                                        fontWeight="700"
+                                                                        onClick={handleNoticiaCategoriaVerMais(categoriaUltimas.slug)}
+                                                                        themeSize="none"
+                                                                        themeType="none"
+                                                                    >
+                                                                        <span>Ver mais</span>
+
+                                                                        <Svg name="svg-next" pl={2} pr={3} />
+                                                                    </Button>
+                                                                </Box>
+                                                            </Box>
+                                                        )}
                                                     </Box>
-                                                )}
-                                            </>
+                                                );
+                                            })
                                         );
                                     })}
                             </Flex>
