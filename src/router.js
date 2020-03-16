@@ -6,6 +6,7 @@ import { getLocalStorageUser } from './store/auth/auth';
 
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
+import { Carrinho } from './component/Page/Carrinho/Carrinho';
 import { Curso } from './component/Page/Curso/Curso';
 import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
 import { LoaderComponent } from './component/Loader/LoaderComponent';
@@ -35,6 +36,11 @@ const routes = [
         component: Cadastro,
         layout: LayoutNoHF,
         path: '/cadastro'
+    },
+    {
+        component: Carrinho,
+        layout: LayoutDefault,
+        path: '/carrinho'
     },
     {
         component: Curso,

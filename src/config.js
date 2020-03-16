@@ -1,8 +1,10 @@
 const apiUrl = `${process.env.API_URL}/api/v1`;
 
-export const apiUrlConfiguracoes = `${apiUrl}/configuracoes`;
-
 export const apiUrlCadastro = `${apiUrl}/auth/registrar`;
+
+export const apiUrlCarrinho = `${apiUrl}/carrinho`;
+
+export const apiUrlConfiguracoes = `${apiUrl}/configuracoes`;
 
 export const apiUrlContato = `${apiUrl}/contato`;
 

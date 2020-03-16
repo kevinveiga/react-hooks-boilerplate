@@ -11,7 +11,7 @@ import { Title2 } from '../../../style/text';
 
 export const EsqueceuSenha = ({ location }) => {
     return (
-        <Flex display="flex" flexWrap="wrap" minHeight="calc(100vh)">
+        <Flex display="flex" flexWrap="wrap" minHeight="100vh">
             <Box alignItems="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
                 <Splash />
             </Box>
