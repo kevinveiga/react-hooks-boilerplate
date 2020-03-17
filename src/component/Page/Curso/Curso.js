@@ -371,7 +371,7 @@ export const Curso = ({ match }) => {
                                         return (
                                             <Box key={curso.id} mb={5} width={{ d: 1, md: 1 / 3 }}>
                                                 <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} onClick={() => setStateCursoUrl(`${apiUrlCursos}/${curso.id}`)} to={`/curso/${curso.id}`} width="100%">
-                                                    <ListBox alignItems="space-between" color={stateCurso.featured_color} display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
+                                                    <ListBox alignItems="space-between" display="flex" flexWrap="wrap" height="100%" hover="true" mx={2} themeColor="dark" verticalAlign="middle">
                                                         <ListBoxHover zindex="3">
                                                             <Flex alignItems="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
                                                                 <Box textAlign="center">

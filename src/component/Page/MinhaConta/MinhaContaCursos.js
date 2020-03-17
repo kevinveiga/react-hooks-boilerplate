@@ -139,7 +139,7 @@ const MinhaContaCursos = () => {
                                                             return (
                                                                 <Box key={curso.id} mb={5} width="100%">
                                                                     <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
-                                                                        <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                        <ListBox display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                             <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                 <Box overflow="hidden" width={{ d: 1, md: 7 / 12 }}>
                                                                                     <Box pt="calc((9 / 16) * 100%)">
@@ -237,7 +237,7 @@ const MinhaContaCursos = () => {
                                                                 return (
                                                                     <Box key={curso.id} mb={5} width="100%">
                                                                         <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
-                                                                            <ListBox color={curso.featured_color} display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                            <ListBox display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
                                                                                 <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                     <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
                                                                                         <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
