@@ -32,6 +32,8 @@ export const Svg = ({ name, ...otherProps }) => {
             return <SvgStore.SvgNoView {...otherProps} />;
         case 'svg-placeholder-loader':
             return <SvgStore.SvgPlaceholderLoader {...otherProps} />;
+        case 'svg-prev':
+            return <SvgStore.SvgPrev {...otherProps} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...otherProps} />;
         case 'svg-tipo-audio':

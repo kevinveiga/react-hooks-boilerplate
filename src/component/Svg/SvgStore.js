@@ -4,7 +4,9 @@ import { SvgArrowStyled } from './SvgArrowStyled';
 import { SvgCloseStyled } from './SvgCloseStyled';
 import { SvgLogoLoaderStyled } from './SvgLogoLoaderStyled';
 import { SvgMenuStyled } from './SvgMenuStyled';
+import { SvgNextStyled } from './SvgNextStyled';
 import { SvgPlaceholderLoaderStyled } from './SvgPlaceholderLoaderStyled';
+import { SvgPrevStyled } from './SvgPrevStyled';
 import { SvgSocialStyled } from './SvgSocialStyled';
 import { SvgStyled } from './SvgStyled';
 import { SvgValidationStyled } from './SvgValidationStyled';
@@ -155,6 +157,14 @@ export const SvgMenuClose = ({ ...props }) => {
     );
 };
 
+export const SvgNext = ({ ...props }) => {
+    return (
+        <SvgNextStyled {...props} version={1} viewBox="0 0 300 248.2" xmlns="http://www.w3.org/2000/svg">
+            <path d="M176 0c4.4 0 8.8 1.7 12.2 5l106.7 106.8a17.3 17.3 0 0 1 0 24.5L188.2 243.1a17.2 17.2 0 0 1-24.5 0 17.3 17.3 0 0 1 0-24.5l77.2-77.2H17.3a17.3 17.3 0 0 1 0-34.6H241l-77.2-77.2A17.3 17.3 0 0 1 175.9 0z" />
+        </SvgNextStyled>
+    );
+};
+
 export const SvgNoView = ({ ...props }) => {
     return (
         <SvgViewStyled {...props} version={1} viewBox="0 0 512 326.33" xmlns="http://www.w3.org/2000/svg">
@@ -192,6 +202,14 @@ export const SvgPlaceholderLoader = ({ ...props }) => {
                 <rect x="0" y="0" width="300" height="200" style={{ fill: 'url("#lg-placeholder-loader-1")' }} />
             </g>
         </SvgPlaceholderLoaderStyled>
+    );
+};
+
+export const SvgPrev = ({ ...props }) => {
+    return (
+        <SvgPrevStyled {...props} version={1} viewBox="0 0 48 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M46 18H6.1L21.38 3.45a2 2 0 1 0-2.76-2.9L1.17 17.17a3.98 3.98 0 0 0 .04 5.7l17.41 16.58a2 2 0 0 0 2.83-.07 2 2 0 0 0-.07-2.83L6.04 22H46a2 2 0 0 0 0-4z" />
+        </SvgPrevStyled>
     );
 };
 
