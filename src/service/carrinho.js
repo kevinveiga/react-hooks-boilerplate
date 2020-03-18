@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { useEffect, useReducer, useState } from 'react';
 
-import * as ACTION from '../store/action/action';
+import axios from 'axios';
 
+import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useCarrinhoApi = (obj, initialData = {}) => {
