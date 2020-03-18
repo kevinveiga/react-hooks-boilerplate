@@ -21,6 +21,8 @@ import { FormStyled } from './FormStyled';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P } from '../../style/text';
 
+import logo from '../../asset/image/image-placeholder.svg';
+
 export const MinhaContaFotoForm = () => {
     // API
     const [statePerfilAvatar, setStatePerfilAvatarData] = usePerfilAvatarApi({ url: apiUrlPerfilAvatar });
@@ -50,10 +52,10 @@ export const MinhaContaFotoForm = () => {
 
                         form.append('foto', element.target.files[0]);
 
-                        const result = await axios.post(apiUrlPerfilFoto, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
+                        const result = await axios.post(apiUrlPerfilAvatar, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
 
                         if (result.data && result.data.success == true) {
-                            setStatePerfilAvatarData({ update: true, url: apiUrlPerfilFoto });
+                            setStatePerfilAvatarData({ update: true, url: apiUrlPerfilAvatar });
                             setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                         } else {
                             setError('invalid', 'notMatch', defaultErrorMsg);
