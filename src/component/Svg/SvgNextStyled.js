@@ -6,6 +6,6 @@ import { variable } from '../../style/variable';
 export const SvgNextStyled = styled.svg`
     ${space};
 
-    fill: ${variable.colorSecondary};
+    fill: ${({ fill }) => variable[fill] || variable.colorSecondary};
     height: ${({ height }) => height || '18px'};
 `;

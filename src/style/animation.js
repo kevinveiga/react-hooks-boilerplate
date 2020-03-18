@@ -1,24 +1,14 @@
 import { css, keyframes } from 'styled-components';
 
 export const animation = css`
-    animation-delay: ${(props) => props.delay};
-    animation-direction: ${({ direction }) => direction};
-    animation-duration: ${({ duration }) => duration};
-    animation-fill-mode: ${({ fillMode }) => fillMode};
-    animation-iteration-count: ${({ iterationCount }) => iterationCount};
-    animation-play-state: ${({ playState }) => playState};
-    animation-timing-function: ${({ timingFunction }) => timingFunction};
+    animation-delay: ${({ delay }) => delay || '0s'};
+    animation-direction: ${({ direction }) => direction || 'normal'};
+    animation-duration: ${({ duration }) => duration || '1s'};
+    animation-fill-mode: ${({ fillMode }) => fillMode || 'both'};
+    animation-iteration-count: ${({ iterationCount }) => iterationCount || '1'};
+    animation-play-state: ${({ playState }) => playState || 'running'};
+    animation-timing-function: ${({ timingFunction }) => timingFunction || 'ease'};
 `;
-
-animation.defaultProps = {
-    delay: '0s',
-    direction: 'normal',
-    duration: '1s',
-    fillMode: 'both',
-    iterationCount: '1',
-    playState: 'running',
-    timingFunction: 'ease'
-};
 
 export const animationFadeIn = (obj = { display: 'block', opacity: 1 }) => keyframes`
     0% {
