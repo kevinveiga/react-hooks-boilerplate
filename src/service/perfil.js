@@ -44,3 +44,43 @@ export const usePerfilApi = (obj, initialData = {}) => {
 
     return [statePerfil, setStatePerfilData];
 };
+
+export const usePerfilAvatarApi = (obj, initialData = {}) => {
+    const [statePerfilAvatarData, setStatePerfilAvatarData] = useState(obj);
+
+    const [statePerfilAvatar, dispatch] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
+
+    useEffect(() => {
+        if (!statePerfilAvatarData) {
+            return undefined;
+        }
+
+        let didCancel = false;
+
+        const fetchData = async () => {
+            try {
+                const result = await axios.get(statePerfilAvatarData.url);
+
+                if (!didCancel) {
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                }
+            } catch (error) {
+                if (!didCancel) {
+                    dispatch(ACTION.failure());
+                }
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            didCancel = true;
+        };
+    }, [statePerfilAvatarData]);
+
+    return [statePerfilAvatar, setStatePerfilAvatarData];
+};

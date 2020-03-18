@@ -3,7 +3,9 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlPerfil, defaultErrorMsg } from '../../config';
+import { apiUrlPerfilAvatar, defaultErrorMsg } from '../../config';
+
+import { usePerfilAvatarApi } from '../../service/perfil';
 
 import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
@@ -19,9 +21,10 @@ import { FormStyled } from './FormStyled';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P } from '../../style/text';
 
-import logo from '../../asset/image/logo.png';
+export const MinhaContaFotoForm = () => {
+    // API
+    const [statePerfilAvatar, setStatePerfilAvatarData] = usePerfilAvatarApi({ url: apiUrlPerfilAvatar });
 
-export const MinhaContaFotoForm = ({ data, setStatePerfilData, ...otherProps }) => {
     // ACTION
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
@@ -44,12 +47,13 @@ export const MinhaContaFotoForm = ({ data, setStatePerfilData, ...otherProps }) 
                 if (validate) {
                     try {
                         const form = new FormData();
+
                         form.append('foto', element.target.files[0]);
 
-                        const result = await axios.post(apiUrlPerfil, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
+                        const result = await axios.post(apiUrlPerfilFoto, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
 
                         if (result.data && result.data.success == true) {
-                            setStatePerfilData({ update: true, url: apiUrlPerfil });
+                            setStatePerfilAvatarData({ update: true, url: apiUrlPerfilFoto });
                             setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                         } else {
                             setError('invalid', 'notMatch', defaultErrorMsg);
@@ -72,7 +76,7 @@ export const MinhaContaFotoForm = ({ data, setStatePerfilData, ...otherProps }) 
 
             fetchData();
         },
-        [setError, setStateModalMessage, setStatePerfilData, setValue, triggerValidation]
+        [setError, setStateModalMessage, setStatePerfilAvatarData, setValue, triggerValidation]
     );
 
     // FORM
@@ -91,11 +95,11 @@ export const MinhaContaFotoForm = ({ data, setStatePerfilData, ...otherProps }) 
         <>
             <FormStyled>
                 <ImageCircleContainer>
-                    <Image objectFit="none" text="autor" url={data.foto || logo} />
+                    <Image objectFit="none" text="autor" url={statePerfilAvatar.foto || logo} />
                 </ImageCircleContainer>
 
                 <div>
-                    <InputFileValidation error={errors.foto} id="foto" name="foto" onChange={handleFileChange()} touched={touched} {...otherProps}>
+                    <InputFileValidation error={errors.foto} id="foto" name="foto" onChange={handleFileChange()} touched={touched}>
                         <Svg fill="colorWhite" height="20px" name="svg-camera" />
                     </InputFileValidation>
                 </div>
