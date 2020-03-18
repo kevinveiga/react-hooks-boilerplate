@@ -5,6 +5,7 @@ import { variable } from '../../style/variable';
 
 export const SvgSocialStyled = styled.svg`
     ${space};
+
     fill: ${variable.colorWhite};
     height: ${({ height }) => height || '15px'};
 

@@ -5,6 +5,7 @@ import { variable } from '../../style/variable';
 
 export const SvgArrowDownStyled = styled.svg`
     ${space};
+
     fill: ${({ fill, change }) => (change ? variable.colorWhite : fill ? variable[fill] : variable.colorSecondary)};
     height: ${({ height }) => height || '10px'};
     transform: ${({ transform }) => transform || 'rotate(0deg)'};

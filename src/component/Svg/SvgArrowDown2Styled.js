@@ -5,6 +5,7 @@ import { variable } from '../../style/variable';
 
 export const SvgArrowDown2Styled = styled.svg`
     ${space};
+
     ${({ fill }) => fill && `fill: ${variable[fill]}`};
     height: ${({ height }) => height || '10px'};
     ${({ stroke }) => stroke && `stroke: ${variable[stroke]}`};
