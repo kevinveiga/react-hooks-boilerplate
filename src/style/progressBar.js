@@ -9,6 +9,7 @@ export const Bar = styled.div`
 
 export const BarContainer = styled.div`
     ${width};
+
     border-radius: calc(${variable.borderRadius} * 2);
     height: 10px;
     overflow: hidden;
@@ -19,6 +20,7 @@ export const ProgressBar = styled.div`
     ${display};
     ${flexbox};
     ${space};
+
     background-color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorGray : 'transparent')};
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     white-space: nowrap;

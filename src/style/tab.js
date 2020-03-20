@@ -55,6 +55,7 @@ export const Tab = styled.div`
     ${({ group, total }) => tabInput(group, total)};
     ${textAlign};
     ${width};
+
     overflow: hidden;
 
     > input[type='radio'] {
@@ -66,6 +67,7 @@ export const Tab = styled.div`
 export const TabsContent = styled.ul`
     ${display};
     ${space};
+
     min-height: 50px;
 `;
 
@@ -102,6 +104,7 @@ export const TabLabel = styled.label`
 export const TabsNav = styled.ul`
     ${display};
     ${textAlign};
+
     margin-bottom: 30px;
 `;
 
@@ -115,6 +118,7 @@ export const TabNav = styled.li`
 
 export const TabSelect = styled.div`
     ${space};
+
     display: table;
     margin-bottom: 30px;
 

@@ -8,6 +8,7 @@ export const ListBox = styled.div`
     ${layout};
     ${space};
     ${typography};
+
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent1};
     color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
@@ -63,6 +64,7 @@ export const ListBoxHover = styled.div`
 export const ListLevel = styled.span`
     ${space};
     ${typography};
+
     vertical-align: middle;
 `;
 
@@ -70,6 +72,7 @@ export const ListTag = styled.div`
     ${bottom};
     ${typography};
     ${right};
+
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorBlack)};
     bottom: ${({ bottom }) => (bottom ? variable[bottom] : '0')};
     color: ${variable.colorWhite};
@@ -84,12 +87,14 @@ export const ListTag = styled.div`
 export const ListTime = styled.span`
     ${space};
     ${typography};
+
     vertical-align: middle;
 `;
 
 export const ListTitle = styled.h2`
     ${space};
     ${typography};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 20px'};
     font-weight: 700;
     line-height: 1.2;

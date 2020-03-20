@@ -8,6 +8,7 @@ const title = css`
     ${layout};
     ${space};
     ${typography};
+
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     display: block;
     height: auto;
@@ -35,6 +36,7 @@ export const P = styled.p`
     ${layout};
     ${space};
     ${typography};
+
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
@@ -43,12 +45,14 @@ export const Span = styled.span`
     ${layout};
     ${space};
     ${typography};
+
     ${({ color }) => color && `color: ${variable[color]}`};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
 
 export const Title1 = styled.h1`
     ${title};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 30px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
@@ -61,6 +65,7 @@ export const Title1 = styled.h1`
 
 export const Title2 = styled.h2`
     ${title};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 26px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};
     ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingSM}`};
@@ -73,6 +78,7 @@ export const Title2 = styled.h2`
 
 export const Title3 = styled.h3`
     ${title};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 20px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
     ${({ mb }) => mb === undefined && `margin-bottom: ${variable.spacingXS}`};
@@ -85,6 +91,7 @@ export const Title3 = styled.h3`
 
 export const Title4 = styled.h4`
     ${title};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 18px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
 
@@ -95,6 +102,7 @@ export const Title4 = styled.h4`
 
 export const Title5 = styled.h5`
     ${title};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 400'};
 

@@ -10,6 +10,7 @@ export const Image = styled.img.attrs(({ text, url }) => ({
 }))`
     ${layout};
     ${space};
+
     object-fit: ${({ objectFit }) => objectFit || 'cover'};
 `;
 
