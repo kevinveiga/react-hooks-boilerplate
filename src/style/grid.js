@@ -12,6 +12,7 @@ export const Cell = styled.div`
     ${space};
     ${typography};
 
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
     ${({ hover }) =>
