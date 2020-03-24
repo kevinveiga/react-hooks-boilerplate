@@ -347,7 +347,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                         <InputCheckboxRadio color="colorGray2" id="receber_avisos_descontos_de_cursos" name="receber_avisos_descontos_de_cursos" onChange={handleSetValueChecked()}>
                             <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
-                            <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
+                            <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
                                 Desejo receber avisos e descontos de cursos
                             </Span>
                         </InputCheckboxRadio>
@@ -355,14 +355,14 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                         <InputCheckboxRadio color="colorGray2" id="receber_curadoria_conteudos_noticias" name="receber_curadoria_conteudos_noticias" onChange={handleSetValueChecked()}>
                             <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
-                            <Span fontSize={{ d: 14, sm: 16 }} verticalAlign="middle">
+                            <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
                                 Desejo receber a curadoria de conteúdos e notícias
                             </Span>
                         </InputCheckboxRadio>
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" onClick={handleScrollTo()} text="Salvar" typeButton="submit" />
+                        <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" mx="auto" onClick={handleScrollTo()} text="Salvar" typeButton="submit" />
                     </Cell>
                 </Grid>
             </FormStyled>

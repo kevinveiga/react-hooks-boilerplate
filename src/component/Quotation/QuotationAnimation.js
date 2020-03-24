@@ -68,11 +68,11 @@ export const QuotationAnimation = ({ socketData }) => {
                         <Cell gridRow={1} key={quotation.Alias} minWidth="150px">
                             <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
 
-                            <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                            <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
                                 {quotation.Name.toUpperCase()}
                             </Span>
 
-                            <P fontSize={14} mb={0} whiteSpace="nowrap">
+                            <P fontSize="14px" mb={0} whiteSpace="nowrap">
                                 <Span pr={1}>{quotation.Value}</Span>
 
                                 <Span color={quotation.Direction === 'negativo' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
@@ -87,11 +87,11 @@ export const QuotationAnimation = ({ socketData }) => {
                 <Cell gridRow={1} minWidth="150px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                    <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                    <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
                         CDI
                     </Span>
 
-                    <P fontSize={14} mb={0} whiteSpace="nowrap">
+                    <P fontSize="14px" mb={0} whiteSpace="nowrap">
                         <Span pr={1}>{cdi.value}% a.a</Span>
 
                         <Span color={cdi.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
@@ -105,11 +105,11 @@ export const QuotationAnimation = ({ socketData }) => {
                 <Cell gridRow={1} minWidth="150px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                    <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                    <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
                         SELIC
                     </Span>
 
-                    <P fontSize={14} mb={0} whiteSpace="nowrap">
+                    <P fontSize="14px" mb={0} whiteSpace="nowrap">
                         <Span pr={1}>{selic.value}% a.a</Span>
 
                         <Span color={selic.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
@@ -123,11 +123,11 @@ export const QuotationAnimation = ({ socketData }) => {
                 <Cell gridRow={1} minWidth="150px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                    <Span fontSize={14} fontWeight={700} verticalAlign="middle">
+                    <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
                         POUPANÇA
                     </Span>
 
-                    <P fontSize={14} mb={0} whiteSpace="nowrap">
+                    <P fontSize="14px" mb={0} whiteSpace="nowrap">
                         <Span pr={1}>{poupanca.value}% a.m</Span>
 
                         <Span color={poupanca.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>

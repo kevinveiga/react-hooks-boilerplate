@@ -134,7 +134,7 @@ export const Noticia = ({ match }) => {
                             </Box>
 
                             <Box alignSelf="center" display="inline-block" pl={{ d: 0, sm: 4 }} width={{ d: 1, sm: 3 / 4 }}>
-                                <P color="colorGray" fontSize={14} mb={2}>
+                                <P color="colorGray" fontSize="14px" mb={2}>
                                     Escrito por
                                 </P>
 

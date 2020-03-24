@@ -50,7 +50,7 @@ export const Carrinho = () => {
                 <Container mx="auto" p={3}>
                     <Grid display="grid" gridRowGap={2} justifyItems="center">
                         <Cell>
-                            <Span color="colorGray2" fontSize={14}>
+                            <Span color="colorGray2" fontSize="14px">
                                 Formas de pagamento
                             </Span>
                         </Cell>

@@ -239,7 +239,7 @@ export const Curso = ({ match }) => {
                                                 py={3}
                                             >
                                                 <Box mt={2} textAlign="center">
-                                                    <Span fontSize={{ d: 18, md: 20 }} fontWeight="700" verticalAlign="middle">
+                                                    <Span fontSize={{ d: '18px', md: '20px' }} fontWeight="700" verticalAlign="middle">
                                                         {modulo.title}
                                                     </Span>
 

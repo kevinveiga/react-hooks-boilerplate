@@ -172,7 +172,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                             }
                                                             width="calc(100% - 30px)"
                                                         >
-                                                            <P fontSize={14} fontWeight="700" mb={2}>
+                                                            <P fontSize="14px" fontWeight="700" mb={2}>
                                                                 {conteudo.title}
                                                             </P>
 
@@ -181,7 +181,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                     <Svg fill="colorGrayDark" height="22px" name={`svg-tipo-${tipoConteudo(conteudo.tipo).svg}`} />
                                                                 </Box>
 
-                                                                <Box fontSize={14}>{tipoConteudo(conteudo.tipo).title}</Box>
+                                                                <Box fontSize="14px">{tipoConteudo(conteudo.tipo).title}</Box>
                                                             </Flex>
                                                         </Box>
                                                     </Flex>

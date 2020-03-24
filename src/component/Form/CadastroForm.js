@@ -209,7 +209,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                             </Cell>
 
                             <Cell mb={3}>
-                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" onClick={handleScrollTo()} text="Cadastrar-se" typeButton="submit" width="100%" />
+                                <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" onClick={handleScrollTo()} text="Cadastrar-se" typeButton="submit" width="100%" />
                             </Cell>
 
                             <Cell mb={3} textAlign="center">
@@ -219,13 +219,13 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                                 <Box display={{ d: 'block', xs: 'inline-block' }} ml={{ d: 0, sm: 3 }} mt={{ d: 3, sm: 0 }}>
                                     <LinkTo link="/login">
-                                        <Button fontSize={{ d: 14, sm: 16 }} text="Fazer Login" themeSize="small" themeType="border" />
+                                        <Button fontSize={{ d: '14px', sm: '16px' }} text="Fazer Login" themeSize="small" themeType="border" />
                                     </LinkTo>
                                 </Box>
                             </Cell>
 
                             <Cell mb={3} textAlign="center">
-                                <P color="colorGray2" fontSize={14} themeColor="dark">
+                                <P color="colorGray2" fontSize="14px" themeColor="dark">
                                     Clicando em &quot;Cadastrar-se&quot; você concordará com os{' '}
                                     <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/falta-link" text="Termos de serviço" /> e{' '}
                                     <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/falta-link" text="Política de privacidade" />.

@@ -77,7 +77,7 @@ export const EsqueceuSenhaForm = ({ ...props }) => {
         <Flex display="flex" flexWrap="wrap">
             {stateRetornoForm ? (
                 <Box width="100%">
-                    <P color="colorPrimary" fontSize={24} mt={5} mx="auto" textAlign="center">
+                    <P color="colorPrimary" fontSize="24px" mt={5} mx="auto" textAlign="center">
                         Recuperação de senha enviada com sucesso para o e-mail informado.
                     </P>
                 </Box>
@@ -100,7 +100,7 @@ export const EsqueceuSenhaForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell mb={3}>
-                                <Button fontSize={{ d: 16, sm: 18 }} height="70px" mx="auto" text="Enviar" typeButton="submit" width="50%" />
+                                <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" mx="auto" text="Enviar" typeButton="submit" width="50%" />
                             </Cell>
                         </Grid>
                     </FormStyled>

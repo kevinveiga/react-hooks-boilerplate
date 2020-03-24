@@ -79,7 +79,7 @@ export const Pesquisa = ({ match }) => {
                                                         <p>
                                                             <span>Postado em </span>
 
-                                                            <NoticiaBoxDateTimeStyled color={pesquisa.featured_color} fontSize={16} themeColor="dark">
+                                                            <NoticiaBoxDateTimeStyled color={pesquisa.featured_color} fontSize="16px" themeColor="dark">
                                                                 {pesquisa.date}
                                                             </NoticiaBoxDateTimeStyled>
                                                         </p>

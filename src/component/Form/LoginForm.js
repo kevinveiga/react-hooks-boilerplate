@@ -138,15 +138,15 @@ export const LoginForm = ({ location, ...otherProps }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <Button fontSize={{ d: 16, sm: 18 }} height="70px" text="Acessar" typeButton="submit" width="100%" />
+                            <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" text="Acessar" typeButton="submit" width="100%" />
                         </Cell>
 
                         <Cell mb={3}>
-                            <P color="colorGray2" fontSize={14} themeColor="dark">
+                            <P color="colorGray2" fontSize="14px" themeColor="dark">
                                 Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
                             </P>
 
-                            <P color="colorGray2" fontSize={14} themeColor="dark">
+                            <P color="colorGray2" fontSize="14px" themeColor="dark">
                                 <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/esqueceu-senha" text="Esqueceu sua senha?" />
                             </P>
                         </Cell>

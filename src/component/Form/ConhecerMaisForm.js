@@ -126,7 +126,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 <ConhecerMaisPartTitleStyled onClick={handlePart(1)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 1}>1</ConhecerMaisPartNumberStyled>
 
-                                    <Span color={statePart === 1 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
+                                    <Span color={statePart === 1 ? 'colorGrayDark' : 'colorGrayLight'} fontSize="18px">
                                         Qual o seu sexo?
                                     </Span>
                                 </ConhecerMaisPartTitleStyled>
@@ -134,13 +134,13 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
                                     <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="masculino" id="sexo_masculino" name="sexo" onChange={handleSetValue()} type="radio" />
 
-                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_masculino" fontWeight="700" px={{ d: 3, md: 4 }} onClick={handlePart(2)} py={2}>
+                                    <Label color="colorGrayDark" fontSize="14px" forLabel="sexo_masculino" fontWeight="700" px={{ d: 3, md: 4 }} onClick={handlePart(2)} py={2}>
                                         Masculino
                                     </Label>
 
                                     <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="feminino" id="sexo_feminino" name="sexo" onChange={handleSetValue()} type="radio" />
 
-                                    <Label color="colorGrayDark" fontSize={14} forLabel="sexo_feminino" fontWeight="700" ml={4} onClick={handlePart(2)} px={{ d: 3, md: 4 }} py={2}>
+                                    <Label color="colorGrayDark" fontSize="14px" forLabel="sexo_feminino" fontWeight="700" ml={4} onClick={handlePart(2)} px={{ d: 3, md: 4 }} py={2}>
                                         Feminino
                                     </Label>
                                 </ConhecerMaisPartContentStyled>
@@ -150,7 +150,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 <ConhecerMaisPartTitleStyled onClick={handlePart(2)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 2}>2</ConhecerMaisPartNumberStyled>
 
-                                    <Span color={statePart === 2 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
+                                    <Span color={statePart === 2 ? 'colorGrayDark' : 'colorGrayLight'} fontSize="18px">
                                         Quando que você nasceu?
                                     </Span>
                                 </ConhecerMaisPartTitleStyled>
@@ -179,7 +179,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 <ConhecerMaisPartTitleStyled onClick={handlePart(3)}>
                                     <ConhecerMaisPartNumberStyled active={statePart === 3}>3</ConhecerMaisPartNumberStyled>
 
-                                    <Span color={statePart === 3 ? 'colorGrayDark' : 'colorGrayLight'} fontSize={18}>
+                                    <Span color={statePart === 3 ? 'colorGrayDark' : 'colorGrayLight'} fontSize="18px">
                                         Onde você mora?
                                     </Span>
                                 </ConhecerMaisPartTitleStyled>
@@ -228,7 +228,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                         <Box my={4} width="100%">
                             {statePart < 3 && (
                                 <Button
-                                    fontSize={{ d: 16, sm: 18 }}
+                                    fontSize={{ d: '16px', sm: '18px' }}
                                     mx="auto"
                                     onClick={handlePart(statePart + 1)}
                                     text="Pular Etapa"
@@ -239,7 +239,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 />
                             )}
 
-                            {statePart === 3 && <Button fontSize={{ d: 16, sm: 18 }} mx="auto" text="Concluir" textTransform="none" themeSize="small" typeButton="submit" width="160px" />}
+                            {statePart === 3 && <Button fontSize={{ d: '16px', sm: '18px' }} mx="auto" text="Concluir" textTransform="none" themeSize="small" typeButton="submit" width="160px" />}
                         </Box>
                     </FormStyled>
                 </Box>

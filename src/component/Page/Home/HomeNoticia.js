@@ -44,7 +44,7 @@ export const HomeNoticia = () => {
                                     <Box>
                                         <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>
 
-                                        <NoticiaBoxTitleStyled fontSize={18}>{noticia.title}</NoticiaBoxTitleStyled>
+                                        <NoticiaBoxTitleStyled fontSize="18px">{noticia.title}</NoticiaBoxTitleStyled>
 
                                         <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
 

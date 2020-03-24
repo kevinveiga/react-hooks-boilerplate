@@ -176,7 +176,7 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <Button fontSize={{ d: 16, md: 18 }} height="70px" text="Quero Investir" typeButton="submit" width="100%" />
+                            <Button fontSize={{ d: '16px', md: '18px' }} height="70px" text="Quero Investir" typeButton="submit" width="100%" />
                         </Cell>
                     </Grid>
                 </FormStyled>

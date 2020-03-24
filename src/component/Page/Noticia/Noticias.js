@@ -257,7 +257,7 @@ export const Noticias = () => {
                                                                                     <p>
                                                                                         <span>Postado em </span>
 
-                                                                                        <NoticiaBoxDateTimeStyled fontSize={16} themeColor="light">
+                                                                                        <NoticiaBoxDateTimeStyled fontSize="16px" themeColor="light">
                                                                                             {noticia.date}
                                                                                         </NoticiaBoxDateTimeStyled>
                                                                                     </p>
@@ -290,7 +290,7 @@ export const Noticias = () => {
                                                                                 <p>
                                                                                     <span>Postado em </span>
 
-                                                                                    <NoticiaBoxDateTimeStyled color={categoria.featured_color} fontSize={16} themeColor="dark">
+                                                                                    <NoticiaBoxDateTimeStyled color={categoria.featured_color} fontSize="16px" themeColor="dark">
                                                                                         {noticia.date}
                                                                                     </NoticiaBoxDateTimeStyled>
                                                                                 </p>

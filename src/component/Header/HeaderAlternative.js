@@ -49,7 +49,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                             <Box>
                                 <Button
                                     color="colorGray2"
-                                    fontSize={16}
+                                    fontSize="16px"
                                     fontWeight="400"
                                     hoverColor="colorWhite"
                                     onClick={handleChangeModalLogout(true)}

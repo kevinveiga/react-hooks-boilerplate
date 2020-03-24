@@ -13,7 +13,7 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
                 <>
                     {breadcrumb.map((item) => {
                         return (
-                            <BreadcrumbItemStyled display="inline-block" fontSize={{ d: 14, lg: 16 }} key={item.path}>
+                            <BreadcrumbItemStyled display="inline-block" fontSize={{ d: '14px', lg: '16px' }} key={item.path}>
                                 <LinkTo obj={obj} link={item.path} text="Voltar" />
                                 <Span mx={{ d: 1, lg: 2 }}> &gt; </Span>
                             </BreadcrumbItemStyled>
@@ -21,17 +21,17 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
                     })}
 
                     {currentLabel && (
-                        <BreadcrumbItemStyled display={{ d: 'block', lg: 'inline-block' }} fontSize={{ d: 24, lg: 16 }} fontWeight="700">
+                        <BreadcrumbItemStyled display={{ d: 'block', lg: 'inline-block' }} fontSize={{ d: '24px', lg: '16px' }} fontWeight="700">
                             {currentLabel}
                         </BreadcrumbItemStyled>
                     )}
                 </>
             ) : currentLabel ? (
-                <BreadcrumbItemStyled display={{ d: 'block', lg: 'inline-block' }} fontSize={{ d: 24, lg: 16 }} fontWeight="700">
+                <BreadcrumbItemStyled display={{ d: 'block', lg: 'inline-block' }} fontSize={{ d: '24px', lg: '16px' }} fontWeight="700">
                     {currentLabel}
                 </BreadcrumbItemStyled>
             ) : (
-                <BreadcrumbItemStyled fontSize={{ d: 14, lg: 16 }}>Minha Conta</BreadcrumbItemStyled>
+                <BreadcrumbItemStyled fontSize={{ d: '14px', lg: '16px' }}>Minha Conta</BreadcrumbItemStyled>
             )}
         </BreadcrumbStyled>
     );

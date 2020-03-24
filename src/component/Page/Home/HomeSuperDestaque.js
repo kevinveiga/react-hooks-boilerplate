@@ -87,7 +87,7 @@ export const HomeSuperDestaque = () => {
                                     <Box>
                                         <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
 
-                                        <NoticiaBoxTitleStyled fontSize={{ d: 24, md: 32 }}>{item.title}</NoticiaBoxTitleStyled>
+                                        <NoticiaBoxTitleStyled fontSize={{ d: '24px', md: '32px' }}>{item.title}</NoticiaBoxTitleStyled>
 
                                         <span>{`Por ${item.author}`}</span>
                                     </Box>
@@ -141,7 +141,7 @@ export const HomeSuperDestaque = () => {
                                                         <Box>
                                                             <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
 
-                                                            <NoticiaBoxTitleStyled fontSize={{ d: 24, md: 32 }}>{item.title}</NoticiaBoxTitleStyled>
+                                                            <NoticiaBoxTitleStyled fontSize={{ d: '24px', md: '32px' }}>{item.title}</NoticiaBoxTitleStyled>
 
                                                             <span>{`Por ${item.author}`}</span>
                                                         </Box>

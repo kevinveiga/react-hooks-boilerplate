@@ -51,11 +51,11 @@ const Footer = () => {
                             <Box width={{ d: 1, md: 7 / 12, lg: 8 / 12 }}>
                                 <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                                     <Box pr={1} width={{ d: 1, sm: 6 / 12 }}>
-                                        <Title5 color="colorPrimary" fontSize={14} fontWeight="700" mb={2} textTransform="uppercase">
+                                        <Title5 color="colorPrimary" fontSize="14px" fontWeight="700" mb={2} textTransform="uppercase">
                                             Receba por e-mail nossa newsletter
                                         </Title5>
 
-                                        <Title5 fontSize={14} fontWeight="700" themeColor="light">
+                                        <Title5 fontSize="14px" fontWeight="700" themeColor="light">
                                             As informações mais valiosas para manter você informado.
                                         </Title5>
                                     </Box>
