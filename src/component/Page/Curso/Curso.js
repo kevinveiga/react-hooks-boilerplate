@@ -15,6 +15,7 @@ import { Button } from '../../Button/Button';
 import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
 // import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
+import { ImageLazyLoad } from '../../LazyLoad/ImageLazyLoad';
 // import { LinkTo } from '../../Link/LinkTo';
 // import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { Seo } from '../../Seo/Seo';
@@ -26,7 +27,7 @@ import { ConteudoCellStyled, ConteudoCellSvgStyled, CursoTopInfoStyled, TooltipS
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Wrap } from '../../../style/layout';
-import { P, Span, Title2, Title4, Title5 } from '../../../style/text';
+import { P, Span, Title2, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
@@ -189,8 +190,8 @@ export const Curso = ({ match }) => {
                                 </Cell>
 
                                 <Cell>
-                                    <Box display="inline-block" height={{ d: '200px', md: '300px' }} overflow="hidden" verticalAlign="middle" width="100%">
-                                        <BgImageLazyLoad url={curso.imagens.galeria.curso_listagem} />
+                                    <Box display="inline-block" overflow="hidden" verticalAlign="middle" width="100%">
+                                        <ImageLazyLoad url={curso.imagens.galeria.curso_listagem} width="100%" />
                                     </Box>
                                 </Cell>
                             </Grid>
@@ -277,24 +278,36 @@ export const Curso = ({ match }) => {
                         <Wrap>
                             <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
                                 <Title2 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                                    Instrutor
+                                    Instrutor{curso.instrutores.length > 1 && 'es'}
                                 </Title2>
 
-                                <Grid display="grid" gridColumnGap="75px" gridRowGap={3} gridTemplateColumns={{ d: '100%', md: '1fr 230px' }} justifyItems={{ d: 'center', md: 'flex-end' }}>
-                                    <Cell>
-                                        <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
-                                            {curso.instrutores[0].nome}
-                                        </Title2>
+                                {curso.instrutores.map((instrutor) => {
+                                    return (
+                                        <Grid
+                                            display="grid"
+                                            gridColumnGap="75px"
+                                            gridRowGap={3}
+                                            gridTemplateColumns={{ d: '100%', md: '1fr 230px' }}
+                                            justifyItems={{ d: 'center', md: 'flex-start' }}
+                                            key={instrutor.id}
+                                            mb={variable.spacingXL}
+                                        >
+                                            <Cell>
+                                                <Title2 mb={{ d: 3, md: 4 }} themeColor="dark">
+                                                    {instrutor.nome}
+                                                </Title2>
 
-                                        <div>{parse(`${curso.instrutores[0].bio}`)}</div>
-                                    </Cell>
+                                                <div>{instrutor.bio && parse(`${instrutor.bio}`)}</div>
+                                            </Cell>
 
-                                    <Cell>
-                                        <Box borderRadius="50%" height="230px" overflow="hidden" verticalAlign="middle" width="230px">
-                                            <BgImageLazyLoad url={curso.instrutores[0].avatar} />
-                                        </Box>
-                                    </Cell>
-                                </Grid>
+                                            <Cell>
+                                                <Box borderRadius="50%" height="230px" overflow="hidden" verticalAlign="middle" width="230px">
+                                                    <BgImageLazyLoad url={instrutor.avatar && instrutor.avatar.url} />
+                                                </Box>
+                                            </Cell>
+                                        </Grid>
+                                    );
+                                })}
                             </Container>
                         </Wrap>
                     )}
