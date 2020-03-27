@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import Vimeo from '@u-wave/react-vimeo';
 import parse from 'html-react-parser';
+import YouTube from 'react-youtube';
 
 import { apiUrlCursos } from '../../../config';
 
@@ -10,6 +12,8 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { getImageLg, getImageMd, getImageSm } from '../../../util/getResponsiveImage';
 import { scrollTo } from '../../../util/scrollTo';
+import { getVideoId } from '../../../util/getVideoId';
+import { getVideoSource } from '../../../util/getVideoSource';
 
 import { Button } from '../../Button/Button';
 import { DotBtn, DotContainer, NextBtn, PrevBtn } from '../../Carousel/CarouselButton';
@@ -26,7 +30,7 @@ import { ConteudoCellStyled, ConteudoCellSvgStyled, CursoTopInfoStyled, TooltipS
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
-import { Container, Wrap } from '../../../style/layout';
+import { Container, VideoWrap, Wrap } from '../../../style/layout';
 import { P, Span, Title2, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
@@ -190,9 +194,21 @@ export const Curso = ({ match }) => {
                                 </Cell>
 
                                 <Cell>
-                                    <Box display="inline-block" overflow="hidden" verticalAlign="middle" width="100%">
-                                        <ImageLazyLoad url={curso.imagens.galeria.curso_listagem} width="100%" />
-                                    </Box>
+                                    {curso.imagens.video && curso.imagens.video.url ? (
+                                        <Box overflowY="hidden">
+                                            <VideoWrap>
+                                                {getVideoSource(curso.imagens.video.url) === 'vimeo' ? (
+                                                    <Vimeo id="video" video={curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)} />
+                                                ) : (
+                                                    <YouTube id="video" videoId={curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)} />
+                                                )}
+                                            </VideoWrap>
+                                        </Box>
+                                    ) : (
+                                        <Box overflow="hidden" verticalAlign="middle" width="100%">
+                                            <ImageLazyLoad url={curso.imagens.galeria.curso_listagem} width="100%" />
+                                        </Box>
+                                    )}
                                 </Cell>
                             </Grid>
                         </Container>
