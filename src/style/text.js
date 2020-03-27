@@ -38,6 +38,7 @@ export const P = styled.p`
     ${typography};
 
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
+    ${({ textTransform }) => textTransform && `text-transform: ${textTransform}`};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
 

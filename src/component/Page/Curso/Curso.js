@@ -134,7 +134,7 @@ export const Curso = ({ match }) => {
                                         </Box>
 
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
+                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} textTransform="capitalize" themeColor="dark">
                                                 {curso.nivel || 'Indefinido'}
                                             </P>
 
@@ -144,7 +144,7 @@ export const Curso = ({ match }) => {
                                         </Box>
 
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
+                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} textTransform="capitalize" themeColor="dark">
                                                 {curso.modalidade || 'Indefinido'}
                                             </P>
 
