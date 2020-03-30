@@ -23,7 +23,7 @@ import { P } from '../../style/text';
 
 import logo from '../../asset/image/image-placeholder.svg';
 
-export const MinhaContaFotoForm = () => {
+export const MinhaContaAvatarForm = () => {
     // API
     const [statePerfilAvatar, setStatePerfilAvatarData] = usePerfilAvatarApi({ url: apiUrlPerfilAvatar });
 
@@ -31,7 +31,7 @@ export const MinhaContaFotoForm = () => {
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
     useEffect(() => {
-        register('foto', { ...customValidate.photo });
+        register('avatar', { ...customValidate.photo });
 
         return undefined;
     }, [register]);
@@ -50,7 +50,7 @@ export const MinhaContaFotoForm = () => {
                     try {
                         const form = new FormData();
 
-                        form.append('foto', element.target.files[0]);
+                        form.append('avatar', element.target.files[0]);
 
                         const result = await axios.post(apiUrlPerfilAvatar, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
 
@@ -97,18 +97,18 @@ export const MinhaContaFotoForm = () => {
         <>
             <FormStyled>
                 <ImageCircleContainer>
-                    <Image objectFit="none" text="autor" url={statePerfilAvatar.foto || logo} />
+                    <Image objectFit="none" text="autor" url={statePerfilAvatar.avatar || logo} />
                 </ImageCircleContainer>
 
                 <div>
-                    <InputFileValidation error={errors.foto} id="foto" name="foto" onChange={handleFileChange()} touched={touched}>
+                    <InputFileValidation error={errors.avatar} id="avatar" name="avatar" onChange={handleFileChange()} touched={touched}>
                         <Svg fill="colorWhite" height="20px" name="svg-camera" />
                     </InputFileValidation>
                 </div>
 
-                {errors.foto && (
+                {errors.avatar && (
                     <P color="colorAlert" fontSize="14px" mt={3} textAlign="center">
-                        {errors.foto.message}
+                        {errors.avatar.message}
                     </P>
                 )}
             </FormStyled>

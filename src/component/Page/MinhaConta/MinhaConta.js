@@ -9,7 +9,7 @@ import { useWindowWidth } from '../../../store/util/windowWidth';
 import { scrollTo } from '../../../util/scrollTo';
 
 import { MinhaContaForm } from '../../Form/MinhaContaForm';
-import { MinhaContaFotoForm } from '../../Form/MinhaContaFotoForm';
+import { MinhaContaAvatarForm } from '../../Form/MinhaContaAvatarForm';
 import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { MinhaContaMenu } from './MinhaContaMenu';
 
@@ -51,7 +51,7 @@ const MinhaConta = () => {
                         {perfilLength > 0 && (
                             <Flex display="flex" flexWrap="wrap" justifyContent="center">
                                 <Box minHeight="200px" width="150px">
-                                    <MinhaContaFotoForm
+                                    <MinhaContaAvatarForm
                                         data={{
                                             foto: statePerfil.data.data.foto
                                         }}
