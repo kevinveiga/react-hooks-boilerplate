@@ -7,7 +7,6 @@ import { useCarrinhoApi } from '../../../service/carrinho';
 import { CarrinhoBreadcrumb } from './CarrinhoBreadcrumb';
 import { CarrinhoItems } from './CarrinhoItems';
 import { CarrinhoTotal } from './CarrinhoTotal';
-import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
 import { Cell, Grid } from '../../../style/grid';
@@ -30,7 +29,7 @@ export const Carrinho = () => {
         <>
             <Wrap>
                 <Container minHeight={{ d: `calc(100vh - ${variable.headerHeightMobile} - 85px)`, lg: `calc(100vh - ${variable.headerHeight} - 85px)` }} mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Grid alignItems="center" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns="4fr 1fr" gridTemplateRows="55px auto">
+                    <Grid alignItems="flex-start" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns="4fr 1fr" gridTemplateRows="55px auto auto">
                         <Cell gridRow="1 / span 2">
                             <CarrinhoItems />
                         </Cell>
