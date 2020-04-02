@@ -7,6 +7,7 @@ import { variable } from '../../style/variable';
 export const LeadwallStyled = styled.div`
     ${layout};
     ${space};
+
     background-color: ${variable.colorBlack};
     color: ${variable.colorWhite};
     ${({ change }) => change && 'display: none'};
@@ -30,6 +31,7 @@ export const LeadwallStyled = styled.div`
 export const LeadwallTermosStyled = styled.div`
     ${layout};
     ${space};
+
     background-color: ${variable.colorGray};
     color: ${variable.colorGrayDark};
     ${({ change }) => change && 'display: none'};

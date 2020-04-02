@@ -9,6 +9,7 @@ export const BannerCellStyled = styled.div`
     ${grid};
     ${layout};
     ${space};
+
     overflow: hidden;
     scroll-snap-align: center;
 

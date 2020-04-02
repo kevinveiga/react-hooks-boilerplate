@@ -8,6 +8,7 @@ export const ButtonStyled = styled.button`
     ${layout};
     ${space};
     ${typography};
+
     ${({ borderRadius }) => borderRadius === undefined && `border-radius: ${variable.borderRadius}`};
     cursor: pointer;
     ${({ fontWeight }) => fontWeight === undefined && 'font-weight: 700'};

@@ -10,6 +10,7 @@ export const BreadcrumbStyled = styled.ul`
 export const BreadcrumbItemStyled = styled.li`
     ${layout};
     ${typography};
+
     max-width: 300px;
     overflow: hidden;
     table-layout: fixed;

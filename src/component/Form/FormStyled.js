@@ -12,13 +12,14 @@ export const FormStyled = styled.form`
 
 const input = css`
     ${space};
+
     background-color: transparent;
     ${({ obj }) => `border-bottom: 1px solid ${obj && obj.colorLine ? variable[obj.colorLine] : variable.colorGray}`};
     color: ${({ obj }) => (obj && obj.color ? variable[obj.color] : variable.colorGrayDark)};
     font-family: ${variable.fontPrimary};
     font-size: 16px;
     font-weight: ${({ obj }) => (obj && obj.fontWeight ? obj.fontWeight : '600')};
-    height: ${variable.inputHeight};
+    height: ${({ height }) => height || variable.inputHeight};
     padding-bottom: ${variable.inputPadding};
     padding-left: 2px;
     ${({ pr }) => pr === undefined && 'padding-right: 2px'};
@@ -234,6 +235,7 @@ export const LabelStyled = styled.label`
     ${position};
     ${space};
     ${typography};
+
     color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     ${({ px }) => px === undefined && 'padding-left: 2px; padding-right: 2px'};

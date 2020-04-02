@@ -7,6 +7,7 @@ export const LinkToExternalStyled = styled.a`
     ${layout};
     ${space};
     ${typography};
+
     ${({ color }) => color && `color: ${variable[color]}`};
     ${({ obj }) => obj && obj.underline && 'text-decoration: underline'};
     transition: color ${variable.transition};

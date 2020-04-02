@@ -20,6 +20,7 @@ export const LinkToStyled = styled(NavLink)`
     ${layout};
     ${space};
     ${typography};
+
     ${({ color }) => color && `color: ${variable[color]}`};
     ${({ obj }) => obj && obj.textDecoration && `text-decoration: ${obj.textDecoration}`};
     transition: color ${variable.transition};

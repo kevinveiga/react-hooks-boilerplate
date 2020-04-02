@@ -44,6 +44,7 @@ export const CarouselDotContainerStyled = styled.ul`
 
 const btns = css`
     ${position};
+
     background-color: ${variable.colorSecondary};
     border: 0;
     border-radius: 7px;
@@ -72,10 +73,12 @@ const btns = css`
 
 export const CarouselNextBtnStyled = styled.button`
     ${btns};
+
     ${({ right }) => right === undefined && 'right: 5px'};
 `;
 
 export const CarouselPrevBtnStyled = styled.button`
     ${btns};
+
     ${({ left }) => left === undefined && 'left: 5px'};
 `;

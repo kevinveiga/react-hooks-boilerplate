@@ -5,6 +5,7 @@ import { variable } from '../../style/variable';
 
 export const HeaderMenuMobileStyled = styled.div`
     ${display};
+
     bottom: ${variable.spacingMD};
     left: 50%;
     position: absolute;

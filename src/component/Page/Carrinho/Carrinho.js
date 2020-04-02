@@ -4,14 +4,12 @@ import { apiUrlCarrinho } from '../../../config';
 
 import { useCarrinhoApi } from '../../../service/carrinho';
 
-import { Button } from '../../Button/Button';
 import { CarrinhoBreadcrumb } from './CarrinhoBreadcrumb';
 import { CarrinhoItems } from './CarrinhoItems';
 import { CarrinhoTotal } from './CarrinhoTotal';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
-import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, Wrap } from '../../../style/layout';
 import { Span } from '../../../style/text';
@@ -32,17 +30,19 @@ export const Carrinho = () => {
         <>
             <Wrap>
                 <Container minHeight={{ d: `calc(100vh - ${variable.headerHeightMobile} - 85px)`, lg: `calc(100vh - ${variable.headerHeight} - 85px)` }} mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
-                        <Box mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: '70%' }}>
+                    <Grid alignItems="center" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns="4fr 1fr" gridTemplateRows="55px auto">
+                        <Cell gridRow="1 / span 2">
                             <CarrinhoItems />
-                        </Box>
+                        </Cell>
 
-                        <Box mb={5} pl={{ d: 0, md: 3 }} width={{ d: 1, md: '30%' }}>
+                        <Cell gridRow="1 / span 1">
                             <CarrinhoBreadcrumb />
-                            <br />
+                        </Cell>
+
+                        <Cell alignSelf="flex-start" gridRow="2 / span 1">
                             <CarrinhoTotal />
-                        </Box>
-                    </Flex>
+                        </Cell>
+                    </Grid>
                 </Container>
             </Wrap>
 
@@ -55,7 +55,13 @@ export const Carrinho = () => {
                             </Span>
                         </Cell>
 
-                        <Cell>TESTE</Cell>
+                        <Cell>
+                            <Svg fill="colorGray2" name="svg-american-express" />
+                            <Svg fill="colorGray2" name="svg-boleto" />
+                            <Svg fill="colorGray2" name="svg-elo" />
+                            <Svg fill="colorGray2" name="svg-mastercard" />
+                            <Svg fill="colorGray2" name="svg-visa" />
+                        </Cell>
                     </Grid>
                 </Container>
             </Wrap>
