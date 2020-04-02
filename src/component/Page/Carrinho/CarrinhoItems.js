@@ -38,7 +38,7 @@ export const CarrinhoItems = () => {
                     </Cell>
 
                     <Cell>
-                        <Svg fill="colorGray2" height="23px" name="svg-trash" />
+                        <Svg fill="colorGray2" height="23px" name="svg-trash" obj={{ hoverColor: 'colorPrimary' }} />
                     </Cell>
                 </Grid>
 
@@ -66,7 +66,7 @@ export const CarrinhoItems = () => {
                     </Cell>
 
                     <Cell>
-                        <Svg fill="colorGray2" height="23px" name="svg-trash" />
+                        <Svg fill="colorGray2" height="23px" name="svg-trash" obj={{ hoverColor: 'colorPrimary' }} />
                     </Cell>
                 </Grid>
             </Cell>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { space } from 'styled-system';
 
 import { variable } from '../../style/variable';
@@ -13,4 +13,15 @@ export const SvgStyled = styled.svg`
     @media (min-width: ${variable.sm}) {
         height: ${({ height }) => height || '18px'};
     }
+
+    ${({ obj }) =>
+        obj &&
+        obj.hoverColor &&
+        css`
+            cursor: pointer;
+
+            &:hover {
+                fill: ${variable[obj.hoverColor]};
+            }
+        `};
 `;

@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
 import { Button } from '../Button/Button';
 import { Input } from './Form';
-import { Svg } from '../Svg/Svg';
 
 import { FormStyled } from './FormStyled';
 
@@ -13,31 +12,13 @@ import { Cell, Grid } from '../../style/grid';
 export const CarrinhoCupomForm = ({ ...props }) => {
     // ACTION
     useEffect(() => {
-        register('query');
+        register('cupom');
 
         return undefined;
     }, [register]);
 
-    // FUNCTION
-    const keyPress = useCallback(
-        (fn) => (element) => {
-            if (element.keyCode == 13) {
-                handleSubmit(fn);
-            }
-        },
-        [handleSubmit]
-    );
-
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
-    const { handleSubmit, register, setValue, triggerValidation } = useForm({
+    const { handleSubmit, register } = useForm({
         mode: 'onSubmit'
     });
 
@@ -47,7 +28,7 @@ export const CarrinhoCupomForm = ({ ...props }) => {
         <FormStyled onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridTemplateColumns="3fr 1fr">
                 <Cell>
-                    <Input height="30px" maxLength="50" name="query" onChange={handleValidation()} onKeyDown={keyPress(submitForm)} placeholder="Inserir cupom" {...props} />
+                    <Input height="30px" maxLength="20" name="cupom" placeholder="Inserir cupom" {...props} />
                 </Cell>
 
                 <Cell>
