@@ -13,7 +13,9 @@ export const CarrinhoCupom = () => {
             <CarrinhoCupomForm />
 
             <Box my={4}>
-                <P fontSize="14px">Nenhum cupom aplicado</P>
+                <P color="colorGray2" fontSize="14px">
+                    Nenhum cupom aplicado
+                </P>
             </Box>
         </>
     );
