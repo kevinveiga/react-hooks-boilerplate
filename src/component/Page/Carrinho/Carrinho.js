@@ -29,16 +29,23 @@ export const Carrinho = () => {
         <>
             <Wrap>
                 <Container minHeight={{ d: `calc(100vh - ${variable.headerHeightMobile} - 85px)`, lg: `calc(100vh - ${variable.headerHeight} - 85px)` }} mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Grid alignItems="flex-start" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns="4fr 1fr" gridTemplateRows="55px auto auto">
-                        <Cell gridRow="1 / span 2">
+                    <Grid
+                        alignItems="flex-start"
+                        display="grid"
+                        gridColumnGap={4}
+                        gridRowGap={3}
+                        gridTemplateColumns={{ d: '1fr', md: '4fr 260px' }}
+                        gridTemplateRows={{ d: 'auto auto auto', md: '55px auto auto' }}
+                    >
+                        <Cell gridRow={{ d: 2, md: '1 / span 2' }}>
                             <CarrinhoItems />
                         </Cell>
 
-                        <Cell gridRow="1 / span 1">
+                        <Cell gridRow={{ d: 1, md: '1 / span 1' }}>
                             <CarrinhoBreadcrumb />
                         </Cell>
 
-                        <Cell alignSelf="flex-start" gridRow="2 / span 1">
+                        <Cell alignSelf="flex-start" gridRow={{ d: 3, md: '2 / span 1' }}>
                             <CarrinhoTotal />
                         </Cell>
                     </Grid>
@@ -55,11 +62,11 @@ export const Carrinho = () => {
                         </Cell>
 
                         <Cell>
-                            <Svg fill="colorGray2" name="svg-american-express" />
-                            <Svg fill="colorGray2" name="svg-boleto" />
-                            <Svg fill="colorGray2" name="svg-elo" />
-                            <Svg fill="colorGray2" name="svg-mastercard" />
-                            <Svg fill="colorGray2" name="svg-visa" />
+                            <Svg fill="colorGray2" mx={{ d: 2, md: 3 }} name="svg-elo" />
+                            <Svg fill="colorGray2" mx={{ d: 2, md: 3 }} name="svg-mastercard" />
+                            <Svg fill="colorGray2" mx={{ d: 2, md: 3 }} name="svg-visa" />
+                            <Svg fill="colorGray2" mx={{ d: 2, md: 3 }} name="svg-american-express" />
+                            <Svg fill="colorGray2" mx={{ d: 2, md: 3 }} name="svg-boleto" />
                         </Cell>
                     </Grid>
                 </Container>
