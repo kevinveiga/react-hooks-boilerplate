@@ -97,7 +97,7 @@ export const MinhaContaAvatarForm = () => {
         <>
             <FormStyled>
                 <ImageCircleContainer>
-                    <Image objectFit="none" text="autor" url={statePerfilAvatar.avatar || logo} />
+                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || logo} width="100%" />
                 </ImageCircleContainer>
 
                 <div>

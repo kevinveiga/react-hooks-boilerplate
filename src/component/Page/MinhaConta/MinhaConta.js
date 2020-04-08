@@ -51,12 +51,7 @@ const MinhaConta = () => {
                         {perfilLength > 0 && (
                             <Flex display="flex" flexWrap="wrap" justifyContent="center">
                                 <Box minHeight="200px" width="150px">
-                                    <MinhaContaAvatarForm
-                                        data={{
-                                            foto: statePerfil.data.data.foto
-                                        }}
-                                        setStatePerfilData={setStatePerfilData}
-                                    />
+                                    <MinhaContaAvatarForm />
                                 </Box>
 
                                 <Box overflow="hidden" width={{ d: '100%', md: 8 / 10 }}>
