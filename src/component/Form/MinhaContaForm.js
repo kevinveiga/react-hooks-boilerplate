@@ -9,6 +9,7 @@ import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
+import { formatCepSet } from '../../util/formatData';
 import { formatFormDataGet, formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
 import { scrollTo } from '../../util/scrollTo';
@@ -50,6 +51,47 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     }, [register]);
 
     // FUNCTION
+    const handleFindAddress = useCallback(
+        () => () => {
+            const selectElement = document.querySelector('input[name="endereco_cep"]');
+
+            if (selectElement.value) {
+                const formatedCep = formatCepSet(selectElement.value);
+
+                try {
+                    let result = axios.get(`https://address.api.nfe.io/v2/addresses/${formatedCep}/`, {
+                        params: { api_key: 'gmZiqqa9Da16N9QgW4DbVntz6lLnMw9JwpLgWqRgfVEikhnFNXkY2LMOF3maMW82ZiS' }
+                    });
+
+                    if (result.addresses) {
+                        result = JSON.parse(result).address;
+
+                        setFormValue(
+                            formatFormDataGet({ endereco_cidade: result.city.name, endereco_logradouro: `${result.streetSuffix} ${result.street}`, endereco_uf: result.state.toLowerCase() }),
+                            formId,
+                            setValue
+                        );
+                    } else {
+                        setError('invalid', 'notMatch', defaultErrorMsg);
+
+                        console.error('result: ', result);
+                    }
+                } catch (error) {
+                    // if (error.response) {
+                    //     if (error.response.message) {
+                    //         setError('invalid', 'notMatch', error.response.data.message);
+                    //     } else {
+                    //         setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    //     }
+                    // } else {
+                    console.error('error: ', error);
+                    // }
+                }
+            }
+        },
+        [formId, setError, setValue]
+    );
+
     const handleScrollTo = useCallback(
         () => () => {
             const anchorElement = (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') || (document.querySelector(`#${formId}`) && `#${formId}`);
@@ -195,6 +237,8 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 touched={touched}
                                 {...otherProps}
                             />
+
+                            <Svg bottom="15px" left="85px" name="svg-search" onClick={handleFindAddress()} position="absolute" zIndex={1} />
                         </div>
 
                         {errors.endereco_cep && <InvalidInputMessageStyled>{errors.endereco_cep.message}</InvalidInputMessageStyled>}
@@ -318,26 +362,26 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     {/* <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Senha" />
+                                <Label color="colorGray2" mb="-10px" text="Senha" />
 
-                        <div>
-                            <InputValidation
-                                error={errors.password}
-                                maxLength="20"
-                                name="password"
-                                onChange={handleValidation()}
-                                placeholder="password"
-                                pr={4}
-                                touched={touched}
-                                type={stateViewPassword ? 'text' : 'password'}
-                                {...otherProps}
-                            />
+                                <div>
+                                    <InputValidation
+                                        error={errors.password}
+                                        maxLength="20"
+                                        name="password"
+                                        onChange={handleValidation()}
+                                        placeholder="password"
+                                        pr={4}
+                                        touched={touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        {...otherProps}
+                                    />
 
-                            <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
-                        </div>
+                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                                </div>
 
-                        {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
-                    </Cell> */}
+                                {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
+                            </Cell> */}
 
                     <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <P color="colorBlack3" fontWeight="700">
