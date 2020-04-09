@@ -1,4 +1,4 @@
-export const setFormValue = (data, formId) => {
+export const setFormValue = (data, formId, setValue) => {
     for (let i = 0, l = Object.keys(data).length; i < l; i += 1) {
         const key = Object.keys(data)[i];
 
@@ -22,6 +22,10 @@ export const setFormValue = (data, formId) => {
                 }
 
                 htmlElement[valueType] = data[key] == null ? '' : data[key];
+
+                if (setValue) {
+                    setValue(key, data[key]);
+                }
             }
         }
     }
