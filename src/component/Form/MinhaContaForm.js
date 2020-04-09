@@ -77,15 +77,15 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                         console.error('result: ', result);
                     }
                 } catch (error) {
-                    // if (error.response) {
-                    //     if (error.response.message) {
-                    //         setError('invalid', 'notMatch', error.response.data.message);
-                    //     } else {
-                    //         setError('invalid', 'notMatch', responseError(error.response.data.errors));
-                    //     }
-                    // } else {
-                    console.error('error: ', error);
-                    // }
+                    if (error.response) {
+                        if (error.response.message) {
+                            setError('invalid', 'notMatch', error.response.data.message);
+                        } else {
+                            setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                        }
+                    } else {
+                        console.error('error: ', error);
+                    }
                 }
             }
         },
@@ -362,26 +362,26 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     {/* <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                                <Label color="colorGray2" mb="-10px" text="Senha" />
+                        <Label color="colorGray2" mb="-10px" text="Senha" />
 
-                                <div>
-                                    <InputValidation
-                                        error={errors.password}
-                                        maxLength="20"
-                                        name="password"
-                                        onChange={handleValidation()}
-                                        placeholder="password"
-                                        pr={4}
-                                        touched={touched}
-                                        type={stateViewPassword ? 'text' : 'password'}
-                                        {...otherProps}
-                                    />
+                        <div>
+                            <InputValidation
+                                error={errors.password}
+                                maxLength="20"
+                                name="password"
+                                onChange={handleValidation()}
+                                placeholder="password"
+                                pr={4}
+                                touched={touched}
+                                type={stateViewPassword ? 'text' : 'password'}
+                                {...otherProps}
+                            />
 
-                                    <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
-                                </div>
+                            <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                        </div>
 
-                                {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
-                            </Cell> */}
+                        {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
+                    </Cell> */}
 
                     <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <P color="colorBlack3" fontWeight="700">
