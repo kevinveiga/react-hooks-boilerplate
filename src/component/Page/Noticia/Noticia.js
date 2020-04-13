@@ -115,9 +115,9 @@ export const Noticia = ({ match }) => {
                         </Flex>
                     </NoticiaArticleAuthorStyled>
 
-                    <NoticiaArticleStyled change={changeLeadwall}>{parse(`${stateNoticia.data.content}`)}</NoticiaArticleStyled>
+                    <NoticiaArticleStyled show={changeLeadwall || !stateNoticia.data.mostrar_leadwall}>{parse(`${stateNoticia.data.content}`)}</NoticiaArticleStyled>
 
-                    <Leadwall change={changeLeadwall} />
+                    <Leadwall hide={changeLeadwall || !stateNoticia.data.mostrar_leadwall} />
 
                     {/* <NoticiaFormContainerStyled mb="75px">
                         <Suspense fallback={<LoaderComponent />}>

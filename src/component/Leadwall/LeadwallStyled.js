@@ -10,7 +10,7 @@ export const LeadwallStyled = styled.div`
 
     background-color: ${variable.colorBlack};
     color: ${variable.colorWhite};
-    ${({ change }) => change && 'display: none'};
+    ${({ hide }) => hide && 'display: none'};
     margin-left: auto;
     margin-right: auto;
     max-width: ${variable.md};
@@ -34,7 +34,7 @@ export const LeadwallTermosStyled = styled.div`
 
     background-color: ${variable.colorGray};
     color: ${variable.colorGrayDark};
-    ${({ change }) => change && 'display: none'};
+    ${({ hide }) => hide && 'display: none'};
     margin-left: auto;
     margin-right: auto;
     max-width: ${variable.md};

@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import { layout, position, space } from 'styled-system';
+import { space } from 'styled-system';
 
-import { animationFadeInTab, animationFadeOutTab } from '../../../style/animation';
 import { variable } from '../../../style/variable';
 
 export const NoticiaContainerStyled = css`
@@ -12,7 +11,7 @@ export const NoticiaContainerStyled = css`
 
 export const NoticiaArticleStyled = styled.article`
     font-size: 18px;
-    height: ${({ change }) => (change ? 'auto' : '400px')};
+    height: ${({ show }) => (show ? 'auto' : '400px')};
     margin-bottom: 25px;
     overflow-y: hidden;
 
