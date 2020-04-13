@@ -17,7 +17,7 @@ export const ExternalJs = () => {
 
         if (!window.fbAsyncInit) {
             /* eslint-disable func-names, no-undef */
-            window.fbAsyncInit = function() {
+            window.fbAsyncInit = function () {
                 FB.init({
                     appId: '00000',
                     autoLogAppEvents: true,
@@ -31,7 +31,7 @@ export const ExternalJs = () => {
         // Facebook Pixel
         if (!window.fbq) {
             /* eslint-disable func-names, no-multi-assign, no-unused-expressions, prefer-rest-params, prefer-spread */
-            const n = (window.fbq = function() {
+            const n = (window.fbq = function () {
                 n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
             });
             /* eslint-enable func-names, no-multi-assign, no-unused-expressions, prefer-rest-params, prefer-spread */

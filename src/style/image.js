@@ -6,7 +6,7 @@ import { variable } from './variable';
 export const Image = styled.img.attrs(({ text, url }) => ({
     alt: text || 'Imagem',
     'aria-label': text || 'Imagem',
-    src: url
+    src: url || undefined
 }))`
     ${layout};
     ${space};

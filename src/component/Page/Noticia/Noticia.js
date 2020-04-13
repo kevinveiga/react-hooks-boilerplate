@@ -182,7 +182,7 @@ export const Noticia = ({ match }) => {
                                                 </NoticiaBox>
 
                                                 <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
-                                                    <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail.attachment.url} />
+                                                    <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                 </Box>
                                             </LinkTo>
                                         </Cell>
