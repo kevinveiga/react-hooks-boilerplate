@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
-import { borderRadius, layout, space, typography } from 'styled-system';
+import { borderRadius, layout, position, space, typography } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const ButtonStyled = styled.button`
     ${borderRadius};
     ${layout};
+    ${position};
     ${space};
     ${typography};
 

@@ -4,6 +4,8 @@ export const apiUrlCadastro = `${apiUrl}/auth/registrar`;
 
 export const apiUrlCarrinho = `${apiUrl}/carrinho`;
 
+export const apiUrlCep = `${apiUrl}/cep`;
+
 export const apiUrlConfiguracoes = `${apiUrl}/configuracoes`;
 
 export const apiUrlContato = `${apiUrl}/contato`;

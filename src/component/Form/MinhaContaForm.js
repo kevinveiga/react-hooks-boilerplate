@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlPerfil, defaultErrorMsg } from '../../config';
+import { apiUrlCep, apiUrlPerfil, defaultErrorMsg } from '../../config';
 
 import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
@@ -58,35 +58,27 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
             if (selectElement.value) {
                 const formatedCep = formatCepSet(selectElement.value);
 
-                try {
-                    let result = axios.get(`https://address.api.nfe.io/v2/addresses/${formatedCep}/`, {
-                        params: { api_key: 'gmZiqqa9Da16N9QgW4DbVntz6lLnMw9JwpLgWqRgfVEikhnFNXkY2LMOF3maMW82ZiS' }
-                    });
-
-                    if (result.addresses) {
-                        result = JSON.parse(result).address;
+                const fetchData = async () => {
+                    try {
+                        const result = await axios.get(`${apiUrlCep}/${formatedCep}`);
 
                         setFormValue(
-                            formatFormDataGet({ endereco_cidade: result.city.name, endereco_logradouro: `${result.streetSuffix} ${result.street}`, endereco_uf: result.state.toLowerCase() }),
+                            formatFormDataGet({
+                                endereco_cidade: result.data.address.city.name,
+                                endereco_logradouro: `${result.data.address.streetSuffix} ${result.data.address.street}`,
+                                endereco_uf: result.data.address.state.toLowerCase()
+                            }),
                             formId,
                             setValue
                         );
-                    } else {
+                    } catch (error) {
                         setError('invalid', 'notMatch', defaultErrorMsg);
 
-                        console.error('result: ', result);
+                        console.error('result: ', error);
                     }
-                } catch (error) {
-                    if (error.response) {
-                        if (error.response.message) {
-                            setError('invalid', 'notMatch', error.response.data.message);
-                        } else {
-                            setError('invalid', 'notMatch', responseError(error.response.data.errors));
-                        }
-                    } else {
-                        console.error('error: ', error);
-                    }
-                }
+                };
+
+                fetchData();
             }
         },
         [formId, setError, setValue]
@@ -238,7 +230,9 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 {...otherProps}
                             />
 
-                            <Svg bottom="15px" left="85px" name="svg-search" onClick={handleFindAddress()} position="absolute" zIndex={1} />
+                            <Button bottom="17px" left="87px" onClick={handleFindAddress()} position="absolute" themeSize="none" themeType="none" title="Preencher endereço pelo cep" zIndex={1}>
+                                <Svg name="svg-search" />
+                            </Button>
                         </div>
 
                         {errors.endereco_cep && <InvalidInputMessageStyled>{errors.endereco_cep.message}</InvalidInputMessageStyled>}
