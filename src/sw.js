@@ -33,12 +33,12 @@ registerRoute(
     })
 );
 
-// API PERFIL
-// Add only perfil api
+// API CARRINHO
+// Add only carrinho api
 registerRoute(
-    new RegExp('.+(/api/v1/)(?:(perfil)).*$'),
+    new RegExp('.+(/api/v1/)(?:(carrinho)).*$'),
     new NetworkFirst({
-        cacheName: 'api-cache-perfil',
+        cacheName: 'api-cache-carrinho',
         plugins: [
             new CacheableResponsePlugin({
                 statuses: [0, 200]
@@ -53,6 +53,20 @@ registerRoute(
     new RegExp('.+(/api/v1/)(?:(cursos/meus-cursos)).*$'),
     new NetworkFirst({
         cacheName: 'api-cache-meus-cursos',
+        plugins: [
+            new CacheableResponsePlugin({
+                statuses: [0, 200]
+            })
+        ]
+    })
+);
+
+// API PERFIL
+// Add only perfil api
+registerRoute(
+    new RegExp('.+(/api/v1/)(?:(perfil)).*$'),
+    new NetworkFirst({
+        cacheName: 'api-cache-perfil',
         plugins: [
             new CacheableResponsePlugin({
                 statuses: [0, 200]

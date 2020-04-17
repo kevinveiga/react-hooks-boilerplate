@@ -8,12 +8,13 @@ export const getLocalStorageUser = () => {
 
 export const logout = () => {
     window.localStorage.setItem('user', null);
+    window.sessionStorage.setItem('carrinho', null);
 
     // Delete api-cache in logout
     if ('serviceWorker' in navigator) {
         caches.keys().then((cacheNames) => {
             for (let i = 0, l = cacheNames.length; i < l; i += 1) {
-                if (cacheNames[i] === 'api-cache' || cacheNames[i] === 'api-cache-perfil') {
+                if (cacheNames[i] === 'api-cache-carrinho' || cacheNames[i] === 'api-cache-meus-cursos' || cacheNames[i] === 'api-cache-perfil') {
                     caches.delete(cacheNames[i]);
                 }
             }
