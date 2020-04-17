@@ -2,8 +2,12 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 
 const CarrinhoContext = createContext(undefined);
 
+export const getSessionStorageCarrinho = () => {
+    return JSON.parse(window.sessionStorage.getItem('carrinho')) || [];
+};
+
 export const CarrinhoProvider = ({ children }) => {
-    const [stateCarrinho, setStateCarrinho] = useState(window.sessionStorage.getItem('carrinho') || []);
+    const [stateCarrinho, setStateCarrinho] = useState(getSessionStorageCarrinho());
 
     const carrinho = useMemo(() => [stateCarrinho, setStateCarrinho], [stateCarrinho, setStateCarrinho]);
 
