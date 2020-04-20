@@ -123,6 +123,13 @@ const routes = [
 ];
 
 export const Router = () => {
+    // Se for necessário usar um tracking como o do Active Campaign,
+    // é necessário usar aqui neste componente o withRouter e atualizar o tracking,
+    // como no código abaixo:
+
+    // window.vgo('update');
+    // window.vgo('process');
+
     const user = getLocalStorageUser();
 
     return (
