@@ -1,14 +1,16 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
+import { getStorage, removeStorage } from '../../util/storage';
+
 const UserContext = createContext(undefined);
 
 export const getLocalStorageUser = () => {
-    return JSON.parse(window.localStorage.getItem('user'));
+    return getStorage('user');
 };
 
 export const logout = () => {
-    window.localStorage.setItem('user', null);
-    window.sessionStorage.setItem('carrinho', null);
+    removeStorage('user');
+    removeStorage('carrinho', 'sessionStorage');
 
     // Delete api-cache in logout
     if ('serviceWorker' in navigator) {
@@ -25,7 +27,7 @@ export const logout = () => {
 };
 
 export const UserProvider = ({ children }) => {
-    const [stateUser, setStateUser] = useState(getLocalStorageUser());
+    const [stateUser, setStateUser] = useState(getStorage('user'));
 
     useEffect(() => {
         window.localStorage.setItem('user', JSON.stringify(stateUser));
