@@ -14,7 +14,7 @@ module.exports = {
         https: false,
         index: 'index.html',
         lazy: false,
-        liveReload: true,
+        liveReload: false,
         open: true,
         port: 3000,
         // public: 'localhost:3000',
@@ -32,7 +32,7 @@ module.exports = {
         stats: {
             cached: false
         },
-        watchContentBase: true
+        watchContentBase: false
     },
     devtool: 'source-map',
     mode: 'development',
