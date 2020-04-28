@@ -152,7 +152,9 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                                     />
                                 </div>
 
-                                {errors.password_confirmation && <InvalidInputMessageStyled>{errors.password_confirmation.message}</InvalidInputMessageStyled>}
+                                {errors.password_confirmation && (
+                                    <InvalidInputMessageStyled>{errors.password_confirmation.message}</InvalidInputMessageStyled>
+                                )}
                             </Cell>
 
                             <Cell mb={3}>

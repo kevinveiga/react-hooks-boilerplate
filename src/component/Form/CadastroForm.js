@@ -46,7 +46,9 @@ export const CadastroForm = ({ location, ...otherProps }) => {
     // FUNCTION
     const handleScrollTo = useCallback(
         () => () => {
-            const anchorElement = (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') || (document.querySelector('#cadastroFormId') && '#cadastroFormId');
+            const anchorElement =
+                (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') ||
+                (document.querySelector('#cadastroFormId') && '#cadastroFormId');
 
             scrollTo(anchorElement, true);
         },
@@ -121,7 +123,16 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.nome} label="Nome completo" maxLength="50" name="nome" onChange={handleValidation()} pr={4} touched={touched} {...otherProps} />
+                                    <InputValidation
+                                        error={errors.nome}
+                                        label="Nome completo"
+                                        maxLength="50"
+                                        name="nome"
+                                        onChange={handleValidation()}
+                                        pr={4}
+                                        touched={touched}
+                                        {...otherProps}
+                                    />
                                 </div>
 
                                 {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -129,7 +140,16 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} pr={4} touched={touched} {...otherProps} />
+                                    <InputValidation
+                                        error={errors.email}
+                                        label="E-mail"
+                                        maxLength="50"
+                                        name="email"
+                                        onChange={handleValidation()}
+                                        pr={4}
+                                        touched={touched}
+                                        {...otherProps}
+                                    />
                                 </div>
 
                                 {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -209,7 +229,14 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                             </Cell>
 
                             <Cell mb={3}>
-                                <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" onClick={handleScrollTo()} text="Cadastrar-se" typeButton="submit" width="100%" />
+                                <Button
+                                    fontSize={{ d: '16px', sm: '18px' }}
+                                    height="70px"
+                                    onClick={handleScrollTo()}
+                                    text="Cadastrar-se"
+                                    typeButton="submit"
+                                    width="100%"
+                                />
                             </Cell>
 
                             <Cell mb={3} textAlign="center">
@@ -227,8 +254,20 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                             <Cell mb={3} textAlign="center">
                                 <P color="colorGray2" fontSize="14px" themeColor="dark">
                                     Clicando em &quot;Cadastrar-se&quot; você concordará com os{' '}
-                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/falta-link" text="Termos de serviço" /> e{' '}
-                                    <LinkTo fontWeight="700" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/falta-link" text="Política de privacidade" />.
+                                    <LinkTo
+                                        fontWeight="700"
+                                        obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
+                                        link="/falta-link"
+                                        text="Termos de serviço"
+                                    />{' '}
+                                    e{' '}
+                                    <LinkTo
+                                        fontWeight="700"
+                                        obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
+                                        link="/falta-link"
+                                        text="Política de privacidade"
+                                    />
+                                    .
                                 </P>
                             </Cell>
                         </Grid>

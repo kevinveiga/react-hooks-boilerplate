@@ -29,13 +29,22 @@ export const Cadastro = ({ location }) => {
                             <Svg name="svg-logo-liberta" />
                         </Box>
 
-                        {!stateConhecerMais ? <CadastroForm location={location} obj={{ colorLine: 'colorPrimary' }} /> : <ConhecerMaisForm location={location} obj={{ colorLine: 'colorPrimary' }} />}
+                        {!stateConhecerMais ? (
+                            <CadastroForm location={location} obj={{ colorLine: 'colorPrimary' }} />
+                        ) : (
+                            <ConhecerMaisForm location={location} obj={{ colorLine: 'colorPrimary' }} />
+                        )}
                     </Container>
                 </Box>
 
                 <Box order={{ d: '-1', lg: '2' }} textAlign={{ d: 'center', lg: 'left' }} width={{ d: '100%', lg: 1 / 7 }}>
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                        <LinkTo ariaLabel="Home" obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }} link="/inicio" text="Voltar para home" />
+                        <LinkTo
+                            ariaLabel="Home"
+                            obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
+                            link="/inicio"
+                            text="Voltar para home"
+                        />
                     </Container>
                 </Box>
             </Flex>

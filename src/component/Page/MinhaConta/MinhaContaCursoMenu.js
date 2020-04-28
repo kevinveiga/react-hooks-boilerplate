@@ -123,7 +123,11 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                     {objectCurso.modulos.map((modulo) => {
                         return (
                             <Cell display="table" key={modulo.id}>
-                                <MinhaContaCursoMenuModuloStyled active={statePart == modulo.id} hover={true} onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}>
+                                <MinhaContaCursoMenuModuloStyled
+                                    active={statePart == modulo.id}
+                                    hover={true}
+                                    onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}
+                                >
                                     <Box mr={3}>
                                         <P fontSize="18px" mb={1}>
                                             {modulo.title}
@@ -144,7 +148,13 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                         {modulo.conteudos.map((conteudo) => {
                                             return (
                                                 <MinhaContaCursoMenuConteudoStyled key={conteudo.id}>
-                                                    <Flex alignItems="flex-start" display="flex" flexWrap="wrap" justifyContent="space-between" mb={4}>
+                                                    <Flex
+                                                        alignItems="flex-start"
+                                                        display="flex"
+                                                        flexWrap="wrap"
+                                                        justifyContent="space-between"
+                                                        mb={4}
+                                                    >
                                                         <Box width="30px">
                                                             <MinhaContaCursoMenuConteudoCheckboxStyled
                                                                 defaultChecked={conteudo.lido}
@@ -154,7 +164,12 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                 type="checkbox"
                                                             />
 
-                                                            <Label color="colorGrayDark" forLabel={`${objectCurso.id}${conteudo.id}`} fontWeight="700" mb={2}>
+                                                            <Label
+                                                                color="colorGrayDark"
+                                                                forLabel={`${objectCurso.id}${conteudo.id}`}
+                                                                fontWeight="700"
+                                                                mb={2}
+                                                            >
                                                                 <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
                                                             </Label>
                                                         </Box>
@@ -178,7 +193,11 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
 
                                                             <Flex alignItems="flex-end" display="flex" flexWrap="wrap" ml={4}>
                                                                 <Box mr={2}>
-                                                                    <Svg fill="colorGrayDark" height="22px" name={`svg-tipo-${tipoConteudo(conteudo.tipo).svg}`} />
+                                                                    <Svg
+                                                                        fill="colorGrayDark"
+                                                                        height="22px"
+                                                                        name={`svg-tipo-${tipoConteudo(conteudo.tipo).svg}`}
+                                                                    />
                                                                 </Box>
 
                                                                 <Box fontSize="14px">{tipoConteudo(conteudo.tipo).title}</Box>

@@ -103,7 +103,16 @@ export const LoginForm = ({ location, ...otherProps }) => {
 
                         <Cell mb={3}>
                             <div>
-                                <InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} pr={4} touched={touched} {...otherProps} />
+                                <InputValidation
+                                    error={errors.email}
+                                    label="E-mail"
+                                    maxLength="50"
+                                    name="email"
+                                    onChange={handleValidation()}
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
                             </div>
 
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -143,11 +152,16 @@ export const LoginForm = ({ location, ...otherProps }) => {
 
                         <Cell mb={3}>
                             <P color="colorGray2" fontSize="14px" themeColor="dark">
-                                Precisa de uma conta? <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
+                                Precisa de uma conta?{' '}
+                                <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
                             </P>
 
                             <P color="colorGray2" fontSize="14px" themeColor="dark">
-                                <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/esqueceu-senha" text="Esqueceu sua senha?" />
+                                <LinkTo
+                                    obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }}
+                                    link="/esqueceu-senha"
+                                    text="Esqueceu sua senha?"
+                                />
                             </P>
                         </Cell>
                     </Grid>

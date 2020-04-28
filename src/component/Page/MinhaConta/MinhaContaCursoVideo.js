@@ -23,7 +23,11 @@ const MinhaContaCursoVideo = ({ conteudoId, conteudoProvedor, conteudoVideoId, c
                 // Muda checked do input checkbox
                 element.checked = true;
 
-                setStateCursoConteudoVisualizadoDataContext({ action: ACTION.add(), cursoId: cursoId, url: `${apiUrlCursos}/meus-cursos/${cursoId}/${conteudoId}` });
+                setStateCursoConteudoVisualizadoDataContext({
+                    action: ACTION.add(),
+                    cursoId: cursoId,
+                    url: `${apiUrlCursos}/meus-cursos/${cursoId}/${conteudoId}`
+                });
             }
         },
         [conteudoId, cursoId, setStateCursoConteudoVisualizadoDataContext]

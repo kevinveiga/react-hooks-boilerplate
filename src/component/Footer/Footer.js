@@ -60,7 +60,12 @@ const Footer = () => {
                                         </Title5>
                                     </Box>
 
-                                    <Box display="flex" flexWrap="wrap" justifyContent={{ d: 'flex-start', sm: 'flex-end' }} width={{ d: 1, sm: 6 / 12 }}>
+                                    <Box
+                                        display="flex"
+                                        flexWrap="wrap"
+                                        justifyContent={{ d: 'flex-start', sm: 'flex-end' }}
+                                        width={{ d: 1, sm: 6 / 12 }}
+                                    >
                                         <NewsletterForm obj={{ color: 'colorWhite', colorPlaceholder: 'colorGray4' }} />
 
                                         <SocialAlternate />

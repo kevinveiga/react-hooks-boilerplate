@@ -17,7 +17,12 @@ import { InputMaskValidation, InputValidation, Label, Select } from './Form';
 import { OptionUF } from './OptionUF';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
-import { ConhecerMaisPartContentStyled, ConhecerMaisPartNumberStyled, ConhecerMaisPartTitleStyled, ConhecerMaisRadioStyled } from './ConhecerMaisFormStyled';
+import {
+    ConhecerMaisPartContentStyled,
+    ConhecerMaisPartNumberStyled,
+    ConhecerMaisPartTitleStyled,
+    ConhecerMaisRadioStyled
+} from './ConhecerMaisFormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -132,15 +137,46 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 </ConhecerMaisPartTitleStyled>
 
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
-                                    <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="masculino" id="sexo_masculino" name="sexo" onChange={handleSetValue()} type="radio" />
+                                    <ConhecerMaisRadioStyled
+                                        defaultChecked={false}
+                                        defaultValue="masculino"
+                                        id="sexo_masculino"
+                                        name="sexo"
+                                        onChange={handleSetValue()}
+                                        type="radio"
+                                    />
 
-                                    <Label color="colorGrayDark" fontSize="14px" forLabel="sexo_masculino" fontWeight="700" px={{ d: 3, md: 4 }} onClick={handlePart(2)} py={2}>
+                                    <Label
+                                        color="colorGrayDark"
+                                        fontSize="14px"
+                                        forLabel="sexo_masculino"
+                                        fontWeight="700"
+                                        px={{ d: 3, md: 4 }}
+                                        onClick={handlePart(2)}
+                                        py={2}
+                                    >
                                         Masculino
                                     </Label>
 
-                                    <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="feminino" id="sexo_feminino" name="sexo" onChange={handleSetValue()} type="radio" />
+                                    <ConhecerMaisRadioStyled
+                                        defaultChecked={false}
+                                        defaultValue="feminino"
+                                        id="sexo_feminino"
+                                        name="sexo"
+                                        onChange={handleSetValue()}
+                                        type="radio"
+                                    />
 
-                                    <Label color="colorGrayDark" fontSize="14px" forLabel="sexo_feminino" fontWeight="700" ml={4} onClick={handlePart(2)} px={{ d: 3, md: 4 }} py={2}>
+                                    <Label
+                                        color="colorGrayDark"
+                                        fontSize="14px"
+                                        forLabel="sexo_feminino"
+                                        fontWeight="700"
+                                        ml={4}
+                                        onClick={handlePart(2)}
+                                        px={{ d: 3, md: 4 }}
+                                        py={2}
+                                    >
                                         Feminino
                                     </Label>
                                 </ConhecerMaisPartContentStyled>
@@ -171,7 +207,9 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                         />
                                     </div>
 
-                                    {errors.data_nascimento && <InvalidInputMessageStyled>{errors.data_nascimento.message}</InvalidInputMessageStyled>}
+                                    {errors.data_nascimento && (
+                                        <InvalidInputMessageStyled>{errors.data_nascimento.message}</InvalidInputMessageStyled>
+                                    )}
                                 </ConhecerMaisPartContentStyled>
                             </Cell>
 
@@ -201,7 +239,9 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                             />
                                         </div>
 
-                                        {errors.endereco_cidade && <InvalidInputMessageStyled>{errors.endereco_cidade.message}</InvalidInputMessageStyled>}
+                                        {errors.endereco_cidade && (
+                                            <InvalidInputMessageStyled>{errors.endereco_cidade.message}</InvalidInputMessageStyled>
+                                        )}
                                     </Box>
 
                                     <Box display="inline-block" ml={{ d: 0, md: 4 }} mt={{ d: 4, md: 0 }}>
@@ -239,7 +279,17 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 />
                             )}
 
-                            {statePart === 3 && <Button fontSize={{ d: '16px', sm: '18px' }} mx="auto" text="Concluir" textTransform="none" themeSize="small" typeButton="submit" width="160px" />}
+                            {statePart === 3 && (
+                                <Button
+                                    fontSize={{ d: '16px', sm: '18px' }}
+                                    mx="auto"
+                                    text="Concluir"
+                                    textTransform="none"
+                                    themeSize="small"
+                                    typeButton="submit"
+                                    width="160px"
+                                />
+                            )}
                         </Box>
                     </FormStyled>
                 </Box>

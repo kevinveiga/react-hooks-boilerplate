@@ -165,7 +165,12 @@ export const Noticias = () => {
                                                         width={{ d: 1, md: 1 / 3 }}
                                                     >
                                                         <Box hover="true" mb={5} width={1}>
-                                                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                            <LinkTo
+                                                                ariaLabel={noticia.title}
+                                                                height="100%"
+                                                                to={`/noticia/${noticia.slug}`}
+                                                                width="100%"
+                                                            >
                                                                 <NoticiaBox
                                                                     alignContent="space-between"
                                                                     color={categoriaUltimas.featured_color}
@@ -178,7 +183,10 @@ export const Noticias = () => {
                                                                     <Box width="100%">
                                                                         {j / 3 === 0 && (
                                                                             <Box height="200px" mb={4} overflow="hidden" width="100%">
-                                                                                <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                <BgImageLazyLoad
+                                                                                    key={noticia.id}
+                                                                                    url={noticia.thumbnail && noticia.thumbnail.attachment.url}
+                                                                                />
                                                                             </Box>
                                                                         )}
 
@@ -223,14 +231,31 @@ export const Noticias = () => {
                                     i > 0 && (
                                         <TabContent key={categoria.slug}>
                                             <Flex display="flex" flexWrap="wrap">
-                                                <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }} mb={5} pl={{ d: 0, md: 2 }} pr={{ d: 0, md: 3 }} width={{ d: 1, md: 4 / 5 }}>
+                                                <Box
+                                                    borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.6)' }}
+                                                    mb={5}
+                                                    pl={{ d: 0, md: 2 }}
+                                                    pr={{ d: 0, md: 3 }}
+                                                    width={{ d: 1, md: 4 / 5 }}
+                                                >
                                                     <Grid display="grid">
                                                         {stateNoticiasCategoria.data &&
                                                             stateNoticiasCategoria.data.data &&
                                                             stateNoticiasCategoria.data.data.map((noticia, j) => {
                                                                 return j === 0 ? (
-                                                                    <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" height="315px" hover="true" key={noticia.id}>
-                                                                        <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                    <Cell
+                                                                        borderBottom="1px solid rgba(216, 221, 225, 0.8)"
+                                                                        display="flex"
+                                                                        height="315px"
+                                                                        hover="true"
+                                                                        key={noticia.id}
+                                                                    >
+                                                                        <LinkTo
+                                                                            ariaLabel={noticia.title}
+                                                                            height="100%"
+                                                                            to={`/noticia/${noticia.slug}`}
+                                                                            width="100%"
+                                                                        >
                                                                             <NoticiaBox
                                                                                 alignItems="flex-end"
                                                                                 color={categoria.featured_color}
@@ -266,8 +291,19 @@ export const Noticias = () => {
                                                                         </LinkTo>
                                                                     </Cell>
                                                                 ) : (
-                                                                    <Cell borderBottom="1px solid rgba(216, 221, 225, 0.8)" display="flex" hover="true" key={noticia.id} py={3}>
-                                                                        <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                                                                    <Cell
+                                                                        borderBottom="1px solid rgba(216, 221, 225, 0.8)"
+                                                                        display="flex"
+                                                                        hover="true"
+                                                                        key={noticia.id}
+                                                                        py={3}
+                                                                    >
+                                                                        <LinkTo
+                                                                            ariaLabel={noticia.title}
+                                                                            height="100%"
+                                                                            to={`/noticia/${noticia.slug}`}
+                                                                            width="100%"
+                                                                        >
                                                                             <NoticiaBox
                                                                                 alignContent="space-between"
                                                                                 color={categoria.featured_color}
@@ -290,7 +326,11 @@ export const Noticias = () => {
                                                                                 <p>
                                                                                     <span>Postado em </span>
 
-                                                                                    <NoticiaBoxDateTimeStyled color={categoria.featured_color} fontSize="16px" themeColor="dark">
+                                                                                    <NoticiaBoxDateTimeStyled
+                                                                                        color={categoria.featured_color}
+                                                                                        fontSize="16px"
+                                                                                        themeColor="dark"
+                                                                                    >
                                                                                         {noticia.date}
                                                                                     </NoticiaBoxDateTimeStyled>
                                                                                 </p>
@@ -303,27 +343,31 @@ export const Noticias = () => {
                                                                                 verticalAlign="middle"
                                                                                 width={2 / 5}
                                                                             >
-                                                                                <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
+                                                                                <BgImageLazyLoad
+                                                                                    key={noticia.id}
+                                                                                    url={noticia.thumbnail && noticia.thumbnail.attachment.url}
+                                                                                />
                                                                             </Box>
                                                                         </LinkTo>
                                                                     </Cell>
                                                                 );
                                                             })}
 
-                                                        {stateNoticiasCategoria.data && stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
-                                                            <Cell display="flex" justifyContent="center" py={3}>
-                                                                <Button
-                                                                    text="Ver mais"
-                                                                    themeType="border"
-                                                                    onClick={() =>
-                                                                        setStateNoticiasCategoriaData({
-                                                                            page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1,
-                                                                            url: `${apiUrlNoticias}/categoria/${categoria.slug}`
-                                                                        })
-                                                                    }
-                                                                />
-                                                            </Cell>
-                                                        )}
+                                                        {stateNoticiasCategoria.data &&
+                                                            stateNoticiasCategoria.data.current_page < stateNoticiasCategoria.data.last_page && (
+                                                                <Cell display="flex" justifyContent="center" py={3}>
+                                                                    <Button
+                                                                        text="Ver mais"
+                                                                        themeType="border"
+                                                                        onClick={() =>
+                                                                            setStateNoticiasCategoriaData({
+                                                                                page: parseInt(stateNoticiasCategoria.data.current_page, 10) + 1,
+                                                                                url: `${apiUrlNoticias}/categoria/${categoria.slug}`
+                                                                            })
+                                                                        }
+                                                                    />
+                                                                </Cell>
+                                                            )}
                                                     </Grid>
                                                 </Box>
                                             </Flex>

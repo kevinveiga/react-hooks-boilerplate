@@ -30,9 +30,29 @@ export const ModalLogout = ({ ...props }) => {
                     plataforma?
                 </p>
 
-                <Button borderRadius="25px" display="inline-block" fontSize="18px" height="40px" mx="auto" my={3} onClick={handleLogout()} text="Confirmar" textTransform="none" themeSize="small" />
+                <Button
+                    borderRadius="25px"
+                    display="inline-block"
+                    fontSize="18px"
+                    height="40px"
+                    mx="auto"
+                    my={3}
+                    onClick={handleLogout()}
+                    text="Confirmar"
+                    textTransform="none"
+                    themeSize="small"
+                />
 
-                <Button color="colorGray2" display="block" fontSize="18px" mx="auto" onClick={() => setStateModalLogoutContext(false)} text="Cancelar" themeSize="none" themeType="none" />
+                <Button
+                    color="colorGray2"
+                    display="block"
+                    fontSize="18px"
+                    mx="auto"
+                    onClick={() => setStateModalLogoutContext(false)}
+                    text="Cancelar"
+                    themeSize="none"
+                    themeType="none"
+                />
             </ModalLogoutContainerStyled>
         </ModalLogoutStyled>
     );

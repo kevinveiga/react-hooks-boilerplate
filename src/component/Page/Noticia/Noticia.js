@@ -90,7 +90,13 @@ export const Noticia = ({ match }) => {
                     </Title1>
 
                     <Flex display="flex" flexWrap="wrap">
-                        <Image height={{ d: '300px', md: '400px' }} mb={{ d: 4, md: 5 }} text="Notícia" url={stateNoticia.data.thumbnail && stateNoticia.data.thumbnail.attachment.url} width="100%" />
+                        <Image
+                            height={{ d: '300px', md: '400px' }}
+                            mb={{ d: 4, md: 5 }}
+                            text="Notícia"
+                            url={stateNoticia.data.thumbnail && stateNoticia.data.thumbnail.attachment.url}
+                            width="100%"
+                        />
                     </Flex>
 
                     <NoticiaSocial
@@ -115,7 +121,9 @@ export const Noticia = ({ match }) => {
                         </Flex>
                     </NoticiaArticleAuthorStyled>
 
-                    <NoticiaArticleStyled show={changeLeadwall || !stateNoticia.data.mostrar_leadwall}>{parse(`${stateNoticia.data.content}`)}</NoticiaArticleStyled>
+                    <NoticiaArticleStyled show={changeLeadwall || !stateNoticia.data.mostrar_leadwall}>
+                        {parse(`${stateNoticia.data.content}`)}
+                    </NoticiaArticleStyled>
 
                     <Leadwall hide={changeLeadwall || !stateNoticia.data.mostrar_leadwall} />
 
@@ -156,7 +164,14 @@ export const Noticia = ({ match }) => {
                             {noticiaRelatedLength &&
                                 stateNoticia.data.related.map((noticia, i, newArray) => {
                                     return (
-                                        <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
+                                        <Cell
+                                            borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
+                                            display="flex"
+                                            hover="true"
+                                            key={noticia.id}
+                                            pb={3}
+                                            pt={4}
+                                        >
                                             <LinkTo
                                                 ariaLabel={noticia.title}
                                                 height="100%"
@@ -181,7 +196,13 @@ export const Noticia = ({ match }) => {
                                                     <NoticiaBoxAuthorStyled>{`Por ${noticia.author}`}</NoticiaBoxAuthorStyled>
                                                 </NoticiaBox>
 
-                                                <Box display="inline-block" height="100px" overflow="hidden" verticalAlign="middle" width={{ d: 2 / 5, lg: 1 / 5 }}>
+                                                <Box
+                                                    display="inline-block"
+                                                    height="100px"
+                                                    overflow="hidden"
+                                                    verticalAlign="middle"
+                                                    width={{ d: 2 / 5, lg: 1 / 5 }}
+                                                >
                                                     <BgImageLazyLoad key={noticia.id} url={noticia.thumbnail && noticia.thumbnail.attachment.url} />
                                                 </Box>
                                             </LinkTo>

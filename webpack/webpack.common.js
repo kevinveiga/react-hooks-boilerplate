@@ -88,7 +88,14 @@ module.exports = {
     plugins: [
         new InjectManifest({
             exclude: [/(.json)$/],
-            include: [/(\/asset\/)(?:.+(.gif))$/, /(.html)$/, /(\/asset\/)(?:.+(.jpg))$/, /(\/asset\/)(?:.+(.js))$/, /(\/asset\/)(?:.+(.png))$/, /(\/asset\/)(?:.+(.svg))$/],
+            include: [
+                /(\/asset\/)(?:.+(.gif))$/,
+                /(.html)$/,
+                /(\/asset\/)(?:.+(.jpg))$/,
+                /(\/asset\/)(?:.+(.js))$/,
+                /(\/asset\/)(?:.+(.png))$/,
+                /(\/asset\/)(?:.+(.svg))$/
+            ],
             mode: process.env.NODE_ENV,
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`
@@ -119,5 +126,6 @@ module.exports = {
         moduleTrace: true,
         optimizationBailout: false
     },
-    target: 'web'
+    target: 'web',
+    watch: false
 };

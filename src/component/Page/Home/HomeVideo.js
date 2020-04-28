@@ -66,7 +66,14 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
                             <Cell>
                                 <Box maxHeight="470px" minHeight={{ d: '25vh', sm: '35vh' }} overflowY="hidden">
                                     <VideoWrap>
-                                        <YouTube id="video" videoId={(stateCurrentVideo && getVideoId(stateCurrentVideo.video)) || getVideoId(stateVideos.data[0].video) || ''} />
+                                        <YouTube
+                                            id="video"
+                                            videoId={
+                                                (stateCurrentVideo && getVideoId(stateCurrentVideo.video)) ||
+                                                getVideoId(stateVideos.data[0].video) ||
+                                                ''
+                                            }
+                                        />
                                     </VideoWrap>
                                 </Box>
 
@@ -97,7 +104,15 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
                                                 onClick={handleCurrentVideo(video)}
                                                 p={4}
                                             >
-                                                <Box alignContent="space-between" display="inline-flex" flexWrap="wrap" height="100px" pr={{ d: 1, sm: 4 }} verticalAlign="middle" width={3 / 5}>
+                                                <Box
+                                                    alignContent="space-between"
+                                                    display="inline-flex"
+                                                    flexWrap="wrap"
+                                                    height="100px"
+                                                    pr={{ d: 1, sm: 4 }}
+                                                    verticalAlign="middle"
+                                                    width={3 / 5}
+                                                >
                                                     <Box width="100%">
                                                         <Title5 fontWeight="700" mb={3} themeColor="dark">
                                                             {video.title}

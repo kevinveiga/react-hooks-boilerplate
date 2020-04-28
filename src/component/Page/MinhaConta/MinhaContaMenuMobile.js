@@ -48,7 +48,14 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                 </li> */}
 
                 <li>
-                    <Button color="colorWhite" fontWeight="700" onClick={() => setStateModalLogoutContext(true)} text="Sair" themeSize="none" themeType="none" />
+                    <Button
+                        color="colorWhite"
+                        fontWeight="700"
+                        onClick={() => setStateModalLogoutContext(true)}
+                        text="Sair"
+                        themeSize="none"
+                        themeType="none"
+                    />
                 </li>
 
                 <li>

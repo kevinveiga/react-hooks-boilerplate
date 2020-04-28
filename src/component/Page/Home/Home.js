@@ -42,7 +42,12 @@ export const Home = ({ location }) => {
                         <ComponentLazyLoad component={Quotation} placeholder={<LoaderComponent />} />
 
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
-                            <Box borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }} mb={5} pr={{ d: 0, md: 3 }} width={{ d: 1, md: '60%' }}>
+                            <Box
+                                borderRight={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }}
+                                mb={5}
+                                pr={{ d: 0, md: 3 }}
+                                width={{ d: 1, md: '60%' }}
+                            >
                                 <HomeDestaque />
 
                                 <Flex display="flex" justifyContent="flex-end">

@@ -48,19 +48,39 @@ export const HeaderMenu = ({ ...props }) => {
         <HeaderMenuStyled active={stateMenuMobile} {...props}>
             <ul>
                 <li>
-                    <LinkTo link="/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Início" />
+                    <LinkTo
+                        link="/inicio"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                        onClick={handleMenuMobile(false)}
+                        text="Início"
+                    />
                 </li>
 
                 <li>
-                    <LinkTo link="/noticias" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Notícias" />
+                    <LinkTo
+                        link="/noticias"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                        onClick={handleMenuMobile(false)}
+                        text="Notícias"
+                    />
                 </li>
 
                 <li>
-                    <LinkTo link="/aprenda" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Aprenda" />
+                    <LinkTo
+                        link="/aprenda"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                        onClick={handleMenuMobile(false)}
+                        text="Aprenda"
+                    />
                 </li>
 
                 <li>
-                    <LinkTo link="/inicio/home-video" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Vídeos" />
+                    <LinkTo
+                        link="/inicio/home-video"
+                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                        onClick={handleMenuMobile(false)}
+                        text="Vídeos"
+                    />
                 </li>
 
                 {/* <li>
@@ -92,7 +112,12 @@ export const HeaderMenu = ({ ...props }) => {
                 ) : (
                     <ul>
                         <li>
-                            <LinkTo fontWeight="700" link="/cadastro" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Seja Membro" />
+                            <LinkTo
+                                fontWeight="700"
+                                link="/cadastro"
+                                obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                                text="Seja Membro"
+                            />
                         </li>
 
                         <li>

@@ -8,7 +8,9 @@ export const useCurrentVideo = (elementId, offset) => {
             return undefined;
         }
 
-        const anchor = document.querySelector(elementId) ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset : 0;
+        const anchor = document.querySelector(elementId)
+            ? document.querySelector(elementId).getBoundingClientRect().y - document.body.getBoundingClientRect().y + offset
+            : 0;
 
         try {
             window.scroll({

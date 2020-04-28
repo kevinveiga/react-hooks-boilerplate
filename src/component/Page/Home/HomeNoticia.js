@@ -38,7 +38,14 @@ export const HomeNoticia = () => {
             {noticiasLength > 0 ? (
                 stateNoticias.data.slice(0, 4).map((noticia, i, newArray) => {
                     return (
-                        <Cell borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'} display="flex" hover="true" key={noticia.id} pb={3} pt={4}>
+                        <Cell
+                            borderBottom={newArray.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
+                            display="flex"
+                            hover="true"
+                            key={noticia.id}
+                            pb={3}
+                            pt={4}
+                        >
                             <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
                                 <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                     <Box>

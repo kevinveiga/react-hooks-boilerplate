@@ -127,7 +127,8 @@ export const HeaderStyled = styled.header`
     left: 0;
     position: fixed;
     top: 0;
-    transition: background-color ${variable.transition}, box-shadow ${variable.transition}, min-height ${variable.transition}, padding ${variable.transition};
+    transition: background-color ${variable.transition}, box-shadow ${variable.transition}, min-height ${variable.transition},
+        padding ${variable.transition};
     width: 100%;
     z-index: 5;
 

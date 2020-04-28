@@ -8,10 +8,16 @@ export const CarrinhoProvider = ({ children }) => {
     // API
     const { handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData } = useCarrinhoApi();
 
-    const carrinho = useMemo(() => [handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData], [handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData]);
+    const carrinho = useMemo(() => [handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData], [
+        handleRemoveCarrinhoItem,
+        stateCarrinho,
+        setStateCarrinhoData
+    ]);
 
     return (
-        <CarrinhoContext.Provider value={{ handleRemoveCarrinhoItemContext: carrinho[0], stateCarrinhoContext: carrinho[1], setStateCarrinhoDataContext: carrinho[2] }}>
+        <CarrinhoContext.Provider
+            value={{ handleRemoveCarrinhoItemContext: carrinho[0], stateCarrinhoContext: carrinho[1], setStateCarrinhoDataContext: carrinho[2] }}
+        >
             {children}
         </CarrinhoContext.Provider>
     );

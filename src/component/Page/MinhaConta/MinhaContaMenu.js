@@ -22,15 +22,27 @@ export const MinhaContaMenu = () => {
             <MinhaContaMenuStyled>
                 <ul>
                     <li>
-                        <LinkTo link="/minha-conta/inicio" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Minha Conta" />
+                        <LinkTo
+                            link="/minha-conta/inicio"
+                            obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }}
+                            text="Minha Conta"
+                        />
                     </li>
 
                     <li>
-                        <LinkTo link="/minha-conta/cursos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Cursos" />
+                        <LinkTo
+                            link="/minha-conta/cursos"
+                            obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }}
+                            text="Cursos"
+                        />
                     </li>
 
                     <li>
-                        <LinkTo link="/minha-conta/entrevistas" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Entrevistas" />
+                        <LinkTo
+                            link="/minha-conta/entrevistas"
+                            obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }}
+                            text="Entrevistas"
+                        />
                     </li>
 
                     {/* <li>

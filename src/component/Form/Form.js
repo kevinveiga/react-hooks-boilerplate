@@ -44,7 +44,14 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
 
     return (
         <>
-            <InputAlternateStyled defaultValue={value} id={id} invalid={error} type={typeInput} valid={!error && touched[otherProps.name] ? 'true' : undefined} {...otherProps} />
+            <InputAlternateStyled
+                defaultValue={value}
+                id={id}
+                invalid={error}
+                type={typeInput}
+                valid={!error && touched[otherProps.name] ? 'true' : undefined}
+                {...otherProps}
+            />
 
             <Label ariaLabel={acessibility} forLabel={id} {...otherProps}>
                 {content}

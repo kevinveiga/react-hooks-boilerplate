@@ -14,7 +14,14 @@ import { ModalLogout } from '../Modal/ModalLogout';
 // import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
-import { HeaderBtnMenuStyled, HeaderMinhaContaMenuBackgroundStyled, HeaderMinhaContaMenuStyled, HeaderMinhaContaNomeStyled, HeaderPesquisaStyled, HeaderStyled } from './HeaderStyled';
+import {
+    HeaderBtnMenuStyled,
+    HeaderMinhaContaMenuBackgroundStyled,
+    HeaderMinhaContaMenuStyled,
+    HeaderMinhaContaNomeStyled,
+    HeaderPesquisaStyled,
+    HeaderStyled
+} from './HeaderStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -107,7 +114,13 @@ export const Header = () => {
                             <HeaderPesquisaStyled active={statePesquisa} change={stateChangeHeaderScroll}>
                                 <Grid display="grid" gridAutoColumns="1fr" px={2}>
                                     <Cell width="100%">
-                                        <Input maxLength="50" name="pesquisa" placeholder="Procure" obj={{ color: stateChangeHeaderScroll ? 'colorWhite' : 'colorGrayDark' }} onKeyDown={keyPress()} />
+                                        <Input
+                                            maxLength="50"
+                                            name="pesquisa"
+                                            placeholder="Procure"
+                                            obj={{ color: stateChangeHeaderScroll ? 'colorWhite' : 'colorGrayDark' }}
+                                            onKeyDown={keyPress()}
+                                        />
                                     </Cell>
                                 </Grid>
                             </HeaderPesquisaStyled>
@@ -120,7 +133,13 @@ export const Header = () => {
                                 <Box display="inline-block" minWidth="150px" ml={3}>
                                     <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}>
                                         Olá {removeLastName(user.nome)}
-                                        <Svg active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll} height="6px" ml={2} name="svg-arrow-down" />
+                                        <Svg
+                                            active={stateHeaderMinhaContaMenu}
+                                            change={stateChangeHeaderScroll}
+                                            height="6px"
+                                            ml={2}
+                                            name="svg-arrow-down"
+                                        />
                                     </HeaderMinhaContaNomeStyled>
 
                                     <HeaderMinhaContaMenuStyled active={stateHeaderMinhaContaMenu} change={stateChangeHeaderScroll}>
@@ -158,7 +177,10 @@ export const Header = () => {
                                         </ul>
                                     </HeaderMinhaContaMenuStyled>
 
-                                    <HeaderMinhaContaMenuBackgroundStyled active={stateHeaderMinhaContaMenu} onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)} />
+                                    <HeaderMinhaContaMenuBackgroundStyled
+                                        active={stateHeaderMinhaContaMenu}
+                                        onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
+                                    />
                                 </Box>
                             ) : (
                                 <>
@@ -166,7 +188,12 @@ export const Header = () => {
                                         <Button text="Seja Membro" themeSize="small" />
                                     </LinkTo>
 
-                                    <LinkTo fontWeight="700" link="/login" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} text="Login" />
+                                    <LinkTo
+                                        fontWeight="700"
+                                        link="/login"
+                                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
+                                        text="Login"
+                                    />
                                 </>
                             )}
                         </Box>

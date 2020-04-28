@@ -149,7 +149,13 @@ export const Aprenda = () => {
                                                                 verticalAlign="middle"
                                                             >
                                                                 <ListBoxHover zindex="3">
-                                                                    <Flex alignItems="center" display="flex" flexWrap="wrap" height="100%" justifyContent="center">
+                                                                    <Flex
+                                                                        alignItems="center"
+                                                                        display="flex"
+                                                                        flexWrap="wrap"
+                                                                        height="100%"
+                                                                        justifyContent="center"
+                                                                    >
                                                                         <Box textAlign="center">
                                                                             <Svg fill="colorWhite" height="50px" mb={2} name="svg-plus" />
 
@@ -160,7 +166,10 @@ export const Aprenda = () => {
 
                                                                 <Box width="100%">
                                                                     <Box overflow="hidden" pt="calc((9 / 16) * 100%)" width="100%">
-                                                                        <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.galeria.curso_listagem} />
+                                                                        <BgImageLazyLoad
+                                                                            key={curso.id}
+                                                                            url={curso.imagens && curso.imagens.galeria.curso_listagem}
+                                                                        />
 
                                                                         <ListTag>Gratuito</ListTag>
                                                                     </Box>
@@ -189,7 +198,14 @@ export const Aprenda = () => {
                                                 );
                                             })
                                         ) : (
-                                            <Title4 color="colorPrimary" key={key} mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                            <Title4
+                                                color="colorPrimary"
+                                                key={key}
+                                                mb={{ d: 4, md: 5 }}
+                                                mx="auto"
+                                                textAlign="center"
+                                                themeColor="dark"
+                                            >
                                                 {/* TODO: colocar layout */}
                                                 Nenhum curso encontrado
                                             </Title4>

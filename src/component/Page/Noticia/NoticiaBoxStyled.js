@@ -61,7 +61,8 @@ export const NoticiaBoxStyled = styled.div`
     }
 
     ${NoticiaBoxAuthorStyled} {
-        color: ${({ color, themeColor }) => (themeColor === 'light' ? (color === 'colorBlueDark' ? variable.colorWhite : variable[color]) : variable[color])};
+        color: ${({ color, themeColor }) =>
+            themeColor === 'light' ? (color === 'colorBlueDark' ? variable.colorWhite : variable[color]) : variable[color]};
         ${({ fontSize }) => fontSize === undefined && 'font-size: 12px'};
 
         @media (min-width: ${variable.sm}) {

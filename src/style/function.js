@@ -2,26 +2,48 @@ import { css } from 'styled-components';
 
 import { variable } from './variable';
 
-export const gradientDirection = (deg = '45deg', startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
+export const gradientDirection = (
+    deg = '45deg',
+    startColor = variable.colorPrimary,
+    startColorPercent = '0%',
+    endColor = variable.colorSecondary,
+    endColorPercent = '100%'
+) => {
     return css`
         background-image: linear-gradient(${deg}, ${startColor} ${startColorPercent}, ${endColor} ${endColorPercent});
         background-repeat: repeat-x;
     `;
 };
 
-export const gradientDirectionRepeat = (deg = '45deg', startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
+export const gradientDirectionRepeat = (
+    deg = '45deg',
+    startColor = variable.colorPrimary,
+    startColorPercent = '0%',
+    endColor = variable.colorSecondary,
+    endColorPercent = '100%'
+) => {
     return css`
         background-image: repeating-linear-gradient(${deg}, ${startColor} ${startColorPercent}, ${endColor} ${endColorPercent});
     `;
 };
 
-export const gradientRadial = (startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
+export const gradientRadial = (
+    startColor = variable.colorPrimary,
+    startColorPercent = '0%',
+    endColor = variable.colorSecondary,
+    endColorPercent = '100%'
+) => {
     return css`
         background-image: radial-gradient(circle, ${startColor} ${startColorPercent}, ${endColor} ${endColorPercent});
     `;
 };
 
-export const gradientRadialRepeat = (startColor = variable.colorPrimary, startColorPercent = '0%', endColor = variable.colorSecondary, endColorPercent = '100%') => {
+export const gradientRadialRepeat = (
+    startColor = variable.colorPrimary,
+    startColorPercent = '0%',
+    endColor = variable.colorSecondary,
+    endColorPercent = '100%'
+) => {
     return css`
         background-image: repeating-radial-gradient(circle, ${startColor} ${startColorPercent}, ${endColor} ${endColorPercent});
     `;

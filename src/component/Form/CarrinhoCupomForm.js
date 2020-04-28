@@ -32,7 +32,15 @@ export const CarrinhoCupomForm = ({ ...props }) => {
                 </Cell>
 
                 <Cell>
-                    <Button height="30px" fontSize="12px" minWidth="auto" mx={{ d: 'auto', xs: 0 }} text="Aplicar" themeSize="small" typeButton="submit" />
+                    <Button
+                        height="30px"
+                        fontSize="12px"
+                        minWidth="auto"
+                        mx={{ d: 'auto', xs: 0 }}
+                        text="Aplicar"
+                        themeSize="small"
+                        typeButton="submit"
+                    />
                 </Cell>
             </Grid>
         </FormStyled>

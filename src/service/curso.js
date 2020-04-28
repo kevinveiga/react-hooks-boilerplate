@@ -138,7 +138,9 @@ export const useCursoConteudoApi = (initialData = {}) => {
 
         const fetchData = async () => {
             try {
-                const result = await axios.get(`${stateCursoConteudoData.url}/${stateCursoConteudoData.cursoId}/${stateCursoConteudoData.conteudoId}`);
+                const result = await axios.get(
+                    `${stateCursoConteudoData.url}/${stateCursoConteudoData.cursoId}/${stateCursoConteudoData.conteudoId}`
+                );
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
@@ -195,7 +197,8 @@ export const useCursoConteudoVisualizadoApi = (initialData = {}) => {
 
         const fetchData = async () => {
             try {
-                const action = stateCursoConteudoVisualizadoData.action.type === ACTION.remove().type ? 'remover-visualizacao' : 'registrar-visualizacao';
+                const action =
+                    stateCursoConteudoVisualizadoData.action.type === ACTION.remove().type ? 'remover-visualizacao' : 'registrar-visualizacao';
 
                 const result = await axios.post(`${stateCursoConteudoVisualizadoData.url}/${action}`);
 

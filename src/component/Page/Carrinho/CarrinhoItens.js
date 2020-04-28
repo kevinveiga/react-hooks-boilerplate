@@ -60,7 +60,13 @@ export const CarrinhoItens = () => {
                                 </Cell>
 
                                 <Cell gridRow="1 / span 2">
-                                    <Svg fill="colorGray2" height="23px" name="svg-trash" obj={{ hoverColor: 'colorPrimary' }} onClick={handleRemoveCarrinhoItemContext(carrinhoItem.id)} />
+                                    <Svg
+                                        fill="colorGray2"
+                                        height="23px"
+                                        name="svg-trash"
+                                        obj={{ hoverColor: 'colorPrimary' }}
+                                        onClick={handleRemoveCarrinhoItemContext(carrinhoItem.id)}
+                                    />
                                 </Cell>
                             </Grid>
                         );

@@ -9,7 +9,11 @@ export const Share = ({ title, url, ...otherProps }) => {
     return (
         <SocialAlternateStyled {...otherProps}>
             <li>
-                <LinkToExternal text="Facebook" link="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" target="_blank">
+                <LinkToExternal
+                    text="Facebook"
+                    link="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                    target="_blank"
+                >
                     <Svg name="svg-facebook-circle" />
                 </LinkToExternal>
             </li>

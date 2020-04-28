@@ -138,7 +138,13 @@ export const Curso = ({ match }) => {
                                         </Box>
 
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} textTransform="capitalize" themeColor="dark">
+                                            <P
+                                                fontSize={{ d: '14px', sm: '20px' }}
+                                                fontWeight="700"
+                                                mb={0}
+                                                textTransform="capitalize"
+                                                themeColor="dark"
+                                            >
                                                 {curso.nivel || 'Indefinido'}
                                             </P>
 
@@ -148,7 +154,13 @@ export const Curso = ({ match }) => {
                                         </Box>
 
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} textTransform="capitalize" themeColor="dark">
+                                            <P
+                                                fontSize={{ d: '14px', sm: '20px' }}
+                                                fontWeight="700"
+                                                mb={0}
+                                                textTransform="capitalize"
+                                                themeColor="dark"
+                                            >
                                                 {curso.modalidade || 'Indefinido'}
                                             </P>
 
@@ -157,7 +169,11 @@ export const Curso = ({ match }) => {
                                             </P>
                                         </Box>
 
-                                        <Box borderRight={{ d: 0, sm: '1px solid rgba(216, 221, 225, 1)' }} px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
+                                        <Box
+                                            borderRight={{ d: 0, sm: '1px solid rgba(216, 221, 225, 1)' }}
+                                            px={{ d: 2, sm: 3, md: 4 }}
+                                            py={{ d: 1, sm: 0 }}
+                                        >
                                             <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
                                                 Gratuito
                                             </P>
@@ -198,9 +214,17 @@ export const Curso = ({ match }) => {
                                         <Box overflowY="hidden">
                                             <VideoWrap>
                                                 {getVideoSource(curso.imagens.video.url) === 'vimeo' ? (
-                                                    <Vimeo id="video" video={curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)} />
+                                                    <Vimeo
+                                                        id="video"
+                                                        video={curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)}
+                                                    />
                                                 ) : (
-                                                    <YouTube id="video" videoId={curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)} />
+                                                    <YouTube
+                                                        id="video"
+                                                        videoId={
+                                                            curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)
+                                                        }
+                                                    />
                                                 )}
                                             </VideoWrap>
                                         </Box>
@@ -224,7 +248,13 @@ export const Curso = ({ match }) => {
                                 {curso.capacitacoes.map((capacitacao) => {
                                     return (
                                         <Cell key={capacitacao.titulo}>
-                                            <Title4 fontSize={{ d: '18px', md: '20px' }} fontWeight="700" line={true} mb={{ d: 3, md: 4 }} themeColor="dark">
+                                            <Title4
+                                                fontSize={{ d: '18px', md: '20px' }}
+                                                fontWeight="700"
+                                                line={true}
+                                                mb={{ d: 3, md: 4 }}
+                                                themeColor="dark"
+                                            >
                                                 {capacitacao.titulo}
                                             </Title4>
 
@@ -261,7 +291,11 @@ export const Curso = ({ match }) => {
                                                     </Span>
 
                                                     <ConteudoCellSvgStyled>
-                                                        <Svg fill="colorSecondary" height="30px" name={statePart == modulo.id ? 'svg-minus' : 'svg-plus'} />
+                                                        <Svg
+                                                            fill="colorSecondary"
+                                                            height="30px"
+                                                            name={statePart == modulo.id ? 'svg-minus' : 'svg-plus'}
+                                                        />
                                                     </ConteudoCellSvgStyled>
                                                 </Box>
 

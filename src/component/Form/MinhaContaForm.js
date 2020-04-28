@@ -86,7 +86,9 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
 
     const handleScrollTo = useCallback(
         () => () => {
-            const anchorElement = (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') || (document.querySelector(`#${formId}`) && `#${formId}`);
+            const anchorElement =
+                (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') ||
+                (document.querySelector(`#${formId}`) && `#${formId}`);
 
             scrollTo(anchorElement, true);
         },
@@ -168,7 +170,14 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
     return (
         <>
             <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
-                <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }} px={{ d: 1, md: 4 }} py={{ d: 2, md: 4 }}>
+                <Grid
+                    display="grid"
+                    gridColumnGap={5}
+                    gridRowGap={4}
+                    gridTemplateColumns={{ d: '1fr', md: '1fr 1fr 1fr 1fr' }}
+                    px={{ d: 1, md: 4 }}
+                    py={{ d: 2, md: 4 }}
+                >
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <InvalidResponseMessageContainerStyled>
                             {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
@@ -179,7 +188,16 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                         <Label color="colorGray2" mb="-10px" text="Nome completo" />
 
                         <div>
-                            <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" pr={4} touched={touched} {...otherProps} />
+                            <InputValidation
+                                error={errors.nome}
+                                maxLength="50"
+                                name="nome"
+                                onChange={handleValidation()}
+                                placeholder="Nome"
+                                pr={4}
+                                touched={touched}
+                                {...otherProps}
+                            />
                         </div>
 
                         {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
@@ -189,7 +207,16 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                         <Label color="colorGray2" mb="-10px" text="E-mail" />
 
                         <div>
-                            <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" pr={4} touched={touched} {...otherProps} />
+                            <InputValidation
+                                error={errors.email}
+                                maxLength="50"
+                                name="email"
+                                onChange={handleValidation()}
+                                placeholder="E-mail"
+                                pr={4}
+                                touched={touched}
+                                {...otherProps}
+                            />
                         </div>
 
                         {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
@@ -230,7 +257,16 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                                 {...otherProps}
                             />
 
-                            <Button bottom="17px" left="87px" onClick={handleFindAddress()} position="absolute" themeSize="none" themeType="none" title="Preencher endereço pelo cep" zIndex={1}>
+                            <Button
+                                bottom="17px"
+                                left="87px"
+                                onClick={handleFindAddress()}
+                                position="absolute"
+                                themeSize="none"
+                                themeType="none"
+                                title="Preencher endereço pelo cep"
+                                zIndex={1}
+                            >
                                 <Svg name="svg-search" />
                             </Button>
                         </div>
@@ -382,7 +418,12 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             Notificação de e-mail
                         </P>
 
-                        <InputCheckboxRadio color="colorGray2" id="receber_avisos_descontos_de_cursos" name="receber_avisos_descontos_de_cursos" onChange={handleSetValueChecked()}>
+                        <InputCheckboxRadio
+                            color="colorGray2"
+                            id="receber_avisos_descontos_de_cursos"
+                            name="receber_avisos_descontos_de_cursos"
+                            onChange={handleSetValueChecked()}
+                        >
                             <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                             <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
@@ -390,7 +431,12 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             </Span>
                         </InputCheckboxRadio>
 
-                        <InputCheckboxRadio color="colorGray2" id="receber_curadoria_conteudos_noticias" name="receber_curadoria_conteudos_noticias" onChange={handleSetValueChecked()}>
+                        <InputCheckboxRadio
+                            color="colorGray2"
+                            id="receber_curadoria_conteudos_noticias"
+                            name="receber_curadoria_conteudos_noticias"
+                            onChange={handleSetValueChecked()}
+                        >
                             <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
 
                             <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
@@ -400,7 +446,14 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" mx="auto" onClick={handleScrollTo()} text="Salvar" typeButton="submit" />
+                        <Button
+                            fontSize={{ d: '16px', sm: '18px' }}
+                            height="70px"
+                            mx="auto"
+                            onClick={handleScrollTo()}
+                            text="Salvar"
+                            typeButton="submit"
+                        />
                     </Cell>
                 </Grid>
             </FormStyled>

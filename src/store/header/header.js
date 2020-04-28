@@ -27,7 +27,9 @@ export const useChangeHeaderScroll = (elementId, offset = 0) => {
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-        const position = document.getElementById(elementId) ? document.getElementById(elementId).offsetHeight + parseInt(variable.headerHeight, 10) : 0;
+        const position = document.getElementById(elementId)
+            ? document.getElementById(elementId).offsetHeight + parseInt(variable.headerHeight, 10)
+            : 0;
 
         setStateChangeHeader(scrollYPos > position + offset);
     }, [elementId, offset]);

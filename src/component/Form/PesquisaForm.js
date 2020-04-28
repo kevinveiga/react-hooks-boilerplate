@@ -62,7 +62,14 @@ export const PesquisaForm = ({ ...props }) => {
                 <Cell mb={3}>
                     <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />
 
-                    <Input maxLength="50" name="query" onChange={handleValidation()} onKeyDown={keyPress(submitForm)} placeholder="O que você procura?" {...props} />
+                    <Input
+                        maxLength="50"
+                        name="query"
+                        onChange={handleValidation()}
+                        onKeyDown={keyPress(submitForm)}
+                        placeholder="O que você procura?"
+                        {...props}
+                    />
                 </Cell>
 
                 <Cell mb={3}>

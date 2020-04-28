@@ -16,7 +16,12 @@ export const Carrinho = () => {
     return (
         <CarrinhoProvider>
             <Wrap>
-                <Container minHeight={{ d: `calc(100vh - ${variable.headerHeightMobile} - 85px)`, lg: `calc(100vh - ${variable.headerHeight} - 85px)` }} mx="auto" px={3} py={{ d: 4, md: 5 }}>
+                <Container
+                    minHeight={{ d: `calc(100vh - ${variable.headerHeightMobile} - 85px)`, lg: `calc(100vh - ${variable.headerHeight} - 85px)` }}
+                    mx="auto"
+                    px={3}
+                    py={{ d: 4, md: 5 }}
+                >
                     <Grid
                         alignItems="flex-start"
                         display="grid"

@@ -82,7 +82,12 @@ export const HomeSuperDestaque = () => {
                                     verticalAlign="middle"
                                     width="100%"
                                 >
-                                    <BgImageLazyLoad filter="grayscale(100%)" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
+                                    <BgImageLazyLoad
+                                        filter="grayscale(100%)"
+                                        key={item.id}
+                                        overlayColor="colorBlackTransparent3"
+                                        url={item.thumbnail.attachment.url}
+                                    />
 
                                     <Box>
                                         <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
@@ -105,7 +110,12 @@ export const HomeSuperDestaque = () => {
 
                         return (
                             <div key={key}>
-                                <BannerContainerStyled key={key} display="grid" gridAutoColumns="1fr" gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}>
+                                <BannerContainerStyled
+                                    key={key}
+                                    display="grid"
+                                    gridAutoColumns="1fr"
+                                    gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}
+                                >
                                     {group.map((item, i, newArray) => {
                                         let row = {};
 
@@ -136,12 +146,19 @@ export const HomeSuperDestaque = () => {
                                                         verticalAlign="middle"
                                                         width="100%"
                                                     >
-                                                        <BgImageLazyLoad filter="grayscale(100%)" key={item.id} overlayColor="colorBlackTransparent3" url={item.thumbnail.attachment.url} />
+                                                        <BgImageLazyLoad
+                                                            filter="grayscale(100%)"
+                                                            key={item.id}
+                                                            overlayColor="colorBlackTransparent3"
+                                                            url={item.thumbnail.attachment.url}
+                                                        />
 
                                                         <Box>
                                                             <NoticiaBoxTagStyled>{item.category.title}</NoticiaBoxTagStyled>
 
-                                                            <NoticiaBoxTitleStyled fontSize={{ d: '24px', md: '32px' }}>{item.title}</NoticiaBoxTitleStyled>
+                                                            <NoticiaBoxTitleStyled fontSize={{ d: '24px', md: '32px' }}>
+                                                                {item.title}
+                                                            </NoticiaBoxTitleStyled>
 
                                                             <span>{`Por ${item.author}`}</span>
                                                         </Box>

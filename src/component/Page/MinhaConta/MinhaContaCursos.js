@@ -34,7 +34,8 @@ const MinhaContaCursos = () => {
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`);
 
     const cursosLength = stateCursos.data && stateCursos.data.data ? Object.keys(stateCursos.data.data).length : 0;
-    const cursosCategoriasLength = stateCursosCategorias.data && stateCursosCategorias.data.data && Object.keys(stateCursosCategorias.data.data).length;
+    const cursosCategoriasLength =
+        stateCursosCategorias.data && stateCursosCategorias.data.data && Object.keys(stateCursosCategorias.data.data).length;
 
     // Verificação se todos os dados de API estão carregados
     const isDataLoaded = cursosLength > 0 && cursosCategoriasLength > 0;
@@ -138,18 +139,50 @@ const MinhaContaCursos = () => {
 
                                                             return (
                                                                 <Box key={curso.id} mb={5} width="100%">
-                                                                    <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
-                                                                        <ListBox display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                    <LinkTo
+                                                                        ariaLabel={curso.title}
+                                                                        height="100%"
+                                                                        to={`/minha-conta/curso/${curso.id}`}
+                                                                        width="100%"
+                                                                    >
+                                                                        <ListBox
+                                                                            display="flex"
+                                                                            flexWrap="wrap"
+                                                                            height="100%"
+                                                                            mx={{ d: 0, md: 2 }}
+                                                                            themeColor="dark"
+                                                                        >
                                                                             <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                                 <Box overflow="hidden" width={{ d: 1, md: 7 / 12 }}>
                                                                                     <Box pt="calc((9 / 16) * 100%)">
-                                                                                        <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
+                                                                                        <BgImageLazyLoad
+                                                                                            key={curso.id}
+                                                                                            url={
+                                                                                                curso.imagens &&
+                                                                                                curso.imagens.meus_cursos.curso_usuario
+                                                                                            }
+                                                                                        />
                                                                                     </Box>
                                                                                 </Box>
 
-                                                                                <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 5 / 12 }}>
-                                                                                    <Box height={{ d: 'auto', md: '200px' }} mb={2} overflowY="hidden" width="100%">
-                                                                                        <Box height={{ d: 'auto', md: '70px' }} mb={3} overflowY="hidden">
+                                                                                <Box
+                                                                                    alignContent="space-between"
+                                                                                    display="flex"
+                                                                                    flexWrap="wrap"
+                                                                                    p={{ d: 3, md: 4 }}
+                                                                                    width={{ d: 1, md: 5 / 12 }}
+                                                                                >
+                                                                                    <Box
+                                                                                        height={{ d: 'auto', md: '200px' }}
+                                                                                        mb={2}
+                                                                                        overflowY="hidden"
+                                                                                        width="100%"
+                                                                                    >
+                                                                                        <Box
+                                                                                            height={{ d: 'auto', md: '70px' }}
+                                                                                            mb={3}
+                                                                                            overflowY="hidden"
+                                                                                        >
                                                                                             <ListTitle>{curso.title}</ListTitle>
                                                                                         </Box>
 
@@ -236,14 +269,41 @@ const MinhaContaCursos = () => {
                                                             cursos.data.map((curso) => {
                                                                 return (
                                                                     <Box key={curso.id} mb={5} width="100%">
-                                                                        <LinkTo ariaLabel={curso.title} height="100%" to={`/minha-conta/curso/${curso.id}`} width="100%">
-                                                                            <ListBox display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
+                                                                        <LinkTo
+                                                                            ariaLabel={curso.title}
+                                                                            height="100%"
+                                                                            to={`/minha-conta/curso/${curso.id}`}
+                                                                            width="100%"
+                                                                        >
+                                                                            <ListBox
+                                                                                display="flex"
+                                                                                flexWrap="wrap"
+                                                                                height="100%"
+                                                                                mx={{ d: 0, md: 2 }}
+                                                                                themeColor="dark"
+                                                                            >
                                                                                 <Box display={{ d: 'block', md: 'flex' }} width="100%">
-                                                                                    <Box height={{ d: '200px', md: '100%' }} overflow="hidden" width={{ d: 1, md: 1 / 2 }}>
-                                                                                        <BgImageLazyLoad key={curso.id} url={curso.imagens && curso.imagens.meus_cursos.curso_usuario} />
+                                                                                    <Box
+                                                                                        height={{ d: '200px', md: '100%' }}
+                                                                                        overflow="hidden"
+                                                                                        width={{ d: 1, md: 1 / 2 }}
+                                                                                    >
+                                                                                        <BgImageLazyLoad
+                                                                                            key={curso.id}
+                                                                                            url={
+                                                                                                curso.imagens &&
+                                                                                                curso.imagens.meus_cursos.curso_usuario
+                                                                                            }
+                                                                                        />
                                                                                     </Box>
 
-                                                                                    <Box alignContent="space-between" display="flex" flexWrap="wrap" p={{ d: 3, md: 4 }} width={{ d: 1, md: 1 / 2 }}>
+                                                                                    <Box
+                                                                                        alignContent="space-between"
+                                                                                        display="flex"
+                                                                                        flexWrap="wrap"
+                                                                                        p={{ d: 3, md: 4 }}
+                                                                                        width={{ d: 1, md: 1 / 2 }}
+                                                                                    >
                                                                                         <Box height="200px" mb={4} overflowY="hidden" width="100%">
                                                                                             <ListTitle mb={3}>{curso.title}</ListTitle>
 
@@ -251,13 +311,21 @@ const MinhaContaCursos = () => {
                                                                                         </Box>
 
                                                                                         <Box width="100%">
-                                                                                            <Svg fill="colorSecondary" height="13px" name="svg-time" />
+                                                                                            <Svg
+                                                                                                fill="colorSecondary"
+                                                                                                height="13px"
+                                                                                                name="svg-time"
+                                                                                            />
 
                                                                                             <ListTime ml={1} mr={3}>
                                                                                                 {curso.carga_horaria}
                                                                                             </ListTime>
 
-                                                                                            <Svg fill="colorSecondary" height="14px" name="svg-level" />
+                                                                                            <Svg
+                                                                                                fill="colorSecondary"
+                                                                                                height="14px"
+                                                                                                name="svg-level"
+                                                                                            />
 
                                                                                             <ListLevel ml={1}>{curso.nivel}</ListLevel>
                                                                                         </Box>
@@ -290,7 +358,14 @@ const MinhaContaCursos = () => {
                                                                 );
                                                             })
                                                         ) : (
-                                                            <Title4 color="colorPrimary" key={key} mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                                                            <Title4
+                                                                color="colorPrimary"
+                                                                key={key}
+                                                                mb={{ d: 4, md: 5 }}
+                                                                mx="auto"
+                                                                textAlign="center"
+                                                                themeColor="dark"
+                                                            >
                                                                 {/* TODO: colocar layout */}
                                                                 Nenhum curso encontrado
                                                             </Title4>
