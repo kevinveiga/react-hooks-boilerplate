@@ -1,17 +1,20 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
+
+import { useCarrinhoApi } from '../../service/carrinho';
 
 const CarrinhoContext = createContext(undefined);
 
-export const getSessionStorageCarrinho = () => {
-    return JSON.parse(window.sessionStorage.getItem('carrinho')) || [];
-};
-
 export const CarrinhoProvider = ({ children }) => {
-    const [stateCarrinho, setStateCarrinho] = useState(getSessionStorageCarrinho());
+    // API
+    const { handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData } = useCarrinhoApi();
 
-    const carrinho = useMemo(() => [stateCarrinho, setStateCarrinho], [stateCarrinho, setStateCarrinho]);
+    const carrinho = useMemo(() => [handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData], [handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData]);
 
-    return <CarrinhoContext.Provider value={carrinho}>{children}</CarrinhoContext.Provider>;
+    return (
+        <CarrinhoContext.Provider value={{ handleRemoveCarrinhoItemContext: carrinho[0], stateCarrinhoContext: carrinho[1], setStateCarrinhoDataContext: carrinho[2] }}>
+            {children}
+        </CarrinhoContext.Provider>
+    );
 };
 
 export const useCarrinho = () => {

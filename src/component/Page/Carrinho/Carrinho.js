@@ -1,11 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 
-import { apiUrlCarrinho } from '../../../config';
-
-import { useCarrinhoApi } from '../../../service/carrinho';
+import { CarrinhoProvider } from '../../../store/carrinho/carrinho';
 
 import { CarrinhoBreadcrumb } from './CarrinhoBreadcrumb';
-import { CarrinhoItems } from './CarrinhoItems';
+import { CarrinhoItens } from './CarrinhoItens';
 import { CarrinhoTotal } from './CarrinhoTotal';
 import { Svg } from '../../Svg/Svg';
 
@@ -15,18 +13,8 @@ import { Span } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 export const Carrinho = () => {
-    // // API
-    // const [stateCarrinho] = useCarrinhoApi(apiUrlCarrinho);
-
-    // const carrinhoLength = stateCarrinho.data.length;
-
-    // // Verificação se todos os dados de API estão carregados
-    // const isDataLoaded = carrinhoLength > 0;
-
-    // ACTION
-
     return (
-        <>
+        <CarrinhoProvider>
             <Wrap>
                 <Container minHeight={{ d: `calc(100vh - ${variable.headerHeightMobile} - 85px)`, lg: `calc(100vh - ${variable.headerHeight} - 85px)` }} mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <Grid
@@ -38,7 +26,7 @@ export const Carrinho = () => {
                         gridTemplateRows={{ d: 'auto auto auto', md: '55px auto auto' }}
                     >
                         <Cell gridRow={{ d: 2, md: '1 / span 2' }}>
-                            <CarrinhoItems />
+                            <CarrinhoItens />
                         </Cell>
 
                         <Cell gridRow={{ d: 1, md: '1 / span 1' }}>
@@ -53,7 +41,7 @@ export const Carrinho = () => {
             </Wrap>
 
             <Wrap backgroundColor="colorGrayLight2" height="85px">
-                <Container mx="auto" p={3}>
+                <Container mx="auto" px={3} py={{ d: 3, sm: 4 }}>
                     <Grid display="grid" gridRowGap={2} justifyItems="center">
                         <Cell>
                             <Span color="colorGray2" fontSize="14px">
@@ -71,6 +59,6 @@ export const Carrinho = () => {
                     </Grid>
                 </Container>
             </Wrap>
-        </>
+        </CarrinhoProvider>
     );
 };
