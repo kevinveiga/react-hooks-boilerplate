@@ -448,7 +448,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <Button
                             fontSize={{ d: '16px', sm: '18px' }}
-                            height="70px"
+                            height="60px"
                             mx="auto"
                             onClick={handleScrollTo()}
                             text="Salvar"

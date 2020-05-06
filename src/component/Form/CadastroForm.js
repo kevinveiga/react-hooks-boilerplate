@@ -231,7 +231,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                             <Cell mb={3}>
                                 <Button
                                     fontSize={{ d: '16px', sm: '18px' }}
-                                    height="70px"
+                                    height="60px"
                                     onClick={handleScrollTo()}
                                     text="Cadastrar-se"
                                     typeButton="submit"

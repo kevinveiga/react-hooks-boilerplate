@@ -109,7 +109,7 @@ export const EsqueceuSenhaForm = ({ ...props }) => {
                             </Cell>
 
                             <Cell mb={3}>
-                                <Button fontSize={{ d: '16px', sm: '18px' }} height="70px" mx="auto" text="Enviar" typeButton="submit" width="50%" />
+                                <Button fontSize={{ d: '16px', sm: '18px' }} height="60px" mx="auto" text="Enviar" typeButton="submit" width="50%" />
                             </Cell>
                         </Grid>
                     </FormStyled>

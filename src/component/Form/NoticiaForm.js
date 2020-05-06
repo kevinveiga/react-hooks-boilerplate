@@ -130,7 +130,9 @@ export const NoticiaForm = ({ ...props }) => {
                             A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
                         </Title3>
 
-                        <P themeColor="light">A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.</P>
+                        <P themeColor="light">
+                            A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.
+                        </P>
                     </>
                 )}
             </Box>
@@ -152,12 +154,30 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation error={errors.nome} maxLength="50" name="nome" onChange={handleValidation()} placeholder="Nome" pr={4} touched={touched} {...props} />
+                            <InputValidation
+                                error={errors.nome}
+                                maxLength="50"
+                                name="nome"
+                                onChange={handleValidation()}
+                                placeholder="Nome"
+                                pr={4}
+                                touched={touched}
+                                {...props}
+                            />
                             {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" pr={4} touched={touched} {...props} />
+                            <InputValidation
+                                error={errors.email}
+                                maxLength="50"
+                                name="email"
+                                onChange={handleValidation()}
+                                placeholder="E-mail"
+                                pr={4}
+                                touched={touched}
+                                {...props}
+                            />
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
@@ -176,7 +196,7 @@ export const NoticiaForm = ({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <Button fontSize={{ d: '16px', md: '18px' }} height="70px" text="Quero Investir" typeButton="submit" width="100%" />
+                            <Button fontSize={{ d: '16px', md: '18px' }} height="60px" text="Quero Investir" typeButton="submit" width="100%" />
                         </Cell>
                     </Grid>
                 </FormStyled>

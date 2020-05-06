@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { LoginForm } from '../../Form/LoginForm';
-
 import { LinkTo } from '../../Link/LinkTo';
 import { Splash } from '../../Splash/Splash';
 import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
-import { Title2 } from '../../../style/text';
+import { P, Title2 } from '../../../style/text';
 
 export const Login = ({ location }) => {
     return (
@@ -30,6 +29,21 @@ export const Login = ({ location }) => {
                     </Title2>
 
                     <LoginForm location={location} obj={{ colorLine: 'colorPrimary' }} />
+
+                    <Box px={{ d: 1, sm: 5 }}>
+                        <P color="colorGray2" fontSize="14px" themeColor="dark">
+                            Precisa de uma conta?{' '}
+                            <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
+                        </P>
+
+                        <P color="colorGray2" fontSize="14px" themeColor="dark">
+                            <LinkTo
+                                obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }}
+                                link="/esqueci-minha-senha"
+                                text="Esqueceu sua senha?"
+                            />
+                        </P>
+                    </Box>
                 </Container>
             </Box>
 
