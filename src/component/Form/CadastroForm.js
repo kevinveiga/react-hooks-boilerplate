@@ -114,7 +114,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
             <Flex display="flex" flexWrap="wrap">
                 <Box overflow="hidden" width="100%">
                     <FormStyled id="cadastroFormId" onSubmit={handleSubmit(submitForm)}>
-                        <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
+                        <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>
                                     {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
