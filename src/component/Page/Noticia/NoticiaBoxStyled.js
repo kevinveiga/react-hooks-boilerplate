@@ -6,7 +6,7 @@ import { variable } from '../../../style/variable';
 export const NoticiaBoxAuthorStyled = styled.h5`
     display: block;
     font-weight: 400;
-    margin-bottom: 10px;
+    margin-bottom: ${variable.spacingXS};
 `;
 
 export const NoticiaBoxDateTimeStyled = styled.span`
@@ -23,7 +23,7 @@ export const NoticiaBoxTagStyled = styled.div`
     color: ${variable.colorWhite};
     display: table;
     line-height: 1;
-    margin-bottom: ${variable.spacingSM};
+    margin-bottom: ${variable.spacingXS};
     margin-top: ${variable.spacingXS};
     padding: ${variable.spacingXS};
 `;
@@ -37,7 +37,7 @@ export const NoticiaBoxTitleStyled = styled.h2`
     ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: ${variable.spacingSM};
+    margin-bottom: ${variable.spacingXS};
 
     @media (min-width: ${variable.sm}) {
         ${({ fontSize }) => fontSize === undefined && 'font-size: 24px'};
