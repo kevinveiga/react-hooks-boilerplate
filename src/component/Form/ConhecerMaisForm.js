@@ -253,7 +253,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                                 obj={{
                                                     color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
                                                     colorLine: 'colorPrimary',
-                                                    fontWeight: touched['endereco_uf'] ? '600' : '400'
+                                                    fontWeight: touched['endereco_uf'] ? '700' : '400'
                                                 }}
                                                 onChange={handleSetValue()}
                                             >
