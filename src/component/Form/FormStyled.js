@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { position, space, typography } from 'styled-system';
+import { display, position, space, typography } from 'styled-system';
 import { IMaskInput } from 'react-imask';
 
 import { variable } from '../../style/variable';
@@ -232,10 +232,10 @@ export const InvalidResponseMessageStyled = styled.p`
 `;
 
 export const LabelStyled = styled.label`
+    ${display};
     ${position};
     ${space};
     ${typography};
-
     color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     ${({ px }) => px === undefined && 'padding-left: 2px; padding-right: 2px'};

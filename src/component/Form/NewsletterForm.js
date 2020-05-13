@@ -23,8 +23,11 @@ export const NewsletterForm = ({ ...props }) => {
         register('email', { ...customValidate.email, ...customValidate.require });
         register('nome', { ...customValidate.name, ...customValidate.require });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('email');
+            unregister('nome');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleValidation = useCallback(
@@ -43,9 +46,10 @@ export const NewsletterForm = ({ ...props }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -60,7 +64,7 @@ export const NewsletterForm = ({ ...props }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 console.error('error: ', error);

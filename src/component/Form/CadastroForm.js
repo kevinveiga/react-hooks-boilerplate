@@ -40,8 +40,14 @@ export const CadastroForm = ({ location, ...otherProps }) => {
         register('password', { ...customValidate.password, ...customValidate.require });
         register('telefone', { ...customValidate.cellphone });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('confirm_password');
+            unregister('email');
+            unregister('nome');
+            unregister('password');
+            unregister('telefone');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleScrollTo = useCallback(
@@ -71,9 +77,10 @@ export const CadastroForm = ({ location, ...otherProps }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -87,7 +94,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
@@ -177,7 +184,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                     <InputValidation
                                         error={errors.password}
                                         label="Senha"
-                                        maxLength="50"
+                                        maxLength="20"
                                         name="password"
                                         onChange={handleValidation()}
                                         pr={4}
@@ -205,7 +212,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
                                     <InputValidation
                                         error={errors.confirm_password}
                                         label="Confirmação de senha"
-                                        maxLength="50"
+                                        maxLength="20"
                                         name="confirm_password"
                                         onChange={handleValidation()}
                                         pr={4}

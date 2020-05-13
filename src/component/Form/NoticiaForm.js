@@ -27,8 +27,12 @@ export const NoticiaForm = ({ ...props }) => {
         register('email', { ...customValidate.email });
         register('telefone', { ...customValidate.phone });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('nome');
+            unregister('email');
+            unregister('telefone');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleValidation = useCallback(
@@ -47,9 +51,10 @@ export const NoticiaForm = ({ ...props }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -64,7 +69,7 @@ export const NoticiaForm = ({ ...props }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 console.error('error: ', error);

@@ -3,8 +3,8 @@ import React from 'react';
 import { CarrinhoProvider } from '../../../store/carrinho/carrinho';
 
 import { CarrinhoBreadcrumb } from './CarrinhoBreadcrumb';
-import { CarrinhoItens } from './CarrinhoItens';
-import { CarrinhoTotal } from './CarrinhoTotal';
+import { CarrinhoFormasPagamento } from './CarrinhoFormasPagamento';
+import { CarrinhoResumo } from './CarrinhoResumo';
 import { Svg } from '../../Svg/Svg';
 
 import { Cell, Grid } from '../../../style/grid';
@@ -12,7 +12,7 @@ import { Container, Wrap } from '../../../style/layout';
 import { Span } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
-export const Carrinho = () => {
+export const CarrinhoPagamento = () => {
     return (
         <CarrinhoProvider>
             <Wrap>
@@ -24,15 +24,15 @@ export const Carrinho = () => {
                 >
                     <Grid alignItems="flex-start" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns={{ d: '1fr', md: '4fr 260px' }}>
                         <Cell gridRow={{ d: 2, md: '1 / span 2' }}>
-                            <CarrinhoItens />
+                            <CarrinhoFormasPagamento />
                         </Cell>
 
                         <Cell gridRow={1}>
-                            <CarrinhoBreadcrumb step="cart" />
+                            <CarrinhoBreadcrumb step="payment" />
                         </Cell>
 
                         <Cell alignSelf="flex-start" gridRow={{ d: 3, md: '2 / span 1' }}>
-                            <CarrinhoTotal />
+                            <CarrinhoResumo />
                         </Cell>
                     </Grid>
                 </Container>

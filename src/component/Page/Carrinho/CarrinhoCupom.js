@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useCarrinho } from '../../../store/carrinho/carrinho';
+
 import { CarrinhoCupomForm } from '../../Form/CarrinhoCupomForm';
 import { Svg } from '../../Svg/Svg';
 
@@ -8,28 +10,43 @@ import { Cell, Grid } from '../../../style/grid';
 import { P, Span } from '../../../style/text';
 
 export const CarrinhoCupom = () => {
+    // ACTION
+    const { handleRemoveCarrinhoCupomContext, stateCarrinhoContext } = useCarrinho();
+
+    const carrinho = stateCarrinhoContext.data && stateCarrinhoContext.data.data;
+
     return (
         <>
-            <P>Cupom de desconto</P>
+            <Span>Cupom de desconto</Span>
 
             <CarrinhoCupomForm />
 
             <Box my={4}>
-                <P color="colorGray2" fontSize="14px">
-                    Nenhum cupom aplicado
-                </P>
+                {carrinho.cupom ? (
+                    <Grid alignItems="center" display="grid" gridColumnGap={4} gridTemplateColumns="1fr auto">
+                        <Cell>
+                            Cupom:
+                            <br />
+                            <Span fontWeight="700">{carrinho.cupom}</Span>
+                            <br />
+                            <Span color="colorGray2">foi aplicado</Span>
+                        </Cell>
 
-                <Grid alignItems="center" display="grid" gridColumnGap={4} gridTemplateColumns="1fr auto">
-                    <Cell>
-                        <Span fontWeight="700">Descontomaroto50</Span>
-                        <br />
-                        <Span color="colorGray2">foi aplicado</Span>
-                    </Cell>
-
-                    <Cell>
-                        <Svg fill="colorGray2" height="23px" name="svg-trash" obj={{ hoverColor: 'colorPrimary' }} />
-                    </Cell>
-                </Grid>
+                        <Cell>
+                            <Svg
+                                fill="colorGray2"
+                                height="23px"
+                                name="svg-trash"
+                                obj={{ hoverColor: 'colorPrimary' }}
+                                onClick={handleRemoveCarrinhoCupomContext(carrinho.cupom)}
+                            />
+                        </Cell>
+                    </Grid>
+                ) : (
+                    <P color="colorGray2" fontSize="14px">
+                        Nenhum cupom aplicado
+                    </P>
+                )}
             </Box>
         </>
     );

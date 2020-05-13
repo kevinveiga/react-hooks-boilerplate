@@ -22,8 +22,10 @@ export const PesquisaForm = ({ ...props }) => {
     useEffect(() => {
         register('query');
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('query');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const keyPress = useCallback(
@@ -44,7 +46,7 @@ export const PesquisaForm = ({ ...props }) => {
     );
 
     // FORM
-    const { handleSubmit, register, setValue, triggerValidation } = useForm({
+    const { handleSubmit, register, setValue, triggerValidation, unregister } = useForm({
         mode: 'onSubmit'
     });
 

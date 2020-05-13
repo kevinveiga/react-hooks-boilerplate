@@ -24,11 +24,14 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
-        register('password_confirmation', { ...customValidate.password, ...customValidate.require });
         register('password', { ...customValidate.password, ...customValidate.require });
+        register('password_confirmation', { ...customValidate.password, ...customValidate.require });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('password');
+            unregister('password_confirmation');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleValidation = useCallback(
@@ -47,9 +50,10 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -67,7 +71,7 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
@@ -132,7 +136,7 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                                     <InputValidation
                                         error={errors.password_confirmation}
                                         label="Confirmação de senha"
-                                        maxLength="11"
+                                        maxLength="20"
                                         name="password_confirmation"
                                         onChange={handleValidation()}
                                         pr={4}

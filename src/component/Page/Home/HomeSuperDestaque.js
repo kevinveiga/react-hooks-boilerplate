@@ -65,7 +65,7 @@ export const HomeSuperDestaque = () => {
 
     return superDestaquesLength > 0 ? (
         windowWidth < parseInt(variable.md, 10) ? (
-            <BannerContainerStyled display="grid" gridAutoColumns="90%" gridAutoRows="50vh">
+            <BannerContainerStyled display="grid" gridAutoColumns="90%" gridAutoRows="minmax(300px, 50vh)">
                 {stateSuperDestaques.data.map((item) => {
                     return (
                         <BannerCellStyled display="flex" gridRow={1} hover="true" key={item.id}>
@@ -114,7 +114,10 @@ export const HomeSuperDestaque = () => {
                                     key={key}
                                     display="grid"
                                     gridAutoColumns="1fr"
-                                    gridAutoRows={{ d: '50vh', md: superDestaquesLength > 2 ? '30vh' : '50vh' }}
+                                    gridAutoRows={{
+                                        d: 'minmax(300px, 50vh)',
+                                        md: superDestaquesLength > 2 ? 'minmax(200px, 30vh)' : 'minmax(300px, 50vh)'
+                                    }}
                                 >
                                     {group.map((item, i, newArray) => {
                                         let row = {};

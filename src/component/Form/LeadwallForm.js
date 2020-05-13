@@ -25,8 +25,10 @@ export const LeadwallForm = ({ ...props }) => {
     useEffect(() => {
         register('email', { ...customValidate.email });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('email');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleValidation = useCallback(
@@ -45,9 +47,10 @@ export const LeadwallForm = ({ ...props }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -64,7 +67,7 @@ export const LeadwallForm = ({ ...props }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {

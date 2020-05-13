@@ -5,6 +5,7 @@ import { variable } from '../../style/variable';
 
 export const ConhecerMaisPartContentStyled = styled.div`
     ${space};
+
     height: 0;
     overflow: hidden;
     transform: scaleY(0);
@@ -37,6 +38,7 @@ export const ConhecerMaisPartNumberStyled = styled.div`
 
 export const ConhecerMaisPartTitleStyled = styled.div`
     ${typography};
+
     align-items: center;
     cursor: pointer;
     display: flex;
@@ -59,6 +61,7 @@ export const ConhecerMaisPartTitleStyled = styled.div`
 
 export const ConhecerMaisRadioStyled = styled.input`
     ${typography};
+
     height: 0.1px;
     opacity: 0;
     overflow: hidden;

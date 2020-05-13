@@ -21,7 +21,7 @@ import { FormStyled } from './FormStyled';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P } from '../../style/text';
 
-import logo from '../../asset/image/image-placeholder.svg';
+import logoBg from '../../asset/image/image-placeholder.svg';
 
 export const MinhaContaAvatarForm = () => {
     // API
@@ -33,8 +33,10 @@ export const MinhaContaAvatarForm = () => {
     useEffect(() => {
         register('avatar', { ...customValidate.photo });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('avatar');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleFileChange = useCallback(
@@ -60,7 +62,7 @@ export const MinhaContaAvatarForm = () => {
                         } else {
                             setError('invalid', 'notMatch', defaultErrorMsg);
 
-                            console.error('result: ', result);
+                            console.error('result error: ', result);
                         }
                     } catch (error) {
                         if (error.response) {
@@ -88,16 +90,17 @@ export const MinhaContaAvatarForm = () => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     return (
         <>
             <FormStyled>
                 <ImageCircleContainer>
-                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || logo} width="100%" />
+                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || logoBg} width="100%" />
                 </ImageCircleContainer>
 
                 <div>

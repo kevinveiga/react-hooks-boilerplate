@@ -7,6 +7,8 @@ import { getLocalStorageUser } from './store/auth/auth';
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
 import { Carrinho } from './component/Page/Carrinho/Carrinho';
+import { CarrinhoCadastro } from './component/Page/Carrinho/CarrinhoCadastro';
+import { CarrinhoPagamento } from './component/Page/Carrinho/CarrinhoPagamento';
 import { Curso } from './component/Page/Curso/Curso';
 import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
 import { LoaderComponent } from './component/Loader/LoaderComponent';
@@ -41,6 +43,16 @@ const routes = [
         component: Carrinho,
         layout: LayoutDefault,
         path: '/carrinho'
+    },
+    {
+        component: CarrinhoCadastro,
+        layout: LayoutDefault,
+        path: '/carrinho-cadastro'
+    },
+    {
+        component: CarrinhoPagamento,
+        layout: LayoutDefault,
+        path: '/carrinho-pagamento'
     },
     {
         component: Curso,

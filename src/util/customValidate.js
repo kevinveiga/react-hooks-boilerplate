@@ -2,6 +2,7 @@ import { customRegex } from './customRegex';
 
 const validateMessage = {
     CELLPHONE: 'Celular inválido',
+    CEP: 'Cep inválido',
     DATE: 'Data inválida',
     EMAIL: 'E-mail inválido',
     MAX: 'Máximo de dígitos inválido',
@@ -20,6 +21,9 @@ export const customValidate = {
     },
     cellphone: {
         pattern: { message: validateMessage.CELLPHONE, value: customRegex.cellPhone }
+    },
+    cep: {
+        pattern: { message: validateMessage.CEP, value: customRegex.cep }
     },
     date: {
         pattern: { message: validateMessage.DATE, value: customRegex.date }
@@ -40,6 +44,9 @@ export const customValidate = {
     },
     phone: {
         pattern: { message: validateMessage.PHONE, value: customRegex.phone }
+    },
+    photo: {
+        pattern: { message: 'Formato não é valido', value: customRegex.photo }
     },
     require: {
         required: validateMessage.REQUIRED

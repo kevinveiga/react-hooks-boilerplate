@@ -1,37 +1,61 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
+
+import { useCarrinho } from '../../store/carrinho/carrinho';
+
+import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
 import { Input } from './Form';
 
-import { FormStyled } from './FormStyled';
+import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
 export const CarrinhoCupomForm = ({ ...props }) => {
     // ACTION
-    useEffect(() => {
-        register('cupom');
+    const { handleAddCarrinhoCupomContext } = useCarrinho();
 
-        return undefined;
-    }, [register]);
+    useEffect(() => {
+        register('cupom', { ...customValidate.require });
+
+        return () => {
+            unregister('cupom');
+        };
+    }, [register, unregister]);
+
+    // FUNCTION
+    const handleValidation = useCallback(
+        () => (element) => {
+            setValue(element.target.name, element.target.value);
+        },
+        [setValue]
+    );
 
     // FORM
-    const { handleSubmit, register } = useForm({
+    const { errors, handleSubmit, register, setError, setValue, unregister } = useForm({
         mode: 'onSubmit'
     });
 
-    const submitForm = (formData) => {};
+    const submitForm = (formData) => {
+        handleAddCarrinhoCupomContext(formData.cupom, setError);
+    };
 
     return (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
-            <Grid display="grid" gridTemplateColumns="3fr 1fr">
-                <Cell>
-                    <Input height="30px" maxLength="20" name="cupom" placeholder="Inserir cupom" {...props} />
+            <Grid display="grid" gridAutoRows="1fr" gridTemplateColumns="3fr 1fr">
+                <Cell gridColumn={'1 / span 2'}>
+                    <InvalidResponseMessageContainerStyled>
+                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                    </InvalidResponseMessageContainerStyled>
                 </Cell>
 
-                <Cell>
+                <Cell gridColumn={1}>
+                    <Input height="30px" maxLength="20" name="cupom" onChange={handleValidation()} placeholder="Inserir cupom" {...props} />
+                </Cell>
+
+                <Cell gridColumn={2}>
                     <Button
                         height="30px"
                         fontSize="12px"

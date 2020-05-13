@@ -2,45 +2,97 @@ import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
-import { apiUrlCarrinho } from '../config';
+import { apiUrlCarrinho, defaultErrorMsg } from '../config';
 
 import * as ACTION from '../store/action/action';
 import { ecommerceReducer } from '../store/reducer/ecommerceReducer';
 
+import { getDateTime } from '../util/getDateTime';
 import { getStorage, setStorage } from '../util/storage';
 
 export const useCarrinhoApi = () => {
-    // TODO:
+    // VARIABLE
+    const initialData = { cupom: '', data_inicio: getDateTime(), items: [], total: 0, total_desconto: 0 };
+
+    // ACTION
     const [stateCarrinhoData, setStateCarrinhoData] = useState({ url: apiUrlCarrinho, params: {} });
 
     const [stateCarrinho, dispatch] = useReducer(ecommerceReducer, {
-        data: getStorage('carrinho', 'sessionStorage') || {}
+        data: getStorage('carrinho', 'sessionStorage') || { data: initialData },
+        isError: false,
+        isLoading: false
     });
 
     // FUNCTION
+    const handleAddCarrinhoCupom = (codigo, setError) => {
+        // TODO:
+        const fetchData = async () => {
+            try {
+                // const result = await axios.post(`${apiUrlCarrinho}/addCupom`, { cupomCodigo: codigo }, { headers: { 'Content-Type': 'application/json' } });
+
+                const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
+
+                if (result.data && result.data.success == true) {
+                    setStorage('carrinho', result.data, 'sessionStorage');
+
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                } else if (result.data.reason) {
+                    setError('invalid', 'notMatch', result.data.reason[0]);
+                } else {
+                    setError('invalid', 'notMatch', defaultErrorMsg);
+
+                    console.error('result error: ', result);
+                }
+            } catch (error) {
+                dispatch(ACTION.failure());
+
+                console.error('error: ', error);
+            }
+        };
+
+        fetchData();
+    };
+
     const handleAddCarrinhoItem = useCallback(
         (id) => () => {
             // TODO:
             console.log('handleAddCarrinhoItemId: ', id);
 
             /*
-            setStateCarrinhoData({ url: `${apiUrlCarrinho}/add`, params: id });
+            setStateCarrinhoData({ url: `${apiUrlCarrinho}/add`, params: { itemId: id } });
             */
         },
         [setStateCarrinhoData]
     );
 
-    const handleAddCarrinhoCupom = useCallback(
-        (cupom) => () => {
-            // TODO:
-            console.log('handleAddCarrinhoCupom: ', cupom);
+    const handleRemoveCarrinhoCupom = (cupomId, setError) => () => {
+        // TODO:
+        const fetchData = async () => {
+            try {
+                // const result = await axios.post(`${apiUrlCarrinho}/removeCupom`, { cupomId: cupomId }, { headers: { 'Content-Type': 'application/json' } });
 
-            /*
-            setStateCarrinhoData({ url: `${apiUrlCarrinho}/addCupom`, params: cupom });
-            */
-        },
-        [setStateCarrinhoData]
-    );
+                const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
+
+                if (result.data && result.data.success == true) {
+                    setStorage('carrinho', result.data, 'sessionStorage');
+
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                } else if (result.data.reason) {
+                    setError('invalid', 'notMatch', result.data.reason[0]);
+                } else {
+                    setError('invalid', 'notMatch', defaultErrorMsg);
+
+                    console.error('result error: ', result);
+                }
+            } catch (error) {
+                dispatch(ACTION.failure());
+
+                console.error('error: ', error);
+            }
+        };
+
+        fetchData();
+    };
 
     const handleRemoveCarrinhoItem = useCallback(
         (id) => () => {
@@ -48,19 +100,7 @@ export const useCarrinhoApi = () => {
             console.log('handleRemoveCarrinhoItemId: ', id);
 
             /*
-            setStateCarrinhoData({ url: `${apiUrlCarrinho}/remove`, params: id });
-            */
-        },
-        [setStateCarrinhoData]
-    );
-
-    const handleRemoveCarrinhoCupom = useCallback(
-        (cupom) => () => {
-            // TODO:
-            console.log('handleRemoveCarrinhoCupom: ', cupom);
-
-            /*
-            setStateCarrinhoData({ url: `${apiUrlCarrinho}/removeCupom`, params: cupom });
+            setStateCarrinhoData({ url: `${apiUrlCarrinho}/remove`, params: { itemId: id } });
             */
         },
         [setStateCarrinhoData]
@@ -84,6 +124,8 @@ export const useCarrinhoApi = () => {
                 if (!didCancel) {
                     dispatch(ACTION.failure());
                 }
+
+                console.error('error: ', error);
             }
         };
 
@@ -94,5 +136,12 @@ export const useCarrinhoApi = () => {
         };
     }, [stateCarrinhoData]);
 
-    return { handleRemoveCarrinhoItem, stateCarrinho, setStateCarrinhoData };
+    return {
+        handleAddCarrinhoCupom,
+        handleAddCarrinhoItem,
+        handleRemoveCarrinhoCupom,
+        handleRemoveCarrinhoItem,
+        stateCarrinho,
+        setStateCarrinhoData
+    };
 };

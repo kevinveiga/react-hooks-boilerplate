@@ -27,11 +27,14 @@ export const LoginForm = ({ location, ...otherProps }) => {
     const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
-        register('email', { ...customValidate.email });
-        register('password', { ...customValidate.password, ...customValidate.require });
+        register({ name: 'email' }, { ...customValidate.email });
+        register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('email');
+            unregister('password');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleValidation = useCallback(
@@ -50,9 +53,10 @@ export const LoginForm = ({ location, ...otherProps }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -74,7 +78,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {

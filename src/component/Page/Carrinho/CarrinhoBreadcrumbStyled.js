@@ -4,7 +4,7 @@ import { variable } from '../../../style/variable';
 
 export const CarrinhoBreadcrumbBoxStyled = styled.div`
     border-radius: ${variable.borderRadius};
-    padding: ${variable.spacingXS} 6px;
+    padding: 6px;
 
     ${({ active }) =>
         active &&

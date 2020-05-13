@@ -14,7 +14,7 @@ export const CarrinhoItens = () => {
     // ACTION
     const { handleRemoveCarrinhoItemContext, stateCarrinhoContext } = useCarrinho();
 
-    const carrinhoItens = stateCarrinhoContext.data && stateCarrinhoContext.data.data.items;
+    const carrinhoItens = stateCarrinhoContext.data ? stateCarrinhoContext.data.data.items : [];
     const carrinhoItensLength = carrinhoItens ? carrinhoItens.length : 0;
 
     return (

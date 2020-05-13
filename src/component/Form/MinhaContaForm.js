@@ -47,8 +47,23 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         register('sexo');
         register('telefone', { ...customValidate.phone, ...customValidate.require });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('data_nascimento');
+            unregister('email');
+            unregister('endereco_cep');
+            unregister('endereco_cidade');
+            unregister('endereco_complemento');
+            unregister('endereco_logradouro');
+            unregister('endereco_uf');
+            unregister('endereco_numero');
+            unregister('nome');
+            // unregister('password');
+            unregister('receber_avisos_descontos_de_cursos');
+            unregister('receber_curadoria_conteudos_noticias');
+            unregister('sexo');
+            unregister('telefone');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleFindAddress = useCallback(
@@ -125,10 +140,11 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
         defaultValues: formatFormDataGet(data),
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     // Valores inicias dos inputs
@@ -149,7 +165,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {

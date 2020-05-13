@@ -38,8 +38,13 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
         register('endereco_uf');
         register('sexo');
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('data_nascimento');
+            unregister('endereco_cidade');
+            unregister('endereco_uf');
+            unregister('sexo');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handlePart = useCallback(
@@ -72,10 +77,11 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
         defaultValues: { data_nascimento: '' },
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -95,11 +101,15 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                 } else {
                     setError('invalid', 'notMatch', defaultErrorMsg);
 
-                    console.error('result: ', result);
+                    console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    if (error.response.data.message) {
+                        setError('invalid', 'notMatch', error.response.data.message);
+                    } else {
+                        setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    }
                 } else {
                     console.error('error: ', error);
                 }
@@ -232,8 +242,8 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                                 maxLength="50"
                                                 name="endereco_cidade"
                                                 onChange={handleValidation()}
-                                                pr={4}
                                                 placeholder="Cidade"
+                                                pr={4}
                                                 touched={touched}
                                                 {...otherProps}
                                             />
