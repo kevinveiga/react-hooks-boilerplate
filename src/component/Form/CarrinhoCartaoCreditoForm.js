@@ -76,7 +76,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'1 / span 3'}>
-                    <Label color="colorGray2" mb="-10px" text="Seu nome no cartão" />
+                    <Label color="colorGray2" mb="-15px" text="Seu nome no cartão" />
 
                     <div>
                         <InputValidation
@@ -95,7 +95,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'4 / span 1'}>
-                    <Label color="colorGray2" mb="-10px" text="CPF" />
+                    <Label color="colorGray2" mb="-15px" text="CPF" />
 
                     <div>
                         <InputValidation
@@ -114,7 +114,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'1 / span 2'}>
-                    <Label color="colorGray2" mb="-10px" text="Número do cartão" />
+                    <Label color="colorGray2" mb="-15px" text="Número do cartão" />
 
                     <div>
                         <InputValidation
@@ -133,7 +133,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'3 / span 1'}>
-                    <Label color="colorGray2" mb="-10px" text="MM" />
+                    <Label color="colorGray2" mb="-15px" text="MM" />
 
                     <div>
                         <InputValidation
@@ -152,7 +152,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'4 / span 1'}>
-                    <Label color="colorGray2" mb="-10px" text="CVV" />
+                    <Label color="colorGray2" mb="-15px" text="CVV" />
 
                     <div>
                         <InputValidation
@@ -171,7 +171,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'1 / span 2'}>
-                    <Label color="colorGray2" mb="-10px" text="Escolha como você quer pagar (parcelamento)" />
+                    <Label color="colorGray2" mb="-15px" text="Escolha como você quer pagar (parcelamento)" />
 
                     <div>
                         <Select

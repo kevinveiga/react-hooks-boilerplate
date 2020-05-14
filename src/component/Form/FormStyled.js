@@ -20,7 +20,7 @@ const input = css`
     font-size: 16px;
     font-weight: ${({ obj }) => (obj && obj.fontWeight ? obj.fontWeight : '600')};
     height: ${({ height }) => height || variable.inputHeight};
-    padding-bottom: ${variable.inputPadding};
+    padding-bottom: 0;
     padding-left: 2px;
     ${({ pr }) => pr === undefined && 'padding-right: 2px'};
     padding-top: ${variable.inputPadding};
@@ -95,13 +95,13 @@ const inputLabel = css`
             + label {
                 pointer-events: none;
                 position: absolute;
-                top: 15px;
+                top: 20px;
                 transition: top ${variable.transition};
             }
 
             &:focus {
                 + label {
-                    top: -5px;
+                    top: 0;
                 }
             }
         `};
@@ -111,13 +111,13 @@ const inputLabel = css`
         (invalid || valid) &&
         css`
             + label {
-                top: -5px;
+                top: 0;
             }
         `};
 
     &:-webkit-autofill {
         + label {
-            top: -5px;
+            top: 0;
         }
     }
 `;
@@ -236,6 +236,7 @@ export const LabelStyled = styled.label`
     ${position};
     ${space};
     ${typography};
+
     color: ${({ color }) => (color ? variable[color] : variable.colorPrimary)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     ${({ px }) => px === undefined && 'padding-left: 2px; padding-right: 2px'};

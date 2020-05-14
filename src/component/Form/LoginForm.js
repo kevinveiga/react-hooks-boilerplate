@@ -27,7 +27,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
     const [stateUser, setStateUser] = useUser();
 
     useEffect(() => {
-        register({ name: 'email' }, { ...customValidate.email });
+        register({ name: 'email' }, { ...customValidate.email, ...customValidate.require });
         register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
 
         return () => {

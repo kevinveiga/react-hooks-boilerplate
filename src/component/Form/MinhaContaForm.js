@@ -201,7 +201,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <Label color="colorGray2" mb="-10px" text="Nome completo" />
+                        <Label color="colorGray2" mb="-15px" text="Nome completo" />
 
                         <div>
                             <InputValidation
@@ -220,7 +220,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="E-mail" />
+                        <Label color="colorGray2" mb="-15px" text="E-mail" />
 
                         <div>
                             <InputValidation
@@ -239,7 +239,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Celular" />
+                        <Label color="colorGray2" mb="-15px" text="Celular" />
 
                         <div>
                             <InputMaskValidation
@@ -258,7 +258,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell>
-                        <Label color="colorGray2" mb="-10px" text="CEP" />
+                        <Label color="colorGray2" mb="-15px" text="CEP" />
 
                         <div>
                             <InputMaskValidation
@@ -291,7 +291,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '2 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Endereço" />
+                        <Label color="colorGray2" mb="-15px" text="Endereço" />
 
                         <div>
                             <InputValidation
@@ -310,7 +310,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell>
-                        <Label color="colorGray2" mb="-10px" text="Nº" />
+                        <Label color="colorGray2" mb="-15px" text="Nº" />
 
                         <div>
                             <InputMaskValidation
@@ -330,7 +330,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <Label color="colorGray2" mb="-10px" text="Complemento" />
+                        <Label color="colorGray2" mb="-15px" text="Complemento" />
 
                         <div>
                             <InputValidation
@@ -349,7 +349,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Cidade" />
+                        <Label color="colorGray2" mb="-15px" text="Cidade" />
 
                         <div>
                             <InputValidation
@@ -368,7 +368,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell>
-                        <Label color="colorGray2" mb="-10px" text="Estado" />
+                        <Label color="colorGray2" mb="-15px" text="Estado" />
 
                         <div>
                             <Select name="endereco_uf" onChange={handleSetValue()} {...otherProps}>
@@ -378,7 +378,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Data de Nascimento" />
+                        <Label color="colorGray2" mb="-15px" text="Data de Nascimento" />
 
                         <div>
                             <InputMaskValidation
@@ -397,7 +397,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '3 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Sexo" />
+                        <Label color="colorGray2" mb="-15px" text="Sexo" />
 
                         <div>
                             <Select name="sexo" onChange={handleSetValue()} {...otherProps}>
@@ -408,7 +408,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell>
 
                     {/* <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                        <Label color="colorGray2" mb="-10px" text="Senha" />
+                        <Label color="colorGray2" mb="-15px" text="Senha" />
 
                         <div>
                             <InputValidation

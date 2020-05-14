@@ -110,7 +110,7 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
     const content = children || text;
 
     return (
-        <LabelStyled aria-label={acessibility} htmlFor={forLabel} {...otherProps}>
+        <LabelStyled aria-label={acessibility} htmlFor={forLabel} obj={{ ...otherProps.obj }} {...otherProps}>
             {content}
         </LabelStyled>
     );
@@ -118,8 +118,31 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
 
 export const Select = ({ ariaLabel, children, value = '', ...otherProps }) => {
     return (
-        <SelectStyled aria-label={ariaLabel} defaultValue={value} {...otherProps}>
+        <SelectStyled aria-label={ariaLabel} defaultValue={value} obj={{ ...otherProps.obj }} {...otherProps}>
             {children}
         </SelectStyled>
+    );
+};
+
+export const SelectValidation = ({ error = '', ariaLabel, children, touched, value = '', ...otherProps }) => {
+    const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;
+
+    return (
+        <>
+            <SelectStyled
+                aria-label={ariaLabel}
+                defaultValue={value}
+                invalid={error}
+                obj={{ ...otherProps.obj }}
+                valid={!error && touched[otherProps.name] ? 'true' : undefined}
+                {...otherProps}
+            >
+                {children}
+            </SelectStyled>
+
+            {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
+
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[otherProps.name]} />
+        </>
     );
 };
