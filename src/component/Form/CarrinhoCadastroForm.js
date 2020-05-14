@@ -25,6 +25,20 @@ import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
 export const CarrinhoCadastroForm = ({ location, ...otherProps }) => {
+    // ACTION
+    const [stateViewPassword, setStateViewPassword] = useState(false);
+    const [stateUser, setStateUser] = useUser();
+
+    useEffect(() => {
+        register('confirm_password', { ...customValidate.password, ...customValidate.require });
+        register('email', { ...customValidate.email, ...customValidate.require });
+        register('nome', { ...customValidate.name, ...customValidate.require });
+        register('password', { ...customValidate.password, ...customValidate.require });
+        register('telefone', { ...customValidate.cellphone, ...customValidate.require });
+
+        return undefined;
+    }, [register]);
+
     // FUNCTION
     const handleScrollTo = useCallback(
         () => () => {
@@ -44,20 +58,6 @@ export const CarrinhoCadastroForm = ({ location, ...otherProps }) => {
         },
         [setValue, triggerValidation]
     );
-
-    // ACTION
-    const [stateViewPassword, setStateViewPassword] = useState(false);
-    const [stateUser, setStateUser] = useUser();
-
-    useEffect(() => {
-        register('confirm_password', { ...customValidate.password, ...customValidate.require });
-        register('email', { ...customValidate.email });
-        register('nome', { ...customValidate.name, ...customValidate.require });
-        register('password', { ...customValidate.password, ...customValidate.require });
-        register('telefone', { ...customValidate.cellphone });
-
-        return undefined;
-    }, [register]);
 
     // FORM
     const {

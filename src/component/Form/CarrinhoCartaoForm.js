@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 
 import { useCarrinho } from '../../store/carrinho/carrinho';
 
+import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
-import { InputValidation, Label, SelectValidation } from './Form';
+import { InputMaskValidation, InputValidation, Label, Select } from './Form';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
@@ -17,12 +18,12 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
     const { handleAddCarrinhoCupomContext } = useCarrinho();
 
     useEffect(() => {
-        register('cartao_cvv', { ...customValidate.require });
-        register('cartao_data', { ...customValidate.require });
+        register('cartao_cvv', { ...customValidate.cardCvv, ...customValidate.require });
+        register('cartao_data', { ...customValidate.cardDate, ...customValidate.require });
         register('cartao_nome', { ...customValidate.name, ...customValidate.require });
-        register('cartao_numero', { ...customValidate.require });
+        register('cartao_numero', { ...customValidate.cardNumber, ...customValidate.require });
         register('cartao_parcela', { ...customValidate.require });
-        register('cpf', { ...customValidate.require });
+        register('cpf', { ...customValidate.cpf, ...customValidate.require });
 
         return () => {
             unregister('cartao_cvv');
@@ -100,8 +101,9 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="CPF" />
 
                     <div>
-                        <InputValidation
+                        <InputMaskValidation
                             error={errors.cpf}
+                            mask={customMaskRegex.cpf}
                             maxLength="14"
                             name="cpf"
                             onChange={handleValidation()}
@@ -119,8 +121,9 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="Número do cartão" />
 
                     <div>
-                        <InputValidation
+                        <InputMaskValidation
                             error={errors.cartao_numero}
+                            mask={customMaskRegex.cardNumber}
                             maxLength="19"
                             name="cartao_numero"
                             onChange={handleValidation()}
@@ -138,8 +141,9 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="Dia/Ano" />
 
                     <div>
-                        <InputValidation
+                        <InputMaskValidation
                             error={errors.cartao_data}
+                            mask={customMaskRegex.cardDate}
                             maxLength="9"
                             name="cartao_data"
                             onChange={handleValidation()}
@@ -157,8 +161,9 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="CVV" />
 
                     <div>
-                        <InputValidation
+                        <InputMaskValidation
                             error={errors.cartao_cvv}
+                            mask={customMaskRegex.cardCvv}
                             maxLength="3"
                             name="cartao_cvv"
                             onChange={handleValidation()}
@@ -176,21 +181,27 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="Escolha como você quer pagar (parcelamento)" />
 
                     <div>
-                        <SelectValidation
-                            error={errors.cartao_parcela}
+                        <Select
                             name="cartao_parcela"
                             obj={{
-                                color: touched['cartao_parcela'] ? 'colorGrayDark' : 'colorGray',
-                                colorLine: 'colorPrimary',
-                                fontWeight: touched['cartao_parcela'] ? '700' : '400'
+                                color: 'colorGrayDark',
+                                fontWeight: '700'
                             }}
-                            onChange={handleValidation()}
-                            touched={touched}
+                            onChange={handleSetValue()}
+                            value="1"
                             {...otherProps}
                         >
-                            <option value="">UF</option>
-                            <option value="ac">AC</option>
-                        </SelectValidation>
+                            <option value="1">1x de 100,00 s/ juros</option>
+                            <option value="2">2x de 50,00 s/ juros</option>
+                            <option value="3">3x de 33,33 s/ juros</option>
+                            <option value="4">4x de 25,00 s/ juros</option>
+                            <option value="5">5x de 20,00 s/ juros</option>
+                            <option value="6">6x de 16,66 s/ juros</option>
+                            <option value="7">7x de 14,28 s/ juros</option>
+                            <option value="8">8x de 12,50 s/ juros</option>
+                            <option value="9">9x de 11,11 s/ juros</option>
+                            <option value="10">10x de 10,00 s/ juros</option>
+                        </Select>
                     </div>
 
                     {errors.cartao_parcela && <InvalidInputMessageStyled>{errors.cartao_parcela.message}</InvalidInputMessageStyled>}

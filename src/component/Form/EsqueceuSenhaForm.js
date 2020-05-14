@@ -22,7 +22,7 @@ export const EsqueceuSenhaForm = ({ ...props }) => {
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     useEffect(() => {
-        register('email', { ...customValidate.email });
+        register('email', { ...customValidate.email, ...customValidate.require });
 
         return () => {
             unregister('email');

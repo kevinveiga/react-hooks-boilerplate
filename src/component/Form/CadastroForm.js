@@ -35,10 +35,10 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
     useEffect(() => {
         register('confirm_password', { ...customValidate.password, ...customValidate.require });
-        register('email', { ...customValidate.email });
+        register('email', { ...customValidate.email, ...customValidate.require });
         register('nome', { ...customValidate.name, ...customValidate.require });
         register('password', { ...customValidate.password, ...customValidate.require });
-        register('telefone', { ...customValidate.cellphone });
+        register('telefone', { ...customValidate.cellphone, ...customValidate.require });
 
         return () => {
             unregister('confirm_password');

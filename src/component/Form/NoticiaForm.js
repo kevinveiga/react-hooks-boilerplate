@@ -24,8 +24,8 @@ export const NoticiaForm = ({ ...props }) => {
 
     useEffect(() => {
         register('nome', { ...customValidate.name, ...customValidate.require });
-        register('email', { ...customValidate.email });
-        register('telefone', { ...customValidate.phone });
+        register('email', { ...customValidate.email, ...customValidate.require });
+        register('telefone', { ...customValidate.phone, ...customValidate.require });
 
         return () => {
             unregister('nome');

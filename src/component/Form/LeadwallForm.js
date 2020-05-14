@@ -23,7 +23,7 @@ export const LeadwallForm = ({ ...props }) => {
 
     // ACTION
     useEffect(() => {
-        register('email', { ...customValidate.email });
+        register('email', { ...customValidate.email, ...customValidate.require });
 
         return () => {
             unregister('email');
