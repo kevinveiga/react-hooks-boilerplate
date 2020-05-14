@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import { CarrinhoFormasPagamentoCellStyled } from './CarrinhoFormasPagamentoStyled';
-import { CarrinhoCartaoCreditoForm } from '../../Form/CarrinhoCartaoCreditoForm';
+import { CarrinhoCartaoForm } from '../../Form/CarrinhoCartaoForm';
 import { InputCheckboxRadio } from '../../Form/Form';
 import { Svg } from '../../Svg/Svg';
 
@@ -44,7 +44,7 @@ export const CarrinhoFormasPagamento = () => {
                     </Span>
                 </InputCheckboxRadio>
 
-                <CarrinhoCartaoCreditoForm />
+                <CarrinhoCartaoForm />
             </CarrinhoFormasPagamentoCellStyled>
 
             <CarrinhoFormasPagamentoCellStyled alignSelf="flex-start" active={stateFormaPagamento === 'boleto'} backgroundColor="colorWhite" p={3}>

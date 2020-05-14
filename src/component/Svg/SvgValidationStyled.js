@@ -10,7 +10,7 @@ export const SvgValidationStyled = styled.svg`
     pointer-events: none;
     position: absolute;
     stroke: ${({ invalid, valid }) => (invalid ? variable.colorAlert : valid ? variable.colorPrimaryHover : variable.colorGray)};
-    top: calc(50% - 7px);
+    top: calc(50%);
     transition: fill ${variable.transition}, opacity ${variable.transition}, stroke ${variable.transition};
     z-index: ${({ invalid, valid }) => (invalid || valid ? 3 : 2)};
 `;

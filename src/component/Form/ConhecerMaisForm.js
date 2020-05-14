@@ -13,7 +13,7 @@ import { formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
-import { InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputMaskValidation, InputValidation, Label, SelectValidation } from './Form';
 import { OptionUF } from './OptionUF';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
@@ -34,8 +34,8 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
 
     useEffect(() => {
         register('data_nascimento', { ...customValidate.date });
-        register('endereco_cidade');
-        register('endereco_uf');
+        register('endereco_cidade', { ...customValidate.require });
+        register('endereco_uf', { ...customValidate.require });
         register('sexo');
 
         return () => {
@@ -202,7 +202,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                 </ConhecerMaisPartTitleStyled>
 
                                 <ConhecerMaisPartContentStyled active={statePart === 2} ml={4}>
-                                    <Label text="Data de Nascimento" />
+                                    <Label mb="-15px" text="Data de Nascimento" />
 
                                     <div>
                                         <InputMaskValidation
@@ -234,7 +234,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
 
                                 <ConhecerMaisPartContentStyled active={statePart === 3} ml={4}>
                                     <Box display="inline-block">
-                                        <Label text="Cidade" />
+                                        <Label mb="-15px" text="Cidade" />
 
                                         <div>
                                             <InputValidation
@@ -255,21 +255,26 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
                                     </Box>
 
                                     <Box display="inline-block" ml={{ d: 0, md: 4 }} mt={{ d: 4, md: 0 }}>
-                                        <Label text="Estado" />
+                                        <Label mb="-15px" text="Estado" />
 
                                         <div>
-                                            <Select
+                                            <SelectValidation
+                                                error={errors.endereco_uf}
                                                 name="endereco_uf"
                                                 obj={{
                                                     color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
                                                     colorLine: 'colorPrimary',
                                                     fontWeight: touched['endereco_uf'] ? '700' : '400'
                                                 }}
-                                                onChange={handleSetValue()}
+                                                onChange={handleValidation()}
+                                                touched={touched}
+                                                {...otherProps}
                                             >
                                                 <OptionUF />
-                                            </Select>
+                                            </SelectValidation>
                                         </div>
+
+                                        {errors.endereco_uf && <InvalidInputMessageStyled>{errors.endereco_uf.message}</InvalidInputMessageStyled>}
                                     </Box>
                                 </ConhecerMaisPartContentStyled>
                             </Cell>

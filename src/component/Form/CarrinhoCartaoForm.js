@@ -6,13 +6,13 @@ import { useCarrinho } from '../../store/carrinho/carrinho';
 
 import { customValidate } from '../../util/customValidate';
 
-import { InputValidation, Label, Select } from './Form';
+import { InputValidation, Label, SelectValidation } from './Form';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
+export const CarrinhoCartaoForm = ({ ...otherProps }) => {
     // ACTION
     const { handleAddCarrinhoCupomContext } = useCarrinho();
 
@@ -21,6 +21,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
         register('cartao_data', { ...customValidate.require });
         register('cartao_nome', { ...customValidate.name, ...customValidate.require });
         register('cartao_numero', { ...customValidate.require });
+        register('cartao_parcela', { ...customValidate.require });
         register('cpf', { ...customValidate.require });
 
         return () => {
@@ -28,6 +29,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
             unregister('cartao_data');
             unregister('cartao_nome');
             unregister('cartao_numero');
+            unregister('cartao_parcela');
             unregister('cpf');
         };
     }, [register, unregister]);
@@ -133,7 +135,7 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'3 / span 1'}>
-                    <Label color="colorGray2" mb="-15px" text="MM" />
+                    <Label color="colorGray2" mb="-15px" text="Dia/Ano" />
 
                     <div>
                         <InputValidation
@@ -174,19 +176,21 @@ export const CarrinhoCartaoCreditoForm = ({ ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="Escolha como você quer pagar (parcelamento)" />
 
                     <div>
-                        <Select
+                        <SelectValidation
+                            error={errors.cartao_parcela}
                             name="cartao_parcela"
                             obj={{
                                 color: touched['cartao_parcela'] ? 'colorGrayDark' : 'colorGray',
                                 colorLine: 'colorPrimary',
                                 fontWeight: touched['cartao_parcela'] ? '700' : '400'
                             }}
-                            onChange={handleSetValue()}
+                            onChange={handleValidation()}
+                            touched={touched}
                             {...otherProps}
                         >
                             <option value="">UF</option>
                             <option value="ac">AC</option>
-                        </Select>
+                        </SelectValidation>
                     </div>
 
                     {errors.cartao_parcela && <InvalidInputMessageStyled>{errors.cartao_parcela.message}</InvalidInputMessageStyled>}
