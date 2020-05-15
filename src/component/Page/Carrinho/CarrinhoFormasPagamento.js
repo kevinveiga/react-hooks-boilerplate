@@ -6,6 +6,7 @@ import { InputCheckboxRadio } from '../../Form/Form';
 import { Svg } from '../../Svg/Svg';
 
 import { Cell, Grid } from '../../../style/grid';
+import { Position } from '../../../style/position';
 import { Span } from '../../../style/text';
 
 export const CarrinhoFormasPagamento = () => {
@@ -44,7 +45,18 @@ export const CarrinhoFormasPagamento = () => {
                     </Span>
                 </InputCheckboxRadio>
 
-                <CarrinhoCartaoForm />
+                <Position display={{ d: 'none', sm: 'block' }} position="absolute" right="10px" top="15px">
+                    <Grid display="grid" gridRowGap={2} justifyItems="center">
+                        <Cell>
+                            <Svg fill="colorGray2" mx={2} name="svg-elo" />
+                            <Svg fill="colorGray2" mx={2} name="svg-mastercard" />
+                            <Svg fill="colorGray2" mx={2} name="svg-visa" />
+                            <Svg fill="colorGray2" mx={2} name="svg-american-express" />
+                        </Cell>
+                    </Grid>
+                </Position>
+
+                <CarrinhoCartaoForm formId="carrinhoCartaoFormId" />
             </CarrinhoFormasPagamentoCellStyled>
 
             <CarrinhoFormasPagamentoCellStyled alignSelf="flex-start" active={stateFormaPagamento === 'boleto'} backgroundColor="colorWhite" p={3}>
@@ -62,6 +74,14 @@ export const CarrinhoFormasPagamento = () => {
                         Boleto
                     </Span>
                 </InputCheckboxRadio>
+
+                <Position display={{ d: 'none', sm: 'block' }} position="absolute" right="10px" top="15px">
+                    <Grid display="grid" gridRowGap={2} justifyItems="center">
+                        <Cell>
+                            <Svg fill="colorGray2" mx={2} name="svg-boleto" />
+                        </Cell>
+                    </Grid>
+                </Position>
             </CarrinhoFormasPagamentoCellStyled>
         </Grid>
     );

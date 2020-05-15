@@ -29,7 +29,7 @@ export const CarrinhoTotal = () => {
                     <s>R$ {carrinho.total}</s>
                 </P>
 
-                <Button my={{ d: 4, md: 5 }} text="Finalizar Compra" width={{ d: 'auto', md: '100%' }} />
+                <Button my={{ d: 4, md: 5 }} text="Finalizar Compra" width={{ d: '100%', sm: 'auto', md: '100%' }} />
             </Box>
 
             <Box>

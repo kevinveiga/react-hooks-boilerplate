@@ -13,7 +13,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 
 import { Cell, Grid } from '../../style/grid';
 
-export const CarrinhoCartaoForm = ({ ...otherProps }) => {
+export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
     // ACTION
     const { handleAddCarrinhoCupomContext } = useCarrinho();
 
@@ -70,7 +70,7 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
     };
 
     return (
-        <FormStyled onSubmit={handleSubmit(submitForm)}>
+        <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
             <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns="1fr 1fr 1fr 1fr" px={5} py={3}>
                 <Cell gridColumn={'1 / span 4'}>
                     <InvalidResponseMessageContainerStyled>

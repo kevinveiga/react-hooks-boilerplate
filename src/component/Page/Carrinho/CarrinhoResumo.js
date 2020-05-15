@@ -61,7 +61,7 @@ export const CarrinhoResumo = () => {
                 </Cell>
 
                 <Cell gridColumn={'1 / span 2'} mt={2}>
-                    <Button text="Finalizar Compra" width={{ d: 'auto', md: '100%' }} />
+                    <Button text="Finalizar Compra" width={{ d: '100%', sm: 'auto', md: '100%' }} />
                 </Cell>
             </Grid>
         </Box>
