@@ -11,6 +11,7 @@ export const NoticiaBoxAuthorStyled = styled.h5`
 
 export const NoticiaBoxDateTimeStyled = styled.span`
     ${typography};
+
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorGray2)};
     display: inline-block;
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
@@ -34,6 +35,7 @@ export const NoticiaBoxTextStyled = styled.p`
 
 export const NoticiaBoxTitleStyled = styled.h2`
     ${typography};
+
     ${({ fontSize }) => fontSize === undefined && 'font-size: 16px'};
     font-weight: 700;
     line-height: 1.2;
@@ -49,6 +51,7 @@ export const NoticiaBoxStyled = styled.div`
     ${layout};
     ${space};
     ${typography};
+
     color: ${({ themeColor }) => (themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     ${({ themeColor }) => themeColor === 'light' && ` text-shadow: 1px 1px 1px ${variable.colorBlack2}`};

@@ -7,6 +7,7 @@ import { variable } from '../../../style/variable';
 
 export const VideoBoxStyled = styled.div`
     ${space};
+
     background-color: ${({ themeColor }) => (themeColor === 'dark' ? variable.colorGrayDark : variable.colorWhite)};
 
     p {
@@ -20,6 +21,7 @@ export const VideoGridStyled = styled(Grid)`
 
 export const VideoUlStyled = styled.ul`
     ${scrollbar(variable.colorPrimary, variable.colorWhite)};
+
     max-height: 440px;
     overflow-y: auto;
 
@@ -31,6 +33,7 @@ export const VideoUlStyled = styled.ul`
 export const VideoLiStyled = styled.li`
     ${border};
     ${space};
+
     cursor: pointer;
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 

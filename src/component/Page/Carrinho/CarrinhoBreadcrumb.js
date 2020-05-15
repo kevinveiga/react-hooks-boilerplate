@@ -14,7 +14,7 @@ export const CarrinhoBreadcrumb = ({ step }) => {
             <Grid alignItems="center" display="grid" gridColumnGap={2} gridTemplateColumns="auto 3fr auto 3fr auto">
                 <Cell pl={3}>
                     <CarrinhoBreadcrumbBoxStyled active={step === 'cart' && true}>
-                        <Svg fill="colorPrimary" name="svg-cart" />
+                        <Svg fill="colorPrimary" name="svg-cart" verticalAlign="sub" />
                     </CarrinhoBreadcrumbBoxStyled>
                 </Cell>
 
@@ -24,7 +24,7 @@ export const CarrinhoBreadcrumb = ({ step }) => {
 
                 <Cell>
                     <CarrinhoBreadcrumbBoxStyled active={step === 'user' && true}>
-                        <Svg fill="colorPrimary" name="svg-user" />
+                        <Svg fill="colorPrimary" name="svg-user" verticalAlign="sub" />
                     </CarrinhoBreadcrumbBoxStyled>
                 </Cell>
 
@@ -34,7 +34,7 @@ export const CarrinhoBreadcrumb = ({ step }) => {
 
                 <Cell pr={3}>
                     <CarrinhoBreadcrumbBoxStyled active={step === 'payment' && true}>
-                        <Svg fill="colorPrimary" name="svg-payment" />
+                        <Svg fill="colorPrimary" name="svg-payment" verticalAlign="sub" />
                     </CarrinhoBreadcrumbBoxStyled>
                 </Cell>
             </Grid>

@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
-import { space } from 'styled-system';
+import { space, verticalAlign } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
 export const SvgStyled = styled.svg`
     ${space};
+    ${verticalAlign};
 
     ${({ fill }) => fill && `fill: ${variable[fill]}`};
     height: ${({ height }) => height || '15px'};

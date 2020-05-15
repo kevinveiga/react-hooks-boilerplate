@@ -11,6 +11,7 @@ export const MinhaContaCenterStyled = styled.div`
     ${layout};
     ${space};
     ${typography};
+
     background-color: ${variable.colorGrayLight5};
     border-left: 1px solid ${variable.colorGrayLight2};
     border-right: 1px solid ${variable.colorGrayLight2};
@@ -20,6 +21,7 @@ export const MinhaContaCenterStyled = styled.div`
 
 export const MinhaContaConversacaoStyled = styled.div`
     ${scrollbarAlternate()};
+
     max-height: 50vh;
     overflow-y: auto;
     padding-right: 25px;
@@ -81,6 +83,7 @@ export const MinhaContaLeftStyled = styled.div`
     ${layout};
     ${space};
     ${typography};
+
     border-right: 1px solid ${variable.colorGrayLight2};
     box-shadow: 3px 0 6px 0 ${variable.colorBlackTransparent1};
     z-index: 2;

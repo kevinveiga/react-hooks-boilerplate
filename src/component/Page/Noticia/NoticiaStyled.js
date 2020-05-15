@@ -39,6 +39,7 @@ export const NoticiaArticleStyled = styled.article`
     ul,
     var {
         ${NoticiaContainerStyled};
+
         line-height: 2;
         margin-bottom: 25px;
 
@@ -76,6 +77,7 @@ export const NoticiaArticleStyled = styled.article`
     h6,
     table {
         ${NoticiaContainerStyled};
+
         line-height: 1.5;
         margin-bottom: 25px;
 
@@ -113,6 +115,7 @@ export const NoticiaArticleStyled = styled.article`
 
     .video-wrap {
         ${NoticiaContainerStyled};
+
         height: 0;
         margin-bottom: 50px;
         padding-bottom: 56.25%;
@@ -132,11 +135,13 @@ export const NoticiaArticleStyled = styled.article`
 export const NoticiaArticleAuthorStyled = styled.article`
     ${NoticiaContainerStyled};
     ${space};
+
     text-transform: capitalize;
 `;
 
 export const NoticiaAuthorStyled = styled.section`
     ${space};
+
     border-bottom: 1px solid ${variable.borderColor};
     border-top: 1px solid ${variable.borderColor};
     margin-left: auto;
@@ -149,6 +154,7 @@ export const NoticiaAuthorStyled = styled.section`
 export const NoticiaFormContainerStyled = styled.section`
     ${NoticiaContainerStyled};
     ${space};
+
     box-shadow: 0 3px 10px 0 ${variable.colorBlackTransparent1};
 `;
 

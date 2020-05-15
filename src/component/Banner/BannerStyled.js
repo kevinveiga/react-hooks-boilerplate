@@ -33,6 +33,7 @@ export const BannerContainerStyled = styled.div`
     ${grid};
     ${layout};
     ${space};
+
     overflow-x: auto;
     scroll-snap-type: x mandatory;
 `;

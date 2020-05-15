@@ -7,6 +7,7 @@ export const ConteudoCellStyled = styled.div`
     ${grid};
     ${layout};
     ${space};
+
     align-items: center;
     background-color: ${variable.colorWhite};
     border-radius: ${variable.borderRadius};
@@ -64,6 +65,7 @@ export const CursoTopInfoStyled = styled.section`
 
 export const TooltipStyled = styled.div`
     ${space};
+
     background-color: ${variable.colorGrayLight2};
 
     &::after {

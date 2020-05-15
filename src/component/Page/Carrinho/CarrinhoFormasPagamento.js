@@ -7,7 +7,7 @@ import { Svg } from '../../Svg/Svg';
 
 import { Cell, Grid } from '../../../style/grid';
 import { Position } from '../../../style/position';
-import { Span } from '../../../style/text';
+import { P, Span } from '../../../style/text';
 
 export const CarrinhoFormasPagamento = () => {
     const [stateFormaPagamento, setStateFormaPagamento] = useState(null);
@@ -82,6 +82,11 @@ export const CarrinhoFormasPagamento = () => {
                         </Cell>
                     </Grid>
                 </Position>
+
+                <P fontSize="14px" mx={5} my={3}>
+                    Salve seu boleto ele é pagável em qualquer banco até o vencimento. Você obterá acesso ao curso dentro de 3 a 7 dias úteis após o
+                    pagamento.
+                </P>
             </CarrinhoFormasPagamentoCellStyled>
         </Grid>
     );

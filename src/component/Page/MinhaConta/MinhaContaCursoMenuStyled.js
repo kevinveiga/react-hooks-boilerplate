@@ -50,6 +50,7 @@ export const MinhaContaCursoMenuConteudoStyled = styled.li`
 
 export const MinhaContaCursoMenuConteudoCheckboxStyled = styled.input`
     ${typography};
+
     height: 0.1px;
     opacity: 0;
     overflow: hidden;
@@ -100,6 +101,7 @@ export const MinhaContaCursoMenuConteudoCheckboxStyled = styled.input`
 
 export const MinhaContaCursoMenuConteudoContentStyled = styled.div`
     ${space};
+
     background-color: ${variable.colorWhite};
     height: 0;
     overflow: hidden;

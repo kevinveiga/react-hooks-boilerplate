@@ -6,6 +6,7 @@ import { variable } from '../../../style/variable';
 
 export const NoticiaSocialStyled = styled.section`
     ${layout};
+
     animation: ${animationFadeIn()} ${variable.duration} ${variable.timing} 0s 1 normal forwards running;
     ${({ fontSize }) => fontSize === undefined && 'font-size: 14px'};
     left: auto;
