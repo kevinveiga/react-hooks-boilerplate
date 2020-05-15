@@ -112,6 +112,8 @@
 
 #### Boas práticas:
 
+-   [10 coisas que não se deve fazer no React](https://medium.com/better-programming/10-things-not-to-do-when-building-react-applications-bc26d4f38644);
+
 -   Nomeação de funções e propriedades: [https://medium.com/javascript-in-plain-english/handy-naming-conventions-for-event-handler-functions-props-in-react-fc1cbb791364](https://medium.com/javascript-in-plain-english/handy-naming-conventions-for-event-handler-functions-props-in-react-fc1cbb791364)
 
 -   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
@@ -188,36 +190,56 @@ export const Box = styled.div`
 `;
 ```
 
--   [10 coisas que não se deve fazer no React](https://medium.com/better-programming/10-things-not-to-do-when-building-react-applications-bc26d4f38644);
-
 #### Forms - Como usar:
 
+-   Obs: Não mudar da versão 5.5.3 (versões novas não funciona mais o "touched", sem usar ref)
 -   Utilização da biblioteca [React Hook Form](https://github.com/bluebill1049/react-hook-form);
 -   Não passar o "register" por "ref" nos campos "input", e sim por "useEffect". Ex:
 
 ```js
 useEffect(() => {
-    register({ name: 'email' }, { ...customValidate.email });
+    register({ name: 'email' }, { ...customValidate.email, ...customValidate.require });
     register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
-}, [register]);
+
+    return () => {
+        unregister('email');
+        unregister('senha');
+    };
+}, [register, unregister]);
 ```
 
 -   Para usar "placeholder" nos campos "input", basta passar a propriedade "placeholder". Ex:
 
 ```jsx
-<InputValidation error={errors.email} maxLength="50" name="email" onChange={handleValidation()} placeholder="E-mail" touched={formState.touched} {...otherProps} />
+<InputValidation
+    error={errors.email}
+    maxLength="50"
+    name="email"
+    onChange={handleValidation()}
+    placeholder="E-mail"
+    touched={touched}
+    {...otherProps}
+/>
 ```
 
 -   Para usar um "label" como comportamento de "placeholder" nos campos "input", basta passar a propriedade "label". Ex:
 
 ```jsx
-<InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={formState.touched} {...props} />
+<InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...props} />
 ```
 
 -   Para usar máscara nos campo, utilizar o componente "InputMaskValidation", com a propriedade "mask". Ex:
 
 ```jsx
-<InputValidation error={errors.telefone} mask={customMaskRegex.phone} name="telefone" onChange={handleValidation()} placeholder="Telefone" touched={formState.touched} {...props} />
+<InputValidation
+    error={errors.telefone}
+    mask={customMaskRegex.phone}
+    name="telefone"
+    onChange={handleValidation()}
+    placeholder="Telefone"
+    touched={touched}
+    {...props}
+/>
 ```
 
 -   Para passar valores iniciais nos campos, utilizar a função "useSetFormValue", que recebe como parâmetros, um objeto e o id do formulário, também utilizar a propriedade defaultValues na função "useForm". Ex:
@@ -225,9 +247,17 @@ useEffect(() => {
 ```js
 useSetFormValue(data, formId);
 
-const { errors, formState, handleSubmit, register, setError, triggerValidation } = useForm({
+const {
+    errors,
+    formState: { touched },
+    handleSubmit,
+    register,
+    setError,
+    triggerValidation,
+    unregister
+} = useForm({
     defaultValues: data,
-    mode: 'onChange'
+    mode: 'onSubmit'
 });
 ```
 
