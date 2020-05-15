@@ -138,13 +138,13 @@ export const CarrinhoCartaoForm = ({ ...otherProps }) => {
                 </Cell>
 
                 <Cell gridColumn={'3 / span 1'}>
-                    <Label color="colorGray2" mb="-15px" text="Dia/Ano" />
+                    <Label color="colorGray2" mb="-15px" text="Mês/Ano" />
 
                     <div>
                         <InputMaskValidation
                             error={errors.cartao_data}
                             mask={customMaskRegex.cardDate}
-                            maxLength="9"
+                            maxLength="7"
                             name="cartao_data"
                             onChange={handleValidation()}
                             placeholder="MM/AAAA"
