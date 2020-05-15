@@ -36,7 +36,7 @@ export const CarrinhoCadastro = () => {
                             Faça seu cadastro
                         </Title3>
 
-                        <CarrinhoCadastroForm />
+                        <CarrinhoCadastroForm formId="carrinhoCadastroFormId" />
                     </Cell>
 
                     <Cell alignSelf="center" display={{ d: 'none', md: 'block' }} height="50%" gridRow={2} justifySelf="center">

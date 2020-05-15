@@ -10,7 +10,6 @@ import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
-import { variable } from '../../../style/variable';
 
 export const Cadastro = ({ location }) => {
     // ACTION
@@ -18,7 +17,7 @@ export const Cadastro = ({ location }) => {
 
     return (
         <CadastroContext.Provider value={setStateConhecerMaisContext}>
-            <Flex display="flex" flexWrap="wrap" minHeight={`calc(100vh - ${variable.FooterAlternativeHeight})`}>
+            <Flex display="flex" flexWrap="wrap" minHeight="100vh">
                 <Box alignItems="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
                     <Splash />
                 </Box>
@@ -30,9 +29,9 @@ export const Cadastro = ({ location }) => {
                         </Box>
 
                         {!stateConhecerMais ? (
-                            <CadastroForm location={location} obj={{ colorLine: 'colorPrimary' }} />
+                            <CadastroForm formId="cadastroFormId" location={location} obj={{ colorLine: 'colorPrimary' }} />
                         ) : (
-                            <ConhecerMaisForm location={location} obj={{ colorLine: 'colorPrimary' }} />
+                            <ConhecerMaisForm formId="conhecerMaisFormId" location={location} obj={{ colorLine: 'colorPrimary' }} />
                         )}
                     </Container>
                 </Box>

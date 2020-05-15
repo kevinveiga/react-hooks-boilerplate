@@ -25,7 +25,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
 
-export const CadastroForm = ({ location, ...otherProps }) => {
+export const CadastroForm = ({ formId, location, ...otherProps }) => {
     // CONTEXT
     const setStateConhecerMaisContext = useContext(CadastroContext);
 
@@ -54,11 +54,11 @@ export const CadastroForm = ({ location, ...otherProps }) => {
         () => () => {
             const anchorElement =
                 (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') ||
-                (document.querySelector('#cadastroFormId') && '#cadastroFormId');
+                (document.querySelector(`#${formId}`) && `#${formId}`);
 
             scrollTo(anchorElement, true);
         },
-        []
+        [formId]
     );
 
     const handleValidation = useCallback(
@@ -120,7 +120,7 @@ export const CadastroForm = ({ location, ...otherProps }) => {
 
             <Flex display="flex" flexWrap="wrap">
                 <Box overflow="hidden" width="100%">
-                    <FormStyled id="cadastroFormId" onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>

@@ -28,7 +28,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Span, Title3 } from '../../style/text';
 
-export const ConhecerMaisForm = ({ location, ...otherProps }) => {
+export const ConhecerMaisForm = ({ formId, location, ...otherProps }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
@@ -129,7 +129,7 @@ export const ConhecerMaisForm = ({ location, ...otherProps }) => {
 
             <Flex display="flex" flexWrap="wrap">
                 <Box overflow="hidden" width="100%">
-                    <FormStyled id="conhecerMaisFormId" onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>
