@@ -1,6 +1,6 @@
 import { responseErrorMsg } from '../config';
 
-const objErrorStatus = {
+const errorStatusObj = {
     400: 'Servidor não entendeu a requisição',
     401: 'Não autorizado',
     403: 'Não tem direitos de acesso ao conteúdo',
@@ -44,8 +44,8 @@ const objErrorStatus = {
 export const responseErrorStatus = (statusCode) => {
     let msg = responseErrorMsg;
 
-    if (objErrorStatus[statusCode]) {
-        msg = `Erro ${statusCode} - ${objErrorStatus[statusCode]}.`;
+    if (errorStatusObj[statusCode]) {
+        msg = `Erro ${statusCode} - ${errorStatusObj[statusCode]}.`;
     }
 
     return msg;
