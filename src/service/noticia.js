@@ -55,6 +55,10 @@ export const useNoticiaCategoriaApi = (initialData = {}) => {
     });
 
     useEffect(() => {
+        if (!stateNoticiasCategoriaData.url) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {
@@ -93,6 +97,10 @@ export const useNoticiaCategoriasApi = (url, initialData = {}) => {
     });
 
     useEffect(() => {
+        if (!stateNoticiaCategoriasUrl) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {
