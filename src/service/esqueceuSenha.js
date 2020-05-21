@@ -3,7 +3,6 @@ import { useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 
 import * as ACTION from '../store/action/action';
-
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
 export const useEsqueceuSenhaApi = (url, initialData = {}) => {
