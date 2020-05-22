@@ -28,8 +28,8 @@ export const apiUrlPerfil = `${apiUrl}/perfil`;
 
 export const apiUrlPerfilAvatar = `${apiUrl}/perfil/avatar`;
 
-export const defaultErrorMsg = 'Erro desconhecido';
+export const errorMsgDefault = 'Erro desconhecido';
 
-export const responseErrorMsg = 'Algo deu errado, tente novamente.';
+export const errorMsgResponse = 'Algo deu errado, tente novamente.';
 
 export const socketUrl = `${process.env.SOCKET_URL}`;

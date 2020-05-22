@@ -2,7 +2,7 @@ import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
-import { apiUrlCarrinho, defaultErrorMsg } from '../config';
+import { apiUrlCarrinho, errorMsgDefault } from '../config';
 
 import * as ACTION from '../store/action/action';
 import { ecommerceReducer } from '../store/reducer/ecommerceReducer';
@@ -39,7 +39,7 @@ export const useCarrinhoApi = () => {
                 } else if (result.data.reason) {
                     setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
@@ -80,7 +80,7 @@ export const useCarrinhoApi = () => {
                 } else if (result.data.reason) {
                     setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

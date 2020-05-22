@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlCadastro, defaultErrorMsg } from '../../config';
+import { apiUrlCadastro, errorMsgDefault } from '../../config';
 
 import { useUser } from '../../store/auth/auth';
 
@@ -80,7 +80,7 @@ export const CarrinhoCadastroForm = ({ formId, location, ...otherProps }) => {
                 if (result.data && result.data.success == true) {
                     setStateUser(result.data);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

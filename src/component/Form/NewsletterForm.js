@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlNewsletter, defaultErrorMsg } from '../../config';
+import { apiUrlNewsletter, errorMsgDefault } from '../../config';
 
 import { customValidate } from '../../util/customValidate';
 
@@ -62,7 +62,7 @@ export const NewsletterForm = ({ ...props }) => {
                 } else if (result.data.reason) {
                     setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

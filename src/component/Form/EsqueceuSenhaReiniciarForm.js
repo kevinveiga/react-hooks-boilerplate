@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlEsqueceuSenha, defaultErrorMsg } from '../../config';
+import { apiUrlEsqueceuSenha, errorMsgDefault } from '../../config';
 
 import { customValidate } from '../../util/customValidate';
 import { responseError } from '../../util/responseError';
@@ -69,7 +69,7 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
                 if (result.data && result.data.success == true) {
                     setStateRetornoForm(true);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

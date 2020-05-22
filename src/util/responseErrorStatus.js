@@ -1,4 +1,4 @@
-import { responseErrorMsg } from '../config';
+import { errorMsgResponse } from '../config';
 
 const errorStatusObj = {
     400: 'Servidor não entendeu a requisição',
@@ -42,7 +42,7 @@ const errorStatusObj = {
 };
 
 export const responseErrorStatus = (statusCode) => {
-    let msg = responseErrorMsg;
+    let msg = errorMsgResponse;
 
     if (errorStatusObj[statusCode]) {
         msg = `Erro ${statusCode} - ${errorStatusObj[statusCode]}.`;

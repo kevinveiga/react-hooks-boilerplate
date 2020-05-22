@@ -1,6 +1,6 @@
 import parse from 'html-react-parser';
 
-import { defaultErrorMsg } from '../config';
+import { errorMsgDefault } from '../config';
 
 export const responseError = (data) => {
     const errorsObj = data;
@@ -11,7 +11,7 @@ export const responseError = (data) => {
             errors.push(`- ${errorsObj[Object.keys(errorsObj)[i]]}`);
         }
     } else {
-        errors.push(`- ${defaultErrorMsg}`);
+        errors.push(`- ${errorMsgDefault}`);
     }
 
     return parse(errors.join('<br />'));

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlPerfilAvatar, defaultErrorMsg } from '../../config';
+import { apiUrlPerfilAvatar, errorMsgDefault } from '../../config';
 
 import { usePerfilAvatarApi } from '../../service/perfil';
 
@@ -60,7 +60,7 @@ export const MinhaContaAvatarForm = () => {
                             setStatePerfilAvatarData({ update: true, url: apiUrlPerfilAvatar });
                             setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                         } else {
-                            setError('invalid', 'notMatch', defaultErrorMsg);
+                            setError('invalid', 'notMatch', errorMsgDefault);
 
                             console.error('result error: ', result);
                         }

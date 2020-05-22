@@ -3,7 +3,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlCadastro, defaultErrorMsg } from '../../config';
+import { apiUrlCadastro, errorMsgDefault } from '../../config';
 
 import { useUser } from '../../store/auth/auth';
 import { CadastroContext } from '../../store/cadastro/cadastroContext';
@@ -92,7 +92,7 @@ export const CadastroForm = ({ formId, location, ...otherProps }) => {
                     setStateUser(result.data);
                     setStateConhecerMaisContext(true);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

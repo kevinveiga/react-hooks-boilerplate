@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlContato, defaultErrorMsg } from '../../config';
+import { apiUrlContato, errorMsgDefault } from '../../config';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -67,7 +67,7 @@ export const NoticiaForm = ({ ...props }) => {
                 } else if (result.data.reason) {
                     setError('invalid', 'notMatch', result.data.reason[0]);
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

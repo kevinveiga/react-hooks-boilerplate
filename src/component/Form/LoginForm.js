@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlCursos, apiUrlLogin, defaultErrorMsg } from '../../config';
+import { apiUrlCursos, apiUrlLogin, errorMsgDefault } from '../../config';
 
 import { cursoMatricula } from '../../service/curso';
 
@@ -76,7 +76,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
                         window.location.pathname = '/minha-conta/cursos';
                     }
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }

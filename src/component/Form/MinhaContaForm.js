@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlCep, apiUrlPerfil, defaultErrorMsg } from '../../config';
+import { apiUrlCep, apiUrlPerfil, errorMsgDefault } from '../../config';
 
 import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
@@ -87,7 +87,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                             setValue
                         );
                     } catch (error) {
-                        setError('invalid', 'notMatch', defaultErrorMsg);
+                        setError('invalid', 'notMatch', errorMsgDefault);
 
                         console.error('result: ', error);
                     }
@@ -163,7 +163,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     setStatePerfilData({ update: true, url: apiUrlPerfil });
                     setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                 } else {
-                    setError('invalid', 'notMatch', defaultErrorMsg);
+                    setError('invalid', 'notMatch', errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
