@@ -1,4 +1,5 @@
 import { customRegex } from './customRegex';
+import { currencyType } from './currencyType';
 
 export const formatBooleanSet = (value) => {
     switch (value) {
@@ -61,6 +62,15 @@ export const formatDateSet = (date) => {
     }
 
     return '';
+};
+
+export const formatMoney = (number, currency = 'real') => {
+    const formatNumber = new Intl.NumberFormat(currencyType[currency].initials || 'pt-BR', {
+        style: 'currency',
+        currency: currencyType[currency].currency || 'BRL'
+    }).format(number);
+
+    return formatNumber;
 };
 
 export const formatPhoneGet = (phone) => {
