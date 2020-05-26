@@ -64,10 +64,19 @@ export const formatDateSet = (date) => {
     return '';
 };
 
-export const formatMoney = (number, currency = 'real') => {
+export const formatMoneyGet = (number, currency = 'real') => {
     const formatNumber = new Intl.NumberFormat(currencyType[currency].initials || 'pt-BR', {
-        style: 'currency',
-        currency: currencyType[currency].currency || 'BRL'
+        minimumFractionDigits: 2
+    }).format(number);
+
+    return formatNumber;
+};
+
+export const formatMoneyWithSymbolGet = (number, currency = 'real', currencyDisplay = 'symbol') => {
+    const formatNumber = new Intl.NumberFormat(currencyType[currency].initials || 'pt-BR', {
+        currency: currencyType[currency].currency || 'BRL',
+        currencyDisplay: currencyDisplay,
+        style: 'currency'
     }).format(number);
 
     return formatNumber;
