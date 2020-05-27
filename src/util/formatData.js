@@ -66,7 +66,8 @@ export const formatDateSet = (date) => {
 
 export const formatMoneyGet = (number, currency = 'real') => {
     const formatNumber = new Intl.NumberFormat(currencyType[currency].initials || 'pt-BR', {
-        minimumFractionDigits: 2
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
     }).format(number);
 
     return formatNumber;
