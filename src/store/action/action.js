@@ -6,15 +6,15 @@ export const add = () => {
     };
 };
 
-export const addQuantity = () => {
+export const changePayment = () => {
     return {
-        type: ACTION_TYPE.ADD_QUANTITY
+        type: ACTION_TYPE.CHANGE_PAYMENT
     };
 };
 
-export const addToCart = () => {
+export const changePaymentType = () => {
     return {
-        type: ACTION_TYPE.ADD_TO_CART
+        type: ACTION_TYPE.CHANGE_PAYMENT_TYPE
     };
 };
 
@@ -33,18 +33,6 @@ export const init = () => {
 export const remove = () => {
     return {
         type: ACTION_TYPE.REMOVE
-    };
-};
-
-export const removeQuantity = () => {
-    return {
-        type: ACTION_TYPE.REMOVE_QUANTITY
-    };
-};
-
-export const removeFromCart = () => {
-    return {
-        type: ACTION_TYPE.REMOVE_FROM_CART
     };
 };
 

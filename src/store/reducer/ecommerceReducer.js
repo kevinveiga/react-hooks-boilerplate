@@ -2,10 +2,17 @@ import * as ACTION_TYPE from '../action/actionType';
 
 export const ecommerceReducer = (state, action) => {
     switch (action.type) {
-        case ACTION_TYPE.ADD_TO_CART:
+        case ACTION_TYPE.CHANGE_PAYMENT:
             return {
                 ...state,
-                data: action.payload.cartItems,
+                data: { data: { ...state.data.data, forma_pagamento: action.payload } },
+                isError: false,
+                isLoading: false
+            };
+        case ACTION_TYPE.CHANGE_PAYMENT_TYPE:
+            return {
+                ...state,
+                data: { data: { ...state.data.data, forma_pagamento_tipo: action.payload } },
                 isError: false,
                 isLoading: false
             };
@@ -14,13 +21,6 @@ export const ecommerceReducer = (state, action) => {
                 ...state,
                 data: action.payload,
                 isError: true,
-                isLoading: false
-            };
-        case ACTION_TYPE.REMOVE_FROM_CART:
-            return {
-                ...state,
-                data: state.filter((item) => item.id !== action.payload.id),
-                isError: false,
                 isLoading: false
             };
         case ACTION_TYPE.SUCCESS:
