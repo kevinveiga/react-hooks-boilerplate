@@ -314,9 +314,12 @@ export const Normalize = createGlobalStyle`
     }
 
     p {
-        margin: 0 0 ${variable.spacingSM} 0;
         position: relative;
         user-select: text;
+
+        + p {
+            margin: ${variable.spacingSM} 0 0 0;
+        }
     }
 
     /* Contain overflow in all browsers. */

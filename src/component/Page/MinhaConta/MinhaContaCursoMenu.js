@@ -129,11 +129,9 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                     onClick={() => setStatePart(statePart == modulo.id ? null : modulo.id)}
                                 >
                                     <Box mr={3}>
-                                        <P fontSize="18px" mb={1}>
-                                            {modulo.title}
-                                        </P>
+                                        <P fontSize="18px">{modulo.title}</P>
 
-                                        <P fontSize="14px" mb={0}>
+                                        <P fontSize="14px" mt={1}>
                                             {modulo.conteudos.length} Conteúdo{modulo.conteudos.length > 1 && 's'}
                                         </P>
                                     </Box>

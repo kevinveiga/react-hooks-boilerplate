@@ -31,7 +31,7 @@ import { ConteudoCellStyled, ConteudoCellSvgStyled, CursoTopInfoStyled, TooltipS
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container, VideoWrap, Wrap } from '../../../style/layout';
-import { P, Span, Title2, Title4 } from '../../../style/text';
+import { P, Span, Title2, Title4, Title5 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 // LAZY
@@ -128,43 +128,31 @@ export const Curso = ({ match }) => {
                                 <Box width={{ d: '100%', sm: 4 / 6, md: 3 / 4 }}>
                                     <Flex display="flex" flexWrap="wrap" justifyContent={{ d: 'center', sm: 'flex-start' }} textAlign="center">
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" pr={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
+                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" themeColor="dark">
                                                 {curso.carga_horaria || 'Indefinido'}
                                             </P>
 
-                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mb={0} themeColor="dark">
+                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mt={0} themeColor="dark">
                                                 Carga Horária
                                             </P>
                                         </Box>
 
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P
-                                                fontSize={{ d: '14px', sm: '20px' }}
-                                                fontWeight="700"
-                                                mb={0}
-                                                textTransform="capitalize"
-                                                themeColor="dark"
-                                            >
+                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" textTransform="capitalize" themeColor="dark">
                                                 {curso.nivel || 'Indefinido'}
                                             </P>
 
-                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mb={0} themeColor="dark">
+                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mt={0} themeColor="dark">
                                                 Nível
                                             </P>
                                         </Box>
 
                                         <Box borderRight="1px solid rgba(216, 221, 225, 1)" px={{ d: 2, sm: 3, md: 4 }} py={{ d: 1, sm: 0 }}>
-                                            <P
-                                                fontSize={{ d: '14px', sm: '20px' }}
-                                                fontWeight="700"
-                                                mb={0}
-                                                textTransform="capitalize"
-                                                themeColor="dark"
-                                            >
+                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" textTransform="capitalize" themeColor="dark">
                                                 {curso.modalidade || 'Indefinido'}
                                             </P>
 
-                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mb={0} themeColor="dark">
+                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mt={0} themeColor="dark">
                                                 Modalidade
                                             </P>
                                         </Box>
@@ -174,11 +162,11 @@ export const Curso = ({ match }) => {
                                             px={{ d: 2, sm: 3, md: 4 }}
                                             py={{ d: 1, sm: 0 }}
                                         >
-                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" mb={0} themeColor="dark">
+                                            <P fontSize={{ d: '14px', sm: '20px' }} fontWeight="700" themeColor="dark">
                                                 Gratuito
                                             </P>
 
-                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mb={0} themeColor="dark">
+                                            <P display={{ d: 'none', sm: 'block' }} fontSize="12px" mt={0} themeColor="dark">
                                                 Investimento
                                             </P>
                                         </Box>
@@ -215,12 +203,10 @@ export const Curso = ({ match }) => {
                                             <VideoWrap>
                                                 {getVideoSource(curso.imagens.video.url) === 'vimeo' ? (
                                                     <Vimeo
-                                                        id="video"
                                                         video={curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)}
                                                     />
                                                 ) : (
                                                     <YouTube
-                                                        id="video"
                                                         videoId={
                                                             curso.imagens.video && curso.imagens.video.url && getVideoId(curso.imagens.video.url)
                                                         }
@@ -324,7 +310,7 @@ export const Curso = ({ match }) => {
                         </Box>
                     </Container>
 
-                    {curso.instrutores.length > 0 && (
+                    {curso.instrutores.length > 0 && curso.instrutores[0].nome.trim() && (
                         <Wrap>
                             <Container mx="auto" px={3} py={{ d: variable.spacingLG, md: variable.spacingXL }}>
                                 <Title2 mb={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">

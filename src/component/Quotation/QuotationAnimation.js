@@ -72,7 +72,7 @@ export const QuotationAnimation = ({ socketData }) => {
                                 {quotation.Name.toUpperCase()}
                             </Span>
 
-                            <P fontSize="14px" mb={0} whiteSpace="nowrap">
+                            <P fontSize="14px" whiteSpace="nowrap">
                                 <Span pr={1}>{quotation.Value}</Span>
 
                                 <Span color={quotation.Direction === 'negativo' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
@@ -91,7 +91,7 @@ export const QuotationAnimation = ({ socketData }) => {
                         CDI
                     </Span>
 
-                    <P fontSize="14px" mb={0} whiteSpace="nowrap">
+                    <P fontSize="14px" whiteSpace="nowrap">
                         <Span pr={1}>{cdi.value}% a.a</Span>
 
                         <Span color={cdi.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
@@ -109,7 +109,7 @@ export const QuotationAnimation = ({ socketData }) => {
                         SELIC
                     </Span>
 
-                    <P fontSize="14px" mb={0} whiteSpace="nowrap">
+                    <P fontSize="14px" whiteSpace="nowrap">
                         <Span pr={1}>{selic.value}% a.a</Span>
 
                         <Span color={selic.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
@@ -127,8 +127,8 @@ export const QuotationAnimation = ({ socketData }) => {
                         POUPANÇA
                     </Span>
 
-                    <P fontSize="14px" mb={0} whiteSpace="nowrap">
-                        <Span pr={1}>{poupanca.value}% a.m</Span>
+                    <P fontSize="14px" whiteSpace="nowrap">
+                        <Span pr={1}>{poupanca.value}% a.a</Span>
 
                         <Span color={poupanca.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
                             {poupanca.variation}%

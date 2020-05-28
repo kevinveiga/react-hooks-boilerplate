@@ -430,7 +430,7 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
                     </Cell> */}
 
                     <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <P color="colorBlack3" fontWeight="700">
+                        <P color="colorBlack3" fontWeight="700" mb={2}>
                             Notificação de e-mail
                         </P>
 

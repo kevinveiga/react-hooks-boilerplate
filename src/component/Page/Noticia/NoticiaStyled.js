@@ -42,6 +42,7 @@ export const NoticiaArticleStyled = styled.article`
 
         line-height: 2;
         margin-bottom: 25px;
+        margin-top: 0;
 
         img {
             height: auto;
