@@ -15,9 +15,8 @@ export const ModalCookieStyled = styled.div`
     position: fixed;
     text-align: center;
     transform: translateX(-50%);
-    transition: opacity ${variable.transitionSlow};
     width: 90%;
-    z-index: ${({ visible }) => (visible ? 15 : -1)};
+    z-index: 15;
 
     @media (min-width: ${variable.md}) {
         font-size: 14px;
