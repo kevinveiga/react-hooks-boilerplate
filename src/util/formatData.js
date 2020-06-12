@@ -105,3 +105,9 @@ export const formatPhoneSet = (phone) => {
 
     return phone.replace(/\D/g, '');
 };
+
+export const formatStringMoneyToIntSet = (number) => {
+    const newValue = number.toString();
+
+    return parseInt(number.replace(/[,.]/g, ''), 10);
+};
