@@ -3,9 +3,9 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 const AppContext = createContext(undefined);
 
 export const AppProvider = ({ children }) => {
-    const [stateModalLogout, setstateModalLogout] = useState(false);
+    const [stateModalLogout, setStateModalLogout] = useState(false);
 
-    const modalLogout = useMemo(() => [stateModalLogout, setstateModalLogout], [stateModalLogout, setstateModalLogout]);
+    const modalLogout = useMemo(() => [stateModalLogout, setStateModalLogout], [stateModalLogout, setStateModalLogout]);
 
     return (
         <AppContext.Provider
