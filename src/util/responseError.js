@@ -7,8 +7,12 @@ export const responseError = (data) => {
     const errors = [];
 
     if (errorsObj) {
-        for (let i = 0, l = Object.keys(errorsObj).length; i < l; i += 1) {
-            errors.push(`- ${errorsObj[Object.keys(errorsObj)[i]]}`);
+        if (typeof errorsObj === 'string') {
+            errors.push(`- ${errorsObj}`);
+        } else {
+            for (let i = 0, l = Object.keys(errorsObj).length; i < l; i += 1) {
+                errors.push(`- ${errorsObj[Object.keys(errorsObj)[i]]}`);
+            }
         }
     } else {
         errors.push(`- ${errorMsgDefault}`);
