@@ -10,7 +10,9 @@ export const useChangeBannerScroll = (elementId, offset = 0) => {
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-        const position = document.getElementById(elementId) ? document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y : 0;
+        const position = document.getElementById(elementId)
+            ? document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y
+            : 0;
 
         setStateChangeBanner(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
     }, [elementId, offset]);
@@ -36,7 +38,9 @@ export const useFadeOutBannerScroll = (elementId, offset = 0) => {
 
     const handleScroll = useCallback(() => {
         const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-        const position = document.getElementById(elementId) ? document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y : 1500;
+        const position = document.getElementById(elementId)
+            ? document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y
+            : 1500;
 
         setStateFadeOutBannerScroll(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
     }, [elementId, offset]);
