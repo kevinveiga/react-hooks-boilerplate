@@ -31,14 +31,14 @@ export const HomeSuperDestaque = () => {
     const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
 
     // ACTION
-    const [stateDataLength, changeDataLength] = useHome();
+    const { changeDataLengthContext } = useHome();
     const windowWidth = useWindowWidth();
 
     // Retornando length de Data para o parent
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         if (superDestaquesLength > 0) {
-            changeDataLength({ homeSuperDestaqueLength: superDestaquesLength });
+            changeDataLengthContext({ homeSuperDestaqueLength: superDestaquesLength });
         }
     }, [superDestaquesLength]);
     /* eslint-enable react-hooks/exhaustive-deps */
