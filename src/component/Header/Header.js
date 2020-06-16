@@ -32,16 +32,16 @@ export const Header = () => {
     // ACTION
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
     const stateChangeHeaderScroll = useChangeHeaderScroll('header');
-    const [stateMenuMobile, setStateMenuMobile] = useHeader();
+    const { stateMenuMobileContext, setStateMenuMobileContext } = useHeader();
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
 
     // FUNCTION
     const handleMenuMobile = useCallback(
         (value) => () => {
-            setStateMenuMobile(value);
+            setStateMenuMobileContext(value);
         },
-        [setStateMenuMobile]
+        [setStateMenuMobileContext]
     );
 
     const handleModalLogout = useCallback(
@@ -79,7 +79,7 @@ export const Header = () => {
 
     return (
         <>
-            <HeaderStyled active={stateMenuMobile} change={stateChangeHeaderScroll} id="header">
+            <HeaderStyled active={stateMenuMobileContext} change={stateChangeHeaderScroll} id="header">
                 <Container mx="auto" px={{ d: 4, md: 3 }}>
                     <Flex
                         alignItems="center"
@@ -96,7 +96,11 @@ export const Header = () => {
 
                         <Box width={{ d: 'auto', md: 7 / 12 }}>
                             <Box display={{ d: 'block', md: 'none' }}>
-                                <HeaderBtnMenuStyled active={stateMenuMobile} change={stateChangeHeaderScroll} onClick={handleMenuMobile(true)}>
+                                <HeaderBtnMenuStyled
+                                    active={stateMenuMobileContext}
+                                    change={stateChangeHeaderScroll}
+                                    onClick={handleMenuMobile(true)}
+                                >
                                     <ul>
                                         <li />
                                         <li />
@@ -104,7 +108,7 @@ export const Header = () => {
                                     </ul>
                                 </HeaderBtnMenuStyled>
 
-                                <Svg active={stateMenuMobile} name="svg-menu-close" onClick={handleMenuMobile(false)} />
+                                <Svg active={stateMenuMobileContext} name="svg-menu-close" onClick={handleMenuMobile(false)} />
                             </Box>
 
                             <HeaderMenu change={stateChangeHeaderScroll} />

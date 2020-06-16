@@ -10,7 +10,16 @@ export const HeaderAlternativeProvider = ({ children }) => {
         setStateMinhaContaMenuMobile
     ]);
 
-    return <HeaderAlternativeContext.Provider value={memoMinhaContaMenuMobile}>{children}</HeaderAlternativeContext.Provider>;
+    return (
+        <HeaderAlternativeContext.Provider
+            value={{
+                stateMinhaContaMenuMobileContext: memoMinhaContaMenuMobile[0],
+                setStateMinhaContaMenuMobileContext: memoMinhaContaMenuMobile[1]
+            }}
+        >
+            {children}
+        </HeaderAlternativeContext.Provider>
+    );
 };
 
 export const useHeaderAlternative = () => {

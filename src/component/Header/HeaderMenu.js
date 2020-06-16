@@ -15,14 +15,14 @@ import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
     // ACTION
-    const [stateMenuMobile, setStateMenuMobile] = useHeader();
+    const { stateMenuMobileContext, setStateMenuMobileContext } = useHeader();
 
     // FUNCTION
     const handleMenuMobile = useCallback(
         (value) => () => {
-            setStateMenuMobile(value);
+            setStateMenuMobileContext(value);
         },
-        [setStateMenuMobile]
+        [setStateMenuMobileContext]
     );
 
     const keyPress = useCallback(
@@ -45,7 +45,7 @@ export const HeaderMenu = ({ ...props }) => {
     const user = getLocalStorageUser();
 
     return (
-        <HeaderMenuStyled active={stateMenuMobile} {...props}>
+        <HeaderMenuStyled active={stateMenuMobileContext} {...props}>
             <ul>
                 <li>
                     <LinkTo
@@ -84,15 +84,15 @@ export const HeaderMenu = ({ ...props }) => {
                 </li>
 
                 {/* <li>
+                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Quem Somos" />
+                </li> */}
+
+                {/* <li>
                     <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://assistente.liberta.com.vc" target="_blank" text="Perfil de Investidor" />
                 </li>
 
                 {/* <li>
                     <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://pages.liberta.com.vc/fintech-week-2019/" target="_blank" text="Fintech Week" />
-                </li> */}
-
-                {/* <li>
-                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Quem Somos" />
                 </li> */}
             </ul>
 
@@ -102,7 +102,7 @@ export const HeaderMenu = ({ ...props }) => {
                         <li>
                             <LinkTo
                                 fontWeight="700"
-                                link="/minha-conta/inicio"
+                                link="/minha-conta/cursos"
                                 obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }}
                                 onClick={handleMenuMobile(false)}
                                 text={`Olá ${user.nome}`}

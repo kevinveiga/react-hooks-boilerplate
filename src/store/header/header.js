@@ -9,7 +9,11 @@ export const HeaderProvider = ({ children }) => {
 
     const memoMenuMobile = useMemo(() => [stateMenuMobile, setStateMenuMobile], [stateMenuMobile, setStateMenuMobile]);
 
-    return <HeaderContext.Provider value={memoMenuMobile}>{children}</HeaderContext.Provider>;
+    return (
+        <HeaderContext.Provider value={{ stateMenuMobileContext: memoMenuMobile[0], setStateMenuMobileContext: memoMenuMobile[1] }}>
+            {children}
+        </HeaderContext.Provider>
+    );
 };
 
 export const useHeader = () => {

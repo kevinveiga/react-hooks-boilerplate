@@ -15,18 +15,18 @@ import { Container } from '../../style/layout';
 export const HeaderAlternativeMobile = () => {
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
-    const [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile] = useHeaderAlternative();
+    const { stateMinhaContaMenuMobileContext, setStateMinhaContaMenuMobileContext } = useHeaderAlternative();
 
     // FUNCTION
     const handleChangeMinhaContaMenuMobile = useCallback(
         (value) => () => {
-            setStateMinhaContaMenuMobile(value);
+            setStateMinhaContaMenuMobileContext(value);
         },
-        [setStateMinhaContaMenuMobile]
+        [setStateMinhaContaMenuMobileContext]
     );
 
     return (
-        <HeaderStyled active={stateMinhaContaMenuMobile} change={stateChangeHeaderScroll} id="header-minha-conta">
+        <HeaderStyled active={stateMinhaContaMenuMobileContext} change={stateChangeHeaderScroll} id="header-minha-conta">
             <Container mx="auto" px={{ d: 4, md: 3 }}>
                 <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="center">
                     <Box width={2 / 10} />
@@ -40,14 +40,14 @@ export const HeaderAlternativeMobile = () => {
                     <Box alignItems="center" display="flex" flexWrap="wrap" justifyContent="flex-end" width={2 / 10}>
                         <Box>
                             <Svg
-                                active={stateMinhaContaMenuMobile}
+                                active={stateMinhaContaMenuMobileContext}
                                 change={stateChangeHeaderScroll}
                                 fill="colorSecondary"
                                 name="svg-menu"
                                 onClick={handleChangeMinhaContaMenuMobile(true)}
                             />
 
-                            <Svg active={stateMinhaContaMenuMobile} name="svg-menu-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
+                            <Svg active={stateMinhaContaMenuMobileContext} name="svg-menu-close" onClick={handleChangeMinhaContaMenuMobile(false)} />
                         </Box>
 
                         <MinhaContaMenuMobile change={stateChangeHeaderScroll} />
