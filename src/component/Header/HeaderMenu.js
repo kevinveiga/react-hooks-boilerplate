@@ -14,7 +14,7 @@ import { Box } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
 export const HeaderMenu = ({ ...props }) => {
-    // ACTION
+    // CONTEXT
     const { stateMenuMobileContext, setStateMenuMobileContext } = useHeader();
 
     // FUNCTION

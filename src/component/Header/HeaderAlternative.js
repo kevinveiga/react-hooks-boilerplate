@@ -18,8 +18,10 @@ import { Span, Title5 } from '../../style/text';
 import { variable } from '../../style/variable';
 
 export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
-    // ACTION
+    // CONTEXT
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
+
+    // ACTION
     const windowWidth = useWindowWidth();
 
     // FUNCTION

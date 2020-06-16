@@ -30,8 +30,10 @@ export const HomeSuperDestaque = () => {
 
     const superDestaquesLength = stateSuperDestaques.data && stateSuperDestaques.data.length;
 
-    // ACTION
+    // CONTEXT
     const { changeDataLengthContext } = useHome();
+
+    // ACTION
     const windowWidth = useWindowWidth();
 
     // Retornando length de Data para o parent

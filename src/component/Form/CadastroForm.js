@@ -28,10 +28,10 @@ import { P, Title2, Title4 } from '../../style/text';
 export const CadastroForm = ({ formId, location, ...otherProps }) => {
     // CONTEXT
     const { setStateConhecerMaisContext } = useContext(CadastroContext);
+    const { setStateUserContext } = useUser();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-    const { setStateUserContext } = useUser();
 
     useEffect(() => {
         register('confirm_password', { ...customValidate.password, ...customValidate.require });

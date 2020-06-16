@@ -13,9 +13,11 @@ import { Box, Flex } from '../../style/flex';
 import { Container } from '../../style/layout';
 
 export const HeaderAlternativeMobile = () => {
+    // CONTEXT
+    const { stateMinhaContaMenuMobileContext, setStateMinhaContaMenuMobileContext } = useHeaderAlternative();
+
     // ACTION
     const stateChangeHeaderScroll = useChangeHeaderScroll('header-minha-conta');
-    const { stateMinhaContaMenuMobileContext, setStateMinhaContaMenuMobileContext } = useHeaderAlternative();
 
     // FUNCTION
     const handleChangeMinhaContaMenuMobile = useCallback(

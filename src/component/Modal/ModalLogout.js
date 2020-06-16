@@ -8,9 +8,10 @@ import { Button } from '../Button/Button';
 import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyled';
 
 export const ModalLogout = ({ ...props }) => {
-    // ACTION
+    // CONTEXT
     const { setStateModalLogoutContext } = useApp();
 
+    // FUNCTION
     const handleLogout = useCallback(
         () => () => {
             logout();

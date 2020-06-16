@@ -29,10 +29,12 @@ import { Container } from '../../style/layout';
 import { variable } from '../../style/variable';
 
 export const Header = () => {
-    // ACTION
+    // CONTEXT
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
-    const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const { stateMenuMobileContext, setStateMenuMobileContext } = useHeader();
+
+    // ACTION
+    const stateChangeHeaderScroll = useChangeHeaderScroll('header');
     const [statePesquisa, setStatePesquisa] = useState(false);
     const [stateHeaderMinhaContaMenu, setStateHeaderMinhaContaMenu] = useState(false);
 

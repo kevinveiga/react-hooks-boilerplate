@@ -22,9 +22,11 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
 export const LoginForm = ({ location, ...otherProps }) => {
+    // CONTEXT
+    const { setStateUserContext } = useUser();
+
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-    const { setStateUserContext } = useUser();
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email, ...customValidate.require });

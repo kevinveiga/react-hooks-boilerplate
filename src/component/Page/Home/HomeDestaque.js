@@ -22,9 +22,10 @@ export const HomeDestaque = () => {
 
     const destaquesLength = stateDestaques.data && stateDestaques.data.length;
 
-    // ACTION
+    // CONTEXT
     const { changeDataLengthContext } = useHome();
 
+    // ACTION
     // Retornando length de Data para o parent
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
