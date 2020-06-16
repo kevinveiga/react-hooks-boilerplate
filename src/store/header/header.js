@@ -7,9 +7,9 @@ const HeaderContext = createContext(undefined);
 export const HeaderProvider = ({ children }) => {
     const [stateMenuMobile, setStateMenuMobile] = useState(false);
 
-    const menuMobile = useMemo(() => [stateMenuMobile, setStateMenuMobile], [stateMenuMobile, setStateMenuMobile]);
+    const memoMenuMobile = useMemo(() => [stateMenuMobile, setStateMenuMobile], [stateMenuMobile, setStateMenuMobile]);
 
-    return <HeaderContext.Provider value={menuMobile}>{children}</HeaderContext.Provider>;
+    return <HeaderContext.Provider value={memoMenuMobile}>{children}</HeaderContext.Provider>;
 };
 
 export const useHeader = () => {

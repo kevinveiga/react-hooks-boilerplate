@@ -15,7 +15,7 @@ export const CarrinhoProvider = ({ children }) => {
         setStateCarrinhoData
     } = useCarrinhoApi();
 
-    const carrinho = useMemo(
+    const memoCarrinho = useMemo(
         () => [
             handleAddCarrinhoCupom,
             handleAddCarrinhoItem,
@@ -30,12 +30,12 @@ export const CarrinhoProvider = ({ children }) => {
     return (
         <CarrinhoContext.Provider
             value={{
-                handleAddCarrinhoCupomContext: carrinho[0],
-                handleAddCarrinhoItemContext: carrinho[1],
-                handleRemoveCarrinhoCupomContext: carrinho[2],
-                handleRemoveCarrinhoItemContext: carrinho[3],
-                stateCarrinhoContext: carrinho[4],
-                setStateCarrinhoDataContext: carrinho[5]
+                handleAddCarrinhoCupomContext: memoCarrinho[0],
+                handleAddCarrinhoItemContext: memoCarrinho[1],
+                handleRemoveCarrinhoCupomContext: memoCarrinho[2],
+                handleRemoveCarrinhoItemContext: memoCarrinho[3],
+                stateCarrinhoContext: memoCarrinho[4],
+                setStateCarrinhoDataContext: memoCarrinho[5]
             }}
         >
             {children}

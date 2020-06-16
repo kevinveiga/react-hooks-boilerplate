@@ -35,9 +35,9 @@ export const UserProvider = ({ children }) => {
         return undefined;
     }, [stateUser]);
 
-    const user = useMemo(() => [stateUser, setStateUser], [stateUser, setStateUser]);
+    const memoUser = useMemo(() => [stateUser, setStateUser], [stateUser, setStateUser]);
 
-    return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+    return <UserContext.Provider value={memoUser}>{children}</UserContext.Provider>;
 };
 
 export const useUser = () => {

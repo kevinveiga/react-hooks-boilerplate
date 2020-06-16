@@ -5,13 +5,13 @@ const AppContext = createContext(undefined);
 export const AppProvider = ({ children }) => {
     const [stateModalLogout, setStateModalLogout] = useState(false);
 
-    const modalLogout = useMemo(() => [stateModalLogout, setStateModalLogout], [stateModalLogout, setStateModalLogout]);
+    const memoModalLogout = useMemo(() => [stateModalLogout, setStateModalLogout], [stateModalLogout, setStateModalLogout]);
 
     return (
         <AppContext.Provider
             value={{
-                stateModalLogoutContext: modalLogout[0],
-                setStateModalLogoutContext: modalLogout[1]
+                stateModalLogoutContext: memoModalLogout[0],
+                setStateModalLogoutContext: memoModalLogout[1]
             }}
         >
             {children}

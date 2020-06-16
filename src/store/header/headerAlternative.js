@@ -5,12 +5,12 @@ const HeaderAlternativeContext = createContext(undefined);
 export const HeaderAlternativeProvider = ({ children }) => {
     const [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile] = useState(false);
 
-    const minhaContaMenuMobile = useMemo(() => [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile], [
+    const memoMinhaContaMenuMobile = useMemo(() => [stateMinhaContaMenuMobile, setStateMinhaContaMenuMobile], [
         stateMinhaContaMenuMobile,
         setStateMinhaContaMenuMobile
     ]);
 
-    return <HeaderAlternativeContext.Provider value={minhaContaMenuMobile}>{children}</HeaderAlternativeContext.Provider>;
+    return <HeaderAlternativeContext.Provider value={memoMinhaContaMenuMobile}>{children}</HeaderAlternativeContext.Provider>;
 };
 
 export const useHeaderAlternative = () => {

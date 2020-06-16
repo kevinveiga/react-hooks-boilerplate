@@ -55,7 +55,7 @@ export const useNoticiaCategoriaApi = (initialData = {}) => {
     });
 
     useEffect(() => {
-        if (!stateNoticiasCategoriaData.url) {
+        if (!stateNoticiasCategoriaData) {
             return undefined;
         }
 

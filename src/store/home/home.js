@@ -48,9 +48,9 @@ export const HomeProvider = ({ children, location }) => {
     }, [location, stateDataLength]);
     /* eslint-enable react-hooks/exhaustive-deps */
 
-    const dataLength = useMemo(() => [stateDataLength, changeDataLength], [stateDataLength, changeDataLength]);
+    const memoDataLength = useMemo(() => [stateDataLength, changeDataLength], [stateDataLength, changeDataLength]);
 
-    return <HomeContext.Provider value={dataLength}>{children}</HomeContext.Provider>;
+    return <HomeContext.Provider value={memoDataLength}>{children}</HomeContext.Provider>;
 };
 
 export const useHome = () => {
