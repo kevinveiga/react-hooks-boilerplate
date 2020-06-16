@@ -27,7 +27,7 @@ import { P } from '../../style/text';
 export const CarrinhoCadastroForm = ({ formId, location, ...otherProps }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-    const [stateUser, setStateUser] = useUser();
+    const { setStateUserContext } = useUser();
 
     useEffect(() => {
         register('confirm_password', { ...customValidate.password, ...customValidate.require });
@@ -78,7 +78,7 @@ export const CarrinhoCadastroForm = ({ formId, location, ...otherProps }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateUser(result.data);
+                    setStateUserContext(result.data);
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);
 

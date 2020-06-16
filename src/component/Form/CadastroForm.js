@@ -31,7 +31,7 @@ export const CadastroForm = ({ formId, location, ...otherProps }) => {
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-    const [stateUser, setStateUser] = useUser();
+    const { setStateUserContext } = useUser();
 
     useEffect(() => {
         register('confirm_password', { ...customValidate.password, ...customValidate.require });
@@ -89,7 +89,7 @@ export const CadastroForm = ({ formId, location, ...otherProps }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateUser(result.data);
+                    setStateUserContext(result.data);
                     setStateConhecerMaisContext(true);
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);

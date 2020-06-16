@@ -24,7 +24,7 @@ import { Cell, Grid } from '../../style/grid';
 export const LoginForm = ({ location, ...otherProps }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-    const [stateUser, setStateUser] = useUser();
+    const { setStateUserContext } = useUser();
 
     useEffect(() => {
         register({ name: 'email' }, { ...customValidate.email, ...customValidate.require });
@@ -67,7 +67,7 @@ export const LoginForm = ({ location, ...otherProps }) => {
                 if (result.data && result.data.success == true) {
                     const cursoId = JSON.parse(window.sessionStorage.getItem('cursoId'));
 
-                    setStateUser(result.data);
+                    setStateUserContext(result.data);
 
                     // Matricular curso ou redirecionar para Minha Conta Início
                     if (JSON.parse(cursoId)) {
