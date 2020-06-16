@@ -57,6 +57,7 @@
         "@u-wave/react-vimeo": "^0.8.3",
         "axios": "^0.19.1",
         "core-js": "^3.6.5",
+        "pagarme": "^4.11.0",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
         "react-helmet-async": "^1.0.6",

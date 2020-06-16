@@ -32,4 +32,6 @@ export const errorMsgDefault = 'Erro desconhecido';
 
 export const errorMsgResponse = 'Algo deu errado, tente novamente.';
 
-export const socketUrl = `${process.env.SOCKET_URL}`;
+export const pagarmeEncryptionKey = process.env.PAGARME_ENCRYPTION_KEY;
+
+export const socketUrl = process.env.SOCKET_URL;
