@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { apiUrlNoticias } from '../../../config';
 
 import { usePesquisaApi } from '../../../service/pesquisa';
 
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
-// import { useMeasure } from '../../../store/util/measure';
 
-// import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
-// import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { NoticiaBox } from '../Noticia/NoticiaBox';
 
-// import { NoticiasBannerPerfilInvestidorStyled } from '../Noticia/NoticiaStyled';
 import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -22,17 +18,16 @@ import { Cell, Grid } from '../../../style/grid';
 import { Container } from '../../../style/layout';
 import { P, Title3, Title4 } from '../../../style/text';
 
-// LAZY
-// const BannerPerfilInvestidor = lazy(() => import('../../Banner/BannerPerfilInvestidor'));
-
 export const Pesquisa = ({ match }) => {
     // API
-    const [statePesquisa, setStatePesquisaDataContext] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` });
+    const [statePesquisa, setStatePesquisaData] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` });
 
-    const pesquisaLength = statePesquisa.data && statePesquisa.data.length;
+    const memoPesquisa = useMemo(() => [statePesquisa, setStatePesquisaData], [statePesquisa, setStatePesquisaData]);
+
+    const pesquisaLength = memoPesquisa[0].data && memoPesquisa[0].data.length;
 
     return (
-        <PesquisaContext.Provider value={setStatePesquisaDataContext}>
+        <PesquisaContext.Provider value={{ setStatePesquisaDataContext: memoPesquisa[1] }}>
             <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                 <Box mb={5} width={{ d: 1, md: 4 / 5 }}>
                     <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
@@ -68,7 +63,7 @@ export const Pesquisa = ({ match }) => {
                                     </Container>
                                 )}
                                 {pesquisaLength > 0 &&
-                                    statePesquisa.data.map((pesquisa) => {
+                                    memoPesquisa[0].data.map((pesquisa) => {
                                         return (
                                             <Cell
                                                 borderBottom="1px solid rgba(216, 221, 225, 0.8)"
@@ -127,28 +122,6 @@ export const Pesquisa = ({ match }) => {
                             </Grid>
                         </Box>
                     </Flex>
-
-                    {/* <NoticiasBannerPerfilInvestidorStyled
-                        display={{ d: 'none', md: 'block' }}
-                        pl={3}
-                        position="absolute"
-                        ref={stateBannerRef}
-                        right={0}
-                        top={0}
-                        visible={!statePesquisa.isLoading}
-                        width="20%"
-                    >
-                        <ErrorBoundary>
-                            <Suspense fallback={<LoaderComponent />}>
-                                <BannerPerfilInvestidor
-                                    boxMeasure={stateBannerMeasure}
-                                    boxMeasurePadding={16}
-                                    elementChange={{ elementId: 'pesquisa', offset: -50 }}
-                                    elementFadeOut={{ elementId: 'footer', offset: -500 }}
-                                />
-                            </Suspense>
-                        </ErrorBoundary>
-                    </NoticiasBannerPerfilInvestidorStyled> */}
                 </Box>
             </Container>
         </PesquisaContext.Provider>

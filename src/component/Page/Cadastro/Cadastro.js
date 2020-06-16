@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { CadastroContext } from '../../../store/cadastro/cadastroContext';
 
@@ -13,10 +13,12 @@ import { Container } from '../../../style/layout';
 
 export const Cadastro = ({ location }) => {
     // ACTION
-    const [stateConhecerMais, setStateConhecerMaisContext] = useState(false);
+    const [stateConhecerMais, setStateConhecerMais] = useState(false);
+
+    const memoConhecerMais = useMemo(() => [stateConhecerMais, setStateConhecerMais], [stateConhecerMais, setStateConhecerMais]);
 
     return (
-        <CadastroContext.Provider value={setStateConhecerMaisContext}>
+        <CadastroContext.Provider value={{ setStateConhecerMaisContext: memoConhecerMais[1] }}>
             <Flex display="flex" flexWrap="wrap" minHeight="100vh">
                 <Box alignItems="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
                     <Splash />
@@ -28,7 +30,7 @@ export const Cadastro = ({ location }) => {
                             <Svg name="svg-logo-liberta" />
                         </Box>
 
-                        {!stateConhecerMais ? (
+                        {!memoConhecerMais[0] ? (
                             <CadastroForm formId="cadastroFormId" location={location} obj={{ colorLine: 'colorPrimary' }} />
                         ) : (
                             <ConhecerMaisForm formId="conhecerMaisFormId" location={location} obj={{ colorLine: 'colorPrimary' }} />

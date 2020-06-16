@@ -121,7 +121,7 @@
 -   Ao definir um nome de variável para um State de Contexto, colocar no final do nome "Context". Ex:
 
 ```jsx
-<PesquisaContext.Provider value={setStatePesquisaDataContext}>...</PesquisaContext.Provider>
+<PesquisaContext.Provider value={{ setStatePesquisaDataContext: memoPesquisa[1] }}>...</PesquisaContext.Provider>
 ```
 
 -   Ao criar um arquivo de Styled Component fora da pasta "style", colocar no final do nome "Styled". Ex: HomeStyled.js;

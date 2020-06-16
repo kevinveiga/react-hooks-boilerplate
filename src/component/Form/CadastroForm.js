@@ -27,7 +27,7 @@ import { P, Title2, Title4 } from '../../style/text';
 
 export const CadastroForm = ({ formId, location, ...otherProps }) => {
     // CONTEXT
-    const setStateConhecerMaisContext = useContext(CadastroContext);
+    const { setStateConhecerMaisContext } = useContext(CadastroContext);
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);

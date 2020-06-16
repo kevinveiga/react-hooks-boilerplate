@@ -16,7 +16,7 @@ import { Cell, Grid } from '../../style/grid';
 
 export const PesquisaForm = ({ ...props }) => {
     // CONTEXT
-    const setStatePesquisaDataContext = useContext(PesquisaContext);
+    const { setStatePesquisaDataContext } = useContext(PesquisaContext);
 
     // ACTION
     useEffect(() => {
