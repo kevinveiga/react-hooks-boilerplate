@@ -1,46 +1,75 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
+import { createCardTransactionPromise } from '../../service/pagarme';
+
 import { useCarrinho } from '../../store/carrinho/carrinho';
+import { usePagarme } from '../../store/pagarme/pagarme';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
+import { pagarmeResponseError } from '../../util/pagarmeResponseError';
 
 import { InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { OptionParcelas } from './OptionParcelas';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
-    // ACTION
-    const { handleAddCarrinhoCupomContext } = useCarrinho();
+export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherProps }) => {
+    // CONST
+    const CARTAO_CVV = 'cartao_cvv';
+    const CARTAO_DATA = 'cartao_data';
+    const CARTAO_NOME = 'cartao_nome';
+    const CARTAO_NUMERO = 'cartao_numero';
+    const CARTAO_PARCELA = 'cartao_parcela';
+    const CPF = 'cpf';
 
+    // CONTEXT
+    const { stateCarrinhoContext, handleFormaPagamentoContext } = useCarrinho();
+    const { setStateLoaderPagarmeContext } = usePagarme();
+
+    const carrinho = stateCarrinhoContext.data && stateCarrinhoContext.data.data;
+
+    // ACTION
     useEffect(() => {
-        register('cartao_cvv', { ...customValidate.cardCvv, ...customValidate.require });
-        register('cartao_data', { ...customValidate.cardDate, ...customValidate.require });
-        register('cartao_nome', { ...customValidate.name, ...customValidate.require });
-        register('cartao_numero', { ...customValidate.cardNumber, ...customValidate.require });
-        register('cartao_parcela', { ...customValidate.require });
-        register('cpf', { ...customValidate.cpf, ...customValidate.require });
+        register(CARTAO_CVV, { ...customValidate.cardCvv, ...customValidate.require });
+        register(CARTAO_DATA, { ...customValidate.cardDate, ...customValidate.require });
+        register(CARTAO_NOME, { ...customValidate.name, ...customValidate.require });
+        register(CARTAO_NUMERO, { ...customValidate.cardNumber, ...customValidate.require });
+        register(CARTAO_PARCELA, { ...customValidate.require });
+        register(CPF, { ...customValidate.cpf, ...customValidate.require });
 
         return () => {
-            unregister('cartao_cvv');
-            unregister('cartao_data');
-            unregister('cartao_nome');
-            unregister('cartao_numero');
-            unregister('cartao_parcela');
-            unregister('cpf');
+            unregister(CARTAO_CVV);
+            unregister(CARTAO_DATA);
+            unregister(CARTAO_NOME);
+            unregister(CARTAO_NUMERO);
+            unregister(CARTAO_PARCELA);
+            unregister(CPF);
         };
     }, [register, unregister]);
 
+    // Ao inicializar o select, atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
+    useEffect(() => {
+        const element = document.getElementById(`${CARTAO_PARCELA}SelectId`);
+
+        setValue(element.name, element.value);
+
+        handleFormaPagamentoContext(JSON.parse(element.options[element.selectedIndex].getAttribute('data-obj')));
+    }, [handleFormaPagamentoContext, setValue]);
+
     // FUNCTION
+    // Atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
     const handleSetValue = useCallback(
         () => (element) => {
             setValue(element.target.name, element.target.value);
+
+            handleFormaPagamentoContext(JSON.parse(element.target.options[element.target.selectedIndex].getAttribute('data-obj')));
         },
-        [setValue]
+        [handleFormaPagamentoContext, setValue]
     );
 
     const handleValidation = useCallback(
@@ -66,7 +95,24 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
     });
 
     const submitForm = (formData) => {
-        handleAddCarrinhoCupomContext(formData.cupom, setError);
+        setStateLoaderPagarmeContext(true);
+
+        createCardTransactionPromise(formData, carrinho)
+            .then((response) => {
+                if (response.errors) {
+                    setError('invalid', 'notMatch', pagarmeResponseError(response.errors));
+                } else {
+                    // TODO: tratar status do pagarme
+                    console.log('status: ', response);
+                }
+
+                setStateLoaderPagarmeContext(false);
+            })
+            .catch((error) => {
+                setError('invalid', 'notMatch', pagarmeResponseError(error));
+
+                setStateLoaderPagarmeContext(false);
+            });
     };
 
     return (
@@ -83,9 +129,9 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
 
                     <div>
                         <InputValidation
-                            error={errors.cartao_nome}
+                            error={errors[CARTAO_NOME]}
                             maxLength="50"
-                            name="cartao_nome"
+                            name={CARTAO_NOME}
                             onChange={handleValidation()}
                             placeholder="Seu nome exatamente como está no cartão"
                             pr={4}
@@ -94,7 +140,7 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
                         />
                     </div>
 
-                    {errors.cartao_nome && <InvalidInputMessageStyled>{errors.cartao_nome.message}</InvalidInputMessageStyled>}
+                    {errors[CARTAO_NOME] && <InvalidInputMessageStyled>{errors[CARTAO_NOME].message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell gridColumn={'4 / span 1'}>
@@ -102,10 +148,10 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
 
                     <div>
                         <InputMaskValidation
-                            error={errors.cpf}
+                            error={errors[CPF]}
                             mask={customMaskRegex.cpf}
                             maxLength="14"
-                            name="cpf"
+                            name={CPF}
                             onChange={handleValidation()}
                             placeholder="000.000.000-00"
                             pr={4}
@@ -114,7 +160,7 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
                         />
                     </div>
 
-                    {errors.cpf && <InvalidInputMessageStyled>{errors.cpf.message}</InvalidInputMessageStyled>}
+                    {errors[CPF] && <InvalidInputMessageStyled>{errors[CPF].message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell gridColumn={'1 / span 2'}>
@@ -122,10 +168,10 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
 
                     <div>
                         <InputMaskValidation
-                            error={errors.cartao_numero}
+                            error={errors[CARTAO_NUMERO]}
                             mask={customMaskRegex.cardNumber}
                             maxLength="19"
-                            name="cartao_numero"
+                            name={CARTAO_NUMERO}
                             onChange={handleValidation()}
                             placeholder="0000 0000 0000 0000"
                             pr={4}
@@ -134,7 +180,7 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
                         />
                     </div>
 
-                    {errors.cartao_numero && <InvalidInputMessageStyled>{errors.cartao_numero.message}</InvalidInputMessageStyled>}
+                    {errors[CARTAO_NUMERO] && <InvalidInputMessageStyled>{errors[CARTAO_NUMERO].message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell gridColumn={'3 / span 1'}>
@@ -142,10 +188,10 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
 
                     <div>
                         <InputMaskValidation
-                            error={errors.cartao_data}
+                            error={errors[CARTAO_DATA]}
                             mask={customMaskRegex.cardDate}
                             maxLength="7"
-                            name="cartao_data"
+                            name={CARTAO_DATA}
                             onChange={handleValidation()}
                             placeholder="MM/AAAA"
                             pr={4}
@@ -154,7 +200,7 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
                         />
                     </div>
 
-                    {errors.cartao_data && <InvalidInputMessageStyled>{errors.cartao_data.message}</InvalidInputMessageStyled>}
+                    {errors[CARTAO_DATA] && <InvalidInputMessageStyled>{errors[CARTAO_DATA].message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell gridColumn={'4 / span 1'}>
@@ -162,10 +208,10 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
 
                     <div>
                         <InputMaskValidation
-                            error={errors.cartao_cvv}
+                            error={errors[CARTAO_CVV]}
                             mask={customMaskRegex.cardCvv}
                             maxLength="3"
-                            name="cartao_cvv"
+                            name={CARTAO_CVV}
                             onChange={handleValidation()}
                             placeholder="000"
                             pr={4}
@@ -174,7 +220,7 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
                         />
                     </div>
 
-                    {errors.cartao_cvv && <InvalidInputMessageStyled>{errors.cartao_cvv.message}</InvalidInputMessageStyled>}
+                    {errors[CARTAO_CVV] && <InvalidInputMessageStyled>{errors[CARTAO_CVV].message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell gridColumn={'1 / span 2'}>
@@ -182,31 +228,22 @@ export const CarrinhoCartaoForm = ({ formId, ...otherProps }) => {
 
                     <div>
                         <Select
-                            name="cartao_parcela"
+                            id={`${CARTAO_PARCELA}SelectId`}
+                            name={CARTAO_PARCELA}
                             obj={{
                                 color: 'colorGrayDark',
                                 fontWeight: '700'
                             }}
                             onChange={handleSetValue()}
-                            value="1"
                             {...otherProps}
                         >
-                            <option value="1">1x de 100,00 s/ juros</option>
-                            <option value="2">2x de 50,00 s/ juros</option>
-                            <option value="3">3x de 33,33 s/ juros</option>
-                            <option value="4">4x de 25,00 s/ juros</option>
-                            <option value="5">5x de 20,00 s/ juros</option>
-                            <option value="6">6x de 16,66 s/ juros</option>
-                            <option value="7">7x de 14,28 s/ juros</option>
-                            <option value="8">8x de 12,50 s/ juros</option>
-                            <option value="9">9x de 11,11 s/ juros</option>
-                            <option value="10">10x de 10,00 s/ juros</option>
+                            <OptionParcelas cardObj={formaPagamentoObj} totalValue={carrinho.valor_total_desconto} />
                         </Select>
                     </div>
 
-                    {errors.cartao_parcela && <InvalidInputMessageStyled>{errors.cartao_parcela.message}</InvalidInputMessageStyled>}
+                    {errors[CARTAO_PARCELA] && <InvalidInputMessageStyled>{errors[CARTAO_PARCELA].message}</InvalidInputMessageStyled>}
                 </Cell>
             </Grid>
         </FormStyled>
     );
-};
+});

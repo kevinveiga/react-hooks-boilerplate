@@ -2,7 +2,7 @@ import parse from 'html-react-parser';
 
 import { errorMsgDefault } from '../config';
 
-export const responseErrorPagarme = (data) => {
+export const pagarmeResponseError = (data) => {
     const errorsArray = data;
     const errors = [];
 
