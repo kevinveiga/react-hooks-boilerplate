@@ -13,7 +13,6 @@
         "importScripts": true,
         "localStorage": true,
         "React": true,
-        "RdIntegration": true,
         "window": true,
         "workbox": true
     },
