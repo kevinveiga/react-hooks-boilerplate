@@ -10,8 +10,8 @@ import { Cell, Grid } from '../../../style/grid';
 import { P, Span } from '../../../style/text';
 
 export const CarrinhoCupom = () => {
-    // ACTION
-    const { handleRemoveCarrinhoCupomContext, stateCarrinhoContext } = useCarrinho();
+    // CONTEXT
+    const { handleCarrinhoCupomRemoveContext, stateCarrinhoContext } = useCarrinho();
 
     const carrinho = stateCarrinhoContext.data && stateCarrinhoContext.data.data;
 
@@ -38,7 +38,7 @@ export const CarrinhoCupom = () => {
                                 height="23px"
                                 name="svg-trash"
                                 obj={{ hoverColor: 'colorPrimary' }}
-                                onClick={handleRemoveCarrinhoCupomContext(carrinho.cupom)}
+                                onClick={handleCarrinhoCupomRemoveContext(carrinho.cupom)}
                             />
                         </Cell>
                     </Grid>

@@ -25,9 +25,11 @@ import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
 export const CarrinhoCadastroForm = ({ formId, location, ...otherProps }) => {
+    // CONTEXT
+    const { setStateUserContext } = useUser();
+
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
-    const { setStateUserContext } = useUser();
 
     useEffect(() => {
         register('confirm_password', { ...customValidate.password, ...customValidate.require });

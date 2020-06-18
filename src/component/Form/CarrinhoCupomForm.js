@@ -14,9 +14,10 @@ import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessa
 import { Cell, Grid } from '../../style/grid';
 
 export const CarrinhoCupomForm = ({ ...props }) => {
-    // ACTION
-    const { handleAddCarrinhoCupomContext } = useCarrinho();
+    // CONTEXT
+    const { handleCarrinhoCupomAddContext } = useCarrinho();
 
+    // ACTION
     useEffect(() => {
         register('cupom', { ...customValidate.require });
 
@@ -39,7 +40,7 @@ export const CarrinhoCupomForm = ({ ...props }) => {
     });
 
     const submitForm = (formData) => {
-        handleAddCarrinhoCupomContext(formData.cupom, setError);
+        handleCarrinhoCupomAddContext(formData.cupom, setError);
     };
 
     return (

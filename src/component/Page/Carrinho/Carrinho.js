@@ -23,16 +23,24 @@ export const Carrinho = () => {
                     py={{ d: 4, md: 5 }}
                 >
                     <Grid alignItems="flex-start" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns={{ d: '1fr', md: '4fr 260px' }}>
-                        <Cell gridRow={{ d: 2, md: '1 / span 2' }}>
-                            <CarrinhoItens />
-                        </Cell>
-
-                        <Cell gridRow={1}>
+                        <Cell display={{ d: 'block', md: 'none' }}>
                             <CarrinhoBreadcrumb step="cart" />
                         </Cell>
 
-                        <Cell alignSelf="flex-start" gridRow={{ d: 3, md: '2 / span 1' }}>
-                            <CarrinhoTotal />
+                        <Cell>
+                            <CarrinhoItens />
+                        </Cell>
+
+                        <Cell>
+                            <Grid alignItems="flex-start" display="grid" gridRowGap={3}>
+                                <Cell display={{ d: 'none', md: 'block' }}>
+                                    <CarrinhoBreadcrumb step="cart" />
+                                </Cell>
+
+                                <Cell>
+                                    <CarrinhoTotal />
+                                </Cell>
+                            </Grid>
                         </Cell>
                     </Grid>
                 </Container>

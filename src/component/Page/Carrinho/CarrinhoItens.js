@@ -11,8 +11,8 @@ import { Cell, Grid } from '../../../style/grid';
 import { Span } from '../../../style/text';
 
 export const CarrinhoItens = () => {
-    // ACTION
-    const { handleRemoveCarrinhoItemContext, stateCarrinhoContext } = useCarrinho();
+    // CONTEXT
+    const { handleCarrinhoItemRemoveContext, stateCarrinhoContext } = useCarrinho();
 
     const carrinhoItens = stateCarrinhoContext.data ? stateCarrinhoContext.data.data.items : [];
     const carrinhoItensLength = carrinhoItens ? carrinhoItens.length : 0;
@@ -65,7 +65,7 @@ export const CarrinhoItens = () => {
                                         height="23px"
                                         name="svg-trash"
                                         obj={{ hoverColor: 'colorPrimary' }}
-                                        onClick={handleRemoveCarrinhoItemContext(carrinhoItem.id)}
+                                        onClick={handleCarrinhoItemRemoveContext(carrinhoItem.id)}
                                     />
                                 </Cell>
                             </Grid>

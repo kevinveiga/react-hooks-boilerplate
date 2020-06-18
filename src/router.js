@@ -9,6 +9,7 @@ import { Cadastro } from './component/Page/Cadastro/Cadastro';
 import { Carrinho } from './component/Page/Carrinho/Carrinho';
 import { CarrinhoCadastro } from './component/Page/Carrinho/CarrinhoCadastro';
 import { CarrinhoPagamento } from './component/Page/Carrinho/CarrinhoPagamento';
+import { CarrinhoRetorno } from './component/Page/Carrinho/CarrinhoRetorno';
 import { Curso } from './component/Page/Curso/Curso';
 import { ErrorBoundary } from './component/ErrorBoundary/ErrorBoundary';
 import { LoaderComponent } from './component/Loader/LoaderComponent';
@@ -53,6 +54,11 @@ const routes = [
         component: CarrinhoPagamento,
         layout: LayoutDefault,
         path: '/carrinho-pagamento'
+    },
+    {
+        component: CarrinhoRetorno,
+        layout: LayoutDefault,
+        path: '/carrinho-retorno/:paymentType/:billetUrl?'
     },
     {
         component: Curso,

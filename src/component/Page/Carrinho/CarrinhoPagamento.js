@@ -1,10 +1,12 @@
 import React from 'react';
 
 import { CarrinhoProvider } from '../../../store/carrinho/carrinho';
+import { PagarmeProvider } from '../../../store/pagarme/pagarme';
 
 import { CarrinhoBreadcrumb } from './CarrinhoBreadcrumb';
 import { CarrinhoFormasPagamento } from './CarrinhoFormasPagamento';
 import { CarrinhoResumo } from './CarrinhoResumo';
+import { LoaderPagarme } from '../../Loader/LoaderPagarme';
 import { Svg } from '../../Svg/Svg';
 
 import { Cell, Grid } from '../../../style/grid';
@@ -22,19 +24,37 @@ export const CarrinhoPagamento = () => {
                     px={3}
                     py={{ d: 4, md: 5 }}
                 >
-                    <Grid alignItems="flex-start" display="grid" gridColumnGap={4} gridRowGap={3} gridTemplateColumns={{ d: '1fr', md: '4fr 260px' }}>
-                        <Cell gridRow={{ d: 2, md: '1 / span 2' }}>
-                            <CarrinhoFormasPagamento />
-                        </Cell>
+                    <PagarmeProvider>
+                        <LoaderPagarme />
 
-                        <Cell gridRow={1}>
-                            <CarrinhoBreadcrumb step="payment" />
-                        </Cell>
+                        <Grid
+                            alignItems="flex-start"
+                            display="grid"
+                            gridColumnGap={4}
+                            gridRowGap={3}
+                            gridTemplateColumns={{ d: '1fr', md: '4fr 260px' }}
+                        >
+                            <Cell display={{ d: 'block', md: 'none' }}>
+                                <CarrinhoBreadcrumb step="payment" />
+                            </Cell>
 
-                        <Cell alignSelf="flex-start" gridRow={{ d: 3, md: '2 / span 1' }}>
-                            <CarrinhoResumo />
-                        </Cell>
-                    </Grid>
+                            <Cell>
+                                <CarrinhoFormasPagamento />
+                            </Cell>
+
+                            <Cell>
+                                <Grid alignItems="flex-start" display="grid" gridRowGap={3}>
+                                    <Cell display={{ d: 'none', md: 'block' }}>
+                                        <CarrinhoBreadcrumb step="payment" />
+                                    </Cell>
+
+                                    <Cell>
+                                        <CarrinhoResumo />
+                                    </Cell>
+                                </Grid>
+                            </Cell>
+                        </Grid>
+                    </PagarmeProvider>
                 </Container>
             </Wrap>
 
