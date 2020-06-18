@@ -1,5 +1,5 @@
 export const getVideoSource = (url = '') => {
-    const youtubeSource = new RegExp('youtube');
+    const regex = new RegExp('youtube');
 
-    return youtubeSource.test(url) ? 'youtube' : 'vimeo';
+    return regex.test(url) ? 'youtube' : 'vimeo';
 };

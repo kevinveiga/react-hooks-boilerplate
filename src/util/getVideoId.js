@@ -1,6 +1,6 @@
 export const getVideoId = (url = '') => {
-    const youtubeSource = new RegExp('youtube');
-    const regex = youtubeSource.test(url) ? /(https:\/\/www.youtube.com\/watch\?).*v=([\w-]{11})/ : /(https:\/\/vimeo.com\/)([\d]{9})/;
+    const regex = new RegExp('youtube');
+    const results = regex.test(url) ? /.+v=([\w-]{11})/ : /.+([\d]{9})/;
 
-    return url.match(regex) && url.match(regex)[2];
+    return url.match(results) && url.match(results)[1];
 };
