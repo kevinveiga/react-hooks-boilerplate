@@ -107,7 +107,7 @@ export const formatPhoneSet = (phone) => {
 };
 
 export const formatStringMoneyToIntSet = (number) => {
-    const newValue = number.toString();
+    const numberToString = number.toString();
 
-    return parseInt(number.replace(/[,.]/g, ''), 10);
+    return parseInt(numberToString.replace(/[,.]/g, ''), 10);
 };
