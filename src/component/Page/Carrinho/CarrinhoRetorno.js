@@ -33,7 +33,7 @@ export const CarrinhoRetorno = ({ match }) => {
                                     Seu boleto está disponível aqui
                                 </P>
 
-                                <LinkToExternal link={billetUrlParam} target="_blank">
+                                <LinkToExternal link={match.params.billetUrl} target="_blank">
                                     <Button mx="auto" my={{ d: 3, md: 4 }} text="Baixar Boleto" />
                                 </LinkToExternal>
 
@@ -47,7 +47,7 @@ export const CarrinhoRetorno = ({ match }) => {
                     {match.params.paymentType === paymentType.cartaoCredito && (
                         <>
                             <Cell textAlign="center">
-                                <Svg fill="colorGrayTransparent9" height="80px" mx={{ d: 2, md: 3 }} name="svg-sacola" />
+                                <Svg fill="colorGrayTransparent9" height="120px" mx={{ d: 2, md: 3 }} name="svg-bag" />
                             </Cell>
 
                             <Cell textAlign="center">
