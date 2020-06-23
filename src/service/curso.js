@@ -2,32 +2,38 @@ import { useCallback, useEffect, useReducer, useState } from 'react';
 
 import axios from 'axios';
 
+import { apiUrlCursos } from '../config';
+
 import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
+
+import { removeStorage, setStorage } from '../util/storage';
 
 /**
  * @description Registrar matrícula do curso, grava em sessionStorage o id do curso e faz um redirect.
  * @param {number} cursoId Id do curso.
  * @param {string} url Url da api.
  */
-export const cursoMatricula = (cursoId, url) => {
+export const cursoMatricula = (cursoId, url = `${apiUrlCursos}/matricular`) => {
+    // Adiciona o cursoId na sessionStorage
+    setStorage('cursoId', JSON.stringify(cursoId), 'sessionStorage');
+
     const fetchData = async () => {
         try {
             const result = await axios.post(url, { curso_id: cursoId });
 
             if (result.data && result.data.success == true) {
-                window.sessionStorage.setItem('cursoId', null);
+                // Depois do usuário estar matriculado no curso, remove o cursoId da sessionStorage e redireciona para Minha Conta - Cursos
+                removeStorage('cursoId', 'sessionStorage');
 
                 window.location.pathname = `/minha-conta/curso/${cursoId}`;
             } else {
-                console.error('result: ', result);
+                console.error('result error: ', result);
             }
         } catch (error) {
+            // Se o usuário não está logado, redireciona para Minha Conta - Cursos
+            // onde é aplicada a regra de redirecionamento do Login
             if (error.response && error.response.status === 403) {
-                window.sessionStorage.setItem('cursoId', JSON.stringify(cursoId));
-
-                console.error('error: ', error);
-
                 window.location.pathname = `/minha-conta/curso/${cursoId}`;
             } else {
                 console.error('error: ', error);

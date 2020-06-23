@@ -3,13 +3,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlCursos, apiUrlLogin, errorMsgDefault } from '../../config';
-
-import { cursoMatricula } from '../../service/curso';
+import { apiUrlLogin, errorMsgDefault } from '../../config';
 
 import { useUser } from '../../store/auth/auth';
 
 import { customValidate } from '../../util/customValidate';
+import { redirectRule } from '../../util/redirectRule';
 import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
@@ -67,16 +66,11 @@ export const LoginForm = ({ location, ...otherProps }) => {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    const cursoId = JSON.parse(window.sessionStorage.getItem('cursoId'));
-
+                    // Salva dados do usuário no localStorage
                     setStateUserContext(result.data);
 
-                    // Matricular curso ou redirecionar para Minha Conta Início
-                    if (JSON.parse(cursoId)) {
-                        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
-                    } else {
-                        window.location.pathname = '/minha-conta/cursos';
-                    }
+                    // Regras de redirecionamento
+                    redirectRule();
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);
 

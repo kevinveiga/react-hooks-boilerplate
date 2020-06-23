@@ -3,13 +3,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-import { apiUrlCursos, apiUrlPerfil, errorMsgDefault } from '../../config';
-
-import { cursoMatricula } from '../../service/curso';
+import { apiUrlPerfil, errorMsgDefault } from '../../config';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataSet } from '../../util/formatFormData';
+import { redirectRule } from '../../util/redirectRule';
 import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
@@ -28,7 +27,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Span, Title3 } from '../../style/text';
 
-export const ConhecerMaisForm = ({ formId, location, ...otherProps }) => {
+export const ConhecerMaisForm = ({ formId, ...otherProps }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
@@ -90,14 +89,8 @@ export const ConhecerMaisForm = ({ formId, location, ...otherProps }) => {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    const cursoId = JSON.parse(window.sessionStorage.getItem('cursoId'));
-
-                    // Matricular curso ou redirecionar para Minha Conta Início
-                    if (cursoId) {
-                        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
-                    } else {
-                        window.location.pathname = '/minha-conta/cursos';
-                    }
+                    // Regras de redirecionamento
+                    redirectRule();
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { memo, useCallback, useContext, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -25,7 +25,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
 
-export const CadastroForm = ({ formId, location, ...otherProps }) => {
+export const CadastroForm = memo(({ formId, ...otherProps }) => {
     // CONTEXT
     const { setStateConhecerMaisContext } = useContext(CadastroContext);
     const { setStateUserContext } = useUser();
@@ -89,7 +89,10 @@ export const CadastroForm = ({ formId, location, ...otherProps }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    // Salva dados do usuário no localStorage
                     setStateUserContext(result.data);
+
+                    // Exibe formulário Conhecer Mais Usuário
                     setStateConhecerMaisContext(true);
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);
@@ -283,4 +286,4 @@ export const CadastroForm = ({ formId, location, ...otherProps }) => {
             </Flex>
         </>
     );
-};
+});

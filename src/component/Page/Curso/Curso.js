@@ -88,7 +88,7 @@ export const Curso = ({ match }) => {
 
     // MATRICULA
     const handleMatricula = (cursoId) => () => {
-        cursoMatricula(cursoId, `${apiUrlCursos}/matricular`);
+        cursoMatricula(cursoId);
     };
 
     return (

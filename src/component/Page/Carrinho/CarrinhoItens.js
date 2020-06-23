@@ -14,8 +14,8 @@ export const CarrinhoItens = () => {
     // CONTEXT
     const { handleCarrinhoItemRemoveContext, stateCarrinhoContext } = useCarrinho();
 
-    const carrinhoItens = stateCarrinhoContext.data ? stateCarrinhoContext.data.data.items : [];
-    const carrinhoItensLength = carrinhoItens ? carrinhoItens.length : 0;
+    const carrinhoItens = stateCarrinhoContext.data ? stateCarrinhoContext.data.data && stateCarrinhoContext.data.data.itens : [];
+    const carrinhoItensLength = carrinhoItens.length || 0;
 
     return (
         <Grid alignItems="center" display="grid" gridAutoRows="minmax(55px, auto)" gridRowGap={3}>

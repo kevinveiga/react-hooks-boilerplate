@@ -52,6 +52,7 @@ const routes = [
     },
     {
         component: CarrinhoPagamento,
+        hasAuth: true,
         layout: LayoutDefault,
         path: '/carrinho-pagamento'
     },

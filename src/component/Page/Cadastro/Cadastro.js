@@ -11,7 +11,7 @@ import { Svg } from '../../Svg/Svg';
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
 
-export const Cadastro = ({ location }) => {
+export const Cadastro = () => {
     // ACTION
     const [stateConhecerMais, setStateConhecerMais] = useState(false);
 
@@ -31,9 +31,9 @@ export const Cadastro = ({ location }) => {
                         </Box>
 
                         {!memoConhecerMais[0] ? (
-                            <CadastroForm formId="cadastroFormId" location={location} obj={{ colorLine: 'colorPrimary' }} />
+                            <CadastroForm formId="cadastroFormId" obj={{ colorLine: 'colorPrimary' }} />
                         ) : (
-                            <ConhecerMaisForm formId="conhecerMaisFormId" location={location} obj={{ colorLine: 'colorPrimary' }} />
+                            <ConhecerMaisForm formId="conhecerMaisFormId" obj={{ colorLine: 'colorPrimary' }} />
                         )}
                     </Container>
                 </Box>
