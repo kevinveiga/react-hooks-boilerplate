@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const EsqueceuSenhaForm = ({ ...props }) => {
+export const EsqueceuSenhaForm = memo(({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
@@ -120,4 +120,4 @@ export const EsqueceuSenhaForm = ({ ...props }) => {
             )}
         </Flex>
     );
-};
+});

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -24,7 +24,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const CarrinhoCadastroForm = ({ formId, location, ...otherProps }) => {
+export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) => {
     // CONTEXT
     const { setStateUserContext } = useUser();
 
@@ -251,4 +251,4 @@ export const CarrinhoCadastroForm = ({ formId, location, ...otherProps }) => {
             </Box>
         </Flex>
     );
-};
+});

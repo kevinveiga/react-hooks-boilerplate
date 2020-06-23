@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -23,7 +23,7 @@ import { P } from '../../style/text';
 
 import logoBg from '../../asset/image/image-placeholder.svg';
 
-export const MinhaContaAvatarForm = () => {
+export const MinhaContaAvatarForm = memo(() => {
     // API
     const [statePerfilAvatar, setStatePerfilAvatarData] = usePerfilAvatarApi({ url: apiUrlPerfilAvatar });
 
@@ -119,4 +119,4 @@ export const MinhaContaAvatarForm = () => {
             <ModalMessage {...stateModalMessage} />
         </>
     );
-};
+});

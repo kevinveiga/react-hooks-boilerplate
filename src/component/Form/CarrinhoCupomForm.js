@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -13,7 +13,7 @@ import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessa
 
 import { Cell, Grid } from '../../style/grid';
 
-export const CarrinhoCupomForm = ({ ...props }) => {
+export const CarrinhoCupomForm = memo(({ ...props }) => {
     // CONTEXT
     const { handleCarrinhoCupomAddContext } = useCarrinho();
 
@@ -70,4 +70,4 @@ export const CarrinhoCupomForm = ({ ...props }) => {
             </Grid>
         </FormStyled>
     );
-};
+});

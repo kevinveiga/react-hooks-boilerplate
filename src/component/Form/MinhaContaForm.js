@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -26,7 +26,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Cell, Grid } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
-export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps }) => {
+export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...otherProps }) => {
     // ACTION
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
     // const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -477,4 +477,4 @@ export const MinhaContaForm = ({ data, formId, setStatePerfilData, ...otherProps
             <ModalMessage {...stateModalMessage} />
         </>
     );
-};
+});

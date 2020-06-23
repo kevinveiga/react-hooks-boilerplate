@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { memo, useCallback, useContext, useEffect } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,7 @@ import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessa
 
 import { Cell, Grid } from '../../style/grid';
 
-export const LeadwallForm = ({ ...props }) => {
+export const LeadwallForm = memo(({ ...props }) => {
     // CONTEXT
     const setChangeLeadwallContext = useContext(NoticiaContext);
 
@@ -110,4 +110,4 @@ export const LeadwallForm = ({ ...props }) => {
             </Grid>
         </FormStyled>
     );
-};
+});

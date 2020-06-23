@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { memo, useCallback, useContext, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const PesquisaForm = ({ ...props }) => {
+export const PesquisaForm = memo(({ ...props }) => {
     // CONTEXT
     const { setStatePesquisaDataContext } = useContext(PesquisaContext);
 
@@ -80,4 +80,4 @@ export const PesquisaForm = ({ ...props }) => {
             </Grid>
         </FormStyled>
     );
-};
+});

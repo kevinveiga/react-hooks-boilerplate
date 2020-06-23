@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -27,7 +27,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Span, Title3 } from '../../style/text';
 
-export const ConhecerMaisForm = ({ formId, ...otherProps }) => {
+export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
@@ -304,4 +304,4 @@ export const ConhecerMaisForm = ({ formId, ...otherProps }) => {
             </Flex>
         </>
     );
-};
+});

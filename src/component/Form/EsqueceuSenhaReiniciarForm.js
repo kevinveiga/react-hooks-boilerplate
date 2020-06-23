@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -18,7 +18,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
+export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -170,4 +170,4 @@ export const EsqueceuSenhaReiniciarForm = ({ email, token, ...otherProps }) => {
             )}
         </Flex>
     );
-};
+});

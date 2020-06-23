@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -15,7 +15,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Cell, Grid } from '../../style/grid';
 import { P, Title5 } from '../../style/text';
 
-export const NewsletterForm = ({ ...props }) => {
+export const NewsletterForm = memo(({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
@@ -133,4 +133,4 @@ export const NewsletterForm = ({ ...props }) => {
             </Grid>
         </FormStyled>
     );
-};
+});

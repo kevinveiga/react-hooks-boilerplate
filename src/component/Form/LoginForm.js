@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -20,7 +20,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
-export const LoginForm = ({ location, ...otherProps }) => {
+export const LoginForm = memo(({ location, ...otherProps }) => {
     // CONTEXT
     const { setStateUserContext } = useUser();
 
@@ -152,4 +152,4 @@ export const LoginForm = ({ location, ...otherProps }) => {
             </Box>
         </Flex>
     );
-};
+});
