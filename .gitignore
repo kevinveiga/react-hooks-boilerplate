@@ -45,6 +45,7 @@ yarn.lock*
 /public/uploads
 /storage/*.key
 /vendor
+.phpunit.result.cache
 composer.lock
 composer.phar
 Homestead.json
