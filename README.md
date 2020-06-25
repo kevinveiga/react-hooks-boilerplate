@@ -309,3 +309,20 @@ const {
 -   [Webpack 4](https://webpack.js.org/);
 -   [Webpack 4 - Docs](https://github.com/webpack/docs/wiki/configuration);
 -   [Webpack 4 - Post](https://medium.com/@bracontece/webpack-4-tutorial-tudo-o-que-voc%C3%AA-precisa-saber-de-0-conf-para-o-modo-de-produ%C3%A7%C3%A3o-dbea63af3a7b);
+
+## VS CODE
+
+#### Acrescentar na configuração as linhas:
+
+```js
+"[javascript]": {
+ "editor.defaultFormatter": "esbenp.prettier-vscode"
+ },
+"editor.formatOnSave": true,
+"files.watcherExclude": {
+ "**/.git/objects/**": true,
+ "**/.git/subtree-cache/**": true,
+ "**/node_modules/*/**": true
+ },
+"git.autofetch": true
+```
