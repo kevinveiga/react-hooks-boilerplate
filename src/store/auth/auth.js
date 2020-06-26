@@ -5,7 +5,7 @@ import { getStorage, removeStorage, setStorage } from '../../util/storage';
 const AuthContext = createContext(undefined);
 
 export const getLocalStorageUser = () => {
-    return JSON.parse(getStorage('auth'));
+    return getStorage('auth') && JSON.parse(getStorage('auth'));
 };
 
 export const logout = () => {
@@ -27,7 +27,7 @@ export const logout = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [stateAuth, setStateAuth] = useState(JSON.parse(getStorage('auth')));
+    const [stateAuth, setStateAuth] = useState(getStorage('auth') && JSON.parse(getStorage('auth')));
 
     useEffect(() => {
         setStorage('auth', JSON.stringify(stateAuth));
