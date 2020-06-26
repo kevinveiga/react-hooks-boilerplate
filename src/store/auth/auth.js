@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { getStorage, removeStorage } from '../../util/storage';
+import { getStorage, removeStorage, setStorage } from '../../util/storage';
 
 const UserContext = createContext(undefined);
 
@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
     const [stateUser, setStateUser] = useState(getStorage('user'));
 
     useEffect(() => {
-        window.localStorage.setItem('user', JSON.stringify(stateUser));
+        setStorage('user', JSON.stringify(stateUser));
 
         return undefined;
     }, [stateUser]);

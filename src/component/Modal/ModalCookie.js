@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
+import { getStorage, setStorage } from '../../util/storage';
+
 import { Button } from '../Button/Button';
 import { Svg } from '../Svg/Svg';
 
@@ -9,12 +11,12 @@ import { Box, Flex } from '../../style/flex';
 
 export const ModalCookie = () => {
     // ACTION
-    const [cookieConfirm, setCookieConfirm] = useState(JSON.parse(window.localStorage.getItem('cookieConfirm') || false));
+    const [cookieConfirm, setCookieConfirm] = useState(JSON.parse(getStorage('cookieConfirm') || false));
 
     // FUNCTION
     const handleCookieConfirm = useCallback(
         () => () => {
-            window.localStorage.setItem('cookieConfirm', 'true');
+            setStorage('cookieConfirm', 'true');
 
             setCookieConfirm(true);
         },

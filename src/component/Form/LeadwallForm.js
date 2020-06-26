@@ -9,6 +9,7 @@ import { NoticiaContext } from '../../store/noticia/noticiaContext';
 
 import { customValidate } from '../../util/customValidate';
 import { responseError } from '../../util/responseError';
+import { setStorage } from '../../util/storage';
 
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
@@ -59,7 +60,7 @@ export const LeadwallForm = memo(({ ...props }) => {
                 const result = await axios.post(apiUrlPaywall, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    window.localStorage.setItem('leadwall', 'true');
+                    setStorage('leadwall', 'true');
 
                     setChangeLeadwallContext(true);
                 } else if (result.data.reason) {

@@ -152,7 +152,7 @@ export const useCursoConteudoApi = (initialData = {}) => {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
 
                     if (stateCursoConteudoData.setCurrent) {
-                        window.localStorage.setItem(
+                        setStorage(
                             'conteudoAtualData',
                             JSON.stringify({
                                 conteudoId: stateCursoConteudoData.conteudoId,

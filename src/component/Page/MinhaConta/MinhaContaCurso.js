@@ -11,6 +11,7 @@ import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaCont
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
+import { getStorage } from '../../../util/storage';
 
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
@@ -129,7 +130,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // ACTION CONTEUDO
     useEffect(() => {
-        const conteudoAtualData = JSON.parse(window.localStorage.getItem('conteudoAtualData'));
+        const conteudoAtualData = JSON.parse(getStorage('conteudoAtualData'));
 
         if (curso) {
             if (conteudoAtualData && curso.id == conteudoAtualData.cursoId) {

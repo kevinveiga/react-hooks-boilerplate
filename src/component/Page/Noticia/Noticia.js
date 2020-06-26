@@ -10,6 +10,7 @@ import { NoticiaContext } from '../../../store/noticia/noticiaContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';
+import { getStorage } from '../../../util/storage';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { Leadwall } from '../../Leadwall/Leadwall';
@@ -48,7 +49,7 @@ export const Noticia = ({ match }) => {
     const isDataLoaded = noticiaLength > 0 && noticiaRelatedLength > 0;
 
     // ACTION
-    const [changeLeadwall, setChangeLeadwallContext] = useState(JSON.parse(window.localStorage.getItem('leadwall')));
+    const [changeLeadwall, setChangeLeadwallContext] = useState(JSON.parse(getStorage('leadwall')));
     const windowWidth = useWindowWidth();
 
     // Scroll para o topo
