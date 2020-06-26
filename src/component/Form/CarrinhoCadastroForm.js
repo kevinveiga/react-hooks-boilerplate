@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { apiUrlCadastro, errorMsgDefault } from '../../config';
 
-import { useUser } from '../../store/auth/auth';
+import { useAuth } from '../../store/auth/auth';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
@@ -26,7 +26,7 @@ import { P } from '../../style/text';
 
 export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) => {
     // CONTEXT
-    const { setStateAuthContext } = useUser();
+    const { setStateAuthContext } = useAuth();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);

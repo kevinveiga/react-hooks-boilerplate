@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { apiUrlLogin, errorMsgDefault } from '../../config';
 
-import { useUser } from '../../store/auth/auth';
+import { useAuth } from '../../store/auth/auth';
 
 import { customValidate } from '../../util/customValidate';
 import { redirectRule } from '../../util/redirectRule';
@@ -22,7 +22,7 @@ import { Cell, Grid } from '../../style/grid';
 
 export const LoginForm = memo(({ location, ...otherProps }) => {
     // CONTEXT
-    const { setStateAuthContext } = useUser();
+    const { setStateAuthContext } = useAuth();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);

@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { Router } from './router';
 
 import { AppProvider } from './store/app/app';
-import { UserProvider } from './store/auth/auth';
+import { AuthProvider } from './store/auth/auth';
 
 // import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Interceptor } from './component/Interceptor/Interceptor';
@@ -25,7 +25,7 @@ export const App = () => {
 
             <BrowserRouter>
                 <AppProvider>
-                    <UserProvider>
+                    <AuthProvider>
                         <Interceptor />
 
                         <ThemeProvider theme={theme}>
@@ -37,7 +37,7 @@ export const App = () => {
                         </ThemeProvider>
 
                         {/* <ExternalJs /> */}
-                    </UserProvider>
+                    </AuthProvider>
                 </AppProvider>
             </BrowserRouter>
         </HelmetProvider>

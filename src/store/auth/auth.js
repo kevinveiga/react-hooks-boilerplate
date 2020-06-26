@@ -5,11 +5,11 @@ import { getStorage, removeStorage, setStorage } from '../../util/storage';
 const AuthContext = createContext(undefined);
 
 export const getLocalStorageUser = () => {
-    return getStorage('user');
+    return getStorage('auth');
 };
 
 export const logout = () => {
-    removeStorage('user');
+    removeStorage('auth');
     removeStorage('carrinho', 'sessionStorage');
 
     // Delete api-cache in logout
@@ -26,25 +26,25 @@ export const logout = () => {
     return null;
 };
 
-export const UserProvider = ({ children }) => {
-    const [stateUser, setStateUser] = useState(getStorage('user'));
+export const AuthProvider = ({ children }) => {
+    const [stateAuth, setStateAuth] = useState(getStorage('auth'));
 
     useEffect(() => {
-        setStorage('user', JSON.stringify(stateUser));
+        setStorage('auth', JSON.stringify(stateAuth));
 
         return undefined;
-    }, [stateUser]);
+    }, [stateAuth]);
 
-    const memoUser = useMemo(() => [setStateUser], [setStateUser]);
+    const memoAuth = useMemo(() => [setStateAuth], [setStateAuth]);
 
-    return <AuthContext.Provider value={{ setStateAuthContext: memoUser[0] }}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{ setStateAuthContext: memoAuth[0] }}>{children}</AuthContext.Provider>;
 };
 
-export const useUser = () => {
+export const useAuth = () => {
     const context = useContext(AuthContext);
 
     if (context === undefined) {
-        throw new Error('useUser can only be used inside UserProvider');
+        throw new Error('useAuth can only be used inside AuthProvider');
     }
 
     return context;

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { apiUrlCadastro, errorMsgDefault } from '../../config';
 
-import { useUser } from '../../store/auth/auth';
+import { useAuth } from '../../store/auth/auth';
 import { CadastroContext } from '../../store/cadastro/cadastroContext';
 
 import { customMaskRegex } from '../../util/customMaskRegex';
@@ -28,7 +28,7 @@ import { P, Title2, Title4 } from '../../style/text';
 export const CadastroForm = memo(({ formId, ...otherProps }) => {
     // CONTEXT
     const { setStateConhecerMaisContext } = useContext(CadastroContext);
-    const { setStateAuthContext } = useUser();
+    const { setStateAuthContext } = useAuth();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
