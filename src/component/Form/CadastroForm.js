@@ -28,7 +28,7 @@ import { P, Title2, Title4 } from '../../style/text';
 export const CadastroForm = memo(({ formId, ...otherProps }) => {
     // CONTEXT
     const { setStateConhecerMaisContext } = useContext(CadastroContext);
-    const { setStateUserContext } = useUser();
+    const { setStateAuthContext } = useUser();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -90,7 +90,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
 
                 if (result.data && result.data.success == true) {
                     // Salva dados do usuário no localStorage
-                    setStateUserContext(result.data);
+                    setStateAuthContext(result.data);
 
                     // Exibe formulário Conhecer Mais Usuário
                     setStateConhecerMaisContext(true);

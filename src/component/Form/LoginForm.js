@@ -22,7 +22,7 @@ import { Cell, Grid } from '../../style/grid';
 
 export const LoginForm = memo(({ location, ...otherProps }) => {
     // CONTEXT
-    const { setStateUserContext } = useUser();
+    const { setStateAuthContext } = useUser();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -67,7 +67,7 @@ export const LoginForm = memo(({ location, ...otherProps }) => {
 
                 if (result.data && result.data.success == true) {
                     // Salva dados do usuário no localStorage
-                    setStateUserContext(result.data);
+                    setStateAuthContext(result.data);
 
                     // Regras de redirecionamento
                     redirectRule();

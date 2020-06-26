@@ -26,7 +26,7 @@ import { P } from '../../style/text';
 
 export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) => {
     // CONTEXT
-    const { setStateUserContext } = useUser();
+    const { setStateAuthContext } = useUser();
 
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -80,7 +80,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
-                    setStateUserContext(result.data);
+                    setStateAuthContext(result.data);
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);
 

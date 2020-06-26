@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 
 import { getStorage, removeStorage, setStorage } from '../../util/storage';
 
-const UserContext = createContext(undefined);
+const AuthContext = createContext(undefined);
 
 export const getLocalStorageUser = () => {
     return getStorage('user');
@@ -37,11 +37,11 @@ export const UserProvider = ({ children }) => {
 
     const memoUser = useMemo(() => [setStateUser], [setStateUser]);
 
-    return <UserContext.Provider value={{ setStateUserContext: memoUser[0] }}>{children}</UserContext.Provider>;
+    return <AuthContext.Provider value={{ setStateAuthContext: memoUser[0] }}>{children}</AuthContext.Provider>;
 };
 
 export const useUser = () => {
-    const context = useContext(UserContext);
+    const context = useContext(AuthContext);
 
     if (context === undefined) {
         throw new Error('useUser can only be used inside UserProvider');
