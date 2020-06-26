@@ -130,7 +130,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // ACTION CONTEUDO
     useEffect(() => {
-        const conteudoAtualData = JSON.parse(getStorage('conteudoAtualData'));
+        const conteudoAtualData = getStorage('conteudoAtualData') && JSON.parse(getStorage('conteudoAtualData'));
 
         if (curso) {
             if (conteudoAtualData && curso.id == conteudoAtualData.cursoId) {
