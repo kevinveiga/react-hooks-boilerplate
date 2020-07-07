@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import { getLocalStorageUser } from './store/auth/auth';
 
@@ -26,6 +26,7 @@ import { Pesquisa } from './component/Page/Pesquisa/Pesquisa';
 
 // LAZY
 const MinhaConta = lazy(() => import('./component/Page/MinhaConta/MinhaConta'));
+const MinhaContaContato = lazy(() => import('./component/Page/MinhaConta/MinhaContaContato'));
 const MinhaContaCurso = lazy(() => import('./component/Page/MinhaConta/MinhaContaCurso'));
 const MinhaContaCursos = lazy(() => import('./component/Page/MinhaConta/MinhaContaCursos'));
 
@@ -54,6 +55,7 @@ const routes = [
         component: CarrinhoPagamento,
         hasAuth: true,
         layout: LayoutDefault,
+        loginPath: '/carrinho-cadastro',
         path: '/carrinho-pagamento'
     },
     {
@@ -88,6 +90,12 @@ const routes = [
         path: '/login'
     },
     {
+        component: MinhaContaContato,
+        hasAuth: true,
+        layout: LayoutMinhaConta,
+        path: '/minha-conta/contato'
+    },
+    {
         breadcrumb: [{ label: 'Cursos', path: '/minha-conta/cursos' }],
         component: MinhaContaCurso,
         hasAuth: true,
@@ -116,7 +124,7 @@ const routes = [
     {
         component: Noticia,
         layout: LayoutDefault,
-        path: '/noticia'
+        path: '/noticia/:slug'
     },
     {
         component: Noticias,
@@ -141,19 +149,16 @@ const routes = [
     }
 ];
 
-export const Router = () => {
-    // Se for necessário usar um tracking como o do Active Campaign,
-    // é necessário usar aqui neste componente o withRouter e atualizar o tracking,
-    // como no código abaixo:
-
-    // window.vgo('update');
-    // window.vgo('process');
+export const Router = withRouter(() => {
+    // Update Active Campaign tracking
+    window.vgo('update');
+    window.vgo('process');
 
     const user = getLocalStorageUser();
 
     return (
         <Switch>
-            {routes.map(({ breadcrumb, exact, hasAuth, component: Component, layout: Layout, path }) => {
+            {routes.map(({ breadcrumb, exact, hasAuth, component: Component, layout: Layout, loginPath = '/login', path }) => {
                 return (
                     <Route
                         exact={exact || false}
@@ -168,7 +173,7 @@ export const Router = () => {
                                             user && user.token ? (
                                                 <Component breadcrumb={breadcrumb} {...props} />
                                             ) : (
-                                                <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />
+                                                <Redirect to={{ pathname: loginPath, state: { referer: props.location } }} />
                                             )
                                         ) : (
                                             <Component breadcrumb={breadcrumb} {...props} />
@@ -182,4 +187,4 @@ export const Router = () => {
             })}
         </Switch>
     );
-};
+});
