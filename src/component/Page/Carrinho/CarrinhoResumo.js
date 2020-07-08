@@ -64,7 +64,7 @@ export const CarrinhoResumo = () => {
                 </Cell>
             </Grid>
 
-            <Grid display="grid" gridColumnGap={2} gridRowGap={1} gridTemplateColumns="1fr 4fr" gridTemplateRows="50px auto">
+            <Grid display="grid" gridColumnGap={2} gridRowGap={1} gridTemplateColumns="1fr 4fr" gridTemplateRows="minmax(50px, auto) auto">
                 <Cell gridColumn={1}>
                     <Span color="colorGray2">Total:</Span>
                 </Cell>
