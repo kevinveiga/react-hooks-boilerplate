@@ -65,7 +65,7 @@ export const CarrinhoItens = () => {
                                         height="23px"
                                         name="svg-trash"
                                         obj={{ hoverColor: 'colorPrimary' }}
-                                        onClick={handleCarrinhoItemRemoveContext(carrinhoItem.id)}
+                                        onClick={() => handleCarrinhoItemRemoveContext(carrinhoItem.id)}
                                     />
                                 </Cell>
                             </Grid>

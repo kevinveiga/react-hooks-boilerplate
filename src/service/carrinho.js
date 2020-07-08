@@ -12,99 +12,23 @@ import { getStorage, setStorage } from '../util/storage';
 
 export const useCarrinhoApi = () => {
     // VARIABLE
-    const initialData = { cupom: '', data_inicio: getDateTime(), items: [], total: 0, total_desconto: 0 };
+    const initialData = {
+        cupom: '',
+        data_inicio: getDateTime(),
+        forma_pagamento: { parcelas_quantidade: 0, parcelas_valor: 0, tipo: '', titulo: '' },
+        itens: [],
+        valor_total: 0,
+        valor_total_desconto: 0
+    };
 
     // ACTION
     const [stateCarrinhoData, setStateCarrinhoData] = useState({ url: apiUrlCarrinho, params: {} });
 
     const [stateCarrinho, dispatch] = useReducer(ecommerceReducer, {
-        data: getStorage('carrinho', 'sessionStorage') || { data: initialData },
+        data: getStorage('carrinho', 'sessionStorage') ? JSON.parse(getStorage('carrinho', 'sessionStorage')) : { data: initialData },
         isError: false,
         isLoading: false
     });
-
-    // FUNCTION
-    const handleAddCarrinhoCupom = (codigo, setError) => {
-        // TODO:
-        const fetchData = async () => {
-            try {
-                // const result = await axios.post(`${apiUrlCarrinho}/addCupom`, { cupomCodigo: codigo }, { headers: { 'Content-Type': 'application/json' } });
-
-                const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
-
-                if (result.data && result.data.success == true) {
-                    setStorage('carrinho', result.data, 'sessionStorage');
-
-                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
-                } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
-                } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
-
-                    console.error('result error: ', result);
-                }
-            } catch (error) {
-                dispatch(ACTION.failure());
-
-                console.error('error: ', error);
-            }
-        };
-
-        fetchData();
-    };
-
-    const handleAddCarrinhoItem = useCallback(
-        (id) => () => {
-            // TODO:
-            console.log('handleAddCarrinhoItemId: ', id);
-
-            /*
-            setStateCarrinhoData({ url: `${apiUrlCarrinho}/add`, params: { itemId: id } });
-            */
-        },
-        [setStateCarrinhoData]
-    );
-
-    const handleRemoveCarrinhoCupom = (cupomId, setError) => () => {
-        // TODO:
-        const fetchData = async () => {
-            try {
-                // const result = await axios.post(`${apiUrlCarrinho}/removeCupom`, { cupomId: cupomId }, { headers: { 'Content-Type': 'application/json' } });
-
-                const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
-
-                if (result.data && result.data.success == true) {
-                    setStorage('carrinho', result.data, 'sessionStorage');
-
-                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
-                } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
-                } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
-
-                    console.error('result error: ', result);
-                }
-            } catch (error) {
-                dispatch(ACTION.failure());
-
-                console.error('error: ', error);
-            }
-        };
-
-        fetchData();
-    };
-
-    const handleRemoveCarrinhoItem = useCallback(
-        (id) => () => {
-            // TODO:
-            console.log('handleRemoveCarrinhoItemId: ', id);
-
-            /*
-            setStateCarrinhoData({ url: `${apiUrlCarrinho}/remove`, params: { itemId: id } });
-            */
-        },
-        [setStateCarrinhoData]
-    );
 
     useEffect(() => {
         let didCancel = false;
@@ -115,7 +39,7 @@ export const useCarrinhoApi = () => {
 
                 const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
 
-                setStorage('carrinho', result.data, 'sessionStorage');
+                setStorage('carrinho', JSON.stringify(result.data), 'sessionStorage');
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
@@ -136,11 +60,104 @@ export const useCarrinhoApi = () => {
         };
     }, [stateCarrinhoData]);
 
+    // FUNCTION
+    const handleCarrinhoCupomAdd = (cupomCodigo, setError) => {
+        // TODO:
+        const fetchData = async () => {
+            try {
+                // const result = await axios.post(`${apiUrlCarrinho}/addCupom`, { cupomCodigo: cupomCodigo }, { headers: { 'Content-Type': 'application/json' } });
+
+                const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
+
+                if (result.data && result.data.success == true) {
+                    setStorage('carrinho', JSON.stringify(result.data), 'sessionStorage');
+
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                } else if (result.data.reason) {
+                    setError('invalid', 'notMatch', result.data.reason[0]);
+                } else {
+                    setError('invalid', 'notMatch', errorMsgDefault);
+
+                    console.error('result error: ', result);
+                }
+            } catch (error) {
+                dispatch(ACTION.failure());
+
+                console.error('error: ', error);
+            }
+        };
+
+        fetchData();
+    };
+
+    const handleCarrinhoCupomRemove = (cupomId, setError) => () => {
+        // TODO:
+        const fetchData = async () => {
+            try {
+                // const result = await axios.post(`${apiUrlCarrinho}/removeCupom`, { cupomId: cupomId }, { headers: { 'Content-Type': 'application/json' } });
+
+                const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
+
+                if (result.data && result.data.success == true) {
+                    setStorage('carrinho', JSON.stringify(result.data), 'sessionStorage');
+
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                } else if (result.data.reason) {
+                    setError('invalid', 'notMatch', result.data.reason[0]);
+                } else {
+                    setError('invalid', 'notMatch', errorMsgDefault);
+
+                    console.error('result error: ', result);
+                }
+            } catch (error) {
+                dispatch(ACTION.failure());
+
+                console.error('error: ', error);
+            }
+        };
+
+        fetchData();
+    };
+
+    const handleCarrinhoItemAdd = useCallback(
+        (id) => {
+            // TODO:
+            console.log('handleCarrinhoItemAddId: ', id);
+
+            /*
+            setStateCarrinhoData({ url: `${apiUrlCarrinho}/add`, params: { itemId: id } });
+            */
+        },
+        [setStateCarrinhoData]
+    );
+
+    const handleCarrinhoItemRemove = useCallback(
+        (id) => {
+            // TODO:
+            console.log('handleCarrinhoItemRemoveId: ', id);
+
+            /*
+            setStateCarrinhoData({ url: `${apiUrlCarrinho}/remove`, params: { itemId: id } });
+            */
+        },
+        [setStateCarrinhoData]
+    );
+
+    const handleFormaPagamento = useCallback((formaPagamentoObj) => {
+        dispatch({ ...ACTION.changePayment(), payload: formaPagamentoObj });
+    }, []);
+
+    const handleFormaPagamentoTipo = useCallback((formaPagamentoTipo) => {
+        dispatch({ ...ACTION.changePaymentType(), payload: formaPagamentoTipo });
+    }, []);
+
     return {
-        handleAddCarrinhoCupom,
-        handleAddCarrinhoItem,
-        handleRemoveCarrinhoCupom,
-        handleRemoveCarrinhoItem,
+        handleCarrinhoCupomAdd,
+        handleCarrinhoCupomRemove,
+        handleCarrinhoItemAdd,
+        handleCarrinhoItemRemove,
+        handleFormaPagamento,
+        handleFormaPagamentoTipo,
         stateCarrinho,
         setStateCarrinhoData
     };

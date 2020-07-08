@@ -31,8 +31,8 @@ export const CarrinhoCadastro = () => {
                         <CarrinhoBreadcrumb step="user" />
                     </Cell>
 
-                    <Cell gridRow={2}>
-                        <Title3 align="center" fontWeight="700" themeColor="dark">
+                    <Cell gridRow={2} pt={{ d: 1, sm: 3 }}>
+                        <Title3 fontWeight="700" mb={0} px={{ d: 1, sm: 5 }} themeColor="dark">
                             Faça seu cadastro
                         </Title3>
 
@@ -43,8 +43,8 @@ export const CarrinhoCadastro = () => {
                         <Line height="100%" width="1px" />
                     </Cell>
 
-                    <Cell gridRow={{ d: 3, md: 2 }}>
-                        <Title3 align="center" fontWeight="700" themeColor="dark">
+                    <Cell gridRow={{ d: 3, md: 2 }} pt={{ d: 1, sm: 3 }}>
+                        <Title3 fontWeight="700" mb={0} px={{ d: 1, sm: 5 }} themeColor="dark">
                             Faça seu login
                         </Title3>
 
