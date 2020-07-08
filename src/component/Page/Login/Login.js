@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { redirectByRouterLocation } from '../../../util/redirectByRouterLocation';
-
 import { LoginForm } from '../../Form/LoginForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { Splash } from '../../Splash/Splash';
@@ -12,9 +10,6 @@ import { Container } from '../../../style/layout';
 import { P, Title2 } from '../../../style/text';
 
 export const Login = ({ location }) => {
-    // Salva a URL de redirecionamento em sessionStorage
-    redirectByRouterLocation(location);
-
     return (
         <Flex display="flex" flexWrap="wrap" minHeight="100vh">
             <Box alignItems="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>

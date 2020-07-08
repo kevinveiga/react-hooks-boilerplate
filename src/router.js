@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, useHistory, withRouter } from 'react-router-dom';
 
 import { getLocalStorageUser } from './store/auth/auth';
+
+import { setStorage } from './util/storage';
 
 import { Aprenda } from './component/Page/Aprenda/Aprenda';
 import { Cadastro } from './component/Page/Cadastro/Cadastro';
@@ -150,6 +152,15 @@ const routes = [
 ];
 
 export const Router = withRouter(() => {
+    const history = useHistory();
+
+    const handleRedirect = (loginPath, urlToRedirect) => {
+        // Salva a URL de redirecionamento em sessionStorage
+        setStorage('redirectUrl', urlToRedirect, 'sessionStorage');
+
+        history.push(loginPath);
+    };
+
     // Update Active Campaign tracking
     window.vgo('update');
     window.vgo('process');
@@ -173,7 +184,7 @@ export const Router = withRouter(() => {
                                             user && user.token ? (
                                                 <Component breadcrumb={breadcrumb} {...props} />
                                             ) : (
-                                                <Redirect to={{ pathname: loginPath, state: { referer: props.location } }} />
+                                                handleRedirect(loginPath, props.location.pathname)
                                             )
                                         ) : (
                                             <Component breadcrumb={breadcrumb} {...props} />
