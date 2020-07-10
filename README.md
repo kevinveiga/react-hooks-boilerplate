@@ -142,7 +142,7 @@ return stateBanner.data && stateBanner.data.sidebar_habilitada == '1' ? (
 ) : null;
 ```
 
--   Usar sempre a propriedade "key" nos elementos HTML em loops do React. Ex:
+-   Usar sempre a propriedade "key" nos elementos HTML em loops do React, usando como valor um id e não um índice. Ex:
 
 ```jsx
 <li key={list.id}>{list.text}</li>
@@ -153,8 +153,8 @@ return stateBanner.data && stateBanner.data.sidebar_habilitada == '1' ? (
 ```js
 const handle = useCallback(
     (value) => (e) => {
-        setStateCurrent(value);
-        setState(e.target.value);
+        console.log('valor do parâmetro', value);
+        console.log('elemento', e);
     },
     []
 );
@@ -278,16 +278,6 @@ const {
 #### Links externos com target="\_blank" em tags <a/>
 
 -   Utilizar rel="noopener" [Link](https://desenvolvimentoparaweb.com/miscelanea/relnoopener-performance-seguranca/);
-
-#### Principais Metodologias
-
--   [ES6](http://es6-features.org/)
-
-#### Sass
-
--   Utilizar as variáveis sempre que possível;
--   Media queries dentro do próprio elemento seguindo os padrões especificados no projeto;
--   [Metodologia tipo modular](https://medium.com/@marcmintel/how-to-use-the-module-pattern-in-your-scss-sass-stylesheets-89fe38a6e1f3);
 
 #### Svg
 
