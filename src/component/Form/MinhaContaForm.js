@@ -423,7 +423,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 {...otherProps}
                             />
 
-                            <Svg height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" top="14px" zIndex={1} />
+                            <Svg bottom="10px" height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" zIndex={1} />
                         </div>
 
                         {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}

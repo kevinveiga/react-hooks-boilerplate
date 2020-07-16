@@ -118,12 +118,12 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
                                     />
 
                                     <Svg
+                                        bottom="10px"
                                         height="20px"
                                         name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
                                         onClick={() => setStateViewPassword(!stateViewPassword)}
                                         position="absolute"
                                         right="25px"
-                                        top="14px"
                                         zIndex={1}
                                     />
                                 </div>
@@ -146,12 +146,12 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
                                     />
 
                                     <Svg
+                                        bottom="10px"
                                         height="20px"
                                         name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
                                         onClick={() => setStateViewPassword(!stateViewPassword)}
                                         position="absolute"
                                         right="25px"
-                                        top="14px"
                                         zIndex={1}
                                     />
                                 </div>

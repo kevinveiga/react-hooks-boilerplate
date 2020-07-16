@@ -96,7 +96,7 @@ module.exports = {
                 /(\/asset\/)(?:.+(.png))$/,
                 /(\/asset\/)(?:.+(.svg))$/
             ],
-            mode: process.env.NODE_ENV,
+            mode: 'production',
             swDest: `${commonPaths.outputPath}/sw.js`,
             swSrc: `${commonPaths.srcPath}/sw.js`
         }),
