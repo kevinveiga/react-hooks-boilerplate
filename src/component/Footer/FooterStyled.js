@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { border, display, flexbox, space } from 'styled-system';
 
+import { SvgLogoLibertaStyled } from '../Svg/SvgLogoLibertaStyled';
+
 import { variable } from '../../style/variable';
 
 export const FooterStyled = styled.footer`
@@ -12,6 +14,12 @@ export const FooterStyled = styled.footer`
     padding-top: ${variable.spacingLG};
     width: 100%;
     z-index: 1;
+
+    ${SvgLogoLibertaStyled} {
+        [data-logo-liberta] {
+            fill: transparent;
+        }
+    }
 `;
 
 export const FooterAtendimentoStyled = styled.div`
@@ -20,23 +28,14 @@ export const FooterAtendimentoStyled = styled.div`
     ${display};
     ${space};
 
-    h4 {
-        @media (max-width: ${variable.xs}) {
-            font-size: 16px;
-        }
+    h3 {
+        font-size: 16px;
+        margin-bottom: ${variable.spacingXS};
     }
 
     h6 {
         font-size: 14px;
+        font-weight: 400;
         margin-bottom: ${variable.spacingXS};
-
-        @media (max-width: ${variable.xs}) {
-            font-weight: 400;
-            margin-top: ${variable.spacingSM};
-        }
-
-        @media (min-width: ${variable.xs}) {
-            font-size: 12px;
-        }
     }
 `;

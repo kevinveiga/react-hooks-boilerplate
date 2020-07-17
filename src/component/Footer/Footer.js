@@ -75,7 +75,7 @@ const Footer = () => {
                         </Flex>
 
                         <FooterAtendimentoStyled
-                            alignItems="center"
+                            alignItems="flex-start"
                             borderY="1px solid rgba(255, 255, 255, 0.2)"
                             display="flex"
                             flexWrap="wrap"
@@ -83,11 +83,11 @@ const Footer = () => {
                             my={{ d: variable.spacingSM, sm: variable.spacingLG }}
                             py={{ d: 5, sm: 4 }}
                         >
-                            <Box pr={{ d: 0, md: 3 }} width={{ d: 1, sm: 1 / 2 }}>
+                            <Box pr={{ d: 0, md: 3 }} py={2} width={{ d: 1, sm: 1 / 2 }}>
                                 {parse(`${stateFooter.data.bloco_1}`)}
                             </Box>
 
-                            <Box pl={{ d: 0, md: 3 }} width={{ d: 1, sm: 1 / 2 }}>
+                            <Box pl={{ d: 0, md: 3 }} py={2} width={{ d: 1, sm: 1 / 2 }}>
                                 {parse(`${stateFooter.data.bloco_2}`)}
                             </Box>
                         </FooterAtendimentoStyled>

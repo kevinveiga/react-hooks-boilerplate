@@ -16,6 +16,14 @@ export const FooterMenu = ({ ...props }) => {
                     <LinkTo link="/noticias" text="Notícias" />
                 </li>
 
+                <li>
+                    <LinkTo link="/aprenda" text="Aprenda" />
+                </li>
+
+                <li>
+                    <LinkTo link="/inicio/home-video" text="Vídeos" />
+                </li>
+
                 {/* <li>
                     <LinkTo href="https://libertainvestimentos.com.br" target="_blank" text="Quero Investir" />
                 </li> */}
