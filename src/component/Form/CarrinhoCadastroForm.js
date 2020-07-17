@@ -10,6 +10,7 @@ import { useAuth } from '../../store/auth/auth';
 import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataSet } from '../../util/formatFormData';
+import { redirectRule } from '../../util/redirectRule';
 import { responseError } from '../../util/responseError';
 import { scrollTo } from '../../util/scrollTo';
 
@@ -38,8 +39,14 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
         register('password', { ...customValidate.password, ...customValidate.require });
         register('telefone', { ...customValidate.cellphone, ...customValidate.require });
 
-        return undefined;
-    }, [register]);
+        return () => {
+            unregister('confirm_password');
+            unregister('email');
+            unregister('nome');
+            unregister('password');
+            unregister('telefone');
+        };
+    }, [register, unregister]);
 
     // FUNCTION
     const handleScrollTo = useCallback(
@@ -69,9 +76,10 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
         register,
         setError,
         setValue,
-        triggerValidation
+        triggerValidation,
+        unregister
     } = useForm({
-        mode: 'onChange'
+        mode: 'onSubmit'
     });
 
     const submitForm = (formData) => {
@@ -80,7 +88,11 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    // Salva dados do usuário no localStorage
                     setStateAuthContext(result.data);
+
+                    // Regras de redirecionamento
+                    redirectRule();
                 } else {
                     setError('invalid', 'notMatch', errorMsgDefault);
 
