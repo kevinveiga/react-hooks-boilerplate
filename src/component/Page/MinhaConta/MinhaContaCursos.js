@@ -239,7 +239,7 @@ const MinhaContaCursos = () => {
                                                 </Box>
                                             )}
 
-                                            {noData && !cursosLength > 0 && !stateCursos.isLoading && (
+                                            {noData && cursosLength === 0 && !stateCursos.isLoading && (
                                                 <>
                                                     <Box mb={5} textAlign="center" width="100%">
                                                         <Title4 color="colorPrimary" themeColor="dark">
