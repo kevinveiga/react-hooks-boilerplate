@@ -63,6 +63,7 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                                     textDecoration="underline"
                                     themeSize="none"
                                     themeType="none"
+                                    verticalAlign="top"
                                 />
 
                                 <Span color="colorGray2" mx={2}>

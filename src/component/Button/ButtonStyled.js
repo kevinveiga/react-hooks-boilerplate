@@ -16,7 +16,7 @@ export const ButtonStyled = styled.button`
     ${({ textAlign }) => textAlign === undefined && 'text-align: center'};
     ${({ textDecoration }) => textDecoration && `text-decoration: ${textDecoration}`};
     transition: background-color ${variable.transition}, border ${variable.transition}, color ${variable.transition};
-    vertical-align: middle;
+    ${({ verticalAlign }) => verticalAlign === undefined && 'vertical-align: middle'};
     white-space: nowrap;
     ${({ width }) => width === undefined && 'width: auto'};
 
