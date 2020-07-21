@@ -79,7 +79,7 @@ const MinhaContaCursos = () => {
                         {windowWidth < parseInt(variable.md, 10) && <Breadcrumb currentLabel="Cursos" obj={{ hoverColor: 'colorWhite' }} />}
 
                         <Flex display="flex" flexWrap="wrap">
-                            <Tab group="tab-group-course" total={4} width="100%">
+                            <Tab group="tab-group-course" total={4}>
                                 <input
                                     checked={stateCursosCategoriaSelected === 'todos'}
                                     id="tab-id-course-todos"

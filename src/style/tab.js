@@ -54,9 +54,9 @@ const tabInput = (group, total) => {
 export const Tab = styled.div`
     ${({ group, total }) => tabInput(group, total)};
     ${textAlign};
-    ${width};
 
     overflow: hidden;
+    width: 100%;
 
     > input[type='radio'] {
         opacity: 0;
