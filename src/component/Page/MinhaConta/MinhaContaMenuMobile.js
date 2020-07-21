@@ -51,6 +51,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                     <Button
                         color="colorWhite"
                         fontWeight="700"
+                        obj={{ hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
                         onClick={() => setStateModalLogoutContext(true)}
                         text="Sair"
                         themeSize="none"
@@ -60,8 +61,9 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
 
                 <li>
                     <LinkTo
+                        ariaLabel="Home"
                         link="/inicio"
-                        obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
+                        obj={{ hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
                         onClick={() => setStateMinhaContaMenuMobileContext(false)}
                         text="Voltar para Home"
                     />
