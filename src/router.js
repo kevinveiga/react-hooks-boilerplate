@@ -23,8 +23,8 @@ import { LayoutMinhaConta } from './component/Layout/LayoutMinhaConta';
 import { LayoutNoHF } from './component/Layout/LayoutNoHF';
 import { Login } from './component/Page/Login/Login';
 import { Noticia } from './component/Page/Noticia/Noticia';
+import { NoticiaPesquisa } from './component/Page/Noticia/NoticiaPesquisa';
 import { Noticias } from './component/Page/Noticia/Noticias';
-import { PesquisaNoticia } from './component/Page/Pesquisa/PesquisaNoticia';
 
 // LAZY
 const MinhaConta = lazy(() => import('./component/Page/MinhaConta/MinhaConta'));
@@ -129,14 +129,14 @@ const routes = [
         path: '/noticia/:slug'
     },
     {
+        component: NoticiaPesquisa,
+        layout: LayoutDefault,
+        path: '/noticia-pesquisa/:slug'
+    },
+    {
         component: Noticias,
         layout: LayoutDefault,
         path: '/noticias'
-    },
-    {
-        component: PesquisaNoticia,
-        layout: LayoutDefault,
-        path: '/pesquisa-noticia/:slug'
     },
     {
         component: MinhaContaCursos,

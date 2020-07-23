@@ -71,7 +71,7 @@ export const Header = () => {
     const keyPress = useCallback(
         () => (element) => {
             if (element.keyCode == 13) {
-                window.location.pathname = `/pesquisa-noticia/${element.target.value}`;
+                window.location.pathname = `/noticia-pesquisa/${element.target.value}`;
             }
         },
         []

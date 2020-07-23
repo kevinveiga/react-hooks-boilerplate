@@ -2,32 +2,35 @@ import React, { useMemo } from 'react';
 
 import { apiUrlNoticiasBusca } from '../../../config';
 
-import { usePesquisaNoticiaApi } from '../../../service/pesquisaNoticia';
+import { useNoticiaPesquisaApi } from '../../../service/noticia';
 
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { PesquisaForm } from '../../Form/PesquisaForm';
 import { LinkTo } from '../../Link/LinkTo';
-import { NoticiaBox } from '../Noticia/NoticiaBox';
+import { NoticiaBox } from './NoticiaBox';
 
-import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from '../Noticia/NoticiaBoxStyled';
+import { NoticiaBoxDateTimeStyled, NoticiaBoxTitleStyled } from './NoticiaBoxStyled';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
 import { Container } from '../../../style/layout';
 import { P, Title3, Title4 } from '../../../style/text';
 
-export const PesquisaNoticia = ({ match }) => {
+export const NoticiaPesquisa = ({ match }) => {
     // API
-    const [statePesquisa, setStatePesquisaData] = usePesquisaNoticiaApi({ params: { query: match.params.slug }, url: apiUrlNoticiasBusca });
+    const [stateNoticiaPesquisa, setStateNoticiaPesquisaData] = useNoticiaPesquisaApi({
+        params: { query: match.params.slug },
+        url: apiUrlNoticiasBusca
+    });
 
-    const memoPesquisa = useMemo(() => [statePesquisa, setStatePesquisaData], [statePesquisa, setStatePesquisaData]);
+    const memoPesquisa = useMemo(() => [stateNoticiaPesquisa, setStateNoticiaPesquisaData], [stateNoticiaPesquisa, setStateNoticiaPesquisaData]);
 
     const pesquisaLength = memoPesquisa[0].data && memoPesquisa[0].data.length;
 
     return (
-        <PesquisaContext.Provider value={{ setStatePesquisaDataContext: memoPesquisa[1] }}>
+        <PesquisaContext.Provider value={{ setStateNoticiaPesquisaDataContext: memoPesquisa[1] }}>
             <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                 <Box mb={5} width={{ d: 1, md: 4 / 5 }}>
                     <PesquisaForm

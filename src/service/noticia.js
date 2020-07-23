@@ -126,3 +126,43 @@ export const useNoticiaCategoriasApi = (url, initialData = {}) => {
 
     return stateNoticiaCategorias;
 };
+
+export const useNoticiaPesquisaApi = (obj, initialData = {}) => {
+    const [stateNoticiaPesquisaData, setStateNoticiaPesquisaData] = useState(obj);
+
+    const [stateNoticiaPesquisa, dispatch] = useReducer(dataFetchReducer, {
+        data: initialData,
+        isError: false,
+        isLoading: false
+    });
+
+    useEffect(() => {
+        let didCancel = false;
+
+        const fetchData = async () => {
+            try {
+                const result = await axios.post(stateNoticiaPesquisaData.url, stateNoticiaPesquisaData.params, {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!didCancel) {
+                    window.history.replaceState('noticia-pesquisa', '', `noticia-pesquisa/${stateNoticiaPesquisaData.params.query}`);
+
+                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
+                }
+            } catch (error) {
+                if (!didCancel) {
+                    dispatch(ACTION.failure());
+                }
+            }
+        };
+
+        fetchData();
+
+        return () => {
+            didCancel = true;
+        };
+    }, [stateNoticiaPesquisaData]);
+
+    return [stateNoticiaPesquisa, setStateNoticiaPesquisaData];
+};
