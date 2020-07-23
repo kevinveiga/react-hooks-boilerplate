@@ -10,6 +10,7 @@ import { Button } from '../Button/Button';
 import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
+import { LinkToExternal } from '../Link/LinkToExternal';
 import { ModalLogout } from '../Modal/ModalLogout';
 // import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
@@ -70,7 +71,7 @@ export const Header = () => {
     const keyPress = useCallback(
         () => (element) => {
             if (element.keyCode == 13) {
-                window.location.pathname = `/pesquisa/${element.target.value}`;
+                window.location.pathname = `/pesquisa-noticia/${element.target.value}`;
             }
         },
         []
@@ -165,15 +166,6 @@ export const Header = () => {
                                                     obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
                                                     onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
                                                     text="Cursos"
-                                                />
-                                            </li>
-
-                                            <li>
-                                                <LinkTo
-                                                    link="/minha-conta/entrevistas"
-                                                    obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
-                                                    onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
-                                                    text="Entrevistas"
                                                 />
                                             </li>
 

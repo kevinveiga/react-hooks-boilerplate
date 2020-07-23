@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as ACTION from '../store/action/action';
 import { dataFetchReducer } from '../store/reducer/dataFetchReducer';
 
-export const usePesquisaApi = (obj, initialData = {}) => {
+export const usePesquisaNoticiaApi = (obj, initialData = {}) => {
     const [statePesquisaData, setStatePesquisaData] = useState(obj);
 
     const [statePesquisa, dispatch] = useReducer(dataFetchReducer, {
@@ -22,6 +22,8 @@ export const usePesquisaApi = (obj, initialData = {}) => {
                 const result = await axios.post(statePesquisaData.url, statePesquisaData.params, { headers: { 'Content-Type': 'application/json' } });
 
                 if (!didCancel) {
+                    window.history.replaceState('pesquisa-noticia', '', `pesquisa-noticia/${statePesquisaData.params.query}`);
+
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 }
             } catch (error) {

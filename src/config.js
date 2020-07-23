@@ -24,6 +24,8 @@ export const apiUrlNewsletter = `${apiUrl}/newsletter`;
 
 export const apiUrlNoticias = `${apiUrl}/noticias`;
 
+export const apiUrlNoticiasBusca = `${apiUrlNoticias}/busca`;
+
 export const apiUrlPaywall = `${apiUrl}/paywall`;
 
 export const apiUrlPerfil = `${apiUrl}/perfil`;

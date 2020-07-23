@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 
-import { apiUrlNoticias } from '../../../config';
+import { apiUrlNoticiasBusca } from '../../../config';
 
-import { usePesquisaApi } from '../../../service/pesquisa';
+import { usePesquisaNoticiaApi } from '../../../service/pesquisaNoticia';
 
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 
@@ -18,9 +18,9 @@ import { Cell, Grid } from '../../../style/grid';
 import { Container } from '../../../style/layout';
 import { P, Title3, Title4 } from '../../../style/text';
 
-export const Pesquisa = ({ match }) => {
+export const PesquisaNoticia = ({ match }) => {
     // API
-    const [statePesquisa, setStatePesquisaData] = usePesquisaApi({ params: { query: match.params.slug }, url: `${apiUrlNoticias}/busca` });
+    const [statePesquisa, setStatePesquisaData] = usePesquisaNoticiaApi({ params: { query: match.params.slug }, url: apiUrlNoticiasBusca });
 
     const memoPesquisa = useMemo(() => [statePesquisa, setStatePesquisaData], [statePesquisa, setStatePesquisaData]);
 
@@ -30,7 +30,10 @@ export const Pesquisa = ({ match }) => {
         <PesquisaContext.Provider value={{ setStatePesquisaDataContext: memoPesquisa[1] }}>
             <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                 <Box mb={5} width={{ d: 1, md: 4 / 5 }}>
-                    <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
+                    <PesquisaForm
+                        apiUrl={apiUrlNoticiasBusca}
+                        obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
+                    />
                 </Box>
 
                 <Title3 fontWeight="700" themeColor="dark">
@@ -62,6 +65,7 @@ export const Pesquisa = ({ match }) => {
                                         </Title4>
                                     </Container>
                                 )}
+
                                 {pesquisaLength > 0 &&
                                     memoPesquisa[0].data.map((pesquisa) => {
                                         return (

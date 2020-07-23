@@ -2,8 +2,6 @@ import React, { memo, useCallback, useContext, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { apiUrlNoticias } from '../../config';
-
 import { PesquisaContext } from '../../store/pesquisa/pesquisaContext';
 
 import { Button } from '../Button/Button';
@@ -14,7 +12,7 @@ import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const PesquisaForm = memo(({ ...props }) => {
+export const PesquisaForm = memo(({ apiUrl, ...props }) => {
     // CONTEXT
     const { setStatePesquisaDataContext } = useContext(PesquisaContext);
 
@@ -52,9 +50,7 @@ export const PesquisaForm = memo(({ ...props }) => {
 
     const submitForm = (formData) => {
         if (formData.query) {
-            window.history.replaceState('pesquisa', '', `pesquisa/${formData.query}`);
-
-            setStatePesquisaDataContext({ params: formData, url: `${apiUrlNoticias}/busca` });
+            setStatePesquisaDataContext({ params: formData, url: apiUrl });
         }
     };
 
