@@ -137,6 +137,10 @@ export const useNoticiaPesquisaApi = (obj, initialData = {}) => {
     });
 
     useEffect(() => {
+        if (!stateNoticiaPesquisaData) {
+            return undefined;
+        }
+
         let didCancel = false;
 
         const fetchData = async () => {
