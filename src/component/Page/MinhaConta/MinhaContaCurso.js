@@ -45,7 +45,7 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
 
     // Redirecionamento temporário
     if (stateCurso.isError == true) {
-        window.location.pathname = '/minha-conta/cursos';
+        window.location.assign('/minha-conta/cursos');
     }
 
     // Verificação se todos os dados de API estão carregados

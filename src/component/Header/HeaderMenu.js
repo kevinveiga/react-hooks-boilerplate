@@ -28,7 +28,7 @@ export const HeaderMenu = ({ ...props }) => {
     const keyPress = useCallback(
         () => (element) => {
             if (element.keyCode == 13) {
-                window.location.pathname = `/pesquisa/${element.target.value}`;
+                window.location.assign(`/pesquisa/${element.target.value}`);
             }
         },
         []
@@ -36,7 +36,7 @@ export const HeaderMenu = ({ ...props }) => {
 
     const search = useCallback(
         () => () => {
-            window.location.pathname = `/pesquisa/${document.querySelector('input[name="pesquisa_mobile"]').value}`;
+            window.location.assign(`/pesquisa/${document.querySelector('input[name="pesquisa_mobile"]').value}`);
         },
         []
     );

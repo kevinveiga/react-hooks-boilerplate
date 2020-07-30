@@ -26,7 +26,7 @@ export const cursoMatricula = (cursoId, url = `${apiUrlCursos}/matricular`) => {
                 // Depois do usuário estar matriculado no curso, remove o cursoId da sessionStorage e redireciona para Minha Conta - Cursos
                 removeStorage('cursoId', 'sessionStorage');
 
-                window.location.pathname = `/minha-conta/curso/${cursoId}`;
+                window.location.assign(`/minha-conta/curso/${cursoId}`);
             } else {
                 console.error('result error: ', result);
             }
@@ -34,7 +34,7 @@ export const cursoMatricula = (cursoId, url = `${apiUrlCursos}/matricular`) => {
             // Se o usuário não está logado, redireciona para Minha Conta - Cursos
             // onde é aplicada a regra de redirecionamento do Login
             if (error.response && error.response.status === 403) {
-                window.location.pathname = `/minha-conta/curso/${cursoId}`;
+                window.location.assign(`/minha-conta/curso/${cursoId}`);
             } else {
                 console.error('error: ', error);
             }

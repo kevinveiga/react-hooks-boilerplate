@@ -42,7 +42,7 @@ export const Noticia = ({ match }) => {
 
     // Redirecionamento temporário
     if (stateNoticia.isError == true) {
-        window.location.pathname = '/noticias';
+        window.location.assign('/noticias');
     }
 
     // Verificação se todos os dados de API estão carregados

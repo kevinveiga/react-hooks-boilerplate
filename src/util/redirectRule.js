@@ -16,7 +16,7 @@ export const redirectRule = (url) => {
         if (cursoId && redirectUrl === `/minha-conta/curso/${cursoId}`) {
             cursoMatricula(cursoId);
         } else {
-            window.location.pathname = redirectUrl;
+            window.location.assign(redirectUrl);
         }
     } catch (error) {
         console.error(error);

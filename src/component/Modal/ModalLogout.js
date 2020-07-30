@@ -17,7 +17,7 @@ export const ModalLogout = ({ ...props }) => {
             logout();
 
             // Redirecionamento para Home
-            window.location.pathname = '/';
+            window.location.assign('/');
         },
         []
     );

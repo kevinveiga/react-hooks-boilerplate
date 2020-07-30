@@ -77,7 +77,7 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
                 }
 
                 if (response.status === 'authorized') {
-                    window.location.pathname = `/carrinho-retorno/${paymentType.boleto}/${response.boleto_url}`;
+                    window.location.assign(`/carrinho-retorno/${paymentType.boleto}/${response.boleto_url}`);
                 } else {
                     setError('invalid', 'notMatch', pagarmeResponseStatus(response.status));
                 }

@@ -46,7 +46,7 @@ export const Curso = ({ match }) => {
 
     // Redirecionamento temporário
     // if (stateCurso.isError == true) {
-    //     window.location.pathname = '/';
+    //     window.location.assign('/');
     // }
 
     // Verificação se todos os dados de API estão carregados

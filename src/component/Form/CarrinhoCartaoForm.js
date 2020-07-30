@@ -106,7 +106,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                 }
 
                 if (response.status === 'authorized') {
-                    window.location.pathname = `/carrinho-retorno/${paymentType.cartaoCredito}`;
+                    window.location.assign(`/carrinho-retorno/${paymentType.cartaoCredito}`);
                 } else {
                     setError('invalid', 'notMatch', pagarmeResponseStatus(response.status));
                 }
