@@ -28,8 +28,8 @@ export const LoginForm = memo(({ location, ...otherProps }) => {
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     useEffect(() => {
-        register({ name: 'email' }, { ...customValidate.email, ...customValidate.require });
-        register({ name: 'password' }, { ...customValidate.password, ...customValidate.require });
+        register('email', { ...customValidate.email, ...customValidate.require });
+        register('password', { ...customValidate.password, ...customValidate.require });
 
         return () => {
             unregister('email');
