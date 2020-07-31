@@ -244,6 +244,8 @@ export const LabelStyled = styled.label`
     z-index: 1;
 `;
 
-export const SelectStyled = styled.select`
+export const SelectStyled = styled.select.attrs(({ invalid }) => ({
+    'data-invalid': invalid ? true : undefined
+}))`
     ${input};
 `;
