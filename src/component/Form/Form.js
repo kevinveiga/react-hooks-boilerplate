@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { InputAlternateStyled, InputMaskStyled, InputStyled, LabelStyled, SelectStyled } from './FormStyled';
 
@@ -124,16 +124,16 @@ export const Select = ({ ariaLabel, children, value = '', ...otherProps }) => {
     );
 };
 
-export const SelectValidation = ({ error = '', ariaLabel, children, touched, value = '', ...otherProps }) => {
+export const SelectValidation = forwardRef(({ error = '', children, touched, value = '', ...otherProps }, ref) => {
     const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;
 
     return (
         <>
             <SelectStyled
-                aria-label={ariaLabel}
                 defaultValue={value}
                 invalid={error}
                 obj={{ ...otherProps.obj }}
+                ref={ref}
                 valid={!error && touched[otherProps.name] ? 'true' : undefined}
                 {...otherProps}
             >
@@ -145,4 +145,4 @@ export const SelectValidation = ({ error = '', ariaLabel, children, touched, val
             <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[otherProps.name]} />
         </>
     );
-};
+});

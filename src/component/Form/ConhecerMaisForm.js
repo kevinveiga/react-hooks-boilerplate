@@ -34,13 +34,11 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
     useEffect(() => {
         register('data_nascimento', { ...customValidate.date });
         register('endereco_cidade', { ...customValidate.require });
-        register('endereco_uf', { ...customValidate.require });
         register('sexo');
 
         return () => {
             unregister('data_nascimento');
             unregister('endereco_cidade');
-            unregister('endereco_uf');
             unregister('sexo');
         };
     }, [register, unregister]);
@@ -260,6 +258,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                                     fontWeight: touched['endereco_uf'] ? '700' : '400'
                                                 }}
                                                 onChange={handleValidation()}
+                                                ref={register({ ...customValidate.require })}
                                                 touched={touched}
                                                 {...otherProps}
                                             >

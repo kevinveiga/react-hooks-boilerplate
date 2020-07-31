@@ -16,7 +16,7 @@ import { scrollTo } from '../../util/scrollTo';
 import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
-import { InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select, SelectValidation } from './Form';
 import { ModalMessage } from '../Modal/ModalMessage';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
@@ -38,7 +38,6 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
         register('endereco_cidade', { ...customValidate.require });
         register('endereco_complemento');
         register('endereco_logradouro', { ...customValidate.require });
-        register('endereco_uf');
         register('endereco_numero', { ...customValidate.number });
         register('nome', { ...customValidate.name, ...customValidate.require });
         // register('password', { ...customValidate.password, ...customValidate.require });
@@ -54,7 +53,6 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
             unregister('endereco_cidade');
             unregister('endereco_complemento');
             unregister('endereco_logradouro');
-            unregister('endereco_uf');
             unregister('endereco_numero');
             unregister('nome');
             // unregister('password');
@@ -371,9 +369,21 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                         <Label color="colorGray2" mb="-15px" text="Estado" />
 
                         <div>
-                            <Select name="endereco_uf" onChange={handleSetValue()} {...otherProps}>
+                            <SelectValidation
+                                error={errors.endereco_uf}
+                                name="endereco_uf"
+                                obj={{
+                                    color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                    colorLine: 'colorPrimary',
+                                    fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                }}
+                                onChange={handleSetValue()}
+                                ref={register({ ...customValidate.require })}
+                                touched={touched}
+                                {...otherProps}
+                            >
                                 <OptionUF />
-                            </Select>
+                            </SelectValidation>
                         </div>
                     </Cell>
 
@@ -400,7 +410,16 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                         <Label color="colorGray2" mb="-15px" text="Sexo" />
 
                         <div>
-                            <Select name="sexo" onChange={handleSetValue()} {...otherProps}>
+                            <Select
+                                name="sexo"
+                                obj={{
+                                    color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                    colorLine: 'colorPrimary',
+                                    fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                }}
+                                onChange={handleSetValue()}
+                                {...otherProps}
+                            >
                                 <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
                             </Select>
@@ -440,8 +459,6 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                             name="receber_avisos_descontos_de_cursos"
                             onChange={handleSetValueChecked()}
                         >
-                            <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
-
                             <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
                                 Desejo receber avisos e descontos de cursos
                             </Span>
@@ -453,8 +470,6 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                             name="receber_curadoria_conteudos_noticias"
                             onChange={handleSetValueChecked()}
                         >
-                            <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
-
                             <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
                                 Desejo receber a curadoria de conteúdos e notícias
                             </Span>
