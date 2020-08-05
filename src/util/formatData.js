@@ -54,14 +54,11 @@ export const formatDateSet = (date) => {
         return '';
     }
 
-    const formatDate = date.replace(/\D/g, '');
-    const match = formatDate.match(customRegex.date);
+    const array = date.split('/');
 
-    if (match) {
-        return new Date(`${match[9]}/${match[4]}/${match[2]}`);
-    }
+    console.log('array: ', array);
 
-    return '';
+    return new Date(`${array[2]}/${array[1]}/${array[0]}`);
 };
 
 export const formatMoneyGet = (number, currency = 'real') => {
