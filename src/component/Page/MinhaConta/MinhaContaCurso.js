@@ -96,14 +96,15 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                     });
                 }
 
-                setStateCursoConteudoData({
-                    conteudoId: stateCursoConteudoPrevNext.nextId,
-                    cursoId: curso.id,
-                    moduloCurrentId: stateCursoConteudoPrevNext.moduloCurrentId,
-                    modulos: curso.modulos,
-                    setCurrent: true,
-                    url: `${apiUrlCursos}/meus-cursos`
-                });
+                if (stateCursoConteudoPrevNext.nextId) {
+                    setStateCursoConteudoData({
+                        conteudoId: stateCursoConteudoPrevNext.nextId,
+                        cursoId: curso.id,
+                        moduloCurrentId: stateCursoConteudoPrevNext.moduloCurrentId,
+                        modulos: curso.modulos,
+                        url: `${apiUrlCursos}/meus-cursos`
+                    });
+                }
             }
         },
         [stateCursoConteudoPrevNext, setStateCursoConteudoData, setStateCursoConteudoVisualizadoData]
@@ -116,7 +117,6 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                 cursoId: curso.id,
                 moduloCurrentId: stateCursoConteudoPrevNext.moduloCurrentId,
                 modulos: curso.modulos,
-                setCurrent: true,
                 url: `${apiUrlCursos}/meus-cursos`
             });
         },
@@ -139,14 +139,13 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                     cursoId: conteudoAtualData.cursoId,
                     moduloCurrentId: conteudoAtualData.moduloCurrentId,
                     modulos: conteudoAtualData.modulos,
-                    setCurrent: true,
                     url: conteudoAtualData.url
                 });
             } else {
                 setStateCursoConteudoData({
                     conteudoId: curso.modulos[0].conteudos[0].id,
                     cursoId: curso.id,
-                    moduloCurrentId: null,
+                    moduloCurrentId: curso.modulos[0].id,
                     modulos: curso.modulos,
                     url: `${apiUrlCursos}/meus-cursos`
                 });
@@ -210,10 +209,9 @@ const MinhaContaCurso = ({ match, ...breadcrumb }) => {
                                                 <ErrorBoundary>
                                                     <Suspense fallback={<LoaderComponent />}>
                                                         <MinhaContaCursoVideo
-                                                            conteudoId={conteudo.id}
-                                                            conteudoProvedor={conteudo.provedor}
-                                                            conteudoVideoId={conteudo.video_id}
-                                                            cursoId={curso.id}
+                                                            conteudo={conteudo}
+                                                            curso={curso}
+                                                            cursoConteudoNext={handleCursoConteudoNext}
                                                         />
                                                     </Suspense>
                                                 </ErrorBoundary>

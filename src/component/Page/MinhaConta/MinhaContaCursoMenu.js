@@ -167,9 +167,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                 forLabel={`${objectCurso.id}${conteudo.id}`}
                                                                 fontWeight="700"
                                                                 mb={2}
-                                                            >
-                                                                <Svg fill="colorWhite" height="9px" name="svg-checked" stroke="colorWhite" />
-                                                            </Label>
+                                                            />
                                                         </Box>
 
                                                         <Box
@@ -179,7 +177,6 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                                     cursoId: objectCurso.id,
                                                                     moduloCurrentId: modulo.id,
                                                                     modulos: objectCurso.modulos,
-                                                                    setCurrent: true,
                                                                     url: `${apiUrlCursos}/meus-cursos`
                                                                 })
                                                             }

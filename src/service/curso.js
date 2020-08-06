@@ -151,18 +151,16 @@ export const useCursoConteudoApi = (initialData = {}) => {
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
 
-                    if (stateCursoConteudoData.setCurrent) {
-                        setStorage(
-                            'conteudoAtualData',
-                            JSON.stringify({
-                                conteudoId: stateCursoConteudoData.conteudoId,
-                                cursoId: stateCursoConteudoData.cursoId,
-                                moduloCurrentId: prevNextId(),
-                                modulos: stateCursoConteudoData.modulos,
-                                url: stateCursoConteudoData.url
-                            })
-                        );
-                    }
+                    setStorage(
+                        'conteudoAtualData',
+                        JSON.stringify({
+                            conteudoId: stateCursoConteudoData.conteudoId,
+                            cursoId: stateCursoConteudoData.cursoId,
+                            moduloCurrentId: prevNextId(),
+                            modulos: stateCursoConteudoData.modulos,
+                            url: stateCursoConteudoData.url
+                        })
+                    );
                 }
             } catch (error) {
                 if (!didCancel) {
@@ -246,9 +244,9 @@ export const useCursoCategoriaApi = (initialData = {}) => {
 
         const fetchData = async () => {
             try {
-                const result = await axios.get(stateCursoCategoriaData.url, { params: { page: stateCursoCategoriaData.page } });
+                const result = await axios.get(stateCursoCategoriaData.url, { params: stateCursoCategoriaData.params });
 
-                const isAppend = stateCursoCategoriaData.page > 1;
+                const isAppend = stateCursoCategoriaData.params.page > 1;
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), append: isAppend, payload: result.data } : ACTION.failure());
