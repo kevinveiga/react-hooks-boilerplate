@@ -64,5 +64,5 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
         };
     }, [liveResize, liveScroll, stateNode, ref, windowWidth]);
 
-    return [ref, stateMeasure, stateNode];
+    return [ref, stateMeasure];
 };
