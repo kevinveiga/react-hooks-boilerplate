@@ -55,32 +55,32 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
         [objectCurso.id, setStateCursoConteudoVisualizadoDataContext]
     );
 
-    const tipoConteudo = (tipo) => {
+    const tipoConteudo = (type) => {
         const obj = { svg: '', title: '' };
 
-        switch (tipo) {
+        switch (type) {
             case 'audio':
-                obj.svg = tipo;
+                obj.svg = type;
                 obj.title = 'Áudio';
 
                 break;
             case 'download':
-                obj.svg = tipo;
+                obj.svg = type;
                 obj.title = 'Download';
 
                 break;
             case 'imagem':
-                obj.svg = tipo;
+                obj.svg = type;
                 obj.title = 'Imagem';
 
                 break;
             case 'post':
-                obj.svg = tipo;
+                obj.svg = type;
                 obj.title = 'Artigo';
 
                 break;
             default:
-                obj.svg = tipo;
+                obj.svg = type;
                 obj.title = 'Vídeo';
         }
 
