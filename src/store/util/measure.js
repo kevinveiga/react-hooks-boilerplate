@@ -33,10 +33,6 @@ export const useMeasure = (liveResize = false, liveScroll = false) => {
             return undefined;
         }
 
-        if (windowWidth < parseInt(variable.md, 10)) {
-            return undefined;
-        }
-
         const dimensions = () => {
             window.requestAnimationFrame(() => {
                 setStateMeasure(getDimensionObject(stateNode));
