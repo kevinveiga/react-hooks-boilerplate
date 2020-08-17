@@ -5,7 +5,7 @@ import { useWindowWidth } from '../util/windowWidth';
 import { variable } from '../../style/variable';
 
 export const useChangeBannerScroll = (elementId, offset = 0) => {
-    const [stateChangeBanner, setStateChangeBanner] = useState(false);
+    const [stateChangeBannerScroll, setStateChangeBannerScroll] = useState(false);
     const windowWidth = useWindowWidth();
 
     const handleScroll = useCallback(() => {
@@ -14,7 +14,7 @@ export const useChangeBannerScroll = (elementId, offset = 0) => {
             ? document.getElementById(elementId).getBoundingClientRect().y - document.querySelector('body').getBoundingClientRect().y
             : 0;
 
-        setStateChangeBanner(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
+        setStateChangeBannerScroll(scrollYPos > position + (position > document.querySelector('body').getBoundingClientRect().y ? offset : 0));
     }, [elementId, offset]);
 
     useLayoutEffect(() => {
@@ -29,7 +29,7 @@ export const useChangeBannerScroll = (elementId, offset = 0) => {
         };
     }, [handleScroll, windowWidth]);
 
-    return stateChangeBanner;
+    return stateChangeBannerScroll;
 };
 
 export const useFadeOutBannerScroll = (elementId, offset = 0) => {
