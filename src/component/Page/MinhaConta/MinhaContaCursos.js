@@ -29,6 +29,9 @@ import { Span, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 const MinhaContaCursos = () => {
+    // VARIABLE
+    let noData = true;
+
     // API
     const [stateCursos] = useCursoApi(`${apiUrlCursos}/meus-cursos`);
     const stateCursosCategorias = useCursoCategoriasApi(`${apiUrlCursos}/categorias`);
@@ -64,8 +67,6 @@ const MinhaContaCursos = () => {
 
     // DATA
     const meusCursos = cursosLength > 0 && stateCursos.data.data;
-
-    let noData = true;
 
     return (
         <>

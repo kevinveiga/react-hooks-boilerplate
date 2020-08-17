@@ -21,6 +21,9 @@ import { Title3, Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
 export const Aprenda = () => {
+    // VARIABLE
+    let noData = true;
+
     // API
     const [stateCursos] = useCursoApi(apiUrlCursos);
     const [stateCursosCategoria, setStateCursosCategoriaData] = useCursoCategoriaApi();
@@ -63,9 +66,6 @@ export const Aprenda = () => {
         },
         [setStateCursosCategoriaData]
     );
-
-    // DATA
-    let noData = true;
 
     return (
         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
