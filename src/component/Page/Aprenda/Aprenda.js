@@ -42,7 +42,7 @@ export const Aprenda = () => {
     // Scroll para o topo
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
-        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+        scrollTo(null, isDataLoaded);
 
         return undefined;
     }, [isDataLoaded]);

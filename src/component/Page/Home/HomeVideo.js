@@ -37,7 +37,7 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
     const [stateEntry, setStateNode] = useIntersect({});
     const windowWidth = useWindowWidth();
 
-    const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo('#home-video', windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+    const [stateCurrentVideo, setStateCurrentVideo] = useCurrentVideo('#home-video');
 
     useEffect(() => {
         if (stateEntry.isIntersecting) {

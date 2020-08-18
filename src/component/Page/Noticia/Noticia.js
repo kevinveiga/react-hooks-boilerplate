@@ -50,12 +50,11 @@ export const Noticia = ({ match }) => {
 
     // ACTION
     const [changeLeadwall, setChangeLeadwallContext] = useState(JSON.parse(getStorage('leadwall')));
-    const windowWidth = useWindowWidth();
 
     // Scroll para o topo
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
-        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+        scrollTo(null, isDataLoaded);
 
         return undefined;
     }, [isDataLoaded, match]);

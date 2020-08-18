@@ -43,7 +43,7 @@ export const Noticias = () => {
     // Scroll para o topo
     /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
-        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+        scrollTo(null, isDataLoaded);
 
         return undefined;
     }, [isDataLoaded]);
@@ -73,9 +73,9 @@ export const Noticias = () => {
             setStateNoticiasCategoriaData({ page: 1, url: apiValue });
             setStateNoticiasCategoriaSelected(value);
 
-            scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.md, 10) ? 0 : 80);
+            scrollTo(null, isDataLoaded);
         },
-        [isDataLoaded, setStateNoticiasCategoriaData, windowWidth]
+        [isDataLoaded, setStateNoticiasCategoriaData]
     );
 
     return (
