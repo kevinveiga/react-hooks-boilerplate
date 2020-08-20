@@ -49,7 +49,7 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
                 id={id}
                 invalid={error}
                 type={typeInput}
-                valid={!error && touched[otherProps.name] ? 'true' : undefined}
+                valid={!error && (value || touched[otherProps.name]) ? 'true' : undefined}
                 {...otherProps}
             />
 
@@ -71,13 +71,18 @@ export const InputValidation = ({ error = '', touched, typeInput = 'text', value
                 invalid={error}
                 obj={{ ...otherProps.obj }}
                 type={typeInput}
-                valid={!error && touched[otherProps.name] ? 'true' : undefined}
+                valid={!error && (value || touched[otherProps.name]) ? 'true' : undefined}
                 {...otherProps}
             />
 
             {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
 
-            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[otherProps.name]} />
+            <Svg
+                invalid={error}
+                name={error ? 'svg-invalid' : 'svg-valid'}
+                svgPosition={svgPosition}
+                valid={!error && (value || touched[otherProps.name])}
+            />
         </>
     );
 };
@@ -94,13 +99,18 @@ export const InputMaskValidation = ({ error = '', mask = null, touched, typeInpu
                 mask={mask}
                 obj={{ ...otherProps.obj }}
                 type={typeInput}
-                valid={!error && touched[otherProps.name] ? 'true' : undefined}
+                valid={!error && (value || touched[otherProps.name]) ? 'true' : undefined}
                 {...otherProps}
             />
 
             {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
 
-            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[otherProps.name]} />
+            <Svg
+                invalid={error}
+                name={error ? 'svg-invalid' : 'svg-valid'}
+                svgPosition={svgPosition}
+                valid={!error && (value || touched[otherProps.name])}
+            />
         </>
     );
 };
@@ -134,7 +144,7 @@ export const SelectValidation = forwardRef(({ error = '', children, touched, val
                 invalid={error}
                 obj={{ ...otherProps.obj }}
                 ref={ref}
-                valid={!error && touched[otherProps.name] ? 'true' : undefined}
+                valid={!error && (value || touched[otherProps.name]) ? 'true' : undefined}
                 {...otherProps}
             >
                 {children}
@@ -142,7 +152,12 @@ export const SelectValidation = forwardRef(({ error = '', children, touched, val
 
             {otherProps.label && <LabelStyled aria-label={otherProps.label}>{otherProps.label}</LabelStyled>}
 
-            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[otherProps.name]} />
+            <Svg
+                invalid={error}
+                name={error ? 'svg-invalid' : 'svg-valid'}
+                svgPosition={svgPosition}
+                valid={!error && (value || touched[otherProps.name])}
+            />
         </>
     );
 });
