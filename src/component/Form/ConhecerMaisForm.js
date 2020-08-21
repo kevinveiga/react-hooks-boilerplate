@@ -78,7 +78,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
         unregister
     } = useForm({
         defaultValues: { data_nascimento: '' },
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

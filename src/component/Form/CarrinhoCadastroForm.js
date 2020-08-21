@@ -79,7 +79,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
         triggerValidation,
         unregister
     } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

@@ -93,7 +93,7 @@ export const MinhaContaAvatarForm = memo(() => {
         triggerValidation,
         unregister
     } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     return (

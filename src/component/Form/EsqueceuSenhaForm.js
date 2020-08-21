@@ -49,7 +49,7 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
         triggerValidation,
         unregister
     } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

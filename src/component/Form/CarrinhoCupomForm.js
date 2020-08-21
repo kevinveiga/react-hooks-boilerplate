@@ -36,7 +36,7 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
 
     // FORM
     const { errors, handleSubmit, register, setError, setValue, unregister } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

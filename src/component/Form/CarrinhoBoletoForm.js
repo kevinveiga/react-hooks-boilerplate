@@ -64,7 +64,7 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
         triggerValidation,
         unregister
     } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

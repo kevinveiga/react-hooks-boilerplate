@@ -142,7 +142,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
         unregister
     } = useForm({
         defaultValues: formatFormDataGet(data),
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     // Valores inicias dos inputs

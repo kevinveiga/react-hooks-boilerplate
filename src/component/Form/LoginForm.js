@@ -57,7 +57,7 @@ export const LoginForm = memo(({ location, ...otherProps }) => {
         triggerValidation,
         unregister
     } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

@@ -53,7 +53,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
         triggerValidation,
         unregister
     } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {

@@ -45,7 +45,7 @@ export const PesquisaForm = memo(({ apiUrl, ...props }) => {
 
     // FORM
     const { handleSubmit, register, setValue, triggerValidation, unregister } = useForm({
-        mode: 'onSubmit'
+        mode: 'onChange'
     });
 
     const submitForm = (formData) => {
