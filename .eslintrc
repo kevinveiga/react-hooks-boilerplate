@@ -149,7 +149,7 @@
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-pascal-case": "warn",
         "react/jsx-props-no-spreading": "off",
-        "react/jsx-wrap-multilines": "warn",
+        "react/jsx-wrap-multilines": ["warn", { "prop": "ignore" }],
         "react/prefer-stateless-function": "warn",
         "react/prop-types": "off",
         "react/require-extension": "off",
