@@ -81,6 +81,10 @@ const input = css`
             box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
         `};
 
+    &:disabled {
+        color: ${variable.colorGray};
+    }
+
     &::placeholder {
         color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
         font-size: 16px;
