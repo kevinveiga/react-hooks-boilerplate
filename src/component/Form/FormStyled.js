@@ -131,6 +131,10 @@ export const InputStyled = styled.input.attrs(({ invalid }) => ({
 }))`
     ${input};
     ${inputLabel};
+
+    &:read-only {
+        color: ${variable.colorGray};
+    }
 `;
 
 export const InputAlternateStyled = styled.input`
