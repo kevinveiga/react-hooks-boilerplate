@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useEffect } from 'react';
+import React, { memo, useCallback, useContext } from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 
@@ -6,24 +6,16 @@ import { PesquisaContext } from '../../store/pesquisa/pesquisaContext';
 
 import { Button } from '../Button/Button';
 import { Input } from './Form';
+// import { SelectTags } from '../Tags/SelectTags';
 import { Svg } from '../Svg/Svg';
 
 import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const PesquisaForm = memo(({ apiUrl, ...props }) => {
+export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
     // CONTEXT
-    const { setStatePesquisaDataContext } = useContext(PesquisaContext);
-
-    // ACTION
-    useEffect(() => {
-        register('query');
-
-        return () => {
-            unregister('query');
-        };
-    }, [register, unregister]);
+    const { stateTagsContext, setStatePesquisaDataContext } = useContext(PesquisaContext);
 
     // FUNCTION
     const keyPress = useCallback(
@@ -35,43 +27,49 @@ export const PesquisaForm = memo(({ apiUrl, ...props }) => {
         [handleSubmit]
     );
 
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
+    const limparPesquisa = () => () => {
+        setStatePesquisaDataContext(null);
+    };
 
     // FORM
-    const { handleSubmit, register, setValue, triggerValidation, unregister } = useForm({
+    const { control, handleSubmit } = useForm({
         mode: 'onChange'
     });
 
     const submitForm = (formData) => {
         if (formData.query) {
-            setStatePesquisaDataContext({ params: formData, url: apiUrl });
+            setStatePesquisaDataContext({ url: `${apiUrlTag}/${formData.query}` });
         }
     };
 
     return (
         <FormStyled onSubmit={handleSubmit(submitForm)}>
-            <Grid display="grid" gridAutoColumns="1fr" gridTemplateColumns={{ d: '1fr', xs: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-                <Cell mb={3}>
+            <Grid display="grid" gridTemplateColumns={{ d: '1fr 1fr', md: '1fr auto auto' }}>
+                <Cell gridColumn={{ d: '1 / span 2', md: '1' }} mb={3}>
                     <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />
 
-                    <Input
-                        maxLength="50"
+                    <Controller
+                        as={
+                            <Input
+                                autoComplete="off"
+                                list="tags"
+                                maxLength="50"
+                                onKeyDown={keyPress(submitForm)}
+                                placeholder="O que você procura?"
+                                {...props}
+                            />
+                        }
+                        control={control}
                         name="query"
-                        onChange={handleValidation()}
-                        onKeyDown={keyPress(submitForm)}
-                        placeholder="O que você procura?"
-                        {...props}
                     />
                 </Cell>
 
-                <Cell mb={3}>
-                    <Button mx={{ d: 'auto', xs: 0 }} text="Buscar" themeSize="small" typeButton="submit" />
+                <Cell justifySelf="flex-end" mb={3} mr={3}>
+                    <Button mx={{ d: 'auto', md: 0 }} text="Buscar" themeSize="small" typeButton="submit" />
+                </Cell>
+
+                <Cell justifySelf="flex-start" mb={3}>
+                    <Button mx={{ d: 'auto', md: 0 }} onClick={limparPesquisa()} text="Limpar Busca" themeSize="small" />
                 </Cell>
             </Grid>
         </FormStyled>
