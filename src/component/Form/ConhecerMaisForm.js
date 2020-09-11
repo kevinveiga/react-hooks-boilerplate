@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -31,18 +31,6 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
-    useEffect(() => {
-        register('data_nascimento', { ...customValidate.date });
-        register('endereco_cidade', { ...customValidate.require });
-        register('sexo');
-
-        return () => {
-            unregister('data_nascimento');
-            unregister('endereco_cidade');
-            unregister('sexo');
-        };
-    }, []);
-
     // FUNCTION
     const handlePart = useCallback(
         (value) => () => {
@@ -57,7 +45,8 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
         errors,
         formState: { touched },
         handleSubmit,
-        setError
+        setError,
+        setValue
     } = useForm({
         defaultValues: { data_nascimento: '' },
         mode: 'onChange'
@@ -120,12 +109,17 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                 </ConhecerMaisPartTitleStyled>
 
                                 <ConhecerMaisPartContentStyled active={statePart === 1} ml={4}>
-                                    <ConhecerMaisRadioStyled
-                                        defaultChecked={false}
-                                        defaultValue="masculino"
-                                        id="sexo_masculino"
+                                    <Controller
+                                        as={
+                                            <ConhecerMaisRadioStyled
+                                                defaultChecked={false}
+                                                defaultValue="masculino"
+                                                id="sexo_masculino"
+                                                type="radio"
+                                            />
+                                        }
+                                        control={control}
                                         name="sexo"
-                                        type="radio"
                                     />
 
                                     <Label
@@ -140,12 +134,12 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                         Masculino
                                     </Label>
 
-                                    <ConhecerMaisRadioStyled
-                                        defaultChecked={false}
-                                        defaultValue="feminino"
-                                        id="sexo_feminino"
+                                    <Controller
+                                        as={
+                                            <ConhecerMaisRadioStyled defaultChecked={false} defaultValue="feminino" id="sexo_feminino" type="radio" />
+                                        }
+                                        control={control}
                                         name="sexo"
-                                        type="radio"
                                     />
 
                                     <Label
@@ -176,14 +170,20 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                     <Label mb="-15px" text="Data de Nascimento" />
 
                                     <div>
-                                        <InputMaskValidation
-                                            error={errors.data_nascimento}
-                                            mask={customMaskRegex.date}
+                                        <Controller
+                                            as={
+                                                <InputMaskValidation
+                                                    error={errors.data_nascimento}
+                                                    mask={customMaskRegex.date}
+                                                    placeholder="dd/mm/aaaa"
+                                                    pr={4}
+                                                    touched={touched}
+                                                    {...otherProps}
+                                                />
+                                            }
+                                            control={control}
                                             name="data_nascimento"
-                                            placeholder="dd/mm/aaaa"
-                                            pr={4}
-                                            touched={touched}
-                                            {...otherProps}
+                                            rules={{ ...customValidate.date }}
                                         />
                                     </div>
 
@@ -207,14 +207,20 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                         <Label mb="-15px" text="Cidade" />
 
                                         <div>
-                                            <InputValidation
-                                                error={errors.endereco_cidade}
-                                                maxLength="50"
+                                            <Controller
+                                                as={
+                                                    <InputValidation
+                                                        error={errors.endereco_cidade}
+                                                        maxLength="50"
+                                                        placeholder="Cidade"
+                                                        pr={4}
+                                                        touched={touched}
+                                                        {...otherProps}
+                                                    />
+                                                }
+                                                control={control}
                                                 name="endereco_cidade"
-                                                placeholder="Cidade"
-                                                pr={4}
-                                                touched={touched}
-                                                {...otherProps}
+                                                rules={{ ...customValidate.require }}
                                             />
                                         </div>
 
@@ -227,19 +233,25 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                         <Label mb="-15px" text="Estado" />
 
                                         <div>
-                                            <SelectValidation
-                                                error={errors.endereco_uf}
+                                            <Controller
+                                                as={
+                                                    <SelectValidation
+                                                        error={errors.endereco_uf}
+                                                        obj={{
+                                                            color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                                            colorLine: 'colorPrimary',
+                                                            fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                                        }}
+                                                        touched={touched}
+                                                        {...otherProps}
+                                                    >
+                                                        <OptionUF />
+                                                    </SelectValidation>
+                                                }
+                                                control={control}
                                                 name="endereco_uf"
-                                                obj={{
-                                                    color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
-                                                    colorLine: 'colorPrimary',
-                                                    fontWeight: touched['endereco_uf'] ? '700' : '400'
-                                                }}
-                                                touched={touched}
-                                                {...otherProps}
-                                            >
-                                                <OptionUF />
-                                            </SelectValidation>
+                                                rules={{ ...customValidate.require }}
+                                            />
                                         </div>
 
                                         {errors.endereco_uf && <InvalidInputMessageStyled>{errors.endereco_uf.message}</InvalidInputMessageStyled>}
