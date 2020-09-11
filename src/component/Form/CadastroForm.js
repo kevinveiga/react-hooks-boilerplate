@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useContext, useEffect, useState } from 'react';
+import React, { memo, useCallback, useContext, useState } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlCadastro, errorMsgDefault } from '../../config';
 
@@ -33,22 +33,6 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
-    useEffect(() => {
-        register('confirm_password', { ...customValidate.password, ...customValidate.require });
-        register('email', { ...customValidate.email, ...customValidate.require });
-        register('nome', { ...customValidate.name, ...customValidate.require });
-        register('password', { ...customValidate.password, ...customValidate.require });
-        register('telefone', { ...customValidate.cellphone, ...customValidate.require });
-
-        return () => {
-            unregister('confirm_password');
-            unregister('email');
-            unregister('nome');
-            unregister('password');
-            unregister('telefone');
-        };
-    }, [register, unregister]);
-
     // FUNCTION
     const handleScrollTo = useCallback(
         () => () => {
@@ -61,24 +45,13 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
         [formId]
     );
 
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -133,15 +106,20 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.nome}
-                                        label="Nome completo"
-                                        maxLength="50"
+                                    <Controller
+                                        as={
+                                            <InputValidation
+                                                error={errors.nome}
+                                                label="Nome completo"
+                                                maxLength="50"
+                                                pr={4}
+                                                touched={touched}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="nome"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.name, ...customValidate.require }}
                                     />
                                 </div>
 
@@ -150,15 +128,20 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.email}
-                                        label="E-mail"
-                                        maxLength="50"
+                                    <Controller
+                                        as={
+                                            <InputValidation
+                                                error={errors.email}
+                                                label="E-mail"
+                                                maxLength="50"
+                                                pr={4}
+                                                touched={touched}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="email"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.email, ...customValidate.require }}
                                     />
                                 </div>
 
@@ -167,15 +150,20 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
 
                             <Cell mb={3}>
                                 <div>
-                                    <InputMaskValidation
-                                        error={errors.telefone}
-                                        label="Celular"
-                                        mask={customMaskRegex.phone}
+                                    <Controller
+                                        as={
+                                            <InputMaskValidation
+                                                error={errors.telefone}
+                                                label="Celular"
+                                                mask={customMaskRegex.phone}
+                                                pr={4}
+                                                touched={touched}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="telefone"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.cellphone, ...customValidate.require }}
                                     />
                                 </div>
 
@@ -184,16 +172,21 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
 
                             <Cell mb={4}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.password}
-                                        label="Senha"
-                                        maxLength="20"
+                                    <Controller
+                                        as={
+                                            <InputValidation
+                                                error={errors.password}
+                                                label="Senha"
+                                                maxLength="20"
+                                                pr={4}
+                                                touched={touched}
+                                                type={stateViewPassword ? 'text' : 'password'}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="password"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        type={stateViewPassword ? 'text' : 'password'}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.password, ...customValidate.require }}
                                     />
 
                                     <Svg
@@ -212,16 +205,21 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
 
                             <Cell mb={4}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.confirm_password}
-                                        label="Confirmação de senha"
-                                        maxLength="20"
+                                    <Controller
+                                        as={
+                                            <InputValidation
+                                                error={errors.confirm_password}
+                                                label="Confirmação de senha"
+                                                maxLength="20"
+                                                pr={4}
+                                                touched={touched}
+                                                type={stateViewPassword ? 'text' : 'password'}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="confirm_password"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        type={stateViewPassword ? 'text' : 'password'}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.password, ...customValidate.require }}
                                     />
 
                                     <Svg

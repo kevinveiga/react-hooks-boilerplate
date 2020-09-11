@@ -1,6 +1,6 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { createCardTransactionPromise } from '../../service/pagarme';
 
@@ -29,6 +29,9 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
     const CARTAO_PARCELA = 'cartao_parcela';
     const CPF = 'cpf';
 
+    // REF
+    const cartaoParcelaRef = useRef('');
+
     // CONTEXT
     const { stateCarrinhoContext, handleFormaPagamentoContext } = useCarrinho();
     const { setStateLoaderPagarmeContext } = usePagarme();
@@ -36,62 +39,27 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
     const carrinho = stateCarrinhoContext.data && stateCarrinhoContext.data.data;
 
     // ACTION
-    useEffect(() => {
-        register(CARTAO_CVV, { ...customValidate.cardCvv, ...customValidate.require });
-        register(CARTAO_DATA, { ...customValidate.cardDate, ...customValidate.require });
-        register(CARTAO_NOME, { ...customValidate.name, ...customValidate.require });
-        register(CARTAO_NUMERO, { ...customValidate.cardNumber, ...customValidate.require });
-        register(CARTAO_PARCELA, { ...customValidate.require });
-        register(CPF, { ...customValidate.cpf, ...customValidate.require });
-
-        return () => {
-            unregister(CARTAO_CVV);
-            unregister(CARTAO_DATA);
-            unregister(CARTAO_NOME);
-            unregister(CARTAO_NUMERO);
-            unregister(CARTAO_PARCELA);
-            unregister(CPF);
-        };
-    }, [register, unregister]);
-
     // Ao inicializar o select, atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
     useEffect(() => {
-        const element = document.getElementById(`${CARTAO_PARCELA}SelectId`);
-
-        setValue(element.name, element.value);
-
-        handleFormaPagamentoContext(JSON.parse(element.options[element.selectedIndex].getAttribute('data-obj')));
-    }, [handleFormaPagamentoContext, setValue]);
+        handleFormaPagamentoContext(JSON.parse(cartaoParcelaRef.target.options[cartaoParcelaRef.target.selectedIndex].getAttribute('data-obj')));
+    }, [handleFormaPagamentoContext]);
 
     // FUNCTION
     // Atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
-    const handleSetValue = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-
+    const handleSetFormaPagamento = useCallback(
+        (element) => {
             handleFormaPagamentoContext(JSON.parse(element.target.options[element.target.selectedIndex].getAttribute('data-obj')));
         },
-        [handleFormaPagamentoContext, setValue]
-    );
-
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
+        [handleFormaPagamentoContext]
     );
 
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -133,15 +101,20 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <Label color="colorGray2" mb="-15px" text="Seu nome no cartão" />
 
                     <div>
-                        <InputValidation
-                            error={errors[CARTAO_NOME]}
-                            maxLength="50"
+                        <Controller
+                            as={
+                                <InputValidation
+                                    error={errors[CARTAO_NOME]}
+                                    maxLength="50"
+                                    placeholder="Seu nome exatamente como está no cartão"
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
+                            }
+                            control={control}
                             name={CARTAO_NOME}
-                            onChange={handleValidation()}
-                            placeholder="Seu nome exatamente como está no cartão"
-                            pr={4}
-                            touched={touched}
-                            {...otherProps}
+                            rules={{ ...customValidate.name, ...customValidate.require }}
                         />
                     </div>
 
@@ -152,16 +125,21 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <Label color="colorGray2" mb="-15px" text="CPF" />
 
                     <div>
-                        <InputMaskValidation
-                            error={errors[CPF]}
-                            mask={customMaskRegex.cpf}
-                            maxLength="14"
+                        <Controller
+                            as={
+                                <InputMaskValidation
+                                    error={errors[CPF]}
+                                    mask={customMaskRegex.cpf}
+                                    maxLength="14"
+                                    placeholder="000.000.000-00"
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
+                            }
+                            control={control}
                             name={CPF}
-                            onChange={handleValidation()}
-                            placeholder="000.000.000-00"
-                            pr={4}
-                            touched={touched}
-                            {...otherProps}
+                            rules={{ ...customValidate.cpf, ...customValidate.require }}
                         />
                     </div>
 
@@ -172,16 +150,21 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <Label color="colorGray2" mb="-15px" text="Número do cartão" />
 
                     <div>
-                        <InputMaskValidation
-                            error={errors[CARTAO_NUMERO]}
-                            mask={customMaskRegex.cardNumber}
-                            maxLength="19"
+                        <Controller
+                            as={
+                                <InputMaskValidation
+                                    error={errors[CARTAO_NUMERO]}
+                                    mask={customMaskRegex.cardNumber}
+                                    maxLength="19"
+                                    placeholder="0000 0000 0000 0000"
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
+                            }
+                            control={control}
                             name={CARTAO_NUMERO}
-                            onChange={handleValidation()}
-                            placeholder="0000 0000 0000 0000"
-                            pr={4}
-                            touched={touched}
-                            {...otherProps}
+                            rules={{ ...customValidate.cardNumber, ...customValidate.require }}
                         />
                     </div>
 
@@ -192,16 +175,21 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <Label color="colorGray2" mb="-15px" text="Mês/Ano" />
 
                     <div>
-                        <InputMaskValidation
-                            error={errors[CARTAO_DATA]}
-                            mask={customMaskRegex.cardDate}
-                            maxLength="7"
+                        <Controller
+                            as={
+                                <InputMaskValidation
+                                    error={errors[CARTAO_DATA]}
+                                    mask={customMaskRegex.cardDate}
+                                    maxLength="7"
+                                    placeholder="MM/AAAA"
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
+                            }
+                            control={control}
                             name={CARTAO_DATA}
-                            onChange={handleValidation()}
-                            placeholder="MM/AAAA"
-                            pr={4}
-                            touched={touched}
-                            {...otherProps}
+                            rules={{ ...customValidate.cardDate, ...customValidate.require }}
                         />
                     </div>
 
@@ -212,16 +200,21 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <Label color="colorGray2" mb="-15px" text="CVV" />
 
                     <div>
-                        <InputMaskValidation
-                            error={errors[CARTAO_CVV]}
-                            mask={customMaskRegex.cardCvv}
-                            maxLength="3"
+                        <Controller
+                            as={
+                                <InputMaskValidation
+                                    error={errors[CARTAO_CVV]}
+                                    mask={customMaskRegex.cardCvv}
+                                    maxLength="3"
+                                    placeholder="000"
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
+                            }
+                            control={control}
                             name={CARTAO_CVV}
-                            onChange={handleValidation()}
-                            placeholder="000"
-                            pr={4}
-                            touched={touched}
-                            {...otherProps}
+                            rules={{ ...customValidate.cardCvv, ...customValidate.require }}
                         />
                     </div>
 
@@ -232,18 +225,28 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <Label color="colorGray2" mb="-15px" text="Escolha como você quer pagar (parcelamento)" />
 
                     <div>
-                        <Select
-                            id={`${CARTAO_PARCELA}SelectId`}
+                        <Controller
+                            render={({ onChange, value }) => (
+                                <Select
+                                    obj={{
+                                        color: 'colorGrayDark',
+                                        fontWeight: '700'
+                                    }}
+                                    onChange={(e) => {
+                                        handleSetFormaPagamento(e);
+                                        onChange(e.target.value);
+                                    }}
+                                    ref={cartaoParcelaRef}
+                                    value={value}
+                                    {...otherProps}
+                                >
+                                    <OptionParcelas cardObj={formaPagamentoObj} totalValue={carrinho.valor_total_desconto} />
+                                </Select>
+                            )}
+                            control={control}
                             name={CARTAO_PARCELA}
-                            obj={{
-                                color: 'colorGrayDark',
-                                fontWeight: '700'
-                            }}
-                            onChange={handleSetValue()}
-                            {...otherProps}
-                        >
-                            <OptionParcelas cardObj={formaPagamentoObj} totalValue={carrinho.valor_total_desconto} />
-                        </Select>
+                            rules={{ ...customValidate.require }}
+                        />
                     </div>
 
                     {errors[CARTAO_PARCELA] && <InvalidInputMessageStyled>{errors[CARTAO_PARCELA].message}</InvalidInputMessageStyled>}

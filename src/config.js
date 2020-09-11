@@ -32,6 +32,8 @@ export const apiUrlPerfil = `${apiUrl}/perfil`;
 
 export const apiUrlPerfilAvatar = `${apiUrl}/perfil/avatar`;
 
+export const errorEmailNotFound = 'Email não cadastrado';
+
 export const errorMsgDefault = 'Erro desconhecido';
 
 export const errorMsgResponse = 'Algo deu errado, tente novamente.';

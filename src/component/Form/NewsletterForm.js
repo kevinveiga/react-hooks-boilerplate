@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlNewsletter, errorMsgDefault } from '../../config';
 
@@ -19,35 +19,13 @@ export const NewsletterForm = memo(({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
-    useEffect(() => {
-        register('email', { ...customValidate.email, ...customValidate.require });
-        register('nome', { ...customValidate.name, ...customValidate.require });
-
-        return () => {
-            unregister('email');
-            unregister('nome');
-        };
-    }, [register, unregister]);
-
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -100,30 +78,28 @@ export const NewsletterForm = memo(({ ...props }) => {
                 </InvalidResponseMessageContainerStyled>
 
                 <Cell mb={3}>
-                    <InputValidation
-                        error={errors.nome}
-                        maxLength="50"
-                        name="nome"
-                        onChange={handleValidation()}
-                        placeholder="Nome"
-                        pr={4}
-                        touched={touched}
-                        {...props}
-                    />
+                    <div>
+                        <Controller
+                            as={<InputValidation error={errors.nome} maxLength="50" placeholder="Nome" pr={4} touched={touched} {...props} />}
+                            control={control}
+                            name="nome"
+                            rules={{ ...customValidate.name, ...customValidate.require }}
+                        />
+                    </div>
+
                     {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell mb={3}>
-                    <InputValidation
-                        error={errors.email}
-                        maxLength="50"
-                        name="email"
-                        onChange={handleValidation()}
-                        placeholder="E-mail"
-                        pr={4}
-                        touched={touched}
-                        {...props}
-                    />
+                    <div>
+                        <Controller
+                            as={<InputValidation error={errors.email} maxLength="50" placeholder="E-mail" pr={4} touched={touched} {...props} />}
+                            control={control}
+                            name="email"
+                            rules={{ ...customValidate.email, ...customValidate.require }}
+                        />
+                    </div>
+
                     {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                 </Cell>
 

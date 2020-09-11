@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useContext, useEffect } from 'react';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { PesquisaContext } from '../../store/pesquisa/pesquisaContext';
 

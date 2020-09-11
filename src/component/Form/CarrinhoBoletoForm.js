@@ -1,6 +1,6 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { createBilletTransactionPromise } from '../../service/pagarme';
 
@@ -31,38 +31,18 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
     const carrinho = stateCarrinhoContext.data && stateCarrinhoContext.data.data;
 
     // ACTION
-    useEffect(() => {
-        register(CPF, { ...customValidate.cpf, ...customValidate.require });
-
-        return () => {
-            unregister(CPF);
-        };
-    }, [register, unregister]);
-
     // Ao inicializar, atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
     useEffect(() => {
         handleFormaPagamentoContext({ valor_total: carrinho.valor_total_desconto || carrinho.valor_total });
     }, [handleFormaPagamentoContext, carrinho.valor_total_desconto, carrinho.valor_total]);
 
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -104,16 +84,21 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
                     <Label color="colorGray2" mb="-15px" text="CPF" />
 
                     <div>
-                        <InputMaskValidation
-                            error={errors[CPF]}
-                            mask={customMaskRegex.cpf}
-                            maxLength="14"
+                        <Controller
+                            as={
+                                <InputMaskValidation
+                                    error={errors[CPF]}
+                                    mask={customMaskRegex.cpf}
+                                    maxLength="14"
+                                    placeholder="000.000.000-00"
+                                    pr={4}
+                                    touched={touched}
+                                    {...otherProps}
+                                />
+                            }
+                            control={control}
                             name={CPF}
-                            onChange={handleValidation()}
-                            placeholder="000.000.000-00"
-                            pr={4}
-                            touched={touched}
-                            {...otherProps}
+                            rules={{ ...customValidate.cpf, ...customValidate.require }}
                         />
                     </div>
 

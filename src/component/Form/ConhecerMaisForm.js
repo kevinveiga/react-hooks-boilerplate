@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPerfil, errorMsgDefault } from '../../config';
 
@@ -41,7 +41,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
             unregister('endereco_cidade');
             unregister('sexo');
         };
-    }, [register, unregister]);
+    }, []);
 
     // FUNCTION
     const handlePart = useCallback(
@@ -51,31 +51,13 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
         []
     );
 
-    const handleSetValue = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-        },
-        [setValue]
-    );
-
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         defaultValues: { data_nascimento: '' },
         mode: 'onChange'
@@ -143,7 +125,6 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                         defaultValue="masculino"
                                         id="sexo_masculino"
                                         name="sexo"
-                                        onChange={handleSetValue()}
                                         type="radio"
                                     />
 
@@ -164,7 +145,6 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                         defaultValue="feminino"
                                         id="sexo_feminino"
                                         name="sexo"
-                                        onChange={handleSetValue()}
                                         type="radio"
                                     />
 
@@ -200,7 +180,6 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                             error={errors.data_nascimento}
                                             mask={customMaskRegex.date}
                                             name="data_nascimento"
-                                            onChange={handleValidation()}
                                             placeholder="dd/mm/aaaa"
                                             pr={4}
                                             touched={touched}
@@ -232,7 +211,6 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                                 error={errors.endereco_cidade}
                                                 maxLength="50"
                                                 name="endereco_cidade"
-                                                onChange={handleValidation()}
                                                 placeholder="Cidade"
                                                 pr={4}
                                                 touched={touched}
@@ -257,8 +235,6 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                                     colorLine: 'colorPrimary',
                                                     fontWeight: touched['endereco_uf'] ? '700' : '400'
                                                 }}
-                                                onChange={handleValidation()}
-                                                ref={register({ ...customValidate.require })}
                                                 touched={touched}
                                                 {...otherProps}
                                             >

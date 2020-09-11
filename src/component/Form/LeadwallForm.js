@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useContext, useEffect } from 'react';
+import React, { memo, useContext } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPaywall, errorMsgDefault } from '../../config';
 
@@ -22,34 +22,13 @@ export const LeadwallForm = memo(({ ...props }) => {
     // CONTEXT
     const setChangeLeadwallContext = useContext(NoticiaContext);
 
-    // ACTION
-    useEffect(() => {
-        register('email', { ...customValidate.email, ...customValidate.require });
-
-        return () => {
-            unregister('email');
-        };
-    }, [register, unregister]);
-
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -92,17 +71,24 @@ export const LeadwallForm = memo(({ ...props }) => {
                 </Cell>
 
                 <Cell mb={3}>
-                    <InputValidation
-                        error={errors.email}
-                        maxLength="50"
-                        name="email"
-                        onChange={handleValidation()}
-                        placeholder="Insira seu e-mail"
-                        pr={4}
-                        right="15px"
-                        touched={touched}
-                        {...props}
-                    />
+                    <div>
+                        <Controller
+                            as={
+                                <InputValidation
+                                    error={errors.email}
+                                    maxLength="50"
+                                    placeholder="Insira seu e-mail"
+                                    pr={4}
+                                    right="15px"
+                                    touched={touched}
+                                    {...props}
+                                />
+                            }
+                            control={control}
+                            name="email"
+                            rules={{ ...customValidate.email, ...customValidate.require }}
+                        />
+                    </div>
                 </Cell>
 
                 <Cell mb={3}>

@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
-import { apiUrlEsqueceuSenha, errorMsgDefault } from '../../config';
+import { apiUrlEsqueceuSenha, errorMsgDefault, errorEmailNotFound } from '../../config';
 
 import { customValidate } from '../../util/customValidate';
 import { responseError } from '../../util/responseError';
@@ -21,33 +21,13 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
-    useEffect(() => {
-        register('email', { ...customValidate.email, ...customValidate.require });
-
-        return () => {
-            unregister('email');
-        };
-    }, [register, unregister]);
-
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -56,7 +36,6 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(`${apiUrlEsqueceuSenha}/create`, formData, { headers: { 'Content-Type': 'application/json' } });
-
                 if (result.data && result.data.success == true) {
                     setStateRetornoForm(true);
                 } else {
@@ -65,9 +44,10 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
                     console.error('result error: ', result);
                 }
             } catch (error) {
-                if (error.response) {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                if (error.response && error.response.status == 404) {
+                    setError('invalid', 'notMatch', responseError(errorEmailNotFound));
                 } else {
+                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
                     console.error('error: ', error);
                 }
             }
@@ -96,15 +76,13 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
 
                             <Cell mb={4}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.email}
-                                        label="E-mail"
-                                        maxLength="50"
+                                    <Controller
+                                        as={
+                                            <InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...props} />
+                                        }
+                                        control={control}
                                         name="email"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        {...props}
+                                        rules={{ ...customValidate.email, ...customValidate.require }}
                                     />
                                 </div>
 

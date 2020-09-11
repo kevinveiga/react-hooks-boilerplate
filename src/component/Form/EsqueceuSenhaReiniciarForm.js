@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
-import { apiUrlEsqueceuSenha, errorMsgDefault } from '../../config';
+import { apiUrlEsqueceuSenha, errorMsgDefault, errorEmailNotFound } from '../../config';
 
 import { customValidate } from '../../util/customValidate';
 import { responseError } from '../../util/responseError';
@@ -23,35 +23,13 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
-    useEffect(() => {
-        register('password', { ...customValidate.password, ...customValidate.require });
-        register('password_confirmation', { ...customValidate.password, ...customValidate.require });
-
-        return () => {
-            unregister('password');
-            unregister('password_confirmation');
-        };
-    }, [register, unregister]);
-
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -65,7 +43,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
         const fetchData = async () => {
             try {
                 const result = await axios.post(`${apiUrlEsqueceuSenha}/reset`, newFormData, { headers: { 'Content-Type': 'application/json' } });
-
+                console.log(result);
                 if (result.data && result.data.success == true) {
                     setStateRetornoForm(true);
                 } else {
@@ -74,9 +52,10 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
                     console.error('result error: ', result);
                 }
             } catch (error) {
-                if (error.response) {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                if (error.response && error.response.status == 404) {
+                    setError('invalid', 'notMatch', responseError(errorEmailNotFound));
                 } else {
+                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
                     console.error('error: ', error);
                 }
             }
@@ -105,16 +84,21 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
 
                             <Cell mb={4}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.password}
-                                        label="Senha"
-                                        maxLength="20"
+                                    <Controller
+                                        as={
+                                            <InputValidation
+                                                error={errors.password}
+                                                label="Senha"
+                                                maxLength="20"
+                                                pr={4}
+                                                touched={touched}
+                                                type={stateViewPassword ? 'text' : 'password'}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="password"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        type={stateViewPassword ? 'text' : 'password'}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.password, ...customValidate.require }}
                                     />
 
                                     <Svg
@@ -133,16 +117,21 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
 
                             <Cell mb={4}>
                                 <div>
-                                    <InputValidation
-                                        error={errors.password_confirmation}
-                                        label="Confirmação de senha"
-                                        maxLength="20"
+                                    <Controller
+                                        as={
+                                            <InputValidation
+                                                error={errors.password_confirmation}
+                                                label="Confirmação de senha"
+                                                maxLength="20"
+                                                pr={4}
+                                                touched={touched}
+                                                type={stateViewPassword ? 'text' : 'password'}
+                                                {...otherProps}
+                                            />
+                                        }
+                                        control={control}
                                         name="password_confirmation"
-                                        onChange={handleValidation()}
-                                        pr={4}
-                                        touched={touched}
-                                        type={stateViewPassword ? 'text' : 'password'}
-                                        {...otherProps}
+                                        rules={{ ...customValidate.password, ...customValidate.require }}
                                     />
 
                                     <Svg

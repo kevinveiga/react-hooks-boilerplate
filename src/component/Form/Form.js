@@ -4,9 +4,9 @@ import { InputAlternateStyled, InputMaskStyled, InputStyled, LabelStyled, Select
 
 import { Svg } from '../Svg/Svg';
 
-export const Input = ({ typeInput = 'text', value = '', ...otherProps }) => {
-    return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
-};
+export const Input = forwardRef(({ typeInput = 'text', value = '', ...otherProps }, ref) => {
+    return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} ref={ref} type={typeInput} {...otherProps} />;
+});
 
 export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value = true, ...otherProps }) => {
     const acessibility = ariaLabel || text;
@@ -126,13 +126,13 @@ export const Label = ({ ariaLabel, children, forLabel, text, ...otherProps }) =>
     );
 };
 
-export const Select = ({ ariaLabel, children, value = '', ...otherProps }) => {
+export const Select = forwardRef(({ ariaLabel, children, value = '', ...otherProps }, ref) => {
     return (
-        <SelectStyled aria-label={ariaLabel} defaultValue={value} obj={{ ...otherProps.obj }} {...otherProps}>
+        <SelectStyled aria-label={ariaLabel} defaultValue={value} obj={{ ...otherProps.obj }} ref={ref} {...otherProps}>
             {children}
         </SelectStyled>
     );
-};
+});
 
 export const SelectValidation = forwardRef(({ error = '', children, touched, value = '', ...otherProps }, ref) => {
     const svgPosition = otherProps.left ? `left: ${otherProps.left}` : otherProps.right ? `right: ${otherProps.right}` : false;

@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect } from 'react';
 
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPerfilAvatar, errorMsgDefault } from '../../config';
 

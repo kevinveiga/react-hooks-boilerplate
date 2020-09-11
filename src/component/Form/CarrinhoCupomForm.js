@@ -1,13 +1,13 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo } from 'react';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import { useCarrinho } from '../../store/carrinho/carrinho';
 
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
-import { Input } from './Form';
+import { InputValidation } from './Form';
 
 import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
@@ -17,25 +17,14 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
     // CONTEXT
     const { handleCarrinhoCupomAddContext } = useCarrinho();
 
-    // ACTION
-    useEffect(() => {
-        register('cupom', { ...customValidate.require });
-
-        return () => {
-            unregister('cupom');
-        };
-    }, [register, unregister]);
-
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-        },
-        [setValue]
-    );
-
     // FORM
-    const { errors, handleSubmit, register, setError, setValue, unregister } = useForm({
+    const {
+        control,
+        errors,
+        formState: { touched },
+        handleSubmit,
+        setError
+    } = useForm({
         mode: 'onChange'
     });
 
@@ -53,7 +42,21 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
                 </Cell>
 
                 <Cell gridColumn={1}>
-                    <Input height="30px" maxLength="20" name="cupom" onChange={handleValidation()} placeholder="Inserir cupom" {...props} />
+                    <Controller
+                        as={
+                            <InputValidation
+                                error={errors.cupom}
+                                height="30px"
+                                maxLength="20"
+                                placeholder="Inserir cupom"
+                                touched={touched}
+                                {...props}
+                            />
+                        }
+                        control={control}
+                        name="cupom"
+                        rules={{ ...customValidate.require }}
+                    />
                 </Cell>
 
                 <Cell gridColumn={2}>
