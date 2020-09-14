@@ -234,8 +234,8 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                         fontWeight: '700'
                                     }}
                                     onChange={(e) => {
-                                        handleSetFormaPagamento(e);
                                         onChange(e.target.value);
+                                        handleSetFormaPagamento(e);
                                     }}
                                     ref={cartaoParcelaRef}
                                     touched={touched}

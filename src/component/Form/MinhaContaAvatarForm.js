@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -21,8 +21,6 @@ import { FormStyled } from './FormStyled';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P } from '../../style/text';
 
-import logoBg from '../../asset/image/image-placeholder.svg';
-
 export const MinhaContaAvatarForm = memo(() => {
     // API
     const [statePerfilAvatar, setStatePerfilAvatarData] = usePerfilAvatarApi({ url: apiUrlPerfilAvatar });
@@ -30,23 +28,24 @@ export const MinhaContaAvatarForm = memo(() => {
     // ACTION
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
-    useEffect(() => {
-        register('avatar', { ...customValidate.photo });
-
-        return () => {
-            unregister('avatar');
-        };
-    }, [register, unregister]);
+    // FORM
+    const {
+        control,
+        errors,
+        formState: { touched },
+        setError,
+        trigger
+    } = useForm({
+        mode: 'onChange'
+    });
 
     // FUNCTION
     const handleFileChange = useCallback(
-        () => (element) => {
+        (element) => {
             element.persist();
 
-            setValue(element.target.name, element.target.files[0].name);
-
             const fetchData = async () => {
-                const validate = await triggerValidation([element.target.name]);
+                const validate = await trigger([element.target.name]);
 
                 if (validate) {
                     try {
@@ -80,33 +79,36 @@ export const MinhaContaAvatarForm = memo(() => {
 
             fetchData();
         },
-        [setError, setStateModalMessage, setStatePerfilAvatarData, setValue, triggerValidation]
+        [setError, setStateModalMessage, setStatePerfilAvatarData, trigger]
     );
-
-    // FORM
-    const {
-        errors,
-        formState: { touched },
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
-    } = useForm({
-        mode: 'onChange'
-    });
 
     return (
         <>
             <FormStyled>
                 <ImageCircleContainer>
-                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || logoBg} width="100%" />
+                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || ''} width="100%" />
                 </ImageCircleContainer>
 
                 <div>
-                    <InputFileValidation error={errors.avatar} id="avatar" name="avatar" onChange={handleFileChange()} touched={touched}>
-                        <Svg fill="colorWhite" height="20px" name="svg-camera" />
-                    </InputFileValidation>
+                    <Controller
+                        render={({ name, onChange }) => (
+                            <InputFileValidation
+                                error={errors.avatar}
+                                id="avatar"
+                                name={name}
+                                onChange={(e) => {
+                                    onChange(e.target.value);
+                                    handleFileChange(e);
+                                }}
+                                touched={touched}
+                            >
+                                <Svg fill="colorWhite" height="20px" name="svg-camera" />
+                            </InputFileValidation>
+                        )}
+                        control={control}
+                        name="avatar"
+                        rules={{ ...customValidate.photo }}
+                    />
                 </div>
 
                 {errors.avatar && (
