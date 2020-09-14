@@ -226,9 +226,10 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
 
                     <div>
                         <Controller
-                            render={({ onChange, value }) => (
+                            render={({ name, onChange, value }) => (
                                 <SelectValidation
                                     error={errors[CARTAO_PARCELA]}
+                                    name={name}
                                     obj={{
                                         color: 'colorGrayDark',
                                         fontWeight: '700'

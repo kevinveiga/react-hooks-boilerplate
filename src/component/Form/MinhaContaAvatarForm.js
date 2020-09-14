@@ -28,17 +28,6 @@ export const MinhaContaAvatarForm = memo(() => {
     // ACTION
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
-    // FORM
-    const {
-        control,
-        errors,
-        formState: { touched },
-        setError,
-        trigger
-    } = useForm({
-        mode: 'onChange'
-    });
-
     // FUNCTION
     const handleFileChange = useCallback(
         (element) => {
@@ -82,6 +71,17 @@ export const MinhaContaAvatarForm = memo(() => {
         [setError, setStateModalMessage, setStatePerfilAvatarData, trigger]
     );
 
+    // FORM
+    const {
+        control,
+        errors,
+        formState: { touched },
+        setError,
+        trigger
+    } = useForm({
+        mode: 'onChange'
+    });
+
     return (
         <>
             <FormStyled>
@@ -91,7 +91,7 @@ export const MinhaContaAvatarForm = memo(() => {
 
                 <div>
                     <Controller
-                        render={({ name, onChange }) => (
+                        render={({ name, onChange, value }) => (
                             <InputFileValidation
                                 error={errors.avatar}
                                 id="avatar"
@@ -101,6 +101,7 @@ export const MinhaContaAvatarForm = memo(() => {
                                     handleFileChange(e);
                                 }}
                                 touched={touched}
+                                value={value}
                             >
                                 <Svg fill="colorWhite" height="20px" name="svg-camera" />
                             </InputFileValidation>

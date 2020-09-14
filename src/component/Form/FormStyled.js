@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { display, position, space, typography } from 'styled-system';
-import { IMaskInput } from 'react-imask';
+import NumberFormat from 'react-number-format';
 
 import { variable } from '../../style/variable';
 
@@ -215,7 +215,7 @@ export const InputAlternateStyled = styled.input`
         `};
 `;
 
-export const InputMaskStyled = styled(IMaskInput).attrs(({ invalid }) => ({
+export const InputMaskStyled = styled(NumberFormat).attrs(({ invalid }) => ({
     'data-invalid': invalid ? true : undefined
 }))`
     ${input};
@@ -256,4 +256,16 @@ export const SelectStyled = styled.select.attrs(({ invalid }) => ({
     'data-invalid': invalid ? true : undefined
 }))`
     ${input};
+`;
+
+export const TextareaStyled = styled.textarea.attrs(({ invalid }) => ({
+    'data-invalid': invalid ? true : undefined
+}))`
+    ${input}
+
+    height: auto;
+    min-height: 100px;
+    padding-bottom: ${variable.inputPadding};
+    padding-right: 20px;
+    padding-top: 0;
 `;
