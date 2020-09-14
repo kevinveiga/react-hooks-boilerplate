@@ -24,6 +24,7 @@ export const customValidate = {
         minLength: { message: 'Mínimo de 6 caracteres', value: 6 }
     },
     cellphone: {
+        minLength: { message: validateMessage.cellphone, value: 16 },
         pattern: { message: validateMessage.cellphone, value: customRegex.cellphone }
     },
     cep: {
@@ -59,6 +60,7 @@ export const customValidate = {
         pattern: { message: validateMessage.password, value: customRegex.password }
     },
     phone: {
+        minLength: { message: validateMessage.phone, value: 15 },
         pattern: { message: validateMessage.phone, value: customRegex.phone }
     },
     photo: {
