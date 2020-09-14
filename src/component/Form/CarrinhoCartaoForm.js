@@ -13,7 +13,7 @@ import { pagarmeResponseError } from '../../util/pagarmeResponseError';
 import { pagarmeResponseStatus } from '../../util/pagarmeResponseStatus';
 import { paymentType } from '../../util/paymentType';
 
-import { InputMaskValidation, InputValidation, Label, Select } from './Form';
+import { InputMaskValidation, InputValidation, Label, SelectValidation } from './Form';
 import { OptionParcelas } from './OptionParcelas';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
@@ -227,7 +227,8 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                     <div>
                         <Controller
                             render={({ onChange, value }) => (
-                                <Select
+                                <SelectValidation
+                                    error={errors[CARTAO_PARCELA]}
                                     obj={{
                                         color: 'colorGrayDark',
                                         fontWeight: '700'
@@ -237,11 +238,12 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                         onChange(e.target.value);
                                     }}
                                     ref={cartaoParcelaRef}
+                                    touched={touched}
                                     value={value}
                                     {...otherProps}
                                 >
                                     <OptionParcelas cardObj={formaPagamentoObj} totalValue={carrinho.valor_total_desconto} />
-                                </Select>
+                                </SelectValidation>
                             )}
                             control={control}
                             name={CARTAO_PARCELA}
