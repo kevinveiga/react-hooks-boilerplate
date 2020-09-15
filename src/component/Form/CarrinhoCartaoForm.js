@@ -61,6 +61,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
         handleSubmit,
         setError
     } = useForm({
+        defaultValues: { [CARTAO_NOME]: '', [CPF]: '', [CARTAO_NUMERO]: '', [CARTAO_DATA]: '', [CARTAO_CVV]: '', [CARTAO_PARCELA]: '' },
         mode: 'onChange'
     });
 
@@ -126,17 +127,22 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
 
                     <div>
                         <Controller
-                            as={
+                            render={({ name, onBlur, onChange, value }) => (
                                 <InputMaskValidation
                                     error={errors[CPF]}
-                                    mask={customMaskRegex.cpf}
-                                    maxLength="14"
+                                    format="###.###.###-##"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onValueChange={(values) => {
+                                        onChange(values.value);
+                                    }}
                                     placeholder="000.000.000-00"
                                     pr={4}
                                     touched={touched}
+                                    value={value}
                                     {...otherProps}
                                 />
-                            }
+                            )}
                             control={control}
                             name={CPF}
                             rules={{ ...customValidate.cpf, ...customValidate.require }}
@@ -151,17 +157,22 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
 
                     <div>
                         <Controller
-                            as={
+                            render={({ name, onBlur, onChange, value }) => (
                                 <InputMaskValidation
                                     error={errors[CARTAO_NUMERO]}
-                                    mask={customMaskRegex.cardNumber}
-                                    maxLength="19"
+                                    format="#### #### #### ####"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onValueChange={(values) => {
+                                        onChange(values.value);
+                                    }}
                                     placeholder="0000 0000 0000 0000"
                                     pr={4}
                                     touched={touched}
+                                    value={value}
                                     {...otherProps}
                                 />
-                            }
+                            )}
                             control={control}
                             name={CARTAO_NUMERO}
                             rules={{ ...customValidate.cardNumber, ...customValidate.require }}
@@ -176,17 +187,23 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
 
                     <div>
                         <Controller
-                            as={
+                            render={({ name, onBlur, onChange, value }) => (
                                 <InputMaskValidation
                                     error={errors[CARTAO_DATA]}
-                                    mask={customMaskRegex.cardDate}
-                                    maxLength="7"
-                                    placeholder="MM/AAAA"
+                                    format="##/####"
+                                    mask={['M', 'M', 'Y', 'Y', 'Y', 'Y']}
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onValueChange={(values) => {
+                                        onChange(values.value);
+                                    }}
+                                    placeholder="mm/aaaa"
                                     pr={4}
                                     touched={touched}
+                                    value={value}
                                     {...otherProps}
                                 />
-                            }
+                            )}
                             control={control}
                             name={CARTAO_DATA}
                             rules={{ ...customValidate.cardDate, ...customValidate.require }}
@@ -201,17 +218,22 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
 
                     <div>
                         <Controller
-                            as={
+                            render={({ name, onBlur, onChange, value }) => (
                                 <InputMaskValidation
                                     error={errors[CARTAO_CVV]}
-                                    mask={customMaskRegex.cardCvv}
-                                    maxLength="3"
+                                    format="###"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onValueChange={(values) => {
+                                        onChange(values.value);
+                                    }}
                                     placeholder="000"
                                     pr={4}
                                     touched={touched}
+                                    value={value}
                                     {...otherProps}
                                 />
-                            }
+                            )}
                             control={control}
                             name={CARTAO_CVV}
                             rules={{ ...customValidate.cardCvv, ...customValidate.require }}

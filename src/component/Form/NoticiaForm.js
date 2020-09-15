@@ -1,11 +1,10 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlContato, errorMsgDefault } from '../../config';
 
-import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
@@ -22,37 +21,13 @@ export const NoticiaForm = memo(({ ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
-    useEffect(() => {
-        register('nome', { ...customValidate.name, ...customValidate.require });
-        register('email', { ...customValidate.email, ...customValidate.require });
-        register('telefone', { ...customValidate.phone, ...customValidate.require });
-
-        return () => {
-            unregister('nome');
-            unregister('email');
-            unregister('telefone');
-        };
-    }, [register, unregister]);
-
-    // FUNCTION
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
-    );
-
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
-        setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setError
     } = useForm({
         mode: 'onChange'
     });
@@ -159,44 +134,65 @@ export const NoticiaForm = memo(({ ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation
-                                error={errors.nome}
-                                maxLength="50"
-                                name="nome"
-                                onChange={handleValidation()}
-                                placeholder="Nome"
-                                pr={4}
-                                touched={touched}
-                                {...props}
-                            />
+                            <div>
+                                <Controller
+                                    as={<InputValidation error={errors.nome} maxLength="50" placeholder="Nome" pr={4} touched={touched} {...props} />}
+                                    control={control}
+                                    name="nome"
+                                    rules={{ ...customValidate.name, ...customValidate.require }}
+                                />
+                            </div>
+
                             {errors.nome && <InvalidInputMessageStyled>{errors.nome.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={3}>
-                            <InputValidation
-                                error={errors.email}
-                                maxLength="50"
-                                name="email"
-                                onChange={handleValidation()}
-                                placeholder="E-mail"
-                                pr={4}
-                                touched={touched}
-                                {...props}
-                            />
+                            <div>
+                                <Controller
+                                    as={
+                                        <InputValidation
+                                            error={errors.email}
+                                            maxLength="50"
+                                            placeholder="E-mail"
+                                            pr={4}
+                                            touched={touched}
+                                            {...props}
+                                        />
+                                    }
+                                    control={control}
+                                    name="email"
+                                    rules={{ ...customValidate.email, ...customValidate.require }}
+                                />
+                            </div>
+
                             {errors.email && <InvalidInputMessageStyled>{errors.email.message}</InvalidInputMessageStyled>}
                         </Cell>
 
                         <Cell mb={5}>
-                            <InputMaskValidation
-                                error={errors.telefone}
-                                mask={customMaskRegex.phone}
-                                name="telefone"
-                                onChange={handleValidation()}
-                                placeholder="Telefone"
-                                pr={4}
-                                touched={touched}
-                                {...props}
-                            />
+                            <div>
+                                <Controller
+                                    render={({ name, onBlur, onChange, value }) => (
+                                        <InputMaskValidation
+                                            error={errors.telefone}
+                                            format="(##) #####-####"
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onValueChange={(values) => {
+                                                onChange(values.value);
+                                            }}
+                                            placeholder="Celular"
+                                            pr={4}
+                                            touched={touched}
+                                            value={value}
+                                            {...props}
+                                        />
+                                    )}
+                                    control={control}
+                                    name="telefone"
+                                    rules={{ ...customValidate.cellphone, ...customValidate.require }}
+                                />
+                            </div>
+
                             {errors.telefone && <InvalidInputMessageStyled>{errors.telefone.message}</InvalidInputMessageStyled>}
                         </Cell>
 

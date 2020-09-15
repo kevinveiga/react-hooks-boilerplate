@@ -44,6 +44,7 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
         handleSubmit,
         setError
     } = useForm({
+        defaultValues: { [CPF]: '' },
         mode: 'onChange'
     });
 
@@ -85,17 +86,22 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
 
                     <div>
                         <Controller
-                            as={
+                            render={({ name, onBlur, onChange, value }) => (
                                 <InputMaskValidation
                                     error={errors[CPF]}
-                                    mask={customMaskRegex.cpf}
-                                    maxLength="14"
+                                    format="###.###.###-##"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onValueChange={(values) => {
+                                        onChange(values.value);
+                                    }}
                                     placeholder="000.000.000-00"
                                     pr={4}
                                     touched={touched}
+                                    value={value}
                                     {...otherProps}
                                 />
-                            }
+                            )}
                             control={control}
                             name={CPF}
                             rules={{ ...customValidate.cpf, ...customValidate.require }}

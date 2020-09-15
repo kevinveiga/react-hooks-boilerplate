@@ -53,6 +53,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
         handleSubmit,
         setError
     } = useForm({
+        defaultValues: { nome: '', email: '', telefone: '', password: '', confirm_password: '' },
         mode: 'onChange'
     });
 

@@ -5,7 +5,6 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPerfil, errorMsgDefault } from '../../config';
 
-import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatFormDataSet } from '../../util/formatFormData';
 import { redirectRule } from '../../util/redirectRule';
@@ -48,7 +47,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
         setError,
         setValue
     } = useForm({
-        defaultValues: { data_nascimento: '' },
+        defaultValues: { sexo: '', data_nascimento: '', endereco_cidade: '', endereco_uf: '' },
         mode: 'onChange'
     });
 
@@ -171,16 +170,23 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
 
                                     <div>
                                         <Controller
-                                            as={
+                                            render={({ name, onBlur, onChange, value }) => (
                                                 <InputMaskValidation
                                                     error={errors.data_nascimento}
-                                                    mask={customMaskRegex.date}
+                                                    format="##/##/####"
+                                                    mask={['D', 'D', 'M', 'M', 'Y', 'Y', 'Y', 'Y']}
+                                                    name={name}
+                                                    onBlur={onBlur}
+                                                    onValueChange={(values) => {
+                                                        onChange(values.value);
+                                                    }}
                                                     placeholder="dd/mm/aaaa"
                                                     pr={4}
                                                     touched={touched}
+                                                    value={value}
                                                     {...otherProps}
                                                 />
-                                            }
+                                            )}
                                             control={control}
                                             name="data_nascimento"
                                             rules={{ ...customValidate.date }}
