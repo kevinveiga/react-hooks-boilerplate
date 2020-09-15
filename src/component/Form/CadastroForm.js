@@ -151,16 +151,22 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
                             <Cell mb={3}>
                                 <div>
                                     <Controller
-                                        as={
+                                        render={({ name, onBlur, onChange, value }) => (
                                             <InputMaskValidation
                                                 error={errors.telefone}
+                                                format="(##) #####-####"
                                                 label="Celular"
-                                                mask={customMaskRegex.phone}
+                                                name={name}
+                                                onBlur={onBlur}
+                                                onValueChange={(values) => {
+                                                    onChange(values.value);
+                                                }}
                                                 pr={4}
                                                 touched={touched}
+                                                value={value}
                                                 {...otherProps}
                                             />
-                                        }
+                                        )}
                                         control={control}
                                         name="telefone"
                                         rules={{ ...customValidate.cellphone, ...customValidate.require }}

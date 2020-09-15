@@ -192,73 +192,142 @@ export const Box = styled.div`
 
 #### Forms - Como usar:
 
--   Obs: Não mudar da versão 5.5.3 (versões novas não funciona mais o "touched", sem usar ref)
 -   Utilização da biblioteca [React Hook Form](https://github.com/bluebill1049/react-hook-form);
--   Não passar o "register" por "ref" nos campos "input", e sim por "useEffect". Ex:
+-   O tipo e controle dos campos é feito com o modo "control" e o componente Controller da biblioteca;
+
+-   Na maioria dos casos, a declaração do useForm fica assim:
 
 ```js
-useEffect(() => {
-    register({ name: 'email' }, { ...customValidate.email, ...customValidate.require });
-    register({ name: 'senha' }, { ...customValidate.password, ...customValidate.require });
-
-    return () => {
-        unregister('email');
-        unregister('senha');
-    };
-}, [register, unregister]);
+const {
+    control,
+    errors,
+    formState: { touched },
+    handleSubmit,
+    setError
+} = useForm({
+    mode: 'onChange'
+});
 ```
 
--   Para usar "placeholder" nos campos "input", basta passar a propriedade "placeholder". Ex:
+-   Para passar valores iniciais nos campos, utilizar na declaração do useForm o "defaultValues". Ex:
+
+```js
+const {
+    control,
+    errors,
+    formState: { touched },
+    handleSubmit,
+    setError
+} = useForm({
+    defaultValues: { ...data, data_nasc: formatDateGet(data.data_nasc) },
+    mode: 'onChange'
+});
+```
+
+-   Para campos sem validação, usar como no exemplo abaixo:
 
 ```jsx
-<InputValidation
-    error={errors.email}
-    maxLength="50"
+<Controller as={<Input {...otherProps} />} control={control} name="nome" pr={4} />
+```
+
+-   Para campos com validação, usar como no exemplo abaixo:
+
+```jsx
+<Controller
+    as={<InputValidation error={errors.email} maxLength="50" touched={touched} {...otherProps} />}
+    control={control}
     name="email"
-    onChange={handleValidation()}
-    placeholder="E-mail"
-    touched={touched}
-    {...otherProps}
+    pr={4}
+    rules={{ ...customValidate.email, ...customValidate.require }}
 />
 ```
 
 -   Para usar um "label" como comportamento de "placeholder" nos campos "input", basta passar a propriedade "label". Ex:
 
 ```jsx
-<InputValidation error={errors.email} label="E-mail" maxLength="50" name="email" onChange={handleValidation()} touched={touched} {...props} />
-```
-
--   Para usar máscara nos campo, utilizar o componente "InputMaskValidation", com a propriedade "mask". Ex:
-
-```jsx
-<InputValidation
-    error={errors.telefone}
-    mask={customMaskRegex.phone}
-    name="telefone"
-    onChange={handleValidation()}
-    placeholder="Telefone"
-    touched={touched}
-    {...props}
+<Controller
+    as={<InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...otherProps} />}
+    control={control}
+    name="email"
+    rules={{ ...customValidate.email, ...customValidate.require }}
 />
 ```
 
--   Para passar valores iniciais nos campos, utilizar a função "useSetFormValue", que recebe como parâmetros, um objeto e o id do formulário, também utilizar a propriedade defaultValues na função "useForm". Ex:
+-   Para usar máscaras simples nos campos, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
 
-```js
-useSetFormValue(data, formId);
+```jsx
+<Controller
+    render={({ name, onBlur, onChange, value }) => (
+        <InputMaskValidation
+            error={errors.telefone}
+            format="(##) #####-####"
+            label="Celular"
+            name={name}
+            onBlur={onBlur}
+            onValueChange={(values) => {
+                onChange(values.value);
+            }}
+            pr={4}
+            touched={touched}
+            value={value}
+            {...otherProps}
+        />
+    )}
+    control={control}
+    name="telefone"
+    rules={{ ...customValidate.cellphone, ...customValidate.require }}
+/>
+```
 
-const {
-    errors,
-    formState: { touched },
-    handleSubmit,
-    register,
-    setError,
-    triggerValidation,
-    unregister
-} = useForm({
-    defaultValues: data,
-    mode: 'onSubmit'
-});
+-   Para usar máscaras monetárias nos campos, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
+
+```jsx
+<Controller
+    render={({ name, onBlur, onChange, value }) => (
+        <InputMask
+            decimalScale={2}
+            decimalSeparator=","
+            isNumericString={true}
+            maxLength="15"
+            onBlur={onBlur}
+            onValueChange={(values) => {
+                onChange(values.value);
+            }}
+            pr={4}
+            thousandSeparator="."
+            value={value}
+            {...otherProps}
+        />
+    )}
+    control={control}
+    name="valor"
+/>
+```
+
+-   Quando necessário executar uma função no onChange do campo, usar a propriedade "render" como no exemplo abaixo:
+
+```jsx
+<Controller
+    render={({ name, onBlur, onChange, value }) => (
+        <InputFileValidation
+            error={errors.avatar}
+            id="avatar"
+            name={name}
+            onBlur={onBlur}
+            onChange={(e) => {
+                onChange(e.target.value);
+                handleFileChange(e);
+            }}
+            touched={touched}
+            value={value}
+        >
+            <Svg fill="colorWhite" height="20px" name="svg-camera" />
+        </InputFileValidation>
+    )}
+    control={control}
+    name="avatar"
+    rules={{ ...customValidate.photo }}
+/>
 ```
 
 ## Geral

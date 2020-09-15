@@ -91,11 +91,12 @@ export const MinhaContaAvatarForm = memo(() => {
 
                 <div>
                     <Controller
-                        render={({ name, onChange, value }) => (
+                        render={({ name, onBlur, onChange, value }) => (
                             <InputFileValidation
                                 error={errors.avatar}
                                 id="avatar"
                                 name={name}
+                                onBlur={onBlur}
                                 onChange={(e) => {
                                     onChange(e.target.value);
                                     handleFileChange(e);
