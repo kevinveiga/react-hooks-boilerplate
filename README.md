@@ -224,13 +224,13 @@ const {
 });
 ```
 
--   Para campos sem validação, usar como no exemplo abaixo:
+-   Para campo sem validação, usar como no exemplo abaixo:
 
 ```jsx
 <Controller as={<Input {...otherProps} />} control={control} name="nome" pr={4} />
 ```
 
--   Para campos com validação, usar como no exemplo abaixo:
+-   Para campo com validação, usar como no exemplo abaixo:
 
 ```jsx
 <Controller
@@ -242,7 +242,7 @@ const {
 />
 ```
 
--   Para usar um "label" como comportamento de "placeholder" nos campos "input", basta passar a propriedade "label". Ex:
+-   Para usar um "label" como comportamento de "placeholder" no campo "input", basta passar a propriedade "label". Ex:
 
 ```jsx
 <Controller
@@ -253,7 +253,7 @@ const {
 />
 ```
 
--   Para usar máscaras simples nos campos, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
+-   Para máscara simple no campo, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
 
 ```jsx
 <Controller
@@ -279,7 +279,7 @@ const {
 />
 ```
 
--   Para usar máscaras monetárias nos campos, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
+-   Para máscara monetária no campo, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
 
 ```jsx
 <Controller
@@ -304,7 +304,7 @@ const {
 />
 ```
 
--   Quando necessário executar uma função no onChange do campo, usar a propriedade "render" como no exemplo abaixo:
+-   Para executar uma função no onChange do campo, usar a propriedade "render" como no exemplo abaixo:
 
 ```jsx
 <Controller
