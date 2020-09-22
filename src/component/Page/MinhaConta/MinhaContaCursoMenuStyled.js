@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { space, typography } from 'styled-system';
+import { space } from 'styled-system';
 
 import { variable } from '../../../style/variable';
 

@@ -17,7 +17,6 @@ import { getStorage } from '../../../util/storage';
 import { Breadcrumb } from '../../Breadcrumb/Breadcrumb';
 import { Button } from '../../Button/Button';
 import { ErrorBoundary } from '../../ErrorBoundary/ErrorBoundary';
-import { HeaderAlternative } from '../../Header/HeaderAlternative';
 import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LoaderComponent } from '../../Loader/LoaderComponent';
 import { Seo } from '../../Seo/Seo';
@@ -26,7 +25,6 @@ import { MinhaContaCenterStyled, MinhaContaExibirConteudoStyled } from './MinhaC
 import { TabContentStyled, TabsContentStyled, TabNavStyled, TabsNavStyled, TabStyled } from './MinhaContaTabStyled';
 
 import { Box, Flex } from '../../../style/flex';
-import { Container } from '../../../style/layout';
 import { Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
 
