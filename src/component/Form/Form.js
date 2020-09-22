@@ -5,16 +5,19 @@ import { InputAlternateStyled, InputMaskStyled, InputStyled, LabelStyled, Select
 import { Svg } from '../Svg/Svg';
 
 export const Input = forwardRef(({ typeInput = 'text', value = '', ...props }, ref) => {
-    return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...props.obj }} type={typeInput} {...props} />;
+    const { obj } = props;
+
+    return <InputStyled autoComplete="off" defaultValue={value} obj={obj} ref={ref} type={typeInput} {...props} />;
 });
 
-export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value, ...props }) => {
+export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value = '', ...props }) => {
+    const { obj } = props;
     const acessibility = ariaLabel || text;
     const content = children || text;
 
     return (
         <>
-            <InputAlternateStyled defaultChecked={checked} defaultValue={value} id={id} type={typeInput} {...props} />
+            <InputAlternateStyled defaultChecked={checked} defaultValue={value} id={id} obj={obj} type={typeInput} {...props} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...props}>
                 {content}
@@ -24,12 +27,13 @@ export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, t
 };
 
 export const InputFile = ({ ariaLabel, children, id, text, typeInput = 'file', value = '', ...props }) => {
+    const { obj } = props;
     const acessibility = ariaLabel || text;
     const content = children || text;
 
     return (
         <>
-            <InputAlternateStyled defaultValue={value} id={id} type={typeInput} {...props} />
+            <InputAlternateStyled defaultValue={value} id={id} obj={obj} type={typeInput} {...props} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...props}>
                 {content}
@@ -39,6 +43,7 @@ export const InputFile = ({ ariaLabel, children, id, text, typeInput = 'file', v
 };
 
 export const InputFileValidation = ({ ariaLabel, children, error = '', id, text, touched, typeInput = 'file', value = '', ...props }) => {
+    const { name, obj } = props;
     const acessibility = ariaLabel || text;
     const content = children || text;
 
@@ -48,8 +53,9 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
                 defaultValue={value}
                 id={id}
                 invalid={error}
+                obj={obj}
                 type={typeInput}
-                valid={!error && (value || touched[props.name]) ? 'true' : undefined}
+                valid={!error && (value || touched[name]) ? 'true' : undefined}
                 {...props}
             />
 
@@ -60,45 +66,9 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
     );
 };
 
-export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
-    const svgPosition = props.left ? `left: ${props.left}` : props.right ? `right: ${props.right}` : false;
-
-    return (
-        <>
-            <InputStyled
-                autoComplete="off"
-                defaultValue={value}
-                invalid={error}
-                obj={{ ...props.obj }}
-                type={typeInput}
-                valid={!error && (value || touched[props.name]) ? 'true' : undefined}
-                {...props}
-            />
-
-            {props.label && <LabelStyled aria-label={props.label}>{props.label}</LabelStyled>}
-
-            <Svg
-                invalid={error}
-                name={error ? 'svg-invalid' : 'svg-valid'}
-                svgPosition={svgPosition}
-                valid={!error && (value || touched[props.name])}
-            />
-        </>
-    );
-};
-
-export const InputMask = ({ typeInput = 'text', value = '', ...props }) => {
-    return (
-        <>
-            <InputMaskStyled autoComplete="off" defaultValue={value} obj={{ ...props.obj }} type={typeInput} {...props} />
-
-            {props.label && <LabelStyled aria-label={props.label}>{props.label}</LabelStyled>}
-        </>
-    );
-};
-
-export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
-    const svgPosition = props.left ? `left: ${props.left}` : props.right ? `right: ${props.right}` : false;
+export const InputMask = ({ error = '', mask = null, touched, typeInput = 'text', value = '', ...props }) => {
+    const { left, label, name, obj, right } = props;
+    const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
         <>
@@ -106,73 +76,114 @@ export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', v
                 autoComplete="off"
                 defaultValue={value}
                 invalid={error}
-                obj={{ ...props.obj }}
+                mask={mask}
+                obj={obj}
                 type={typeInput}
-                valid={!error && (value || touched[props.name]) ? 'true' : undefined}
+                valid={!error && touched[name] ? 'true' : undefined}
                 {...props}
             />
 
-            {props.label && <LabelStyled aria-label={props.label}>{props.label}</LabelStyled>}
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
 
-            <Svg
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[name]} />
+        </>
+    );
+};
+
+export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
+    const { left, label, name, obj, right } = props;
+    const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
+
+    return (
+        <>
+            <InputMaskStyled
+                autoComplete="off"
+                defaultValue={value}
                 invalid={error}
-                name={error ? 'svg-invalid' : 'svg-valid'}
-                svgPosition={svgPosition}
-                valid={!error && (value || touched[props.name])}
+                obj={obj}
+                type={typeInput}
+                valid={!error && (value || touched[name]) ? 'true' : undefined}
+                {...props}
             />
+
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
+
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && (value || touched[name])} />
+        </>
+    );
+};
+
+export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
+    const { left, label, name, obj, right } = props;
+    const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
+
+    return (
+        <>
+            <InputStyled
+                autoComplete="off"
+                defaultValue={value}
+                invalid={error}
+                obj={obj}
+                type={typeInput}
+                valid={!error && (value || touched[name]) ? 'true' : undefined}
+                {...props}
+            />
+
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
+
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && (value || touched[name])} />
         </>
     );
 };
 
 export const Label = ({ ariaLabel, children, forLabel, text, ...props }) => {
+    const { obj } = props;
     const acessibility = ariaLabel || text;
     const content = children || text;
 
     return (
-        <LabelStyled aria-label={acessibility} htmlFor={forLabel} obj={{ ...props.obj }} {...props}>
+        <LabelStyled aria-label={acessibility} htmlFor={forLabel} obj={obj} {...props}>
             {content}
         </LabelStyled>
     );
 };
 
 export const Select = ({ ariaLabel, children, value = '', ...props }) => {
+    const { obj } = props;
+
     return (
-        <SelectStyled aria-label={ariaLabel} defaultValue={value} obj={{ ...props.obj }} {...props}>
+        <SelectStyled aria-label={ariaLabel} defaultValue={value} obj={obj} {...props}>
             {children}
         </SelectStyled>
     );
 };
 
 export const SelectValidation = forwardRef(({ error = '', children, touched, value = '', ...props }, ref) => {
-    const svgPosition = props.left ? `left: ${props.left}` : props.right ? `right: ${props.right}` : false;
+    const { left, label, name, obj, right } = props;
+    const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
         <>
             <SelectStyled
                 defaultValue={value}
                 invalid={error}
-                obj={{ ...props.obj }}
+                obj={obj}
                 ref={ref}
-                valid={!error && (value || touched[props.name]) ? 'true' : undefined}
+                valid={!error && (value || touched[name]) ? 'true' : undefined}
                 {...props}
             >
                 {children}
             </SelectStyled>
 
-            {props.label && <LabelStyled aria-label={props.label}>{props.label}</LabelStyled>}
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
 
-            <Svg
-                invalid={error}
-                name={error ? 'svg-invalid' : 'svg-valid'}
-                svgPosition={svgPosition}
-                valid={!error && (value || touched[props.name])}
-            />
+            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && (value || touched[name])} />
         </>
     );
 });
 
 export const TextareaValidation = ({ error = '', touched, value = '', ...props }) => {
-    const svgPosition = props.left ? `left: ${props.left}` : props.right ? `right: ${props.right}` : false;
+    const { label, name, obj } = props;
 
     return (
         <>
@@ -180,12 +191,12 @@ export const TextareaValidation = ({ error = '', touched, value = '', ...props }
                 autoComplete="off"
                 defaultValue={value}
                 invalid={error}
-                obj={{ ...props.obj }}
-                valid={!error && (value || touched[props.name]) ? 'true' : undefined}
+                obj={obj}
+                valid={!error && (value || touched[name]) ? 'true' : undefined}
                 {...props}
             />
 
-            {props.label && <LabelStyled aria-label={props.label}>{props.label}</LabelStyled>}
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
         </>
     );
 };

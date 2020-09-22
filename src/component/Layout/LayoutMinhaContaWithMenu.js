@@ -21,8 +21,8 @@ export const LayoutMinhaContaWithMenu = ({ children }) => {
                     <HeaderAlternative />
 
                     <Container mx="auto" px={{ d: 0, lg: 3 }}>
-                        <Grid display="grid" gridTemplateColumns={{ d: '280px 1fr' }}>
-                            <Cell>
+                        <Grid display="grid" gridTemplateColumns={{ d: '1fr', lg: '280px 1fr' }}>
+                            <Cell display={{ d: 'none', lg: 'block' }}>
                                 <MinhaContaMenu />
                             </Cell>
 

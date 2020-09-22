@@ -8,9 +8,9 @@ import { useSocket } from '../../service/socket';
 
 import { QuotationAnimation } from './QuotationAnimation';
 
-import { Grid } from '../../style/grid';
+import { Box } from '../../style/flex';
 
-const Quotation = () => {
+const Quotation = ({ ...props }) => {
     // SOCKET
     const socket = socketIOClient(socketUrl, { autoConnect: false, reconnectionAttempts: 10, reconnectionDelay: 2000, timeout: 15000 });
 
@@ -22,9 +22,9 @@ const Quotation = () => {
     const socketDataLength = socketData ? Object.keys(socketData).length : 0;
 
     return socketDataLength > 0 ? (
-        <Grid overflowX="hidden">
+        <Box overflowX="hidden" {...props}>
             <QuotationAnimation socketData={socketData} />
-        </Grid>
+        </Box>
     ) : null;
 };
 

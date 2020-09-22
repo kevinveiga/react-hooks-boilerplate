@@ -50,22 +50,19 @@ export const QuotationAnimation = ({ socketData }) => {
     return (
         <QuotationAnimationStyled
             animationPosition={stateAnimationPosition}
-            borderY={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }}
             display="grid"
             duration="7s"
             direction="alternate"
-            gridColumnGap={{ d: 2, md: 3 }}
+            gridColumnGap={{ d: 3, md: 5 }}
             iterationCount="infinite"
             justifyContent="space-between"
-            mb={{ d: 3, md: 4 }}
-            py={{ d: 2, md: 3 }}
             ref={quotationRef}
             timingFunction="ease-out"
         >
             {bolsa &&
                 bolsa.map((quotation) => {
                     return (
-                        <Cell gridRow={1} key={quotation.Alias} minWidth="150px">
+                        <Cell gridRow={1} key={quotation.Alias} minWidth="120px">
                             <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
 
                             <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
@@ -84,7 +81,7 @@ export const QuotationAnimation = ({ socketData }) => {
                 })}
 
             {cdi && (
-                <Cell gridRow={1} minWidth="150px">
+                <Cell gridRow={1} minWidth="120px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
@@ -102,7 +99,7 @@ export const QuotationAnimation = ({ socketData }) => {
             )}
 
             {selic && (
-                <Cell gridRow={1} minWidth="150px">
+                <Cell gridRow={1} minWidth="120px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
@@ -120,7 +117,7 @@ export const QuotationAnimation = ({ socketData }) => {
             )}
 
             {poupanca && (
-                <Cell gridRow={1} minWidth="150px">
+                <Cell gridRow={1} minWidth="120px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span fontSize="14px" fontWeight={700} verticalAlign="middle">

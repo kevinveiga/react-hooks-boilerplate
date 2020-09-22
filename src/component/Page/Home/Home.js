@@ -39,7 +39,13 @@ export const Home = ({ location }) => {
 
                 <Wrap>
                     <Container id="home-noticias-container" mx="auto" px={3} py={{ d: 3, md: 4 }}>
-                        <ComponentLazyLoad component={Quotation} placeholder={<LoaderComponent />} />
+                        <ComponentLazyLoad
+                            borderY={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }}
+                            component={Quotation}
+                            mb={{ d: 3, md: 4 }}
+                            placeholder={<LoaderComponent />}
+                            py={{ d: 2, md: 3 }}
+                        />
 
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             <Box
