@@ -8,7 +8,7 @@ export const Input = forwardRef(({ typeInput = 'text', value = '', ...otherProps
     return <InputStyled autoComplete="off" defaultValue={value} obj={{ ...otherProps.obj }} type={typeInput} {...otherProps} />;
 });
 
-export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value = true, ...otherProps }) => {
+export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value, ...otherProps }) => {
     const acessibility = ariaLabel || text;
     const content = children || text;
 
