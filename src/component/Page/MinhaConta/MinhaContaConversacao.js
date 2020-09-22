@@ -12,7 +12,7 @@ import { Box } from '../../../style/flex';
 import { Image } from '../../../style/image';
 import { P } from '../../../style/text';
 
-const MinhaContaConversacao = ({ obj, ...otherProps }) => {
+const MinhaContaConversacao = ({ obj, ...props }) => {
     return (
         <MinhaContaConversacaoStyled>
             <MinhaContaConversacaoUlStyled>

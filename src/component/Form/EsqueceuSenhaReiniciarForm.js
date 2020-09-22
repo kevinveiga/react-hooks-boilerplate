@@ -18,7 +18,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps }) => {
+export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
     // ACTION
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -93,7 +93,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
                                                 pr={4}
                                                 touched={touched}
                                                 type={stateViewPassword ? 'text' : 'password'}
-                                                {...otherProps}
+                                                {...props}
                                             />
                                         }
                                         control={control}
@@ -126,7 +126,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...otherProps })
                                                 pr={4}
                                                 touched={touched}
                                                 type={stateViewPassword ? 'text' : 'password'}
-                                                {...otherProps}
+                                                {...props}
                                             />
                                         }
                                         control={control}

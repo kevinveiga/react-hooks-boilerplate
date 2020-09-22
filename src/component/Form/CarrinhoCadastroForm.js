@@ -24,7 +24,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) => {
+export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
     // CONTEXT
     const { setStateAuthContext } = useAuth();
 
@@ -104,7 +104,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                                             maxLength="50"
                                             pr={4}
                                             touched={touched}
-                                            {...otherProps}
+                                            {...props}
                                         />
                                     }
                                     control={control}
@@ -119,16 +119,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                         <Cell mb={3}>
                             <div>
                                 <Controller
-                                    as={
-                                        <InputValidation
-                                            error={errors.email}
-                                            label="E-mail"
-                                            maxLength="50"
-                                            pr={4}
-                                            touched={touched}
-                                            {...otherProps}
-                                        />
-                                    }
+                                    as={<InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...props} />}
                                     control={control}
                                     name="email"
                                     rules={{ ...customValidate.email, ...customValidate.require }}
@@ -154,7 +145,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                                             pr={4}
                                             touched={touched}
                                             value={value}
-                                            {...otherProps}
+                                            {...props}
                                         />
                                     )}
                                     control={control}
@@ -177,7 +168,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                                             pr={4}
                                             touched={touched}
                                             type={stateViewPassword ? 'text' : 'password'}
-                                            {...otherProps}
+                                            {...props}
                                         />
                                     }
                                     control={control}
@@ -210,7 +201,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...otherProps }) =
                                             pr={4}
                                             touched={touched}
                                             type={stateViewPassword ? 'text' : 'password'}
-                                            {...otherProps}
+                                            {...props}
                                         />
                                     }
                                     control={control}

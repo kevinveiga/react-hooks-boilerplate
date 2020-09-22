@@ -25,7 +25,7 @@ import { Cell, Grid } from '../../../style/grid';
 import { Bar, BarContainer, ProgressBar } from '../../../style/progressBar';
 import { P, Title4 } from '../../../style/text';
 
-const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
+const MinhaContaCursoMenu = ({ objectCurso, ...props }) => {
     // CONTEXT
     const {
         stateCursoConteudoPrevNextContext,
@@ -89,7 +89,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
     };
 
     return (
-        <MinhaContaCursoMenuStyled {...otherProps}>
+        <MinhaContaCursoMenuStyled {...props}>
             <Box p={4}>
                 <Button
                     display="block"

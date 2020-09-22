@@ -20,7 +20,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 
-export const LoginForm = memo(({ location, ...otherProps }) => {
+export const LoginForm = memo(({ location, ...props }) => {
     // CONTEXT
     const { setStateAuthContext } = useAuth();
 
@@ -80,16 +80,7 @@ export const LoginForm = memo(({ location, ...otherProps }) => {
                         <Cell mb={3}>
                             <div>
                                 <Controller
-                                    as={
-                                        <InputValidation
-                                            error={errors.email}
-                                            label="E-mail"
-                                            maxLength="50"
-                                            pr={4}
-                                            touched={touched}
-                                            {...otherProps}
-                                        />
-                                    }
+                                    as={<InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...props} />}
                                     control={control}
                                     name="email"
                                     rules={{ ...customValidate.email, ...customValidate.require }}
@@ -110,7 +101,7 @@ export const LoginForm = memo(({ location, ...otherProps }) => {
                                             pr={4}
                                             touched={touched}
                                             type={stateViewPassword ? 'text' : 'password'}
-                                            {...otherProps}
+                                            {...props}
                                         />
                                     }
                                     control={control}

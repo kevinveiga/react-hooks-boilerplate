@@ -26,7 +26,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { Span, Title3 } from '../../style/text';
 
-export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
+export const ConhecerMaisForm = memo(({ formId, ...props }) => {
     // ACTION
     const [statePart, setStatePart] = useState(1);
 
@@ -184,7 +184,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                                     pr={4}
                                                     touched={touched}
                                                     value={value}
-                                                    {...otherProps}
+                                                    {...props}
                                                 />
                                             )}
                                             control={control}
@@ -221,7 +221,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                                         placeholder="Cidade"
                                                         pr={4}
                                                         touched={touched}
-                                                        {...otherProps}
+                                                        {...props}
                                                     />
                                                 }
                                                 control={control}
@@ -249,7 +249,7 @@ export const ConhecerMaisForm = memo(({ formId, ...otherProps }) => {
                                                             fontWeight: touched['endereco_uf'] ? '700' : '400'
                                                         }}
                                                         touched={touched}
-                                                        {...otherProps}
+                                                        {...props}
                                                     >
                                                         <OptionUF />
                                                     </SelectValidation>

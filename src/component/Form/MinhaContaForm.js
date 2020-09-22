@@ -26,7 +26,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Cell, Grid } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
-export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...otherProps }) => {
+export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props }) => {
     // ACTION
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
     // const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -210,7 +210,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="Nome"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -229,7 +229,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="E-mail"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -248,7 +248,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="Telefone"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -268,7 +268,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="00000-000"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
 
                             <Button
@@ -300,7 +300,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="Rua do endereço"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -320,7 +320,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="Número do endereço"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -339,7 +339,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="Complemento do endereço"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -358,7 +358,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="Cidade"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -380,7 +380,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 onChange={handleSetValue()}
                                 ref={register({ ...customValidate.require })}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             >
                                 <OptionUF />
                             </SelectValidation>
@@ -399,7 +399,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 placeholder="dd/mm/aaaa"
                                 pr={4}
                                 touched={touched}
-                                {...otherProps}
+                                {...props}
                             />
                         </div>
 
@@ -418,7 +418,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                     fontWeight: touched['endereco_uf'] ? '700' : '400'
                                 }}
                                 onChange={handleSetValue()}
-                                {...otherProps}
+                                {...props}
                             >
                                 <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
@@ -439,7 +439,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...other
                                 pr={4}
                                 touched={touched}
                                 type={stateViewPassword ? 'text' : 'password'}
-                                {...otherProps}
+                                {...props}
                             />
 
                             <Svg bottom="10px" height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" zIndex={1} />

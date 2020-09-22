@@ -20,7 +20,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
 
-export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
+export const CarrinhoBoletoForm = memo(({ formId, ...props }) => {
     // CONST
     const CPF = 'cpf';
 
@@ -99,7 +99,7 @@ export const CarrinhoBoletoForm = memo(({ formId, ...otherProps }) => {
                                     pr={4}
                                     touched={touched}
                                     value={value}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             )}
                             control={control}

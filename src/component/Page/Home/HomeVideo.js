@@ -27,7 +27,7 @@ import { Container, VideoWrap } from '../../../style/layout';
 import { variable } from '../../../style/variable';
 import { Span, Title2, Title4, Title5 } from '../../../style/text';
 
-const HomeVideo = ({ anchor, ...otherProps }) => {
+const HomeVideo = ({ anchor, ...props }) => {
     // API
     const [stateVideos, setStateVideoData] = useVideoApi({ isIntersecting: false });
 
@@ -62,7 +62,7 @@ const HomeVideo = ({ anchor, ...otherProps }) => {
                     <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
                         <Title2 themeColor="light">Vídeos Liberta</Title2>
 
-                        <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...otherProps}>
+                        <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...props}>
                             <Cell>
                                 <Box maxHeight="470px" minHeight={{ d: '25vh', sm: '35vh' }} overflowY="hidden">
                                     <VideoWrap>

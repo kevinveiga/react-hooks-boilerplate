@@ -5,9 +5,9 @@ import { Svg } from '../Svg/Svg';
 
 import { SocialAlternateStyled } from './SocialAlternateStyled';
 
-export const Share = ({ title, url, ...otherProps }) => {
+export const Share = ({ title, url, ...props }) => {
     return (
-        <SocialAlternateStyled {...otherProps}>
+        <SocialAlternateStyled {...props}>
             <li>
                 <LinkToExternal
                     text="Facebook"

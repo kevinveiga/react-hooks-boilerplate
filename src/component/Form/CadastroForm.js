@@ -25,7 +25,7 @@ import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
 import { P, Title2, Title4 } from '../../style/text';
 
-export const CadastroForm = memo(({ formId, ...otherProps }) => {
+export const CadastroForm = memo(({ formId, ...props }) => {
     // CONTEXT
     const { setStateConhecerMaisContext } = useContext(CadastroContext);
     const { setStateAuthContext } = useAuth();
@@ -115,7 +115,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
                                                 maxLength="50"
                                                 pr={4}
                                                 touched={touched}
-                                                {...otherProps}
+                                                {...props}
                                             />
                                         }
                                         control={control}
@@ -131,14 +131,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
                                 <div>
                                     <Controller
                                         as={
-                                            <InputValidation
-                                                error={errors.email}
-                                                label="E-mail"
-                                                maxLength="50"
-                                                pr={4}
-                                                touched={touched}
-                                                {...otherProps}
-                                            />
+                                            <InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...props} />
                                         }
                                         control={control}
                                         name="email"
@@ -165,7 +158,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
                                                 pr={4}
                                                 touched={touched}
                                                 value={value}
-                                                {...otherProps}
+                                                {...props}
                                             />
                                         )}
                                         control={control}
@@ -188,7 +181,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
                                                 pr={4}
                                                 touched={touched}
                                                 type={stateViewPassword ? 'text' : 'password'}
-                                                {...otherProps}
+                                                {...props}
                                             />
                                         }
                                         control={control}
@@ -221,7 +214,7 @@ export const CadastroForm = memo(({ formId, ...otherProps }) => {
                                                 pr={4}
                                                 touched={touched}
                                                 type={stateViewPassword ? 'text' : 'password'}
-                                                {...otherProps}
+                                                {...props}
                                             />
                                         }
                                         control={control}

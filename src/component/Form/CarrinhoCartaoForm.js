@@ -20,7 +20,7 @@ import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerS
 
 import { Cell, Grid } from '../../style/grid';
 
-export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherProps }) => {
+export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props }) => {
     // CONST
     const CARTAO_CVV = 'cartao_cvv';
     const CARTAO_DATA = 'cartao_data';
@@ -110,7 +110,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                     placeholder="Seu nome exatamente como está no cartão"
                                     pr={4}
                                     touched={touched}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             }
                             control={control}
@@ -140,7 +140,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                     pr={4}
                                     touched={touched}
                                     value={value}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             )}
                             control={control}
@@ -170,7 +170,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                     pr={4}
                                     touched={touched}
                                     value={value}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             )}
                             control={control}
@@ -201,7 +201,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                     pr={4}
                                     touched={touched}
                                     value={value}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             )}
                             control={control}
@@ -231,7 +231,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                     pr={4}
                                     touched={touched}
                                     value={value}
-                                    {...otherProps}
+                                    {...props}
                                 />
                             )}
                             control={control}
@@ -264,7 +264,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...otherPro
                                     ref={cartaoParcelaRef}
                                     touched={touched}
                                     value={value}
-                                    {...otherProps}
+                                    {...props}
                                 >
                                     <OptionParcelas cardObj={formaPagamentoObj} totalValue={carrinho.valor_total_desconto} />
                                 </SelectValidation>

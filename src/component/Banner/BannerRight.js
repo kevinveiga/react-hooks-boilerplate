@@ -10,7 +10,7 @@ import { useChangeBannerScroll, useFadeOutBannerScroll } from '../../store/banne
 
 import { BannerRightStyled } from './BannerStyled';
 
-export const BannerRight = ({ elementChange, elementFadeOut, ...otherProps }) => {
+export const BannerRight = ({ elementChange, elementFadeOut, ...props }) => {
     // API
     const stateBanner = useBannerApi(`${apiUrlConfiguracoes}/sidebar`);
 
@@ -19,7 +19,7 @@ export const BannerRight = ({ elementChange, elementFadeOut, ...otherProps }) =>
     const stateFadeOutBannerScroll = useFadeOutBannerScroll(elementFadeOut.elementId, elementFadeOut.offset);
 
     return stateBanner.data.sidebar_habilitada === '1' ? (
-        <BannerRightStyled change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...otherProps}>
+        <BannerRightStyled change={stateChangeBannerScroll} fadeOut={stateFadeOutBannerScroll} {...props}>
             {parse(`${stateBanner.data.sidebar}`)}
         </BannerRightStyled>
     ) : null;

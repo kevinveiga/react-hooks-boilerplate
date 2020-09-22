@@ -5,13 +5,13 @@ import { useChangeNoticiaSocialScroll, useFadeOutNoticiaSocialScroll } from '../
 import { NoticiaSocialStyled } from './NoticiaSocialStyled';
 import { Share } from '../../Social/Share';
 
-export const NoticiaSocial = ({ elementChange, elementFadeOut, title, url, ...otherProps }) => {
+export const NoticiaSocial = ({ elementChange, elementFadeOut, title, url, ...props }) => {
     // ACTION
     const stateChangeNoticiaSocialScroll = useChangeNoticiaSocialScroll(elementChange.elementId, elementChange.offset);
     const stateFadeOutNoticiaSocialScroll = useFadeOutNoticiaSocialScroll(elementFadeOut.elementId, elementFadeOut.offset);
 
     return (
-        <NoticiaSocialStyled change={stateChangeNoticiaSocialScroll} fadeOut={stateFadeOutNoticiaSocialScroll} {...otherProps}>
+        <NoticiaSocialStyled change={stateChangeNoticiaSocialScroll} fadeOut={stateFadeOutNoticiaSocialScroll} {...props}>
             <div>
                 <b>Compartilhar:</b>
             </div>
