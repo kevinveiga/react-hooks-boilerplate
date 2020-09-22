@@ -23,7 +23,7 @@ export const MinhaContaMenu = () => {
                 <ul>
                     <li>
                         <LinkTo
-                            link="/minha-conta/inicio"
+                            link="/minha-conta/meus-dados"
                             obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }}
                             text="Minha Conta"
                         />
@@ -44,10 +44,6 @@ export const MinhaContaMenu = () => {
                             text="Entrevistas"
                         />
                     </li>
-
-                    {/* <li>
-                        <LinkTo link="/minha-conta/contato" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover', hoverColorLine: 'colorPrimaryHover' }} text="Contato" />
-                    </li> */}
                 </ul>
             </MinhaContaMenuStyled>
         </MinhaContaLeftStyled>

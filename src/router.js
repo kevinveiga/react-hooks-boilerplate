@@ -20,6 +20,7 @@ import { EsqueceuSenhaReiniciar } from './component/Page/Login/EsqueceuSenhaRein
 import { Home } from './component/Page/Home/Home';
 import { LayoutDefault } from './component/Layout/LayoutDefault';
 import { LayoutMinhaConta } from './component/Layout/LayoutMinhaConta';
+import { LayoutMinhaContaWithMenu } from './component/Layout/LayoutMinhaContaWithMenu';
 import { LayoutNoHF } from './component/Layout/LayoutNoHF';
 import { Login } from './component/Page/Login/Login';
 import { Noticia } from './component/Page/Noticia/Noticia';
@@ -107,21 +108,14 @@ const routes = [
     {
         component: MinhaContaCursos,
         hasAuth: true,
-        layout: LayoutMinhaConta,
+        layout: LayoutMinhaContaWithMenu,
         path: '/minha-conta/cursos'
-    },
-    {
-        component: MinhaContaCursos,
-        exact: true,
-        hasAuth: true,
-        layout: LayoutMinhaConta,
-        path: '/minha-conta'
     },
     {
         component: MinhaConta,
         hasAuth: true,
-        layout: LayoutMinhaConta,
-        path: '/minha-conta/inicio'
+        layout: LayoutMinhaContaWithMenu,
+        path: '/minha-conta/meus-dados'
     },
     {
         component: Noticia,
@@ -140,8 +134,15 @@ const routes = [
     },
     {
         component: MinhaContaCursos,
+        exact: true,
         hasAuth: true,
-        layout: LayoutMinhaConta,
+        layout: LayoutMinhaContaWithMenu,
+        path: '/minha-conta'
+    },
+    {
+        component: MinhaContaCursos,
+        hasAuth: true,
+        layout: LayoutMinhaContaWithMenu,
         path: '/minha-conta/*'
     },
     {

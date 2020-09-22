@@ -4,14 +4,14 @@ import { variable } from '../../../style/variable';
 
 export const MinhaContaMenuStyled = styled.nav`
     height: 100%;
-    text-align: center;
     width: auto;
 
     li {
         > a,
-        > button {
+        > button,
+        > p {
             font-weight: 700;
-            padding: 15px;
+            padding: 15px 15px 15px 0;
         }
     }
 `;

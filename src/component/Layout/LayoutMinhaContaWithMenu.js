@@ -4,6 +4,8 @@ import { BreadcrumbProvider } from '../../store/breadcrumb/breadcrumb';
 
 import { HeaderAlternative } from '../Header/HeaderAlternative';
 import { ComponentLazyLoad } from '../LazyLoad/ComponentLazyLoad';
+import { MinhaContaMenu } from '../Page/MinhaConta/MinhaContaMenu';
+import { SocialSidebar } from '../Social/SocialSidebar';
 
 import { Cell, Grid } from '../../style/grid';
 import { Container, Main } from '../../style/layout';
@@ -11,7 +13,7 @@ import { Container, Main } from '../../style/layout';
 // LAZY
 const FooterAlternative = lazy(() => import('../Footer/FooterAlternative'));
 
-export const LayoutMinhaConta = ({ children }) => {
+export const LayoutMinhaContaWithMenu = ({ children }) => {
     return (
         <>
             <Main type="LayoutMinhaConta">
@@ -19,7 +21,11 @@ export const LayoutMinhaConta = ({ children }) => {
                     <HeaderAlternative />
 
                     <Container mx="auto" px={{ d: 0, lg: 3 }}>
-                        <Grid display="grid">
+                        <Grid display="grid" gridTemplateColumns={{ d: '280px 1fr' }}>
+                            <Cell>
+                                <MinhaContaMenu />
+                            </Cell>
+
                             <Cell>{children}</Cell>
                         </Grid>
                     </Container>
@@ -27,6 +33,8 @@ export const LayoutMinhaConta = ({ children }) => {
             </Main>
 
             <ComponentLazyLoad component={FooterAlternative} />
+
+            <SocialSidebar />
         </>
     );
 };

@@ -182,7 +182,7 @@ export const Curso = ({ match }) => {
 
                     <Wrap>
                         <Flex display={{ d: 'flex', sm: 'none' }} flexWrap="wrap" justifyContent="center">
-                            <Box mt={4}>
+                            <Box mt={3}>
                                 <Button fontSize="20px" mx="auto" onClick={handleMatricula(curso.id)} text="Começar" />
                             </Box>
                         </Flex>

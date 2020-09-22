@@ -1,13 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { lazy, useCallback } from 'react';
 
 import { useApp } from '../../store/app/app';
+import { useBreadcrumb } from '../../store/breadcrumb/breadcrumb';
 import { HeaderAlternativeProvider } from '../../store/header/headerAlternative';
 import { useWindowWidth } from '../../store/util/windowWidth';
 
 import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
 import { Button } from '../Button/Button';
 import { HeaderAlternativeMobile } from './HeaderAlternativeMobile';
+import { ComponentLazyLoad } from '../LazyLoad/ComponentLazyLoad';
 import { LinkTo } from '../Link/LinkTo';
+import { LoaderComponent } from '../Loader/LoaderComponent';
 import { ModalLogout } from '../Modal/ModalLogout';
 
 import { HeaderAlternativeStyled } from './HeaderAlternativeStyled';
@@ -17,9 +20,12 @@ import { Container } from '../../style/layout';
 import { Span, Title5 } from '../../style/text';
 import { variable } from '../../style/variable';
 
-export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => {
+const QuotationAlternate = lazy(() => import('../Quotation/QuotationAlternate'));
+
+export const HeaderAlternative = () => {
     // CONTEXT
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
+    const { stateBreadcrumbContext } = useBreadcrumb();
 
     // ACTION
     const windowWidth = useWindowWidth();
@@ -45,9 +51,9 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                             <Box>
                                 <Title5 color="colorPrimary" fontWeight="700">
                                     <Breadcrumb
-                                        currentLabel={currentBreadcrumbLabel}
+                                        breadcrumb={stateBreadcrumbContext.breadcrumb}
+                                        currentLabel={stateBreadcrumbContext.currentLabel}
                                         obj={{ hoverColor: 'colorWhite', textDecoration: 'underline' }}
-                                        {...breadcrumb}
                                     />
                                 </Title5>
                             </Box>
@@ -82,6 +88,8 @@ export const HeaderAlternative = ({ currentBreadcrumbLabel, ...breadcrumb }) => 
                     </Container>
                 </HeaderAlternativeStyled>
             )}
+
+            <ComponentLazyLoad component={QuotationAlternate} placeholder={<LoaderComponent />} />
 
             <ModalLogout visible={stateModalLogoutContext} />
         </>

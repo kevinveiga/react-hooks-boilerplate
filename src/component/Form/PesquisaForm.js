@@ -69,7 +69,7 @@ export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
                 </Cell>
 
                 <Cell justifySelf="flex-start" mb={3}>
-                    <Button mx={{ d: 'auto', md: 0 }} onClick={limparPesquisa()} text="Limpar Busca" themeSize="small" />
+                    <Button mx={{ d: 'auto', md: 0 }} onClick={limparPesquisa()} text="Limpar Busca" themeSize="small" themeType="border" />
                 </Cell>
             </Grid>
         </FormStyled>

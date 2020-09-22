@@ -9,15 +9,16 @@ import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaCont
 
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
+import { Svg } from '../../Svg/Svg';
+
+import { InputAlternateStyled } from '../../Form/FormStyled';
 import {
     MinhaContaCursoMenuConteudoStyled,
-    MinhaContaCursoMenuConteudoCheckboxStyled,
     MinhaContaCursoMenuConteudoContentStyled,
     MinhaContaCursoMenuStyled,
     MinhaContaCursoMenuModuloStyled,
     MinhaContaCursoMenuModuloSvgStyled
 } from './MinhaContaCursoMenuStyled';
-import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Cell, Grid } from '../../../style/grid';
@@ -154,7 +155,7 @@ const MinhaContaCursoMenu = ({ objectCurso, ...otherProps }) => {
                                                         mb={4}
                                                     >
                                                         <Box width="30px">
-                                                            <MinhaContaCursoMenuConteudoCheckboxStyled
+                                                            <InputAlternateStyled
                                                                 defaultChecked={conteudo.lido}
                                                                 id={`${objectCurso.id}${conteudo.id}`}
                                                                 name={`${objectCurso.id}${conteudo.id}`}

@@ -48,60 +48,8 @@ export const MinhaContaCursoMenuConteudoStyled = styled.li`
     cursor: pointer;
 `;
 
-export const MinhaContaCursoMenuConteudoCheckboxStyled = styled.input`
-    ${typography};
-
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    width: 0.1px;
-    visibility: hidden;
-    z-index: -1;
-
-    + label {
-        cursor: pointer;
-        user-select: none;
-
-        &::before {
-            background-color: ${variable.colorWhite};
-            border: 2px solid ${variable.colorGrayDark};
-            border-radius: ${variable.borderRadius};
-            box-shadow: inset 0 0 0 0 ${variable.colorPrimary};
-            color: ${variable.colorWhite};
-            content: ' ';
-            display: inline-block;
-            height: 16px;
-            margin-right: 10px;
-            transition: box-shadow ${variable.transition};
-            vertical-align: sub;
-            width: 16px;
-        }
-
-        > svg {
-            display: none;
-            left: 6px;
-            position: absolute;
-            top: 6px;
-        }
-    }
-
-    &:checked {
-        + label {
-            &::before {
-                box-shadow: inset 0 0 0 10px ${variable.colorPrimary};
-            }
-
-            > svg {
-                display: block;
-            }
-        }
-    }
-`;
-
 export const MinhaContaCursoMenuConteudoContentStyled = styled.div`
     ${space};
-
     background-color: ${variable.colorWhite};
     height: 0;
     overflow: hidden;
@@ -125,13 +73,13 @@ export const MinhaContaCursoMenuStyled = styled.div`
     transition: transform ${variable.transition};
     z-index: -1;
 
-    @media (max-width: ${variable.md}) {
+    @media (max-width: ${variable.lg}) {
         height: 0;
         transform: scaleY(0);
         transform-origin: 0 0 0;
     }
 
-    @media (min-width: ${variable.md}) {
+    @media (min-width: ${variable.lg}) {
         transform: scaleX(0);
         transform-origin: 100% 0 0;
         width: 0;
@@ -142,12 +90,12 @@ export const MinhaContaCursoMenuStyled = styled.div`
         css`
             z-index: 2;
 
-            @media (max-width: ${variable.md}) {
+            @media (max-width: ${variable.lg}) {
                 height: 100%;
                 transform: scaleY(1);
             }
 
-            @media (min-width: ${variable.md}) {
+            @media (min-width: ${variable.lg}) {
                 transform: scaleX(1);
                 width: 100%;
             }

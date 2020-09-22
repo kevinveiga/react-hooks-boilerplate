@@ -18,7 +18,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
             <ul>
                 <li>
                     <LinkTo
-                        link="/minha-conta/inicio"
+                        link="/minha-conta/meus-dados"
                         obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
                         onClick={() => setStateMinhaContaMenuMobileContext(false)}
                         text="Minha Conta"

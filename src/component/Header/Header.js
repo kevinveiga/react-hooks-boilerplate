@@ -153,7 +153,7 @@ export const Header = () => {
                                         <ul>
                                             <li>
                                                 <LinkTo
-                                                    link="/minha-conta/inicio"
+                                                    link="/minha-conta/meus-dados"
                                                     obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
                                                     onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
                                                     text="Minha Conta"
