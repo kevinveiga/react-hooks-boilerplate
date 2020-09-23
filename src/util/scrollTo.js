@@ -4,6 +4,14 @@ import { variable } from '../style/variable';
 
 let scrollOnce = false;
 
+const fnElementPosition = (elementPosition) => {
+    return elementPosition
+        ? elementPosition.getBoundingClientRect().y -
+              document.body.getBoundingClientRect().y +
+              (window.innerWidth < parseInt(variable.md, 10) ? 0 : 80)
+        : 0;
+};
+
 const fnScroll = (anchor) => {
     try {
         window.scroll({
@@ -25,29 +33,17 @@ export const scrollTo = (anchorElement = null, doScroll = false, timer = 0) => {
             const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
             const element = document.querySelector(anchorElement) || null;
 
-            let anchor = element
-                ? element.getBoundingClientRect().y -
-                  document.body.getBoundingClientRect().y +
-                  (window.innerWidth < parseInt(variable.md, 10) ? 0 : 80)
-                : 0;
             let scrollTimer = timer;
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
-            if (anchorElement && Math.trunc(anchor) !== Math.trunc(scrollYPos)) {
+            if (anchorElement && Math.trunc(fnElementPosition(element)) !== Math.trunc(scrollYPos)) {
                 scrollTimer = 500;
             }
 
             const delay = async () => {
                 await sleep(parseInt(scrollTimer, 10));
 
-                // Busca a posição da âncora novamente depois do timer, para o valor ser correto
-                anchor = element
-                    ? element.getBoundingClientRect().y -
-                      document.body.getBoundingClientRect().y +
-                      (window.innerWidth < parseInt(variable.md, 10) ? 0 : 80)
-                    : 0;
-
-                fnScroll(anchor);
+                fnScroll(fnElementPosition(element));
             };
 
             delay();
