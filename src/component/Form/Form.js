@@ -5,9 +5,15 @@ import { InputAlternateStyled, InputMaskStyled, InputStyled, LabelStyled, Select
 import { Svg } from '../Svg/Svg';
 
 export const Input = forwardRef(({ typeInput = 'text', value = '', ...props }, ref) => {
-    const { obj } = props;
+    const { label, obj } = props;
 
-    return <InputStyled autoComplete="off" defaultValue={value} obj={obj} ref={ref} type={typeInput} {...props} />;
+    return (
+        <>
+            <InputStyled autoComplete="off" defaultValue={value} obj={obj} ref={ref} type={typeInput} {...props} />
+
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
+        </>
+    );
 });
 
 export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, text, typeInput = 'checkbox', value = '', ...props }) => {
@@ -66,26 +72,14 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
     );
 };
 
-export const InputMask = ({ error = '', mask = null, touched, typeInput = 'text', value = '', ...props }) => {
-    const { left, label, name, obj, right } = props;
-    const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
+export const InputMask = ({ typeInput = 'text', value = '', ...props }) => {
+    const { label, obj } = props;
 
     return (
         <>
-            <InputMaskStyled
-                autoComplete="off"
-                defaultValue={value}
-                invalid={error}
-                mask={mask}
-                obj={obj}
-                type={typeInput}
-                valid={!error && touched[name] ? 'true' : undefined}
-                {...props}
-            />
+            <InputMaskStyled autoComplete="off" defaultValue={value} obj={obj} type={typeInput} {...props} />
 
             {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
-
-            <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && touched[name]} />
         </>
     );
 };
