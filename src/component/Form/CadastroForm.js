@@ -57,7 +57,7 @@ export const CadastroForm = memo(({ formId, ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
@@ -97,7 +97,7 @@ export const CadastroForm = memo(({ formId, ...props }) => {
 
             <Flex display="flex" flexWrap="wrap">
                 <Box overflow="hidden" width="100%">
-                    <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>

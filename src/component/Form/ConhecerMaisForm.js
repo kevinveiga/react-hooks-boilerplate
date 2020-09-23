@@ -51,7 +51,7 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
@@ -90,7 +90,7 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
 
             <Flex display="flex" flexWrap="wrap">
                 <Box overflow="hidden" width="100%">
-                    <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>

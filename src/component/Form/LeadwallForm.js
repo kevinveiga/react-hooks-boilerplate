@@ -33,7 +33,7 @@ export const LeadwallForm = memo(({ ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPaywall, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -62,7 +62,7 @@ export const LeadwallForm = memo(({ ...props }) => {
     };
 
     return (
-        <FormStyled onSubmit={handleSubmit(submitForm)}>
+        <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridColumnGap={4} gridRowGap={2}>
                 <Cell>
                     <InvalidResponseMessageContainerStyled>

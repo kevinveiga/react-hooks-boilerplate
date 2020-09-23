@@ -28,12 +28,12 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         handleCarrinhoCupomAddContext(formData.cupom, setError);
     };
 
     return (
-        <FormStyled onSubmit={handleSubmit(submitForm)}>
+        <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridAutoRows="1fr" gridTemplateColumns="3fr 1fr">
                 <Cell gridColumn={'1 / span 2'}>
                     <InvalidResponseMessageContainerStyled>

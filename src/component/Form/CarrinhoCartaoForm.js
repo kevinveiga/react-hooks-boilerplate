@@ -64,7 +64,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         setStateLoaderPagarmeContext(true);
 
         createCardTransactionPromise(formData, carrinho)
@@ -89,7 +89,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
     };
 
     return (
-        <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
+        <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns="1fr 1fr 1fr 1fr" px={5} py={3}>
                 <Cell gridColumn={'1 / span 4'}>
                     <InvalidResponseMessageContainerStyled>

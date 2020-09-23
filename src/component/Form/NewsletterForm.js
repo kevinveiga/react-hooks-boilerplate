@@ -30,7 +30,7 @@ export const NewsletterForm = memo(({ ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlNewsletter, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -65,7 +65,7 @@ export const NewsletterForm = memo(({ ...props }) => {
             </P>
         </div>
     ) : (
-        <FormStyled onSubmit={handleSubmit(submitForm)}>
+        <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid
                 display="grid"
                 gridColumnGap={4}

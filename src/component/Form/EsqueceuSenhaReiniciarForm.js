@@ -34,7 +34,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const newFormData = formData;
 
         newFormData.email = email;
@@ -75,7 +75,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
                 </Box>
             ) : (
                 <Box overflow="hidden" width="100%">
-                    <FormStyled onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled onSubmit={handleSubmit(onSubmit)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>

@@ -152,7 +152,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
         return undefined;
     }, [data, formId]);
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
@@ -183,7 +183,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
 
     return (
         <>
-            <FormStyled id={formId} onSubmit={handleSubmit(submitForm)}>
+            <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
                 <Grid
                     display="grid"
                     gridColumnGap={5}

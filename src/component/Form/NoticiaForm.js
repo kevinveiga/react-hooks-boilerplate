@@ -32,7 +32,7 @@ export const NoticiaForm = memo(({ ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -118,7 +118,7 @@ export const NoticiaForm = memo(({ ...props }) => {
             </Box>
 
             <Box overflow="hidden" width={stateRetornoForm ? '0' : { d: 1, sm: 1 / 2 }}>
-                <FormStyled onSubmit={handleSubmit(submitForm)}>
+                <FormStyled onSubmit={handleSubmit(onSubmit)}>
                     <Grid display="grid" gridRowGap={2} p={{ d: 3, md: 5 }}>
                         <Cell mb={3}>
                             <Title3 fontWeight="700" mb={1} themeColor="dark">

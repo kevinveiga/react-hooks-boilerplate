@@ -36,14 +36,14 @@ export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         if (formData.query) {
             setStatePesquisaDataContext({ url: `${apiUrlTag}/${formData.query}` });
         }
     };
 
     return (
-        <FormStyled onSubmit={handleSubmit(submitForm)}>
+        <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridTemplateColumns={{ d: '1fr 1fr', md: '1fr auto auto' }}>
                 <Cell gridColumn={{ d: '1 / span 2', md: '1' }} mb={3}>
                     <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />
@@ -54,7 +54,7 @@ export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
                                 autoComplete="off"
                                 list="tags"
                                 maxLength="50"
-                                onKeyDown={keyPress(submitForm)}
+                                onKeyDown={keyPress(onSubmit)}
                                 placeholder="O que você procura?"
                                 {...props}
                             />

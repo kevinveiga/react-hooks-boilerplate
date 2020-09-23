@@ -32,7 +32,7 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
         mode: 'onChange'
     });
 
-    const submitForm = (formData) => {
+    const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(`${apiUrlEsqueceuSenha}/create`, formData, { headers: { 'Content-Type': 'application/json' } });
@@ -68,7 +68,7 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
                 </Box>
             ) : (
                 <Box overflow="hidden" width="100%">
-                    <FormStyled onSubmit={handleSubmit(submitForm)}>
+                    <FormStyled onSubmit={handleSubmit(onSubmit)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>
