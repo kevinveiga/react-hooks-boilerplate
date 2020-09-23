@@ -4,8 +4,6 @@ import { useWindowWidth } from '../util/windowWidth';
 
 import { scrollTo } from '../../util/scrollTo';
 
-import { variable } from '../../style/variable';
-
 const HomeContext = createContext(undefined);
 
 export const HomeProvider = ({ children, location }) => {

@@ -18,22 +18,22 @@ const fnScroll = (anchor) => {
     return null;
 };
 
-export const scrollTo = (anchorId = null, doScroll = false, timer = 0) => {
+export const scrollTo = (anchorElement = null, doScroll = false, timer = 0) => {
     if (doScroll) {
         // Verifica se o scroll já está sendo feito
         if (!scrollOnce) {
             const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-            const element = document.querySelector(anchorId) || null;
+            const element = document.querySelector(anchorElement) || null;
 
             let anchor = element
-                ? element.getBoundingClientRect().y - document.body.getBoundingClientRect().y + window.innerWidth < parseInt(variable.md, 10)
-                    ? 0
-                    : 80
+                ? element.getBoundingClientRect().y -
+                  document.body.getBoundingClientRect().y +
+                  (window.innerWidth < parseInt(variable.md, 10) ? 0 : 80)
                 : 0;
             let scrollTimer = timer;
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
-            if (anchorId && Math.trunc(anchor) !== Math.trunc(scrollYPos)) {
+            if (anchorElement && Math.trunc(anchor) !== Math.trunc(scrollYPos)) {
                 scrollTimer = 500;
             }
 
@@ -42,9 +42,9 @@ export const scrollTo = (anchorId = null, doScroll = false, timer = 0) => {
 
                 // Busca a posição da âncora novamente depois do timer, para o valor ser correto
                 anchor = element
-                    ? element.getBoundingClientRect().y - document.body.getBoundingClientRect().y + window.innerWidth < parseInt(variable.md, 10)
-                        ? 0
-                        : 80
+                    ? element.getBoundingClientRect().y -
+                      document.body.getBoundingClientRect().y +
+                      (window.innerWidth < parseInt(variable.md, 10) ? 0 : 80)
                     : 0;
 
                 fnScroll(anchor);
