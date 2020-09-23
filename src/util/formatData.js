@@ -56,8 +56,6 @@ export const formatDateSet = (date) => {
 
     const array = date.split('/');
 
-    console.log('array: ', array);
-
     return new Date(`${array[2]}/${array[1]}/${array[0]}`);
 };
 
