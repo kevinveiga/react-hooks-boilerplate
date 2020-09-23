@@ -171,22 +171,24 @@ export const NoticiaForm = memo(({ ...props }) => {
                         <Cell mb={5}>
                             <div>
                                 <Controller
-                                    render={({ name, onBlur, onChange, value }) => (
-                                        <InputMaskValidation
-                                            error={errors.telefone}
-                                            format="(##) #####-####"
-                                            name={name}
-                                            onBlur={onBlur}
-                                            onValueChange={(values) => {
-                                                onChange(values.value);
-                                            }}
-                                            placeholder="Celular"
-                                            pr={4}
-                                            touched={touched}
-                                            value={value}
-                                            {...props}
-                                        />
-                                    )}
+                                    render={({ name, onBlur, onChange, value }) => {
+                                        return (
+                                            <InputMaskValidation
+                                                error={errors.telefone}
+                                                format="(##) #####-####"
+                                                name={name}
+                                                onBlur={onBlur}
+                                                onValueChange={(values) => {
+                                                    onChange(values.value);
+                                                }}
+                                                placeholder="Celular"
+                                                pr={4}
+                                                touched={touched}
+                                                value={value}
+                                                {...props}
+                                            />
+                                        );
+                                    }}
                                     control={control}
                                     name="telefone"
                                     rules={{ ...customValidate.cellphone, ...customValidate.require }}

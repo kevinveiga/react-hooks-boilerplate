@@ -85,22 +85,24 @@ export const CarrinhoBoletoForm = memo(({ formId, ...props }) => {
 
                     <div>
                         <Controller
-                            render={({ name, onBlur, onChange, value }) => (
-                                <InputMaskValidation
-                                    error={errors[CPF]}
-                                    format="###.###.###-##"
-                                    name={name}
-                                    onBlur={onBlur}
-                                    onValueChange={(values) => {
-                                        onChange(values.value);
-                                    }}
-                                    placeholder="000.000.000-00"
-                                    pr={4}
-                                    touched={touched}
-                                    value={value}
-                                    {...props}
-                                />
-                            )}
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputMaskValidation
+                                        error={errors[CPF]}
+                                        format="###.###.###-##"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onValueChange={(values) => {
+                                            onChange(values.value);
+                                        }}
+                                        placeholder="000.000.000-00"
+                                        pr={4}
+                                        touched={touched}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name={CPF}
                             rules={{ ...customValidate.cpf, ...customValidate.require }}

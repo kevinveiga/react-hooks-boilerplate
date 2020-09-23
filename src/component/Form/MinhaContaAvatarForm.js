@@ -91,22 +91,24 @@ export const MinhaContaAvatarForm = memo(() => {
 
                 <div>
                     <Controller
-                        render={({ name, onBlur, onChange, value }) => (
-                            <InputFileValidation
-                                error={errors.avatar}
-                                id="avatar"
-                                name={name}
-                                onBlur={onBlur}
-                                onChange={(e) => {
-                                    onChange(e.target.value);
-                                    handleFileChange(e);
-                                }}
-                                touched={touched}
-                                value={value}
-                            >
-                                <Svg fill="colorWhite" height="20px" name="svg-camera" />
-                            </InputFileValidation>
-                        )}
+                        render={({ name, onBlur, onChange, value }) => {
+                            return (
+                                <InputFileValidation
+                                    error={errors.avatar}
+                                    id="avatar"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onChange={(e) => {
+                                        onChange(e.target.value);
+                                        handleFileChange(e);
+                                    }}
+                                    touched={touched}
+                                    value={value}
+                                >
+                                    <Svg fill="colorWhite" height="20px" name="svg-camera" />
+                                </InputFileValidation>
+                            );
+                        }}
                         control={control}
                         name="avatar"
                         rules={{ ...customValidate.photo }}

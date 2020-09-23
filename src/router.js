@@ -177,23 +177,25 @@ export const Router = withRouter(() => {
                         hasAuth={hasAuth || false}
                         key={path}
                         path={path}
-                        render={(props) => (
-                            <Layout>
-                                <ErrorBoundary>
-                                    <Suspense fallback={<LoaderComponent />}>
-                                        {hasAuth ? (
-                                            user && user.token ? (
-                                                <Component breadcrumb={breadcrumb} {...props} />
+                        render={(props) => {
+                            return (
+                                <Layout>
+                                    <ErrorBoundary>
+                                        <Suspense fallback={<LoaderComponent />}>
+                                            {hasAuth ? (
+                                                user && user.token ? (
+                                                    <Component breadcrumb={breadcrumb} {...props} />
+                                                ) : (
+                                                    handleRedirect(loginPath, props.location.pathname)
+                                                )
                                             ) : (
-                                                handleRedirect(loginPath, props.location.pathname)
-                                            )
-                                        ) : (
-                                            <Component breadcrumb={breadcrumb} {...props} />
-                                        )}
-                                    </Suspense>
-                                </ErrorBoundary>
-                            </Layout>
-                        )}
+                                                <Component breadcrumb={breadcrumb} {...props} />
+                                            )}
+                                        </Suspense>
+                                    </ErrorBoundary>
+                                </Layout>
+                            );
+                        }}
                     />
                 );
             })}

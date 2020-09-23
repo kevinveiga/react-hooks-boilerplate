@@ -145,22 +145,24 @@ export const CadastroForm = memo(({ formId, ...props }) => {
                             <Cell mb={3}>
                                 <div>
                                     <Controller
-                                        render={({ name, onBlur, onChange, value }) => (
-                                            <InputMaskValidation
-                                                error={errors.telefone}
-                                                format="(##) #####-####"
-                                                label="Celular"
-                                                name={name}
-                                                onBlur={onBlur}
-                                                onValueChange={(values) => {
-                                                    onChange(values.value);
-                                                }}
-                                                pr={4}
-                                                touched={touched}
-                                                value={value}
-                                                {...props}
-                                            />
-                                        )}
+                                        render={({ name, onBlur, onChange, value }) => {
+                                            return (
+                                                <InputMaskValidation
+                                                    error={errors.telefone}
+                                                    format="(##) #####-####"
+                                                    label="Celular"
+                                                    name={name}
+                                                    onBlur={onBlur}
+                                                    onValueChange={(values) => {
+                                                        onChange(values.value);
+                                                    }}
+                                                    pr={4}
+                                                    touched={touched}
+                                                    value={value}
+                                                    {...props}
+                                                />
+                                            );
+                                        }}
                                         control={control}
                                         name="telefone"
                                         rules={{ ...customValidate.cellphone, ...customValidate.require }}

@@ -170,23 +170,25 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
 
                                     <div>
                                         <Controller
-                                            render={({ name, onBlur, onChange, value }) => (
-                                                <InputMaskValidation
-                                                    error={errors.data_nascimento}
-                                                    format="##/##/####"
-                                                    mask={['D', 'D', 'M', 'M', 'Y', 'Y', 'Y', 'Y']}
-                                                    name={name}
-                                                    onBlur={onBlur}
-                                                    onValueChange={(values) => {
-                                                        onChange(values.value);
-                                                    }}
-                                                    placeholder="dd/mm/aaaa"
-                                                    pr={4}
-                                                    touched={touched}
-                                                    value={value}
-                                                    {...props}
-                                                />
-                                            )}
+                                            render={({ name, onBlur, onChange, value }) => {
+                                                return (
+                                                    <InputMaskValidation
+                                                        error={errors.data_nascimento}
+                                                        format="##/##/####"
+                                                        mask={['D', 'D', 'M', 'M', 'Y', 'Y', 'Y', 'Y']}
+                                                        name={name}
+                                                        onBlur={onBlur}
+                                                        onValueChange={(values) => {
+                                                            onChange(values.value);
+                                                        }}
+                                                        placeholder="dd/mm/aaaa"
+                                                        pr={4}
+                                                        touched={touched}
+                                                        value={value}
+                                                        {...props}
+                                                    />
+                                                );
+                                            }}
                                             control={control}
                                             name="data_nascimento"
                                             rules={{ ...customValidate.date }}
