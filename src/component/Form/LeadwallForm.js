@@ -43,15 +43,15 @@ export const LeadwallForm = memo(({ ...props }) => {
 
                     setChangeLeadwallContext(true);
                 } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
+                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
                 } else {
                     console.error('error: ', error);
                 }

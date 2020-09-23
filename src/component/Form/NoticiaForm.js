@@ -40,9 +40,9 @@ export const NoticiaForm = memo(({ ...props }) => {
                 if (result.data && result.data.success == true) {
                     setStateRetornoForm(true);
                 } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
+                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }

@@ -74,9 +74,9 @@ export const useCarrinhoApi = () => {
 
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
+                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }
@@ -103,9 +103,9 @@ export const useCarrinhoApi = () => {
 
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 } else if (result.data.reason) {
-                    setError('invalid', 'notMatch', result.data.reason[0]);
+                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }

@@ -7,7 +7,6 @@ import { createBilletTransactionPromise } from '../../service/pagarme';
 import { useCarrinho } from '../../store/carrinho/carrinho';
 import { usePagarme } from '../../store/pagarme/pagarme';
 
-import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { pagarmeResponseError } from '../../util/pagarmeResponseError';
 import { pagarmeResponseStatus } from '../../util/pagarmeResponseStatus';
@@ -54,19 +53,19 @@ export const CarrinhoBoletoForm = memo(({ formId, ...props }) => {
         createBilletTransactionPromise(formData, carrinho)
             .then((response) => {
                 if (response.errors) {
-                    setError('invalid', 'notMatch', pagarmeResponseError(response.errors));
+                    setError('invalid', { type: 'manual', message: pagarmeResponseError(response.errors) });
                 }
 
                 if (response.status === 'authorized') {
                     window.location.assign(`/carrinho-retorno/${paymentType.boleto}/${response.boleto_url}`);
                 } else {
-                    setError('invalid', 'notMatch', pagarmeResponseStatus(response.status));
+                    setError('invalid', { type: 'manual', message: pagarmeResponseStatus(response.status) });
                 }
 
                 setStateLoaderPagarmeContext(false);
             })
             .catch((error) => {
-                setError('invalid', 'notMatch', pagarmeResponseError(error));
+                setError('invalid', { type: 'manual', message: pagarmeResponseError(error) });
 
                 setStateLoaderPagarmeContext(false);
             });

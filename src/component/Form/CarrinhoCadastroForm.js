@@ -67,13 +67,13 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                     // Regras de redirecionamento
                     redirectRule();
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
                 } else {
                     console.error('error: ', error);
                 }

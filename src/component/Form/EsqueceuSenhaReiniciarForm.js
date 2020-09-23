@@ -43,19 +43,20 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
         const fetchData = async () => {
             try {
                 const result = await axios.post(`${apiUrlEsqueceuSenha}/reset`, newFormData, { headers: { 'Content-Type': 'application/json' } });
-                console.log(result);
+
                 if (result.data && result.data.success == true) {
                     setStateRetornoForm(true);
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response && error.response.status == 404) {
-                    setError('invalid', 'notMatch', responseError(errorEmailNotFound));
+                    setError('invalid', { type: 'manual', message: responseError(errorEmailNotFound) });
                 } else {
-                    setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+
                     console.error('error: ', error);
                 }
             }

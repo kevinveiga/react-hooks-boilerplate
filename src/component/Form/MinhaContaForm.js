@@ -85,7 +85,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                             setValue
                         );
                     } catch (error) {
-                        setError('invalid', 'notMatch', errorMsgDefault);
+                        setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                         console.error('result: ', error);
                     }
@@ -161,16 +161,16 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                     setStatePerfilData({ update: true, url: apiUrlPerfil });
                     setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                 } else {
-                    setError('invalid', 'notMatch', errorMsgDefault);
+                    setError('invalid', { type: 'manual', message: errorMsgDefault });
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
                     if (error.response.data.message) {
-                        setError('invalid', 'notMatch', error.response.data.message);
+                        setError('invalid', { type: 'manual', message: error.response.data.message });
                     } else {
-                        setError('invalid', 'notMatch', responseError(error.response.data.errors));
+                        setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
                     }
                 } else {
                     console.error('error: ', error);
