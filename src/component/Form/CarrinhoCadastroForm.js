@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -31,18 +31,6 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
     // ACTION
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
-    // FUNCTION
-    const handleScrollTo = useCallback(
-        () => () => {
-            const anchorElement =
-                (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') ||
-                (document.querySelector(`#${formId}`) && `#${formId}`);
-
-            scrollTo(anchorElement, true);
-        },
-        [formId]
-    );
-
     // FORM
     const {
         control,
@@ -54,6 +42,15 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
         defaultValues: { nome: '', email: '', telefone: '', password: '', confirm_password: '' },
         mode: 'onChange'
     });
+
+    const onError = (formError) => {
+        const inputName = Object.keys(formError).length && Object.keys(formError)[0];
+
+        const anchorElement =
+            (document.getElementsByName(inputName) && `input[name="${inputName}"]`) || (document.querySelector(`#${formId}`) && `#${formId}`);
+
+        scrollTo(anchorElement, true);
+    };
 
     const onSubmit = (formData) => {
         const fetchData = async () => {
@@ -86,7 +83,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
     return (
         <Flex display="flex" flexWrap="wrap">
             <Box overflow="hidden" width="100%">
-                <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
+                <FormStyled id={formId} onSubmit={handleSubmit(onSubmit, onError)}>
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                         <Cell>
                             <InvalidResponseMessageContainerStyled>
@@ -226,14 +223,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                         </Cell>
 
                         <Cell mb={3}>
-                            <Button
-                                fontSize={{ d: '16px', sm: '18px' }}
-                                height="60px"
-                                onClick={handleScrollTo()}
-                                text="Cadastrar-se"
-                                typeButton="submit"
-                                width="100%"
-                            />
+                            <Button fontSize={{ d: '16px', sm: '18px' }} height="60px" text="Cadastrar-se" typeButton="submit" width="100%" />
                         </Cell>
 
                         <Cell mb={3} textAlign="center">
