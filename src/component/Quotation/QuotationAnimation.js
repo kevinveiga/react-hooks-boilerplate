@@ -11,7 +11,10 @@ import { QuotationAnimationStyled } from './QuotationStyled';
 import { Cell } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
-export const QuotationAnimation = ({ socketData }) => {
+export const QuotationAnimation = ({ socketData, ...props }) => {
+    // PROPS
+    const { color } = props;
+
     // ACTION
     const quotationRef = useRef();
     const [stateAnimationPosition, setStateAnimationPosition] = useState(0);
@@ -58,6 +61,7 @@ export const QuotationAnimation = ({ socketData }) => {
             justifyContent="space-between"
             ref={quotationRef}
             timingFunction="ease-out"
+            {...props}
         >
             {bolsa &&
                 bolsa.map((quotation) => {
@@ -65,12 +69,14 @@ export const QuotationAnimation = ({ socketData }) => {
                         <Cell gridRow={1} key={quotation.Alias} minWidth="120px">
                             <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
 
-                            <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
+                            <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                                 {quotation.Name.toUpperCase()}
                             </Span>
 
                             <P fontSize="14px" whiteSpace="nowrap">
-                                <Span pr={1}>{quotation.Value}</Span>
+                                <Span color={color} pr={1}>
+                                    {quotation.Value}
+                                </Span>
 
                                 <Span color={quotation.Direction === 'negativo' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
                                     {parse(`${quotation.Spread}`)}
@@ -84,12 +90,14 @@ export const QuotationAnimation = ({ socketData }) => {
                 <Cell gridRow={1} minWidth="120px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                    <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
+                    <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                         CDI
                     </Span>
 
                     <P fontSize="14px" whiteSpace="nowrap">
-                        <Span pr={1}>{cdi.value}% a.a</Span>
+                        <Span color={color} pr={1}>
+                            {cdi.value}% a.a
+                        </Span>
 
                         <Span color={cdi.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
                             {cdi.variation}%
@@ -102,12 +110,14 @@ export const QuotationAnimation = ({ socketData }) => {
                 <Cell gridRow={1} minWidth="120px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                    <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
+                    <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                         SELIC
                     </Span>
 
                     <P fontSize="14px" whiteSpace="nowrap">
-                        <Span pr={1}>{selic.value}% a.a</Span>
+                        <Span color={color} pr={1}>
+                            {selic.value}% a.a
+                        </Span>
 
                         <Span color={selic.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
                             {selic.variation}%
@@ -120,12 +130,14 @@ export const QuotationAnimation = ({ socketData }) => {
                 <Cell gridRow={1} minWidth="120px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
-                    <Span fontSize="14px" fontWeight={700} verticalAlign="middle">
+                    <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                         POUPANÇA
                     </Span>
 
                     <P fontSize="14px" whiteSpace="nowrap">
-                        <Span pr={1}>{poupanca.value}% a.a</Span>
+                        <Span color={color} pr={1}>
+                            {poupanca.value}% a.a
+                        </Span>
 
                         <Span color={poupanca.operator === '-' ? 'colorAlert' : 'colorPrimary'} fontWeight={700}>
                             {poupanca.variation}%

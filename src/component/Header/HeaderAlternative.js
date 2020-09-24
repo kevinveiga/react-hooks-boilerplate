@@ -35,7 +35,7 @@ export const HeaderAlternative = () => {
             <Container mx="auto" px={{ d: 4, md: 3 }}>
                 <Flex alignItems="center" display="flex" flexWrap="wrap" height="70px" justifyContent="space-between">
                     <Box>
-                        <ComponentLazyLoad component={Quotation} placeholder={<LoaderComponent />} py={2} />
+                        <ComponentLazyLoad color="colorGray2" component={Quotation} placeholder={<LoaderComponent />} py={2} />
                     </Box>
                 </Flex>
             </Container>
