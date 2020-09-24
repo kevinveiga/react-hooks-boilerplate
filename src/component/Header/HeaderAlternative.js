@@ -23,12 +23,7 @@ export const HeaderAlternative = () => {
         <HeaderAlternativeProvider>
             <HeaderAlternativeMobile />
 
-            <ComponentLazyLoad
-                borderY={{ d: 0, md: '1px solid rgba(216, 221, 225, 0.8)' }}
-                component={Quotation}
-                placeholder={<LoaderComponent />}
-                p={2}
-            />
+            <ComponentLazyLoad borderBottom="1px solid rgba(216, 221, 225, 0.8)" component={Quotation} placeholder={<LoaderComponent />} p={2} />
         </HeaderAlternativeProvider>
     ) : (
         <HeaderAlternativeStyled>

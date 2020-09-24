@@ -27,9 +27,15 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
 
             for (let i = 0, l = quotationRef.current.childElementCount; i < l; i += 1) {
                 totalWidth += quotationRef.current.children[i].offsetWidth;
+
+                console.log(`totalWidth: ${i}`, quotationRef.current.children[i].offsetWidth);
             }
 
-            setStateAnimationPosition(containerWidth < totalWidth ? containerWidth - totalWidth - 5 : 0);
+            // Faz o cálculo do tamanho de todas as células menos 5 e mais 5 vezes o espaço entre as células,
+            // tudo isso para fazer o scroll horizontal corretamente
+            totalWidth = totalWidth - 5 + 16 * 5;
+
+            setStateAnimationPosition(containerWidth < totalWidth ? containerWidth - totalWidth : 0);
         }
 
         return undefined;
@@ -61,12 +67,11 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             justifyContent="space-between"
             ref={quotationRef}
             timingFunction="ease-out"
-            {...props}
         >
             {bolsa &&
                 bolsa.map((quotation) => {
                     return (
-                        <Cell gridRow={1} key={quotation.Alias} minWidth="120px">
+                        <Cell gridRow={1} key={quotation.Alias}>
                             <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
 
                             <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
@@ -87,7 +92,7 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
                 })}
 
             {cdi && (
-                <Cell gridRow={1} minWidth="120px">
+                <Cell gridRow={1}>
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
@@ -107,7 +112,7 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             )}
 
             {selic && (
-                <Cell gridRow={1} minWidth="120px">
+                <Cell gridRow={1}>
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
@@ -127,7 +132,7 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             )}
 
             {poupanca && (
-                <Cell gridRow={1} minWidth="120px">
+                <Cell gridRow={1} minWidth="110px">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">

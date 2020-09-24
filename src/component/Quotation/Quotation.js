@@ -22,7 +22,7 @@ const Quotation = ({ ...props }) => {
     const socketDataLength = socketData ? Object.keys(socketData).length : 0;
 
     return socketDataLength > 0 ? (
-        <Box overflowX="hidden">
+        <Box overflowX="hidden" {...props}>
             <QuotationAnimation socketData={socketData} {...props} />
         </Box>
     ) : null;

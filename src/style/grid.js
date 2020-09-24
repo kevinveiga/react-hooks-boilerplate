@@ -13,7 +13,7 @@ export const Cell = styled.div`
     ${typography};
 
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
-    ${({ color }) => color && `color: ${variable[color]}`};
+    color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition};
 
     ${({ hover }) =>
