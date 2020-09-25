@@ -23,17 +23,18 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
     useEffect(() => {
         if (quotationRef.current) {
             const containerWidth = quotationRef.current.offsetWidth;
+            const { childElementCount } = quotationRef.current;
             let totalWidth = 0;
 
-            for (let i = 0, l = quotationRef.current.childElementCount; i < l; i += 1) {
+            for (let i = 0; i < childElementCount; i += 1) {
                 totalWidth += quotationRef.current.children[i].offsetWidth;
 
                 console.log(`totalWidth: ${i}`, quotationRef.current.children[i].offsetWidth);
             }
 
-            // Faz o cálculo do tamanho de todas as células menos 5 e mais 5 vezes o espaço entre as células,
+            // Faz o cálculo do tamanho de todas as células + espaço entre as células x a quantidade de células exceto a última,
             // tudo isso para fazer o scroll horizontal corretamente
-            totalWidth = totalWidth - 5 + 16 * 5;
+            totalWidth += 16 * (childElementCount - 1);
 
             setStateAnimationPosition(containerWidth < totalWidth ? containerWidth - totalWidth : 0);
         }
@@ -62,7 +63,7 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             display="grid"
             duration="7s"
             direction="alternate"
-            gridColumnGap={{ d: 3, md: 5 }}
+            gridColumnGap={{ d: 3, lg: 5 }}
             iterationCount="infinite"
             justifyContent="space-between"
             ref={quotationRef}
@@ -71,14 +72,14 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             {bolsa &&
                 bolsa.map((quotation) => {
                     return (
-                        <Cell gridRow={1} key={quotation.Alias}>
+                        <Cell gridRow={1} key={quotation.Alias} whiteSpace="nowrap">
                             <Svg height="14px" name={quotationSvg(quotation.Alias)} pr={1} />
 
                             <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                                 {quotation.Name.toUpperCase()}
                             </Span>
 
-                            <P fontSize="14px" whiteSpace="nowrap">
+                            <P fontSize="14px">
                                 <Span color={color} pr={1}>
                                     {quotation.Value}
                                 </Span>
@@ -92,14 +93,14 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
                 })}
 
             {cdi && (
-                <Cell gridRow={1}>
+                <Cell gridRow={1} whiteSpace="nowrap">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                         CDI
                     </Span>
 
-                    <P fontSize="14px" whiteSpace="nowrap">
+                    <P fontSize="14px">
                         <Span color={color} pr={1}>
                             {cdi.value}% a.a
                         </Span>
@@ -112,14 +113,14 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             )}
 
             {selic && (
-                <Cell gridRow={1}>
+                <Cell gridRow={1} whiteSpace="nowrap">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                         SELIC
                     </Span>
 
-                    <P fontSize="14px" whiteSpace="nowrap">
+                    <P fontSize="14px">
                         <Span color={color} pr={1}>
                             {selic.value}% a.a
                         </Span>
@@ -132,14 +133,14 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
             )}
 
             {poupanca && (
-                <Cell gridRow={1} minWidth="110px">
+                <Cell gridRow={1} whiteSpace="nowrap">
                     <Svg height="14px" name={quotationSvg()} pr={1} />
 
                     <Span color={color} fontSize="14px" fontWeight={700} verticalAlign="middle">
                         POUPANÇA
                     </Span>
 
-                    <P fontSize="14px" whiteSpace="nowrap">
+                    <P fontSize="14px">
                         <Span color={color} pr={1}>
                             {poupanca.value}% a.a
                         </Span>
