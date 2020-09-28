@@ -19,7 +19,6 @@ import { EsqueceuSenha } from './component/Page/Login/EsqueceuSenha';
 import { EsqueceuSenhaReiniciar } from './component/Page/Login/EsqueceuSenhaReiniciar';
 import { Home } from './component/Page/Home/Home';
 import { LayoutDefault } from './component/Layout/LayoutDefault';
-import { LayoutMinhaConta } from './component/Layout/LayoutMinhaConta';
 import { LayoutMinhaContaWithMenu } from './component/Layout/LayoutMinhaContaWithMenu';
 import { LayoutNoHF } from './component/Layout/LayoutNoHF';
 import { Login } from './component/Page/Login/Login';
@@ -29,7 +28,6 @@ import { Noticias } from './component/Page/Noticia/Noticias';
 
 // LAZY
 const MinhaConta = lazy(() => import('./component/Page/MinhaConta/MinhaConta'));
-const MinhaContaContato = lazy(() => import('./component/Page/MinhaConta/MinhaContaContato'));
 const MinhaContaCurso = lazy(() => import('./component/Page/MinhaConta/MinhaContaCurso'));
 const MinhaContaCursos = lazy(() => import('./component/Page/MinhaConta/MinhaContaCursos'));
 const MinhaContaEntrevista = lazy(() => import('./component/Page/MinhaConta/MinhaContaEntrevista'));
@@ -95,16 +93,10 @@ const routes = [
         path: '/login'
     },
     {
-        component: MinhaContaContato,
-        hasAuth: true,
-        layout: LayoutMinhaConta,
-        path: '/minha-conta/contato'
-    },
-    {
         breadcrumb: [{ label: 'Cursos', path: '/minha-conta/cursos' }],
         component: MinhaContaCurso,
         hasAuth: true,
-        layout: LayoutMinhaConta,
+        layout: LayoutMinhaContaWithMenu,
         path: '/minha-conta/curso/:slug'
     },
     {
