@@ -28,8 +28,6 @@ export const QuotationAnimation = ({ socketData, ...props }) => {
 
             for (let i = 0; i < childElementCount; i += 1) {
                 totalWidth += quotationRef.current.children[i].offsetWidth;
-
-                console.log(`totalWidth: ${i}`, quotationRef.current.children[i].offsetWidth);
             }
 
             // Faz o cálculo do tamanho de todas as células + espaço entre as células x a quantidade de células exceto a última,
