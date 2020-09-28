@@ -1,42 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { variable } from '../../../style/variable';
-
-export const MinhaContaMenuItemStyled = styled(NavLink)``;
-
-export const MinhaContaMenuStyled = styled.nav`
-    height: 100%;
-    width: 100%;
-
-    li {
-        transition: background-color ${variable.transition};
-
-        > a,
-        > button,
-        > p,
-        ${MinhaContaMenuItemStyled} {
-            font-weight: 700;
-            padding: 20px 20px 20px 40px;
-            text-align: left;
-            width: 100%;
-        }
-
-        svg {
-            fill: ${variable.fontColor};
-            margin-right: 16px;
-            width: 20px;
-        }
-
-        :hover {
-            background-color: ${variable.colorPrimaryHover};
-        }
-
-        .active {
-            background-color: ${variable.colorPrimary};
-        }
-    }
-`;
 
 export const MinhaContaMenuMobileStyled = styled.nav`
     background-color: ${variable.colorBlack3};
@@ -60,4 +25,76 @@ export const MinhaContaMenuMobileStyled = styled.nav`
             padding: 15px;
         }
     }
+`;
+
+export const MinhaContaMenuItemStyled = styled(NavLink)``;
+
+export const MinhaContaMenuStyled = styled.nav`
+    height: 100%;
+    width: 100%;
+
+    li {
+        > a,
+        > button,
+        > p {
+            font-weight: 700;
+            padding: 20px 20px 20px 40px;
+            text-align: left;
+            transition: background-color ${variable.transition}, padding ${variable.transition};
+            white-space: nowrap;
+            width: 100%;
+
+            > span {
+                margin-left: 16px;
+                opacity: 1;
+                transition: color ${variable.transition}, opacity ${variable.transition};
+            }
+
+            > svg {
+                fill: ${variable.fontColor};
+                transition: fill ${variable.transition};
+                width: 20px;
+            }
+
+            &:hover {
+                background-color: ${variable.colorPrimaryHover};
+
+                > span {
+                    color: ${variable.colorWhite};
+                }
+
+                > svg {
+                    fill: ${variable.colorWhite};
+                }
+            }
+
+            &.active {
+                background-color: ${variable.colorPrimary};
+
+                > span {
+                    color: ${variable.colorWhite};
+                }
+
+                > svg {
+                    fill: ${variable.colorWhite};
+                }
+            }
+        }
+    }
+
+    ${({ hide }) =>
+        hide &&
+        css`
+            li {
+                > a,
+                > button,
+                > p {
+                    padding: 20px;
+
+                    > span {
+                        opacity: 0;
+                    }
+                }
+            }
+        `};
 `;

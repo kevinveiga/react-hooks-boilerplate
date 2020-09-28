@@ -1,7 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useContext } from 'react';
 
 import { useApp } from '../../../store/app/app';
+import { MinhaContaMenuContext } from '../../../store/minhaConta/minhaContaMenuContext';
 
+import { Button } from '../../Button/Button';
 import { ModalLogout } from '../../Modal/ModalLogout';
 import { Svg } from '../../Svg/Svg';
 
@@ -14,14 +16,7 @@ import { variable } from '../../../style/variable';
 export const MinhaContaMenu = () => {
     // CONTEXT
     const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
-
-    // FUNCTION
-    const handleChangeModalLogout = useCallback(
-        (value) => () => {
-            setStateModalLogoutContext(value);
-        },
-        [setStateModalLogoutContext]
-    );
+    const { stateHideMenuContext, setStateHideMenuContext } = useContext(MinhaContaMenuContext);
 
     return (
         <>
@@ -30,9 +25,24 @@ export const MinhaContaMenu = () => {
                 display={{ d: 'none', lg: 'flex' }}
                 flexWrap="wrap"
                 minHeight={`calc(100vh - ${variable.headerHeightMobile} - ${variable.FooterAlternativeHeight})`}
-                py={5}
+                py={4}
             >
-                <MinhaContaMenuStyled>
+                <Button
+                    borderRadius="0"
+                    fontSize="12px"
+                    fontWeight="400"
+                    height="20px"
+                    marginBottom={4}
+                    marginX="auto"
+                    onClick={() => setStateHideMenuContext(!stateHideMenuContext)}
+                    textDecoration="underline"
+                    themeSize="none"
+                    themeType="none"
+                >
+                    {stateHideMenuContext ? <Svg fill="colorSecondary" name="svg-menu" /> : 'Esconder Menu'}
+                </Button>
+
+                <MinhaContaMenuStyled hide={stateHideMenuContext}>
                     <ul>
                         <li>
                             <MinhaContaMenuItemStyled to="/minha-conta/meus-dados">
@@ -49,21 +59,14 @@ export const MinhaContaMenu = () => {
                         </li>
 
                         <li>
-                            <MinhaContaMenuItemStyled to="/minha-conta/podcasts">
-                                <Svg name="svg-podcasts" />
-                                <Span>Podcasts</Span>
-                            </MinhaContaMenuItemStyled>
-                        </li>
-
-                        <li>
                             <MinhaContaMenuItemStyled to="/minha-conta/entrevistas">
                                 <Svg name="svg-entrevistas" />
-                                <Span mr={2}>Entrevistas</Span>
+                                <Span>Entrevistas</Span>
                             </MinhaContaMenuItemStyled>
                         </li>
 
                         <li>
-                            <button onClick={handleChangeModalLogout(true)}>
+                            <button onClick={() => setStateModalLogoutContext(true)}>
                                 <Svg name="svg-logout" />
                                 <Span>Logout</Span>
                             </button>
