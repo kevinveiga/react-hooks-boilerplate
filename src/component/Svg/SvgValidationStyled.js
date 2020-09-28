@@ -4,7 +4,7 @@ import { variable } from '../../style/variable';
 
 export const SvgValidationStyled = styled.svg`
     fill: ${({ invalid, valid }) => (invalid ? variable.colorAlert : valid ? variable.colorPrimaryHover : variable.colorGray)};
-    height: 12px;
+    height: 10px;
     ${({ svgPosition }) => svgPosition || 'right: 2px'};
     opacity: ${({ invalid, valid }) => (invalid || valid ? 1 : 0)};
     pointer-events: none;

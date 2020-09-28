@@ -281,7 +281,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                 title="Preencher endereço pelo cep"
                                 zIndex={1}
                             >
-                                <Svg name="svg-search" />
+                                <Svg height="14px" name="svg-search" />
                             </Button>
                         </div>
 
