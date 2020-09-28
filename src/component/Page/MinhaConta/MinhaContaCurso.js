@@ -8,7 +8,7 @@ import { useCursoApi, useCursoConteudoApi, useCursoConteudoVisualizadoApi } from
 
 import * as ACTION from '../../../store/action/action';
 import { useBreadcrumb } from '../../../store/breadcrumb/breadcrumb';
-import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
+import { MinhaContaCursoContext } from '../../../store/minhaConta/minhaContaCursoContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
 
 import { scrollTo } from '../../../util/scrollTo';

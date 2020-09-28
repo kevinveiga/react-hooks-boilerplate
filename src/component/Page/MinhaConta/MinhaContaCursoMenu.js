@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import { apiUrlCursos } from '../../../config';
 
 import * as ACTION from '../../../store/action/action';
-import { MinhaContaCursoContext } from '../../../store/minhaContaCurso/minhaContaCursoContext';
+import { MinhaContaCursoContext } from '../../../store/minhaConta/minhaContaCursoContext';
 
 import { Button } from '../../Button/Button';
 import { Label } from '../../Form/Form';
