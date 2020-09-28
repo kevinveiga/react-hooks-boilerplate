@@ -32,6 +32,8 @@ const MinhaConta = lazy(() => import('./component/Page/MinhaConta/MinhaConta'));
 const MinhaContaContato = lazy(() => import('./component/Page/MinhaConta/MinhaContaContato'));
 const MinhaContaCurso = lazy(() => import('./component/Page/MinhaConta/MinhaContaCurso'));
 const MinhaContaCursos = lazy(() => import('./component/Page/MinhaConta/MinhaContaCursos'));
+const MinhaContaEntrevista = lazy(() => import('./component/Page/MinhaConta/MinhaContaEntrevista'));
+const MinhaContaEntrevistas = lazy(() => import('./component/Page/MinhaConta/MinhaContaEntrevistas'));
 
 const routes = [
     {

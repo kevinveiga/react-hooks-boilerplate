@@ -352,7 +352,7 @@ const {
 
 #### Links externos com target="\_blank" em tags <a/>
 
--   Utilizar rel="noopener" [Link](https://desenvolvimentoparaweb.com/miscelanea/relnoopener-performance-seguranca/);
+-   Utilizar rel="noopener noreferrer" [Link](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md);
 
 #### Svg
 

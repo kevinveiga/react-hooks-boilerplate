@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { border, flexbox, layout, position, space, typography } from 'styled-system';
+import { border, flexbox, layout, position, space } from 'styled-system';
 
 import { scrollbarAlternate } from '../../../style/function';
 import { Image } from '../../../style/image';
@@ -7,10 +7,7 @@ import { variable } from '../../../style/variable';
 
 export const MinhaContaCenterStyled = styled.div`
     ${border};
-    ${flexbox};
-    ${layout};
     ${space};
-    ${typography};
 
     background-color: ${variable.colorGrayLight5};
     border-left: 1px solid ${variable.colorGrayLight2};
@@ -78,13 +75,9 @@ export const MinhaContaExibirConteudoStyled = styled.div`
 `;
 
 export const MinhaContaLeftStyled = styled.div`
-    ${border};
     ${flexbox};
     ${layout};
     ${space};
-    ${typography};
 
-    border-right: 1px solid ${variable.colorGrayLight2};
-    box-shadow: 3px 0 6px 0 ${variable.colorBlackTransparent1};
     z-index: 2;
 `;

@@ -93,16 +93,12 @@ export const Normalize = createGlobalStyle`
         appearance: none;
         background-color: transparent;
         cursor: pointer;
-        font-size: 16px;
         font-family: ${variable.fontPrimary};
+        font-size: ${variable.fontSize};
         letter-spacing: ${variable.letterSpacing};
         overflow: hidden;
         text-align: center;
         text-decoration: none;
-
-        @media (min-width: ${variable.lg}) {
-            font-size: 14px;
-        }
     }
 
     /* FORM */
@@ -236,7 +232,6 @@ export const Normalize = createGlobalStyle`
         overflow: hidden;
         position: relative;
         stroke: transparent;
-        transition: fill ${variable.transition}, stroke ${variable.transition};
         vertical-align: middle;
         width: auto;
     }

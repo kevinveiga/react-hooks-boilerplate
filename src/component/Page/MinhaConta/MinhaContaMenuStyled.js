@@ -1,17 +1,39 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { variable } from '../../../style/variable';
 
+export const MinhaContaMenuItemStyled = styled(NavLink)``;
+
 export const MinhaContaMenuStyled = styled.nav`
     height: 100%;
-    width: auto;
+    width: 100%;
 
     li {
+        transition: background-color ${variable.transition};
+
         > a,
         > button,
-        > p {
+        > p,
+        ${MinhaContaMenuItemStyled} {
             font-weight: 700;
-            padding: 15px 15px 15px 0;
+            padding: 20px 20px 20px 40px;
+            text-align: left;
+            width: 100%;
+        }
+
+        svg {
+            fill: ${variable.fontColor};
+            margin-right: 16px;
+            width: 20px;
+        }
+
+        :hover {
+            background-color: ${variable.colorPrimaryHover};
+        }
+
+        .active {
+            background-color: ${variable.colorPrimary};
         }
     }
 `;
@@ -31,7 +53,8 @@ export const MinhaContaMenuMobileStyled = styled.nav`
 
     li {
         > a,
-        > button {
+        > button,
+        > p {
             color: ${variable.colorWhite};
             font-weight: 700;
             padding: 15px;
