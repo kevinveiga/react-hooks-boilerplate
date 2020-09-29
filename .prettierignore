@@ -58,6 +58,3 @@ yarn.lock*
 # Test
 /coverage
 .eslintcache
-
-# Gitkeep
-!**/.gitkeep

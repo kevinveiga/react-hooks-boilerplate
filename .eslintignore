@@ -1,0 +1,20 @@
+# Generated
+/public/asset
+
+# IDE and Editors
+/.vscode
+/nbproject
+/packages/api/etc
+
+# Laravel 5.7.*
+/public/hot
+/public/storage
+/public/uploads
+/vendor
+
+# Node_modules
+/node_modules
+
+# Test
+/coverage
+.eslintcache
