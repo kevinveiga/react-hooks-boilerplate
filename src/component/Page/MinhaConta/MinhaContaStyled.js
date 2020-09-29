@@ -12,7 +12,7 @@ export const MinhaContaCenterStyled = styled.div`
     background-color: ${variable.colorGrayLight5};
     border-left: 1px solid ${variable.colorGrayLight2};
     border-right: 1px solid ${variable.colorGrayLight2};
-    min-height: calc(100vh - ${variable.headerHeightMobile} - ${variable.FooterAlternativeHeight});
+    height: 100%;
     z-index: 1;
 `;
 
