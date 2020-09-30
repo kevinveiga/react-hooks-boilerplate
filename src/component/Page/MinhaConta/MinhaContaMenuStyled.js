@@ -7,7 +7,7 @@ export const MinhaContaMenuMobileStyled = styled.nav`
     background-color: ${variable.colorBlack3};
     height: calc(100vh - ${variable.headerHeightMobile});
     overflow-y: auto;
-    padding-top: 50px;
+    padding: 16px 0 50px 0;
     position: fixed;
     right: ${({ active }) => (active ? 0 : '-100%')};
     text-align: center;
