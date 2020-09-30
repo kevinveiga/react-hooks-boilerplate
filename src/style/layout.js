@@ -16,7 +16,7 @@ export const Main = styled.main`
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorWhite)};
     height: auto;
     width: 100%;
-    z-index: 0;
+    z-index: 1;
 
     ${({ type }) =>
         type === 'LayoutDefault' &&
