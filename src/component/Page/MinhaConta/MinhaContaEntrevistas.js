@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 
 import parse from 'html-react-parser';
 
-import { apiUrlEntrevistas, apiUrlEntrevistasBusca, apiUrlEntrevistaTags } from '../../../config';
+import { apiUrlEntrevistas, apiUrlEntrevistasBusca } from '../../../config';
 
 import { useEntrevistasApi, useEntrevistaPesquisaApi } from '../../../service/entrevista';
-// import { usePesquisaTagsApi, useTagsApi } from '../../../service/tag';
 
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
@@ -34,11 +33,8 @@ const MinhaContaEntrevistas = () => {
     // API
     const [stateEntrevistas, setStateEntrevistaData] = useEntrevistasApi({ params: { page: 1 }, url: apiUrlEntrevistas });
     const [stateEntrevistaPesquisa, setStateEntrevistaPesquisaData] = useEntrevistaPesquisaApi(null);
-    // const [stateTags] = useTagsApi({ url: apiUrlEntrevistaTags });
-    // const [statePesquisaTags, setStatePesquisaTagsData] = usePesquisaTagsApi(null);
 
     const entrevistasLength = stateEntrevistas.data && stateEntrevistas.data.data ? stateEntrevistas.data.data.length : 0;
-    // const entrevistasPesquisaTagsLength = statePesquisaTags ? Object.keys(statePesquisaTags.data).length : 0;
     const entrevistasPaginationLength = entrevistasLength > 0 ? Object.keys(stateEntrevistas.data.meta).length : 0;
 
     // Verificação se todos os dados de API estão carregados
@@ -56,29 +52,18 @@ const MinhaContaEntrevistas = () => {
     /* eslint-enable react-hooks/exhaustive-deps */
 
     // DATA
-    const entrevistas =
-        (stateEntrevistaPesquisa && stateEntrevistaPesquisa.data) ||
-        // (entrevistasPesquisaTagsLength && statePesquisaTags.data) ||
-        (entrevistasLength > 0 && stateEntrevistas.data.data);
+    const entrevistas = (stateEntrevistaPesquisa && stateEntrevistaPesquisa.data) || (entrevistasLength > 0 && stateEntrevistas.data.data);
     const entrevistasPagination = entrevistasPaginationLength > 0 && stateEntrevistas.data.meta && stateEntrevistas.data.meta.pagination;
 
     return (
         <>
-            <PesquisaContext.Provider
-                value={{
-                    // stateTagsContext: stateTags,
-                    // setStatePesquisaTagsDataContext: setStatePesquisaTagsData,
-                    setStatePesquisaDataContext: setStateEntrevistaPesquisaData
-                }}
-            >
+            <PesquisaContext.Provider value={{ setStatePesquisaDataContext: setStateEntrevistaPesquisaData }}>
                 <MinhaContaCenterStyled p={{ d: 3, sm: 5 }}>
                     {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" obj={{ hoverColor: 'colorWhite' }} />}
 
                     <PesquisaForm
                         apiUrl={apiUrlEntrevistasBusca}
-                        apiUrlTag={apiUrlEntrevistaTags}
                         obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
-                        // tags={stateTags.data}
                     />
 
                     <Flex display="flex" flexWrap="wrap">

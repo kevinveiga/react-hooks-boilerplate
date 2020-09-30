@@ -12,6 +12,10 @@ export const apiUrlContato = `${apiUrl}/contato`;
 
 export const apiUrlCursos = `${apiUrl}/cursos`;
 
+export const apiUrlEntrevistas = `${apiUrl}/entrevistas`;
+
+export const apiUrlEntrevistasBusca = `${apiUrlEntrevistas}/busca`;
+
 export const apiUrlEsqueceuSenha = `${apiUrl}/password`;
 
 export const apiUrlFormasPagamento = 'http://localhost:3000/src/service/formasPagamento.json';
