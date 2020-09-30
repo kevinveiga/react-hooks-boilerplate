@@ -31,7 +31,7 @@ export const MinhaContaMenuItemStyled = styled(NavLink)``;
 
 export const MinhaContaMenuStyled = styled.nav`
     height: 100%;
-    width: 100%;
+    width: auto;
 
     li {
         > a,

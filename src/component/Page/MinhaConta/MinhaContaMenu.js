@@ -22,6 +22,7 @@ export const MinhaContaMenu = () => {
             <MinhaContaLeftStyled
                 alignItems="flex-start"
                 display={{ d: 'none', lg: 'flex' }}
+                flexDirection="column"
                 flexWrap="wrap"
                 minHeight={`calc(100vh - ${variable.headerHeightMobile} - ${variable.FooterAlternativeHeight})`}
                 py={4}
@@ -46,6 +47,7 @@ export const MinhaContaMenu = () => {
                         <li>
                             <MinhaContaMenuItemStyled to="/minha-conta/meus-dados">
                                 <Svg name="svg-minha-conta" />
+
                                 <Span>Minha Conta</Span>
                             </MinhaContaMenuItemStyled>
                         </li>
@@ -53,6 +55,7 @@ export const MinhaContaMenu = () => {
                         <li>
                             <MinhaContaMenuItemStyled to="/minha-conta/cursos">
                                 <Svg name="svg-cursos" />
+
                                 <Span>Cursos</Span>
                             </MinhaContaMenuItemStyled>
                         </li>
@@ -60,6 +63,7 @@ export const MinhaContaMenu = () => {
                         <li>
                             <MinhaContaMenuItemStyled to="/minha-conta/entrevistas">
                                 <Svg name="svg-entrevistas" />
+
                                 <Span>Entrevistas</Span>
                             </MinhaContaMenuItemStyled>
                         </li>
@@ -67,6 +71,7 @@ export const MinhaContaMenu = () => {
                         <li>
                             <button onClick={() => setStateModalLogoutContext(true)}>
                                 <Svg name="svg-logout" />
+
                                 <Span>Logout</Span>
                             </button>
                         </li>
