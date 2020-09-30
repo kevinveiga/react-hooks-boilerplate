@@ -56,8 +56,8 @@ export const MinhaContaMenuStyled = styled.nav`
                 width: 20px;
             }
 
-            &:hover {
-                background-color: ${variable.colorPrimaryHover};
+            &.active {
+                background-color: ${variable.colorPrimary};
 
                 > span {
                     color: ${variable.colorWhite};
@@ -68,8 +68,8 @@ export const MinhaContaMenuStyled = styled.nav`
                 }
             }
 
-            &.active {
-                background-color: ${variable.colorPrimary};
+            &:hover {
+                background-color: ${variable.colorPrimaryHover};
 
                 > span {
                     color: ${variable.colorWhite};
