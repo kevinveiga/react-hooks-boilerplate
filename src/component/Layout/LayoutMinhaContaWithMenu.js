@@ -1,7 +1,9 @@
-import React, { lazy, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 
 import { BreadcrumbProvider } from '../../store/breadcrumb/breadcrumb';
 import { MinhaContaMenuContext } from '../../store/minhaConta/minhaContaMenuContext';
+
+import { getStorage, setStorage } from '../../util/storage';
 
 import { HeaderAlternative } from '../Header/HeaderAlternative';
 import { ComponentLazyLoad } from '../LazyLoad/ComponentLazyLoad';
@@ -16,7 +18,13 @@ const FooterAlternative = lazy(() => import('../Footer/FooterAlternative'));
 
 export const LayoutMinhaContaWithMenu = ({ children }) => {
     // ACTION
-    const [stateHideMenu, setStateHideMenu] = useState(false);
+    const [stateHideMenu, setStateHideMenu] = useState(getStorage('minhacontamenuhide') ? JSON.parse(getStorage('minhacontamenuhide')) : false);
+
+    useEffect(() => {
+        setStorage('minhacontamenuhide', JSON.stringify(stateHideMenu));
+
+        return undefined;
+    }, [stateHideMenu]);
 
     return (
         <>
