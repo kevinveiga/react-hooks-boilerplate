@@ -19,7 +19,7 @@ import { BgImageLazyLoad } from '../../LazyLoad/BgImageLazyLoad';
 import { LinkTo } from '../../Link/LinkTo';
 import { Svg } from '../../Svg/Svg';
 
-import { LiveBadgeStyled } from '../../Badge/BadgeStyled';
+import { StatusStreamingBadgeStyled } from '../../Badge/BadgeStyled';
 import { MinhaContaCenterStyled } from './MinhaContaStyled';
 
 import { Box, Flex } from '../../../style/flex';
@@ -116,9 +116,11 @@ const MinhaContaEntrevistas = () => {
                                                         </Box>
                                                     )}
 
-                                                    {entrevista.batepapo && (
+                                                    {entrevista.status_streaming && entrevista.status_streaming !== 'Não' && (
                                                         <Box py="10px" width="100%">
-                                                            <LiveBadgeStyled>Ao Vivo</LiveBadgeStyled>
+                                                            <StatusStreamingBadgeStyled type={entrevista.status_streaming}>
+                                                                {entrevista.status_streaming}
+                                                            </StatusStreamingBadgeStyled>
                                                         </Box>
                                                     )}
                                                 </Box>

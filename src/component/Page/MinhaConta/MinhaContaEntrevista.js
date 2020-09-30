@@ -37,7 +37,7 @@ const MinhaContaEntrevista = ({ breadcrumb, match }) => {
 
     // Redirecionamento temporário
     if (stateEntrevista.isError == true) {
-        window.location.assign('/');
+        window.location.assign('/minha-conta/entrevistas');
     }
 
     // Verificação se todos os dados de API estão carregados
@@ -100,8 +100,8 @@ const MinhaContaEntrevista = ({ breadcrumb, match }) => {
                         <Box mb={3} overflowY="hidden" width="100%">
                             <Grid
                                 display="grid"
-                                gridTemplateColumns={{ d: '1fr', lg: entrevista.batepapo ? '2fr 1fr' : '1fr' }}
-                                gridTemplateRows={{ d: entrevista.batepapo ? '1fr 400px' : '1fr', lg: '1fr' }}
+                                gridTemplateColumns={{ d: '1fr', lg: entrevista.status_streaming === 'Ao vivo' ? '2fr 1fr' : '1fr' }}
+                                gridTemplateRows={{ d: entrevista.status_streaming === 'Ao vivo' ? '1fr 400px' : '1fr', lg: '1fr' }}
                                 mb={3}
                                 mt={3}
                             >
@@ -113,7 +113,7 @@ const MinhaContaEntrevista = ({ breadcrumb, match }) => {
                                     </ErrorBoundary>
                                 </Cell>
 
-                                {entrevista.batepapo && (
+                                {entrevista.status_streaming === 'Ao vivo' && (
                                     <Cell>
                                         <YoutubeChat conteudo={entrevista} />
                                     </Cell>
