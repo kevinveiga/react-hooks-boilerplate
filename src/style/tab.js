@@ -91,8 +91,8 @@ export const TabLabel = styled.label`
     line-height: 40px;
     margin-right: ${variable.spacingSM};
     min-width: 100px;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 25px;
+    padding-right: 25px;
     text-align: center;
     text-transform: uppercase;
     transition: background-color ${variable.transition}, border ${variable.transition}, color ${variable.transition};

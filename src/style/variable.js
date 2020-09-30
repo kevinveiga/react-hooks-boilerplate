@@ -6,6 +6,7 @@ export const variable = {
     timing: 'ease-in-out',
     timeout1s: '1000',
     timeout3s: '3000',
+    timeout5s: '5000',
     transition: '250ms ease-in-out',
     transitionFast: '150ms ease-in-out',
     transitionSlow: '650ms ease-in-out',
@@ -13,7 +14,7 @@ export const variable = {
     // Border
     border: '1px solid rgba(225, 225, 225, 1)',
     borderColor: 'rgba(225, 225, 225, 1)',
-    borderRadius: '0',
+    borderRadius: '3px',
 
     // Color
     colorBlack: 'rgba(0, 0, 0, 1)',
@@ -64,20 +65,19 @@ export const variable = {
     fontPrimary: '"Open Sans", Helvetica',
     fontSize: '16px',
     letterSpacing: '2px',
-    lineHeight: '1.5',
+    lineHeight: '1.4',
 
     // Forms
     allButtons: 'button, input[type="button"], input[type="reset"], input[type="submit"]',
     allTextInputs: 'input[type="text"], input[type="password"], select[multiple="multiple"], textarea',
-    buttonHeight: '40px',
-    buttonPadding: '25px',
+    buttonHeight: '50px',
+    buttonPadding: '1.5vw',
     formBoxShadow: 'inset 0 0 0 1px rgba(225, 225, 225, 1)',
     formBoxShadowFocus: 'inset 0 0 0 2px rgba(118, 117, 117, 1)',
     formBoxShadowError: 'inset 0 0 0 2px rgba(220, 75, 57, 1)',
-    inputHeight: '65px',
+    inputHeight: '50px',
     inputMargin: '10px',
-    inputPadding: '15px',
-    inputPlaceholderColor: 'rgba(118, 117, 117, 1)',
+    inputPadding: '12px',
 
     // Media Screen
     xs: '540px',
