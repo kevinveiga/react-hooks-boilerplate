@@ -6,7 +6,6 @@ import { PesquisaContext } from '../../store/pesquisa/pesquisaContext';
 
 import { Button } from '../Button/Button';
 import { Input } from './Form';
-// import { SelectTags } from '../Tags/SelectTags';
 import { Svg } from '../Svg/Svg';
 
 import { FormStyled } from './FormStyled';

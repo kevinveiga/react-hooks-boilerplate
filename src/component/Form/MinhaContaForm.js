@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -7,7 +7,6 @@ import { apiUrlCep, apiUrlPerfil, errorMsgDefault } from '../../config';
 
 import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
-import { customMaskRegex } from '../../util/customMaskRegex';
 import { customValidate } from '../../util/customValidate';
 import { formatCepSet } from '../../util/formatData';
 import { formatFormDataGet, formatFormDataSet } from '../../util/formatFormData';
@@ -16,7 +15,7 @@ import { scrollTo } from '../../util/scrollTo';
 import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
-import { InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select, SelectValidation } from './Form';
+import { Input, InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select, SelectValidation } from './Form';
 import { ModalMessage } from '../Modal/ModalMessage';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
@@ -27,65 +26,41 @@ import { Cell, Grid } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props }) => {
+    // VARIABLE
+    const axiosInstance = axios.create();
+
     // ACTION
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
-    // const [stateViewPassword, setStateViewPassword] = useState(false);
-
-    useEffect(() => {
-        register('data_nascimento', { ...customValidate.date });
-        register('email', { ...customValidate.email, ...customValidate.require });
-        register('endereco_cep', { ...customValidate.cep, ...customValidate.require });
-        register('endereco_cidade', { ...customValidate.require });
-        register('endereco_complemento');
-        register('endereco_logradouro', { ...customValidate.require });
-        register('endereco_numero', { ...customValidate.number });
-        register('nome', { ...customValidate.name, ...customValidate.require });
-        // register('password', { ...customValidate.password, ...customValidate.require });
-        register('receber_avisos_descontos_de_cursos');
-        register('receber_curadoria_conteudos_noticias');
-        register('sexo');
-        register('telefone', { ...customValidate.phone, ...customValidate.require });
-
-        return () => {
-            unregister('data_nascimento');
-            unregister('email');
-            unregister('endereco_cep');
-            unregister('endereco_cidade');
-            unregister('endereco_complemento');
-            unregister('endereco_logradouro');
-            unregister('endereco_numero');
-            unregister('nome');
-            // unregister('password');
-            unregister('receber_avisos_descontos_de_cursos');
-            unregister('receber_curadoria_conteudos_noticias');
-            unregister('sexo');
-            unregister('telefone');
-        };
-    }, [register, unregister]);
 
     // FUNCTION
     const handleFindAddress = useCallback(
         () => () => {
-            const selectElement = document.querySelector('input[name="endereco_cep"]');
+            const element = document.querySelector('input[name="endereco_cep"]');
 
-            if (selectElement.value) {
-                const formatedCep = formatCepSet(selectElement.value);
+            if (element.value) {
+                const formatedCep = formatCepSet(element.value);
 
                 const fetchData = async () => {
                     try {
-                        const result = await axios.get(`${apiUrlCep}/${formatedCep}`);
+                        const result = await axiosInstance.get(`${apiUrlCep}/${formatedCep}`);
 
-                        setFormValue(
-                            formatFormDataGet({
-                                endereco_cidade: result.data.address.city.name,
-                                endereco_logradouro: `${result.data.address.streetSuffix} ${result.data.address.street}`,
-                                endereco_uf: result.data.address.state.toLowerCase()
-                            }),
-                            formId,
-                            setValue
-                        );
+                        if (result.data && result.status === 200) {
+                            setFormValue(
+                                formatFormDataGet({
+                                    endereco_cidade: result.data.address.city.name,
+                                    endereco_logradouro: `${result.data.address.streetSuffix} ${result.data.address.street}`,
+                                    endereco_uf: result.data.address.state.toLowerCase()
+                                }),
+                                formId,
+                                setValue
+                            );
+                        } else {
+                            setStateModalMessage({ backgroundColor: 'colorRed', text: 'Erro ao buscar pelo CEP!' });
+
+                            console.error('result error: ', result);
+                        }
                     } catch (error) {
-                        setError('invalid', { type: 'manual', message: errorMsgDefault });
+                        setStateModalMessage({ backgroundColor: 'colorRed', text: 'CEP inválido!' });
 
                         console.error('result: ', error);
                     }
@@ -94,63 +69,30 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                 fetchData();
             }
         },
-        [formId, setError, setValue]
-    );
-
-    const handleScrollTo = useCallback(
-        () => () => {
-            const anchorElement =
-                (document.querySelector('input[data-invalid="true"]') && 'input[data-invalid="true"]') ||
-                (document.querySelector(`#${formId}`) && `#${formId}`);
-
-            scrollTo(anchorElement, true);
-        },
-        [formId]
-    );
-
-    const handleSetValue = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-        },
-        [setValue]
-    );
-
-    const handleSetValueChecked = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.checked);
-        },
-        [setValue]
-    );
-
-    const handleValidation = useCallback(
-        () => (element) => {
-            setValue(element.target.name, element.target.value);
-            triggerValidation([element.target.name]);
-        },
-        [setValue, triggerValidation]
+        [axiosInstance, formId, setStateModalMessage, setValue]
     );
 
     // FORM
     const {
+        control,
         errors,
         formState: { touched },
         handleSubmit,
-        register,
         setError,
-        setValue,
-        triggerValidation,
-        unregister
+        setValue
     } = useForm({
         defaultValues: formatFormDataGet(data),
         mode: 'onChange'
     });
 
-    // Valores inicias dos inputs
-    useEffect(() => {
-        setFormValue(formatFormDataGet(data), formId);
+    const onError = (formError) => {
+        const inputName = Object.keys(formError).length && Object.keys(formError)[0];
 
-        return undefined;
-    }, [data, formId]);
+        const anchorElement =
+            (document.getElementsByName(inputName) && `input[name="${inputName}"]`) || (document.querySelector(`#${formId}`) && `#${formId}`);
+
+        scrollTo(anchorElement, true);
+    };
 
     const onSubmit = (formData) => {
         const fetchData = async () => {
@@ -183,7 +125,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
 
     return (
         <>
-            <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
+            <FormStyled id={formId} onSubmit={handleSubmit(onSubmit, onError)}>
                 <Grid
                     display="grid"
                     gridColumnGap={5}
@@ -202,15 +144,11 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Nome completo" />
 
                         <div>
-                            <InputValidation
-                                error={errors.nome}
-                                maxLength="50"
+                            <Controller
+                                as={<InputValidation error={errors.nome} maxLength="50" placeholder="Nome" pr={4} touched={touched} {...props} />}
+                                control={control}
                                 name="nome"
-                                onChange={handleValidation()}
-                                placeholder="Nome"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.name, ...customValidate.require }}
                             />
                         </div>
 
@@ -221,15 +159,11 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="E-mail" />
 
                         <div>
-                            <InputValidation
-                                error={errors.email}
-                                maxLength="50"
+                            <Controller
+                                as={<InputValidation error={errors.email} maxLength="50" placeholder="E-mail" pr={4} touched={touched} {...props} />}
+                                control={control}
                                 name="email"
-                                onChange={handleValidation()}
-                                placeholder="E-mail"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.email, ...customValidate.require }}
                             />
                         </div>
 
@@ -240,15 +174,28 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Celular" />
 
                         <div>
-                            <InputMaskValidation
-                                error={errors.telefone}
-                                mask={customMaskRegex.phone}
+                            <Controller
+                                render={({ name, onBlur, onChange, value }) => {
+                                    return (
+                                        <InputMaskValidation
+                                            error={errors.telefone}
+                                            format="(##) #####-####"
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onValueChange={(values) => {
+                                                onChange(values.value);
+                                            }}
+                                            placeholder="Celular"
+                                            pr={4}
+                                            touched={touched}
+                                            value={value}
+                                            {...props}
+                                        />
+                                    );
+                                }}
+                                control={control}
                                 name="telefone"
-                                onChange={handleValidation()}
-                                placeholder="Telefone"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.cellphone, ...customValidate.require }}
                             />
                         </div>
 
@@ -259,23 +206,35 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="CEP" />
 
                         <div>
-                            <InputMaskValidation
-                                error={errors.endereco_cep}
-                                mask={customMaskRegex.cep}
+                            <Controller
+                                render={({ name, onBlur, onChange, value }) => {
+                                    return (
+                                        <InputMaskValidation
+                                            error={errors.endereco_cep}
+                                            format="#####-###"
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onValueChange={(values) => {
+                                                onChange(values.value);
+                                            }}
+                                            placeholder="00000-000"
+                                            pr={4}
+                                            touched={touched}
+                                            value={value}
+                                            {...props}
+                                        />
+                                    );
+                                }}
+                                control={control}
                                 name="endereco_cep"
-                                onBlur={handleValidation()}
-                                onChange={handleValidation()}
-                                placeholder="00000-000"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.cep, ...customValidate.require }}
                             />
 
                             <Button
-                                bottom="17px"
-                                left="87px"
+                                bottom="10px"
                                 onClick={handleFindAddress()}
                                 position="absolute"
+                                right="20px"
                                 themeSize="none"
                                 themeType="none"
                                 title="Preencher endereço pelo cep"
@@ -292,15 +251,20 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Endereço" />
 
                         <div>
-                            <InputValidation
-                                error={errors.endereco_logradouro}
-                                maxLength="100"
+                            <Controller
+                                as={
+                                    <InputValidation
+                                        error={errors.endereco_logradouro}
+                                        maxLength="100"
+                                        placeholder="Rua do endereço"
+                                        pr={4}
+                                        touched={touched}
+                                        {...props}
+                                    />
+                                }
+                                control={control}
                                 name="endereco_logradouro"
-                                onChange={handleValidation()}
-                                placeholder="Rua do endereço"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.require }}
                             />
                         </div>
 
@@ -311,16 +275,29 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Nº" />
 
                         <div>
-                            <InputMaskValidation
-                                error={errors.endereco_numero}
-                                mask={Number}
-                                maxLength="5"
+                            <Controller
+                                render={({ name, onBlur, onChange, value }) => {
+                                    return (
+                                        <InputMaskValidation
+                                            decimalScale={5}
+                                            decimalSeparator=""
+                                            error={errors.endereco_numero}
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onValueChange={(values) => {
+                                                onChange(values.formattedValue);
+                                            }}
+                                            placeholder="Número do endereço"
+                                            pr={4}
+                                            touched={touched}
+                                            value={value}
+                                            {...props}
+                                        />
+                                    );
+                                }}
+                                control={control}
                                 name="endereco_numero"
-                                onChange={handleValidation()}
-                                placeholder="Número do endereço"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.number, ...customValidate.require }}
                             />
                         </div>
 
@@ -331,34 +308,32 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Complemento" />
 
                         <div>
-                            <InputValidation
-                                error={errors.endereco_complemento}
-                                maxLength="100"
+                            <Controller
+                                as={<Input maxLength="100" placeholder="Complemento do endereço" pr={4} {...props} />}
+                                control={control}
                                 name="endereco_complemento"
-                                onChange={handleValidation()}
-                                placeholder="Complemento do endereço"
-                                pr={4}
-                                touched={touched}
-                                {...props}
                             />
                         </div>
-
-                        {errors.endereco_complemento && <InvalidInputMessageStyled>{errors.endereco_complemento.message}</InvalidInputMessageStyled>}
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
                         <Label color="colorGray2" mb="-15px" text="Cidade" />
 
                         <div>
-                            <InputValidation
-                                error={errors.endereco_cidade}
-                                maxLength="50"
+                            <Controller
+                                as={
+                                    <InputValidation
+                                        error={errors.endereco_cidade}
+                                        maxLength="50"
+                                        placeholder="Cidade"
+                                        pr={4}
+                                        touched={touched}
+                                        {...props}
+                                    />
+                                }
+                                control={control}
                                 name="endereco_cidade"
-                                onChange={handleValidation()}
-                                placeholder="Cidade"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.require }}
                             />
                         </div>
 
@@ -369,37 +344,57 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Estado" />
 
                         <div>
-                            <SelectValidation
-                                error={errors.endereco_uf}
+                            <Controller
+                                as={
+                                    <SelectValidation
+                                        error={errors.endereco_uf}
+                                        obj={{
+                                            color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                            colorLine: 'colorPrimary',
+                                            fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                        }}
+                                        touched={touched}
+                                        {...props}
+                                    >
+                                        <OptionUF />
+                                    </SelectValidation>
+                                }
+                                control={control}
                                 name="endereco_uf"
-                                obj={{
-                                    color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
-                                    colorLine: 'colorPrimary',
-                                    fontWeight: touched['endereco_uf'] ? '700' : '400'
-                                }}
-                                onChange={handleSetValue()}
-                                ref={register({ ...customValidate.require })}
-                                touched={touched}
-                                {...props}
-                            >
-                                <OptionUF />
-                            </SelectValidation>
+                                rules={{ ...customValidate.require }}
+                            />
                         </div>
+
+                        {errors.endereco_uf && <InvalidInputMessageStyled>{errors.endereco_uf.message}</InvalidInputMessageStyled>}
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
                         <Label color="colorGray2" mb="-15px" text="Data de Nascimento" />
 
                         <div>
-                            <InputMaskValidation
-                                error={errors.data_nascimento}
-                                mask={customMaskRegex.date}
+                            <Controller
+                                render={({ name, onBlur, onChange, value }) => {
+                                    return (
+                                        <InputMaskValidation
+                                            error={errors.data_nascimento}
+                                            format="##/##/####"
+                                            mask={['D', 'D', 'M', 'M', 'Y', 'Y', 'Y', 'Y']}
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onValueChange={(values) => {
+                                                onChange(values.value);
+                                            }}
+                                            placeholder="dd/mm/aaaa"
+                                            pr={4}
+                                            touched={touched}
+                                            value={value}
+                                            {...props}
+                                        />
+                                    );
+                                }}
+                                control={control}
                                 name="data_nascimento"
-                                onChange={handleValidation()}
-                                placeholder="dd/mm/aaaa"
-                                pr={4}
-                                touched={touched}
-                                {...props}
+                                rules={{ ...customValidate.date }}
                             />
                         </div>
 
@@ -410,81 +405,90 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         <Label color="colorGray2" mb="-15px" text="Sexo" />
 
                         <div>
-                            <Select
+                            <Controller
+                                as={
+                                    <Select
+                                        obj={{
+                                            color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                            colorLine: 'colorPrimary',
+                                            fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                        }}
+                                        {...props}
+                                    >
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                    </Select>
+                                }
+                                control={control}
                                 name="sexo"
-                                obj={{
-                                    color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
-                                    colorLine: 'colorPrimary',
-                                    fontWeight: touched['endereco_uf'] ? '700' : '400'
-                                }}
-                                onChange={handleSetValue()}
-                                {...props}
-                            >
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                            </Select>
+                            />
                         </div>
                     </Cell>
 
-                    {/* <Cell gridColumn={{ d: '1', md: '1 / span 2' }}>
-                        <Label color="colorGray2" mb="-15px" text="Senha" />
+                    <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
+                        <Label color="colorGray2" mb="-15px" text="Código XP" />
 
                         <div>
-                            <InputValidation
-                                error={errors.password}
-                                maxLength="20"
-                                name="password"
-                                onChange={handleValidation()}
-                                placeholder="password"
-                                pr={4}
-                                touched={touched}
-                                type={stateViewPassword ? 'text' : 'password'}
-                                {...props}
-                            />
-
-                            <Svg bottom="10px" height="20px" name={stateViewPassword ? 'svg-no-view' : 'svg-view'} onClick={() => setStateViewPassword(!stateViewPassword)} position="absolute" right="25px" zIndex={1} />
+                            <Controller as={<Input maxLength="10" pr={4} {...props} />} control={control} name="codigo_xp" />
                         </div>
-
-                        {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
-                    </Cell> */}
+                    </Cell>
 
                     <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <P color="colorBlack3" fontWeight="700" mb={2}>
                             Notificação de e-mail
                         </P>
 
-                        <InputCheckboxRadio
-                            color="colorGray2"
-                            id="receber_avisos_descontos_de_cursos"
-                            name="receber_avisos_descontos_de_cursos"
-                            onChange={handleSetValueChecked()}
-                        >
-                            <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
-                                Desejo receber avisos e descontos de cursos
-                            </Span>
-                        </InputCheckboxRadio>
+                        <div>
+                            <Controller
+                                render={({ name, onBlur, onChange, value }) => {
+                                    return (
+                                        <InputCheckboxRadio
+                                            checked={data.receber_avisos_descontos_de_cursos}
+                                            color="colorGray2"
+                                            id="receber_avisos_descontos_de_cursos"
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onChange={(e) => onChange(e.target.checked)}
+                                            value={value}
+                                        >
+                                            <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
+                                                Desejo receber avisos e descontos de cursos
+                                            </Span>
+                                        </InputCheckboxRadio>
+                                    );
+                                }}
+                                control={control}
+                                name="receber_avisos_descontos_de_cursos"
+                            />
+                        </div>
 
-                        <InputCheckboxRadio
-                            color="colorGray2"
-                            id="receber_curadoria_conteudos_noticias"
-                            name="receber_curadoria_conteudos_noticias"
-                            onChange={handleSetValueChecked()}
-                        >
-                            <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
-                                Desejo receber a curadoria de conteúdos e notícias
-                            </Span>
-                        </InputCheckboxRadio>
+                        <div>
+                            <Controller
+                                render={({ name, onBlur, onChange, value }) => {
+                                    return (
+                                        <InputCheckboxRadio
+                                            checked={data.receber_curadoria_conteudos_noticias}
+                                            color="colorGray2"
+                                            id="receber_curadoria_conteudos_noticias"
+                                            name={name}
+                                            onBlur={onBlur}
+                                            onChange={(e) => onChange(e.target.checked)}
+                                            value={value}
+                                        >
+                                            <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
+                                                Desejo receber a curadoria de conteúdos e notícias
+                                            </Span>
+                                        </InputCheckboxRadio>
+                                    );
+                                }}
+                                control={control}
+                                name="receber_curadoria_conteudos_noticias"
+                            />
+                        </div>
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <Button
-                            fontSize={{ d: '16px', sm: '18px' }}
-                            height="60px"
-                            mx="auto"
-                            onClick={handleScrollTo()}
-                            text="Salvar"
-                            typeButton="submit"
-                        />
+                        <Button fontSize={{ d: '16px', sm: '18px' }} height="60px" mx="auto" text="Salvar" typeButton="submit" />
                     </Cell>
                 </Grid>
             </FormStyled>

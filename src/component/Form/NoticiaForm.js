@@ -52,36 +52,6 @@ export const NoticiaForm = memo(({ ...props }) => {
         };
 
         fetchData();
-
-        // const arrayOfObjects = [];
-
-        // Object.keys(formData).map((key) => {
-        //     const currentObject = formData[key];
-
-        //     const newObject = {
-        //         name: key,
-        //         value: currentObject
-        //     };
-
-        //     return arrayOfObjects.push(newObject);
-        // });
-
-        // const titleObj = {
-        //     name: 'identificador',
-        //     value: 'Solicitou contato'
-        // };
-
-        // const tokenObj = {
-        //     name: 'token_rdstation',
-        //     value: 'a2355c67a1ed194cc301e2c0edf6495e'
-        // };
-
-        // arrayOfObjects.push(titleObj);
-        // arrayOfObjects.push(tokenObj);
-
-        // RdIntegration.post(arrayOfObjects, () => {
-        //     setStateRetornoForm(true);
-        // });
     };
 
     return (
