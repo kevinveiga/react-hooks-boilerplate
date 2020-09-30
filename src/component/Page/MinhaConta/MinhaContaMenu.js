@@ -4,7 +4,6 @@ import { useApp } from '../../../store/app/app';
 import { MinhaContaMenuContext } from '../../../store/minhaConta/minhaContaMenuContext';
 
 import { Button } from '../../Button/Button';
-import { ModalLogout } from '../../Modal/ModalLogout';
 import { Svg } from '../../Svg/Svg';
 
 import { MinhaContaMenuItemStyled, MinhaContaMenuStyled } from './MinhaContaMenuStyled';
@@ -15,7 +14,7 @@ import { variable } from '../../../style/variable';
 
 export const MinhaContaMenu = () => {
     // CONTEXT
-    const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
+    const { setStateModalLogoutContext } = useApp();
     const { stateHideMenuContext, setStateHideMenuContext } = useContext(MinhaContaMenuContext);
 
     return (
@@ -74,8 +73,6 @@ export const MinhaContaMenu = () => {
                     </ul>
                 </MinhaContaMenuStyled>
             </MinhaContaLeftStyled>
-
-            <ModalLogout visible={stateModalLogoutContext} />
         </>
     );
 };

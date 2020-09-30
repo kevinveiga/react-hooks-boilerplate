@@ -7,9 +7,9 @@ import { Button } from '../Button/Button';
 
 import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyled';
 
-export const ModalLogout = ({ ...props }) => {
+export const ModalLogout = () => {
     // CONTEXT
-    const { setStateModalLogoutContext } = useApp();
+    const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
 
     // FUNCTION
     const handleLogout = useCallback(
@@ -23,7 +23,7 @@ export const ModalLogout = ({ ...props }) => {
     );
 
     return (
-        <ModalLogoutStyled {...props}>
+        <ModalLogoutStyled visible={stateModalLogoutContext}>
             <ModalLogoutContainerStyled>
                 <p>
                     Você deseja sair da

@@ -11,8 +11,6 @@ import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
 import { LinkToExternal } from '../Link/LinkToExternal';
-import { ModalLogout } from '../Modal/ModalLogout';
-// import { Social } from '../Social/Social';
 import { Svg } from '../Svg/Svg';
 
 import {
@@ -31,7 +29,7 @@ import { variable } from '../../style/variable';
 
 export const Header = () => {
     // CONTEXT
-    const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
+    const { setStateModalLogoutContext } = useApp();
     const { stateMenuMobileContext, setStateMenuMobileContext } = useHeader();
 
     // ACTION
@@ -134,8 +132,6 @@ export const Header = () => {
 
                             <Svg change={stateChangeHeaderScroll} name="svg-search" onClick={handlePesquisa(statePesquisa)} />
 
-                            {/* <Social change={stateChangeHeaderScroll} /> */}
-
                             {user && user.nome ? (
                                 <Box display="inline-block" minWidth="150px" ml={3}>
                                     <HeaderMinhaContaNomeStyled onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}>
@@ -170,6 +166,15 @@ export const Header = () => {
                                             </li>
 
                                             <li>
+                                                <LinkTo
+                                                    link="/minha-conta/entrevistas"
+                                                    obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimaryHover' }}
+                                                    onClick={handleHeaderMinhaContaMenu(stateHeaderMinhaContaMenu)}
+                                                    text="Entrevistas"
+                                                />
+                                            </li>
+
+                                            <li>
                                                 <Button onClick={handleModalLogout(true)} text="Sair" themeSize="none" themeType="none" />
                                             </li>
                                         </ul>
@@ -198,8 +203,6 @@ export const Header = () => {
                     </Flex>
                 </Container>
             </HeaderStyled>
-
-            <ModalLogout visible={stateModalLogoutContext} />
         </>
     );
 };
