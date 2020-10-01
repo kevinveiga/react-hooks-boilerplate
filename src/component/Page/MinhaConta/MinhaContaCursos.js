@@ -66,8 +66,8 @@ const MinhaContaCursos = () => {
     const meusCursos = cursosLength > 0 && stateCursos.data.data;
 
     return (
-        <MinhaContaCenterStyled p={{ d: 3, sm: 5 }}>
-            {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Cursos" obj={{ hoverColor: 'colorWhite' }} />}
+        <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
+            {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Cursos" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
             <Flex display="flex" flexWrap="wrap">
                 <Tab group="tab-group-course" total={4}>

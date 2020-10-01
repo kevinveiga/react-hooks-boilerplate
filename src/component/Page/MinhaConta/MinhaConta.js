@@ -32,7 +32,7 @@ const MinhaConta = () => {
     /* eslint-enable react-hooks/exhaustive-deps */
 
     return (
-        <MinhaContaCenterStyled px={{ d: 2, sm: 5, xl: '75px' }} py={{ d: 4, sm: 5, xl: '75px' }}>
+        <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
             {perfilLength > 0 && (
                 <Flex display="flex" flexWrap="wrap" justifyContent="center">
                     <Box minHeight="200px" width="150px">

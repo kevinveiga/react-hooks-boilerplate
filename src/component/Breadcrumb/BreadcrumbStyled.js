@@ -11,14 +11,9 @@ export const BreadcrumbItemStyled = styled.li`
     ${layout};
     ${typography};
 
-    max-width: 300px;
     overflow: hidden;
     table-layout: fixed;
     text-overflow: ellipsis;
     vertical-align: middle;
     white-space: nowrap;
-
-    @media (min-width: ${variable.lg}) {
-        max-width: 700px;
-    }
 `;

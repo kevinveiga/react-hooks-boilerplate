@@ -183,17 +183,18 @@ const MinhaContaCurso = ({ breadcrumb, match }) => {
                 )}
 
                 {curso && (
-                    <MinhaContaCenterStyled p={{ d: 3, sm: 5 }}>
+                    <MinhaContaCenterStyled pb={{ d: 4, sm: 5, lg: '75px' }} pl={{ d: 3, sm: 5 }}>
                         {windowWidth < parseInt(variable.lg, 10) && (
                             <Breadcrumb
                                 breadcrumb={breadcrumb}
                                 currentLabel={curso.title}
-                                obj={{ hoverColor: 'colorWhite', textDecoration: 'underline' }}
+                                pt={{ d: 4, sm: 5, lg: '75px' }}
+                                obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                             />
                         )}
 
                         <Flex display="flex" flexWrap="wrap">
-                            <Box pr={{ d: 3, sm: 5 }} pt={{ d: 0, lg: 5 }} width={{ d: 1, lg: stateCursoMenuConteudo ? 7 / 10 : 1 }}>
+                            <Box pr={{ d: 3, sm: 5 }} pt={{ d: 3, lg: '75px' }} width={{ d: 1, lg: stateCursoMenuConteudo ? 7 / 10 : 1 }}>
                                 <Box mb={3} overflowY={conteudo.tipo === 'video' ? 'hidden' : 'auto'} width="100%">
                                     {conteudo.tipo === 'audio' && ''}
                                     {conteudo.tipo === 'download' && ''}

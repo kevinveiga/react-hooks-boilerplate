@@ -88,12 +88,13 @@ const MinhaContaEntrevista = ({ breadcrumb, match }) => {
             )}
 
             {entrevista && (
-                <MinhaContaCenterStyled p={{ d: 3, sm: 5 }}>
+                <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
                     {windowWidth < parseInt(variable.lg, 10) && (
                         <Breadcrumb
                             breadcrumb={breadcrumb}
                             currentLabel={entrevista.title}
-                            obj={{ hoverColor: 'colorWhite', textDecoration: 'underline' }}
+                            pb={4}
+                            obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                         />
                     )}
 
