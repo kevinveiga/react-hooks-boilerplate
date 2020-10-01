@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import parse from 'html-react-parser';
 
-import { apiUrlEntrevistas, apiUrlEntrevistasBusca } from '../../../config';
+import { apiUrlEntrevistas, apiUrlEntrevistasBusca, apiUrlEntrevistasTags } from '../../../config';
 
 import { useEntrevistasApi, useEntrevistaPesquisaApi } from '../../../service/entrevista';
 
@@ -64,6 +64,7 @@ const MinhaContaEntrevistas = () => {
 
                     <PesquisaForm
                         apiUrl={apiUrlEntrevistasBusca}
+                        apiUrlTag={apiUrlEntrevistasTags}
                         obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
                     />
 
