@@ -162,13 +162,11 @@ const MinhaContaCursos = () => {
                                                                     >
                                                                         <Box
                                                                             height={{ d: 'auto', md: '200px' }}
-                                                                            mb={2}
+                                                                            mb={4}
                                                                             overflowY="hidden"
                                                                             width="100%"
                                                                         >
-                                                                            <Box height={{ d: 'auto', md: '70px' }} mb={3} overflowY="hidden">
-                                                                                <ListTitle>{curso.title}</ListTitle>
-                                                                            </Box>
+                                                                            <ListTitle mb={3}>{curso.title}</ListTitle>
 
                                                                             <div>{parse(`${curso.content}`)}</div>
                                                                         </Box>
@@ -285,7 +283,12 @@ const MinhaContaCursos = () => {
                                                                             p={{ d: 3, md: 4 }}
                                                                             width={{ d: 1, md: 1 / 2 }}
                                                                         >
-                                                                            <Box height="200px" mb={4} overflowY="hidden" width="100%">
+                                                                            <Box
+                                                                                height={{ d: 'auto', md: '200px' }}
+                                                                                mb={4}
+                                                                                overflowY="hidden"
+                                                                                width="100%"
+                                                                            >
                                                                                 <ListTitle mb={3}>{curso.title}</ListTitle>
 
                                                                                 <div>{parse(`${curso.content}`)}</div>

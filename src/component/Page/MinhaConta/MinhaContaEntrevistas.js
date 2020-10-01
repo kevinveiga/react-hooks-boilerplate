@@ -21,7 +21,8 @@ import { Svg } from '../../Svg/Svg';
 import { StatusStreamingBadgeStyled } from '../../Badge/BadgeStyled';
 import { MinhaContaCenterStyled } from './MinhaContaStyled';
 
-import { Box, Flex } from '../../../style/flex';
+import { Box } from '../../../style/flex';
+import { Cell, Grid } from '../../../style/grid';
 import { ListBox, ListTitle, ListTime } from '../../../style/list';
 import { Title4 } from '../../../style/text';
 import { variable } from '../../../style/variable';
@@ -66,33 +67,33 @@ const MinhaContaEntrevistas = () => {
                         obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
                     />
 
-                    <Flex display="flex" flexWrap="wrap">
+                    <Grid display="grid" gridColumnGap={3} gridRowGap={5} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr' }}>
                         {entrevistas &&
                             entrevistas.map((entrevista) => {
                                 noData = false;
 
                                 return (
-                                    <Box key={entrevista.id} mb={5} width={{ d: 1, md: 1 / 2 }}>
+                                    <Cell key={entrevista.id}>
                                         <LinkTo
                                             ariaLabel={entrevista.title}
                                             height="100%"
                                             to={`/minha-conta/entrevista/${entrevista.id}`}
                                             width="100%"
                                         >
-                                            <ListBox display="flex" flexWrap="wrap" height="100%" mx={{ d: 0, md: 2 }} themeColor="dark">
-                                                <Box overflow="hidden" pt="calc((9 / 16) * 100%)" width="100%">
+                                            <ListBox alignContent="flex-start" display="flex" flexDirection="column" height="100%" themeColor="dark">
+                                                <Box overflow="hidden" pt="calc((9 / 16) * 100%)">
                                                     <BgImageLazyLoad key={entrevista.id} url={entrevista.thumbnail.curso_usuario} />
                                                 </Box>
 
-                                                <Box width="100%" px={4} py={3}>
-                                                    <Box width="100%">
-                                                        <ListTitle mb={3}>{entrevista.title}</ListTitle>
+                                                <Box display="flex" flexDirection="column" my={3} px={4}>
+                                                    <ListTitle mb={2}>{entrevista.title}</ListTitle>
 
-                                                        <div>{parse(`${entrevista.description}`)}</div>
-                                                    </Box>
+                                                    <div>{parse(`${entrevista.description}`)}</div>
+                                                </Box>
 
+                                                <Box display="flex" flexDirection="column" height="100%" justifyContent="flex-end" mb={4} px={4}>
                                                     {entrevista.time && (
-                                                        <Box width="100%">
+                                                        <Box>
                                                             <Svg fill="colorSecondary" height="13px" name="svg-time" />
 
                                                             <ListTime ml={1} mr={3}>
@@ -102,7 +103,7 @@ const MinhaContaEntrevistas = () => {
                                                     )}
 
                                                     {entrevista.status_streaming && entrevista.status_streaming !== 'Não' && (
-                                                        <Box py="10px" width="100%">
+                                                        <Box mt={2}>
                                                             <StatusStreamingBadgeStyled type={entrevista.status_streaming}>
                                                                 {entrevista.status_streaming}
                                                             </StatusStreamingBadgeStyled>
@@ -111,22 +112,22 @@ const MinhaContaEntrevistas = () => {
                                                 </Box>
                                             </ListBox>
                                         </LinkTo>
-                                    </Box>
+                                    </Cell>
                                 );
                             })}
+                    </Grid>
 
-                        {noData && (stateEntrevistas.isLoading || stateEntrevistaPesquisa.isLoading) && (
-                            <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                                Carregando...
-                            </Title4>
-                        )}
+                    {noData && (stateEntrevistas.isLoading || stateEntrevistaPesquisa.isLoading) && (
+                        <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                            Carregando...
+                        </Title4>
+                    )}
 
-                        {noData && entrevistas && (!stateEntrevistas.isLoading || !stateEntrevistaPesquisa.isLoading) && (
-                            <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                                Nenhuma entrevista encontrada
-                            </Title4>
-                        )}
-                    </Flex>
+                    {noData && entrevistas && (!stateEntrevistas.isLoading || !stateEntrevistaPesquisa.isLoading) && (
+                        <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                            Nenhuma entrevista encontrada
+                        </Title4>
+                    )}
 
                     {entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
                         <Box display="flex" justifyContent="center" py={3}>
