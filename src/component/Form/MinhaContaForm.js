@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -16,6 +16,7 @@ import { setFormValue } from '../../util/setFormValue';
 
 import { Button } from '../Button/Button';
 import { Input, InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select, SelectValidation } from './Form';
+import { Loader } from '../Loader/Loader';
 import { ModalMessage } from '../Modal/ModalMessage';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
@@ -30,6 +31,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
     const axiosInstance = axios.create();
 
     // ACTION
+    const [stateLoader, setStateLoader] = useState(false);
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
     // FUNCTION
@@ -41,6 +43,8 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                 const formatedCep = formatCepSet(element.value);
 
                 const fetchData = async () => {
+                    setStateLoader(true);
+
                     try {
                         const result = await axiosInstance.get(`${apiUrlCep}/${formatedCep}`);
 
@@ -64,6 +68,8 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
 
                         console.error('result: ', error);
                     }
+
+                    setStateLoader(false);
                 };
 
                 fetchData();
@@ -492,6 +498,8 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                     </Cell>
                 </Grid>
             </FormStyled>
+
+            <Loader active={stateLoader} />
 
             <ModalMessage {...stateModalMessage} />
         </>
