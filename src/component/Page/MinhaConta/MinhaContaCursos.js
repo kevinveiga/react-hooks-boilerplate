@@ -161,7 +161,7 @@ const MinhaContaCursos = () => {
                                                                         width={{ d: 1, md: 5 / 12 }}
                                                                     >
                                                                         <Box
-                                                                            height={{ d: 'auto', md: '200px' }}
+                                                                            height={{ d: 'auto', md: '160px' }}
                                                                             mb={4}
                                                                             overflowY="hidden"
                                                                             width="100%"
@@ -284,7 +284,7 @@ const MinhaContaCursos = () => {
                                                                             width={{ d: 1, md: 1 / 2 }}
                                                                         >
                                                                             <Box
-                                                                                height={{ d: 'auto', md: '200px' }}
+                                                                                height={{ d: 'auto', md: '160px' }}
                                                                                 mb={4}
                                                                                 overflowY="hidden"
                                                                                 width="100%"
