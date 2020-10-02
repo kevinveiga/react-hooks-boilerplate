@@ -79,6 +79,7 @@ export const MinhaContaAvatarForm = memo(() => {
         setError,
         trigger
     } = useForm({
+        defaultValues: { avatar: '' },
         mode: 'onChange'
     });
 

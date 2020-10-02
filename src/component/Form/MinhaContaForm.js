@@ -285,9 +285,9 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                 render={({ name, onBlur, onChange, value }) => {
                                     return (
                                         <InputMaskValidation
-                                            decimalScale={5}
-                                            decimalSeparator=""
+                                            decimalSeparator={false}
                                             error={errors.endereco_numero}
+                                            maxLength="5"
                                             name={name}
                                             onBlur={onBlur}
                                             onValueChange={(values) => {
