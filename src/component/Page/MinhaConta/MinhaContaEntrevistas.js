@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import parse from 'html-react-parser';
 
-import { apiUrlEntrevistas, apiUrlEntrevistasBusca, apiUrlEntrevistasTags } from '../../../config';
+import { apiUrlEntrevistas, apiUrlEntrevistasTags } from '../../../config';
 
 import { useEntrevistasApi, useEntrevistaPesquisaApi } from '../../../service/entrevista';
 
@@ -63,8 +63,7 @@ const MinhaContaEntrevistas = () => {
                     {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
                     <PesquisaForm
-                        apiUrl={apiUrlEntrevistasBusca}
-                        apiUrlTag={apiUrlEntrevistasTags}
+                        apiUrl={apiUrlEntrevistasTags}
                         obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
                     />
 

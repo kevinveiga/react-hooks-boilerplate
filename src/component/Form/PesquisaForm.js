@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext } from 'react';
+import React, { memo, useCallback, useContext, useRef } from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 
@@ -12,9 +12,12 @@ import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
+export const PesquisaForm = memo(({ apiUrl, ...props }) => {
     // CONTEXT
-    const { stateTagsContext, setStatePesquisaDataContext } = useContext(PesquisaContext);
+    const { setStatePesquisaDataContext } = useContext(PesquisaContext);
+
+    // REF
+    const queryRef = useRef('');
 
     // FUNCTION
     const keyPress = useCallback(
@@ -27,17 +30,19 @@ export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
     );
 
     const limparPesquisa = () => () => {
+        queryRef.current.value = '';
+        reset({ query: '' });
         setStatePesquisaDataContext(null);
     };
 
     // FORM
-    const { control, handleSubmit } = useForm({
+    const { control, handleSubmit, reset } = useForm({
         mode: 'onChange'
     });
 
     const onSubmit = (formData) => {
         if (formData.query) {
-            setStatePesquisaDataContext({ url: `${apiUrlTag}/${formData.query}` });
+            setStatePesquisaDataContext({ url: `${apiUrl}/${formData.query}` });
         }
     };
 
@@ -51,10 +56,10 @@ export const PesquisaForm = memo(({ apiUrl, apiUrlTag, tags, ...props }) => {
                         as={
                             <Input
                                 autoComplete="off"
-                                list="tags"
                                 maxLength="50"
                                 onKeyDown={keyPress(onSubmit)}
                                 placeholder="O que você procura?"
+                                ref={queryRef}
                                 {...props}
                             />
                         }
