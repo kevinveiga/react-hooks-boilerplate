@@ -77,7 +77,7 @@ const MinhaContaEntrevistas = () => {
                                         <LinkTo
                                             ariaLabel={entrevista.title}
                                             height="100%"
-                                            to={`/minha-conta/entrevista/${entrevista.id}`}
+                                            link={`/minha-conta/entrevista/${entrevista.id}`}
                                             width="100%"
                                         >
                                             <ListBox alignContent="flex-start" display="flex" flexDirection="column" height="100%" themeColor="dark">

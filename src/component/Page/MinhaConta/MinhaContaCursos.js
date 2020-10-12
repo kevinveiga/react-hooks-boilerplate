@@ -133,7 +133,7 @@ const MinhaContaCursos = () => {
                                                         <LinkTo
                                                             ariaLabel={curso.title}
                                                             height="100%"
-                                                            to={`/minha-conta/curso/${curso.id}`}
+                                                            link={`/minha-conta/curso/${curso.id}`}
                                                             width="100%"
                                                         >
                                                             <ListBox
@@ -254,7 +254,7 @@ const MinhaContaCursos = () => {
                                                             <LinkTo
                                                                 ariaLabel={curso.title}
                                                                 height="100%"
-                                                                to={`/minha-conta/curso/${curso.id}`}
+                                                                link={`/minha-conta/curso/${curso.id}`}
                                                                 width="100%"
                                                             >
                                                                 <ListBox

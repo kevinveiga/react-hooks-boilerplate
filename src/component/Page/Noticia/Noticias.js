@@ -168,7 +168,7 @@ export const Noticias = () => {
                                                             <LinkTo
                                                                 ariaLabel={noticia.title}
                                                                 height="100%"
-                                                                to={`/noticia/${noticia.slug}`}
+                                                                link={`/noticia/${noticia.slug}`}
                                                                 width="100%"
                                                             >
                                                                 <NoticiaBox
@@ -253,7 +253,7 @@ export const Noticias = () => {
                                                                         <LinkTo
                                                                             ariaLabel={noticia.title}
                                                                             height="100%"
-                                                                            to={`/noticia/${noticia.slug}`}
+                                                                            link={`/noticia/${noticia.slug}`}
                                                                             width="100%"
                                                                         >
                                                                             <NoticiaBox
@@ -301,7 +301,7 @@ export const Noticias = () => {
                                                                         <LinkTo
                                                                             ariaLabel={noticia.title}
                                                                             height="100%"
-                                                                            to={`/noticia/${noticia.slug}`}
+                                                                            link={`/noticia/${noticia.slug}`}
                                                                             width="100%"
                                                                         >
                                                                             <NoticiaBox

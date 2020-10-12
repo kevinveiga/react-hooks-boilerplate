@@ -136,7 +136,7 @@ export const Aprenda = () => {
 
                                                 return (
                                                     <Box key={curso.id} mb={5} width={{ d: 1, md: 1 / 3 }}>
-                                                        <LinkTo ariaLabel={curso.title} height="100%" to={`/curso/${curso.id}`} width="100%">
+                                                        <LinkTo ariaLabel={curso.title} height="100%" link={`/curso/${curso.id}`} width="100%">
                                                             <ListBox
                                                                 alignContent="space-between"
                                                                 color={categoria.featured_color}

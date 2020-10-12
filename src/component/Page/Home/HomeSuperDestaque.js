@@ -71,7 +71,7 @@ export const HomeSuperDestaque = () => {
                 {stateSuperDestaques.data.map((item) => {
                     return (
                         <BannerCellStyled display="flex" gridRow={1} hover="true" key={item.id}>
-                            <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                            <LinkTo ariaLabel={item.title} display="flex" height="100%" link={`/noticia/${item.slug}`} width="100%">
                                 <NoticiaBox
                                     alignItems="flex-end"
                                     color={item.category.featured_color}
@@ -138,7 +138,13 @@ export const HomeSuperDestaque = () => {
 
                                         return (
                                             <BannerCellStyled display="flex" gridRow={row} hover="true" key={item.id}>
-                                                <LinkTo ariaLabel={item.title} display="flex" height="100%" to={`/noticia/${item.slug}`} width="100%">
+                                                <LinkTo
+                                                    ariaLabel={item.title}
+                                                    display="flex"
+                                                    height="100%"
+                                                    link={`/noticia/${item.slug}`}
+                                                    width="100%"
+                                                >
                                                     <NoticiaBox
                                                         alignItems="flex-end"
                                                         color={item.category.featured_color}

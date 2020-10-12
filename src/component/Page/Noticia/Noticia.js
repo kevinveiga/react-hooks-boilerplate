@@ -176,7 +176,7 @@ export const Noticia = ({ match }) => {
                                                 ariaLabel={noticia.title}
                                                 height="100%"
                                                 onClick={() => setStateNoticiaUrl(`${apiUrlNoticias}/${noticia.slug}`)}
-                                                to={`/noticia/${noticia.slug}`}
+                                                link={`/noticia/${noticia.slug}`}
                                                 width="100%"
                                             >
                                                 <NoticiaBox

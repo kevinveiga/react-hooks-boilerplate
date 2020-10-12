@@ -47,7 +47,7 @@ export const HomeNoticia = () => {
                             pb={3}
                             pt={4}
                         >
-                            <LinkTo ariaLabel={noticia.title} height="100%" to={`/noticia/${noticia.slug}`} width="100%">
+                            <LinkTo ariaLabel={noticia.title} height="100%" link={`/noticia/${noticia.slug}`} width="100%">
                                 <NoticiaBox color={noticia.category.featured_color} display="inline-block" themeColor="dark" verticalAlign="middle">
                                     <Box>
                                         <NoticiaBoxTagStyled>{noticia.category.title}</NoticiaBoxTagStyled>

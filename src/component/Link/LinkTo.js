@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LinkToStyled } from './LinkToStyled';
 
-export const LinkTo = ({ ariaLabel = '', children, text = '', link = '/', ...props }) => {
+export const LinkTo = ({ ariaLabel = '', children, link = '/', text = '', ...props }) => {
     const acessibility = ariaLabel || text;
     const content = children || text;
 

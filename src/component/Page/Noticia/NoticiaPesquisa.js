@@ -79,7 +79,7 @@ export const NoticiaPesquisa = ({ match }) => {
                                                 key={pesquisa.id}
                                                 py={3}
                                             >
-                                                <LinkTo ariaLabel={pesquisa.title} height="100%" to={`/noticia/${pesquisa.slug}`} width="100%">
+                                                <LinkTo ariaLabel={pesquisa.title} height="100%" link={`/noticia/${pesquisa.slug}`} width="100%">
                                                     <NoticiaBox
                                                         alignContent="space-between"
                                                         color={pesquisa.featured_color}
