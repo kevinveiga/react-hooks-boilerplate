@@ -57,95 +57,88 @@ const MinhaContaEntrevistas = () => {
     const entrevistasPagination = entrevistasPaginationLength > 0 && stateEntrevistas.data.meta && stateEntrevistas.data.meta.pagination;
 
     return (
-        <>
-            <PesquisaContext.Provider value={{ setStatePesquisaDataContext: setStateEntrevistaPesquisaData }}>
-                <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
-                    {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
+        <PesquisaContext.Provider value={{ setStatePesquisaDataContext: setStateEntrevistaPesquisaData }}>
+            <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
+                {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
-                    <PesquisaForm
-                        apiUrl={apiUrlEntrevistasTags}
-                        obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
-                    />
+                <PesquisaForm
+                    apiUrl={apiUrlEntrevistasTags}
+                    obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
+                />
 
-                    <Grid display="grid" gridColumnGap={3} gridRowGap={5} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr' }}>
-                        {entrevistas &&
-                            entrevistas.map((entrevista) => {
-                                noData = false;
+                <Grid display="grid" gridColumnGap={3} gridRowGap={5} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr' }}>
+                    {entrevistas &&
+                        entrevistas.map((entrevista) => {
+                            noData = false;
 
-                                return (
-                                    <Cell key={entrevista.id}>
-                                        <LinkTo
-                                            ariaLabel={entrevista.title}
-                                            height="100%"
-                                            link={`/minha-conta/entrevista/${entrevista.id}`}
-                                            width="100%"
-                                        >
-                                            <ListBox alignContent="flex-start" display="flex" flexDirection="column" height="100%" themeColor="dark">
-                                                <Box overflow="hidden" pt="calc((9 / 16) * 100%)">
-                                                    <BgImageLazyLoad key={entrevista.id} url={entrevista.thumbnail.curso_usuario} />
-                                                </Box>
+                            return (
+                                <Cell key={entrevista.id}>
+                                    <LinkTo ariaLabel={entrevista.title} height="100%" link={`/minha-conta/entrevista/${entrevista.id}`} width="100%">
+                                        <ListBox alignContent="flex-start" display="flex" flexDirection="column" height="100%" themeColor="dark">
+                                            <Box overflow="hidden" pt="calc((9 / 16) * 100%)">
+                                                <BgImageLazyLoad key={entrevista.id} url={entrevista.thumbnail.curso_usuario} />
+                                            </Box>
 
-                                                <Box display="flex" flexDirection="column" my={3} px={4}>
-                                                    <ListTitle mb={2}>{entrevista.title}</ListTitle>
+                                            <Box display="flex" flexDirection="column" my={3} px={4}>
+                                                <ListTitle mb={2}>{entrevista.title}</ListTitle>
 
-                                                    <div>{parse(`${entrevista.description}`)}</div>
-                                                </Box>
+                                                <div>{parse(`${entrevista.description}`)}</div>
+                                            </Box>
 
-                                                <Box display="flex" flexDirection="column" height="100%" justifyContent="flex-end" mb={4} px={4}>
-                                                    {entrevista.time && (
-                                                        <Box>
-                                                            <Svg fill="colorSecondary" height="13px" name="svg-time" />
+                                            <Box display="flex" flexDirection="column" height="100%" justifyContent="flex-end" mb={4} px={4}>
+                                                {entrevista.time && (
+                                                    <Box>
+                                                        <Svg fill="colorSecondary" height="13px" name="svg-time" />
 
-                                                            <ListTime ml={1} mr={3}>
-                                                                {entrevista.time}
-                                                            </ListTime>
-                                                        </Box>
-                                                    )}
+                                                        <ListTime ml={1} mr={3}>
+                                                            {entrevista.time}
+                                                        </ListTime>
+                                                    </Box>
+                                                )}
 
-                                                    {entrevista.status_streaming && entrevista.status_streaming !== 'Não' && (
-                                                        <Box mt={2}>
-                                                            <StatusStreamingBadgeStyled type={entrevista.status_streaming}>
-                                                                {entrevista.status_streaming}
-                                                            </StatusStreamingBadgeStyled>
-                                                        </Box>
-                                                    )}
-                                                </Box>
-                                            </ListBox>
-                                        </LinkTo>
-                                    </Cell>
-                                );
-                            })}
-                    </Grid>
+                                                {entrevista.status_streaming && entrevista.status_streaming !== 'Não' && (
+                                                    <Box mt={2}>
+                                                        <StatusStreamingBadgeStyled type={entrevista.status_streaming}>
+                                                            {entrevista.status_streaming}
+                                                        </StatusStreamingBadgeStyled>
+                                                    </Box>
+                                                )}
+                                            </Box>
+                                        </ListBox>
+                                    </LinkTo>
+                                </Cell>
+                            );
+                        })}
+                </Grid>
 
-                    {noData && (stateEntrevistas.isLoading || stateEntrevistaPesquisa.isLoading) && (
-                        <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                            Carregando...
-                        </Title4>
-                    )}
+                {noData && (stateEntrevistas.isLoading || stateEntrevistaPesquisa.isLoading) && (
+                    <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                        Carregando...
+                    </Title4>
+                )}
 
-                    {noData && entrevistas && (!stateEntrevistas.isLoading || !stateEntrevistaPesquisa.isLoading) && (
-                        <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
-                            Nenhuma entrevista encontrada
-                        </Title4>
-                    )}
+                {noData && entrevistas && (!stateEntrevistas.isLoading || !stateEntrevistaPesquisa.isLoading) && (
+                    <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
+                        Nenhuma entrevista encontrada
+                    </Title4>
+                )}
 
-                    {entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
-                        <Box display="flex" justifyContent="center" py={3}>
-                            <Button
-                                text="Ver mais"
-                                themeType="border"
-                                onClick={() =>
-                                    setStateEntrevistaData({
-                                        params: { page: parseInt(entrevistasPagination.current_page, 10) + 1 },
-                                        url: `${apiUrlEntrevistas}`
-                                    })
-                                }
-                            />
-                        </Box>
-                    )}
-                </MinhaContaCenterStyled>
-            </PesquisaContext.Provider>
-        </>
+                {entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
+                    <Box display="flex" justifyContent="center" py={3}>
+                        <Button
+                            text="Ver mais"
+                            themeType="border"
+                            onClick={() =>
+                                setStateEntrevistaData({
+                                    params: { page: parseInt(entrevistasPagination.current_page, 10) + 1 },
+                                    url: `${apiUrlEntrevistas}`
+                                })
+                            }
+                        />
+                    </Box>
+                )}
+            </MinhaContaCenterStyled>
+        </PesquisaContext.Provider>
     );
 };
 
