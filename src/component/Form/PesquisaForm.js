@@ -42,7 +42,7 @@ export const PesquisaForm = memo(({ apiUrl, ...props }) => {
 
     const onSubmit = (formData) => {
         if (formData.query) {
-            setStatePesquisaDataContext({ url: `${apiUrl}/${formData.query}` });
+            setStatePesquisaDataContext({ params: { query: formData.query }, url: apiUrl });
         }
     };
 
