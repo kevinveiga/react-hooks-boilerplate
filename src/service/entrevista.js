@@ -48,7 +48,7 @@ export const useEntrevistaApi = (url, initialData = {}) => {
 };
 
 export const useEntrevistasApi = (obj, initialData = {}) => {
-    const [stateEntrevistaData, setStateEntrevistaData] = useState(obj);
+    const [stateEntrevistaParam, setStateEntrevistaParam] = useState(obj);
 
     const [stateEntrevistas, dispatch] = useReducer(dataFetchReducer, {
         data: initialData,
@@ -57,7 +57,7 @@ export const useEntrevistasApi = (obj, initialData = {}) => {
     });
 
     useEffect(() => {
-        if (!stateEntrevistaData) {
+        if (!stateEntrevistaParam) {
             return undefined;
         }
 
@@ -67,9 +67,11 @@ export const useEntrevistasApi = (obj, initialData = {}) => {
             dispatch(ACTION.init());
 
             try {
-                const result = await axios.get(stateEntrevistaData.url, { params: stateEntrevistaData.params });
+                const result = await axios.post(stateEntrevistaParam.url, stateEntrevistaParam.params, {
+                    headers: { 'Content-Type': 'application/json' }
+                });
 
-                const isAppend = stateEntrevistaData.params.page > 1;
+                const isAppend = stateEntrevistaParam.params.page > 1;
 
                 if (!didCancel) {
                     dispatch(result.data ? { ...ACTION.success(), append: isAppend, payload: result.data } : ACTION.failure());
@@ -86,51 +88,7 @@ export const useEntrevistasApi = (obj, initialData = {}) => {
         return () => {
             didCancel = true;
         };
-    }, [stateEntrevistaData]);
+    }, [stateEntrevistaParam]);
 
-    return [stateEntrevistas, setStateEntrevistaData];
-};
-
-export const useEntrevistaPesquisaApi = (obj, initialData = []) => {
-    const [stateEntrevistaPesquisaData, setStateEntrevistaPesquisaData] = useState(obj);
-
-    const [stateEntrevistaPesquisa, dispatch] = useReducer(dataFetchReducer, {
-        data: initialData,
-        isError: false,
-        isLoading: false
-    });
-
-    useEffect(() => {
-        if (!stateEntrevistaPesquisaData) {
-            dispatch({ ...ACTION.success(), payload: null });
-
-            return undefined;
-        }
-
-        let didCancel = false;
-
-        const fetchData = async () => {
-            try {
-                const result = await axios.post(stateEntrevistaPesquisaData.url, stateEntrevistaPesquisaData.params, {
-                    headers: { 'Content-Type': 'application/json' }
-                });
-
-                if (!didCancel) {
-                    dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
-                }
-            } catch (error) {
-                if (!didCancel) {
-                    dispatch(ACTION.failure());
-                }
-            }
-        };
-
-        fetchData();
-
-        return () => {
-            didCancel = true;
-        };
-    }, [stateEntrevistaPesquisaData]);
-
-    return [stateEntrevistaPesquisa, setStateEntrevistaPesquisaData];
+    return { stateEntrevistas, stateEntrevistaParam, setStateEntrevistaParam };
 };
