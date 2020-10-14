@@ -183,12 +183,12 @@ const MinhaContaCurso = ({ breadcrumb, match }) => {
                 )}
 
                 {curso && (
-                    <MinhaContaCenterStyled pb={{ d: 4, sm: 5, lg: '75px' }} pl={{ d: 3, sm: 5 }}>
+                    <MinhaContaCenterStyled pb={{ d: 4, sm: 5 }} pl={{ d: 3, sm: 5 }}>
                         {windowWidth < parseInt(variable.lg, 10) && (
                             <Breadcrumb
                                 breadcrumb={breadcrumb}
                                 currentLabel={curso.title}
-                                pt={{ d: 4, sm: 5, lg: '75px' }}
+                                pt={{ d: 4, sm: 5 }}
                                 obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                             />
                         )}

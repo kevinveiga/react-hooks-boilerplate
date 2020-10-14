@@ -88,7 +88,7 @@ const MinhaContaEntrevista = ({ breadcrumb, match }) => {
             )}
 
             {entrevista && (
-                <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
+                <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5 }}>
                     {windowWidth < parseInt(variable.lg, 10) && (
                         <Breadcrumb
                             breadcrumb={breadcrumb}

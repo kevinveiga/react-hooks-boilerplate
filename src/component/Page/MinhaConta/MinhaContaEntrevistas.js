@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import parse from 'html-react-parser';
 
-import { apiUrlEntrevistas, apiUrlEntrevistasBusca } from '../../../config';
+import { apiUrlEntrevistas } from '../../../config';
 
 import { useEntrevistasApi, useEntrevistaPesquisaApi } from '../../../service/entrevista';
 
@@ -58,13 +58,10 @@ const MinhaContaEntrevistas = () => {
 
     return (
         <PesquisaContext.Provider value={{ setStatePesquisaDataContext: setStateEntrevistaPesquisaData }}>
-            <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5, lg: '75px' }}>
+            <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5 }}>
                 {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
-                <PesquisaForm
-                    apiUrl={apiUrlEntrevistasBusca}
-                    obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
-                />
+                <PesquisaForm apiUrl={apiUrlEntrevistas} obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
 
                 <Grid display="grid" gridColumnGap={3} gridRowGap={5} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr' }}>
                     {entrevistas &&

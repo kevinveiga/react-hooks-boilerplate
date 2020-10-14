@@ -12,9 +12,9 @@ import { FormStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
-export const PesquisaForm = memo(({ apiUrl, ...props }) => {
+export const PesquisaForm = memo(({ ...props }) => {
     // CONTEXT
-    const { setStatePesquisaDataContext } = useContext(PesquisaContext);
+    const { statePesquisaParamContext, setStatePesquisaParamContext } = useContext(PesquisaContext);
 
     // REF
     const queryRef = useRef('');
@@ -32,7 +32,10 @@ export const PesquisaForm = memo(({ apiUrl, ...props }) => {
     const limparPesquisa = () => () => {
         queryRef.current.value = '';
         reset({ query: '' });
-        setStatePesquisaDataContext(null);
+        setStatePesquisaParamContext({
+            ...statePesquisaParamContext,
+            params: { ...statePesquisaParamContext.params, page: 1, query: '' }
+        });
     };
 
     // FORM
@@ -42,7 +45,10 @@ export const PesquisaForm = memo(({ apiUrl, ...props }) => {
 
     const onSubmit = (formData) => {
         if (formData.query) {
-            setStatePesquisaDataContext({ params: { query: formData.query }, url: apiUrl });
+            setStatePesquisaParamContext({
+                ...statePesquisaParamContext,
+                params: { ...statePesquisaParamContext.params, page: 1, query: formData.query }
+            });
         }
     };
 
