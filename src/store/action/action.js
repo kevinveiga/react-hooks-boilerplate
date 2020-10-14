@@ -6,18 +6,6 @@ export const add = () => {
     };
 };
 
-export const paymentChange = () => {
-    return {
-        type: ACTION_TYPE.PAYMENT_CHANGE
-    };
-};
-
-export const paymentTypeChange = () => {
-    return {
-        type: ACTION_TYPE.PAYMENT_TYPE_CHANGE
-    };
-};
-
 export const failure = () => {
     return {
         type: ACTION_TYPE.FAILURE
@@ -27,6 +15,18 @@ export const failure = () => {
 export const init = () => {
     return {
         type: ACTION_TYPE.INIT
+    };
+};
+
+export const paymentChange = () => {
+    return {
+        type: ACTION_TYPE.PAYMENT_CHANGE
+    };
+};
+
+export const paymentTypeChange = () => {
+    return {
+        type: ACTION_TYPE.PAYMENT_TYPE_CHANGE
     };
 };
 
