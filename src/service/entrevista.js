@@ -111,7 +111,7 @@ export const useEntrevistaPesquisaApi = (obj, initialData = []) => {
 
         const fetchData = async () => {
             try {
-                const result = await axios.get(stateEntrevistaPesquisaData.url, {
+                const result = await axios.post(stateEntrevistaPesquisaData.url, stateEntrevistaPesquisaData.params, {
                     headers: { 'Content-Type': 'application/json' }
                 });
 

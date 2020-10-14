@@ -14,7 +14,7 @@ export const apiUrlCursos = `${apiUrl}/cursos`;
 
 export const apiUrlEntrevistas = `${apiUrl}/entrevistas`;
 
-export const apiUrlEntrevistasTags = `${apiUrlEntrevistas}/tags`;
+export const apiUrlEntrevistasBusca = `${apiUrlEntrevistas}/busca`;
 
 export const apiUrlEsqueceuSenha = `${apiUrl}/password`;
 

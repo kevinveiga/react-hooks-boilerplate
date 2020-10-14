@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import parse from 'html-react-parser';
 
-import { apiUrlEntrevistas, apiUrlEntrevistasTags } from '../../../config';
+import { apiUrlEntrevistas, apiUrlEntrevistasBusca } from '../../../config';
 
 import { useEntrevistasApi, useEntrevistaPesquisaApi } from '../../../service/entrevista';
 
@@ -62,7 +62,7 @@ const MinhaContaEntrevistas = () => {
                 {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
                 <PesquisaForm
-                    apiUrl={apiUrlEntrevistasTags}
+                    apiUrl={apiUrlEntrevistasBusca}
                     obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
                 />
 
@@ -123,7 +123,7 @@ const MinhaContaEntrevistas = () => {
                     </Title4>
                 )}
 
-                {entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
+                {!stateEntrevistaPesquisa.data && entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
                     <Box display="flex" justifyContent="center" py={3}>
                         <Button
                             text="Ver mais"
