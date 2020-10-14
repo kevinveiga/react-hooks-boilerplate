@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 
 import { apiUrlEntrevistas } from '../../../config';
 
-import { useEntrevistasApi, useEntrevistaPesquisaApi } from '../../../service/entrevista';
+import { useEntrevistasApi } from '../../../service/entrevista';
 
 import { PesquisaContext } from '../../../store/pesquisa/pesquisaContext';
 import { useWindowWidth } from '../../../store/util/windowWidth';
@@ -29,11 +29,15 @@ import { variable } from '../../../style/variable';
 
 const MinhaContaEntrevistas = () => {
     // VARIABLE
+    const initialParam = {
+        params: { page: 1 },
+        url: apiUrlEntrevistas
+    };
+
     let noData = true;
 
     // API
-    const [stateEntrevistas, setStateEntrevistaData] = useEntrevistasApi({ params: { page: 1 }, url: apiUrlEntrevistas });
-    const [stateEntrevistaPesquisa, setStateEntrevistaPesquisaData] = useEntrevistaPesquisaApi(null);
+    const { stateEntrevistas, stateEntrevistaParam, setStateEntrevistaParam } = useEntrevistasApi(initialParam);
 
     const entrevistasLength = stateEntrevistas.data && stateEntrevistas.data.data ? stateEntrevistas.data.data.length : 0;
     const entrevistasPaginationLength = entrevistasLength > 0 ? Object.keys(stateEntrevistas.data.meta).length : 0;
@@ -53,11 +57,11 @@ const MinhaContaEntrevistas = () => {
     /* eslint-enable react-hooks/exhaustive-deps */
 
     // DATA
-    const entrevistas = (stateEntrevistaPesquisa && stateEntrevistaPesquisa.data) || (entrevistasLength > 0 && stateEntrevistas.data.data);
+    const entrevistas = entrevistasLength > 0 && stateEntrevistas.data.data;
     const entrevistasPagination = entrevistasPaginationLength > 0 && stateEntrevistas.data.meta && stateEntrevistas.data.meta.pagination;
 
     return (
-        <PesquisaContext.Provider value={{ setStatePesquisaDataContext: setStateEntrevistaPesquisaData }}>
+        <PesquisaContext.Provider value={{ statePesquisaParamContext: stateEntrevistaParam, setStatePesquisaParamContext: setStateEntrevistaParam }}>
             <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5 }}>
                 {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
@@ -108,27 +112,30 @@ const MinhaContaEntrevistas = () => {
                         })}
                 </Grid>
 
-                {noData && (stateEntrevistas.isLoading || stateEntrevistaPesquisa.isLoading) && (
+                {noData && stateEntrevistas.isLoading && (
                     <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
                         Carregando...
                     </Title4>
                 )}
 
-                {noData && entrevistas && (!stateEntrevistas.isLoading || !stateEntrevistaPesquisa.isLoading) && (
+                {noData && !entrevistas && !stateEntrevistas.isLoading && (
                     <Title4 color="colorPrimary" my={{ d: 4, md: 5 }} mx="auto" textAlign="center" themeColor="dark">
                         Nenhuma entrevista encontrada
                     </Title4>
                 )}
 
-                {!stateEntrevistaPesquisa.data && entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
+                {entrevistasPagination && entrevistasPagination.current_page < entrevistasPagination.total_pages && (
                     <Box display="flex" justifyContent="center" py={3}>
                         <Button
                             text="Ver mais"
                             themeType="border"
                             onClick={() =>
-                                setStateEntrevistaData({
-                                    params: { page: parseInt(entrevistasPagination.current_page, 10) + 1 },
-                                    url: `${apiUrlEntrevistas}`
+                                setStateEntrevistaParam({
+                                    ...stateEntrevistaParam,
+                                    params: {
+                                        ...stateEntrevistaParam.params,
+                                        page: parseInt(entrevistasPagination.current_page, 10) + 1
+                                    }
                                 })
                             }
                         />
