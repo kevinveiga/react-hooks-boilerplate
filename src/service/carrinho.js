@@ -144,11 +144,11 @@ export const useCarrinhoApi = () => {
     );
 
     const handleFormaPagamento = useCallback((formaPagamentoObj) => {
-        dispatch({ ...ACTION.changePayment(), payload: formaPagamentoObj });
+        dispatch({ ...ACTION.paymentChange(), payload: formaPagamentoObj });
     }, []);
 
     const handleFormaPagamentoTipo = useCallback((formaPagamentoTipo) => {
-        dispatch({ ...ACTION.changePaymentType(), payload: formaPagamentoTipo });
+        dispatch({ ...ACTION.paymentTypeChange(), payload: formaPagamentoTipo });
     }, []);
 
     return {

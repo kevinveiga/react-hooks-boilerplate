@@ -2,14 +2,14 @@ import * as ACTION_TYPE from '../action/actionType';
 
 export const ecommerceReducer = (state, action) => {
     switch (action.type) {
-        case ACTION_TYPE.CHANGE_PAYMENT:
+        case ACTION_TYPE.PAYMENT_CHANGE:
             return {
                 ...state,
                 data: { data: { ...state.data.data, forma_pagamento: action.payload } },
                 isError: false,
                 isLoading: false
             };
-        case ACTION_TYPE.CHANGE_PAYMENT_TYPE:
+        case ACTION_TYPE.PAYMENT_TYPE_CHANGE:
             return {
                 ...state,
                 data: { data: { ...state.data.data, forma_pagamento_tipo: action.payload } },

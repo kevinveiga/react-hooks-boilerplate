@@ -1,8 +1,8 @@
 export const ADD = 'ADD';
 
-export const CHANGE_PAYMENT = 'CHANGE_PAYMENT';
+export const PAYMENT_CHANGE = 'PAYMENT_CHANGE';
 
-export const CHANGE_PAYMENT_TYPE = 'CHANGE_PAYMENT_TYPE';
+export const PAYMENT_TYPE_CHANGE = 'PAYMENT_TYPE_CHANGE';
 
 export const FAILURE = 'FAILURE';
 

@@ -6,15 +6,15 @@ export const add = () => {
     };
 };
 
-export const changePayment = () => {
+export const paymentChange = () => {
     return {
-        type: ACTION_TYPE.CHANGE_PAYMENT
+        type: ACTION_TYPE.PAYMENT_CHANGE
     };
 };
 
-export const changePaymentType = () => {
+export const paymentTypeChange = () => {
     return {
-        type: ACTION_TYPE.CHANGE_PAYMENT_TYPE
+        type: ACTION_TYPE.PAYMENT_TYPE_CHANGE
     };
 };
 
