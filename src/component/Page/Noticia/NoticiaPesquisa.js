@@ -33,10 +33,7 @@ export const NoticiaPesquisa = ({ match }) => {
         <PesquisaContext.Provider value={{ setStateNoticiaPesquisaDataContext: memoPesquisa[1] }}>
             <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                 <Box mb={5} width={{ d: 1, md: 4 / 5 }}>
-                    <PesquisaForm
-                        apiUrl={apiUrlNoticiasBusca}
-                        obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }}
-                    />
+                    <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
                 </Box>
 
                 <Title3 fontWeight="700" themeColor="dark">

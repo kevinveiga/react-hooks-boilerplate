@@ -65,7 +65,7 @@ const MinhaContaEntrevistas = () => {
             <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5 }}>
                 {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Entrevistas" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
 
-                <PesquisaForm apiUrl={apiUrlEntrevistas} obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
+                <PesquisaForm obj={{ colorLine: 'colorGray4', colorPlaceholder: 'colorGray2', themeForm: 'pesquisa' }} />
 
                 <Grid display="grid" gridColumnGap={3} gridRowGap={5} gridTemplateColumns={{ d: '1fr', md: '1fr 1fr' }}>
                     {entrevistas &&
