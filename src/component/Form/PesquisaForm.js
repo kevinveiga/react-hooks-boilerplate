@@ -40,6 +40,7 @@ export const PesquisaForm = memo(({ ...props }) => {
 
     // FORM
     const { control, handleSubmit, reset } = useForm({
+        defaultValues: { query: '' },
         mode: 'onChange'
     });
 
