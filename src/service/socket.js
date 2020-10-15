@@ -73,7 +73,10 @@ export const useSocket = (socket, serverEvent) => {
             setStateSocketData(data);
         });
 
-        return undefined;
+        return () => {
+            socket.removeAllListeners(serverEvent);
+            socket.disconnect();
+        };
     }, [serverEvent, socket]);
 
     return stateSocketData;
