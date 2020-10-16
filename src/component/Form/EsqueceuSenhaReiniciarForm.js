@@ -20,6 +20,7 @@ import { P } from '../../style/text';
 
 export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
@@ -28,8 +29,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         mode: 'onChange'
     });
@@ -45,17 +45,19 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
                 const result = await axios.post(`${apiUrlEsqueceuSenha}/reset`, newFormData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     setStateRetornoForm(true);
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response && error.response.status == 404) {
-                    setError('invalid', { type: 'manual', message: responseError(errorEmailNotFound) });
+                    setStateError(responseError(errorEmailNotFound));
                 } else {
-                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                    setStateError(responseError(error.response.data.errors));
 
                     console.error('error: ', error);
                 }
@@ -79,7 +81,7 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>
-                                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                    {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                                 </InvalidResponseMessageContainerStyled>
                             </Cell>
 

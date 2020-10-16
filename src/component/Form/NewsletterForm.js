@@ -17,6 +17,7 @@ import { P, Title5 } from '../../style/text';
 
 export const NewsletterForm = memo(({ ...props }) => {
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     // FORM
@@ -24,8 +25,7 @@ export const NewsletterForm = memo(({ ...props }) => {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         mode: 'onChange'
     });
@@ -36,11 +36,13 @@ export const NewsletterForm = memo(({ ...props }) => {
                 const result = await axios.post(apiUrlNewsletter, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     setStateRetornoForm(true);
                 } else if (result.data.reason) {
-                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
+                    setStateError(result.data.reason[0]);
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
@@ -74,7 +76,7 @@ export const NewsletterForm = memo(({ ...props }) => {
                 justifyContent="flex-end"
             >
                 <InvalidResponseMessageContainerStyled left="0" position="absolute" top="-15px">
-                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                    {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                 </InvalidResponseMessageContainerStyled>
 
                 <Cell mb={3}>

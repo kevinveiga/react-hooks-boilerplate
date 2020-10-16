@@ -29,6 +29,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
     const { setStateAuthContext } = useAuth();
 
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     // FORM
@@ -36,8 +37,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         defaultValues: { nome: '', email: '', telefone: '', password: '', confirm_password: '' },
         mode: 'onChange'
@@ -58,19 +58,21 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                 const result = await axios.post(apiUrlCadastro, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     // Salva dados do usuário no localStorage
                     setStateAuthContext(result.data);
 
                     // Regras de redirecionamento
                     redirectRule();
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                    setStateError(responseError(error.response.data.errors));
                 } else {
                     console.error('error: ', error);
                 }
@@ -87,7 +89,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                         <Cell>
                             <InvalidResponseMessageContainerStyled>
-                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                             </InvalidResponseMessageContainerStyled>
                         </Cell>
 

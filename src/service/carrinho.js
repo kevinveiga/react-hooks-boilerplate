@@ -70,13 +70,15 @@ export const useCarrinhoApi = () => {
                 const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
 
                 if (result.data && result.data.success == true) {
+                    setError(false);
+
                     setStorage('carrinho', JSON.stringify(result.data), 'sessionStorage');
 
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 } else if (result.data.reason) {
-                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
+                    setError(result.data.reason[0]);
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
@@ -99,13 +101,15 @@ export const useCarrinhoApi = () => {
                 const result = await axios.get('http://localhost:3000/src/service/carrinho.json');
 
                 if (result.data && result.data.success == true) {
+                    setError(false);
+
                     setStorage('carrinho', JSON.stringify(result.data), 'sessionStorage');
 
                     dispatch(result.data ? { ...ACTION.success(), payload: result.data } : ACTION.failure());
                 } else if (result.data.reason) {
-                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
+                    setError(result.data.reason[0]);
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
@@ -119,29 +123,23 @@ export const useCarrinhoApi = () => {
         fetchData();
     };
 
-    const handleCarrinhoItemAdd = useCallback(
-        (id) => {
-            // TODO:
-            console.log('handleCarrinhoItemAddId: ', id);
+    const handleCarrinhoItemAdd = useCallback((id) => {
+        // TODO:
+        console.log('handleCarrinhoItemAddId: ', id);
 
-            /*
+        /*
             setStateCarrinhoData({ url: `${apiUrlCarrinho}/add`, params: { itemId: id } });
             */
-        },
-        [setStateCarrinhoData]
-    );
+    }, []);
 
-    const handleCarrinhoItemRemove = useCallback(
-        (id) => {
-            // TODO:
-            console.log('handleCarrinhoItemRemoveId: ', id);
+    const handleCarrinhoItemRemove = useCallback((id) => {
+        // TODO:
+        console.log('handleCarrinhoItemRemoveId: ', id);
 
-            /*
+        /*
             setStateCarrinhoData({ url: `${apiUrlCarrinho}/remove`, params: { itemId: id } });
             */
-        },
-        [setStateCarrinhoData]
-    );
+    }, []);
 
     const handleFormaPagamento = useCallback((formaPagamentoObj) => {
         dispatch({ ...ACTION.paymentChange(), payload: formaPagamentoObj });

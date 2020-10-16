@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
@@ -21,11 +21,14 @@ import { FormStyled } from './FormStyled';
 import { Image, ImageCircleContainer } from '../../style/image';
 import { P } from '../../style/text';
 
+import logoBg from '../../asset/image/logo-bg.png';
+
 export const MinhaContaAvatarForm = memo(() => {
     // API
     const [statePerfilAvatar, setStatePerfilAvatarData] = usePerfilAvatarApi({ url: apiUrlPerfilAvatar });
 
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
     // FUNCTION
@@ -45,19 +48,22 @@ export const MinhaContaAvatarForm = memo(() => {
                         const result = await axios.post(apiUrlPerfilAvatar, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
 
                         if (result.data && result.data.success == true) {
+                            setStateError(false);
+
                             setStatePerfilAvatarData({ update: true, url: apiUrlPerfilAvatar });
+
                             setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                         } else {
-                            setError('invalid', { type: 'manual', message: errorMsgDefault });
+                            setStateError(errorMsgDefault);
 
                             console.error('result error: ', result);
                         }
                     } catch (error) {
                         if (error.response) {
                             if (error.response.data.message) {
-                                setError('invalid', { type: 'manual', message: error.response.data.message });
+                                setStateError(error.response.data.message);
                             } else {
-                                setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                                setStateError(responseError(error.response.data.errors));
                             }
                         } else {
                             console.error('error: ', error);
@@ -68,7 +74,7 @@ export const MinhaContaAvatarForm = memo(() => {
 
             fetchData();
         },
-        [setError, setStateModalMessage, setStatePerfilAvatarData, trigger]
+        [setStateError, setStateModalMessage, setStatePerfilAvatarData, trigger]
     );
 
     // FORM
@@ -76,7 +82,6 @@ export const MinhaContaAvatarForm = memo(() => {
         control,
         errors,
         formState: { touched },
-        setError,
         trigger
     } = useForm({
         defaultValues: { avatar: '' },
@@ -87,7 +92,7 @@ export const MinhaContaAvatarForm = memo(() => {
         <>
             <FormStyled>
                 <ImageCircleContainer>
-                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || ''} width="100%" />
+                    <Image text="avatar" url={(statePerfilAvatar.data && statePerfilAvatar.data.data) || logoBg} width="100%" />
                 </ImageCircleContainer>
 
                 <div>
@@ -119,6 +124,12 @@ export const MinhaContaAvatarForm = memo(() => {
                 {errors.avatar && (
                     <P color="colorAlert" fontSize="14px" mt={3} textAlign="center">
                         {errors.avatar.message}
+                    </P>
+                )}
+
+                {stateError && (
+                    <P color="colorAlert" fontSize="14px" mt={3} textAlign="center">
+                        {stateError}
                     </P>
                 )}
             </FormStyled>

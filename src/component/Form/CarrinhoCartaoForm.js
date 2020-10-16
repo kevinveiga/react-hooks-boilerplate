@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 
@@ -38,6 +38,8 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
     const carrinho = stateCarrinhoContext.data && stateCarrinhoContext.data.data;
 
     // ACTION
+    const [stateError, setStateError] = useState(false);
+
     // Ao inicializar o select, atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
     useEffect(() => {
         handleFormaPagamentoContext(JSON.parse(cartaoParcelaRef.target.options[cartaoParcelaRef.target.selectedIndex].getAttribute('data-obj')));
@@ -57,8 +59,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         defaultValues: { [CARTAO_NOME]: '', [CPF]: '', [CARTAO_NUMERO]: '', [CARTAO_DATA]: '', [CARTAO_CVV]: '', [CARTAO_PARCELA]: '' },
         mode: 'onChange'
@@ -69,20 +70,22 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
 
         createCardTransactionPromise(formData, carrinho)
             .then((response) => {
+                setStateError(false);
+
                 if (response.errors) {
-                    setError('invalid', { type: 'manual', message: pagarmeResponseError(response.errors) });
+                    setStateError(pagarmeResponseError(response.errors));
                 }
 
                 if (response.status === 'authorized') {
                     window.location.assign(`/carrinho-retorno/${paymentType.cartaoCredito}`);
                 } else {
-                    setError('invalid', { type: 'manual', message: pagarmeResponseStatus(response.status) });
+                    setStateError(pagarmeResponseStatus(response.status));
                 }
 
                 setStateLoaderPagarmeContext(false);
             })
             .catch((error) => {
-                setError('invalid', { type: 'manual', message: pagarmeResponseError(error) });
+                setStateError(pagarmeResponseError(error));
 
                 setStateLoaderPagarmeContext(false);
             });
@@ -93,7 +96,7 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
             <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns="1fr 1fr 1fr 1fr" px={5} py={3}>
                 <Cell gridColumn={'1 / span 4'}>
                     <InvalidResponseMessageContainerStyled>
-                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                        {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                     </InvalidResponseMessageContainerStyled>
                 </Cell>
 

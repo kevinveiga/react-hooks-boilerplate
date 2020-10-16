@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 
@@ -17,19 +17,21 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
     // CONTEXT
     const { handleCarrinhoCupomAddContext } = useCarrinho();
 
+    // ACTION
+    const [stateError, setStateError] = useState(false);
+
     // FORM
     const {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         mode: 'onChange'
     });
 
     const onSubmit = (formData) => {
-        handleCarrinhoCupomAddContext(formData.cupom, setError);
+        handleCarrinhoCupomAddContext(formData.cupom, setStateError);
     };
 
     return (
@@ -37,7 +39,7 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
             <Grid display="grid" gridAutoRows="1fr" gridTemplateColumns="3fr 1fr">
                 <Cell gridColumn={'1 / span 2'}>
                     <InvalidResponseMessageContainerStyled>
-                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                        {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                     </InvalidResponseMessageContainerStyled>
                 </Cell>
 

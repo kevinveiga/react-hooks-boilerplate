@@ -6,6 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { apiUrlContato, errorMsgDefault } from '../../config';
 
 import { customValidate } from '../../util/customValidate';
+import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
@@ -19,6 +20,7 @@ import { P, Span, Title3 } from '../../style/text';
 
 export const NoticiaForm = memo(({ ...props }) => {
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateRetornoForm, setStateRetornoForm] = useState(false);
 
     // FORM
@@ -26,8 +28,7 @@ export const NoticiaForm = memo(({ ...props }) => {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         mode: 'onChange'
     });
@@ -38,16 +39,22 @@ export const NoticiaForm = memo(({ ...props }) => {
                 const result = await axios.post(apiUrlContato, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     setStateRetornoForm(true);
                 } else if (result.data.reason) {
-                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
+                    setStateError(result.data.reason[0]);
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
-                console.error('error: ', error);
+                if (error.response) {
+                    setStateError(responseError(error.response.data.errors));
+                } else {
+                    console.error('error: ', error);
+                }
             }
         };
 
@@ -94,12 +101,13 @@ export const NoticiaForm = memo(({ ...props }) => {
                             <Title3 fontWeight="700" mb={1} themeColor="dark">
                                 Solicite contato
                             </Title3>
+
                             <p>e comece a investir em seu futuro</p>
                         </Cell>
 
                         <Cell>
                             <InvalidResponseMessageContainerStyled>
-                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                             </InvalidResponseMessageContainerStyled>
                         </Cell>
 

@@ -1,9 +1,11 @@
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPaywall, errorMsgDefault } from '../../config';
+
+import { convertOrigin } from '../../service/activeCampaign';
 
 import { NoticiaContext } from '../../store/noticia/noticiaContext';
 
@@ -22,13 +24,15 @@ export const LeadwallForm = memo(({ ...props }) => {
     // CONTEXT
     const setChangeLeadwallContext = useContext(NoticiaContext);
 
+    // ACTION
+    const [stateError, setStateError] = useState(false);
+
     // FORM
     const {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         mode: 'onChange'
     });
@@ -39,19 +43,23 @@ export const LeadwallForm = memo(({ ...props }) => {
                 const result = await axios.post(apiUrlPaywall, formData, { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     setStorage('leadwall', 'true');
 
                     setChangeLeadwallContext(true);
+
+                    convertOrigin(formData);
                 } else if (result.data.reason) {
-                    setError('invalid', { type: 'manual', message: result.data.reason[0] });
+                    setStateError(result.data.reason[0]);
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                    setStateError(responseError(error.response.data.errors));
                 } else {
                     console.error('error: ', error);
                 }

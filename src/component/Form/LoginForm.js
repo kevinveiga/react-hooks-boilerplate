@@ -25,6 +25,7 @@ export const LoginForm = memo(({ location, ...props }) => {
     const { setStateAuthContext } = useAuth();
 
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
 
     // FORM
@@ -32,8 +33,7 @@ export const LoginForm = memo(({ location, ...props }) => {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError
+        handleSubmit
     } = useForm({
         mode: 'onChange'
     });
@@ -43,20 +43,24 @@ export const LoginForm = memo(({ location, ...props }) => {
             try {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
+                console.log('result: ', result);
+
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     // Salva dados do usuário no localStorage
                     setStateAuthContext(result.data);
 
                     // Regras de redirecionamento
                     redirectRule();
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                    setStateError(responseError(error.response.data.errors));
                 } else {
                     console.error('error: ', error);
                 }
@@ -64,6 +68,8 @@ export const LoginForm = memo(({ location, ...props }) => {
         };
 
         fetchData();
+
+        return null;
     };
 
     return (
@@ -73,7 +79,7 @@ export const LoginForm = memo(({ location, ...props }) => {
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                         <Cell>
                             <InvalidResponseMessageContainerStyled>
-                                {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                             </InvalidResponseMessageContainerStyled>
                         </Cell>
 

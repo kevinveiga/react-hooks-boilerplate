@@ -1,10 +1,11 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlCep, apiUrlPerfil, errorMsgDefault } from '../../config';
 
+import { useAuth, getLocalStorageUser } from '../../store/auth/auth';
 import { useModalMessage } from '../../store/modalMessage/modalMessage';
 
 import { customValidate } from '../../util/customValidate';
@@ -27,56 +28,57 @@ import { Cell, Grid } from '../../style/grid';
 import { P, Span } from '../../style/text';
 
 export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props }) => {
+    // CONTEXT
+    const { setStateAuthContext } = useAuth();
+
     // VARIABLE
     const axiosInstance = axios.create();
 
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
     // FUNCTION
-    const handleFindAddress = useCallback(
-        () => () => {
-            const element = document.querySelector('input[name="endereco_cep"]');
+    const handleFindAddress = () => () => {
+        const element = document.querySelector('input[name="endereco_cep"]');
 
-            if (element.value) {
-                const formatedCep = formatCepSet(element.value);
+        if (element.value) {
+            const formatedCep = formatCepSet(element.value);
 
-                const fetchData = async () => {
-                    setStateLoader(true);
+            const fetchData = async () => {
+                setStateLoader(true);
 
-                    try {
-                        const result = await axiosInstance.get(`${apiUrlCep}/${formatedCep}`);
+                try {
+                    const result = await axiosInstance.get(`${apiUrlCep}/${formatedCep}`);
 
-                        if (result.data && result.status === 200) {
-                            setFormValue(
-                                formatFormDataGet({
-                                    endereco_cidade: result.data.address.city.name,
-                                    endereco_logradouro: `${result.data.address.streetSuffix} ${result.data.address.street}`,
-                                    endereco_uf: result.data.address.state.toLowerCase()
-                                }),
-                                formId,
-                                setValue
-                            );
-                        } else {
-                            setStateModalMessage({ backgroundColor: 'colorRed', text: 'Erro ao buscar pelo CEP!' });
+                    if (result.data && result.status === 200) {
+                        setFormValue(
+                            formatFormDataGet({
+                                endereco_cidade: result.data.address.city.name,
+                                endereco_logradouro: `${result.data.address.streetSuffix} ${result.data.address.street}`,
+                                endereco_uf: result.data.address.state.toLowerCase()
+                            }),
+                            formId,
+                            setValue
+                        );
+                    } else {
+                        setStateModalMessage({ backgroundColor: 'colorRed', text: 'Erro ao buscar pelo CEP!' });
 
-                            console.error('result error: ', result);
-                        }
-                    } catch (error) {
-                        setStateModalMessage({ backgroundColor: 'colorRed', text: 'CEP inválido!' });
-
-                        console.error('result: ', error);
+                        console.error('result error: ', result);
                     }
+                } catch (error) {
+                    setStateModalMessage({ backgroundColor: 'colorRed', text: 'CEP inválido!' });
 
-                    setStateLoader(false);
-                };
+                    console.error('result: ', error);
+                }
 
-                fetchData();
-            }
-        },
-        [axiosInstance, formId, setStateModalMessage, setValue]
-    );
+                setStateLoader(false);
+            };
+
+            fetchData();
+        }
+    };
 
     // FORM
     const {
@@ -84,7 +86,6 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
         errors,
         formState: { touched },
         handleSubmit,
-        setError,
         setValue
     } = useForm({
         defaultValues: formatFormDataGet(data),
@@ -103,22 +104,34 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
     const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
-                const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
+                const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), {
+                    headers: { 'Content-Type': 'application/json' }
+                });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
+                    const userObj = getLocalStorageUser();
+
+                    // Salva dados do usuário no localStorage
+                    setStateAuthContext({ ...userObj, ...result.data.data });
+
+                    // Verifica que teve uma diferença no estado do perfil (update: true) e atualiza os dados do perfil
                     setStatePerfilData({ update: true, url: apiUrlPerfil });
+
+                    // Exibe mensagem
                     setStateModalMessage({ text: 'Dados salvos com sucesso.' });
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
                     if (error.response.data.message) {
-                        setError('invalid', { type: 'manual', message: error.response.data.message });
+                        setStateError(error.response.data.message);
                     } else {
-                        setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                        setStateError(responseError(error.response.data.errors));
                     }
                 } else {
                     console.error('error: ', error);
@@ -142,7 +155,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                 >
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <InvalidResponseMessageContainerStyled>
-                            {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                            {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                         </InvalidResponseMessageContainerStyled>
                     </Cell>
 
@@ -431,15 +444,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                         </div>
                     </Cell>
 
-                    <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <Label color="colorGray2" mb="-15px" text="Código XP" />
-
-                        <div>
-                            <Controller as={<Input maxLength="10" pr={4} {...props} />} control={control} name="codigo_xp" />
-                        </div>
-                    </Cell>
-
-                    <Cell mt={4} gridColumn={{ d: '1', md: '1 / span 4' }}>
+                    <Cell mt={3} gridColumn={{ d: '1', md: '1 / span 4' }}>
                         <P color="colorBlack3" fontWeight="700" mb={2}>
                             Notificação de e-mail
                         </P>

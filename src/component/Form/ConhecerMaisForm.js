@@ -28,6 +28,7 @@ import { Span, Title3 } from '../../style/text';
 
 export const ConhecerMaisForm = memo(({ formId, ...props }) => {
     // ACTION
+    const [stateError, setStateError] = useState(false);
     const [statePart, setStatePart] = useState(1);
 
     // FUNCTION
@@ -43,9 +44,7 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
         control,
         errors,
         formState: { touched },
-        handleSubmit,
-        setError,
-        setValue
+        handleSubmit
     } = useForm({
         defaultValues: { sexo: '', data_nascimento: '', endereco_cidade: '', endereco_uf: '' },
         mode: 'onChange'
@@ -57,19 +56,21 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
                 const result = await axios.post(apiUrlPerfil, formatFormDataSet(formData), { headers: { 'Content-Type': 'application/json' } });
 
                 if (result.data && result.data.success == true) {
+                    setStateError(false);
+
                     // Regras de redirecionamento
                     redirectRule();
                 } else {
-                    setError('invalid', { type: 'manual', message: errorMsgDefault });
+                    setStateError(errorMsgDefault);
 
                     console.error('result error: ', result);
                 }
             } catch (error) {
                 if (error.response) {
                     if (error.response.data.message) {
-                        setError('invalid', { type: 'manual', message: error.response.data.message });
+                        setStateError(error.response.data.message);
                     } else {
-                        setError('invalid', { type: 'manual', message: responseError(error.response.data.errors) });
+                        setStateError(responseError(error.response.data.errors));
                     }
                 } else {
                     console.error('error: ', error);
@@ -94,7 +95,7 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
                             <Cell>
                                 <InvalidResponseMessageContainerStyled>
-                                    {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
+                                    {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
                                 </InvalidResponseMessageContainerStyled>
                             </Cell>
 
