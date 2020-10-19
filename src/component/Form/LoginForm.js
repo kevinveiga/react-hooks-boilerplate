@@ -43,8 +43,6 @@ export const LoginForm = memo(({ location, ...props }) => {
             try {
                 const result = await axios.post(apiUrlLogin, formData, { headers: { 'Content-Type': 'application/json' } });
 
-                console.log('result: ', result);
-
                 if (result.data && result.data.success == true) {
                     setStateError(false);
 
