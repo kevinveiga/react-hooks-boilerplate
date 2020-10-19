@@ -29,7 +29,7 @@ import { variable } from '../../style/variable';
 
 export const Header = () => {
     // CONTEXT
-    const { setStateModalLogoutContext } = useApp();
+    const { setStateModalContext } = useApp();
     const { stateMenuMobileContext, setStateMenuMobileContext } = useHeader();
 
     // ACTION
@@ -47,9 +47,9 @@ export const Header = () => {
 
     const handleModalLogout = useCallback(
         (value) => () => {
-            setStateModalLogoutContext(value);
+            setStateModalContext({ component: 'logout', visible: value });
         },
-        [setStateModalLogoutContext]
+        [setStateModalContext]
     );
 
     const handleHeaderMinhaContaMenu = useCallback(

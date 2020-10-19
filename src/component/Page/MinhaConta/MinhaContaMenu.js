@@ -14,7 +14,7 @@ import { variable } from '../../../style/variable';
 
 export const MinhaContaMenu = () => {
     // CONTEXT
-    const { setStateModalLogoutContext } = useApp();
+    const { setStateModalContext } = useApp();
     const { stateHideMenuContext, setStateHideMenuContext } = useContext(MinhaContaMenuContext);
 
     return (
@@ -69,7 +69,7 @@ export const MinhaContaMenu = () => {
                         </li>
 
                         <li>
-                            <button onClick={() => setStateModalLogoutContext(true)}>
+                            <button onClick={() => setStateModalContext({ component: 'logout', visible: true })}>
                                 <Svg name="svg-logout" />
 
                                 <Span>Logout</Span>

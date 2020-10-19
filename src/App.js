@@ -11,8 +11,8 @@ import { AuthProvider } from './store/auth/auth';
 
 // import { ExternalJs } from './component/ExternalJs/ExternalJs';
 import { Interceptor } from './component/Interceptor/Interceptor';
+import { Modal } from './component/Modal/Modal';
 import { ModalCookie } from './component/Modal/ModalCookie';
-import { ModalLogout } from './component/Modal/ModalLogout';
 
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
@@ -34,9 +34,9 @@ export const App = () => {
 
                             <Router />
 
-                            <ModalCookie />
+                            <Modal />
 
-                            <ModalLogout />
+                            <ModalCookie />
                         </ThemeProvider>
 
                         {/* <ExternalJs /> */}

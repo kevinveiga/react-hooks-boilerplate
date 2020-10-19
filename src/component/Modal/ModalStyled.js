@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 import { variable } from '../../style/variable';
 
-export const ModalLogoutContainerStyled = styled.div`
+export const ModalContainerStyled = styled.div`
     background-color: ${variable.colorGrayDark};
     color: ${variable.colorWhite};
-    font-size: 24px;
+    font-size: 22px;
     padding: ${variable.spacingLG} ${variable.spacingXL};
     text-align: center;
 
@@ -14,7 +14,7 @@ export const ModalLogoutContainerStyled = styled.div`
     }
 `;
 
-export const ModalLogoutStyled = styled.div`
+export const ModalStyled = styled.div`
     align-items: center;
     background-color: ${variable.colorWhiteTransparent2};
     display: ${({ visible }) => (visible ? 'flex' : 'none')};

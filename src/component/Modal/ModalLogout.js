@@ -1,60 +1,54 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { useApp } from '../../store/app/app';
 import { logout } from '../../store/auth/auth';
 
 import { Button } from '../Button/Button';
 
-import { ModalLogoutContainerStyled, ModalLogoutStyled } from './ModalLogoutStyled';
+import { P } from '../../style/text';
 
 export const ModalLogout = () => {
     // CONTEXT
-    const { stateModalLogoutContext, setStateModalLogoutContext } = useApp();
+    const { setStateModalContext } = useApp();
 
     // FUNCTION
-    const handleLogout = useCallback(
-        () => () => {
-            logout();
+    const handleLogout = () => () => {
+        logout();
 
-            // Redirecionamento para Home
-            window.location.assign('/');
-        },
-        []
-    );
+        // Redirecionamento para Home da Liberta Investimentos
+        window.location.assign('https://libertainvestimentos.com.br/');
+    };
 
     return (
-        <ModalLogoutStyled visible={stateModalLogoutContext}>
-            <ModalLogoutContainerStyled>
-                <p>
-                    Você deseja sair da
-                    <br />
-                    plataforma?
-                </p>
+        <>
+            <P color="colorWhite" mb={5}>
+                Você deseja sair da
+                <br />
+                plataforma?
+            </P>
 
-                <Button
-                    borderRadius="25px"
-                    display="inline-block"
-                    fontSize="18px"
-                    height="40px"
-                    mx="auto"
-                    my={3}
-                    onClick={handleLogout()}
-                    text="Confirmar"
-                    textTransform="none"
-                    themeSize="small"
-                />
+            <Button
+                display="inline-block"
+                fontSize="18px"
+                height="50px"
+                mx="auto"
+                mb={3}
+                onClick={handleLogout()}
+                text="Confirmar"
+                textTransform="none"
+                themeSize="small"
+            />
 
-                <Button
-                    color="colorGray2"
-                    display="block"
-                    fontSize="18px"
-                    mx="auto"
-                    onClick={() => setStateModalLogoutContext(false)}
-                    text="Cancelar"
-                    themeSize="none"
-                    themeType="none"
-                />
-            </ModalLogoutContainerStyled>
-        </ModalLogoutStyled>
+            <Button
+                color="colorGray2"
+                display="block"
+                fontSize="18px"
+                mx="auto"
+                onClick={() => setStateModalContext({ visible: false })}
+                text="Cancelar"
+                themeSize="none"
+                themeType="none"
+            />
+        </>
     );
 };

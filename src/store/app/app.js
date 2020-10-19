@@ -3,15 +3,15 @@ import React, { createContext, useContext, useMemo, useState } from 'react';
 const AppContext = createContext(undefined);
 
 export const AppProvider = ({ children }) => {
-    const [stateModalLogout, setStateModalLogout] = useState(false);
+    const [stateModal, setStateModal] = useState(false);
 
-    const memoModalLogout = useMemo(() => [stateModalLogout, setStateModalLogout], [stateModalLogout, setStateModalLogout]);
+    const memoModal = useMemo(() => [stateModal, setStateModal], [stateModal, setStateModal]);
 
     return (
         <AppContext.Provider
             value={{
-                stateModalLogoutContext: memoModalLogout[0],
-                setStateModalLogoutContext: memoModalLogout[1]
+                stateModalContext: memoModal[0],
+                setStateModalContext: memoModal[1]
             }}
         >
             {children}

@@ -10,7 +10,7 @@ import { MinhaContaMenuMobileStyled } from './MinhaContaMenuStyled';
 
 export const MinhaContaMenuMobile = ({ ...props }) => {
     // CONTEXT
-    const { setStateModalLogoutContext } = useApp();
+    const { setStateModalContext } = useApp();
     const { stateMinhaContaMenuMobileContext, setStateMinhaContaMenuMobileContext } = useHeaderAlternative();
 
     return (
@@ -52,7 +52,7 @@ export const MinhaContaMenuMobile = ({ ...props }) => {
                         color="colorWhite"
                         fontWeight="700"
                         obj={{ hoverColor: 'colorPrimary', hoverColorLine: 'colorPrimary' }}
-                        onClick={() => setStateModalLogoutContext(true)}
+                        onClick={() => setStateModalContext({ component: 'logout', visible: true })}
                         text="Sair"
                         themeSize="none"
                         themeType="none"
