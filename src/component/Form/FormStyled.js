@@ -224,7 +224,7 @@ export const InputMaskStyled = styled(NumberFormat).attrs(({ invalid }) => ({
 
 export const InvalidInputMessageStyled = styled.span`
     bottom: -20px;
-    color: ${variable.colorAlert};
+    color: ${({ color }) => (color ? variable[color] : variable.colorAlert)};
     font-size: 12px;
     left: 0;
     position: absolute;
@@ -235,7 +235,7 @@ export const InvalidResponseMessageContainerStyled = styled.div`
 `;
 
 export const InvalidResponseMessageStyled = styled.p`
-    color: ${variable.colorAlert};
+    color: ${({ color }) => (color ? variable[color] : variable.colorAlert)};
     font-size: 14px;
 `;
 
