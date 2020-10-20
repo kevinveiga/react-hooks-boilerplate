@@ -35,7 +35,7 @@ export const LayoutMinhaContaWithMenu = ({ children }) => {
                     <Container mx="auto" px={{ d: 0, lg: 3 }}>
                         <MinhaContaMenuContext.Provider value={{ stateHideMenuContext: stateHideMenu, setStateHideMenuContext: setStateHideMenu }}>
                             <Flex display="flex">
-                                <Box display={{ d: 'none', lg: 'block' }} width={stateHideMenu ? '60px' : 'auto'}>
+                                <Box display={{ d: 'none', lg: 'block' }} width={stateHideMenu ? '60px' : '300px'}>
                                     <MinhaContaMenu />
                                 </Box>
 
