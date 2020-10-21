@@ -32,7 +32,7 @@ export const apiUrlPaywall = `${apiUrl}/paywall`;
 
 export const apiUrlPerfil = `${apiUrl}/perfil`;
 
-export const apiUrlPerfilAvatar = `${apiUrl}/perfil/avatar`;
+export const apiUrlPerfilAvatar = `${apiUrlPerfil}/avatar`;
 
 export const errorEmailNotFound = 'Email não cadastrado';
 
