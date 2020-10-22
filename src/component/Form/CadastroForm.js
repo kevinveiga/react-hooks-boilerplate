@@ -73,7 +73,11 @@ export const CadastroForm = memo(({ formId, ...props }) => {
                 }
             } catch (error) {
                 if (error.response) {
-                    setStateError(responseError(error.response.data.errors));
+                    if (error.response.data.message) {
+                        setStateError(error.response.data.message);
+                    } else {
+                        setStateError(responseError(error.response.data.errors));
+                    }
                 } else {
                     console.error('error: ', error);
                 }
