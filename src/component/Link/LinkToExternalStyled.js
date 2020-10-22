@@ -21,8 +21,9 @@ export const LinkToExternalStyled = styled.a`
     ${typography};
 
     ${({ color }) => color && `color: ${variable[color]}`};
-    ${({ obj }) => obj && obj.underline && 'text-decoration: underline'};
+    ${({ obj }) => obj && obj.textDecoration && `text-decoration: ${obj.textDecoration}`};
     transition: color ${variable.transition};
+    ${({ obj }) => obj && obj.verticalAlign && `vertical-align: ${obj.verticalAlign}`};
 
     ${({ obj }) =>
         obj &&
