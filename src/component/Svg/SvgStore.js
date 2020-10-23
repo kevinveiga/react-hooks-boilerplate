@@ -2,7 +2,6 @@ import React from 'react';
 
 import { SvgArrowStyled } from './SvgArrowStyled';
 import { SvgCloseStyled } from './SvgCloseStyled';
-import { SvgLockStyled } from './SvgLockStyled';
 import { SvgLogoLoaderStyled } from './SvgLogoLoaderStyled';
 import { SvgMenuStyled } from './SvgMenuStyled';
 import { SvgNextStyled } from './SvgNextStyled';
@@ -215,9 +214,9 @@ export const SvgLinkedinCircle = ({ ...props }) => {
 
 export const SvgLock = ({ ...props }) => {
     return (
-        <SvgLockStyled {...props} version={1} viewBox="0 0 100.5 132.3" xmlns="http://www.w3.org/2000/svg">
+        <SvgStyled {...props} version={1} viewBox="0 0 100.5 132.3" xmlns="http://www.w3.org/2000/svg">
             <path d="M43.7 0a25.6 25.6 0 0 0-25.6 25.6v29.1h-15A3 3 0 0 0 0 57.8v71.4a3 3 0 0 0 3 3h94.4a3 3 0 0 0 3-3V57.8a3 3 0 0 0-3-3h-15V25.5A25.6 25.6 0 0 0 56.6 0zm0 6.2h13c10.8 0 19.4 8.7 19.4 19.4v29.1H24.3V25.6c0-10.7 8.7-19.4 19.4-19.4zM6.2 60.9h88v65.2h-88zm44.3 17a10.6 10.6 0 0 0-3 20.8v8.3a3 3 0 0 0 6.1 0v-8.3a10.7 10.7 0 0 0-3-20.9zm0 6.1a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z" />
-        </SvgLockStyled>
+        </SvgStyled>
     );
 };
 
