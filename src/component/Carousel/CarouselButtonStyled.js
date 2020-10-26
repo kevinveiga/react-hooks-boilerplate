@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-
 import { position } from 'styled-system';
 
 import { variable } from '../../style/variable';
@@ -14,7 +13,7 @@ export const CarouselDotBtnStyled = styled.button`
     width: 8px;
 `;
 
-export const CarouselDotContainerStyled = styled.ul`
+export const CarouselDotListStyled = styled.ul`
     bottom: 15px;
     display: block;
     list-style: none;

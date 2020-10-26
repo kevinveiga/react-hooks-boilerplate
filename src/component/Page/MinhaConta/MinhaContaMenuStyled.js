@@ -48,6 +48,7 @@ export const MinhaContaMenuStyled = styled.nav`
                 margin-left: 16px;
                 opacity: 1;
                 transition: color ${variable.transition}, opacity ${variable.transition};
+                vertical-align: middle;
             }
 
             > svg {

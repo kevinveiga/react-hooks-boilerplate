@@ -3,7 +3,7 @@ import { position } from 'styled-system';
 
 import { variable } from '../../style/variable';
 
-export const SocialSidebarStyled = styled.ul`
+export const SocialSidebarListStyled = styled.ul`
     ${position};
 
     background-color: ${variable.colorBlackTransparent5};

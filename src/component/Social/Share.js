@@ -3,11 +3,11 @@ import React from 'react';
 import { LinkToExternal } from '../Link/LinkToExternal';
 import { Svg } from '../Svg/Svg';
 
-import { SocialAlternateStyled } from './SocialAlternateStyled';
+import { SocialAlternateListStyled } from './SocialAlternateStyled';
 
 export const Share = ({ title, url, ...props }) => {
     return (
-        <SocialAlternateStyled {...props}>
+        <SocialAlternateListStyled {...props}>
             <li>
                 <LinkToExternal
                     text="Facebook"
@@ -29,6 +29,6 @@ export const Share = ({ title, url, ...props }) => {
                     <Svg name="svg-linkedin-circle" />
                 </LinkToExternal>
             </li>
-        </SocialAlternateStyled>
+        </SocialAlternateListStyled>
     );
 };

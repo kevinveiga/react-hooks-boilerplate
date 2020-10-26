@@ -7,14 +7,14 @@ import { useSocialApi } from '../../service/social';
 import { LinkToExternal } from '../Link/LinkToExternal';
 import { Svg } from '../Svg/Svg';
 
-import { SocialSidebarStyled, SocialSidebarItemStyled } from './SocialSidebarStyled';
+import { SocialSidebarListStyled, SocialSidebarItemStyled } from './SocialSidebarStyled';
 
 export const SocialSidebar = ({ ...props }) => {
     // API
     const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`);
 
     return stateSocial.data ? (
-        <SocialSidebarStyled
+        <SocialSidebarListStyled
             bottom={{ d: '10px', sm: '20px' }}
             px={{ d: '10px', sm: '0px' }}
             py={{ d: '0px', sm: '10px' }}
@@ -38,6 +38,6 @@ export const SocialSidebar = ({ ...props }) => {
                     <Svg name="svg-linkedin-colored" height="25px" />
                 </LinkToExternal>
             </SocialSidebarItemStyled>
-        </SocialSidebarStyled>
+        </SocialSidebarListStyled>
     ) : null;
 };

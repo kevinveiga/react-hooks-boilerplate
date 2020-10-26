@@ -19,7 +19,7 @@ import { LoaderPlaceholder } from '../../Loader/LoaderPlaceholder';
 import { Svg } from '../../Svg/Svg';
 
 import { VideoContainerStyled } from './HomeStyled';
-import { VideoBoxStyled, VideoGridStyled, VideoLiStyled, VideoUlStyled } from './HomeVideoStyled';
+import { VideoBoxStyled, VideoGridStyled, VideoItemStyled, VideoListStyled } from './HomeVideoStyled';
 
 import { Box } from '../../../style/flex';
 import { Cell } from '../../../style/grid';
@@ -93,10 +93,10 @@ const HomeVideo = ({ anchor, ...props }) => {
                                     </Title5>
                                 </VideoBoxStyled>
 
-                                <VideoUlStyled>
+                                <VideoListStyled>
                                     {stateVideos.data.map((video, i, array) => {
                                         return (
-                                            <VideoLiStyled
+                                            <VideoItemStyled
                                                 active={stateVideos.data.video === video.video || false}
                                                 borderBottom={array.length === i + 1 ? '0' : '1px solid rgba(216, 221, 225, 0.8)'}
                                                 hover="true"
@@ -125,10 +125,10 @@ const HomeVideo = ({ anchor, ...props }) => {
                                                 <Box display="inline-flex" height="100px" verticalAlign="middle" width={2 / 5}>
                                                     <BgImageLazyLoad key={getVideoId(video.video)} url={video.thumbnail && video.thumbnail.url} />
                                                 </Box>
-                                            </VideoLiStyled>
+                                            </VideoItemStyled>
                                         );
                                     })}
-                                </VideoUlStyled>
+                                </VideoListStyled>
                             </Cell>
                         </VideoGridStyled>
 

@@ -4,8 +4,8 @@ import {
     MinhaContaConversacaoStyled,
     MinhaContaConversacaoImageContainerStyled,
     MinhaContaConversacaoImageLineStyled,
-    MinhaContaConversacaoLiStyled,
-    MinhaContaConversacaoUlStyled
+    MinhaContaConversacaoItemStyled,
+    MinhaContaConversacaoListStyled
 } from './MinhaContaStyled';
 
 import { Box } from '../../../style/flex';
@@ -15,8 +15,8 @@ import { P } from '../../../style/text';
 const MinhaContaConversacao = ({ obj, ...props }) => {
     return (
         <MinhaContaConversacaoStyled>
-            <MinhaContaConversacaoUlStyled>
-                <MinhaContaConversacaoLiStyled>
+            <MinhaContaConversacaoListStyled>
+                <MinhaContaConversacaoItemStyled>
                     <MinhaContaConversacaoImageLineStyled>
                         <MinhaContaConversacaoImageContainerStyled>
                             <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
@@ -30,9 +30,9 @@ const MinhaContaConversacao = ({ obj, ...props }) => {
                             23 Ago. 2019
                         </P>
                     </Box>
-                </MinhaContaConversacaoLiStyled>
+                </MinhaContaConversacaoItemStyled>
 
-                <MinhaContaConversacaoLiStyled>
+                <MinhaContaConversacaoItemStyled>
                     <MinhaContaConversacaoImageLineStyled>
                         <MinhaContaConversacaoImageContainerStyled>
                             <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
@@ -46,9 +46,9 @@ const MinhaContaConversacao = ({ obj, ...props }) => {
                             25 Ago. 2019
                         </P>
                     </Box>
-                </MinhaContaConversacaoLiStyled>
+                </MinhaContaConversacaoItemStyled>
 
-                <MinhaContaConversacaoLiStyled>
+                <MinhaContaConversacaoItemStyled>
                     <MinhaContaConversacaoImageContainerStyled>
                         <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
                     </MinhaContaConversacaoImageContainerStyled>
@@ -62,11 +62,11 @@ const MinhaContaConversacao = ({ obj, ...props }) => {
                             23 Ago. 2019
                         </P>
                     </Box>
-                </MinhaContaConversacaoLiStyled>
-            </MinhaContaConversacaoUlStyled>
+                </MinhaContaConversacaoItemStyled>
+            </MinhaContaConversacaoListStyled>
 
-            <MinhaContaConversacaoUlStyled>
-                <MinhaContaConversacaoLiStyled>
+            <MinhaContaConversacaoListStyled>
+                <MinhaContaConversacaoItemStyled>
                     <MinhaContaConversacaoImageLineStyled>
                         <MinhaContaConversacaoImageContainerStyled>
                             <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
@@ -80,9 +80,9 @@ const MinhaContaConversacao = ({ obj, ...props }) => {
                             23 Ago. 2019
                         </P>
                     </Box>
-                </MinhaContaConversacaoLiStyled>
+                </MinhaContaConversacaoItemStyled>
 
-                <MinhaContaConversacaoLiStyled>
+                <MinhaContaConversacaoItemStyled>
                     <MinhaContaConversacaoImageContainerStyled>
                         <Image objectFit="cover" text="autor" url="https://picsum.photos/id/1011/1024/768" />
                     </MinhaContaConversacaoImageContainerStyled>
@@ -96,8 +96,8 @@ const MinhaContaConversacao = ({ obj, ...props }) => {
                             23 Ago. 2019
                         </P>
                     </Box>
-                </MinhaContaConversacaoLiStyled>
-            </MinhaContaConversacaoUlStyled>
+                </MinhaContaConversacaoItemStyled>
+            </MinhaContaConversacaoListStyled>
         </MinhaContaConversacaoStyled>
     );
 };

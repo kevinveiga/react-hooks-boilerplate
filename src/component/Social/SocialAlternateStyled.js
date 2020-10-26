@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { variable } from '../../style/variable';
 
-export const SocialAlternateStyled = styled.ul`
+export const SocialAlternateListStyled = styled.ul`
     display: inline-block;
 
     ${({ direction }) =>

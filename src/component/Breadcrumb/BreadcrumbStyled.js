@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { layout, space, typography } from 'styled-system';
 
-import { variable } from '../../style/variable';
-
-export const BreadcrumbStyled = styled.ul`
-    ${space};
-`;
-
 export const BreadcrumbItemStyled = styled.li`
     ${layout};
     ${typography};
@@ -16,4 +10,8 @@ export const BreadcrumbItemStyled = styled.li`
     text-overflow: ellipsis;
     vertical-align: middle;
     white-space: nowrap;
+`;
+
+export const BreadcrumbListStyled = styled.ul`
+    ${space};
 `;

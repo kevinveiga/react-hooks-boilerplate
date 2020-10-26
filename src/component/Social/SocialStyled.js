@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { variable } from '../../style/variable';
 
-export const SocialStyled = styled.ul`
+export const SocialListStyled = styled.ul`
     display: inline-block;
 
     > li {

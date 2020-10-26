@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CarouselDotBtnStyled, CarouselDotContainerStyled, CarouselNextBtnStyled, CarouselPrevBtnStyled } from './CarouselButtonStyled';
+import { CarouselDotBtnStyled, CarouselDotListStyled, CarouselNextBtnStyled, CarouselPrevBtnStyled } from './CarouselButtonStyled';
 
 import { Svg } from '../Svg/Svg';
 
@@ -9,7 +9,7 @@ export const DotBtn = ({ ...props }) => {
 };
 
 export const DotContainer = ({ ...props }) => {
-    return <CarouselDotContainerStyled {...props} />;
+    return <CarouselDotListStyled {...props} />;
 };
 
 export const NextBtn = ({ ...props }) => {

@@ -2,13 +2,13 @@ import React from 'react';
 
 import { LinkTo } from '../Link/LinkTo';
 
-import { BreadcrumbStyled, BreadcrumbItemStyled } from './BreadcrumbStyled';
+import { BreadcrumbListStyled, BreadcrumbItemStyled } from './BreadcrumbStyled';
 
 import { Span } from '../../style/text';
 
 export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
     return (
-        <BreadcrumbStyled mb={{ d: 4, lg: 0 }}>
+        <BreadcrumbListStyled mb={{ d: 4, lg: 0 }}>
             {breadcrumb ? (
                 <>
                     {breadcrumb.map((item) => {
@@ -33,6 +33,6 @@ export const Breadcrumb = ({ breadcrumb, currentLabel, obj }) => {
             ) : (
                 <BreadcrumbItemStyled fontSize={{ d: '14px', lg: '16px' }}>Minha Conta</BreadcrumbItemStyled>
             )}
-        </BreadcrumbStyled>
+        </BreadcrumbListStyled>
     );
 };

@@ -7,14 +7,14 @@ import { useSocialApi } from '../../service/social';
 import { LinkToExternal } from '../Link/LinkToExternal';
 import { Svg } from '../Svg/Svg';
 
-import { SocialStyled } from './SocialStyled';
+import { SocialListStyled } from './SocialStyled';
 
 export const Social = ({ ...props }) => {
     // API
     const stateSocial = useSocialApi(`${apiUrlConfiguracoes}/social`);
 
     return stateSocial.data ? (
-        <SocialStyled {...props}>
+        <SocialListStyled {...props}>
             <li>
                 <LinkToExternal text="Facebook" link={stateSocial.data.facebook} target="_blank">
                     <Svg name="svg-facebook" />
@@ -44,6 +44,6 @@ export const Social = ({ ...props }) => {
                     <Svg name="svg-linkedin" />
                 </LinkToExternal>
             </li> */}
-        </SocialStyled>
+        </SocialListStyled>
     ) : null;
 };

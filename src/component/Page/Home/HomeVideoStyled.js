@@ -19,18 +19,7 @@ export const VideoGridStyled = styled(Grid)`
     background-color: ${variable.colorWhite};
 `;
 
-export const VideoUlStyled = styled.ul`
-    ${scrollbar(variable.colorPrimary, variable.colorWhite)};
-
-    max-height: 440px;
-    overflow-y: auto;
-
-    @media (min-width: ${variable.md}) {
-        max-height: 540px;
-    }
-`;
-
-export const VideoLiStyled = styled.li`
+export const VideoItemStyled = styled.li`
     ${border};
     ${space};
 
@@ -56,5 +45,16 @@ export const VideoLiStyled = styled.li`
         color: ${variable.colorGray2};
         font-size: 14px;
         margin-bottom: 0;
+    }
+`;
+
+export const VideoListStyled = styled.ul`
+    ${scrollbar(variable.colorPrimary, variable.colorWhite)};
+
+    max-height: 440px;
+    overflow-y: auto;
+
+    @media (min-width: ${variable.md}) {
+        max-height: 540px;
     }
 `;

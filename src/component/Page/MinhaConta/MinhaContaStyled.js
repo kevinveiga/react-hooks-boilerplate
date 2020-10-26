@@ -50,7 +50,7 @@ export const MinhaContaConversacaoImageLineStyled = styled.div`
     }
 `;
 
-export const MinhaContaConversacaoLiStyled = styled.li`
+export const MinhaContaConversacaoItemStyled = styled.li`
     display: flex;
     padding-bottom: 20px;
     padding-top: 20px;
@@ -60,7 +60,7 @@ export const MinhaContaConversacaoLiStyled = styled.li`
     }
 `;
 
-export const MinhaContaConversacaoUlStyled = styled.ul`
+export const MinhaContaConversacaoListStyled = styled.ul`
     border-bottom: 1px solid ${variable.colorGrayLight2};
 `;
 
