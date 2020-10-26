@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from '../../Button/Button';
 import { LoginForm } from '../../Form/LoginForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { Splash } from '../../Splash/Splash';
@@ -9,7 +10,7 @@ import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
 import { P, Title2 } from '../../../style/text';
 
-export const Login = ({ location }) => {
+export const Login = () => {
     return (
         <Flex display="flex" flexWrap="wrap" minHeight="100vh">
             <Box alignItems="center" display={{ d: 'none', lg: 'flex' }} flexWrap="wrap" width={3 / 7}>
@@ -31,14 +32,13 @@ export const Login = ({ location }) => {
                     <LoginForm obj={{ colorLine: 'colorPrimary' }} />
 
                     <Box px={{ d: 1, sm: 5 }}>
-                        <P color="colorGray2" fontSize="14px" themeColor="dark">
-                            Precisa de uma conta?{' '}
-                            <LinkTo obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }} link="/cadastro" text="Se cadastre aqui." />
-                        </P>
+                        <LinkTo link="/cadastro" width="100%">
+                            <Button text="Não possui conta? Cadastre-se" themeType="border" width="100%" />
+                        </LinkTo>
 
-                        <P color="colorGray2" fontSize="14px" themeColor="dark">
+                        <P color="colorGray2" fontSize="14px" mt={3}>
                             <LinkTo
-                                obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }}
+                                obj={{ hoverColor: 'fontColor', textDecoration: 'underline' }}
                                 link="/esqueci-minha-senha"
                                 text="Esqueceu sua senha?"
                             />

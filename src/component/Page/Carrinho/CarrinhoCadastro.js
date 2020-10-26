@@ -50,9 +50,9 @@ export const CarrinhoCadastro = () => {
 
                         <LoginForm />
 
-                        <P color="colorGray2" fontSize="14px" px={{ d: 1, sm: 5 }} textAlign="right" themeColor="dark">
+                        <P color="colorGray2" fontSize="14px" mt={2} textAlign="right">
                             <LinkTo
-                                obj={{ hoverColor: 'colorGray2', textDecoration: 'underline' }}
+                                obj={{ hoverColor: 'fontColor', textDecoration: 'underline' }}
                                 link="/esqueci-minha-senha"
                                 text="Esqueceu sua senha?"
                             />

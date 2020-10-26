@@ -74,7 +74,7 @@ export const LoginForm = memo(({ location, ...props }) => {
         <Flex display="flex" flexWrap="wrap">
             <Box overflow="hidden" width="100%">
                 <FormStyled onSubmit={handleSubmit(onSubmit)}>
-                    <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
+                    <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 3 }}>
                         <Cell>
                             <InvalidResponseMessageContainerStyled>
                                 {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
@@ -127,7 +127,7 @@ export const LoginForm = memo(({ location, ...props }) => {
                             {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
                         </Cell>
 
-                        <Cell mb={3}>
+                        <Cell>
                             <Button fontSize={{ d: '16px', sm: '18px' }} height="60px" text="Acessar" typeButton="submit" width="100%" />
                         </Cell>
                     </Grid>
