@@ -60,7 +60,7 @@ const HomeVideo = ({ anchor, ...props }) => {
             {stateEntry.isIntersecting && videosLength > 0 ? (
                 <VideoContainerStyled>
                     <Container mx="auto" px={3} py={{ d: 4, md: variable.spacingXL }}>
-                        <Title2 themeColor="light">Vídeos Liberta</Title2>
+                        <Title2 themeColor="light">Vídeos</Title2>
 
                         <VideoGridStyled display="grid" gridTemplateColumns={{ d: '1fr', md: '2fr 1fr' }} mb={5} {...props}>
                             <Cell>

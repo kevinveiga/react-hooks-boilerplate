@@ -3,7 +3,6 @@ import React from 'react';
 import { EsqueceuSenhaForm } from '../../Form/EsqueceuSenhaForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { Splash } from '../../Splash/Splash';
-import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
@@ -18,10 +17,6 @@ export const EsqueceuSenha = ({ location }) => {
 
             <Box width={{ d: '100%', lg: 3 / 7 }}>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Box mb={{ d: 4, md: '75px' }} mt={{ d: 0, lg: 4 }} textAlign="center">
-                        <Svg name="svg-logo-liberta" />
-                    </Box>
-
                     <Title2 textAlign="center" themeColor="dark">
                         Esqueceu a senha?
                         <br />

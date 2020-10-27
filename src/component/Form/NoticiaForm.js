@@ -10,7 +10,6 @@ import { responseError } from '../../util/responseError';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
-import { BgImageLazyLoad } from '../LazyLoad/BgImageLazyLoad';
 
 import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
 
@@ -71,7 +70,7 @@ export const NoticiaForm = memo(({ ...props }) => {
                 p="75px"
                 width={stateRetornoForm ? '100%' : 1 / 2}
             >
-                {stateRetornoForm ? (
+                {stateRetornoForm && (
                     <>
                         <Title3 fontWeight="700" mb={4} mx="auto" textAlign="center" themeColor="light">
                             Você deu o primeiro passo para sua <br /> <Span color="colorGreen">liberdade</Span>
@@ -79,16 +78,6 @@ export const NoticiaForm = memo(({ ...props }) => {
 
                         <P mx="auto" textAlign="center" themeColor="light">
                             Em breve um de nossos assessores de investimentos irá entrar em contato.
-                        </P>
-                    </>
-                ) : (
-                    <>
-                        <Title3 fontWeight="700" mb={4} themeColor="light">
-                            A <Span color="colorGreen">liberdade</Span> <br /> é feita com bons <Span color="colorGreen">investimentos.</Span>
-                        </Title3>
-
-                        <P themeColor="light">
-                            A Liberta é um dos maiores escritórios credenciados à XP Investimentos e com mais de R$ 1 bilhão em custódia.
                         </P>
                     </>
                 )}

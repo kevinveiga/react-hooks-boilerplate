@@ -12,7 +12,6 @@ import { FooterMenu } from './FooterMenu';
 import { NewsletterForm } from '../Form/NewsletterForm';
 import { LoaderPlaceholder } from '../Loader/LoaderPlaceholder';
 import { SocialAlternate } from '../Social/SocialAlternate';
-import { Svg } from '../Svg/Svg';
 
 import { FooterAtendimentoStyled, FooterStyled } from './FooterStyled';
 
@@ -43,8 +42,6 @@ const Footer = () => {
                     <Container mx="auto" px={3}>
                         <Flex display="flex" flexWrap="wrap" justifyContent="space-between">
                             <Box width={{ d: 1, md: 5 / 12, lg: 4 / 12 }}>
-                                <Svg fill="colorWhite" height="35px" name="svg-logo-liberta" />
-
                                 <FooterMenu />
                             </Box>
 

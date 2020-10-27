@@ -6,7 +6,6 @@ import { CadastroForm } from '../../Form/CadastroForm';
 import { ConhecerMaisForm } from '../../Form/ConhecerMaisForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { Splash } from '../../Splash/Splash';
-import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
@@ -26,10 +25,6 @@ export const Cadastro = () => {
 
                 <Box width={{ d: '100%', lg: 3 / 7 }}>
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                        <Box mb={{ d: 4, md: '75px' }} mt={{ d: 0, lg: 4 }} textAlign="center">
-                            <Svg name="svg-logo-liberta" />
-                        </Box>
-
                         {!memoConhecerMais[0] ? (
                             <CadastroForm formId="cadastroFormId" obj={{ colorLine: 'colorPrimary' }} />
                         ) : (

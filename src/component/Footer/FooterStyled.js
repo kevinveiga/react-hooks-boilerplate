@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { border, display, flexbox, space } from 'styled-system';
 
-import { SvgLogoLibertaStyled } from '../Svg/SvgLogoLibertaStyled';
-
 import { variable } from '../../style/variable';
 
 export const FooterStyled = styled.footer`
@@ -14,12 +12,6 @@ export const FooterStyled = styled.footer`
     padding-top: ${variable.spacingLG};
     width: 100%;
     z-index: 1;
-
-    ${SvgLogoLibertaStyled} {
-        [data-logo-liberta] {
-            fill: transparent;
-        }
-    }
 `;
 
 export const FooterAtendimentoStyled = styled.div`

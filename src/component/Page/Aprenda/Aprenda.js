@@ -70,7 +70,7 @@ export const Aprenda = () => {
     return (
         <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
             <Title3 align="center" fontWeight="700" themeColor="dark">
-                Conheça os cursos da Liberta
+                Conheça
             </Title3>
 
             <Title4 align="center" color="colorGray2" mb={5} themeColor="dark">

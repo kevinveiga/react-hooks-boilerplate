@@ -15,8 +15,8 @@ export const ModalLogout = () => {
     const handleLogout = () => () => {
         logout();
 
-        // Redirecionamento para Home da Liberta Investimentos
-        window.location.assign('https://libertainvestimentos.com.br/');
+        // Redirecionamento para Home
+        window.location.assign('/');
     };
 
     return (

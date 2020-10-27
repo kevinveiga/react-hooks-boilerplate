@@ -64,7 +64,7 @@ const FooterAlternative = () => {
 
                             <Box borderLeft={{ d: 'none', md: '1px solid rgba(255, 255, 255, 0.2)' }} px={3} py={2} width={{ d: 1, md: 'auto' }}>
                                 <h6>E-mail:</h6>
-                                <h4>atendimento@libertainvestimentos.com.br</h4>
+                                <h4>atendimento@atendimento.com.br</h4>
                             </Box>
                         </FooterAlternativeAtendimentoStyled>
 

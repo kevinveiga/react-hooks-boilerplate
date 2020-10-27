@@ -6,6 +6,10 @@ export const Svg = ({ name, ...props }) => {
     switch (name) {
         case 'svg-american-express':
             return <SvgStore.SvgAmericanExpress {...props} />;
+        case 'svg-arrow-down':
+            return <SvgStore.SvgArrowDown {...props} />;
+        case 'svg-arrow-down-2':
+            return <SvgStore.SvgArrowDown2 {...props} />;
         case 'svg-arrow-left':
             return <SvgStore.SvgArrowLeft {...props} />;
         case 'svg-arrow-right':
@@ -16,6 +20,8 @@ export const Svg = ({ name, ...props }) => {
             return <SvgStore.SvgBitcoin {...props} />;
         case 'svg-boleto':
             return <SvgStore.SvgBoleto {...props} />;
+        case 'svg-book':
+            return <SvgStore.SvgBook {...props} />;
         case 'svg-camera':
             return <SvgStore.SvgCamera {...props} />;
         case 'svg-cart':
@@ -36,10 +42,14 @@ export const Svg = ({ name, ...props }) => {
             return <SvgStore.SvgFlagUsa {...props} />;
         case 'svg-headphone':
             return <SvgStore.SvgHeadphone {...props} />;
+        case 'svg-image-placeholder':
+            return <SvgStore.SvgImagePlaceholder {...props} />;
         case 'svg-instagram':
             return <SvgStore.SvgInstagram {...props} />;
         case 'svg-instagram-circle':
             return <SvgStore.SvgInstagramCircle {...props} />;
+        case 'svg-instagram-colored':
+            return <SvgStore.SvgInstagramColored {...props} />;
         case 'svg-invalid':
             return <SvgStore.SvgInvalid {...props} />;
         case 'svg-level':
@@ -48,16 +58,22 @@ export const Svg = ({ name, ...props }) => {
             return <SvgStore.SvgLinkedin {...props} />;
         case 'svg-linkedin-circle':
             return <SvgStore.SvgLinkedinCircle {...props} />;
+        case 'svg-linkedin-colored':
+            return <SvgStore.SvgLinkedinColored {...props} />;
         case 'svg-lock':
             return <SvgStore.SvgLock {...props} />;
         case 'svg-logo-loader':
             return <SvgStore.SvgLogoLoader {...props} />;
+        case 'svg-logout':
+            return <SvgStore.SvgLogout {...props} />;
         case 'svg-mastercard':
             return <SvgStore.SvgMastercard {...props} />;
         case 'svg-menu':
             return <SvgStore.SvgMenu {...props} />;
         case 'svg-menu-close':
             return <SvgStore.SvgMenuClose {...props} />;
+        case 'svg-minha-conta':
+            return <SvgStore.SvgMinhaConta {...props} />;
         case 'svg-minus':
             return <SvgStore.SvgMinus {...props} />;
         case 'svg-next':
@@ -68,12 +84,20 @@ export const Svg = ({ name, ...props }) => {
             return <SvgStore.SvgPayment {...props} />;
         case 'svg-placeholder-loader':
             return <SvgStore.SvgPlaceholderLoader {...props} />;
-        case 'svg-prev':
-            return <SvgStore.SvgPrev {...props} />;
+        case 'svg-play':
+            return <SvgStore.SvgPlay {...props} />;
         case 'svg-plus':
             return <SvgStore.SvgPlus {...props} />;
+        case 'svg-podcasts':
+            return <SvgStore.SvgPodcasts {...props} />;
+        case 'svg-prev':
+            return <SvgStore.SvgPrev {...props} />;
+        case 'svg-report':
+            return <SvgStore.SvgReport {...props} />;
         case 'svg-search':
             return <SvgStore.SvgSearch {...props} />;
+        case 'svg-telegram':
+            return <SvgStore.SvgTelegram {...props} />;
         case 'svg-time':
             return <SvgStore.SvgTime {...props} />;
         case 'svg-tipo-audio':
@@ -98,12 +122,18 @@ export const Svg = ({ name, ...props }) => {
             return <SvgStore.SvgValid {...props} />;
         case 'svg-view':
             return <SvgStore.SvgView {...props} />;
+        case 'svg-video-camera':
+            return <SvgStore.SvgVideoCamera {...props} />;
         case 'svg-visa':
             return <SvgStore.SvgVisa {...props} />;
+        case 'svg-wifi-signal':
+            return <SvgStore.SvgWifiSignal {...props} />;
         case 'svg-youtube':
             return <SvgStore.SvgYoutube {...props} />;
         case 'svg-youtube-circle':
             return <SvgStore.SvgYoutubeCircle {...props} />;
+        case 'svg-youtube-colored':
+            return <SvgStore.SvgYoutubeColored {...props} />;
         default:
             return null;
     }

@@ -10,7 +10,6 @@ import { Button } from '../Button/Button';
 import { Input } from '../Form/Form';
 import { HeaderMenu } from './HeaderMenu';
 import { LinkTo } from '../Link/LinkTo';
-import { LinkToExternal } from '../Link/LinkToExternal';
 import { Svg } from '../Svg/Svg';
 
 import {
@@ -89,12 +88,6 @@ export const Header = () => {
                         justifyContent={{ d: 'flex-end', md: 'space-between' }}
                         minHeight={{ d: variable.headerHeightMobile, md: variable.headerHeight }}
                     >
-                        <Box mx={{ d: 'auto', md: 0 }} width="auto">
-                            <LinkTo ariaLabel="Home" link="/inicio">
-                                <Svg mr={{ d: 2, md: 3 }} name="svg-logo-liberta" />
-                            </LinkTo>
-                        </Box>
-
                         <Box width={{ d: 'auto', md: 7 / 12 }}>
                             <Box display={{ d: 'block', md: 'none' }}>
                                 <HeaderBtnMenuStyled

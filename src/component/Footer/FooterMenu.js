@@ -23,37 +23,7 @@ export const FooterMenu = ({ ...props }) => {
                 <li>
                     <LinkTo link="/inicio/home-video" text="Vídeos" />
                 </li>
-
-                {/* <li>
-                    <LinkTo href="https://libertainvestimentos.com.br" target="_blank" text="Quero Investir" />
-                </li> */}
-
-                {/* <li>
-                    <LinkTo link="/noticias">Mercado Internacional</LinkTo>
-                </li>
-
-                <li>
-                    <LinkTo link="/noticias">Renda Fixa</LinkTo>
-                </li>
-
-                <li>
-                    <LinkTo link="/noticias">Renda Variável</LinkTo>
-                </li> */}
             </ul>
-
-            {/* <ul>
-                <li>
-                    <LinkTo link="/">Produtos</LinkTo>
-                </li>
-
-                <li>
-                    <LinkTo link="/">Cursos</LinkTo>
-                </li>
-
-                <li>
-                    <LinkTo link="/quem-somos">Quem Somos</LinkTo>
-                </li>
-            </ul> */}
         </FooterMenuStyled>
     );
 };

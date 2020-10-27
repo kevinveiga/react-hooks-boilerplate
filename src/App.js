@@ -20,8 +20,8 @@ import { theme } from './style/theme';
 export const App = () => {
     return (
         <HelmetProvider>
-            <Helmet defaultTitle="Liberta" titleTemplate="%s - Liberta">
-                <meta name="description" content="Liberta" />
+            <Helmet defaultTitle="Site" titleTemplate="%s - Site">
+                <meta name="description" content="Site" />
             </Helmet>
 
             <BrowserRouter>

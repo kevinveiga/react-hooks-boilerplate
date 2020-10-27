@@ -82,18 +82,6 @@ export const HeaderMenu = ({ ...props }) => {
                         text="Vídeos"
                     />
                 </li>
-
-                {/* <li>
-                    <LinkTo link="/quem-somos" obj={{ activeColor: 'colorPrimary', hoverColor: 'colorPrimary' }} onClick={handleMenuMobile(false)} text="Quem Somos" />
-                </li> */}
-
-                {/* <li>
-                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://assistente.liberta.com.vc" target="_blank" text="Perfil de Investidor" />
-                </li>
-
-                {/* <li>
-                    <LinkToExternal obj={{ hoverColor: 'colorPrimary' }} link="https://pages.liberta.com.vc/fintech-week-2019/" target="_blank" text="Fintech Week" />
-                </li> */}
             </ul>
 
             <Box display={{ d: 'block', md: 'none' }}>

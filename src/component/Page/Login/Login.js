@@ -4,7 +4,6 @@ import { Button } from '../../Button/Button';
 import { LoginForm } from '../../Form/LoginForm';
 import { LinkTo } from '../../Link/LinkTo';
 import { Splash } from '../../Splash/Splash';
-import { Svg } from '../../Svg/Svg';
 
 import { Box, Flex } from '../../../style/flex';
 import { Container } from '../../../style/layout';
@@ -19,14 +18,8 @@ export const Login = () => {
 
             <Box width={{ d: '100%', lg: 3 / 7 }}>
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
-                    <Box mb={{ d: 4, md: '75px' }} mt={{ d: 0, lg: 4 }} textAlign="center">
-                        <Svg name="svg-logo-liberta" />
-                    </Box>
-
                     <Title2 px={{ d: 1, sm: 5 }} themeColor="dark">
-                        Acesse a sala de aula
-                        <br />
-                        da Liberta
+                        Acesse
                     </Title2>
 
                     <LoginForm obj={{ colorLine: 'colorPrimary' }} />
