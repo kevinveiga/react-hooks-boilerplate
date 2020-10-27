@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { border, flexbox, layout, space, typography } from 'styled-system';
+import { border, boxShadow, flexbox, layout, position, space, typography } from 'styled-system';
 
 import { scrollbarAlternate } from './function';
 import { BgImageOverlay } from './image';
@@ -7,8 +7,10 @@ import { variable } from './variable';
 
 export const Box = styled.div`
     ${border};
+    ${boxShadow};
     ${flexbox};
     ${layout};
+    ${position};
     ${space};
     ${typography};
     ${scrollbarAlternate()};
@@ -22,6 +24,14 @@ export const Box = styled.div`
             : themeColor === 'dark' && `color: ${variable.colorBlack2}`};
     transition: background-color ${variable.transition}, box-shadow ${variable.transition}, width ${variable.transition};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
+
+    ${({ focus }) =>
+        focus &&
+        css`
+            :focus-within {
+                color: ${variable.colorGreen};
+            }
+        `};
 
     ${({ hover }) =>
         hover &&
@@ -45,6 +55,7 @@ export const Flex = styled.div`
     ${border};
     ${flexbox};
     ${layout};
+    ${position};
     ${space};
     ${typography};
 `;

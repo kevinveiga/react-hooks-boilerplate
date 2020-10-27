@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { layout, space, typography } from 'styled-system';
+import { color, layout, space, typography } from 'styled-system';
 
 import { gradientDirection } from './function';
 import { variable } from './variable';
@@ -10,7 +10,7 @@ const title = css`
     ${typography};
 
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
-    display: block;
+    ${({ display }) => display === undefined && 'display: block'};
     height: auto;
     line-height: 1.3;
     ${({ align }) => align === 'center' && 'margin-left: auto; margin-right: auto; text-align: center;'};
@@ -43,11 +43,12 @@ export const P = styled.p`
 `;
 
 export const Span = styled.span`
+    ${color};
     ${layout};
     ${space};
     ${typography};
 
-    ${({ color }) => color && `color: ${variable[color]}`};
+    ${({ color }) => typeof color === 'string' && `color: ${variable[color]}`};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
 

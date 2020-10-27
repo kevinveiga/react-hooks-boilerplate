@@ -7,6 +7,8 @@ export const Container = styled.section`
     ${layout};
     ${space};
 
+    background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
+
     @media (min-width: ${variable.lg}) {
         ${({ maxWidth }) => maxWidth === undefined && 'max-width: 1280px'};
     }
