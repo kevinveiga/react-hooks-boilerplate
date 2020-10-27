@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
-import { layout, space } from 'styled-system';
+import { border, layout, space } from 'styled-system';
 
 import { variable } from './variable';
 
 export const Container = styled.section`
+    ${border};
     ${layout};
     ${space};
 

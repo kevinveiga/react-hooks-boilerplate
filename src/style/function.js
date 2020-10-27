@@ -131,3 +131,39 @@ export const scrollbarAlternate = (colorPrimary = variable.colorBlack, colorSeco
         }
     `;
 };
+
+export const scrollbarInvisible = () => {
+    return css`
+        &::-webkit-scrollbar {
+            height: 100%;
+            width: 0;
+        }
+
+        &::-webkit-scrollbar-button {
+            background-color: transparent;
+            display: none;
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        &::-webkit-resizer {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            height: 0;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-track-piece {
+            background-color: transparent;
+            margin: 0;
+        }
+    `;
+};

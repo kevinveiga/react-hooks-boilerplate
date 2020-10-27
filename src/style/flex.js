@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { border, boxShadow, flexbox, layout, position, space, typography } from 'styled-system';
 
-import { scrollbarAlternate } from './function';
+import { scrollbarAlternate, scrollbarInvisible } from './function';
 import { BgImageOverlay } from './image';
 import { variable } from './variable';
 
@@ -13,7 +13,7 @@ export const Box = styled.div`
     ${position};
     ${space};
     ${typography};
-    ${scrollbarAlternate()};
+    ${({ obj }) => (obj && obj.scrollbarInvisible ? scrollbarInvisible() : scrollbarAlternate())};
 
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
     ${({ color, themeColor }) =>

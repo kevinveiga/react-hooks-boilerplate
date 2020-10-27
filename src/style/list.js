@@ -70,8 +70,8 @@ export const ListLevel = styled.span`
 
 export const ListTag = styled.div`
     ${bottom};
-    ${typography};
     ${right};
+    ${typography};
 
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : variable.colorBlack)};
     bottom: ${({ bottom }) => (bottom ? variable[bottom] : '0')};
