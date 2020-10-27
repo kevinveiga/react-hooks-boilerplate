@@ -26,7 +26,7 @@ export const BgImage = styled.div`
     ${({ attachment }) => attachment && `background-attachment: ${attachment}`};
     background-color: ${({ backgroundColor }) => (backgroundColor ? variable[backgroundColor] : 'transparent')};
     ${({ url }) => url && `background-image: url('${url}')`};
-    background-position: 50% 50%;
+    background-position: ${({ backgroundPosition }) => backgroundPosition || '50% 50%'};
     background-repeat: no-repeat;
     background-size: ${({ size }) => size || 'cover'};
     height: 100%;
