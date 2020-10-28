@@ -35,16 +35,18 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
     const axiosInstance = axios.create();
 
     // ACTION
+    const [stateCep, setStateCep] = useState(data.endereco_cep);
     const [stateError, setStateError] = useState(false);
     const [stateLoader, setStateLoader] = useState(false);
     const [stateModalMessage, setStateModalMessage] = useModalMessage();
 
     // FUNCTION
-    const handleFindAddress = () => () => {
+    const handleFindAddress = () => {
         const element = document.querySelector('input[name="endereco_cep"]');
+        const formatedCep = formatCepSet(element.value);
 
-        if (element.value) {
-            const formatedCep = formatCepSet(element.value);
+        if (formatedCep && formatedCep !== stateCep) {
+            setStateCep(formatedCep);
 
             const fetchData = async () => {
                 setStateLoader(true);
@@ -232,7 +234,10 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                             error={errors.endereco_cep}
                                             format="#####-###"
                                             name={name}
-                                            onBlur={onBlur}
+                                            onBlur={() => {
+                                                handleFindAddress();
+                                                onBlur();
+                                            }}
                                             onValueChange={(values) => {
                                                 onChange(values.value);
                                             }}
@@ -251,7 +256,9 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
 
                             <Button
                                 bottom="10px"
-                                onClick={handleFindAddress()}
+                                onClick={() => {
+                                    handleFindAddress();
+                                }}
                                 position="absolute"
                                 right="15px"
                                 themeSize="none"
