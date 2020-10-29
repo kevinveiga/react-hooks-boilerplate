@@ -5,6 +5,7 @@ import { useApp } from '../../store/app/app';
 import { Button } from '../Button/Button';
 import { MinhaContaTrocarSenhaForm } from '../Form/MinhaContaTrocarSenhaForm';
 
+import { Box } from '../../style/flex';
 import { P } from '../../style/text';
 
 export const ModalTrocarSenha = () => {
@@ -13,11 +14,13 @@ export const ModalTrocarSenha = () => {
 
     return (
         <>
-            <P color="colorWhite" mb={5}>
+            <P color="colorWhite" mb={3}>
                 Trocar senha
             </P>
 
-            <MinhaContaTrocarSenhaForm />
+            <Box width="340px">
+                <MinhaContaTrocarSenhaForm />
+            </Box>
 
             <Button
                 color="colorGray2"

@@ -6,11 +6,11 @@ export const ModalContainerStyled = styled.div`
     background-color: ${variable.colorGrayDark};
     color: ${variable.colorWhite};
     font-size: 22px;
-    padding: ${variable.spacingLG} ${variable.spacingXL};
+    padding: ${variable.spacingMD} ${variable.spacingLG};
     text-align: center;
 
     @media (max-width: ${variable.md}) {
-        padding: ${variable.spacingLG} ${variable.spacingMD};
+        padding: ${variable.spacingMD} ${variable.spacingSM};
     }
 `;
 
