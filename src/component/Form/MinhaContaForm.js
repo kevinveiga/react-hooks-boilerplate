@@ -435,9 +435,9 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                 as={
                                     <Select
                                         obj={{
-                                            color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                            color: touched['sexo'] ? 'colorGrayDark' : 'colorGray',
                                             colorLine: 'colorPrimary',
-                                            fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                            fontWeight: touched['sexo'] ? '700' : '400'
                                         }}
                                         {...props}
                                     >
