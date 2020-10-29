@@ -54,7 +54,7 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
 
     return (
         <FormStyled onSubmit={handleSubmit(onSubmit)}>
-            <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
+            <Grid display="grid" gridRowGap={2} p={{ d: 1, sm: 2 }}>
                 <Cell>
                     <InvalidResponseMessageContainerStyled>
                         {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
@@ -66,8 +66,41 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                         <Controller
                             as={
                                 <InputValidation
+                                    error={errors.current_password}
+                                    label="Senha atual"
+                                    maxLength="20"
+                                    pr={4}
+                                    touched={touched}
+                                    type={stateViewPassword ? 'text' : 'password'}
+                                    {...props}
+                                />
+                            }
+                            control={control}
+                            name="current_password"
+                            rules={{ ...customValidate.password, ...customValidate.require }}
+                        />
+
+                        <Svg
+                            bottom="12px"
+                            height="16px"
+                            name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
+                            onClick={() => setStateViewPassword(!stateViewPassword)}
+                            position="absolute"
+                            right="20px"
+                            zIndex={1}
+                        />
+                    </div>
+
+                    {errors.current_password && <InvalidInputMessageStyled>{errors.current_password.message}</InvalidInputMessageStyled>}
+                </Cell>
+
+                <Cell mb={3}>
+                    <div>
+                        <Controller
+                            as={
+                                <InputValidation
                                     error={errors.password}
-                                    label="Senha"
+                                    label="Nova senha"
                                     maxLength="20"
                                     pr={4}
                                     touched={touched}
@@ -86,7 +119,7 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                             name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
                             onClick={() => setStateViewPassword(!stateViewPassword)}
                             position="absolute"
-                            right="16px"
+                            right="20px"
                             zIndex={1}
                         />
                     </div>
@@ -94,12 +127,12 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                     {errors.password && <InvalidInputMessageStyled>{errors.password.message}</InvalidInputMessageStyled>}
                 </Cell>
 
-                <Cell mb={3}>
+                <Cell mb={4}>
                     <div>
                         <Controller
                             as={
                                 <InputValidation
-                                    error={errors.confirm_password}
+                                    error={errors.password_confirm}
                                     label="Confirmação de senha"
                                     maxLength="20"
                                     pr={4}
@@ -109,7 +142,7 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                                 />
                             }
                             control={control}
-                            name="confirm_password"
+                            name="password_confirm"
                             rules={{ ...customValidate.password, ...customValidate.require }}
                         />
 
@@ -119,16 +152,16 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                             name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
                             onClick={() => setStateViewPassword(!stateViewPassword)}
                             position="absolute"
-                            right="16px"
+                            right="20px"
                             zIndex={1}
                         />
                     </div>
 
-                    {errors.confirm_password && <InvalidInputMessageStyled>{errors.confirm_password.message}</InvalidInputMessageStyled>}
+                    {errors.password_confirm && <InvalidInputMessageStyled>{errors.password_confirm.message}</InvalidInputMessageStyled>}
                 </Cell>
 
-                <Cell mb={3}>
-                    <Button ml="auto" text="Salvar" themeSize="small" typeButton="submit" />
+                <Cell>
+                    <Button m="auto" text="Salvar" themeSize="small" typeButton="submit" />
                 </Cell>
             </Grid>
         </FormStyled>

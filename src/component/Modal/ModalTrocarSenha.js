@@ -19,7 +19,7 @@ export const ModalTrocarSenha = () => {
             </P>
 
             <Box width="340px">
-                <MinhaContaTrocarSenhaForm />
+                <MinhaContaTrocarSenhaForm obj={{ color: 'colorWhite', colorLine: 'colorWhite' }} />
             </Box>
 
             <Button

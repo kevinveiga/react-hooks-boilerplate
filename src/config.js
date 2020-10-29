@@ -32,6 +32,8 @@ export const apiUrlPaywall = `${apiUrl}/paywall`;
 
 export const apiUrlPerfil = `${apiUrl}/perfil`;
 
+export const apiUrlPerfilAtualizarSenha = `${apiUrlPerfil}/atualizarSenha`;
+
 export const apiUrlPerfilAvatar = `${apiUrlPerfil}/avatar`;
 
 export const errorEmailNotFound = 'Email não cadastrado';
