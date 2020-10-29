@@ -114,12 +114,12 @@ export const LoginForm = memo(({ location, ...props }) => {
                                 />
 
                                 <Svg
-                                    bottom="10px"
-                                    height="20px"
+                                    bottom="12px"
+                                    height="16px"
                                     name={stateViewPassword ? 'svg-no-view' : 'svg-view'}
                                     onClick={() => setStateViewPassword(!stateViewPassword)}
                                     position="absolute"
-                                    right="25px"
+                                    right="20px"
                                     zIndex={1}
                                 />
                             </div>

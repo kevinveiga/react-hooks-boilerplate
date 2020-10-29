@@ -3,6 +3,7 @@ import React from 'react';
 import { useApp } from '../../store/app/app';
 
 import { ModalLogout } from './ModalLogout';
+import { ModalTrocarSenha } from './ModalTrocarSenha';
 
 import { ModalContainerStyled, ModalStyled } from './ModalStyled';
 
@@ -14,7 +15,8 @@ export const Modal = () => {
     const { component, visible } = stateModalContext;
 
     const componentObj = {
-        logout: <ModalLogout />
+        logout: <ModalLogout />,
+        trocarSenha: <ModalTrocarSenha />
     };
 
     return (
