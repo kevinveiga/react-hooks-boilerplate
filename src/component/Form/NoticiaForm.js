@@ -11,7 +11,7 @@ import { responseError } from '../../util/responseError';
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -95,9 +95,9 @@ export const NoticiaForm = memo(({ ...props }) => {
                         </Cell>
 
                         <Cell>
-                            <InvalidResponseMessageContainerStyled>
-                                {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                            </InvalidResponseMessageContainerStyled>
+                            <ResponseMessageContainerStyled>
+                                {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                            </ResponseMessageContainerStyled>
                         </Cell>
 
                         <Cell mb={3}>

@@ -11,7 +11,7 @@ import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
@@ -56,9 +56,9 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
         <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridRowGap={2} p={{ d: 1, sm: 2 }}>
                 <Cell>
-                    <InvalidResponseMessageContainerStyled>
-                        {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                    </InvalidResponseMessageContainerStyled>
+                    <ResponseMessageContainerStyled>
+                        {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                    </ResponseMessageContainerStyled>
                 </Cell>
 
                 <Cell mb={3}>

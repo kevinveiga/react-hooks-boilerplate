@@ -10,7 +10,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { P, Title5 } from '../../style/text';
@@ -75,9 +75,9 @@ export const NewsletterForm = memo(({ ...props }) => {
                 gridTemplateColumns={{ d: '1fr', sm: 'repeat(auto-fit, minmax(150px, 1fr))' }}
                 justifyContent="flex-end"
             >
-                <InvalidResponseMessageContainerStyled left="0" position="absolute" top="-15px">
-                    {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                </InvalidResponseMessageContainerStyled>
+                <ResponseMessageContainerStyled left="0" position="absolute" top="-15px">
+                    {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                </ResponseMessageContainerStyled>
 
                 <Cell mb={3}>
                     <div>

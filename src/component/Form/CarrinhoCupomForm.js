@@ -9,7 +9,7 @@ import { customValidate } from '../../util/customValidate';
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 
-import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
@@ -38,9 +38,9 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
         <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridAutoRows="1fr" gridTemplateColumns="3fr 1fr">
                 <Cell gridColumn={'1 / span 2'}>
-                    <InvalidResponseMessageContainerStyled>
-                        {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                    </InvalidResponseMessageContainerStyled>
+                    <ResponseMessageContainerStyled>
+                        {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                    </ResponseMessageContainerStyled>
                 </Cell>
 
                 <Cell gridColumn={1}>

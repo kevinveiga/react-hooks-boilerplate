@@ -230,11 +230,11 @@ export const InvalidInputMessageStyled = styled.span`
     position: absolute;
 `;
 
-export const InvalidResponseMessageContainerStyled = styled.div`
+export const ResponseMessageContainerStyled = styled.div`
     ${position};
 `;
 
-export const InvalidResponseMessageStyled = styled.p`
+export const ResponseMessageStyled = styled.p`
     color: ${({ color }) => (color ? variable[color] : variable.colorAlert)};
     font-size: 14px;
 `;

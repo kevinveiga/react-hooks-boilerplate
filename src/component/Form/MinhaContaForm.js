@@ -22,7 +22,7 @@ import { ModalMessage } from '../Modal/ModalMessage';
 import { OptionUF } from './OptionUF';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { P, Span } from '../../style/text';
@@ -156,9 +156,9 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                     py={{ d: 2, md: 4 }}
                 >
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>
-                        <InvalidResponseMessageContainerStyled>
-                            {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                        </InvalidResponseMessageContainerStyled>
+                        <ResponseMessageContainerStyled>
+                            {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                        </ResponseMessageContainerStyled>
                     </Cell>
 
                     <Cell gridColumn={{ d: '1', md: '1 / span 4' }}>

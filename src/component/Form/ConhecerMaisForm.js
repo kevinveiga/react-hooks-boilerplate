@@ -14,7 +14,7 @@ import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation, Label, SelectValidation } from './Form';
 import { OptionUF } from './OptionUF';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 import {
     ConhecerMaisPartContentStyled,
     ConhecerMaisPartNumberStyled,
@@ -94,9 +94,9 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
                     <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
                         <Grid display="grid" gridRowGap={4} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }} maxWidth="500px">
                             <Cell>
-                                <InvalidResponseMessageContainerStyled>
-                                    {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                                </InvalidResponseMessageContainerStyled>
+                                <ResponseMessageContainerStyled>
+                                    {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                                </ResponseMessageContainerStyled>
                             </Cell>
 
                             <Cell>

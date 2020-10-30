@@ -12,7 +12,7 @@ import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 import { Svg } from '../Svg/Svg';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Box, Flex } from '../../style/flex';
 import { Cell, Grid } from '../../style/grid';
@@ -80,9 +80,9 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
                     <FormStyled onSubmit={handleSubmit(onSubmit)}>
                         <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, sm: 4 }}>
                             <Cell>
-                                <InvalidResponseMessageContainerStyled>
-                                    {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                                </InvalidResponseMessageContainerStyled>
+                                <ResponseMessageContainerStyled>
+                                    {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                                </ResponseMessageContainerStyled>
                             </Cell>
 
                             <Cell mb={4}>

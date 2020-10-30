@@ -16,7 +16,7 @@ import { setStorage } from '../../util/storage';
 import { Button } from '../Button/Button';
 import { InputValidation } from './Form';
 
-import { FormStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 
@@ -73,9 +73,9 @@ export const LeadwallForm = memo(({ ...props }) => {
         <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridColumnGap={4} gridRowGap={2}>
                 <Cell>
-                    <InvalidResponseMessageContainerStyled>
-                        {errors.invalid && <InvalidResponseMessageStyled>{errors.invalid.message}</InvalidResponseMessageStyled>}
-                    </InvalidResponseMessageContainerStyled>
+                    <ResponseMessageContainerStyled>
+                        {errors.invalid && <ResponseMessageStyled>{errors.invalid.message}</ResponseMessageStyled>}
+                    </ResponseMessageContainerStyled>
                 </Cell>
 
                 <Cell mb={3}>

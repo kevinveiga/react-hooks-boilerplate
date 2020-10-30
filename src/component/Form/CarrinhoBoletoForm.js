@@ -14,7 +14,7 @@ import { paymentType } from '../../util/paymentType';
 
 import { InputMaskValidation, Label } from './Form';
 
-import { FormStyled, InvalidInputMessageStyled, InvalidResponseMessageContainerStyled, InvalidResponseMessageStyled } from './FormStyled';
+import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, ResponseMessageStyled } from './FormStyled';
 
 import { Cell, Grid } from '../../style/grid';
 import { P } from '../../style/text';
@@ -78,9 +78,9 @@ export const CarrinhoBoletoForm = memo(({ formId, ...props }) => {
         <FormStyled id={formId} onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridColumnGap={5} gridRowGap={4} gridTemplateColumns="1fr 1fr 1fr 1fr" px={5} py={3}>
                 <Cell gridColumn={'1 / span 4'}>
-                    <InvalidResponseMessageContainerStyled>
-                        {stateError && <InvalidResponseMessageStyled>{stateError}</InvalidResponseMessageStyled>}
-                    </InvalidResponseMessageContainerStyled>
+                    <ResponseMessageContainerStyled>
+                        {stateError && <ResponseMessageStyled>{stateError}</ResponseMessageStyled>}
+                    </ResponseMessageContainerStyled>
                 </Cell>
 
                 <Cell gridColumn={'1 / span 2'}>
