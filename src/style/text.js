@@ -38,7 +38,7 @@ export const P = styled.p`
     ${typography};
 
     color: ${({ color, themeColor }) => (color ? variable[color] : themeColor === 'light' ? variable.colorWhite : variable.colorBlack2)};
-    ${({ textDecoration }) => textDecoration && `text-transform: ${textDecoration}`};
+    ${({ textDecoration }) => textDecoration && `text-decoration: ${textDecoration}`};
     ${({ textTransform }) => textTransform && `text-transform: ${textTransform}`};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
@@ -50,7 +50,7 @@ export const Span = styled.span`
     ${typography};
 
     ${({ color }) => typeof color === 'string' && `color: ${variable[color]}`};
-    ${({ textDecoration }) => textDecoration && `text-transform: ${textDecoration}`};
+    ${({ textDecoration }) => textDecoration && `text-decoration: ${textDecoration}`};
     ${({ textTransform }) => textTransform && `text-transform: ${textTransform}`};
     ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
