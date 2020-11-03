@@ -16,11 +16,14 @@
 
 -   Configurar arquivos .env\*
 
-## MODO DE USAR O TERMINAL
-
--   Na pasta do projeto clicar com o botão direito do mouse e escolher "Abrir no terminal" ou "Git Bash Here"
-
 ## FRONTEND
+
+## IDE - INSTALAÇÃO DE PLUGINS:
+
+-   EditorConfig (exemplo no VS Code: EditorConfig for VS Code)
+-   ESLint (exemplo no VS Code: ESLint)
+-   Prettier (exemplo no VS Code: Prettier - Code formatter)
+-   Styled Components (exemplo no VS Code: vscode-styled-components (Julien Poissonnier))
 
 #### Executar apenas a primeira vez no terminal:
 
