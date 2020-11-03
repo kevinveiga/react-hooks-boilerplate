@@ -57,6 +57,10 @@ yarn.lock*
 
 # Sources
 /src/asset
+/src/service
+/src/store
+/src/util
+/src/*.js
 
 # Test
 /coverage
