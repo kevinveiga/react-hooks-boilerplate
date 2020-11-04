@@ -97,6 +97,9 @@ import { Modal } from './component/Modal/ModalStyled';
 // Style import
 import { Normalize } from './style/normalize';
 import { theme } from './style/theme';
+
+// Image import
+import imageName from './asset/image/imageName.jpg';
 ```
 
 -   Ao definir um nome de variável para um State de Contexto, colocar no final do nome "Context". Ex:
