@@ -66,6 +66,39 @@
 
 -   Evitar a utilização de export default **(exceto para React Lazy and Suspense)**;
 
+-   Organizar "import" na ordem correta, tanto na ordem de contexto como na ordem alfabética. Ex:
+
+```jsx
+// React import
+import React from 'react';
+
+// Library import
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+
+// Application import
+import { Router } from './router';
+
+// Service import
+import { useSeoApi } from './service/seo';
+
+// Store import
+import { AuthProvider } from './store/auth/auth';
+
+// Utility import
+import { customValidate } from './util/customValidate';
+
+// Component import
+import { Modal } from './component/Modal/Modal';
+
+// Component Styled import
+import { Modal } from './component/Modal/ModalStyled';
+
+// Style import
+import { Normalize } from './style/normalize';
+import { theme } from './style/theme';
+```
+
 -   Ao definir um nome de variável para um State de Contexto, colocar no final do nome "Context". Ex:
 
 ```jsx
