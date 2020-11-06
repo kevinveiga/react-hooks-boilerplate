@@ -145,7 +145,7 @@ const MinhaContaCursos = () => {
                                                             >
                                                                 <Box display={{ d: 'block', md: 'flex' }} width="100%">
                                                                     <Box overflow="hidden" width={{ d: 1, md: 7 / 12 }}>
-                                                                        <Box pt="calc((9 / 16) * 100%)">
+                                                                        <Box height={{ d: '200px', md: '100%' }} pt="calc((9 / 16) * 100%)">
                                                                             <BgImageLazyLoad
                                                                                 key={curso.id}
                                                                                 url={curso.imagens && curso.imagens.meus_cursos.curso_usuario}
@@ -265,15 +265,13 @@ const MinhaContaCursos = () => {
                                                                     themeColor="dark"
                                                                 >
                                                                     <Box display={{ d: 'block', md: 'flex' }} width="100%">
-                                                                        <Box
-                                                                            height={{ d: '200px', md: '100%' }}
-                                                                            overflow="hidden"
-                                                                            width={{ d: 1, md: 1 / 2 }}
-                                                                        >
-                                                                            <BgImageLazyLoad
-                                                                                key={curso.id}
-                                                                                url={curso.imagens && curso.imagens.meus_cursos.curso_usuario}
-                                                                            />
+                                                                        <Box overflow="hidden" width={{ d: 1, md: 7 / 12 }}>
+                                                                            <Box height={{ d: '200px', md: '100%' }} pt="calc((9 / 16) * 100%)">
+                                                                                <BgImageLazyLoad
+                                                                                    key={curso.id}
+                                                                                    url={curso.imagens && curso.imagens.meus_cursos.curso_usuario}
+                                                                                />
+                                                                            </Box>
                                                                         </Box>
 
                                                                         <Box
@@ -281,7 +279,7 @@ const MinhaContaCursos = () => {
                                                                             display="flex"
                                                                             flexWrap="wrap"
                                                                             p={{ d: 3, md: 4 }}
-                                                                            width={{ d: 1, md: 1 / 2 }}
+                                                                            width={{ d: 1, md: 5 / 12 }}
                                                                         >
                                                                             <Box
                                                                                 height={{ d: 'auto', md: '160px' }}
