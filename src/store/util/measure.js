@@ -2,8 +2,6 @@ import { useEffect, useCallback, useState } from 'react';
 
 import { useWindowWidth } from './windowWidth';
 
-import { variable } from '../../style/variable';
-
 const getDimensionObject = (node) => {
     const rect = node.getBoundingClientRect();
 
