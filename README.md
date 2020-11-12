@@ -211,17 +211,53 @@ const {
 -   Para campo sem validação, usar como no exemplo abaixo:
 
 ```jsx
-<Controller as={<Input {...otherProps} />} control={control} name="nome" pr={4} />
+<Controller
+    control={control}
+    name="query"
+    render={({ name, onBlur, onChange, value }) => {
+        return (
+            <Input
+                autoComplete="off"
+                maxLength="50"
+                name={name}
+                onBlur={onBlur}
+                onChange={(e) => {
+                    onChange(e.target.value);
+                }}
+                onKeyDown={keyPress(onSubmit)}
+                placeholder="O que você procura?"
+                ref={queryRef}
+                value={value}
+                {...props}
+            />
+        );
+    }}
+/>
 ```
 
 -   Para campo com validação, usar como no exemplo abaixo:
 
 ```jsx
 <Controller
-    as={<InputValidation error={errors.email} maxLength="50" touched={touched} {...otherProps} />}
     control={control}
     name="email"
-    pr={4}
+    render={({ name, onBlur, onChange, value }) => {
+        return (
+            <InputValidation
+                error={errors.email}
+                maxLength="50"
+                name={name}
+                onBlur={onBlur}
+                onChange={(e) => {
+                    onChange(e.target.value);
+                }}
+                pr={4}
+                touched={touched}
+                value={value}
+                {...otherProps}
+            />
+        );
+    }}
     rules={{ ...customValidate.email, ...customValidate.require }}
 />
 ```
@@ -230,17 +266,36 @@ const {
 
 ```jsx
 <Controller
-    as={<InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...otherProps} />}
     control={control}
     name="email"
+    render={({ name, onBlur, onChange, value }) => {
+        return (
+            <InputValidation
+                error={errors.email}
+                label="E-mail"
+                maxLength="50"
+                name={name}
+                onBlur={onBlur}
+                onChange={(e) => {
+                    onChange(e.target.value);
+                }}
+                pr={4}
+                touched={touched}
+                value={value}
+                {...otherProps}
+            />
+        );
+    }}
     rules={{ ...customValidate.email, ...customValidate.require }}
 />
 ```
 
--   Para máscara simple no campo, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
+-   Para máscara simple no campo, usar o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
 
 ```jsx
 <Controller
+    control={control}
+    name="telefone"
     render={({ name, onBlur, onChange, value }) => {
         return (
             <InputMaskValidation
@@ -259,16 +314,16 @@ const {
             />
         );
     }}
-    control={control}
-    name="telefone"
     rules={{ ...customValidate.cellphone, ...customValidate.require }}
 />
 ```
 
--   Para máscara monetária no campo, usar a propriedade "render" e o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
+-   Para máscara monetária no campo, usar o componente "InputMask" (sem validação) ou "InputMaskValidation" (com validação), como no exemplo abaixo:
 
 ```jsx
 <Controller
+    control={control}
+    name="valor"
     render={({ name, onBlur, onChange, value }) => {
         return (
             <InputMask
@@ -287,36 +342,32 @@ const {
             />
         );
     }}
-    control={control}
-    name="valor"
 />
 ```
 
--   Para executar uma função no onChange do campo, usar a propriedade "render" como no exemplo abaixo:
+-   Campos do tipo checkbox ou radio, no "onChange" usar como no exemplo abaixo:
 
 ```jsx
 <Controller
+    control={control}
+    name="receber_avisos_descontos_de_cursos"
     render={({ name, onBlur, onChange, value }) => {
         return (
-            <InputFileValidation
-                error={errors.avatar}
-                id="avatar"
+            <InputCheckboxRadio
+                checked={data.receber_avisos_descontos_de_cursos}
+                color="colorGray2"
+                id="receber_avisos_descontos_de_cursos"
                 name={name}
                 onBlur={onBlur}
-                onChange={(e) => {
-                    onChange(e.target.value);
-                    handleFileChange(e);
-                }}
-                touched={touched}
+                onChange={(e) => onChange(e.target.checked)}
                 value={value}
             >
-                <Svg fill="colorWhite" height="20px" name="svg-camera" />
-            </InputFileValidation>
+                <Span fontSize={{ d: '14px', sm: '16px' }} verticalAlign="middle">
+                    Desejo receber avisos e descontos de cursos
+                </Span>
+            </InputCheckboxRadio>
         );
     }}
-    control={control}
-    name="avatar"
-    rules={{ ...customValidate.photo }}
 />
 ```
 

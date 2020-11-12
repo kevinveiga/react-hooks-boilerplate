@@ -19,25 +19,6 @@ export const PesquisaForm = memo(({ ...props }) => {
     // REF
     const queryRef = useRef('');
 
-    // FUNCTION
-    const keyPress = useCallback(
-        (fn) => (element) => {
-            if (element.keyCode == 13) {
-                handleSubmit(fn);
-            }
-        },
-        [handleSubmit]
-    );
-
-    const limparPesquisa = () => () => {
-        queryRef.current.value = '';
-        reset({ query: '' });
-        setStatePesquisaParamContext({
-            ...statePesquisaParamContext,
-            params: { ...statePesquisaParamContext.params, page: 1, query: '' }
-        });
-    };
-
     // FORM
     const { control, handleSubmit, reset } = useForm({
         defaultValues: { query: '' },
@@ -53,6 +34,25 @@ export const PesquisaForm = memo(({ ...props }) => {
         }
     };
 
+    // FUNCTION
+    const keyPress = useCallback(
+        (fn) => (element) => {
+            if (element.keyCode === 13) {
+                handleSubmit(fn);
+            }
+        },
+        [handleSubmit]
+    );
+
+    const limparPesquisa = () => () => {
+        queryRef.current.value = '';
+        reset({ query: '' });
+        setStatePesquisaParamContext({
+            ...statePesquisaParamContext,
+            params: { ...statePesquisaParamContext.params, page: 1, query: '' }
+        });
+    };
+
     return (
         <FormStyled onSubmit={handleSubmit(onSubmit)}>
             <Grid display="grid" gridTemplateColumns={{ d: '1fr 1fr', md: '1fr auto auto' }}>
@@ -60,18 +60,26 @@ export const PesquisaForm = memo(({ ...props }) => {
                     <Svg height="25px" left="12px" name="svg-search" position="absolute" top="12px" zIndex={1} />
 
                     <Controller
-                        as={
-                            <Input
-                                autoComplete="off"
-                                maxLength="50"
-                                onKeyDown={keyPress(onSubmit)}
-                                placeholder="O que você procura?"
-                                ref={queryRef}
-                                {...props}
-                            />
-                        }
                         control={control}
                         name="query"
+                        render={({ name, onBlur, onChange, value }) => {
+                            return (
+                                <Input
+                                    autoComplete="off"
+                                    maxLength="50"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onChange={(e) => {
+                                        onChange(e.target.value);
+                                    }}
+                                    onKeyDown={keyPress(onSubmit)}
+                                    placeholder="O que você procura?"
+                                    ref={queryRef}
+                                    value={value}
+                                    {...props}
+                                />
+                            );
+                        }}
                     />
                 </Cell>
 
