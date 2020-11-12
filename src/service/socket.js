@@ -31,10 +31,6 @@ export const useSocket = (socket, serverEvent) => {
             }
         });
 
-        socket.on('error', (error) => {
-            console.info('error: ', error);
-        });
-
         socket.on('ping', () => {
             // console.info('ping');
         });
