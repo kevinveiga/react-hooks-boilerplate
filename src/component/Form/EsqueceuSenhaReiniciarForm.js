@@ -88,17 +88,25 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
                             <Cell mb={4}>
                                 <div>
                                     <Controller
-                                        as={
-                                            <InputValidation
-                                                error={errors.password}
-                                                label="Senha"
-                                                maxLength="20"
-                                                pr={4}
-                                                touched={touched}
-                                                type={stateViewPassword ? 'text' : 'password'}
-                                                {...props}
-                                            />
-                                        }
+                                        render={({ name, onBlur, onChange, value }) => {
+                                            return (
+                                                <InputValidation
+                                                    error={errors.password}
+                                                    label="Senha"
+                                                    maxLength="20"
+                                                    name={name}
+                                                    onBlur={onBlur}
+                                                    onChange={(e) => {
+                                                        onChange(e.target.value);
+                                                    }}
+                                                    pr={4}
+                                                    touched={touched}
+                                                    type={stateViewPassword ? 'text' : 'password'}
+                                                    value={value}
+                                                    {...props}
+                                                />
+                                            );
+                                        }}
                                         control={control}
                                         name="password"
                                         rules={{ ...customValidate.password, ...customValidate.require }}
@@ -121,17 +129,25 @@ export const EsqueceuSenhaReiniciarForm = memo(({ email, token, ...props }) => {
                             <Cell mb={4}>
                                 <div>
                                     <Controller
-                                        as={
-                                            <InputValidation
-                                                error={errors.password_confirmation}
-                                                label="Confirmação de senha"
-                                                maxLength="20"
-                                                pr={4}
-                                                touched={touched}
-                                                type={stateViewPassword ? 'text' : 'password'}
-                                                {...props}
-                                            />
-                                        }
+                                        render={({ name, onBlur, onChange, value }) => {
+                                            return (
+                                                <InputValidation
+                                                    error={errors.password_confirmation}
+                                                    label="Confirmação de senha"
+                                                    maxLength="20"
+                                                    name={name}
+                                                    onBlur={onBlur}
+                                                    onChange={(e) => {
+                                                        onChange(e.target.value);
+                                                    }}
+                                                    pr={4}
+                                                    touched={touched}
+                                                    type={stateViewPassword ? 'text' : 'password'}
+                                                    value={value}
+                                                    {...props}
+                                                />
+                                            );
+                                        }}
                                         control={control}
                                         name="password_confirmation"
                                         rules={{ ...customValidate.password, ...customValidate.require }}

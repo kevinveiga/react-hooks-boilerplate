@@ -5,8 +5,6 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPaywall, errorMsgDefault } from '../../config';
 
-import { convertOrigin } from '../../service/activeCampaign';
-
 import { NoticiaContext } from '../../store/noticia/noticiaContext';
 
 import { customValidate } from '../../util/customValidate';
@@ -48,8 +46,6 @@ export const LeadwallForm = memo(({ ...props }) => {
                     setStorage('leadwall', 'true');
 
                     setChangeLeadwallContext(true);
-
-                    convertOrigin(formData);
                 } else if (result.data.reason) {
                     setStateError(result.data.reason[0]);
                 } else {
@@ -81,17 +77,25 @@ export const LeadwallForm = memo(({ ...props }) => {
                 <Cell mb={3}>
                     <div>
                         <Controller
-                            as={
-                                <InputValidation
-                                    error={errors.email}
-                                    maxLength="50"
-                                    placeholder="Insira seu e-mail"
-                                    pr={4}
-                                    right="15px"
-                                    touched={touched}
-                                    {...props}
-                                />
-                            }
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors.email}
+                                        maxLength="50"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        placeholder="Insira seu e-mail"
+                                        pr={4}
+                                        right="15px"
+                                        touched={touched}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name="email"
                             rules={{ ...customValidate.email, ...customValidate.require }}

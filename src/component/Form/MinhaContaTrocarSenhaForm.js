@@ -5,6 +5,8 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { apiUrlPerfilAtualizarSenha, errorMsgDefault } from '../../config';
 
+import { useApp } from '../../store/app/app';
+
 import { customValidate } from '../../util/customValidate';
 
 import { Button } from '../Button/Button';
@@ -16,6 +18,9 @@ import { FormStyled, InvalidInputMessageStyled, ResponseMessageContainerStyled, 
 import { Cell, Grid } from '../../style/grid';
 
 export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
+    // CONTEXT
+    const { setStateModalContext } = useApp();
+
     // ACTION
     const [stateError, setStateError] = useState(false);
     const [stateViewPassword, setStateViewPassword] = useState(false);
@@ -27,6 +32,7 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
         formState: { touched },
         handleSubmit
     } = useForm({
+        defaultValues: { current_password: '', password: '', password_confirmation: '' },
         mode: 'onChange'
     });
 
@@ -37,8 +43,10 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
 
                 if (result.data && result.data.success == true) {
                     setStateError(false);
-                } else if (result.data.reason) {
-                    setStateError(result.data.reason[0]);
+
+                    setStateModalContext({ visible: false });
+                } else if (result.data && result.data.message) {
+                    setStateError(result.data.message);
                 } else {
                     setStateError(errorMsgDefault);
 
@@ -64,17 +72,25 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                 <Cell mb={3}>
                     <div>
                         <Controller
-                            as={
-                                <InputValidation
-                                    error={errors.current_password}
-                                    label="Senha atual"
-                                    maxLength="20"
-                                    pr={4}
-                                    touched={touched}
-                                    type={stateViewPassword ? 'text' : 'password'}
-                                    {...props}
-                                />
-                            }
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors.current_password}
+                                        label="Senha atual"
+                                        maxLength="20"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        pr={4}
+                                        touched={touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name="current_password"
                             rules={{ ...customValidate.password, ...customValidate.require }}
@@ -97,17 +113,25 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                 <Cell mb={3}>
                     <div>
                         <Controller
-                            as={
-                                <InputValidation
-                                    error={errors.password}
-                                    label="Nova senha"
-                                    maxLength="20"
-                                    pr={4}
-                                    touched={touched}
-                                    type={stateViewPassword ? 'text' : 'password'}
-                                    {...props}
-                                />
-                            }
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors.password}
+                                        label="Nova senha"
+                                        maxLength="20"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        pr={4}
+                                        touched={touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name="password"
                             rules={{ ...customValidate.password, ...customValidate.require }}
@@ -130,19 +154,27 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                 <Cell mb={4}>
                     <div>
                         <Controller
-                            as={
-                                <InputValidation
-                                    error={errors.password_confirm}
-                                    label="Confirmação de senha"
-                                    maxLength="20"
-                                    pr={4}
-                                    touched={touched}
-                                    type={stateViewPassword ? 'text' : 'password'}
-                                    {...props}
-                                />
-                            }
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors.password_confirmation}
+                                        label="Confirmação de senha"
+                                        maxLength="20"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        pr={4}
+                                        touched={touched}
+                                        type={stateViewPassword ? 'text' : 'password'}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
-                            name="password_confirm"
+                            name="password_confirmation"
                             rules={{ ...customValidate.password, ...customValidate.require }}
                         />
 
@@ -157,7 +189,7 @@ export const MinhaContaTrocarSenhaForm = memo(({ ...props }) => {
                         />
                     </div>
 
-                    {errors.password_confirm && <InvalidInputMessageStyled>{errors.password_confirm.message}</InvalidInputMessageStyled>}
+                    {errors.password_confirmation && <InvalidInputMessageStyled>{errors.password_confirmation.message}</InvalidInputMessageStyled>}
                 </Cell>
 
                 <Cell>

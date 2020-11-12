@@ -105,16 +105,24 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
 
                     <div>
                         <Controller
-                            as={
-                                <InputValidation
-                                    error={errors[CARTAO_NOME]}
-                                    maxLength="50"
-                                    placeholder="Seu nome exatamente como está no cartão"
-                                    pr={4}
-                                    touched={touched}
-                                    {...props}
-                                />
-                            }
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors[CARTAO_NOME]}
+                                        maxLength="50"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        placeholder="Seu nome exatamente como está no cartão"
+                                        pr={4}
+                                        touched={touched}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name={CARTAO_NOME}
                             rules={{ ...customValidate.name, ...customValidate.require }}

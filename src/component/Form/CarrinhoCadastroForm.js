@@ -96,16 +96,24 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                         <Cell mb={3}>
                             <div>
                                 <Controller
-                                    as={
-                                        <InputValidation
-                                            error={errors.nome}
-                                            label="Nome completo"
-                                            maxLength="50"
-                                            pr={4}
-                                            touched={touched}
-                                            {...props}
-                                        />
-                                    }
+                                    render={({ name, onBlur, onChange, value }) => {
+                                        return (
+                                            <InputValidation
+                                                error={errors.nome}
+                                                label="Nome completo"
+                                                maxLength="50"
+                                                name={name}
+                                                onBlur={onBlur}
+                                                onChange={(e) => {
+                                                    onChange(e.target.value);
+                                                }}
+                                                pr={4}
+                                                touched={touched}
+                                                value={value}
+                                                {...props}
+                                            />
+                                        );
+                                    }}
                                     control={control}
                                     name="nome"
                                     rules={{ ...customValidate.name, ...customValidate.require }}
@@ -118,7 +126,24 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                         <Cell mb={3}>
                             <div>
                                 <Controller
-                                    as={<InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...props} />}
+                                    render={({ name, onBlur, onChange, value }) => {
+                                        return (
+                                            <InputValidation
+                                                error={errors.email}
+                                                label="E-mail"
+                                                maxLength="50"
+                                                name={name}
+                                                onBlur={onBlur}
+                                                onChange={(e) => {
+                                                    onChange(e.target.value);
+                                                }}
+                                                pr={4}
+                                                touched={touched}
+                                                value={value}
+                                                {...props}
+                                            />
+                                        );
+                                    }}
                                     control={control}
                                     name="email"
                                     rules={{ ...customValidate.email, ...customValidate.require }}
@@ -161,17 +186,25 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                         <Cell mb={4}>
                             <div>
                                 <Controller
-                                    as={
-                                        <InputValidation
-                                            error={errors.password}
-                                            label="Senha"
-                                            maxLength="20"
-                                            pr={4}
-                                            touched={touched}
-                                            type={stateViewPassword ? 'text' : 'password'}
-                                            {...props}
-                                        />
-                                    }
+                                    render={({ name, onBlur, onChange, value }) => {
+                                        return (
+                                            <InputValidation
+                                                error={errors.password}
+                                                label="Senha"
+                                                maxLength="20"
+                                                name={name}
+                                                onBlur={onBlur}
+                                                onChange={(e) => {
+                                                    onChange(e.target.value);
+                                                }}
+                                                pr={4}
+                                                touched={touched}
+                                                type={stateViewPassword ? 'text' : 'password'}
+                                                value={value}
+                                                {...props}
+                                            />
+                                        );
+                                    }}
                                     control={control}
                                     name="password"
                                     rules={{ ...customValidate.password, ...customValidate.require }}
@@ -194,17 +227,25 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                         <Cell mb={4}>
                             <div>
                                 <Controller
-                                    as={
-                                        <InputValidation
-                                            error={errors.confirm_password}
-                                            label="Confirmação de senha"
-                                            maxLength="20"
-                                            pr={4}
-                                            touched={touched}
-                                            type={stateViewPassword ? 'text' : 'password'}
-                                            {...props}
-                                        />
-                                    }
+                                    render={({ name, onBlur, onChange, value }) => {
+                                        return (
+                                            <InputValidation
+                                                error={errors.confirm_password}
+                                                label="Confirmação de senha"
+                                                maxLength="20"
+                                                name={name}
+                                                onBlur={onBlur}
+                                                onChange={(e) => {
+                                                    onChange(e.target.value);
+                                                }}
+                                                pr={4}
+                                                touched={touched}
+                                                type={stateViewPassword ? 'text' : 'password'}
+                                                value={value}
+                                                {...props}
+                                            />
+                                        );
+                                    }}
                                     control={control}
                                     name="confirm_password"
                                     rules={{ ...customValidate.password, ...customValidate.require }}

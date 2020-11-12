@@ -217,16 +217,24 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
 
                                         <div>
                                             <Controller
-                                                as={
-                                                    <InputValidation
-                                                        error={errors.endereco_cidade}
-                                                        maxLength="50"
-                                                        placeholder="Cidade"
-                                                        pr={4}
-                                                        touched={touched}
-                                                        {...props}
-                                                    />
-                                                }
+                                                render={({ name, onBlur, onChange, value }) => {
+                                                    return (
+                                                        <InputValidation
+                                                            error={errors.endereco_cidade}
+                                                            maxLength="50"
+                                                            name={name}
+                                                            onBlur={onBlur}
+                                                            onChange={(e) => {
+                                                                onChange(e.target.value);
+                                                            }}
+                                                            placeholder="Cidade"
+                                                            pr={4}
+                                                            touched={touched}
+                                                            value={value}
+                                                            {...props}
+                                                        />
+                                                    );
+                                                }}
                                                 control={control}
                                                 name="endereco_cidade"
                                                 rules={{ ...customValidate.require }}
@@ -243,20 +251,28 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
 
                                         <div>
                                             <Controller
-                                                as={
-                                                    <SelectValidation
-                                                        error={errors.endereco_uf}
-                                                        obj={{
-                                                            color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
-                                                            colorLine: 'colorPrimary',
-                                                            fontWeight: touched['endereco_uf'] ? '700' : '400'
-                                                        }}
-                                                        touched={touched}
-                                                        {...props}
-                                                    >
-                                                        <OptionUF />
-                                                    </SelectValidation>
-                                                }
+                                                render={({ name, onBlur, onChange, value }) => {
+                                                    return (
+                                                        <SelectValidation
+                                                            error={errors.endereco_uf}
+                                                            name={name}
+                                                            onBlur={onBlur}
+                                                            onChange={(e) => {
+                                                                onChange(e.target.value);
+                                                            }}
+                                                            obj={{
+                                                                color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                                                colorLine: 'colorPrimary',
+                                                                fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                                            }}
+                                                            touched={touched}
+                                                            value={value}
+                                                            {...props}
+                                                        >
+                                                            <OptionUF />
+                                                        </SelectValidation>
+                                                    );
+                                                }}
                                                 control={control}
                                                 name="endereco_uf"
                                                 rules={{ ...customValidate.require }}

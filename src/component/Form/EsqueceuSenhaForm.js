@@ -81,9 +81,24 @@ export const EsqueceuSenhaForm = memo(({ ...props }) => {
                             <Cell mb={4}>
                                 <div>
                                     <Controller
-                                        as={
-                                            <InputValidation error={errors.email} label="E-mail" maxLength="50" pr={4} touched={touched} {...props} />
-                                        }
+                                        render={({ name, onBlur, onChange, value }) => {
+                                            return (
+                                                <InputValidation
+                                                    error={errors.email}
+                                                    label="E-mail"
+                                                    maxLength="50"
+                                                    name={name}
+                                                    onBlur={onBlur}
+                                                    onChange={(e) => {
+                                                        onChange(e.target.value);
+                                                    }}
+                                                    pr={4}
+                                                    touched={touched}
+                                                    value={value}
+                                                    {...props}
+                                                />
+                                            );
+                                        }}
                                         control={control}
                                         name="email"
                                         rules={{ ...customValidate.email, ...customValidate.require }}

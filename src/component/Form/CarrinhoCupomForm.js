@@ -45,16 +45,24 @@ export const CarrinhoCupomForm = memo(({ ...props }) => {
 
                 <Cell gridColumn={1}>
                     <Controller
-                        as={
-                            <InputValidation
-                                error={errors.cupom}
-                                height="30px"
-                                maxLength="20"
-                                placeholder="Inserir cupom"
-                                touched={touched}
-                                {...props}
-                            />
-                        }
+                        render={({ name, onBlur, onChange, value }) => {
+                            return (
+                                <InputValidation
+                                    error={errors.cupom}
+                                    height="30px"
+                                    maxLength="20"
+                                    name={name}
+                                    onBlur={onBlur}
+                                    onChange={(e) => {
+                                        onChange(e.target.value);
+                                    }}
+                                    placeholder="Inserir cupom"
+                                    touched={touched}
+                                    value={value}
+                                    {...props}
+                                />
+                            );
+                        }}
                         control={control}
                         name="cupom"
                         rules={{ ...customValidate.require }}

@@ -82,7 +82,24 @@ export const NewsletterForm = memo(({ ...props }) => {
                 <Cell mb={3}>
                     <div>
                         <Controller
-                            as={<InputValidation error={errors.nome} maxLength="50" placeholder="Nome" pr={4} touched={touched} {...props} />}
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors.nome}
+                                        maxLength="50"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        placeholder="Nome"
+                                        pr={4}
+                                        touched={touched}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name="nome"
                             rules={{ ...customValidate.name, ...customValidate.require }}
@@ -95,7 +112,24 @@ export const NewsletterForm = memo(({ ...props }) => {
                 <Cell mb={3}>
                     <div>
                         <Controller
-                            as={<InputValidation error={errors.email} maxLength="50" placeholder="E-mail" pr={4} touched={touched} {...props} />}
+                            render={({ name, onBlur, onChange, value }) => {
+                                return (
+                                    <InputValidation
+                                        error={errors.email}
+                                        maxLength="50"
+                                        name={name}
+                                        onBlur={onBlur}
+                                        onChange={(e) => {
+                                            onChange(e.target.value);
+                                        }}
+                                        placeholder="E-mail"
+                                        pr={4}
+                                        touched={touched}
+                                        value={value}
+                                        {...props}
+                                    />
+                                );
+                            }}
                             control={control}
                             name="email"
                             rules={{ ...customValidate.email, ...customValidate.require }}
