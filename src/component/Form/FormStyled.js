@@ -60,6 +60,16 @@ const input = css`
             }
         `};
 
+    &:disabled {
+        color: ${variable.colorGray};
+    }
+
+    &::placeholder {
+        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
+        font-size: 16px;
+        font-weight: 400;
+    }
+
     ${({ invalid }) => invalid && `border-color: ${variable.colorAlert}`};
     ${({ valid }) => valid && `border-color: ${variable.colorPrimaryHover}`};
 
@@ -80,16 +90,6 @@ const input = css`
             border-color: transparent;
             box-shadow: inset 0 0 0 3px ${variable.colorPrimaryHover};
         `};
-
-    &:disabled {
-        color: ${variable.colorGray};
-    }
-
-    &::placeholder {
-        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
-        font-size: 16px;
-        font-weight: 400;
-    }
 `;
 
 const inputLabel = css`
