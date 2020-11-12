@@ -122,10 +122,14 @@ module.exports = {
     },
     stats: {
         errorDetails: true,
-        maxModules: Infinity,
         moduleTrace: true,
         optimizationBailout: false
     },
     target: 'web',
-    watch: false
+    watch: false,
+    watchOptions: {
+        aggregateTimeout: 200,
+        ignored: ['node_modules/**'],
+        poll: 5000
+    }
 };
