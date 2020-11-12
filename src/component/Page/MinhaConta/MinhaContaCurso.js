@@ -63,7 +63,7 @@ const MinhaContaCurso = ({ breadcrumb, match }) => {
             setStateBreadcrumbContext({ breadcrumb: breadcrumb, currentLabel: curso.title });
         }
 
-        scrollTo(null, isDataLoaded, windowWidth < parseInt(variable.lg, 10) ? 0 : 80);
+        scrollTo(null, isDataLoaded);
 
         return undefined;
     }, [isDataLoaded, stateCursoConteudo]);

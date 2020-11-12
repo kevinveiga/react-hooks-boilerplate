@@ -26,14 +26,14 @@ const fnScroll = (anchor) => {
     return null;
 };
 
-export const scrollTo = (anchorElement = null, doScroll = false, timer = 0) => {
+export const scrollTo = (anchorElement = null, doScroll = false, offset = 0, timer = 0) => {
     if (doScroll) {
         // Verifica se o scroll já está sendo feito
         if (!scrollOnce) {
             const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
             const element = document.querySelector(anchorElement) || null;
 
-            let scrollTimer = timer;
+            let scrollTimer = parseInt(timer, 10);
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
             if (anchorElement && Math.trunc(fnElementPosition(element)) !== Math.trunc(scrollYPos)) {
@@ -41,9 +41,9 @@ export const scrollTo = (anchorElement = null, doScroll = false, timer = 0) => {
             }
 
             const delay = async () => {
-                await sleep(parseInt(scrollTimer, 10));
+                await sleep(scrollTimer);
 
-                fnScroll(fnElementPosition(element));
+                fnScroll(fnElementPosition(element) + parseInt(offset, 10));
             };
 
             delay();

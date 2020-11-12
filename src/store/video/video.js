@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { variable } from '../../style/variable';
 
-export const useCurrentVideo = (elementId, offset) => {
+export const useCurrentVideo = (elementId) => {
     const [stateCurrentVideo, setStateCurrentVideo] = useState(null);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export const useCurrentVideo = (elementId, offset) => {
         }
 
         return undefined;
-    }, [elementId, offset, stateCurrentVideo]);
+    }, [elementId, stateCurrentVideo]);
 
     return [stateCurrentVideo, setStateCurrentVideo];
 };
