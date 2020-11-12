@@ -29,6 +29,16 @@ const input = css`
     transition: border ${variable.transition}, box-shadow ${variable.transition}, color ${variable.transition};
     width: 100%;
 
+    &:disabled {
+        color: ${variable.colorGray};
+    }
+
+    &::placeholder {
+        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
+        font-size: 16px;
+        font-weight: 400;
+    }
+
     ${({ obj }) =>
         obj &&
         obj.themeForm === 'leadwall' &&
@@ -59,16 +69,6 @@ const input = css`
                 border-right: 1px solid ${obj.colorLine ? variable[obj.colorLine] : variable.colorGray};
             }
         `};
-
-    &:disabled {
-        color: ${variable.colorGray};
-    }
-
-    &::placeholder {
-        color: ${({ obj }) => (obj && obj.colorPlaceholder ? variable[obj.colorPlaceholder] : variable.colorGray)};
-        font-size: 16px;
-        font-weight: 400;
-    }
 
     ${({ invalid }) => invalid && `border-color: ${variable.colorAlert}`};
     ${({ valid }) => valid && `border-color: ${variable.colorPrimaryHover}`};
