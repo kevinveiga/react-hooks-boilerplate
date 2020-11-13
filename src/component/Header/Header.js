@@ -115,9 +115,9 @@ export const Header = () => {
                                         <Input
                                             maxLength="50"
                                             name="pesquisa"
-                                            placeholder="Procure"
                                             obj={{ color: stateChangeHeaderScroll ? 'colorWhite' : 'colorGrayDark' }}
                                             onKeyDown={keyPress()}
+                                            placeholder="Procure"
                                         />
                                     </Cell>
                                 </Grid>

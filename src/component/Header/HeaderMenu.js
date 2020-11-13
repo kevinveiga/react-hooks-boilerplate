@@ -119,7 +119,7 @@ export const HeaderMenu = ({ ...props }) => {
                 <HeaderMenuPesquisaStyled>
                     <Grid display="grid" gridAutoColumns="1fr" px={2}>
                         <Cell width="100%">
-                            <Input maxLength="50" name="pesquisa_mobile" placeholder="Procure" obj={{ color: 'colorWhite' }} onKeyDown={keyPress()} />
+                            <Input maxLength="50" name="pesquisa_mobile" obj={{ color: 'colorWhite' }} onKeyDown={keyPress()} placeholder="Procure" />
                         </Cell>
                     </Grid>
                 </HeaderMenuPesquisaStyled>

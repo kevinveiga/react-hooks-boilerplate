@@ -288,15 +288,15 @@ export const CadastroForm = memo(({ formId, ...props }) => {
                                 Clicando em &quot;Cadastrar-se&quot; você concordará com os{' '}
                                 <LinkTo
                                     fontWeight="700"
-                                    obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                                     link="/falta-link"
+                                    obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                                     text="Termos de serviço"
                                 />{' '}
                                 e{' '}
                                 <LinkTo
                                     fontWeight="700"
-                                    obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                                     link="/falta-link"
+                                    obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                                     text="Política de privacidade"
                                 />
                                 .

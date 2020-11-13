@@ -31,8 +31,8 @@ export const Login = () => {
 
                         <P color="colorGray2" fontSize="14px" mt={3}>
                             <LinkTo
-                                obj={{ hoverColor: 'fontColor', textDecoration: 'underline' }}
                                 link="/esqueci-minha-senha"
+                                obj={{ hoverColor: 'fontColor', textDecoration: 'underline' }}
                                 text="Esqueceu sua senha?"
                             />
                         </P>
@@ -44,8 +44,8 @@ export const Login = () => {
                 <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                     <LinkTo
                         ariaLabel="Home"
-                        obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                         link="/inicio"
+                        obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
                         text="Voltar para home"
                     />
                 </Container>

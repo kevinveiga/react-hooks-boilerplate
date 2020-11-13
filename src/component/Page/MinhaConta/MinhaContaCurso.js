@@ -188,8 +188,8 @@ const MinhaContaCurso = ({ breadcrumb, match }) => {
                             <Breadcrumb
                                 breadcrumb={breadcrumb}
                                 currentLabel={curso.title}
-                                pt={{ d: 4, sm: 5 }}
                                 obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
+                                pt={{ d: 4, sm: 5 }}
                             />
                         )}
 

@@ -437,14 +437,14 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                         <SelectValidation
                                             error={errors.endereco_uf}
                                             name={name}
-                                            onBlur={onBlur}
-                                            onChange={(e) => {
-                                                onChange(e.target.value);
-                                            }}
                                             obj={{
                                                 color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
                                                 colorLine: 'colorPrimary',
                                                 fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                            }}
+                                            onBlur={onBlur}
+                                            onChange={(e) => {
+                                                onChange(e.target.value);
                                             }}
                                             touched={touched}
                                             value={value}
@@ -505,14 +505,14 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                     return (
                                         <Select
                                             name={name}
-                                            onBlur={onBlur}
-                                            onChange={(e) => {
-                                                onChange(e.target.value);
-                                            }}
                                             obj={{
                                                 color: touched['sexo'] ? 'colorGrayDark' : 'colorGray',
                                                 colorLine: 'colorPrimary',
                                                 fontWeight: touched['sexo'] ? '700' : '400'
+                                            }}
+                                            onBlur={onBlur}
+                                            onChange={(e) => {
+                                                onChange(e.target.value);
                                             }}
                                             value={value}
                                             {...props}

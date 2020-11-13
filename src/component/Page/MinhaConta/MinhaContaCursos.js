@@ -67,7 +67,7 @@ const MinhaContaCursos = () => {
 
     return (
         <MinhaContaCenterStyled px={{ d: 3, sm: 5 }} py={{ d: 4, sm: 5 }}>
-            {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Cursos" pb={4} obj={{ hoverColor: 'colorPrimary' }} />}
+            {windowWidth < parseInt(variable.lg, 10) && <Breadcrumb currentLabel="Cursos" obj={{ hoverColor: 'colorPrimary' }} pb={4} />}
 
             <Flex display="flex" flexWrap="wrap">
                 <Tab group="tab-group-course" total={4}>

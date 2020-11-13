@@ -93,8 +93,8 @@ const MinhaContaEntrevista = ({ breadcrumb, match }) => {
                         <Breadcrumb
                             breadcrumb={breadcrumb}
                             currentLabel={entrevista.title}
-                            pb={4}
                             obj={{ hoverColor: 'colorPrimary', textDecoration: 'underline' }}
+                            pb={4}
                         />
                     )}
 

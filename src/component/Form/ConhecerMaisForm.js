@@ -256,14 +256,14 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
                                                         <SelectValidation
                                                             error={errors.endereco_uf}
                                                             name={name}
-                                                            onBlur={onBlur}
-                                                            onChange={(e) => {
-                                                                onChange(e.target.value);
-                                                            }}
                                                             obj={{
                                                                 color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
                                                                 colorLine: 'colorPrimary',
                                                                 fontWeight: touched['endereco_uf'] ? '700' : '400'
+                                                            }}
+                                                            onBlur={onBlur}
+                                                            onChange={(e) => {
+                                                                onChange(e.target.value);
                                                             }}
                                                             touched={touched}
                                                             value={value}
