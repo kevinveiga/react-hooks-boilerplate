@@ -12,6 +12,7 @@ import { formatFormDataSet } from '../../util/formatFormData';
 import { redirectRule } from '../../util/redirectRule';
 import { responseError } from '../../util/responseError';
 import { scrollTo } from '../../util/scrollTo';
+import { onFormError } from './util';
 
 import { Button } from '../Button/Button';
 import { InputMaskValidation, InputValidation } from './Form';
@@ -43,15 +44,6 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
         mode: 'onChange'
     });
 
-    const onError = (formError) => {
-        const inputName = Object.keys(formError).length && Object.keys(formError)[0];
-
-        const anchorElement =
-            (document.getElementsByName(inputName) && `input[name="${inputName}"]`) || (document.querySelector(`#${formId}`) && `#${formId}`);
-
-        scrollTo(anchorElement, true);
-    };
-
     const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
@@ -72,7 +64,13 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
                 }
             } catch (error) {
                 if (error.response) {
-                    setStateError(responseError(error.response.data.errors));
+                    if (error.response.data.message) {
+                        setStateError(error.response.data.message);
+                    } else {
+                        setStateError(responseError(error.response.data.errors));
+                    }
+
+                    scrollTo(null, true);
                 } else {
                     console.error('error: ', error);
                 }
@@ -85,7 +83,7 @@ export const CarrinhoCadastroForm = memo(({ formId, location, ...props }) => {
     return (
         <Flex display="flex" flexWrap="wrap">
             <Box overflow="hidden" width="100%">
-                <FormStyled id={formId} onSubmit={handleSubmit(onSubmit, onError)}>
+                <FormStyled id={formId} onSubmit={handleSubmit(onSubmit, (formError) => onFormError(formError, formId))}>
                     <Grid display="grid" gridRowGap={2} px={{ d: 1, sm: 5 }} py={{ d: 2, md: 4 }}>
                         <Cell>
                             <ResponseMessageContainerStyled>

@@ -12,38 +12,39 @@ const fnElementPosition = (elementPosition) => {
         : 0;
 };
 
-const fnScroll = (anchor) => {
+const fnScroll = (anchor, context) => {
     try {
-        window.scroll({
+        context.scroll({
             behavior: 'smooth',
             left: 0,
             top: anchor
         });
     } catch (error) {
-        window.scrollTo(0, anchor);
+        context.scrollTo(0, anchor);
     }
 
     return null;
 };
 
-export const scrollTo = (anchorElement = null, doScroll = false, offset = 0, timer = 0) => {
+export const scrollTo = (anchorElementString = null, doScroll = false, offset = 0, timer = 0, scrollContextString = null) => {
     if (doScroll) {
         // Verifica se o scroll já está sendo feito
         if (!scrollOnce) {
             const scrollYPos = window.pageYOffset || document.documentElement.scrollTop;
-            const element = document.querySelector(anchorElement) || null;
+            const anchorElement = document.querySelector(anchorElementString) || null;
+            const scrollContext = document.querySelector(scrollContextString) || window;
 
             let scrollTimer = parseInt(timer, 10);
 
             // Se o scroll deve ir para um elemento, então é adicionado um timer de 500ms para fazer o scroll corretamente
-            if (anchorElement && Math.trunc(fnElementPosition(element)) !== Math.trunc(scrollYPos)) {
+            if (anchorElementString && Math.trunc(fnElementPosition(anchorElement)) !== Math.trunc(scrollYPos)) {
                 scrollTimer = 500;
             }
 
             const delay = async () => {
                 await sleep(scrollTimer);
 
-                fnScroll(fnElementPosition(element) + parseInt(offset, 10));
+                fnScroll(fnElementPosition(anchorElement) + parseInt(offset, 10), scrollContext);
             };
 
             delay();

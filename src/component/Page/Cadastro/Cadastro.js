@@ -23,7 +23,7 @@ export const Cadastro = () => {
                     <Splash />
                 </Box>
 
-                <Box width={{ d: '100%', lg: 3 / 7 }}>
+                <Box id="scrollContextCadastroFormId" width={{ d: '100%', lg: 3 / 7 }}>
                     <Container mx="auto" px={3} py={{ d: 4, md: 5 }}>
                         {!memoConhecerMais[0] ? (
                             <CadastroForm formId="cadastroFormId" obj={{ colorLine: 'colorPrimary' }} />

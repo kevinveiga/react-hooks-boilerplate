@@ -13,8 +13,9 @@ import { customValidate } from '../../util/customValidate';
 import { formatCepSet } from '../../util/formatData';
 import { formatFormDataGet, formatFormDataSet } from '../../util/formatFormData';
 import { responseError } from '../../util/responseError';
-import { scrollTo } from '../../util/scrollTo';
 import { setFormValue } from '../../util/setFormValue';
+import { scrollTo } from '../../util/scrollTo';
+import { onFormError } from './util';
 
 import { Button } from '../Button/Button';
 import { Input, InputCheckboxRadio, InputMaskValidation, InputValidation, Label, Select, SelectValidation } from './Form';
@@ -96,15 +97,6 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
         mode: 'onChange'
     });
 
-    const onError = (formError) => {
-        const inputName = Object.keys(formError).length && Object.keys(formError)[0];
-
-        const anchorElement =
-            (document.getElementsByName(inputName) && `input[name="${inputName}"]`) || (document.querySelector(`#${formId}`) && `#${formId}`);
-
-        scrollTo(anchorElement, true, -100);
-    };
-
     const onSubmit = (formData) => {
         const fetchData = async () => {
             try {
@@ -137,6 +129,8 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                     } else {
                         setStateError(responseError(error.response.data.errors));
                     }
+
+                    scrollTo(null, true);
                 } else {
                     console.error('error: ', error);
                 }
@@ -148,7 +142,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
 
     return (
         <>
-            <FormStyled id={formId} onSubmit={handleSubmit(onSubmit, onError)}>
+            <FormStyled id={formId} onSubmit={handleSubmit(onSubmit, (formError) => onFormError(formError, formId))}>
                 <Grid
                     display="grid"
                     gridColumnGap={5}
