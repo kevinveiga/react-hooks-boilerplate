@@ -257,7 +257,7 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
                                                             error={errors.endereco_uf}
                                                             name={name}
                                                             obj={{
-                                                                color: touched['endereco_uf'] ? 'colorGrayDark' : 'colorGray',
+                                                                color: touched['endereco_uf'] && value ? 'colorGrayDark' : 'colorGray',
                                                                 colorLine: 'colorPrimary',
                                                                 fontWeight: touched['endereco_uf'] ? '700' : '400'
                                                             }}
