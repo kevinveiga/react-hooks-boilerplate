@@ -79,7 +79,7 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
 
         &::-webkit-scrollbar-thumb {
             background-color: ${colorPrimary};
-            height: 50px;
+            height: auto;
         }
 
         &::-webkit-scrollbar-track {
@@ -93,7 +93,7 @@ export const scrollbar = (colorPrimary = variable.colorPrimary, colorSecondary =
     `;
 };
 
-export const scrollbarAlternate = (colorPrimary = variable.colorBlack, colorSecondary = variable.colorWhite, scrollbarSize = '6px') => {
+export const scrollbarAlternate = (colorPrimary = variable.colorGrayLight, colorSecondary = variable.colorWhite, scrollbarSize = '6px') => {
     return css`
         &::-webkit-scrollbar {
             height: 100%;
@@ -116,13 +116,13 @@ export const scrollbarAlternate = (colorPrimary = variable.colorBlack, colorSeco
         &::-webkit-scrollbar-thumb {
             background-color: ${colorPrimary};
             border-radius: 10px;
-            height: 50px;
+            height: auto;
         }
 
         &::-webkit-scrollbar-track {
             background-color: ${colorSecondary};
             border-radius: 10px;
-            box-shadow: inset 0 0 0 1px ${variable.colorGray2};
+            box-shadow: inset 0 0 0 0 transparent;
         }
 
         &::-webkit-scrollbar-track-piece {

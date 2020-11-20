@@ -186,7 +186,6 @@ export const InputAlternateStyled = styled.input`
                     content: ' ';
                     display: inline-block;
                     height: 16px;
-                    margin-right: 10px;
                     transition: box-shadow ${variable.transition};
                     vertical-align: middle;
                     width: 16px;
@@ -194,9 +193,12 @@ export const InputAlternateStyled = styled.input`
 
                 svg {
                     display: none;
-                    left: 6px;
+                    fill: ${variable.colorWhite};
+                    height: 8px;
+                    left: 50%;
                     position: absolute;
-                    top: 6px;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
                 }
             }
 
