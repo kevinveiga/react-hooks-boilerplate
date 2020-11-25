@@ -4,12 +4,12 @@ import { InputAlternateStyled, InputMaskStyled, InputStyled, LabelStyled, Select
 
 import { Svg } from '../Svg/Svg';
 
-export const Input = forwardRef(({ typeInput = 'text', value = '', ...props }, ref) => {
+export const Input = forwardRef(({ ariaLabel, typeInput = 'text', value = '', ...props }, ref) => {
     const { label, obj } = props;
 
     return (
         <>
-            <InputStyled autoComplete="off" defaultValue={value} obj={obj} ref={ref} type={typeInput} {...props} />
+            <InputStyled aria-label={ariaLabel} autoComplete="off" defaultValue={value} obj={obj} ref={ref} type={typeInput} {...props} />
 
             {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
         </>
@@ -23,7 +23,15 @@ export const InputCheckboxRadio = ({ ariaLabel, checked = false, children, id, t
 
     return (
         <>
-            <InputAlternateStyled defaultChecked={checked} defaultValue={value} id={id} obj={obj} type={typeInput} {...props} />
+            <InputAlternateStyled
+                aria-label={ariaLabel}
+                defaultChecked={checked}
+                defaultValue={value}
+                id={id}
+                obj={obj}
+                type={typeInput}
+                {...props}
+            />
 
             <Label ariaLabel={acessibility} forLabel={id} {...props}>
                 {content}
@@ -39,7 +47,7 @@ export const InputFile = ({ ariaLabel, children, id, text, typeInput = 'file', v
 
     return (
         <>
-            <InputAlternateStyled defaultValue={value} id={id} obj={obj} type={typeInput} {...props} />
+            <InputAlternateStyled aria-label={ariaLabel} autoComplete="off" defaultValue={value} id={id} obj={obj} type={typeInput} {...props} />
 
             <Label ariaLabel={acessibility} forLabel={id} {...props}>
                 {content}
@@ -56,6 +64,8 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
     return (
         <>
             <InputAlternateStyled
+                aria-label={ariaLabel}
+                autoComplete="off"
                 defaultValue={value}
                 id={id}
                 invalid={error}
@@ -72,25 +82,26 @@ export const InputFileValidation = ({ ariaLabel, children, error = '', id, text,
     );
 };
 
-export const InputMask = ({ typeInput = 'text', value = '', ...props }) => {
+export const InputMask = ({ ariaLabel, typeInput = 'text', value = '', ...props }) => {
     const { label, obj } = props;
 
     return (
         <>
-            <InputMaskStyled autoComplete="off" defaultValue={value} obj={obj} type={typeInput} {...props} />
+            <InputMaskStyled aria-label={ariaLabel} autoComplete="off" defaultValue={value} obj={obj} type={typeInput} {...props} />
 
             {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
         </>
     );
 };
 
-export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
+export const InputMaskValidation = ({ ariaLabel, error = '', touched, typeInput = 'text', value = '', ...props }) => {
     const { label, left, name, obj, right } = props;
     const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
         <>
             <InputMaskStyled
+                aria-label={ariaLabel}
                 autoComplete="off"
                 defaultValue={value}
                 invalid={error}
@@ -107,13 +118,14 @@ export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', v
     );
 };
 
-export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
+export const InputValidation = ({ ariaLabel, error = '', touched, typeInput = 'text', value = '', ...props }) => {
     const { label, left, name, obj, right } = props;
     const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
         <>
             <InputStyled
+                aria-label={ariaLabel}
                 autoComplete="off"
                 defaultValue={value}
                 invalid={error}
@@ -152,13 +164,14 @@ export const Select = ({ ariaLabel, children, value = '', ...props }) => {
     );
 };
 
-export const SelectValidation = forwardRef(({ error = '', children, touched, value = '', ...props }, ref) => {
-    const { label, left, name, obj, right } = props;
+export const SelectValidation = forwardRef(({ ariaLabel, error = '', children, touched, value = '', ...props }, ref) => {
+    const { left, name, obj, right } = props;
     const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
         <>
             <SelectStyled
+                aria-label={ariaLabel}
                 defaultValue={value}
                 invalid={error}
                 obj={obj}
@@ -169,19 +182,28 @@ export const SelectValidation = forwardRef(({ error = '', children, touched, val
                 {children}
             </SelectStyled>
 
-            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
-
             <Svg invalid={error} name={error ? 'svg-invalid' : 'svg-valid'} svgPosition={svgPosition} valid={!error && (value || touched[name])} />
         </>
     );
 });
 
-export const TextareaValidation = ({ error = '', touched, value = '', ...props }) => {
+export const Textarea = ({ ariaLabel, value = '', ...props }) => {
+    const { obj } = props;
+
+    return (
+        <>
+            <TextareaStyled aria-label={ariaLabel} autoComplete="off" defaultValue={value} obj={obj} {...props} />
+        </>
+    );
+};
+
+export const TextareaValidation = ({ ariaLabel, error = '', touched, value = '', ...props }) => {
     const { label, name, obj } = props;
 
     return (
         <>
             <TextareaStyled
+                aria-label={ariaLabel}
                 autoComplete="off"
                 defaultValue={value}
                 invalid={error}
