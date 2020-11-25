@@ -85,7 +85,7 @@ export const InputMask = ({ typeInput = 'text', value = '', ...props }) => {
 };
 
 export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
-    const { left, label, name, obj, right } = props;
+    const { label, left, name, obj, right } = props;
     const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
@@ -108,7 +108,7 @@ export const InputMaskValidation = ({ error = '', touched, typeInput = 'text', v
 };
 
 export const InputValidation = ({ error = '', touched, typeInput = 'text', value = '', ...props }) => {
-    const { left, label, name, obj, right } = props;
+    const { label, left, name, obj, right } = props;
     const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
@@ -153,7 +153,7 @@ export const Select = ({ ariaLabel, children, value = '', ...props }) => {
 };
 
 export const SelectValidation = forwardRef(({ error = '', children, touched, value = '', ...props }, ref) => {
-    const { left, label, name, obj, right } = props;
+    const { label, left, name, obj, right } = props;
     const svgPosition = left ? `left: ${left}` : right ? `right: ${right}` : false;
 
     return (
