@@ -129,15 +129,13 @@ export const ButtonStyled = styled.button`
         !disabled &&
         themeType === undefined &&
         css`
-            @media (min-width: ${variable.lg}) {
-                &:active,
-                &:hover {
-                    background-color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
-                    color: ${variable.colorWhite};
+            &:active,
+            &:hover {
+                background-color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
+                color: ${variable.colorWhite};
 
-                    svg {
-                        fill: ${variable.colorWhite};
-                    }
+                svg {
+                    fill: ${variable.colorWhite};
                 }
             }
         `}
@@ -146,13 +144,11 @@ export const ButtonStyled = styled.button`
         active &&
         themeType === undefined &&
         css`
-            @media (min-width: ${variable.lg}) {
-                background-color: ${variable.colorPrimaryHover};
-                color: ${variable.colorWhite};
+            background-color: ${variable.colorPrimaryHover};
+            color: ${variable.colorWhite};
 
-                svg {
-                    fill: ${variable.colorWhite};
-                }
+            svg {
+                fill: ${variable.colorWhite};
             }
         `};
 
@@ -174,16 +170,14 @@ export const ButtonStyled = styled.button`
         !disabled &&
         themeType === 'border' &&
         css`
-            @media (min-width: ${variable.lg}) {
-                &:active,
-                &:hover {
-                    background-color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
-                    border: 2px solid ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
-                    color: ${variable.colorWhite};
+            &:active,
+            &:hover {
+                background-color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
+                border: 2px solid ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
+                color: ${variable.colorWhite};
 
-                    svg {
-                        fill: ${variable.colorWhite};
-                    }
+                svg {
+                    fill: ${variable.colorWhite};
                 }
             }
         `}
@@ -200,14 +194,12 @@ export const ButtonStyled = styled.button`
         !disabled &&
         themeType === 'none' &&
         css`
-            @media (min-width: ${variable.lg}) {
-                &:active,
-                &:hover {
-                    color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
+            &:active,
+            &:hover {
+                color: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
 
-                    svg {
-                        fill: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
-                    }
+                svg {
+                    fill: ${({ hoverColor }) => (hoverColor ? variable[hoverColor] : variable.colorPrimaryHover)};
                 }
             }
         `}
@@ -216,14 +208,12 @@ export const ButtonStyled = styled.button`
         active &&
         themeType === 'border' &&
         css`
-            @media (min-width: ${variable.lg}) {
-                background-color: ${variable.colorPrimaryHover};
-                border: 2px solid ${variable.colorPrimaryHover};
-                color: ${variable.colorWhite};
+            background-color: ${variable.colorPrimaryHover};
+            border: 2px solid ${variable.colorPrimaryHover};
+            color: ${variable.colorWhite};
 
-                svg {
-                    fill: ${variable.colorWhite};
-                }
+            svg {
+                fill: ${variable.colorWhite};
             }
         `};
 `;
