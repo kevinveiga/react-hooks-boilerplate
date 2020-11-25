@@ -188,11 +188,13 @@ export const SelectValidation = forwardRef(({ ariaLabel, error = '', children, t
 });
 
 export const Textarea = ({ ariaLabel, value = '', ...props }) => {
-    const { obj } = props;
+    const { label, obj } = props;
 
     return (
         <>
             <TextareaStyled aria-label={ariaLabel} autoComplete="off" defaultValue={value} obj={obj} {...props} />
+
+            {label && <LabelStyled aria-label={label}>{label}</LabelStyled>}
         </>
     );
 };
