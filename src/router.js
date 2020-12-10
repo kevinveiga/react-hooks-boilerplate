@@ -106,6 +106,19 @@ const routes = [
         path: '/minha-conta/cursos'
     },
     {
+        breadcrumb: [{ label: 'Entrevistas', path: '/minha-conta/entrevistas' }],
+        component: MinhaContaEntrevista,
+        hasAuth: true,
+        layout: LayoutMinhaContaWithMenu,
+        path: '/minha-conta/entrevista/:slug'
+    },
+    {
+        component: MinhaContaEntrevistas,
+        hasAuth: true,
+        layout: LayoutMinhaContaWithMenu,
+        path: '/minha-conta/entrevistas'
+    },
+    {
         component: MinhaConta,
         hasAuth: true,
         layout: LayoutMinhaContaWithMenu,
