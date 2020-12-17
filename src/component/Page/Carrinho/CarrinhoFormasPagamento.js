@@ -32,8 +32,8 @@ export const CarrinhoFormasPagamento = () => {
 
     // FUNCTION
     const handleSetValueChecked = useCallback(
-        () => (element) => {
-            handleFormaPagamentoTipoContext(element.target.value);
+        () => (event) => {
+            handleFormaPagamentoTipoContext(event.target.value);
         },
         [handleFormaPagamentoTipoContext]
     );

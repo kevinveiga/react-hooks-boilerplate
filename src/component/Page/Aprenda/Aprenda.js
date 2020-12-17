@@ -50,19 +50,19 @@ export const Aprenda = () => {
 
     // FUNCTION
     const handleCursoCategoriaChange = useCallback(
-        () => (element) => {
-            element.preventDefault();
+        () => (event) => {
+            event.preventDefault();
 
-            let apiValue = `${apiUrlCursos}/categorias/${element.target.value}`;
+            let apiValue = `${apiUrlCursos}/categorias/${event.target.value}`;
 
-            if (element.target.value === 'mais-vistos') {
+            if (event.target.value === 'mais-vistos') {
                 apiValue = apiUrlCursos;
             }
 
             // Paginação desativada
             // setStateCursosCategoriaData({ page: 1, url: apiValue });
             setStateCursosCategoriaData({ url: apiValue });
-            setStateCursosCategoriaSelected(element.target.value);
+            setStateCursosCategoriaSelected(event.target.value);
         },
         [setStateCursosCategoriaData]
     );

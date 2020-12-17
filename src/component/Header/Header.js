@@ -66,9 +66,9 @@ export const Header = () => {
     );
 
     const keyPress = useCallback(
-        () => (element) => {
-            if (element.keyCode == 13) {
-                window.location.assign(`/noticia-pesquisa/${element.target.value}`);
+        () => (event) => {
+            if (event.keyCode == 13) {
+                window.location.assign(`/noticia-pesquisa/${event.target.value}`);
             }
         },
         []

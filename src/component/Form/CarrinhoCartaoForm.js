@@ -48,8 +48,8 @@ export const CarrinhoCartaoForm = memo(({ formaPagamentoObj, formId, ...props })
     // FUNCTION
     // Atualiza os dados da forma de pagamento no Contexto de Estado do CarrinhoProvider
     const handleSetFormaPagamento = useCallback(
-        (element) => {
-            handleFormaPagamentoContext(JSON.parse(element.target.options[element.target.selectedIndex].getAttribute('data-obj')));
+        (event) => {
+            handleFormaPagamentoContext(JSON.parse(event.target.options[event.target.selectedIndex].getAttribute('data-obj')));
         },
         [handleFormaPagamentoContext]
     );

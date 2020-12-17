@@ -54,10 +54,10 @@ const MinhaContaCursos = () => {
 
     // FUNCTION
     const handleCursoCategoriaChange = useCallback(
-        () => (element) => {
-            element.preventDefault();
+        () => (event) => {
+            event.preventDefault();
 
-            setStateCursosCategoriaSelected(element.target.value);
+            setStateCursosCategoriaSelected(event.target.value);
         },
         []
     );

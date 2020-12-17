@@ -33,17 +33,17 @@ export const MinhaContaAvatarForm = memo(() => {
 
     // FUNCTION
     const handleFileChange = useCallback(
-        (element) => {
-            element.persist();
+        (event) => {
+            event.persist();
 
             const fetchData = async () => {
-                const validate = await trigger([element.target.name]);
+                const validate = await trigger([event.target.name]);
 
                 if (validate) {
                     try {
                         const form = new FormData();
 
-                        form.append('avatar', element.target.files[0]);
+                        form.append('avatar', event.target.files[0]);
 
                         const result = await axios.post(apiUrlPerfilAvatar, form, { headers: { 'Content-Type': 'multipart/form-data; boundary=' } });
 

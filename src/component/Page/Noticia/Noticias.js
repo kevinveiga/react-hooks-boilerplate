@@ -51,17 +51,17 @@ export const Noticias = () => {
 
     // FUNCTION
     const handleNoticiaCategoriaChange = useCallback(
-        () => (element) => {
-            element.preventDefault();
+        () => (event) => {
+            event.preventDefault();
 
-            let apiValue = `${apiUrlNoticias}/categoria/${element.target.value}`;
+            let apiValue = `${apiUrlNoticias}/categoria/${event.target.value}`;
 
-            if (element.target.value === 'ultimas') {
+            if (event.target.value === 'ultimas') {
                 apiValue = apiUrlNoticias;
             }
 
             setStateNoticiasCategoriaData({ page: 1, url: apiValue });
-            setStateNoticiasCategoriaSelected(element.target.value);
+            setStateNoticiasCategoriaSelected(event.target.value);
         },
         [setStateNoticiasCategoriaData]
     );

@@ -36,8 +36,8 @@ export const PesquisaForm = memo(({ ...props }) => {
 
     // FUNCTION
     const keyPress = useCallback(
-        (fn) => (element) => {
-            if (element.keyCode === 13) {
+        (fn) => (event) => {
+            if (event.keyCode === 13) {
                 handleSubmit(fn);
             }
         },

@@ -71,8 +71,8 @@ const MinhaContaCurso = ({ breadcrumb, match }) => {
 
     // FUNCTION
     const handleTabChange = useCallback(
-        () => (element) => {
-            setStateTabSelected(element.target.value);
+        () => (event) => {
+            setStateTabSelected(event.target.value);
         },
         []
     );

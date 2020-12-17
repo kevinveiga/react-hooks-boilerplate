@@ -26,9 +26,9 @@ export const HeaderMenu = ({ ...props }) => {
     );
 
     const keyPress = useCallback(
-        () => (element) => {
-            if (element.keyCode == 13) {
-                window.location.assign(`/pesquisa/${element.target.value}`);
+        () => (event) => {
+            if (event.keyCode == 13) {
+                window.location.assign(`/pesquisa/${event.target.value}`);
             }
         },
         []

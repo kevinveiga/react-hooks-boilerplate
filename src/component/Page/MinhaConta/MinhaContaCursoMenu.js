@@ -46,9 +46,9 @@ const MinhaContaCursoMenu = ({ objectCurso, ...props }) => {
 
     // FUNCTION
     const handleCursoConteudoVisualizadoUrl = useCallback(
-        (conteudoId) => (element) => {
+        (conteudoId) => (event) => {
             setStateCursoConteudoVisualizadoDataContext({
-                action: element.target.checked ? ACTION.add() : ACTION.remove(),
+                action: event.target.checked ? ACTION.add() : ACTION.remove(),
                 cursoId: objectCurso.id,
                 url: `${apiUrlCursos}/meus-cursos/${objectCurso.id}/${conteudoId}`
             });
