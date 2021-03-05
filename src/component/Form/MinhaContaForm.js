@@ -477,7 +477,7 @@ export const MinhaContaForm = memo(({ data, formId, setStatePerfilData, ...props
                                             name={name}
                                             onBlur={onBlur}
                                             onValueChange={(values) => {
-                                                onChange(values.value);
+                                                onChange(values.formattedValue);
                                             }}
                                             placeholder="dd/mm/aaaa"
                                             pr={4}

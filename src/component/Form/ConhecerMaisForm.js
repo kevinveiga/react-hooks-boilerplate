@@ -180,7 +180,7 @@ export const ConhecerMaisForm = memo(({ formId, ...props }) => {
                                                         name={name}
                                                         onBlur={onBlur}
                                                         onValueChange={(values) => {
-                                                            onChange(values.value);
+                                                            onChange(values.formattedValue);
                                                         }}
                                                         placeholder="dd/mm/aaaa"
                                                         pr={4}
