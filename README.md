@@ -7,7 +7,7 @@
 -   spinal-case: Nomes no CSS, arquivos no geral, exceto pastas de componentes e arquivos de componentes - Ex: topo-imagem-1.jpg, Header.js;
 -   snake_case: Nomes de pastas, exceto pastas de componentes - Ex: folder_name, ComponenteA;
 
-## INSTALAÇÕES NECESSÁRIAS PARA O PROJETO (SEMPRE MANTER ATUALIZADO)
+## INSTALAÇÕES NECESSÁRIAS PARA O PROJETO
 
 -   [GIT](https://git-scm.com/downloads)
 -   [NodeJS 10 ou superior](https://nodejs.org/en/download/)
