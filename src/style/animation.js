@@ -10,34 +10,7 @@ export const animation = css`
     animation-timing-function: ${({ timingFunction }) => timingFunction || 'ease'};
 `;
 
-export const animationFadeIn = (obj = { display: 'block', opacity: 1 }) => keyframes`
-    0% {
-        display: none;
-        opacity: 0;
-    }
-    1% {
-        display: ${obj.display};
-    }
-    100% {
-        opacity: ${obj.opacity};
-    }
-`;
-
-export const animationFadeOut = (obj = { display: 'block', opacity: 1 }) => keyframes`
-    0% {
-        display: ${obj.display};
-        opacity: ${obj.opacity};
-    }
-    99% {
-        display: ${obj.display};
-    }
-    100% {
-        display: none;
-        opacity: 0;
-    }
-`;
-
-export const animationFadeInTab = (obj = { opacity: 1, visibility: 'visible' }) => keyframes`
+export const animationFadeIn = (obj = { opacity: 1, visibility: 'visible' }) => keyframes`
     0% {
         opacity: 0;
         visibility: hidden;
@@ -50,7 +23,7 @@ export const animationFadeInTab = (obj = { opacity: 1, visibility: 'visible' }) 
     }
 `;
 
-export const animationFadeOutTab = (obj = { opacity: 1, visibility: 'visible' }) => keyframes`
+export const animationFadeOut = (obj = { opacity: 1, visibility: 'visible' }) => keyframes`
     0% {
         opacity: ${obj.opacity};
         visibility: ${obj.visibility};
