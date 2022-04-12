@@ -29,7 +29,7 @@ export const animationFadeOut = (obj = { display: 'block', opacity: 1 }) => keyf
         opacity: ${obj.opacity};
     }
     99% {
-        display: 0;
+        display: ${obj.display};
     }
     100% {
         display: none;
@@ -56,7 +56,7 @@ export const animationFadeOutTab = (obj = { opacity: 1, visibility: 'visible' })
         visibility: ${obj.visibility};
     }
     99% {
-        visibility: 0;
+        visibility: ${obj.visibility};
     }
     100% {
         opacity: 0;
